@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "robot_model": "Go2",
+  "sample_period_s": 0.1,
+  "promotion_trials": 3,
+  "safety": {
+    "min_base_height_m": 0.18,
+    "max_abs_roll_pitch_deg": 35.0
+  },
+  "phases": [
+    {"name": "stand", "difficulty": 1, "timeout_s": 15, "expected": "Stay upright and still.", "target": {"position_m": [0, 0, 0]}, "pass": {"max_distance_m": 0.25, "max_heading_error_deg": 20}},
+    {"name": "forward", "difficulty": 2, "timeout_s": 20, "expected": "Walk straight to the flat target.", "target": {"position_m": [2, 0, 0]}, "pass": {"max_distance_m": 0.25, "max_heading_error_deg": 20}},
+    {"name": "turn", "difficulty": 3, "timeout_s": 12, "expected": "Turn in place to face 90 degrees.", "target": {"yaw_deg": 90}, "pass": {"max_distance_m": 0.25, "max_heading_error_deg": 10}},
+    {"name": "turn_and_move", "difficulty": 4, "timeout_s": 25, "expected": "Turn, then walk to the flat target.", "target": {"position_m": [2, 2, 0], "yaw_deg": 90}, "pass": {"max_distance_m": 0.3, "max_heading_error_deg": 15}},
+    {"name": "hill_up", "difficulty": 5, "timeout_s": 35, "expected": "Climb the ramp to the upper target without falling.", "target": {"position_m": [4, 0, 0.6]}, "pass": {"max_distance_m": 0.35, "max_heading_error_deg": 20, "min_altitude_gain_m": 0.45}},
+    {"name": "hill_down", "difficulty": 6, "timeout_s": 35, "expected": "Descend the ramp under control.", "target": {"position_m": [0, 0, 0]}, "pass": {"max_distance_m": 0.35, "max_heading_error_deg": 20}}
+  ]
+}
