@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://robotics.connect.or.kr/lecture#read/perception/p2c7 -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/js"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function __gaPath(){var h=(location.hash||'').replace(/^#/,'');try{return decodeURIComponent(h);}catch(x){return h;}}function __gaUid(){var m=/(?:^|;\s*)gaUid=([^;]*)/.exec(document.cookie);return m?decodeURIComponent(m[1]):'';}window.__gaV='2026-08-13';var __gaDbg=/^localhost$|^127\.|^dev\./.test(location.hostname);var __gaCfg={lecture_path:__gaPath()},__gaU=__gaUid();if(__gaU)__gaCfg.user_id=__gaU;if(__gaDbg){__gaCfg.debug_mode=true;__gaCfg.traffic_type='internal';}gtag('js',new Date());gtag('config','G-KVC9YYWB8M',__gaCfg);var __gaLastHref=location.href;addEventListener('hashchange',function(){setTimeout(function(){if(location.href===__gaLastHref)return;__gaLastHref=location.href;gtag('event','page_view',{page_location:location.href,page_title:document.title,lecture_path:__gaPath()});},0);});var __gaIO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5)return;__gaIO.unobserve(e.target);var d=e.target.dataset;gtag('event','lecture_stage_view',{lecture_path:__gaPath(),lesson:d.lesson||'',lesson_no:d.lessonNo||'',stage_key:d.stageKey||'',stage_no:d.stageNo||'',stage_total:document.querySelectorAll('.ls-stage').length});});},{threshold:0.5,rootMargin:'0px 0px -50% 0px'});function __gaLesson(){var s=document.querySelector('.ls-stage');if(s)return{lesson:s.dataset.lesson||'',no:s.dataset.lessonNo||''};var seg=(__gaPath().split('/').pop()||''),m=/c(\d+)$/.exec(seg);return{lesson:seg,no:m?m[1]:''};}var __gaCO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5&&e.intersectionRect.height<innerHeight*0.5)return;__gaCO.unobserve(e.target);var L=__gaLesson();gtag('event','lecture_complete',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no});});},{threshold:[0,0.25,0.5,0.75,1]});addEventListener('click',function(e){if(!e.target||!e.target.closest)return;var mo=e.target.closest('.ls-gpanel__more');if(mo){var LM=__gaLesson(),nm=document.querySelector('.ls-gpanel__name'),tm='';try{tm=(nm&&nm.textContent.trim())||decodeURIComponent((mo.getAttribute('href')||'').split('/').pop()||'');}catch(x){}gtag('event','glossary_more_click',{lecture_path:__gaPath(),lesson:LM.lesson,lesson_no:LM.no,term:tm});}var nb=e.target.closest('.read__next-inline,.read__next');if(nb){var LN=__gaLesson();gtag('event','next_lesson_click',{lecture_path:__gaPath(),lesson:LN.lesson,lesson_no:LN.no,next_position:nb.classList.contains('read__next-inline')?'bottom':'top'});}var cp=e.target.closest('.ls-code__copy,.ls-coderun__copy,.ls-chall__copybtn');if(cp){var rt=cp.closest('.ls-code,.ls-coderun,.ls-chall'),LC=__gaLesson(),kd='code',cid='',ctt='';if(rt){kd=rt.classList.contains('ls-chall')?'challenge':rt.classList.contains('ls-coderun')?'code_run':'code';cid=kd==='challenge'?(rt.dataset.id||''):kd==='code_run'?'run':String([].indexOf.call(document.querySelectorAll('.ls-code'),rt)+1);var te=rt.querySelector('.ls-code__title,.ls-chall__title,.ls-coderun__tab.is-on');if(te)ctt=te.textContent.trim().replace(/\s+/g,' ').slice(0,100);}gtag('event','code_copy_click',{lecture_path:__gaPath(),lesson:LC.lesson,lesson_no:LC.no,copy_kind:kd,copy_id:cid,copy_title:ctt});}var w=e.target.closest('.ls-term');if(w){var LW=__gaLesson();gtag('event','term_click',{lecture_path:__gaPath(),lesson:LW.lesson,lesson_no:LW.no,term:w.dataset.term||'',term_text:(w.textContent||'').trim().replace(/\s+/g,' ').slice(0,100)});}var t=e.target.closest('.ls-quiz__opt,.ls-quiz_opt');if(!t)return;var box=t.closest('.ls-quiz__q')||t.parentElement;if(!box||box.getAttribute('data-ga-answered'))return;box.setAttribute('data-ga-answered','1');var d=t.dataset,L=__gaLesson(),ok=d.correct==='1';gtag('event','quiz_answer',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no,quiz_no:String((parseInt(d.q,10)||0)+1),quiz_option_no:String((parseInt(d.i,10)||0)+1),quiz_option_text:(t.textContent||'').trim().replace(/\s+/g,' ').slice(0,100),quiz_result:ok?'correct':'wrong',quiz_correct:ok?1:0});},true);function __gaScan(){if(!__gaIO)return;var n=document.querySelectorAll('.ls-stage:not([data-ga-observed])');for(var i=0;i<n.length;i++){n[i].setAttribute('data-ga-observed','1');__gaIO.observe(n[i]);}var c=document.querySelectorAll('[data-block="summary"]:not([data-ga-observed])');for(var j=0;j<c.length;j++){c[j].setAttribute('data-ga-observed','1');__gaCO.observe(c[j]);}}function __gaWatch(){__gaScan();new MutationObserver(function(){if(__gaT)return;__gaT=setTimeout(function(){__gaT=0;__gaScan();},200);}).observe(document.body,{childList:true,subtree:true});addEventListener('hashchange',function(){setTimeout(__gaScan,300);});}var __gaT=0;[400,1200,3000].forEach(function(ms){setTimeout(__gaScan,ms);});if(document.readyState==='loading')addEventListener('DOMContentLoaded',__gaWatch);else __gaWatch();</script><!--<base href="/lecture/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK</title>
+    <meta name="description" content="네이버 커넥트 로보틱스 경진대회 2026 — Isaac Sim으로 배우는 로봇 AI 가이드북">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Gowun Dodum(본문+디스플레이) + Noto Sans KR(폴백 한글, 실제 로딩) + JetBrains Mono(코드) -->
+    <link href="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2" rel="stylesheet">
+    <!-- marked.js: 강의 markdown 렌더링 -->
+    <script src="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/marked.min.js.다운로드"></script>
+
+    <!-- bare specifier(three / three/addons) 해석용 — 로컬 vendor로 고정해 CDN 의존 제거.
+         8강 lidar-orbit.js, 17강 errand-scene.js, voxel-kit.js 등이 사용. three r160 + addons 동봉(/vendor/three-addons/). -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js",
+        "three/addons/": "./vendor/three-addons/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/styles.css">
+  <style id="lsq-css">
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+</style><link id="p1c0-hook-css" rel="stylesheet" href="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/p1c0-hook.css"><link id="p1c0-hook-font" rel="stylesheet" href="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2(1)"><style id="ls-balance-joints-css">
+    .ls-balance__joints{display:flex;gap:6px;justify-content:center;margin:6px 0 2px;min-height:22px}
+    .ls-balance__joints span{font-size:11.5px;font-family:var(--font-mono);padding:3px 9px;border-radius:999px;
+      border:1px solid var(--ls-border);color:#9a9384;background:transparent;opacity:.35;transition:all .18s}
+    .ls-balance__joints span.on{opacity:1;color:#5a3d0a;background:#f0d9a5;border-color:#c8a046;transform:translateY(-2px)}</style><style id="ls-uicard-video-css">
+    a.ls-uicard{display:block;text-decoration:none;color:inherit}
+    /* 제목 줄 오른쪽 끝에 삼각형만. 배경·테두리 없음. */
+    .ls-uicard__play{margin-left:auto;align-self:center;font-size:20px;line-height:1;color:var(--ls-accent);
+      transition:color .18s,transform .18s}
+    a.ls-uicard:hover .ls-uicard__play{color:#8a5a12;transform:translateX(2px)}</style><style id="ls-jax-css">
+.ls-jax{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:16px;padding:18px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-jax__stage{background:#faf8f3;border-radius:12px;box-shadow:inset 0 0 0 1px #e8e5dc;position:relative;height:320px;perspective:850px;overflow:hidden;cursor:grab;touch-action:none}
+.ls-jax__stage:active{cursor:grabbing}
+.ls-jax__scene{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--cx,-22deg)) rotateY(var(--cy,-32deg))}
+.ls-jax__scene *{transform-style:preserve-3d}
+.ls-jax__stack{position:absolute;left:-75px;top:-70px;width:150px;height:275px}
+.ls-jax__layer{position:absolute;left:0;top:0;width:150px}
+.ls-jax__layer svg{display:block;width:150px;height:auto}
+.ls-jax__leg{transform-origin:75px 70px;transition:transform .06s linear;transform:rotateY(var(--yw,0deg)) rotateZ(var(--rl,0deg)) rotateX(var(--px,0deg))}
+.ls-jax__arc{position:absolute;left:-92px;top:-92px;width:184px;height:184px;opacity:0;transition:opacity .2s}
+.ls-jax__arc.on{opacity:1}
+.ls-jax__arc svg{width:184px;height:184px;display:block}
+.ls-jax__arc--pitch{transform:rotateY(90deg)}
+.ls-jax__arc--yaw{transform:rotateX(90deg)}
+.ls-jax__axis{position:absolute;left:0;top:0;opacity:.62;pointer-events:none;transition:opacity .2s,box-shadow .2s}
+.ls-jax__axis i{position:absolute;font-style:normal;font-weight:800;font-size:18px;font-family:ui-monospace,Menlo,monospace;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff,0 1px 1px #fff}
+.ls-jax__axis--z{width:6px;height:126px;margin:-126px 0 0 -3px;background:#2471c7;color:#2471c7;border-radius:3px}
+.ls-jax__axis--z i{top:-25px;left:9px}
+.ls-jax__axis--y{width:120px;height:6px;margin:-3px 0 0 0;background:#1e8449;color:#1e8449;border-radius:3px;transform:scaleX(-1);transform-origin:left center}
+.ls-jax__axis--y i{top:-10px;left:123px;transform:scaleX(-1)}
+.ls-jax__axis--x{width:120px;height:6px;margin:-3px 0 0 0;background:#c0392b;color:#c0392b;border-radius:3px;transform:rotateY(-90deg);transform-origin:left center}
+.ls-jax__axis--x i{top:-10px;left:123px;transform:rotateY(90deg);transform-origin:left center}
+.ls-jax__axis.on{opacity:1;box-shadow:0 0 12px currentColor}
+.ls-jax__giz{position:absolute;right:12px;bottom:12px;width:98px;height:auto;display:none;background:rgba(255,255,255,.72);border:1px solid #eee5cf;border-radius:10px;padding:3px 4px 2px}
+.ls-jax.has-giz .ls-jax__giz{display:block}
+.ls-jax.is-corner .ls-jax__axis{display:none}
+.ls-jax__gax{opacity:.55;transition:opacity .2s}
+.ls-jax__gax.on{opacity:1}
+.ls-jax__gax.on line{stroke-width:5}
+.ls-jax__play{display:flex;gap:8px;margin-top:14px}
+.ls-jax__pbtn{flex:1;font-family:inherit;font-size:13px;font-weight:700;padding:11px 6px;border-radius:10px;border:1.5px solid;background:#fff;cursor:pointer;transition:.15s;line-height:1.3}
+.ls-jax__pbtn small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.ls-jax__pbtn.roll{color:#c0392b;border-color:#eec6c1}.ls-jax__pbtn.pitch{color:#1e8449;border-color:#bfe0cc}.ls-jax__pbtn.yaw{color:#2471c7;border-color:#bcd4ee}
+.ls-jax__pbtn.roll.is-on{background:#c0392b;color:#fff;border-color:#c0392b}
+.ls-jax__pbtn.pitch.is-on{background:#1e8449;color:#fff;border-color:#1e8449}
+.ls-jax__pbtn.yaw.is-on{background:#2471c7;color:#fff;border-color:#2471c7}
+.ls-jax__ctrls{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.ls-jax__row{display:flex;align-items:center;gap:10px;font-size:13px}
+.ls-jax__row .nm{width:118px;font-weight:700}.ls-jax__row .nm i{font-style:normal;font-family:ui-monospace,Menlo,monospace}
+.ls-jax__row input[type=range]{flex:1;accent-color:currentColor}
+.ls-jax__row .val{width:48px;text-align:right;font-family:ui-monospace,Menlo,monospace;color:#8a8574}
+.ls-jax__row.roll{color:#c0392b}.ls-jax__row.pitch{color:#1e8449}.ls-jax__row.yaw{color:#2471c7}
+.ls-jax__foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ls-jax__hint{font-size:11.5px;color:#726c61}
+.ls-jax__rst{background:#efe9dc;color:#6b5f45;border:1px solid #e1d8c4;border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer}
+.ls-jax__cap{font-size:13px;color:#5c584d;margin-top:12px;line-height:1.75;text-align:center}.ls-jax__cap b{color:#222}</style><style id="ls-aa-css">
+.ls-aa{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-aa__cap{padding:16px 20px 12px;font-size:14.5px;line-height:1.6;color:#3a3a42}
+.ls-aa__cap b,.ls-aa__cap strong{color:#111}
+.ls-aa__cap code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f2f5;padding:1px 6px;border-radius:5px}
+.ls-aa__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-aa__body{grid-template-columns:1fr}}
+.ls-aa__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11)}
+.ls-aa__svg{display:block;width:100%;height:auto}
+.ls-aa-seg{fill:url(#ncShell);stroke:#8b929c;stroke-width:1.3;transition:stroke .45s}
+.ls-aa.is-bound .ls-aa-seg{stroke:#f0b441;stroke-width:2}
+.ls-aa-joint{fill:url(#ncDark);stroke:#0f1216;stroke-width:1;transition:fill .45s,stroke .45s}
+.ls-aa.is-bound .ls-aa-joint{fill:#f0d9a5;stroke:#c78f2e}
+.ls-aa-joint.is-pulse{fill:#fff}
+.ls-aa-lower{transform-box:view-box;transform-origin:110px 140px;transition:transform .55s cubic-bezier(.34,1.3,.5,1)}
+.ls-aa-arm{transform-box:view-box;transform-origin:110px 52px;transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.ls-aa.is-bound.is-lift .ls-aa-arm{transform:rotate(-68deg)}
+.ls-aa:not(.is-bound).is-lift .ls-aa-arm{animation:ls-aa-nudge .4s}
+@keyframes ls-aa-nudge{0%,100%{transform:none}30%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.ls-aa__panel{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ls-aa__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;transition:.3s}
+.ls-aa__badge.is-loose{background:#efeff2;color:#71717a}
+.ls-aa__badge.is-bound{background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-aa__desc{font-size:13.5px;line-height:1.7;color:#52525b;min-height:60px}
+.ls-aa__desc b,.ls-aa__desc strong{color:#222}
+.ls-aa__toggle{display:flex;gap:8px}
+.ls-aa__btn{flex:1;font-family:inherit;font-size:13px;padding:10px 8px;border-radius:10px;border:1.5px solid #e4e4e8;background:#fff;color:#52525b;cursor:pointer;transition:.2s}
+.ls-aa__btn.is-on{background:#16161b;color:#f0d9a5;border-color:#16161b}
+.ls-aa__cmd{font-family:inherit;font-size:13.5px;padding:11px;border-radius:10px;border:none;cursor:pointer;transition:.2s}
+.ls-aa__cmd:disabled{background:#f2f2f5;color:#b4b4bb;cursor:not-allowed}
+.ls-aa__cmd:not(:disabled){background:#f0d9a5;color:#3a2e12}
+.ls-aa__note{font-size:12.5px;line-height:1.5;color:#8a6a28;min-height:30px}</style><style id="ls-jt-css">
+.ls-jt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+@media(max-width:620px){.ls-jt{grid-template-columns:repeat(2,1fr)}}
+.ls-jt__card{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:12px;padding:16px 12px;text-align:center}
+.ls-jt__demo{perspective:560px}
+.ls-jt__stage{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d}
+.ls-jt__seg{width:20px;height:66px;border-radius:10px;background:linear-gradient(#d6dae0,#b4b9c1 55%,#949aa4);box-shadow:inset 0 0 0 1px rgba(139,146,156,.6);transform-origin:bottom center}
+.ls-jt__pivot{position:absolute;bottom:16px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#3d434c,#14171c);border:1.5px solid #0f1216;z-index:2}
+.ls-jt__base{position:absolute;bottom:0;left:50%;margin-left:-26px;width:52px;height:18px;border-radius:6px;background:#2b313c}
+@keyframes lsJtRev{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes lsJtPris{0%,100%{transform:translateY(0)}50%{transform:translateY(-36px)}}
+@keyframes lsJtSpin{to{transform:rotateY(360deg)}}
+.ls-jt__demo.rev .ls-jt__seg{animation:lsJtRev 2s ease-in-out infinite}
+.ls-jt__demo.pris .ls-jt__seg{animation:lsJtPris 1.8s ease-in-out infinite}
+.ls-jt__demo.sph .ls-jt__spin{transform-style:preserve-3d;animation:lsJtSpin 2.4s linear infinite}
+.ls-jt__demo.sph .ls-jt__seg{transform:rotateX(30deg)}
+.ls-jt__demo.fixed .ls-jt__seg{background:linear-gradient(#c4c9d0,#a4aab4 55%,#868d98)}
+.ls-jt__nm{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14.5px;margin-top:9px}
+.ls-jt__loc{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b08436;margin:3px 0 6px}
+.ls-jt__d{font-size:13.5px;color:var(--ls-text-soft);line-height:1.55}</style><style id="ls-coderun-clps-css">
+    .ls-coderun__panel.is-clps{position:relative;max-height:340px;overflow:hidden}
+    .ls-coderun__panel.is-clps.is-open{max-height:none;overflow:visible}
+    .ls-coderun__clps-fade{position:absolute;left:0;right:0;bottom:38px;height:44px;background:linear-gradient(to bottom,rgba(21,22,27,0),#15161b);pointer-events:none;border-radius:0}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-fade{display:none}
+    .ls-coderun__clps-btn{position:absolute;left:0;right:0;bottom:0;width:100%;background:#23252e;color:#f0d9a5;border:0;border-top:1px solid #34363f;padding:9px;font:700 12.5px/1 inherit;cursor:pointer}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-btn{position:static;border-radius:0 0 12px 12px;margin-top:8px}
+    .ls-coderun__clps-btn:hover{background:#2c2e38}</style><style id="ls-skit-css">
+    /* 표준 위젯 규격 = 2강 .ls-physx (단일 아레나가 폭을 꽉 채움) */
+    .ls-skit{--skg:#b08436;--skc:#4f6873;--skln:var(--ls-border);--skbad:#c0392b;--skwarm:#b7791f;background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-max-w);box-sizing:border-box;}
+    .ls-skit__title{font-size:14px;font-weight:700;color:var(--ls-text);text-align:center;margin:0 0 10px;line-height:1.5;}
+    .ls-skit__arena{position:relative;width:100%;aspect-ratio:460/140;}
+    .ls-skit__arena svg{width:100%;height:100%;display:block;border-radius:8px;}
+    .ls-skit__vox{position:absolute;left:56.5%;top:6%;width:32%;height:80%;}
+    .ls-skit__vox canvas{width:100%!important;height:100%!important;display:block;}
+    .ls-skit__vox .vox-loading{font-size:10px;color:var(--ls-muted);text-align:center;padding-top:42%;font-family:ui-monospace,monospace;}
+    .ls-skit__cap{text-align:center;margin-top:11px;font-size:13.5px;color:var(--ls-text-soft);line-height:1.55;min-height:20px;}
+    .ls-skit__cap b{color:var(--skg);}
+    .ls-skit__slot{font-family:ui-monospace,monospace;font-size:12.5px;background:var(--ls-soft);border:1px solid var(--ls-border);border-radius:9px;padding:9px 13px;margin-top:10px;color:var(--ls-muted);text-align:center;}
+    .ls-skit__slot .f{color:var(--skc);}.ls-skit__slot .n{color:#c2410c;}.ls-skit__slot .bad{color:var(--skbad);}
+    .ls-skit__slot .nb{white-space:nowrap;}   /* 좁은 화면에서 코드가 = 뒤에서 갈라지지 않게 */
+    /* 슬롯 = 첫 줄에 로봇에게 준 것(고정폭), 아래 줄에 그게 무엇인지 설명(본문 글꼴) */
+    .ls-skit__slot .why{display:block;margin-top:6px;font-family:var(--font-body);font-size:13px;color:var(--ls-text-soft);}
+    .ls-skit__acts{display:flex;gap:9px;justify-content:center;margin-top:11px;flex-wrap:wrap;}
+    .ls-skit__btn{font-family:inherit;font-weight:700;font-size:13.5px;color:#fff;background:var(--skg);border:0;border-radius:10px;padding:9px 17px;cursor:pointer;}
+    .ls-skit__btn--ghost{background:var(--ls-soft);color:var(--ls-muted);}
+    </style><style id="ls-lj-css">
+.ls-lj{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-lj__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-lj__body{grid-template-columns:1fr}}
+/* 스테이지 SVG는 세로로 길다. 폭에 맞춰 늘리면 카드 높이를 혼자 결정해 오른쪽 패널 아래가 비어 보인다.
+   높이를 고정하고 가운데 두면, 카드 높이는 패널이 정하고 그림은 그 안에서 균형을 잡는다. */
+.ls-lj__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);display:flex;align-items:center;justify-content:center;padding:18px 10px}
+.ls-lj__stage svg{display:block;height:236px;width:auto;max-width:100%}
+@media(max-width:620px){.ls-lj__stage svg{height:210px}}
+/* 뼈대는 정본 NC-01 셸 색. 캡슐은 외곽선 없이 그라디언트만 쓴다(리그와 동일) */
+.ls-lj-seg{fill:url(#ncShell)}
+.ls-lj-fixed{fill:url(#ncShell)}
+/* 고정 뼈대와 도는 뼈대가 같은 색이 되었으니, 위쪽이 안 움직인다는 건 다크 마운트가 대신 말한다 */
+.ls-lj-mount{fill:url(#ncDark)}
+.ls-lj-grip{fill:url(#ncShell);stroke:#aab3bc;stroke-width:0.8}
+.ls-lj-gear{transition:filter .25s}
+.ls-lj-gear.is-pulse{filter:drop-shadow(0 0 9px #f0d9a5)}
+.ls-lj-pin{fill:#6e747e}
+.ls-lj-fixtag{fill:#6e747e;font-size:10.5px;font-weight:700}
+.ls-lj__panel{padding:22px 24px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.ls-lj__ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ls-lj__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-lj__legend{font-size:13px;line-height:1.8;color:#52525b}
+.ls-lj__legend .chip{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:7px}
+.ls-lj__legend b{color:#222}
+.ls-lj__row{flex:1 1 240px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#52525b}
+.ls-lj__row .nm{width:74px;font-weight:700;color:#8a6a28}
+.ls-lj__row input[type=range]{flex:1;accent-color:#c9a24a}
+.ls-lj__row .val{width:40px;text-align:right;font-family:ui-monospace,Menlo,monospace}
+/* 버튼이 패널 폭(850px)을 통째로 가로지르면 슬라이더보다 무거워 보인다 — 슬라이더와 한 줄에 세운다 */
+.ls-lj__btn{flex:0 0 auto;font-family:inherit;font-size:13px;font-weight:700;padding:11px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;background:#f0d9a5;color:#3a2e12}
+.ls-lj__btn:hover{filter:brightness(.97)}
+.ls-lj__note{font-size:12.5px;line-height:1.6;color:#8a6a28}</style><style id="ls-jointmap-css">
+.ls-jointmap{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jointmap__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 3px}
+.ls-jointmap__sub{font-size:12.5px;color:#8a837a;margin:0 0 10px}
+.ls-jointmap__stage{background:#f1efe7;border-radius:12px;padding:6px}
+.ls-jointmap__svg{display:block;width:100%;height:auto}
+/* 가독성은 크기로만 확보한다 — 굵기까지 같이 올리면 리그보다 라벨이 먼저 읽혀 그림이 뒤로 밀린다 */
+.ls-jointmap .ko{font-size:12px;fill:#14130f;transition:.12s}
+/* 영문 관절명은 본문 <code>dof_names</code>와 같은 무게로 읽혀야 한다 — 본문 코드 칩 색(--ls-text)을 쓰고,
+   스테이지 배경색으로 글자 테두리를 둘러 리그 선 위에서도 칩처럼 또렷하게 떠오르게 한다. */
+.ls-jointmap .eng{font-size:10.5px;fill:#14130f;font-family:var(--font-mono);paint-order:stroke;stroke:#f1efe7;stroke-width:2.2px;stroke-linejoin:round;transition:.12s}
+.ls-jointmap .lblbox{cursor:pointer}
+.ls-jointmap .lblbox.on .ko{fill:#a06e18}
+.ls-jointmap .lblbox.on .eng{fill:#a0812f}
+.ls-jointmap .lead-line{stroke:#c3bdae;stroke-width:1;transition:.12s}
+.ls-jointmap .lead-line.on{stroke:#e0a83a;stroke-width:1.8}
+.ls-jointmap .jdot{fill:#3a3f47;stroke:#0f1216;stroke-width:1;transition:.12s;cursor:pointer}
+.ls-jointmap .jdot.on{fill:#f0d9a5;stroke:#c78f2e}
+.ls-jointmap .halo{fill:none;stroke:#f0d9a5;stroke-width:2.5;opacity:0;transition:.12s}
+.ls-jointmap .halo.on{opacity:.9}
+.ls-jointmap .ls-jm-pupils{transition:transform .22s ease-out}
+.ls-jointmap__foot{font-size:12px;color:#8a837a;margin:10px 2px 0}
+.ls-jointmap__foot code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#eceae2;padding:1px 6px;border-radius:5px}</style><style id="ls-jlim-css">
+.ls-jlim{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jlim__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-jlim__grid{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center}
+@media(max-width:640px){.ls-jlim__grid{grid-template-columns:1fr}}
+.ls-jlim__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);border-radius:12px;padding:6px}
+.ls-jlim__stage svg{display:block;width:100%;height:auto}
+.ls-jlim__ctrl label{font-size:13px;color:#52525b;display:block;margin:0 0 6px}
+.ls-jlim__ctrl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;outline:none;margin:8px 0}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-runnable-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-5.5px;width:20px;height:20px;border-radius:50%;background:#4a3410;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+.ls-jlim__ctrl input[type=range]::-moz-range-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#4a3410;border:3px solid #fff;cursor:pointer}
+.ls-jlim__zone{font-size:11px;color:#c0392b;font-weight:700;margin-top:5px}
+.ls-jlim__read{margin-top:14px;font-size:14px;color:#3a3630}
+.ls-jlim__read .app{font-family:ui-monospace,Menlo,monospace;font-weight:700}
+.ls-jlim__warn{margin-top:8px;font-size:13px;min-height:20px;color:#c0392b;font-weight:700}
+.ls-jlim__ref{margin-top:14px;font-size:12px;color:#8a837a;line-height:1.6}
+.ls-jlim__ref code{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#eceae2;padding:1px 5px;border-radius:5px}
+.ls-jlim-glow{animation:lsjlimGlow .65s ease-in-out infinite}
+@keyframes lsjlimGlow{0%,100%{filter:drop-shadow(0 0 5px #ff5b5b)}50%{filter:drop-shadow(0 0 16px #ff1a1a) drop-shadow(0 0 8px #ff4040)}}
+.ls-jlim-halo{animation:lsjlimHalo .65s ease-in-out infinite}
+@keyframes lsjlimHalo{0%,100%{opacity:.2}50%{opacity:.6}}</style><style id="ls-ctrlcmp-css">
+.ls-ctrlcmp{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-ctrlcmp__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-ctrlcmp__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.ls-ctrlcmp__grid{grid-template-columns:1fr}}
+.ls-ctrlcmp__box{border:1.5px solid #e8e5dc;border-radius:14px;padding:16px 18px}
+.ls-ctrlcmp__box.pos{border-color:#cfe0c9;background:#f7fbf5}
+.ls-ctrlcmp__box.tor{border-color:#e6ddc9;background:#fbf8f1}
+.ls-ctrlcmp__ti{font-size:15px;font-weight:700;margin:0 0 2px;color:#2a2622}
+.ls-ctrlcmp__say{font-size:13px;color:#5a5349;margin:0 0 8px}
+.ls-ctrlcmp__say b{color:#222}
+.ls-ctrlcmp__box ul{margin:0;padding-left:18px;font-size:12.5px;color:#6e695e;line-height:1.7;list-style:disc}
+.ls-ctrlcmp__box li{margin:0}
+.ls-ctrlcmp__box code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:5px}
+.ls-ctrlcmp__pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-top:8px}
+.ls-ctrlcmp__pill.now{background:#e3efe0;color:#3f7a35}
+.ls-ctrlcmp__pill.late{background:#f3e6cf;color:#8a6a28}</style><style id="ls-dvf-css">
+    .ls-dvf{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box}
+    .ls-dvf__title{text-align:center;color:var(--ls-text);font-size:13px;margin-bottom:12px}
+    .ls-dvf__arena{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ls-dvf__pan{position:relative;background:#f1efe7;border-radius:10px;padding:12px 10px 10px;overflow:hidden}
+    .ls-dvf__lbl{text-align:center;font-family:var(--font-mono);font-size:12.5px;font-weight:700;margin-bottom:2px}
+    .ls-dvf__pan.dyn .ls-dvf__lbl{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__lbl{color:#1a7440}
+    .ls-dvf__scene{position:relative;height:210px;overflow:hidden}
+    .ls-dvf__cap{position:relative;z-index:3}
+    .ls-dvf__ground{position:absolute;left:0;right:0;bottom:0;height:16px;background:#c9c4b3;border-top:2px solid #b6b09c;box-sizing:border-box}
+    .ls-dvf__rsvg{position:absolute;left:50%;margin-left:-21px;bottom:48px;width:42px;height:auto;transition:transform .6s cubic-bezier(.4,.7,.5,1),bottom .6s;transform-origin:bottom center;z-index:2}
+    .ls-dvf__blk{position:absolute;bottom:18px;width:38px;height:30px;border-radius:3px;transition:transform .75s cubic-bezier(.3,.85,.35,1),opacity .75s}
+    .ls-dvf__pan.dyn .ls-dvf__blk{background:#cf9081;border:1px solid #ad6b59;border-top-color:#e2ab99}
+    .ls-dvf__pan.fix .ls-dvf__blk{background:#a3b487;border:1px solid #7f9165;border-top-color:#bccba3}
+    .ls-dvf__blk.b1{left:calc(50% - 57px)}
+    .ls-dvf__blk.b2{left:calc(50% - 19px)}
+    .ls-dvf__blk.b3{left:calc(50% + 19px)}
+    .ls-dvf__cap{text-align:center;font-family:var(--font-mono);font-size:11.5px;margin-top:8px;min-height:16px}
+    .ls-dvf__pan.dyn .ls-dvf__cap{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__cap{color:#1a7440}
+    .ls-dvf__row{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+    .ls-dvf__btn{background:rgba(240,217,165,.24);color:#8a6410;border:1px solid rgba(176,132,54,.45);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+    .ls-dvf__btn--ghost{color:var(--ls-muted);border-color:var(--ls-border);background:transparent}
+    .ls-dvf__msg{font-size:12px;color:var(--ls-muted);margin-left:6px}
+    .ls-dvf.go .dyn .b1{transform:translate(-40px,12px) rotate(-26deg)}
+    .ls-dvf.go .dyn .b2{transform:translate(2px,16px) rotate(16deg)}
+    .ls-dvf.go .dyn .b3{transform:translate(40px,12px) rotate(26deg)}
+    .ls-dvf.go .dyn .ls-dvf__rsvg{bottom:26px;transform:rotate(74deg)}
+    .ls-dvf.go .fix .ls-dvf__rsvg{animation:lsDvfLand .45s .5s both}
+    @keyframes lsDvfLand{0%{transform:translateY(-5px)}60%{transform:translateY(2px)}100%{transform:translateY(0)}}</style></head>
+  <body class="is-view-read">
+    <!-- ============================== 사이드 레일 (책장 손잡이) ============================== -->
+    <aside class="rail" id="rail">
+      <button class="rail__menu" id="menuBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="rail__brand" aria-hidden="true">
+        <span class="rail__brand-text" id="railBrand">NAVER CONNECT</span>
+      </div>
+    </aside>
+
+    <!-- ============================== 메뉴 오버레이 ============================== -->
+    <div class="overlay" id="overlay" hidden="">
+      <div class="overlay__backdrop"></div>
+      <div class="overlay__panel">
+        <button class="overlay__close" id="overlayClose" aria-label="닫기">×</button>
+
+        <div class="overlay__head">
+          <h2 class="overlay__title">목차</h2>
+          <p class="overlay__sub" id="overlaySub">4개 챕터 · 21강</p>
+        </div>
+
+        <ul class="overlay__books" id="overlayMenu"><li class="overlay__book" data-book-id="creation"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">01</span>
+      <span class="overlay__book-name">탄생</span>
+      <span class="overlay__book-count" data-book-count="creation">2 / 4강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p1c0" class="is-done"><button>
+        <span class="ch-no">00</span>
+        <span class="ch-title">들어가며</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c1" class="is-done"><button>
+        <span class="ch-no">01</span>
+        <span class="ch-title">강화학습과 시뮬레이션 기초</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c2" class="is-done"><button>
+        <span class="ch-no">02</span>
+        <span class="ch-title">Isaac Sim 처음 열기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c3" class=""><button>
+        <span class="ch-no">03</span>
+        <span class="ch-title">중력 만져보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c4" class=""><button>
+        <span class="ch-no">04</span>
+        <span class="ch-title">로봇 불러오기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="perception"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">02</span>
+      <span class="overlay__book-name">각성</span>
+      <span class="overlay__book-count" data-book-count="perception">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p2c5" class="is-done"><button>
+        <span class="ch-no">05</span>
+        <span class="ch-title">관절 움직이기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p2c6" class="is-active"><button>
+        <span class="ch-no">06</span>
+        <span class="ch-title">지형 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c7"><button>
+        <span class="ch-no">07</span>
+        <span class="ch-title">카메라로 보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c8"><button>
+        <span class="ch-no">08</span>
+        <span class="ch-title">라이다로 거리 재기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c9"><button>
+        <span class="ch-no">09</span>
+        <span class="ch-title">키보드로 조작하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="instinct"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">03</span>
+      <span class="overlay__book-name">진화</span>
+      <span class="overlay__book-count" data-book-count="instinct">0 / 7강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p3c10"><button>
+        <span class="ch-no">10</span>
+        <span class="ch-title">Isaac Lab과 강화학습 원리</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c11"><button>
+        <span class="ch-no">11</span>
+        <span class="ch-title">로봇 학습의 목표</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c12"><button>
+        <span class="ch-no">12</span>
+        <span class="ch-title">로봇 학습 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c13"><button>
+        <span class="ch-no">13</span>
+        <span class="ch-title">로봇 학습 하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c14"><button>
+        <span class="ch-no">14</span>
+        <span class="ch-title">보상 함수 설계와 조정</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c15"><button>
+        <span class="ch-no">15</span>
+        <span class="ch-title">학습 관찰과 진단</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c16"><button>
+        <span class="ch-no">16</span>
+        <span class="ch-title">policy.pt 파일 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="wisdom"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">04</span>
+      <span class="overlay__book-name">초월</span>
+      <span class="overlay__book-count" data-book-count="wisdom">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p4c17"><button>
+        <span class="ch-no">17</span>
+        <span class="ch-title">자연어를 로봇 명령으로</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c18"><button>
+        <span class="ch-no">18</span>
+        <span class="ch-title">믿을 수 있는 로봇 명령 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c19"><button>
+        <span class="ch-no">19</span>
+        <span class="ch-title">생각하는 로봇, 완성</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c20"><button>
+        <span class="ch-no">20</span>
+        <span class="ch-title">여기까지, 그리고 그다음</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c21" class="is-done"><button>
+        <span class="ch-no">21</span>
+        <span class="ch-title">부록 · 본선 연습 해보기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li></ol></li></ul>
+
+        <div class="overlay__quicks">
+          <button class="overlay__quick" data-quick="books">
+            <span class="overlay__quick-label">메인 화면</span>
+          </button>
+          <button class="overlay__quick" data-quick="glossary">
+            <span class="overlay__quick-label">단어 사전</span>
+          </button>
+          <a class="overlay__quick" href="https://robotics.connect.or.kr/lecture/teacher-guide.html">
+            <span class="overlay__quick-label">교사용 지도서</span>
+          </a>
+        </div>
+
+        <div class="overlay__legal">
+          NAVER CONNECT ROBOTICS CUP 2026<br>
+          <button class="overlay__legal-btn" type="button" id="legalBtn">이용 안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================== 메인 무대 ============================== -->
+    <main class="stage" id="stage">
+      <!-- 배경 슬롯 (뷰별 교체) -->
+      <div class="bgs" id="bgs"><div class="bgs__layer" style="background-image: url(&quot;img/배경1.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/1-7.webp&quot;);"></div></div>
+      <div class="bg-vignette" aria-hidden="true"></div>
+
+      <!-- ============== 뷰: 전체 목차 (4 챕터 strips) ============== -->
+      <section class="view view--books" data-view="books" hidden="">
+        <div class="books__head">
+          <h2 class="books__title">NAVER CONNECT ROBOTICS CUP <span class="books__title-guide">GUIDE BOOK</span></h2>
+          <p class="books__hero">시뮬레이션 · 강화학습 · LLM을 한 흐름으로 잇는 로보틱스 가이드북</p>
+          <div class="books__resume-slot" id="booksResume">
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">16강 · policy.pt 파일 준비하기</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  </div>
+        </div>
+        <div class="books__strips" id="booksStrips"><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/1-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">01</div>
+      <div class="strip__hanja">탄생</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">시뮬레이션 환경 접속하기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/2-7.webp&#39;); background-position: 40% center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">02</div>
+      <div class="strip__hanja">각성</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">로봇을 움직이고 감각 달기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/3-5.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">03</div>
+      <div class="strip__hanja">진화</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">스스로 걷는 법 가르치기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/4-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">04</div>
+      <div class="strip__hanja">초월</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">자연어로 명령 내리기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+    </button></div>
+      </section>
+
+      <!-- ============== 뷰: 챕터 목차 (다크 hero + 화이트 챕터 그리드) ============== -->
+      <section class="view view--bestiary" data-view="bestiary" hidden="">
+        <aside class="bestiary__hero">
+          <div class="bestiary__hero-bg" id="bestiaryHeroBg" style="background-image: url(&quot;img/1-7.webp&quot;); background-position: center center;"></div>
+          <div class="bestiary__hero-veil"></div>
+          <button class="bestiary__back" id="bestiaryBack" aria-label="메인 화면으로">
+            <span>◂</span> 메인
+          </button>
+          <div class="bestiary__hero-content">
+            <div class="bestiary__hero-no" id="bestiaryHeroNo">챕터 01</div>
+            <h2 class="bestiary__hero-title" id="bestiaryHeroTitle">탄생</h2>
+            <div class="bestiary__hero-titleEn" id="bestiaryHeroTitleEn">시뮬레이션 환경 접속하기</div>
+          </div>
+        </aside>
+
+        <main class="bestiary__chapters">
+          <header class="bestiary__chapters-head">
+            <h3 class="bestiary__chapters-title" id="bestiaryChaptersTitle">시뮬레이션 환경을 손에 쥐어요</h3>
+            <p class="bestiary__chapters-desc" id="bestiaryChaptersDesc">강화학습과 시뮬레이션이 왜 필요한지부터 짚고, Isaac Sim을 처음 열어봐요.
+중력을 만지고, 첫 로봇을 시뮬레이션 환경으로 불러오기까지 함께 해요.</p>
+          </header>
+          <ol class="bestiary__list" id="bestiaryList"><li class="chapter-card" data-chapter-id="p1c0">
+      <div class="chapter-card__index">00</div>
+      <h3 class="chapter-card__title">들어가며</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c1">
+      <div class="chapter-card__index">01</div>
+      <h3 class="chapter-card__title">강화학습과 시뮬레이션 기초</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card chapter-card--done" data-chapter-id="p1c2">
+      <div class="chapter-card__index">02</div>
+      <h3 class="chapter-card__title">Isaac Sim 처음 열기</h3>
+      <div class="chapter-card__check" aria-hidden="true">✓</div>
+    </li><li class="chapter-card" data-chapter-id="p1c3">
+      <div class="chapter-card__index">03</div>
+      <h3 class="chapter-card__title">중력 만져보기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c4">
+      <div class="chapter-card__index">04</div>
+      <h3 class="chapter-card__title">로봇 불러오기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li></ol>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: 강의 본문 (풀스크린) ============== -->
+      <section class="view view--read is-visible" data-view="read">
+        <main class="read__main">
+          <header class="read__bar">
+            <div class="read__bar-left">
+              <button class="read__back" id="readBack" aria-label="챕터로">
+                <span class="read__back-arrow" aria-hidden="true">◂</span>
+                <span class="read__back-label">챕터</span>
+              </button>
+            </div>
+            <label class="read__bar-picker" aria-label="강의 이동">
+              <select class="read__bar-select" id="readBarSelect"><option value="p2c5">05강의. 관절 움직이기</option><option value="p2c6">06강의. 지형 만들기</option><option value="p2c7" selected="">07강의. 카메라로 보기</option><option value="p2c8">08강의. 라이다로 거리 재기</option><option value="p2c9">09강의. 키보드로 조작하기</option></select>
+              <span class="read__bar-picker-caret" aria-hidden="true">▾</span>
+            </label>
+            <button type="button" class="lsq-bar" aria-label="강의 본문 검색"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg><span>검색</span><span class="lsq-k">( / )</span></button><div class="read__nav" id="readNav">
+              <button class="read__prev" id="readPrev" aria-label="이전 강의" data-tooltip="06강의. 지형 만들기">
+                <span class="read__nav-arrow">◂</span>
+                <span class="read__nav-label">이전 강의</span>
+              </button>
+              <button class="read__next" id="readNext" aria-label="다음 강의" data-tooltip="08강의. 라이다로 거리 재기">
+                <span class="read__nav-label">다음 강의</span>
+                <span class="read__nav-arrow">▸</span>
+              </button>
+            </div>
+          </header>
+          <article class="read__article ls-host" id="readContent" data-lesson-id="p2c7"><header class="ls-open is-revealed">
+    <h1 class="ls-open__title">07. 카메라로 보기</h1>
+    <p class="ls-open__sub"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="휴머노이드" role="link" tabindex="0">휴머노이드</span> 로봇에 <span class="ls-term" data-term="카메라" role="link" tabindex="0">카메라</span>를 달면, 로봇은 세상을 어떻게 볼까요?</span> <span class="ls-sentence">색과 거리를 코드로 읽어보고, 그 이미지에 <span class="ls-term" data-term="시맨틱 라벨" role="link" tabindex="0">이름표</span>(<span class="ls-term" data-term="세그멘테이션" role="link" tabindex="0">세그멘테이션</span>, Segmentation)를 붙이는 것까지 배워봐요.</span></span></p>
+  </header><section class="ls-stage is-revealed" data-stage-key="intro" data-lesson="p2c7" data-lesson-no="07" data-stage-no="1" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">①</span>
+      <h2 class="ls-stage__label">생각 열기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">로봇이 스스로 주변을 볼 수 있으면 무엇이 달라질까요?</span> <span class="ls-sentence">로봇에 다는 카메라는 어떤 종류가 있는지 먼저 살펴봐요.</span></span></p>
+  </section><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">로봇이 보는 방식</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">사람은 눈을 뜨면 자연스럽게 사물을 보고 인지해요.</span> <span class="ls-sentence">하지만 로봇은 처음엔 세상을 전혀 보지 못해요.</span> <span class="ls-sentence">우리가 <strong>"보는 능력"</strong>이라고 부르는 것을 로봇에게 주려면, 빛을 숫자로 바꿔주는 장치 한 가지를 달아줘야 해요.</span> <span class="ls-sentence">그 장치가 <strong>카메라</strong>예요.</span></span></p>
+  </section><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘의 목표는 단순해요.</span> <span class="ls-sentence">로봇이 <strong>"앞에 무엇이 있는지"</strong> 알 수 있도록, 우리가 로봇에 카메라를 달고 그 장면을 코드로 받아오는 거예요.</span></span></span></div><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">카메라의 세 가지 종류</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">사람은 앞에 있는 물건이 정확히 몇 미터인지는 몰라도, 얼마나 먼지 가까운지는 알아요.</span> <span class="ls-sentence">눈이 <strong>두 개</strong>라서 그래요.</span> <span class="ls-sentence">한쪽 눈씩 번갈아 감았다 떠보면 가까운 물체일수록 더 많이 움직여 보이는데, 두 눈에 맺힌 장면이 그만큼 어긋나 있다는 뜻이에요.</span> <span class="ls-sentence">그 어긋난 정도가 거리 감각을 만들어줘요.</span> <span class="ls-sentence">사람의 두 눈이 곧 <strong><span class="ls-term" data-term="스테레오 카메라" role="link" tabindex="0">스테레오 카메라</span></strong>인 셈이죠.</span></span><span class="ls-para"><span class="ls-sentence">카메라도 <strong>렌즈가 몇 개인지</strong>, <strong>거리를 스스로 알려주는지</strong>에 따라 세 가지로 나뉘어요.</span> <span class="ls-sentence">우리가 로봇에 달 것은 그중 가장 기본인 <strong><span class="ls-term" data-term="단안 카메라" role="link" tabindex="0">단안 카메라</span></strong>예요.</span> <span class="ls-sentence">한쪽 눈을 감고 세상을 보는 것과 같죠.</span> <span class="ls-sentence">세 종류가 무엇이 다른지 아래 표에서 비교해보세요.</span></span></p>
+  </section><div class="ls-vstable is-revealed" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">종류</th><th class="ls-vstable__th--1 ls-vstable--c">렌즈</th><th class="ls-vstable__th--2 ls-vstable--c">거리 정보</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">단안 카메라 (mono)</td><td class="ls-vstable--c">1개</td><td class="ls-vstable--c">한 장만으로는 알기 어려워요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">스테레오 카메라 (stereo)</td><td class="ls-vstable--c">2개</td><td class="ls-vstable--c">두 화면이 어긋난 정도로 계산해요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="깊이 카메라" role="link" tabindex="0">깊이 카메라</span> (depth)</td><td class="ls-vstable--c">1개 + 적외선 등</td><td class="ls-vstable--c">센서가 거리까지 함께 내보내요</td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-stage is-revealed" data-stage-key="objective" data-lesson="p2c7" data-lesson-no="07" data-stage-no="2" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">②</span>
+      <h2 class="ls-stage__label">학습 목표</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><div class="ls-outcomes is-revealed" data-block="outcome-list">
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">01</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>가상 카메라의 <span class="ls-term" data-term="레이트레이싱" role="link" tabindex="0">레이트레이싱</span> 원리를 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">02</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="RGB" role="link" tabindex="0">RGB</span>와 <span class="ls-term" data-term="Depth" role="link" tabindex="0">Depth</span>를 구분할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">03</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>세그멘테이션이 왜 필요한지 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">04</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>휴머노이드 로봇의 카메라로 첫 <span class="ls-term" data-term="프레임" role="link" tabindex="0">프레임</span>을 받을 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘은 로봇에게 눈을 달아줘요.</span> <span class="ls-sentence">색과 거리를 읽고, 이름표를 붙이고, 카메라까지 직접 달아봐요.</span></span></span></div><section class="ls-stage" data-stage-key="concept" data-lesson="p2c7" data-lesson-no="07" data-stage-no="3" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">③</span>
+      <h2 class="ls-stage__label">개념 만나기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="시뮬레이션" role="link" tabindex="0">시뮬레이션</span> <span class="ls-term" data-term="환경" role="link" tabindex="0">환경</span> 속 카메라는 어떻게 화면을 만들어낼까요?</span> <span class="ls-sentence">화면에 담기는 두 가지 출력은 서로 무엇이 다를까요?</span> <span class="ls-sentence">이미지에 이름표를 붙이는 방법까지 하나씩 알아봐요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">가상 카메라가 하는 일</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">세 가지 종류의 카메라는 모두 현실에서 팔아요.</span> <span class="ls-sentence">그런데 우리는 진짜 카메라를 사서 <strong>로봇 머리에 붙이는 게 아니라</strong>, 시뮬레이션 환경 안에 카메라를 만들어 붙여요.</span> <span class="ls-sentence">이렇게 시뮬레이션 환경 안에만 있는 카메라를 <strong>가상 카메라</strong>라고 해요.</span> <span class="ls-sentence">그럼 이 카메라는 어떻게 그림을 만들까요?</span> <span class="ls-sentence">현실의 카메라는 <strong>렌즈로 들어온 빛을 모아</strong> 사진을 만들어요.</span> <span class="ls-sentence">시뮬레이션 환경에는 유리로 된 렌즈도, 실제 빛도 없어요.</span> <span class="ls-sentence">대신 6강에서 띄운 태양 같은 <strong><span class="ls-term" data-term="조명" role="link" tabindex="0">조명</span> 정보를 바탕으로</strong>, <span class="ls-term" data-term="pixel" role="link" tabindex="0">픽셀</span>마다 "이 빛은 어디서 왔을까"를 계산해 색을 정해요.</span> <span class="ls-sentence">이 방식을 <strong>레이트레이싱</strong>이라고 불러요.</span></span></p>
+  </section><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">가상 카메라도 카메라의 종류인가요?</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence">아니에요.</span> <span class="ls-sentence">자동차는 경차, SUV, 트럭처럼 종류를 나눌 수 있어요.</span> <span class="ls-sentence">자동차 게임 속에도 경차와 SUV, 트럭이 똑같이 나오죠.</span> <span class="ls-sentence">하지만 "게임 속 자동차"가 새로운 차종은 아니에요.</span> <span class="ls-sentence">가상 카메라도 마찬가지예요.</span> <span class="ls-sentence">카메라가 <strong>현실에 있는지 시뮬레이션 환경 안에 있는지</strong>를 가리키는 말이에요.</span></span></div>
+  </details><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">레이트레이싱의 의미</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence"><strong>ray</strong>는 빛줄기, <strong>tracing</strong>은 따라가기를 의미해요.</span> <span class="ls-sentence">픽셀에 들어온 빛줄기를 거꾸로 따라가 어디서 출발했는지 찾는다는 뜻이에요.</span> <span class="ls-sentence">요즘 <span class="ls-term" data-term="GPU" role="link" tabindex="0">GPU</span>는 이 계산을 1초에 수십 번씩 되풀이해요.</span> <span class="ls-sentence">게임에서 보이는 부드러운 영상이 바로 이 과정의 결과예요.</span></span></div>
+  </details><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">RGB와 Depth, 두 장의 그림</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">앞에서 가상 카메라가 빛을 계산해 색을 정한다고 했죠.</span> <span class="ls-sentence">이 카메라는 한 번 찍을 때 성격이 다른 그림을 <strong>두 장</strong> 만들어줘요.</span></span><span class="ls-para"><span class="ls-sentence">첫 번째는 우리가 아는 컬러 사진이에요.</span> <span class="ls-sentence">픽셀마다 색을 <strong>빨강, 초록, 파랑</strong> 세 숫자로 적어두는데, 세 색의 영어 앞글자를 따서 <strong>RGB</strong>라고 불러요.</span></span><span class="ls-para"><span class="ls-sentence">두 번째는 색 대신 <strong>거리</strong>가 담긴 그림이에요.</span> <span class="ls-sentence">픽셀마다 "여기까지 몇 미터"가 적혀 있어요.</span> <span class="ls-sentence">가까운 곳은 밝게, 먼 곳은 어둡게 보여서 <strong><span class="ls-term" data-term="깊이맵" role="link" tabindex="0">깊이맵</span>(Depth)</strong>이라고 불러요.</span></span><span class="ls-para">아래에서 두 장을 나란히 비교해보세요.</span></p>
+  </section><div class="ls-rgbdepth" data-block="rgb-vs-depth">
+    <div class="ls-rgbdepth__title">같은 장면을 RGB와 Depth로 비교하기</div>
+    <div class="ls-rgbdepth__grid">
+      <div class="ls-rgbdepth__row">
+        <div class="ls-rgbdepth__cell">
+          <div class="ls-rgbdepth__label">RGB 카메라</div>
+          <svg viewBox="0 0 200 140" data-rgb="" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <lineargradient id="lsRgbSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#6fbfdd"></stop>
+          <stop offset="1" stop-color="#cfe9f3"></stop>
+        </lineargradient>
+        <lineargradient id="lsRgbGround" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8cc186"></stop>
+          <stop offset="1" stop-color="#5f9c60"></stop>
+        </lineargradient>
+        <radialgradient id="lsRgbShadow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="rgba(0,0,0,0.45)"></stop>
+          <stop offset="0.6" stop-color="rgba(0,0,0,0.2)"></stop>
+          <stop offset="1" stop-color="rgba(0,0,0,0)"></stop>
+        </radialgradient>
+      </defs>
+      <rect width="200" height="100" fill="url(#lsRgbSky)"></rect>
+      <rect y="100" width="200" height="40" fill="url(#lsRgbGround)"></rect>
+      <line x1="65.8" y1="140" x2="95.7" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="24.0" y1="140" x2="90.4" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="-25.4" y1="140" x2="84.2" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="-90.0" y1="140" x2="76.0" y2="100" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="0" y1="103.6" x2="200" y2="103.6" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="0" y1="115.4" x2="200" y2="115.4" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line><line x1="0" y1="140.0" x2="200" y2="140.0" stroke="rgba(255,255,255,0.22)" stroke-width="0.7"></line>
+      <rect x="0" y="84.0" width="200" height="16" fill="#b9ae9a"></rect>
+      <rect x="0" y="84.0" width="200" height="3" fill="#cdc3b0"></rect>
+      <ellipse cx="100.0" cy="117.8" rx="30.3" ry="7.9" fill="url(#lsRgbShadow)"></ellipse>
+        <path d="M69.8 52.3 l15.7 -9.8 h60.5 l-15.7 9.8 Z" fill="#ff8fa1" stroke="#8a1428" stroke-width="1.1"></path>
+        <path d="M130.3 52.3 l15.7 -9.8 V103.0 l-15.7 9.8 Z" fill="#a3283c" stroke="#8a1428" stroke-width="1.1"></path>
+        <rect x="69.8" y="52.3" width="60.5" height="60.5" fill="#d8354f" stroke="#8a1428" stroke-width="1.1" rx="2"></rect><ellipse cx="44.0" cy="117.0" rx="22.6" ry="5.9" fill="url(#lsRgbShadow)"></ellipse>
+        <rect x="28.7" y="65.8" width="30.7" height="47.4" fill="#3d76c9" stroke="#1d4a86" stroke-width="1.1"></rect>
+        <ellipse cx="44.0" cy="113.2" rx="15.3" ry="4.6" fill="#3d76c9" stroke="#1d4a86" stroke-width="1.1"></ellipse>
+        <ellipse cx="44.0" cy="65.8" rx="15.3" ry="4.6" fill="#8ec3ff" stroke="#1d4a86" stroke-width="1.1"></ellipse>
+    </svg>
+          <div class="ls-rgbdepth__meta">색과 겉모습</div>
+        </div>
+        <div class="ls-rgbdepth__cell">
+          <div class="ls-rgbdepth__label">Depth 카메라</div>
+          <svg viewBox="0 0 200 140" data-depth="" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <lineargradient id="lsDepGround" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="rgb(48,48,48)"></stop>
+          <stop offset="1" stop-color="#e8e8ee"></stop>
+        </lineargradient>
+      </defs>
+      <rect width="200" height="100" fill="#08080a"></rect>
+      <rect y="100" width="200" height="40" fill="url(#lsDepGround)"></rect>
+      <line x1="65.8" y1="140" x2="95.7" y2="100" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="24.0" y1="140" x2="90.4" y2="100" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="-25.4" y1="140" x2="84.2" y2="100" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="-90.0" y1="140" x2="76.0" y2="100" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="0" y1="103.6" x2="200" y2="103.6" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="0" y1="115.4" x2="200" y2="115.4" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line><line x1="0" y1="140.0" x2="200" y2="140.0" stroke="rgba(255,255,255,0.10)" stroke-width="0.7"></line>
+      <rect x="0" y="84.0" width="200" height="16" fill="rgb(48,48,48)"></rect>
+      
+        <path d="M69.8 52.3 l15.7 -9.8 h60.5 l-15.7 9.8 Z" fill="rgb(196,196,196)"></path>
+        <path d="M130.3 52.3 l15.7 -9.8 V103.0 l-15.7 9.8 Z" fill="rgb(150,150,150)"></path>
+        <rect x="69.8" y="52.3" width="60.5" height="60.5" fill="rgb(170,170,170)" rx="2"></rect>
+        <rect x="28.7" y="65.8" width="30.7" height="47.4" fill="rgb(93,93,93)"></rect>
+        <ellipse cx="44.0" cy="113.2" rx="15.3" ry="4.6" fill="rgb(93,93,93)"></ellipse>
+        <ellipse cx="44.0" cy="65.8" rx="15.3" ry="4.6" fill="rgb(119,119,119)"></ellipse>
+      <text x="100.0" y="86.5" text-anchor="middle" font-size="11" fill="#0a0a0b" font-family="monospace" font-weight="700">1.9m</text>
+      <text x="44.0" y="93.5" text-anchor="middle" font-size="10" fill="#ffffff" font-family="monospace" font-weight="700">3.6m</text>
+    </svg>
+          <div class="ls-rgbdepth__meta">거리, 밝을수록 가까움</div>
+        </div>
+      </div>
+      <div class="ls-rgbdepth__controls">
+        <div class="ls-rgbdepth__seclabel">빨간 상자 옮기기</div>
+        <label><span>좌우</span><input type="range" min="10" max="90" value="50" data-x=""><b data-xval="">가운데</b></label>
+        <label><span>앞뒤</span><input type="range" min="28" max="90" value="50" data-z=""><b data-zval="">1.9m</b></label>
+        <div class="ls-rgbdepth__hint">두 화면은 <strong>같은 장면</strong>이에요. 파란 원통은 멀리 고정해뒀으니 빨간 상자를 옮겨 밝기를 견줘보세요.</div>
+      </div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">깊이맵의 밝기와 사진의 밝기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">빨간 상자를 가까이 당길수록 오른쪽 화면에서 그 상자 부분이 밝아졌죠.</span> <span class="ls-sentence">그런데 컬러 사진에서도 가까운 물건이 밝게 찍힐 때가 있어요.</span> <span class="ls-sentence">하지만 그건 <strong>조명을 많이 받아서</strong>예요.</span> <span class="ls-sentence">흰 옷은 멀리 있어도 밝게, 검은 옷은 가까이 있어도 어둡게 나와요.</span> <span class="ls-sentence">깊이맵의 밝기는 달라요.</span> <span class="ls-sentence">색과는 상관없이 <strong>거리 숫자를 회색 농도로 바꿔 그린 것</strong>이라, 사진보다 <strong>거리 지도</strong>에 가까워요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">시뮬레이션 환경이 거리를 아는 이유</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">현실에서 찍은 사진 한 장에는 <strong>색만</strong> 담겨요.</span> <span class="ls-sentence">그래서 사진만 봐서는 그것이 <strong>가까이 있는 작은 공</strong>인지, <strong>멀리 있는 큰 공</strong>인지 구별하기 어렵죠.</span> <span class="ls-sentence">현실의 카메라 한 대로 깊이맵을 바로 얻을 수 없는 이유예요.</span></span><span class="ls-para"><span class="ls-sentence">시뮬레이션 환경은 사정이 달라요.</span> <span class="ls-sentence">우리는 처음부터 물체와 카메라를 놓을 때 <strong>3차원 좌표</strong>를 직접 지정했어요.</span> <span class="ls-sentence">시뮬레이터는 그 위치를 이미 정확히 알고 있어서, 두 좌표를 계산하기만 하면 거리가 바로 나와요.</span> <span class="ls-sentence">새로 재지 않고 <strong>이미 아는 값</strong>을 픽셀마다 적어주면 그대로 깊이맵이 되는 거예요.</span></span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">종류</th><th class="ls-vstable__th--1 ls-vstable--c">내용</th><th class="ls-vstable__th--2 ls-vstable--c">용도</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">RGB</td><td class="ls-vstable--c">픽셀마다 빨강·초록·파랑 세 숫자 (각 0~255)</td><td class="ls-vstable--c">"무엇이 보이는가"</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">Depth</td><td class="ls-vstable--c">픽셀마다 카메라까지의 거리 한 숫자 (m)</td><td class="ls-vstable--c">"얼마나 멀리 있는가"</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">상용 로봇에서는 두 가지를 동시에 내보내는 <strong><span class="ls-term" data-term="RGB-D" role="link" tabindex="0">RGB-D</span> 카메라</strong>(예: 인텔 리얼센스)가 자주 쓰여요.</span> <span class="ls-sentence">우리도 두 출력을 함께 활용해요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">카메라가 못 보는 순간</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">카메라는 색과 겉모습을 잘 알아보지만 만능은 아니에요.</span> <span class="ls-sentence">카메라가 제대로 못 알아보는 장면이 네 가지 있어요.</span> <span class="ls-sentence"><strong>어둠</strong>, <strong>유리</strong>, <strong>거울</strong>, <strong>정확한 거리</strong>예요.</span> <span class="ls-sentence">그래서 다음 8강에서는 빛을 직접 쏴서 거리를 재는 <strong><span class="ls-term" data-term="라이다" role="link" tabindex="0">라이다</span>(LiDAR)</strong>를 카메라에 추가해요.</span> <span class="ls-sentence">카메라와 라이다는 서로의 빈틈을 채워줘요.</span></span></p>
+  </section><div class="ls-uigrid" style="grid-template-columns: repeat(4, 1fr);" data-block="ui-grid">
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">어둠</h4>
+        <span class="ls-uicard__loc">빛 부족</span>
+        
+      </div>
+      <p class="ls-uicard__desc">밤길이나 불 꺼진 실내에서는 화면이 새까매서 카메라가 아무것도 못 골라내요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">유리</h4>
+        <span class="ls-uicard__loc">투과</span>
+        
+      </div>
+      <p class="ls-uicard__desc">유리창은 너머가 그대로 비쳐서, 카메라가 앞에 무엇이 있는지 구분하기 어려워요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">거울과 반사</h4>
+        <span class="ls-uicard__loc">반사</span>
+        
+      </div>
+      <p class="ls-uicard__desc">카메라는 거울에 비친 사람을 실제 사람으로 잘못 인식해요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">거리</h4>
+        <span class="ls-uicard__loc">부정확</span>
+        
+      </div>
+      <p class="ls-uicard__desc">한 장의 사진만으로는 카메라가 저 벽이 2m인지 5m인지 가려낼 수 없어요.</p>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">이미지에 이름표 붙이기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">카메라는 색과 겉모습은 잘 보지만, "이건 <span class="ls-term" data-term="원통" role="link" tabindex="0">원통</span>, 저건 벽" 같은 <strong>이름</strong>은 몰라요.</span> <span class="ls-sentence">이미지의 픽셀마다 "이건 무엇"이라는 이름표를 붙이는 것을 <strong>세그멘테이션</strong>이라고 해요.</span> <span class="ls-sentence">이름은 <strong>우리가 정해줘요.</strong> 물체를 만들 때 "이건 red_cylinder"라고 이름표를 달아둬요.</span> <span class="ls-sentence">시뮬레이션 환경은 어느 픽셀이 어느 물체인지 이미 알고 있으니, 그 이름을 그대로 찍어줘요.</span></span></p>
+  </section><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">현실에서는 누가 이름을 붙일까</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="Isaac Sim" role="link" tabindex="0">Isaac Sim</span>이 만드는 <strong>시뮬레이션 환경</strong> 안에서는 우리가 미리 달아둔 이름표를 그대로 꺼내주니 틀릴 일이 없어요.</span> <span class="ls-sentence">현실은 달라요.</span> <span class="ls-sentence">사진 한 장만 보고 이름을 알아내야 하니 <strong><span class="ls-term" data-term="딥러닝" role="link" tabindex="0">딥러닝</span> 모델</strong>이 필요해요.</span> <span class="ls-sentence">이 모델은 사람이 이름표를 붙여둔 사진 수만 장을 미리 공부한 뒤, 색과 무늬를 보고 "이건 아마 사람"이라고 짐작해요.</span> <span class="ls-sentence">짐작이라서 틀릴 수도 있어요.</span> <span class="ls-sentence">시뮬레이션 환경은 답을 알고 있고, 현실에서는 답을 맞혀야 해요.</span></span></div>
+  </details><div class="ls-segdemo" data-block="seg-demo">
+    <div class="ls-segdemo__title">픽셀마다 이름표가 붙은 화면</div>
+    <div class="ls-segdemo__stagewrap">
+      <div class="ls-segdemo__view">
+        <svg viewBox="0 0 480 300" preserveAspectRatio="xMidYMid meet">
+    <g class="seg-rgb">
+      <defs>
+        <lineargradient id="segSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe6f5"></stop><stop offset="1" stop-color="#eef4f8"></stop></lineargradient>
+        <lineargradient id="segFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8cdb8"></stop><stop offset="1" stop-color="#c2b69c"></stop></lineargradient>
+      </defs>
+      <rect x="0" y="0" width="480" height="232" fill="url(#segSky)"></rect>
+      <rect x="0" y="232" width="480" height="68" fill="url(#segFloor)"></rect>
+      <g>
+       <ellipse cx="120" cy="232" rx="28" ry="11" fill="#d23b3b" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+       <rect x="92" y="112" width="56" height="120" fill="#d23b3b" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></rect>
+       <ellipse cx="120" cy="112" rx="28" ry="11" fill="#d23b3b" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+     </g><rect x="92" y="112" width="17.92" height="120" fill="rgba(255,255,255,0.18)"></rect><g>
+       <ellipse cx="250" cy="232" rx="28" ry="11" fill="#2f6fed" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+       <rect x="222" y="112" width="56" height="120" fill="#2f6fed" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></rect>
+       <ellipse cx="250" cy="112" rx="28" ry="11" fill="#2f6fed" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+     </g><rect x="222" y="112" width="17.92" height="120" fill="rgba(255,255,255,0.18)"></rect><g>
+       <ellipse cx="360" cy="232" rx="28" ry="11" fill="#28a35a" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+       <rect x="332" y="112" width="56" height="120" fill="#28a35a" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></rect>
+       <ellipse cx="360" cy="112" rx="28" ry="11" fill="#28a35a" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"></ellipse>
+     </g><rect x="332" y="112" width="17.92" height="120" fill="rgba(255,255,255,0.18)"></rect>
+    </g>
+    <g class="seg-mask">
+      <rect x="0" y="0" width="480" height="300" fill="#5b6470"></rect>
+      <g>
+       <ellipse cx="120" cy="232" rx="28" ry="11" fill="#e23b4e" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+       <rect x="92" y="112" width="56" height="120" fill="#e23b4e" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></rect>
+       <ellipse cx="120" cy="112" rx="28" ry="11" fill="#e23b4e" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+     </g><g><rect x="76" y="82" width="88" height="19" rx="4" fill="rgba(0,0,0,0.55)"></rect>
+          <text x="120" y="96" text-anchor="middle" font-size="10.5" fill="#fff" font-family="JetBrains Mono, monospace">ID 1 · red</text></g><g>
+       <ellipse cx="250" cy="232" rx="28" ry="11" fill="#2f6fed" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+       <rect x="222" y="112" width="56" height="120" fill="#2f6fed" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></rect>
+       <ellipse cx="250" cy="112" rx="28" ry="11" fill="#2f6fed" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+     </g><g><rect x="206" y="82" width="88" height="19" rx="4" fill="rgba(0,0,0,0.55)"></rect>
+          <text x="250" y="96" text-anchor="middle" font-size="10.5" fill="#fff" font-family="JetBrains Mono, monospace">ID 2 · blue</text></g><g>
+       <ellipse cx="360" cy="232" rx="28" ry="11" fill="#1f9d57" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+       <rect x="332" y="112" width="56" height="120" fill="#1f9d57" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></rect>
+       <ellipse cx="360" cy="112" rx="28" ry="11" fill="#1f9d57" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"></ellipse>
+     </g><g><rect x="316" y="82" width="88" height="19" rx="4" fill="rgba(0,0,0,0.55)"></rect>
+          <text x="360" y="96" text-anchor="middle" font-size="10.5" fill="#fff" font-family="JetBrains Mono, monospace">ID 3 · green</text></g>
+    </g></svg>
+        <div class="ls-segdemo__badge">RGB</div>
+      </div>
+      <div class="ls-segdemo__side">
+        <button class="ls-segdemo__btn" type="button">세그멘테이션 보기</button>
+        <div class="ls-segdemo__hint">버튼을 누르면 카메라가 본 색(RGB)이 <b>픽셀별 클래스 라벨</b>로 바뀌어요.</div>
+        <div class="ls-segdemo__stats"><div class="ls-segdemo__row"><span class="ls-segdemo__dot" style="background:#e23b4e"></span><code>red_cylinder</code><span class="ls-segdemo__id">ID 1</span><b>1,480 px</b></div><div class="ls-segdemo__row"><span class="ls-segdemo__dot" style="background:#2f6fed"></span><code>blue_cylinder</code><span class="ls-segdemo__id">ID 2</span><b>1,320 px</b></div><div class="ls-segdemo__row"><span class="ls-segdemo__dot" style="background:#1f9d57"></span><code>green_cylinder</code><span class="ls-segdemo__id">ID 3</span><b>1,260 px</b></div><div class="ls-segdemo__row"><span class="ls-segdemo__dot" style="background:#5b6470"></span><code>BACKGROUND</code><span class="ls-segdemo__id">ID 0</span><b>139,940 px</b></div></div>
+      </div>
+    </div></div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">결과는 픽셀마다 붙은 <span class="ls-term" data-term="클래스" role="link" tabindex="0">클래스</span> 번호 + "번호 → 이름" 표예요.</span> <span class="ls-sentence">둘을 합치면 "이 픽셀 뭉치는 빨간 원통"을 정확히 알 수 있어요.</span> <span class="ls-sentence">강화학습하는 로봇이 <strong>"무엇이 어디에 있는지"</strong> 판단할 때 이 세그멘테이션 결과를 써요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">카메라를 어디에 붙일까</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">카메라를 로봇 어디에 달지 정해야 해요.</span> <span class="ls-sentence">가슴이나 엉덩이에 달면 안 될까요?</span> <span class="ls-sentence">시야는 <strong>달린 높이</strong>와 <strong>바라보는 <span class="ls-term" data-term="각도" role="link" tabindex="0">각도</span></strong>가 함께 정해요.</span> <span class="ls-sentence">같은 높이라도 아래로 기울이면 발밑이, 앞으로 세우면 먼 곳이 들어오죠.</span> <span class="ls-sentence">아래 그림은 <strong>각도를 똑같이 맞춰 두고 높이만</strong> 바꾼 거예요.</span> <span class="ls-sentence">낮게 달면 가까운 바닥까지만 보이고 멀리는 안 보여요.</span> <span class="ls-sentence">엉덩이 높이라면 걸을 때 제 다리가 앞을 가리고요.</span> <span class="ls-sentence"><strong>머리에 달면 가장 멀리까지 보여요.</strong> 아래에서 높이별로 시야가 어디까지 닿는지 비교해보세요.</span></span></p>
+  </section><div class="ls-diagram" data-block="diagram"><div class="ls-diagram__stage"><svg viewBox="0 0 760 236" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Noto Sans KR&#39;,sans-serif"><defs><lineargradient id="ncShell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6dae0"></stop><stop offset="0.55" stop-color="#b4b9c1"></stop><stop offset="1" stop-color="#949aa4"></stop></lineargradient><radialgradient id="ncHead" cx="0.38" cy="0.28" r="1"><stop offset="0" stop-color="#dee2e7"></stop><stop offset="0.6" stop-color="#b7bdc7"></stop><stop offset="1" stop-color="#949aa4"></stop></radialgradient><lineargradient id="ncDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d434c"></stop><stop offset="0.5" stop-color="#23272e"></stop><stop offset="1" stop-color="#14171c"></stop></lineargradient><lineargradient id="ncVisor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3038"></stop><stop offset="0.45" stop-color="#14181e"></stop><stop offset="1" stop-color="#0b0e12"></stop></lineargradient><radialgradient id="ncEye" cx="0.35" cy="0.3" r="1"><stop offset="0" stop-color="#c9f8ff"></stop><stop offset="0.45" stop-color="#22d3ee"></stop><stop offset="1" stop-color="#0e9cb8"></stop></radialgradient><lineargradient id="ncRub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#33373d"></stop><stop offset="1" stop-color="#15171b"></stop></lineargradient></defs><rect x="14" y="24" width="228" height="198" rx="12" fill="#fdfcf8" stroke="#e8e2d5"></rect><text x="30" y="44" font-size="12.5" font-weight="700" fill="#4d7548">머리에 달면</text><text x="30" y="61" font-size="11" fill="#8a8578">바닥에서 약 1.75m</text><path d="M100.6 76.88 L214.1 162.32 L126.2 162.32 Z" fill="rgba(139,176,130,0.22)" stroke="#8bb082" stroke-width="0.9"></path><line x1="26" y1="162.32" x2="230" y2="162.32" stroke="#cfc9b8" stroke-width="1.6"></line><g transform="translate(84,162.32) scale(0.26) translate(-163,-368)"><g transform="translate(320,0) scale(-1,1)"><ellipse cx="158" cy="372" rx="58" ry="8" fill="#000" opacity="0.3"></ellipse><ellipse cx="150" cy="371" rx="32" ry="3.4" fill="#000" opacity="0.26"></ellipse><g opacity="0.66" transform="translate(13,0) rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><rect x="132.0" y="212" width="56" height="32" rx="15" fill="url(#ncShell)"></rect><rect x="140.0" y="200" width="40" height="18" rx="9" fill="url(#ncDark)"></rect><rect x="128" y="118" width="62" height="90" rx="26" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="url(#ncShell)"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="rgba(0,0,0,.1)"></rect><line x1="187" y1="146" x2="199" y2="146" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="154" x2="199" y2="154" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="162" x2="199" y2="162" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><rect x="146" y="110" width="30" height="15" rx="7.5" fill="url(#ncDark)"></rect><g transform="rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><circle cx="158" cy="297" r="11.5" fill="url(#ncDark)"></circle><circle cx="154.3" cy="292.6" r="3.0" fill="rgba(255,255,255,.35)"></circle><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><g transform="rotate(3.0 158 146)"><rect x="144.5" y="150" width="27" height="56" rx="13" fill="url(#ncShell)"></rect><circle cx="158" cy="205" r="8.5" fill="url(#ncDark)"></circle><circle cx="155.3" cy="201.8" r="2.2" fill="rgba(255,255,255,.35)"></circle><rect x="148.0" y="207" width="20" height="48" rx="10" fill="url(#ncShell)"></rect><circle cx="158" cy="259" r="10.5" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="0.7"></circle></g><circle cx="158" cy="143" r="14" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></circle><rect x="148" y="102" width="22" height="18" rx="7" fill="url(#ncDark)"></rect><rect x="118" y="30" width="86" height="84" rx="34" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="1.1"></rect><rect x="110" y="50" width="36" height="50" rx="17" fill="url(#ncVisor)"></rect><circle cx="121" cy="75" r="9" fill="#22d3ee" opacity="0.22"></circle><rect x="117" y="66" width="7" height="18" rx="3.5" fill="url(#ncEye)"></rect><rect x="162" y="60" width="14" height="30" rx="7" fill="url(#ncDark)"></rect><ellipse cx="150" cy="40" rx="22" ry="7" fill="#fff" opacity="0.3"></ellipse></g></g><line x1="214.1" y1="157.32" x2="214.1" y2="167.32" stroke="#8bb082" stroke-width="1.6"></line><text x="214.1" y="180.32" text-anchor="middle" font-size="10.5" fill="#4d7548">여기까지</text><g transform="translate(91.0,67.28)"><rect x="4" y="0" width="8" height="3.4" rx="1.6" fill="#c99b3f"></rect><rect x="0" y="3" width="20" height="13" rx="3.6" fill="#f0d9a5" stroke="#b08436" stroke-width="0.9"></rect><circle cx="9.6" cy="9.6" r="4.6" fill="#2f2d27"></circle><circle cx="9.6" cy="9.6" r="2.9" fill="#15202f"></circle><circle cx="8.2" cy="8.3" r="1.1" fill="#9ff0ff" opacity="0.92"></circle><rect x="15.4" y="5.2" width="2.6" height="2.6" rx="0.7" fill="#c99b3f"></rect></g><text x="30" y="210" font-size="11.5" fill="#4d7548">멀리 있는 장애물까지 보여요</text><rect x="266" y="24" width="228" height="198" rx="12" fill="#fdfcf8" stroke="#e8e2d5"></rect><text x="282" y="44" font-size="12.5" font-weight="700" fill="#8a6d2f">가슴에 달면</text><text x="282" y="61" font-size="11" fill="#8a8578">바닥에서 약 1.4m</text><path d="M352.6 93.97 L443.4 162.32 L373.1 162.32 Z" fill="rgba(176,132,54,0.18)" stroke="#c9a35c" stroke-width="0.9"></path><line x1="278" y1="162.32" x2="482" y2="162.32" stroke="#cfc9b8" stroke-width="1.6"></line><g transform="translate(336,162.32) scale(0.26) translate(-163,-368)"><g transform="translate(320,0) scale(-1,1)"><ellipse cx="158" cy="372" rx="58" ry="8" fill="#000" opacity="0.3"></ellipse><ellipse cx="150" cy="371" rx="32" ry="3.4" fill="#000" opacity="0.26"></ellipse><g opacity="0.66" transform="translate(13,0) rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><rect x="132.0" y="212" width="56" height="32" rx="15" fill="url(#ncShell)"></rect><rect x="140.0" y="200" width="40" height="18" rx="9" fill="url(#ncDark)"></rect><rect x="128" y="118" width="62" height="90" rx="26" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="url(#ncShell)"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="rgba(0,0,0,.1)"></rect><line x1="187" y1="146" x2="199" y2="146" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="154" x2="199" y2="154" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="162" x2="199" y2="162" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><rect x="146" y="110" width="30" height="15" rx="7.5" fill="url(#ncDark)"></rect><g transform="rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><circle cx="158" cy="297" r="11.5" fill="url(#ncDark)"></circle><circle cx="154.3" cy="292.6" r="3.0" fill="rgba(255,255,255,.35)"></circle><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><g transform="rotate(3.0 158 146)"><rect x="144.5" y="150" width="27" height="56" rx="13" fill="url(#ncShell)"></rect><circle cx="158" cy="205" r="8.5" fill="url(#ncDark)"></circle><circle cx="155.3" cy="201.8" r="2.2" fill="rgba(255,255,255,.35)"></circle><rect x="148.0" y="207" width="20" height="48" rx="10" fill="url(#ncShell)"></rect><circle cx="158" cy="259" r="10.5" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="0.7"></circle></g><circle cx="158" cy="143" r="14" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></circle><rect x="148" y="102" width="22" height="18" rx="7" fill="url(#ncDark)"></rect><rect x="118" y="30" width="86" height="84" rx="34" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="1.1"></rect><rect x="110" y="50" width="36" height="50" rx="17" fill="url(#ncVisor)"></rect><circle cx="121" cy="75" r="9" fill="#22d3ee" opacity="0.22"></circle><rect x="117" y="66" width="7" height="18" rx="3.5" fill="url(#ncEye)"></rect><rect x="162" y="60" width="14" height="30" rx="7" fill="url(#ncDark)"></rect><ellipse cx="150" cy="40" rx="22" ry="7" fill="#fff" opacity="0.3"></ellipse></g></g><line x1="443.4" y1="157.32" x2="443.4" y2="167.32" stroke="#c9a35c" stroke-width="1.6"></line><text x="443.4" y="180.32" text-anchor="middle" font-size="10.5" fill="#8a6d2f">여기까지</text><g transform="translate(343.0,84.37)"><rect x="4" y="0" width="8" height="3.4" rx="1.6" fill="#c99b3f"></rect><rect x="0" y="3" width="20" height="13" rx="3.6" fill="#f0d9a5" stroke="#b08436" stroke-width="0.9"></rect><circle cx="9.6" cy="9.6" r="4.6" fill="#2f2d27"></circle><circle cx="9.6" cy="9.6" r="2.9" fill="#15202f"></circle><circle cx="8.2" cy="8.3" r="1.1" fill="#9ff0ff" opacity="0.92"></circle><rect x="15.4" y="5.2" width="2.6" height="2.6" rx="0.7" fill="#c99b3f"></rect></g><text x="282" y="210" font-size="11.5" fill="#8a6d2f">머리보다 가까운 데까지만 닿아요</text><rect x="518" y="24" width="228" height="198" rx="12" fill="#fdfcf8" stroke="#e8e2d5"></rect><text x="534" y="44" font-size="12.5" font-weight="700" fill="#a8564f">엉덩이에 달면</text><text x="534" y="61" font-size="11" fill="#8a8578">바닥에서 약 1.0m</text><path d="M604.6 113.5 L669.4 162.32 L619.2 162.32 Z" fill="rgba(200,120,110,0.16)" stroke="#c9a29a" stroke-width="0.9"></path><line x1="530" y1="162.32" x2="734" y2="162.32" stroke="#cfc9b8" stroke-width="1.6"></line><g transform="translate(588,162.32) scale(0.26) translate(-163,-368)"><g transform="translate(320,0) scale(-1,1)"><ellipse cx="158" cy="372" rx="58" ry="8" fill="#000" opacity="0.3"></ellipse><ellipse cx="150" cy="371" rx="32" ry="3.4" fill="#000" opacity="0.26"></ellipse><g opacity="0.66" transform="translate(13,0) rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><rect x="132.0" y="212" width="56" height="32" rx="15" fill="url(#ncShell)"></rect><rect x="140.0" y="200" width="40" height="18" rx="9" fill="url(#ncDark)"></rect><rect x="128" y="118" width="62" height="90" rx="26" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="url(#ncShell)"></rect><rect x="182" y="132" width="21" height="58" rx="10" fill="rgba(0,0,0,.1)"></rect><line x1="187" y1="146" x2="199" y2="146" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="154" x2="199" y2="154" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><line x1="187" y1="162" x2="199" y2="162" stroke="rgba(15,20,28,.15)" stroke-width="2"></line><rect x="146" y="110" width="30" height="15" rx="7.5" fill="url(#ncDark)"></rect><g transform="rotate(0.0 158 220)"><rect x="141.0" y="232" width="34" height="66" rx="16" fill="url(#ncShell)"></rect><rect x="145.0" y="298" width="26" height="54" rx="12" fill="url(#ncShell)"></rect><circle cx="158" cy="297" r="11.5" fill="url(#ncDark)"></circle><circle cx="154.3" cy="292.6" r="3.0" fill="rgba(255,255,255,.35)"></circle><rect x="118" y="342" width="66" height="24" rx="11" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="0.8"></rect><rect x="118" y="359" width="66" height="9" rx="4.5" fill="url(#ncRub)"></rect></g><g transform="rotate(3.0 158 146)"><rect x="144.5" y="150" width="27" height="56" rx="13" fill="url(#ncShell)"></rect><circle cx="158" cy="205" r="8.5" fill="url(#ncDark)"></circle><circle cx="155.3" cy="201.8" r="2.2" fill="rgba(255,255,255,.35)"></circle><rect x="148.0" y="207" width="20" height="48" rx="10" fill="url(#ncShell)"></rect><circle cx="158" cy="259" r="10.5" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="0.7"></circle></g><circle cx="158" cy="143" r="14" fill="url(#ncShell)" stroke="#aab3bc" stroke-width="1"></circle><rect x="148" y="102" width="22" height="18" rx="7" fill="url(#ncDark)"></rect><rect x="118" y="30" width="86" height="84" rx="34" fill="url(#ncHead)" stroke="#aab3bc" stroke-width="1.1"></rect><rect x="110" y="50" width="36" height="50" rx="17" fill="url(#ncVisor)"></rect><circle cx="121" cy="75" r="9" fill="#22d3ee" opacity="0.22"></circle><rect x="117" y="66" width="7" height="18" rx="3.5" fill="url(#ncEye)"></rect><rect x="162" y="60" width="14" height="30" rx="7" fill="url(#ncDark)"></rect><ellipse cx="150" cy="40" rx="22" ry="7" fill="#fff" opacity="0.3"></ellipse></g></g><line x1="669.4" y1="157.32" x2="669.4" y2="167.32" stroke="#c9a29a" stroke-width="1.6"></line><text x="669.4" y="180.32" text-anchor="middle" font-size="10.5" fill="#a8564f">여기까지</text><circle cx="623.6" cy="121.5" r="8" fill="none" stroke="#a8564f" stroke-width="1.6"></circle><line x1="618.6" y1="126.5" x2="628.6" y2="116.5" stroke="#a8564f" stroke-width="1.6"></line><g transform="translate(595.0,103.90)"><rect x="4" y="0" width="8" height="3.4" rx="1.6" fill="#c99b3f"></rect><rect x="0" y="3" width="20" height="13" rx="3.6" fill="#f0d9a5" stroke="#b08436" stroke-width="0.9"></rect><circle cx="9.6" cy="9.6" r="4.6" fill="#2f2d27"></circle><circle cx="9.6" cy="9.6" r="2.9" fill="#15202f"></circle><circle cx="8.2" cy="8.3" r="1.1" fill="#9ff0ff" opacity="0.92"></circle><rect x="15.4" y="5.2" width="2.6" height="2.6" rx="0.7" fill="#c99b3f"></rect></g><text x="534" y="210" font-size="11.5" fill="#a8564f">걸을 때 제 다리가 앞을 가려요</text></svg></div><div class="ls-diagram__cap">같은 로봇, 카메라 높이만 다르게 둔 경우예요. 카메라가 낮아질수록 <strong>시야가 닿는 거리</strong>가 짧아지고, 엉덩이 높이에서는 제 다리에 가려요.</div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">로봇에 붙여두기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">높이를 정했으면 카메라를 로봇의 몸에 <strong>부착할지</strong>, 로봇과 떨어진 자리에 <strong>고정할지</strong>도 정해야 해요.</span> <span class="ls-sentence">로봇에 붙이지 않고 제자리에 고정하면 카메라는 멈춰 있고 로봇만 걸어가요.</span> <span class="ls-sentence">그럼 멀어지는 로봇의 등만 찍히죠.</span> <span class="ls-sentence">모자처럼 로봇에 붙여두면 로봇이 걷고 고개를 돌릴 때 카메라도 같이 따라가요.</span> <span class="ls-sentence">우리한테 필요한 건 붙여두는 쪽이에요.</span> <span class="ls-sentence">붙는지 아닌지는 <strong>주소를 어떻게 쓰느냐</strong>로 갈려요.</span> <span class="ls-sentence"><code>/World/H1/head_camera</code>처럼 로봇 주소 뒤에 이어 쓰면 카메라가 로봇의 일부가 돼요.</span> <span class="ls-sentence"><code>/World/head_camera</code>처럼 따로 쓰면 로봇과 상관없는 자리에 놓여요.</span> <span class="ls-sentence">4강에서 배운 주소 규칙이 그대로 쓰여요.</span></span></p>
+  </section><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘은 로봇 <strong>머리</strong>에 카메라를 달아요.</span> <span class="ls-sentence">8강 라이다는 <strong>가슴</strong>에 달고요.</span> <span class="ls-sentence">두 위치의 차이가 곧 두 센서의 역할 차이이기도 해요.</span></span></span></div><section class="ls-stage" data-stage-key="practice" data-lesson="p2c7" data-lesson-no="07" data-stage-no="4" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">④</span>
+      <h2 class="ls-stage__label">직접 해보기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para">로봇 머리에 카메라를 직접 달고, 첫 프레임을 RGB와 Depth로 각각 받아 <span class="ls-term" data-term="numpy" role="link" tabindex="0">NumPy</span> <span class="ls-term" data-term="배열" role="link" tabindex="0">배열</span>로 확인해봐요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">카메라 생성과 첫 프레임 받기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence"><code>Camera</code> 클래스로 <span class="ls-term" data-term="객체" role="link" tabindex="0">객체</span>를 만들고 <code>initialize()</code>로 활성화해요.</span> <span class="ls-sentence">몇 프레임 진행한 다음 <code>get_rgb()</code>와 <code>get_depth()</code>를 호출해요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">핵심 코드 : 카메라는 로봇의 자식, 첫 프레임은 두 줄</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="create"><span class="ls-tok ls-tok--var">camera </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">Camera</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="path"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="prim_path" role="link" tabindex="0">prim_path</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/<span class="ls-term" data-term="World" role="link" tabindex="0">World</span>/<span class="ls-term" data-term="H1" role="link" tabindex="0">H1</span>/head_camera"</span><span class="ls-tok ls-tok--plain">, ...)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="get"><span class="ls-tok ls-tok--var">rgb </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_rgb</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="get_depth"><span class="ls-tok ls-tok--var">depth </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_depth</span><span class="ls-tok ls-tok--plain">()</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><div class="ls-diagram" data-block="diagram"><div class="ls-diagram__stage"><svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Noto Sans KR&#39;,sans-serif"><rect x="131" y="82" width="190" height="120" rx="5" fill="#dfeaf3" stroke="#9bb6cf" stroke-width="1.6"></rect><text x="123" y="100" text-anchor="end" font-size="12.5" font-weight="700" fill="#3f6b8a">B 파랑</text><rect x="159" y="58" width="190" height="120" rx="5" fill="#e2f0e0" stroke="#9bc490" stroke-width="1.6"></rect><text x="151" y="76" text-anchor="end" font-size="12.5" font-weight="700" fill="#4d7548">G 초록</text><rect x="187" y="34" width="190" height="120" rx="5" fill="#f7e6e4" stroke="#d8a49c" stroke-width="1.6"></rect><text x="179" y="52" text-anchor="end" font-size="12.5" font-weight="700" fill="#b15454">R 빨강</text><line x1="225" y1="34" x2="225" y2="154" stroke="#eecfca" stroke-width="0.8"></line><line x1="263" y1="34" x2="263" y2="154" stroke="#eecfca" stroke-width="0.8"></line><line x1="301" y1="34" x2="301" y2="154" stroke="#eecfca" stroke-width="0.8"></line><line x1="339" y1="34" x2="339" y2="154" stroke="#eecfca" stroke-width="0.8"></line><line x1="187" y1="64" x2="377" y2="64" stroke="#eecfca" stroke-width="0.8"></line><line x1="187" y1="94" x2="377" y2="94" stroke="#eecfca" stroke-width="0.8"></line><line x1="187" y1="124" x2="377" y2="124" stroke="#eecfca" stroke-width="0.8"></line><line x1="391" y1="34" x2="391" y2="154" stroke="#8a8578" stroke-width="1.3"></line><line x1="386" y1="34" x2="396" y2="34" stroke="#8a8578" stroke-width="1.3"></line><line x1="386" y1="154" x2="396" y2="154" stroke="#8a8578" stroke-width="1.3"></line><text x="401" y="98" font-size="12" fill="#5a5648">세로 480</text><line x1="131" y1="218" x2="321" y2="218" stroke="#8a8578" stroke-width="1.3"></line><line x1="131" y1="213" x2="131" y2="223" stroke="#8a8578" stroke-width="1.3"></line><line x1="321" y1="213" x2="321" y2="223" stroke="#8a8578" stroke-width="1.3"></line><text x="226" y="236" text-anchor="middle" font-size="12" fill="#5a5648">가로 640</text><text x="507" y="80" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="20" font-weight="700" fill="#3f3b31">(480, 640, 3)</text><text x="507" y="104" font-size="12" fill="#6b675d">= (세로 줄, 가로 칸, 색 장 수)</text><text x="507" y="142" font-size="12.5" font-weight="700" fill="#3f3b31">색이 세 장 겹쳐 있어요</text><text x="507" y="162" font-size="11.5" fill="#6b675d">빨강, 초록, 파랑</text><text x="507" y="192" font-size="12" fill="#6b675d">숫자 하나는 0(어둡다)~255(밝다)</text></svg></div><div class="ls-diagram__cap">사진 한 장은 세로 <strong>480줄</strong> × 가로 <strong>640칸</strong>으로 잘린 격자예요. 칸 하나가 픽셀이고, 픽셀마다 빨강, 초록, 파랑 세 숫자가 붙어 있어요. 그래서 격자가 세 장 겹쳐 보여요. 숫자는 0이 가장 어둡고 255가 가장 밝아요. Depth는 색이 없으니 격자 한 장, <code>(480, 640)</code>이에요.</div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">전체 코드와 실행 결과</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">핵심을 포함한 전체 코드예요.</span> <span class="ls-sentence">그대로 복사해 <span class="ls-term" data-term="Script Editor" role="link" tabindex="0">Script Editor</span>에서 실행해봐요.</span></span></p>
+  </section><div class="ls-coderun" data-block="code-run">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on is-clps" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="import_asyncio"><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="import" role="link" tabindex="0">import</span> </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="asyncio" role="link" tabindex="0">asyncio</span></span></span><span class="ls-line ls-line--note" data-note="import_omni"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="omni.usd" role="link" tabindex="0">omni.usd</span></span></span><span class="ls-line ls-line--note" data-note="import_kitapp"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var">omni.kit.app</span></span><span class="ls-line ls-line--note" data-note="import_np"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var">numpy </span><span class="ls-tok ls-tok--kw">as </span><span class="ls-tok ls-tok--var">np</span></span><span class="ls-line ls-line--note" data-note="import_world"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.api </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">World</span></span><span class="ls-line ls-line--note" data-note="import_stage"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.utils.stage </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="add_reference_to_stage" role="link" tabindex="0">add_reference_to_stage</span></span></span><span class="ls-line ls-line--note" data-note="import_art"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.prims </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="SingleArticulation" role="link" tabindex="0">SingleArticulation</span></span></span><span class="ls-line ls-line--note" data-note="import_assets"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.storage.native </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="get_assets_root_path" role="link" tabindex="0">get_assets_root_path</span></span></span><span class="ls-line ls-line--note" data-note="import"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.sensors.camera </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">Camera</span></span><span class="ls-line ls-line--note" data-note="import_usdlux"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">pxr </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="UsdLux" role="link" tabindex="0">UsdLux</span></span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="async_def"><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="async" role="link" tabindex="0">async</span> def </span><span class="ls-tok ls-tok--fn">main</span><span class="ls-tok ls-tok--plain">():</span></span><span class="ls-line ls-line--note" data-note="init"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--kw">if </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">instance</span><span class="ls-tok ls-tok--plain">() </span><span class="ls-tok ls-tok--kw">is not </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="None" role="link" tabindex="0">None</span></span><span class="ls-tok ls-tok--plain">:</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">instance</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="clear_instance" role="link" tabindex="0">clear_instance</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="new_stage"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">omni.usd</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_context</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="new_stage" role="link" tabindex="0">new_stage</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="world_new"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">world </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="stage_units_in_meters" role="link" tabindex="0">stage_units_in_meters</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--num">1.0</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="ground"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="add_default_ground_plane" role="link" tabindex="0">add_default_ground_plane</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="sun"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">stage </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">omni.usd</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_context</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn">get_stage</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="sun"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">UsdLux</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">DistantLight</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">Define</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">stage</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--str">"/World/Sun"</span><span class="ls-tok ls-tok--plain">).</span><span class="ls-tok ls-tok--fn">CreateIntensityAttr</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--num">3000.0</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="summon"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">get_assets_root_path</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="h1_path"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">h1_usd </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">+ </span><span class="ls-tok ls-tok--str">"/Isaac/Robots/<span class="ls-term" data-term="Unitree" role="link" tabindex="0">Unitree</span>/H1/h1.usd"</span></span><span class="ls-line ls-line--note" data-note="add_ref"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">add_reference_to_stage</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="usd_path" role="link" tabindex="0">usd_path</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">h1_usd</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="h1_add"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">h1 </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">add</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--fn">SingleArticulation</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">name</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"h1_humanoid"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="Position" role="link" tabindex="0">position</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">1.05</span><span class="ls-tok ls-tok--plain">])))</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="create"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">camera </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">Camera</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="path"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1/head_camera"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="position"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">position</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">0.15</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">1.75</span><span class="ls-tok ls-tok--plain">]),</span></span><span class="ls-line ls-line--note" data-note="frequency"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">frequency</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--num">20</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="resolution"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="resolution" role="link" tabindex="0">resolution</span></span><span class="ls-tok ls-tok--plain">=(</span><span class="ls-tok ls-tok--num">640</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">480</span><span class="ls-tok ls-tok--plain">),</span></span><span class="ls-line ls-line--note" data-note="orientation"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="Orientation" role="link" tabindex="0">orientation</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">1</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0</span><span class="ls-tok ls-tok--plain">])</span></span><span class="ls-line ls-line--note" data-note="create"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="reset"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="await" role="link" tabindex="0">await</span> </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="reset_async" role="link" tabindex="0">reset_async</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="init2"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">initialize</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="add_depth"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">add_distance_to_image_plane_to_frame</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="step"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--kw">for </span><span class="ls-tok ls-tok--var">_ </span><span class="ls-tok ls-tok--kw">in </span><span class="ls-tok ls-tok--fn">range</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--num">30</span><span class="ls-tok ls-tok--plain">):</span></span><span class="ls-line ls-line--note" data-note="render_true"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--kw">await </span><span class="ls-tok ls-tok--var">omni.kit.app</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_app</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn">next_update_async</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="get"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">rgb </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_rgb</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="get_depth"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">depth </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">camera</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_depth</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="print_shape"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">print</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--str">"RGB shape:"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">rgb</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">shape</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="print_shape"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">print</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--str">"Depth shape:"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">depth</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">shape</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="ensure"><span class="ls-tok ls-tok--var">asyncio</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">ensure_future</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--fn">main</span><span class="ls-tok ls-tok--plain">())</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><div class="ls-coderun__clps-fade"></div><button type="button" class="ls-coderun__clps-btn">⌄ 클릭해서 코드 보기</button></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result"><div class="ls-imgsteps--nav is-revealed"><div class="ls-imgsteps__vp"><div class="ls-imgsteps__track" style="transform: translateX(10%);"><figure class="ls-imgsteps__cell is-current"><img class="ls-imgsteps__img" src="https://robotics.connect.or.kr/lecture/img/chap1/7-1.png" alt="머리에 붙인 카메라로 첫 프레임을 받아 RGB shape과 Depth shape 두 줄이 찍힌 Script Editor" loading="lazy"><figcaption class="ls-imgsteps__lab"><span class="ls-imgsteps__t">첫 프레임 도착</span><span class="ls-imgsteps__d">RGB (480, 640, 3) · Depth (480, 640)</span></figcaption></figure></div></div><div class="ls-imgsteps__count" style="display: none;">1 / 1</div></div></div>
+      <div class="ls-coderun__foot">두 줄이 이대로 떴다면 카메라가 첫 프레임을 제대로 만들어낸 거예요. 앞의 <code>(480, 640)</code>은 세로와 가로 픽셀 수, RGB 끝의 <code>3</code>은 R, G, B 세 채널이에요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">실행 결과 확인하기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">세 가지가 모두 나오면 카메라가 잘 동작하는 거예요.</span> <span class="ls-sentence">클릭해서 체크해봐요.</span></span></p>
+  </section><div class="ls-checklist" data-block="checklist">
+    <div class="ls-check" data-id="c1">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">Console에 <code>RGB shape: (480, 640, 3)</code>이 출력된다</div>
+    </div>
+  
+    <div class="ls-check" data-id="c2">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">Console에 <code>Depth shape: (480, 640)</code>이 출력된다</div>
+    </div>
+  
+    <div class="ls-check" data-id="c3">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><span class="ls-term" data-term="Stage" role="link" tabindex="0">Stage</span> 창에서 <code>head_camera</code>가 <code>/World/H1</code> 아래에 붙어 있다</div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">저장은 <code>PIL.Image.fromarray(rgb).save("rgb.png")</code> 한 줄이면 충분해요.</span> <span class="ls-sentence"><span class="ls-term" data-term="PIL" role="link" tabindex="0">PIL</span>은 파이썬에서 이미지를 다루는 라이브러리예요.</span> <span class="ls-sentence">Depth는 0~10m 범위로 잘라낸 뒤(클리핑) 0~255 사이 값으로 바꾸면(정규화) 회색조 이미지로 확인할 수 있어요.</span> <span class="ls-sentence">이때 <code>1.0 -</code>로 뒤집어야 앞에서 배운 대로 <strong>가까울수록 밝게</strong> 저장돼요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">NumPy 배열 다루기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence"><code>get_rgb()</code>가 돌려주는 건 <strong>NumPy 배열</strong>이에요.</span> <span class="ls-sentence">이 배열에서 한 픽셀의 색을 보려면 <code>rgb[y, x]</code>처럼 <span class="ls-term" data-term="인덱스" role="link" tabindex="0">인덱스</span> 두 개로 꺼내요.</span> <span class="ls-sentence">아래 코드로 배열의 크기와 값 범위, 가운데 픽셀 하나를 직접 확인해봐요.</span> <span class="ls-sentence">카메라 없이 연습하도록 배열은 무작위 숫자로 만들었어요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">RGB와 Depth 배열의 형태와 값 범위</span>
+        <div class="ls-code__head-r">
+          
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line"><span class="ls-tok ls-tok--kw">import</span> numpy <span class="ls-tok ls-tok--kw">as</span> np</span><span class="ls-line">rgb = np.random.<span class="ls-tok ls-tok--fn">randint</span>(<span class="ls-tok ls-tok--num">0</span>, <span class="ls-tok ls-tok--num">256</span>, (<span class="ls-tok ls-tok--num">480</span>, <span class="ls-tok ls-tok--num">640</span>, <span class="ls-tok ls-tok--num">3</span>), dtype=np.uint8)</span><span class="ls-line">depth = np.random.<span class="ls-tok ls-tok--fn">uniform</span>(<span class="ls-tok ls-tok--num">0.5</span>, <span class="ls-tok ls-tok--num">10.0</span>, (<span class="ls-tok ls-tok--num">480</span>, <span class="ls-tok ls-tok--num">640</span>)).<span class="ls-tok ls-tok--fn">astype</span>(np.float32)</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">"RGB shape:"</span>,   rgb.shape,   rgb.dtype)</span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">"Depth shape:"</span>, depth.shape, depth.dtype)</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">"RGB 범위:"</span>,   rgb.<span class="ls-tok ls-tok--fn">min</span>(),   <span class="ls-tok ls-tok--str">"~"</span>, rgb.<span class="ls-tok ls-tok--fn">max</span>())</span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">"Depth 범위:"</span>, depth.<span class="ls-tok ls-tok--fn">min</span>(), <span class="ls-tok ls-tok--str">"~"</span>, depth.<span class="ls-tok ls-tok--fn">max</span>())</span><span class="ls-line">&nbsp;</span><span class="ls-line">y, x = <span class="ls-tok ls-tok--num">240</span>, <span class="ls-tok ls-tok--num">320</span></span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"중앙 픽셀 색 (R,G,B) = {rgb[y, x]}"</span>)</span><span class="ls-line"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"중앙 픽셀 거리      = {depth[y, x]:.2f} m"</span>)</span></div>
+    </div>
+    
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence"><code>rgb[y, x]</code>로 색을, <code>depth[y, x]</code>로 거리를 얻을 수 있어요.</span> <span class="ls-sentence">두 배열의 <span class="ls-term" data-term="격자" role="link" tabindex="0">격자</span>가 같으니, 같은 좌표로 두 배열을 함께 꺼내 <strong>"무엇, 얼마나 멀리"</strong>를 한 번에 알 수 있어요.</span> <span class="ls-sentence">같은 좌표로 두 배열을 꺼내는 방식은 8강 라이다에서도 이어져요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">자주 마주치는 문제</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">실습 중 가장 많이 마주치는 네 가지예요.</span> <span class="ls-sentence">클릭하면 원인과 해결법이 펼쳐져요.</span></span></p>
+  </section><div class="ls-errors" data-block="error-decoder">
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">get_rgb()가 빈 값만 돌려줘요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 첫 프레임이 아직 만들어지지 않은 상태예요.<br><strong>해결:</strong> <code>await omni.kit.app.get_app().next_update_async()</code>로 30프레임 정도 먼저 진행한 뒤 호출해봐요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">이미지가 전부 검정으로 나와요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 조명이 없어요.<br><strong>해결:</strong> <code>UsdLux.DistantLight</code>로 태양을 띄우거나 다른 조명을 추가해봐요. 강도(intensity) 2000~5000 정도가 적절해요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">로봇이 움직여도 카메라가 그대로예요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> <code>prim_path</code>가 H1 하위가 아니라 독립 경로로 설정됐어요.<br><strong>해결:</strong> 경로를 <code>/World/H1/head_camera</code>처럼 로봇의 자식 <span class="ls-term" data-term="Prim" role="link" tabindex="0">prim</span>으로 지정해봐요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        <code class="ls-err__code">No annotator</code>
+        <span class="ls-err__title"><span class="ls-term" data-term="annotator" role="link" tabindex="0">annotator</span>를 못 찾는 에러가 떠요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> Isaac Sim 버전과 <span class="ls-term" data-term="Replicator" role="link" tabindex="0">Replicator</span> <span class="ls-term" data-term="모듈" role="link" tabindex="0">모듈</span>이 일치하지 않거나, <code>omni.replicator.core</code>가 누락된 상태예요.<br><strong>해결:</strong> 최신 4.5+ / 5.x를 쓰고, 필요하면 확장 매니저에서 Replicator가 켜져 있는지 확인해봐요.</div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">실습에서 막히면 <strong><span class="ls-term" data-term="워밍업" role="link" tabindex="0">워밍업</span> 부족(<code>next_update_async</code> 횟수)</strong>이거나 <strong>조명 누락</strong>일 때가 많아요.</span> <span class="ls-sentence">워밍업과 조명만 챙기면 대개 한 번에 통과해요.</span></span></span></div><section class="ls-stage" data-stage-key="review" data-lesson="p2c7" data-lesson-no="07" data-stage-no="5" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">⑤</span>
+      <h2 class="ls-stage__label">스스로 다지기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">개념 점검하기</h3>
+    
+  </section><div class="ls-quiz" data-block="quiz">
+    <div class="ls-quiz__q" data-q="0">
+      <div class="ls-quiz__qtext">Q1. 카메라를 로봇 prim의 자식으로 두는 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="0" data-i="0" data-correct="0">GPU 사용량을 줄이려고</button><button class="ls-quiz__opt" data-q="0" data-i="1" data-correct="1">로봇이 움직일 때 카메라도 함께 따라가려고</button><button class="ls-quiz__opt" data-q="0" data-i="2" data-correct="0">Replicator <span class="ls-term" data-term="API" role="link" tabindex="0">API</span>의 필수 규칙을 지키려고</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="1">
+      <div class="ls-quiz__qtext">Q2. <code>get_rgb()</code>가 돌려주는 배열의 shape는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="1" data-i="0" data-correct="0">(H, W) 회색조 한 장</button><button class="ls-quiz__opt" data-q="1" data-i="1" data-correct="0">(3, H, W) <span class="ls-term" data-term="채널" role="link" tabindex="0">채널</span>이 앞</button><button class="ls-quiz__opt" data-q="1" data-i="2" data-correct="1">(H, W, 3) 픽셀마다 R, G, B 세 숫자</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="2">
+      <div class="ls-quiz__qtext">Q3. Depth와 RGB의 가장 큰 차이는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="2" data-i="0" data-correct="0">Depth는 색, RGB는 거리</button><button class="ls-quiz__opt" data-q="2" data-i="1" data-correct="0">Depth는 카메라, RGB는 라이다</button><button class="ls-quiz__opt" data-q="2" data-i="2" data-correct="1">Depth는 픽셀마다 거리(m) 한 숫자, RGB는 색(R, G, B) 세 숫자</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="3">
+      <div class="ls-quiz__qtext">Q4. 첫 프레임이 비어 있을 때 가장 먼저 확인할 것은?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="3" data-i="0" data-correct="0">카메라 케이블 연결</button><button class="ls-quiz__opt" data-q="3" data-i="1" data-correct="0">GPU 드라이버 버전</button><button class="ls-quiz__opt" data-q="3" data-i="2" data-correct="1"><span class="ls-term" data-term="render" role="link" tabindex="0">렌더</span> 워밍업 프레임 수</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">코드 실습하기</h3>
+    
+  </section><div class="ls-challenges" data-block="challenges">
+    <div class="ls-chall has-hint has-fill" data-id="c1">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🥚</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">기본 · 첫 프레임 픽셀 수</div>
+          <div class="ls-chall__sub">머리 카메라의 첫 RGB 프레임을 받아, 그 한 장에 픽셀이 몇 개 들어 있는지 세어봐요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from pxr import UsdLux
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+from isaacsim.sensors.camera import Camera
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+
+    stage = omni.usd.get_context().get_stage()
+    UsdLux.DistantLight.Define(stage, "/World/Sun").CreateIntensityAttr(3000.0)
+
+    assets_root = get_assets_root_path()
+    add_reference_to_stage(usd_path=assets_root + "/Isaac/Robots/Unitree/H1/h1.usd", prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(prim_path="/World/H1", name="h1", position=np.array([0, 0, 1.05])))
+
+    camera = Camera(prim_path="/World/H1/head_camera",
+                    position=np.array([0.15, 0.0, 1.75]),
+                    frequency=20,
+                    resolution=(640, 480),
+                    orientation=np.array([1, 0, 0, 0]))
+
+    await world.reset_async()
+    camera.initialize()
+    for _ in range(30):
+        await omni.kit.app.get_app().next_update_async()
+
+    rgb = camera.get_rgb()
+    h, w = rgb.shape[0], rgb.shape[1]
+    print(f"RGB shape = {rgb.shape}")
+    print(f"한 프레임의 픽셀 수 H*W = {h * w}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><code>resolution=(640, 480)</code>이면 RGB 배열은 <code>(480, 640, 3)</code>이에요. 한 프레임의 <strong>픽셀 수(H×W)</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="6" data-answer="307200"><span class="ls-chall__unit">개</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 307200개.</span> <span class="ls-sentence">(480 × 640, 채널 3은 색 정보라 픽셀 수에 곱하지 않아요)</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">resolution은 <code>(가로 W, 세로 H)</code>인데 배열 shape는 <code>(세로 H, 가로 W, 3)</code>으로 순서가 반대예요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">픽셀 수는 채널을 빼고 <code>H × W</code>만 세어봐요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c2">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐣</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">보통 · 카메라를 기울여 찍은 장수</div>
+          <div class="ls-chall__sub">카메라를 0°에서 30°까지 10°씩 아래로 기울여가며 한 장씩 받아, 모두 몇 장인지 세어봐요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from pxr import UsdLux
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+from isaacsim.sensors.camera import Camera
+from isaacsim.core.utils.rotations import euler_angles_to_quat
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+
+    stage = omni.usd.get_context().get_stage()
+    UsdLux.DistantLight.Define(stage, "/World/Sun").CreateIntensityAttr(3000.0)
+
+    assets_root = get_assets_root_path()
+    add_reference_to_stage(usd_path=assets_root + "/Isaac/Robots/Unitree/H1/h1.usd", prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(prim_path="/World/H1", name="h1", position=np.array([0, 0, 1.05])))
+
+    camera = Camera(prim_path="/World/H1/head_camera",
+                    position=np.array([0.15, 0.0, 1.75]),
+                    frequency=20, resolution=(640, 480),
+                    orientation=np.array([1, 0, 0, 0]))
+    await world.reset_async()
+    camera.initialize()
+
+    shots = 0
+    for pitch_deg in [0, 10, 20, 30]:
+        pitch = np.deg2rad(pitch_deg)
+        camera.set_local_pose(orientation=euler_angles_to_quat([0, pitch, 0]))
+        for _ in range(30):
+            await omni.kit.app.get_app().next_update_async()
+        rgb = camera.get_rgb()
+        shots += 1
+    print(f"받은 장수 = {shots}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">카메라를 <code>0°</code>에서 <code>30°</code>까지 <code>10°</code>씩 아래로 기울여가며 각 각도에서 한 장씩 받아요. Script Editor에 찍힌 <strong>장수</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="3" data-answer="4"><span class="ls-chall__unit">장</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 4장.</span> <span class="ls-sentence">0°, 10°, 20°, 30° 네 각도를 한 번씩 도니까 네 장이에요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence"><code>set_local_pose</code>로 카메라만 기울여요.</span> <span class="ls-sentence">Isaac Sim은 <strong>+X가 앞, +Z가 위</strong>라서 <span class="ls-term" data-term="Y축" role="link" tabindex="0">Y축</span> 회전이 <strong>양수일 때 아래</strong>를 봐요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><code>euler_angles_to_quat</code>는 Isaac Sim이 쓰는 <code>[W, X, Y, Z]</code> 순서로 돌려줘요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="for문" role="link" tabindex="0">for문</span>이 도는 횟수가 곧 받은 프레임 수예요.</span> <span class="ls-sentence">각도 <span class="ls-term" data-term="리스트" role="link" tabindex="0">리스트</span>를 몇 번 도는지 따라가봐요.</span></span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c3">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐥</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">도전 · 1초에 흐르는 숫자</div>
+          <div class="ls-chall__sub">해상도를 (1280, 720)으로 올린 카메라가 1초 동안 보내는 숫자가 몇 개인지 세어봐요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from pxr import UsdLux
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+from isaacsim.sensors.camera import Camera
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+
+    stage = omni.usd.get_context().get_stage()
+    UsdLux.DistantLight.Define(stage, "/World/Sun").CreateIntensityAttr(3000.0)
+
+    assets_root = get_assets_root_path()
+    add_reference_to_stage(usd_path=assets_root + "/Isaac/Robots/Unitree/H1/h1.usd", prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(prim_path="/World/H1", name="h1", position=np.array([0, 0, 1.05])))
+
+    camera = Camera(prim_path="/World/H1/head_camera",
+                    position=np.array([0.15, 0.0, 1.75]),
+                    frequency=20,
+                    resolution=(1280, 720),
+                    orientation=np.array([1, 0, 0, 0]))
+    await world.reset_async()
+    camera.initialize()
+    for _ in range(30):
+        await omni.kit.app.get_app().next_update_async()
+
+    rgb = camera.get_rgb()
+    frames_per_sec = 20
+    per_frame = rgb.shape[0] * rgb.shape[1] * rgb.shape[2]
+    print(f"RGB shape = {rgb.shape}")
+    print(f"한 장에 담긴 숫자 = {per_frame}")
+    print(f"1초에 흐르는 숫자 = {per_frame * frames_per_sec}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><code>resolution=(1280, 720)</code>이라 배열은 <code>(720, 1280, 3)</code>이고, <code>frequency=20</code>이라 1초에 20장이 와요. <strong>1초에 흐르는 숫자 개수</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="9" data-answer="55296000"><span class="ls-chall__unit">개</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 55296000개.</span> <span class="ls-sentence">(720 × 1280 × 3 × 20) 카메라 한 대가 1초에 이만큼을 쏟아내요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence">c1은 픽셀 수만 셌어요.</span> <span class="ls-sentence">여기서는 픽셀마다 <strong>R, G, B 세 숫자</strong>가 들어간다는 것까지 따져요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><span class="ls-sentence"><code>frequency=20</code>은 1초에 몇 장이 온다는 뜻일까요.</span> <span class="ls-sentence">한 장에 담긴 숫자에 그만큼 곱해요.</span></span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c4">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐔</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">심화 · 파노라마 장수</div>
+          <div class="ls-chall__sub">로봇을 30°씩 돌려 한 바퀴 도는 동안 한 장씩 찍고, 모두 몇 장이 나오는지 세어봐요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from pxr import UsdLux
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+from isaacsim.sensors.camera import Camera
+from isaacsim.core.utils.rotations import euler_angles_to_quat
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+
+    stage = omni.usd.get_context().get_stage()
+    UsdLux.DistantLight.Define(stage, "/World/Sun").CreateIntensityAttr(3000.0)
+
+    assets_root = get_assets_root_path()
+    add_reference_to_stage(usd_path=assets_root + "/Isaac/Robots/Unitree/H1/h1.usd", prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(prim_path="/World/H1", name="h1", position=np.array([0, 0, 1.05])))
+
+    camera = Camera(prim_path="/World/H1/head_camera",
+                    position=np.array([0.15, 0.0, 1.75]),
+                    frequency=20, resolution=(640, 480),
+                    orientation=np.array([1, 0, 0, 0]))
+    await world.reset_async()
+    camera.initialize()
+
+    step_deg = 30
+    shots = 0
+    for yaw_deg in range(0, 360, step_deg):
+        yaw = np.deg2rad(yaw_deg)
+        h1.set_world_pose(orientation=euler_angles_to_quat([0, 0, yaw]))
+        for _ in range(30):
+            await omni.kit.app.get_app().next_update_async()
+        rgb = camera.get_rgb()
+        shots += 1
+    print(f"한 바퀴 도는 동안 찍은 파노라마 장수 = {shots}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><code>30°</code>씩 돌며 <code>0°</code>부터 한 바퀴(360°) 도는 동안 매번 한 장씩 찍어요. Script Editor에 찍힌 <strong>파노라마 장수</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="3" data-answer="12"><span class="ls-chall__unit">장</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 12장.</span> <span class="ls-sentence">(360° ÷ 30° = 12방향)</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><code>range(0, 360, 30)</code>은 0°부터 330°까지 30° 간격으로 돌아요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><span class="ls-sentence">for문이 도는 횟수가 곧 찍은 장수예요.</span> <span class="ls-sentence">range가 몇 번 도는지 따라가봐요.</span></span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c5">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐓</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">탐구 · Depth 컬러맵 채널</div>
+          <div class="ls-chall__sub">Depth를 무지개 색(가까우면 파랑, 멀면 빨강)으로 칠한 뒤, 저장용으로 자른 배열의 채널 수를 확인해요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from pxr import UsdLux
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+from isaacsim.sensors.camera import Camera
+import matplotlib.cm as cm
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+
+    stage = omni.usd.get_context().get_stage()
+    UsdLux.DistantLight.Define(stage, "/World/Sun").CreateIntensityAttr(3000.0)
+
+    assets_root = get_assets_root_path()
+    add_reference_to_stage(usd_path=assets_root + "/Isaac/Robots/Unitree/H1/h1.usd", prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(prim_path="/World/H1", name="h1", position=np.array([0, 0, 1.05])))
+
+    camera = Camera(prim_path="/World/H1/head_camera",
+                    position=np.array([0.15, 0.0, 1.75]),
+                    frequency=20, resolution=(640, 480),
+                    orientation=np.array([1, 0, 0, 0]))
+    await world.reset_async()
+    camera.initialize()
+    camera.add_distance_to_image_plane_to_frame()
+    for _ in range(30):
+        await omni.kit.app.get_app().next_update_async()
+
+    depth = camera.get_depth()
+    d = np.clip(depth, 0, 10) / 10.0
+    colored = cm.jet(d)
+    rgb_out = colored[:, :, :3]
+    print(f"jet 컬러맵 출력 shape = {colored.shape}")
+    print(f"저장용 RGB 채널 수 = {rgb_out.shape[2]}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><code>cm.jet</code>으로 칠한 뒤 PNG로 저장하려고 알파 채널을 떼어냈어요. 저장용 배열의 <strong>채널 수</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="3" data-answer="3"><span class="ls-chall__unit">개</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 3개.</span> <span class="ls-sentence">(RGBA 4채널에서 알파를 빼면 RGB 3채널)</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><code>cm.jet(d)</code>가 돌려주는 RGBA에서 A는 무엇의 첫 글자일까요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><span class="ls-sentence">PNG 저장에는 알파가 필요 없어 잘라냈어요.</span> <span class="ls-sentence">남은 축 길이가 채널 수예요.</span></span></span></div>
+      </div>
+      
+    </div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">7강 한눈에 정리</h3>
+    
+  </section><div class="ls-summary" data-block="summary" data-ga-observed="1"><ul><li>Isaac Sim의 가상 카메라는 레이트레이싱으로 <strong>빛을 계산해</strong> 픽셀에 기록해요</li><li><strong>RGB는 색, Depth는 거리</strong>를 담고, 두 출력은 같은 카메라에서 동시에 받을 수 있어요</li><li><strong>세그멘테이션</strong>은 픽셀마다 클래스 번호를 붙여 "무엇이 어디에" 있는지 알려줘요</li><li><code>get_rgb</code>는 바로, <code>get_depth</code>는 Depth 출력을 켠 뒤 NumPy 배열로 받아요</li><li>카메라를 <strong>로봇의 자식 prim</strong>으로 두면 로봇과 함께 움직여요. 카메라는 가장 멀리 보이는 머리에 달고, 8강 라이다는 가슴에 달아요</li><li>첫 프레임은 <code>next_update_async()</code>로 30프레임 정도 <strong>워밍업</strong>해야 정상 이미지가 나와요</li></ul></div><div class="ls-next" data-block="next-preview">
+    <div class="ls-next__eyebrow">다음 강 안내</div>
+    <p class="ls-next__body"><span class="ls-para"><span class="ls-sentence">카메라로 색과 이름표까지 손에 넣었어요.</span> <span class="ls-sentence">그런데 방금 받은 Depth는 시뮬레이션 환경이 3D 장면을 이미 알고 있어서 바로 계산해준 값이에요.</span> <span class="ls-sentence">현실에서 카메라 한 대가 찍은 사진만으로는 저 벽까지 몇 미터인지 알기 어려워요.</span> <span class="ls-sentence">다음 강에서는 <strong>라이다</strong>로 거리를 직접 재서, 카메라가 못 보던 공간 정보까지 채워봐요.</span></span></p>
+  </div><button class="read__next-inline is-revealed" type="button" aria-label="다음 강의로 이동 — 08강의. 라이다로 거리 재기">
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">08강의. 라이다로 거리 재기</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      </button></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: GLOSSARY (단어집) ============== -->
+      <section class="view view--glossary" data-view="glossary" hidden="">
+        <main class="glossary__main">
+          <article class="glossary__list" id="glossaryList"></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: EXPLORE (가이드북 안내 중심) ============== -->
+      <section class="view view--explore" data-view="explore" hidden="">
+        <div class="explore__inner">
+          <header class="explore__hero">
+            <div class="explore__eyebrow">NAVER CONNECT ROBOTICS 2026 · 가이드북</div>
+            <h2 class="explore__title">
+              처음 보시는 분들도<br>
+              <strong>천천히 따라오면 돼요</strong>
+            </h2>
+            <p class="explore__lead">
+              21강짜리 가이드북이에요. 가상 로봇을 만드는 것부터 시작해서, 감각을 달고,
+              스스로 걷는 법을 가르치다 보면, 끝에는 말 한 마디로 움직이는 자율 로봇이 손에 남아요.
+              하루에 한 강씩 가도 좋고, 주말에 몰아서 봐도 좋아요. 본인 페이스로요.
+            </p>
+          </header>
+
+          <section class="explore__steps">
+            <div class="explore-eyebrow-2">쓰는 법</div>
+            <ol class="explore-guide__rows">
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">01</div>
+                <div>
+                  <h4 class="explore-guide__title">챕터부터 하나 골라요</h4>
+                  <p class="explore-guide__body">
+                    탄생 → 각성 → 진화 → 초월, 이 네 묶음이에요.
+                    처음이면 그냥 1번 <b>탄생</b>부터 들어가시면 돼요.
+                    좌측 <b>목차</b>에서 네 챕터가 한눈에 보여요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">02</div>
+                <div>
+                  <h4 class="explore-guide__title">강의 안에서 넘어다녀요</h4>
+                  <p class="explore-guide__body">
+                    강의는 글과 코드가 섞인 형태예요.
+                    좌측 사이드바에서 강을 옮겨다닐 수 있고, 키보드 <b>← →</b>로도 됩니다.
+                    모바일이면 상단 드롭다운으로 강을 바꿔주세요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">03</div>
+                <div>
+                  <h4 class="explore-guide__title">코드는 직접 돌려보세요</h4>
+                  <p class="explore-guide__body">
+                    글로만 읽으면 잊혀요. 강의 안 Python 코드는 Isaac Sim에 그대로 붙여 돌리면 됩니다.
+                    한 번씩 직접 돌려본 사람만 다음 강을 편하게 봐요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">04</div>
+                <div>
+                  <h4 class="explore-guide__title">끝까지 가면 본선이에요</h4>
+                  <p class="explore-guide__body">
+                    21강을 다 마치면 자율로 걸어다니는 휴머노이드 로봇이 손에 남아요.
+                    그걸 들고 <b>네이버 커넥트 로보틱스 본선</b>에 나가시면 됩니다.
+                  </p>
+                </div>
+              </div>
+            </ol>
+          </section>
+
+          <section class="explore__support">
+            <div class="explore-eyebrow-2">대회 지원 안내</div>
+            <h3 class="explore-h3">참가팀에게 이런 지원이 있어요</h3>
+            <div class="explore__cards" id="exploreCards">
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">2억 원 상당<br>AI 로보틱스 패키지</h3>
+                <p class="support-card__body">
+                  우승팀이 소속된 학교에 고성능 GPU와 AI 시스템이 들어가요.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">글로벌 표준<br>Isaac Sim 제공</h3>
+                <p class="support-card__body">
+                  엔비디아가 실제로 쓰는 로봇 트레이닝 시뮬레이터, 참가하면 그대로 받습니다.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">NVIDIA 엔지니어<br>전문가 멘토링</h3>
+                <p class="support-card__body">
+                  막힐 때 현업 엔지니어가 옆에서 도와줘요. 혼자 끙끙대지 않아도 돼요.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <div class="explore__cta-row">
+            <button class="explore__cta" data-go="books">
+              <span class="explore__cta-arrow" style="font-size:1.5em">▸</span>
+              <span>메인 화면으로 가기</span>
+            </button>
+          </div>
+
+          <footer class="explore__footer">
+            <div class="explore__footer-row">
+              <div class="explore__footer-brand">
+                <div class="explore__footer-title">NAVER CONNECT ROBOTICS CUP</div>
+                <div class="explore__footer-tag">Isaac Sim · 가이드북</div>
+              </div>
+              <div class="explore__footer-cols">
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">관련</div>
+                  <a class="explore__footer-link" href="https://github.com/entryofficial-ctrl/edu-content" target="_blank" rel="noopener">GitHub</a>
+                  <a class="explore__footer-link" href="https://developer.nvidia.com/isaac-sim" target="_blank" rel="noopener">Isaac Sim</a>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">대회</div>
+                  <span class="explore__footer-link">NAVER CONNECT ROBOTICS CUP 2026</span>
+                  <span class="explore__footer-link">NVIDIA Partner</span>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">교육 주관</div>
+                  <span class="explore__footer-link">네이버 커넥트재단</span>
+                </div>
+              </div>
+            </div>
+            <div class="explore__footer-legal">
+              © 2026 NAVER CONNECT ROBOTICS CUP. Powered by NAVER CONNECT.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <!-- 이용 안내 팝업 (좌측 메뉴 하단 「이용 안내」로 열림) -->
+    <div class="legal" id="legalModal" hidden="">
+      <div class="legal__backdrop" data-legal-close=""></div>
+      <div class="legal__panel" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button class="legal__close" type="button" data-legal-close="" aria-label="닫기">✕</button>
+
+        <div class="legal__eyebrow">NAVER CONNECT ROBOTICS CUP 2026</div>
+        <h2 class="legal__title" id="legalTitle">저작권 및 이용 안내</h2>
+        <p class="legal__copy">© NAVER Connect Foundation. All rights reserved.</p>
+
+        <p class="legal__lead">이 가이드북의 모든 글·이미지·코드·구성은 네이버 커넥트재단에 저작권이 있습니다. 누구나 웹에서 자유롭게 읽고 학습에 활용할 수 있습니다.</p>
+
+        <div class="legal__cols">
+          <section class="legal__col legal__col--ok">
+            <h3 class="legal__col-head"><span class="legal__mark">○</span> 이렇게 쓰실 수 있어요</h3>
+            <ul class="legal__list">
+              <li>수업·발표에서 화면으로 보여주기</li>
+              <li>출처를 밝히고 일부를 인용하기</li>
+            </ul>
+          </section>
+          <section class="legal__col legal__col--no">
+            <h3 class="legal__col-head"><span class="legal__mark">×</span> 이건 허락이 필요해요</h3>
+            <ul class="legal__list">
+              <li>내용을 복제해 다시 배포하기</li>
+              <li>고쳐 쓰거나 2차 저작물로 만들기</li>
+              <li>상업적 목적으로 이용하기</li>
+              <li>다른 서비스·교재에 옮겨 싣기</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="legal__note">실습에 쓰인 오픈소스(NVIDIA Isaac Sim·Isaac Lab, three.js 등)와 인용한 영상·이미지는 각 권리자에게 저작권이 있으며, 해당 라이선스와 출처 표기를 따릅니다.</p>
+
+        <p class="legal__contact">이용 문의 · 사용 허락 요청 — <a href="mailto:ncrc@connect.or.kr">ncrc@connect.or.kr</a></p>
+      </div>
+    </div>
+
+    <script type="module" src="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/app.js.다운로드"></script>
+    <script type="module" src="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/search.js.다운로드"></script>
+    <script src="./07강의. 카메라로 보기 · 각성 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/comments.js.다운로드" defer=""></script>
+  
+
+<div class="player" id="player" data-hook0=""><div class="pwrap"><span class="px" id="px">✕</span><div class="pbox" id="pbox"></div></div></div></body></html>

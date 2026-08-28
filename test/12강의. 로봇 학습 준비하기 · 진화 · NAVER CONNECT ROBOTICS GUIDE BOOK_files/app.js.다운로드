@@ -1,0 +1,792 @@
+// NAVER CONNECT ROBOTICS 2026 · Field Guide — SPA controller
+// 라우팅(해시), 뷰 전환, 배경 슬롯, 마크다운 파싱·렌더.
+
+import { SITE, BOOKS, totalChapters, findChapter, findBook, getAdjacentChapter, getAdjacentBook } from './data.js';
+import { loadLesson, renderLesson, playSfx, splitSentences } from './lesson.js';
+import { GLOSSARY as GLOSSARY_BASE, GLOSSARY_ALIAS as GLOSSARY_ALIAS_BASE } from './glossary.js';
+import { GLOSSARY_EXTRA, GLOSSARY_ALIAS_EXTRA, GLOSSARY_ABBR } from './glossary-extra.js';
+// 자동 생성 사전 + 수기 추가 표제어 병합 (추가분이 우선)
+const GLOSSARY = { ...GLOSSARY_BASE, ...GLOSSARY_EXTRA };
+const GLOSSARY_ALIAS = { ...GLOSSARY_ALIAS_BASE, ...GLOSSARY_ALIAS_EXTRA };
+
+// ---------- marked 설정 ----------
+if (window.marked) {
+  marked.setOptions({
+    breaks: false,
+    gfm: true,
+  });
+}
+
+// ---------- DOM 헬퍼 ----------
+const $  = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const el = (tag, cls, html) => {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  return e;
+};
+
+// ---------- 상태 ----------
+const state = {
+  view: null,
+  bookId: null,
+  chapterId: null,
+  selectedChapterId: null,
+  markdownCache: new Map(),
+  expandedBookId: null,   // overlay 트리에서 펼친 책
+};
+
+// ---------- 배경 슬롯 ----------
+const BG_HOST = $('#bgs');
+let bgCache = new Map();
+
+function setBackground(src) {
+  if (!src) return;
+  if (!bgCache.has(src)) {
+    const layer = el('div', 'bgs__layer');
+    layer.style.backgroundImage = `url("${src}")`;
+    BG_HOST.appendChild(layer);
+    bgCache.set(src, layer);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      $$('.bgs__layer').forEach((l) => l.classList.toggle('is-visible', l === layer));
+    }));
+  } else {
+    const layer = bgCache.get(src);
+    $$('.bgs__layer').forEach((l) => l.classList.toggle('is-visible', l === layer));
+  }
+}
+
+// ---------- 라우터 ----------
+function parseHash() {
+  const h = (location.hash || '').replace(/^#/, '');
+  if (!h) return { view: 'books' };
+  const parts = h.split('/');
+  if (parts[0] === 'books') return { view: 'books' };
+  if (parts[0] === 'explore') return { view: 'explore' };
+  // 책 표지 중간 단계는 생략 — #book/<id>를 받아도 바로 챕터 목록으로
+  if (parts[0] === 'book' && parts[1]) return { view: 'bestiary', bookId: parts[1] };
+  if (parts[0] === 'index' && parts[1]) return { view: 'bestiary', bookId: parts[1] };
+  if (parts[0] === 'read' && parts[1] && parts[2]) {
+    return { view: 'read', bookId: parts[1], chapterId: parts[2] };
+  }
+  if (parts[0] === 'glossary') {
+    return { view: 'glossary', term: parts[1] ? decodeURIComponent(parts[1]) : null };
+  }
+  return { view: 'books' };
+}
+
+function go(hash) {
+  if (location.hash === hash) {
+    handleRoute();
+  } else {
+    location.hash = hash;
+  }
+}
+
+function handleRoute() {
+  const r = parseHash();
+  state.view = r.view;
+  state.bookId = r.bookId || null;
+  state.chapterId = r.chapterId || null;
+
+  // body에 view별 클래스 토글 — CSS에서 페이지별 톤 분기에 사용
+  ['books', 'bestiary', 'read', 'explore', 'glossary'].forEach((v) => {
+    document.body.classList.toggle(`is-view-${v}`, r.view === v);
+  });
+
+  showView(r.view);
+
+  switch (r.view) {
+    case 'books':    renderBooks();    break;
+    case 'bestiary': renderBestiary(r.bookId); break;
+    case 'read':     renderRead(r.bookId, r.chapterId); break;
+    case 'explore':  renderExplore();  break;
+    case 'glossary': renderGlossary(r.term); break;
+  }
+
+  updateRail();
+  updateDocTitle(r);
+}
+
+// ---------- 단어집 ----------
+const GLOSSARY_CAT_ORDER = [
+  'Isaac Sim 기초', 'USD / Stage / Prim', '물리 기본', '객체 / 도형 / 에셋',
+  '좌표 / 변환 / 수학', '로봇 구조', '로봇 제어', '카메라 / 센서',
+  '시맨틱 / Replicator / 데이터 생성', '재질 / 조명 / 렌더링',
+  '강화학습', 'Isaac Lab 기본 구조', '학습 실행 / Headless', 'Core vs Lab 라우팅',
+  'LLM / 자연어 로봇', '프로그래밍 기초', '개발 환경·터미널', '컴퓨터·GPU', '디버깅 / 오류 증상',
+];
+const GLOSSARY_LEVEL = { basic: '기초', intermediate: '중급', advanced: '고급' };
+const GLOSSARY_PER_PAGE = 15;
+const esc = (s) => String(s == null ? '' : s).replace(/"/g, '&quot;');
+const _glossaryCatIndex = (c) => { const i = GLOSSARY_CAT_ORDER.indexOf(c || '기타'); return i < 0 ? 999 : i; };
+
+// 정렬된 전체 목록 (카테고리 순서 → 이름순)
+const _glossarySorted = Object.entries(GLOSSARY).sort((a, b) =>
+  _glossaryCatIndex(a[1].cat) - _glossaryCatIndex(b[1].cat) || a[0].localeCompare(b[0], 'ko'));
+
+function glossaryCatCounts() {
+  const m = new Map();
+  for (const g of Object.values(GLOSSARY)) { const c = g.cat || '기타'; m.set(c, (m.get(c) || 0) + 1); }
+  const ordered = [];
+  for (const c of GLOSSARY_CAT_ORDER) if (m.has(c)) { ordered.push([c, m.get(c)]); m.delete(c); }
+  for (const [c, n] of m) ordered.push([c, n]);
+  return ordered;
+}
+
+function glossaryFiltered(state) {
+  let entries = _glossarySorted;
+  if (state.cat) entries = entries.filter(([, g]) => (g.cat || '기타') === state.cat);
+  if (state.query) entries = entries.filter(([t, g]) => (t + ' ' + (g.en || '') + ' ' + (g.short || '')).toLowerCase().includes(state.query));
+  return entries;
+}
+
+function glossaryTermHtml(term, g) {
+  const abbr = GLOSSARY_ABBR[term];
+  // 표제어 오른쪽 부가 라벨: 표제어가 안 주는 정보일 때만 노출.
+  //  - 영어 en이 표제어에 이미 포함되면(대소문자·공백·-_ 무시) 중복 → 숨김 (Stop 버튼→Stop, Rigid Body→rigid body 등)
+  //  - 한글 뜻(물리 재질)·영문 대응(질량→mass)·음차(아이작심)는 유지.
+  const _norm = (s) => String(s || '').toLowerCase().replace(/[\s\-_]/g, '');
+  const _redundantEn = (s) => !/[가-힣]/.test(s) && _norm(term).includes(_norm(s));
+  // 약어 풀이가 있으면 그걸, 없으면 en을 표제어 오른쪽에 인라인으로 붙인다.
+  const secondary = abbr
+    ? `<span class="glossary__abbr">${abbr}</span>`
+    : ((g.en && !_redundantEn(g.en)) ? `<span class="glossary__en">${g.en}</span>` : '');
+  const rel = (g.related && g.related.length)
+    ? `<div class="glossary__related"><span class="glossary__related-label">관련어</span><div class="glossary__related-chips">${g.related.map((r) => {
+        // 별칭이 (사라진) 표제어를 가리키면 링크로 만들지 않는다 — 눌러도 빈 카드가 뜨는 것을 막는다.
+        const _k = GLOSSARY[r] ? r : (GLOSSARY_ALIAS[r] || null);
+        const key = (_k && GLOSSARY[_k]) ? _k : null;
+        return key
+          ? `<a class="glossary__chip" href="#glossary/${encodeURIComponent(key)}">${r}</a>`
+          : `<span class="glossary__chip glossary__chip--plain">${r}</span>`;
+      }).join('')}</div></div>`
+    : '';
+  const defHtml = (g.long || g.short || '').trim();
+  const defWrapped = defHtml ? splitSentences(defHtml).map((s) => `<span class="ls-sentence">${s.trim()}</span>`).join(' ') : '';
+  return `<article class="glossary__term" id="term-${encodeURIComponent(term)}">
+    <div class="glossary__term-main">
+      <div class="glossary__term-head"><h3 class="glossary__term-name">${term}</h3>${secondary}</div>
+      <p class="glossary__term-def">${defWrapped}</p>
+    </div>${rel}
+  </article>`;
+}
+
+function glossaryPagerHtml(page, totalPages) {
+  if (totalPages <= 1) return '';
+  const btn = (p, label, cls, dis) => `<button class="glossary__page${cls ? ' ' + cls : ''}" data-page="${p}"${dis ? ' disabled' : ''}>${label}</button>`;
+  let h = btn(page - 1, '‹', 'glossary__page--nav', page <= 1);
+  const win = new Set([1, totalPages]);
+  for (let p = page - 2; p <= page + 2; p++) if (p >= 1 && p <= totalPages) win.add(p);
+  const pages = [...win].sort((a, b) => a - b);
+  let prev = 0;
+  for (const p of pages) {
+    if (p - prev > 1) h += '<span class="glossary__page-gap">…</span>';
+    h += btn(p, String(p), p === page ? 'is-current' : '', false);
+    prev = p;
+  }
+  return h + btn(page + 1, '›', 'glossary__page--nav', page >= totalPages);
+}
+
+let _glossaryState = { cat: null, query: '', page: 1 };
+let _glossaryBuilt = false;
+
+function renderGlossaryPage(host) {
+  const entries = glossaryFiltered(_glossaryState);
+  const totalPages = Math.max(1, Math.ceil(entries.length / GLOSSARY_PER_PAGE));
+  if (_glossaryState.page > totalPages) _glossaryState.page = totalPages;
+  if (_glossaryState.page < 1) _glossaryState.page = 1;
+  const start = (_glossaryState.page - 1) * GLOSSARY_PER_PAGE;
+  const slice = entries.slice(start, start + GLOSSARY_PER_PAGE);
+  const scope = _glossaryState.cat || (_glossaryState.query ? `"${_glossaryState.query}" 검색` : '전체');
+  $('.glossary__meta', host).innerHTML = entries.length
+    ? `<strong>${scope}</strong> · ${entries.length}개${totalPages > 1 ? ` · ${_glossaryState.page} / ${totalPages} 쪽` : ''}`
+    : '';
+  $('.glossary__results', host).innerHTML = entries.length
+    ? slice.map(([t, g]) => glossaryTermHtml(t, g)).join('')
+    : '<div class="glossary__nores">검색 결과가 없어요.</div>';
+  $('.glossary__pager', host).innerHTML = glossaryPagerHtml(_glossaryState.page, totalPages);
+  $$('.glossary__navlink', host).forEach((l) => l.classList.toggle('is-active', (l.dataset.cat || '') === (_glossaryState.cat || '')));
+  // 코멘트(피드백) 재부착 알림 — 목록이 다시 그려질 때마다 (comments.js가 수신)
+  try { window.dispatchEvent(new Event('cmtx:refresh')); } catch (_) {}
+}
+
+function buildGlossary(host) {
+  const total = Object.keys(GLOSSARY).length;
+  const nav = `<a class="glossary__navlink" data-cat="">전체<span>${total}</span></a>` +
+    glossaryCatCounts().map(([c, n]) => `<a class="glossary__navlink" data-cat="${esc(c)}">${c}<span>${n}</span></a>`).join('');
+  host.innerHTML =
+    `<div class="glossary__layout">
+       <aside class="glossary__nav">
+         <div class="glossary__search">
+           <svg class="glossary__search-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6.2" fill="none" stroke="currentColor" stroke-width="1.7"/><line x1="13.6" y1="13.6" x2="18" y2="18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+           <input type="search" id="glossarySearch" placeholder="단어 검색" autocomplete="off">
+         </div>
+         <div class="glossary__nav-title">분류</div>${nav}
+       </aside>
+       <div class="glossary__bodylist">
+         <header class="glossary__bar">
+           <button class="glossary__back" id="glossaryBack" aria-label="돌아가기"><span class="glossary__back-arrow" aria-hidden="true">◂</span><span class="glossary__back-label">돌아가기</span></button>
+           <h1 class="glossary__title">단어 사전</h1>
+         </header>
+         <p class="glossary__intro">강의에 나오는 용어를 한곳에 모았어요. 검색하거나, 본문에서 밑줄 친 단어를 눌러 찾아올 수 있어요.</p>
+         <div class="glossary__meta"></div>
+         <div class="glossary__results"></div>
+         <nav class="glossary__pager"></nav>
+       </div>
+     </div>`;
+
+  const toTop = () => { const v = document.querySelector('.view--glossary'); if (v) v.scrollTop = 0; };
+  const search = $('#glossarySearch', host);
+  search.addEventListener('input', () => { _glossaryState.query = search.value.trim().toLowerCase(); _glossaryState.page = 1; renderGlossaryPage(host); });
+  $('.glossary__nav', host).addEventListener('click', (e) => {
+    const link = e.target.closest('.glossary__navlink');
+    if (!link) return;
+    _glossaryState.cat = link.dataset.cat || null; _glossaryState.page = 1;
+    renderGlossaryPage(host); toTop();
+  });
+  $('.glossary__pager', host).addEventListener('click', (e) => {
+    const b = e.target.closest('.glossary__page');
+    if (!b || b.disabled) return;
+    _glossaryState.page = +b.dataset.page;
+    renderGlossaryPage(host); toTop();
+  });
+  renderGlossaryPage(host);
+}
+
+function renderGlossary(term) {
+  const host = $('#glossaryList');
+  if (host && !_glossaryBuilt) { buildGlossary(host); _glossaryBuilt = true; }
+  const backBtn = $('#glossaryBack');
+  if (backBtn && !backBtn.dataset.wired) {
+    backBtn.addEventListener('click', () => { history.length > 1 ? history.back() : go('#books'); });
+    backBtn.dataset.wired = '1';
+  }
+  if (term && host) {
+    // 본문에서 넘어온 단어: 필터 초기화하고 그 단어가 있는 페이지로 이동 + 강조
+    _glossaryState.cat = null; _glossaryState.query = '';
+    const s = $('#glossarySearch', host); if (s) s.value = '';
+    const idx = _glossarySorted.findIndex(([t]) => t === term);
+    if (idx >= 0) _glossaryState.page = Math.floor(idx / GLOSSARY_PER_PAGE) + 1;
+    renderGlossaryPage(host);
+    // rAF 는 탭이 뒤에 있으면 아예 안 돌아 스크롤이 조용히 빠진다. 타이머로 한 번 더 받는다.
+    let jumped = false;
+    const goTo = () => {
+      if (jumped) return;
+      const el2 = document.getElementById('term-' + encodeURIComponent(term));
+      if (!el2) return;
+      jumped = true;
+      el2.scrollIntoView({ block: 'center' });
+      el2.classList.add('is-flash');
+      setTimeout(() => el2.classList.remove('is-flash'), 1600);
+    };
+    requestAnimationFrame(goTo);
+    setTimeout(goTo, 60);
+  }
+}
+
+const SITE_TITLE = 'NAVER CONNECT ROBOTICS GUIDE BOOK';
+function updateDocTitle(r) {
+  let head = '';
+  if (r.view === 'books')   head = '';  // 메인 — 사이트 제목만
+  else if (r.view === 'glossary') head = '단어 사전';
+  else if (r.view === 'explore') head = '안내';
+  else if (r.view === 'bestiary') {
+    const book = findBook(r.bookId);
+    head = book ? `${book.title} (${book.techLabel})` : '챕터';
+  }
+  else if (r.view === 'read') {
+    const found = findChapter(r.chapterId);
+    if (found && found.book.id === r.bookId) {
+      head = `${found.chapter.no}강의. ${found.chapter.title} · ${found.book.title}`;
+    }
+  }
+  document.title = head ? `${head} · ${SITE_TITLE}` : SITE_TITLE;
+}
+
+function showView(name) {
+  $$('.view').forEach((v) => {
+    const match = v.dataset.view === name;
+    v.hidden = !match;
+    v.classList.remove('is-leaving');
+    requestAnimationFrame(() => v.classList.toggle('is-visible', match));
+  });
+}
+
+function updateRail() {
+  const railView = state.view === 'explore' ? 'explore' : 'books';
+  $$('.rail__item').forEach((b) => b.classList.toggle('is-active', b.dataset.rail === railView));
+}
+
+// ---------- 뷰: BOOKS ----------
+function renderBooks() {
+  setBackground('img/배경1.webp');
+
+  // 이어보기 CTA (마지막 본 강 기억)
+  renderResumeCta();
+
+  // 매번 새로 렌더 (진도 갱신 반영을 위해)
+  const host = $('#booksStrips');
+  host.innerHTML = '';
+  BOOKS.forEach((book) => {
+    const prog = bookProgress(book);
+    const pct = prog.total ? Math.round((prog.done / prog.total) * 100) : 0;
+    const strip = el('button', 'strip');
+    strip.innerHTML = `
+      <div class="strip__bg" style="background-image: url('${book.cover}'); background-position: ${book.coverPos || 'center'};"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">${book.no}</div>
+      <div class="strip__hanja">${book.title}</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">${book.techLabel}</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:${pct}%"></div>
+        </div>
+      </div>
+    `;
+    strip.addEventListener('click', () => go(`#index/${book.id}`));
+    host.appendChild(strip);
+  });
+}
+
+function renderResumeCta() {
+  const host = $('#booksResume');
+  if (!host) return;
+  const lastId = getLast();
+  if (!lastId) { host.hidden = true; host.innerHTML = ''; return; }
+  const found = findChapter(lastId);
+  if (!found) { host.hidden = true; return; }
+  const { book, chapter } = found;
+  host.hidden = false;
+  host.innerHTML = `
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">${chapter.no}강 · ${chapter.title}</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  `;
+  $('#booksResumeBtn').addEventListener('click', () => go(`#read/${book.id}/${chapter.id}`));
+}
+
+// ---------- 뷰: BESTIARY (다크 hero + 화이트 챕터 그리드) ----------
+function renderBestiary(bookId) {
+  const book = findBook(bookId);
+  if (!book) return go('#books');
+
+  setBackground(book.cover);
+
+  // 좌측 hero (챕터 번호 + 타이틀 + techLabel만)
+  $('#bestiaryHeroBg').style.backgroundImage = `url('${book.cover}')`;
+  $('#bestiaryHeroBg').style.backgroundPosition = book.coverPos || 'center';
+  $('#bestiaryHeroNo').textContent       = `챕터 ${book.no}`;
+  $('#bestiaryHeroTitle').textContent    = book.title;
+  $('#bestiaryHeroTitleEn').textContent  = book.techLabel;
+
+  // 우측 head — 챕터의 subtitle + description
+  $('#bestiaryChaptersTitle').textContent = book.subtitle;
+  $('#bestiaryChaptersDesc').textContent  = book.description;
+
+  $('#bestiaryBack').onclick = () => go('#books');
+
+  // 우측 챕터 카드 그리드 (번호 + 제목 + 완료 체크. 강별 부제는 쓰지 않음)
+  const listHost = $('#bestiaryList');
+  listHost.innerHTML = '';
+  book.chapters.forEach((ch) => {
+    const done = isCompleted(ch.id);
+    const li = el('li', 'chapter-card' + (done ? ' chapter-card--done' : ''));
+    li.dataset.chapterId = ch.id;
+    li.innerHTML = `
+      <div class="chapter-card__index">${ch.no}</div>
+      <h3 class="chapter-card__title">${ch.title}</h3>
+      <div class="chapter-card__check" aria-hidden="true">${done ? '✓' : ''}</div>
+    `;
+    li.addEventListener('click', () => go(`#read/${book.id}/${ch.id}`));
+    listHost.appendChild(li);
+  });
+}
+
+// ---------- 뷰: READ (풀스크린 + 좌측 챕터 사이드바) ----------
+async function renderRead(bookId, chapterId) {
+  const found = findChapter(chapterId);
+  if (!found || found.book.id !== bookId) return go(`#index/${bookId}`);
+  const { book, chapter } = found;
+
+  // read 페이지에선 본문이 화면을 채우므로 #bgs 모든 layer의 is-visible 제거
+  // (#bgs는 .bgs__layer 자식들을 cache + is-visible 토글로 보여주므로
+  //  #bgs 자체의 backgroundImage만 바꾸면 자식 layer는 그대로 보임)
+  $$('.bgs__layer').forEach((l) => l.classList.remove('is-visible'));
+
+  // 방문은 last(이어보기)만 갱신, 완료 표시는 본문 끝까지 스크롤해야 처리됨
+  saveLast(chapter.id);
+
+  // 사이드바 헤더 (챕터 번호 + 타이틀 + techLabel — bestiary와 통일)
+  // 사이드바 제거됨 — 강의 목차/진도/책 정보는 모두 햄버거 메뉴(overlay)에서 확인
+  const total = book.chapters.length;
+
+  // 상단 바 (readMeta 요소는 제거됨 — 옵셔널 처리)
+  const metaEl = $('#readMeta');
+  if (metaEl) metaEl.textContent = `챕터 ${book.no} · ${chapter.no}강의 — ${chapter.title}`;
+  $('#readBack').onclick = () => go(`#index/${book.id}`);
+
+  // prev/next — phase 경계 가로지름. 호버 시 다음/이전 강의 미리보기 tooltip
+  const { prev: prevPair, next: nextPair } = getAdjacentChapter(chapter.id);
+  const prevBtn = $('#readPrev');
+  const nextBtn = $('#readNext');
+  prevBtn.disabled = !prevPair;
+  nextBtn.disabled = !nextPair;
+  prevBtn.onclick = () => prevPair && go(`#read/${prevPair.book.id}/${prevPair.chapter.id}`);
+  nextBtn.onclick = () => nextPair && go(`#read/${nextPair.book.id}/${nextPair.chapter.id}`);
+  if (prevPair) prevBtn.dataset.tooltip = `${prevPair.chapter.no}강의. ${prevPair.chapter.title}`; else delete prevBtn.dataset.tooltip;
+  if (nextPair) nextBtn.dataset.tooltip = `${nextPair.chapter.no}강의. ${nextPair.chapter.title}`; else delete nextBtn.dataset.tooltip;
+
+  // 모바일 강의 picker (select)
+  const sel = $('#readBarSelect');
+  if (sel) {
+    sel.innerHTML = book.chapters.map((c) =>
+      `<option value="${c.id}"${c.id === chapter.id ? ' selected' : ''}>${c.no}강의. ${c.title}</option>`
+    ).join('');
+    sel.onchange = (e) => {
+      const id = e.target.value;
+      if (id && id !== chapter.id) go(`#read/${book.id}/${id}`);
+    };
+  }
+
+  // 본문 로드 — 인터랙티브 강의 데이터가 있으면 그쪽으로, 없으면 markdown
+  const host = $('#readContent');
+  host.innerHTML = `<div class="read__loading">불러오는 중이에요…</div>`;
+  host.classList.remove('ls-host');
+
+  // 본문 끝까지 스크롤하면 자동 완료 표시. 다음 강의 버튼은 페이지 끝 inline에 항상 노출
+  const attachCompletion = () => {
+    let done = isCompleted(chapter.id);
+
+    // 다음 강의 카드 — article 안에 위치 (스크롤 따라옴, article scroll 끝 = 콘텐츠 끝 다음에 위치)
+    // 이전 카드 정리 (article 안 + main 양쪽)
+    host.parentElement.querySelectorAll('.read__next-inline').forEach((n) => n.remove());
+    host.querySelectorAll('.read__next-inline').forEach((n) => n.remove());
+    if (nextPair) {
+      const inlineNext = document.createElement('button');
+      inlineNext.className = 'read__next-inline';
+      inlineNext.type = 'button';
+      inlineNext.innerHTML = `
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">${nextPair.chapter.no}강의. ${nextPair.chapter.title}</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      `;
+      inlineNext.setAttribute('aria-label', `다음 강의로 이동 — ${nextPair.chapter.no}강의. ${nextPair.chapter.title}`);
+      inlineNext.onclick = () => { playSfx('click'); go(`#read/${nextPair.book.id}/${nextPair.chapter.id}`); };
+      // renderLesson의 scroll reveal observer가 이미 등록 완료 후 append되는 케이스 → 영원히 opacity:0 방지
+      inlineNext.classList.add('is-revealed');
+      host.appendChild(inlineNext);
+    }
+
+    host.onscroll = () => {
+      if (done) return;
+      const dist = host.scrollHeight - host.scrollTop - host.clientHeight;
+      if (dist < 80) {
+        done = true;
+        markCompleted(chapter.id);
+        // 완료 표시는 햄버거 메뉴 강 목차에서 자동 반영됨 (다음 overlay open 시)
+      }
+    };
+  };
+
+  // 로드 실패 시: 죽은 마크다운 폴백(옛 구조라 빈 화면) 대신 재시도 안내를 보여줘요.
+  // loadLesson이 이미 캐시버스터로 3회 재시도하므로, 여기까지 오면 대개 배포 교체 순간의
+  // 일시적 실패예요. 새로고침 한 번이면 되살아나요.
+  const showLoadError = () => {
+    host.innerHTML = `
+      <div class="read__error">
+        강의를 불러오지 못했어요.<br/>
+        배포가 교체되는 순간이면 잠깐 그럴 수 있어요. 아래를 눌러 다시 불러오세요.<br/>
+        <button type="button" class="read__retry" style="margin-top:14px;font:inherit;padding:8px 18px;border:1px solid #d8cdb6;border-radius:9px;background:#faf6ec;color:#6b5117;cursor:pointer;">↺ 다시 불러오기</button>
+      </div>
+    `;
+    const btn = host.querySelector('.read__retry');
+    if (btn) btn.onclick = () => location.reload();
+  };
+
+  try {
+    const lesson = await loadLesson(chapter.id);
+    if (lesson) {
+      renderLesson(lesson, host);
+      host.scrollTop = 0;
+      // 위젯·이미지 등 비동기 레이아웃으로 스크롤이 밀릴 때가 있어, 다음 프레임에 한 번 더 최상단 고정
+      requestAnimationFrame(() => { host.scrollTop = 0; });
+      attachCompletion();
+      return;
+    }
+    showLoadError();
+  } catch (err) {
+    console.error('[renderRead] 강의 렌더 실패', err);
+    showLoadError();
+  }
+}
+
+function getNextMarker(book, idx) {
+  const next = book.chapters[idx + 1];
+  return next ? next.marker : null;
+}
+
+async function loadMarkdown(file) {
+  if (state.markdownCache.has(file)) return state.markdownCache.get(file);
+  const res = await fetch(file, { cache: 'force-cache' });
+  if (!res.ok) throw new Error(`fetch failed: ${res.status}`);
+  const text = await res.text();
+  state.markdownCache.set(file, text);
+  return text;
+}
+
+function extractSection(md, startMarker, endMarker) {
+  const startIdx = md.indexOf(startMarker);
+  if (startIdx < 0) return md;
+  const tail = md.slice(startIdx);
+  if (!endMarker) return tail;
+  const endLocal = tail.indexOf(endMarker, startMarker.length);
+  return endLocal > 0 ? tail.slice(0, endLocal) : tail;
+}
+
+function escapeHtml(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+// ---------- 뷰: EXPLORE ----------
+function renderExplore() {
+  setBackground('img/배경3.webp');
+}
+
+// ---------- 오버레이 (책-챕터 트리) ----------
+function buildOverlayMenu() {
+  const host = $('#overlayMenu');
+  host.innerHTML = '';
+
+  BOOKS.forEach((book) => {
+    const li = el('li', 'overlay__book');
+    li.dataset.bookId = book.id;
+
+    const trigger = el('div', 'overlay__book-trigger');
+    const prog = bookProgress(book);
+    trigger.innerHTML = `
+      <span class="overlay__book-no">${book.no}</span>
+      <span class="overlay__book-name">${book.title}</span>
+      <span class="overlay__book-count" data-book-count="${book.id}">${prog.done} / ${prog.total}강</span>
+    `;
+    li.appendChild(trigger);
+
+    const ol = el('ol', 'overlay__chapters');
+    book.chapters.forEach((ch) => {
+      const cli = el('li');
+      cli.dataset.chapterId = ch.id;
+      if (isCompleted(ch.id)) cli.classList.add('is-done');
+      const cbtn = el('button');
+      cbtn.innerHTML = `
+        <span class="ch-no">${ch.no}</span>
+        <span class="ch-title">${ch.title}</span>
+        <span class="ch-check" aria-hidden="true">${isCompleted(ch.id) ? '✓' : ''}</span>
+      `;
+      cbtn.addEventListener('click', () => {
+        closeOverlay();
+        go(`#read/${book.id}/${ch.id}`);
+      });
+      cli.appendChild(cbtn);
+      ol.appendChild(cli);
+    });
+    li.appendChild(ol);
+
+    host.appendChild(li);
+  });
+
+  $('#overlaySub').textContent = `${BOOKS.length}개 챕터 · ${totalChapters()}강`;
+}
+
+function toggleOverlayBook(bookId) {
+  const all = $$('#overlayMenu .overlay__book');
+  const target = all.find((el) => el.dataset.bookId === bookId);
+  if (!target) return;
+  const expanded = target.classList.contains('is-expanded');
+  all.forEach((el) => el.classList.remove('is-expanded'));
+  if (!expanded) {
+    target.classList.add('is-expanded');
+    state.expandedBookId = bookId;
+  } else {
+    state.expandedBookId = null;
+  }
+}
+
+function openOverlay() {
+  const ov = $('#overlay');
+  ov.hidden = false;
+  requestAnimationFrame(() => ov.classList.add('is-open'));
+  document.body.classList.add('is-overlay-open');
+
+  // (플랫 목록이라 챕터 펼침 불필요) — 현재 강 하이라이트는 아래 루프, 스크롤은 함수 끝에서
+
+  // 모든 챕터 li에서 active 제거 후, 현재 보고 있는 강만 active + 완료 표시 갱신
+  $$('#overlayMenu .overlay__chapters li').forEach((li) => {
+    li.classList.toggle('is-active', li.dataset.chapterId === state.chapterId);
+    const done = isCompleted(li.dataset.chapterId);
+    li.classList.toggle('is-done', done);
+    const noEl = li.querySelector('.ch-no');
+    if (noEl) {
+      const found = findChapter(li.dataset.chapterId);
+      noEl.textContent = found ? found.chapter.no : '';
+    }
+    const checkEl = li.querySelector('.ch-check');
+    if (checkEl) checkEl.textContent = done ? '✓' : '';
+  });
+
+  // 각 책의 진도 카운트 (n / m강) 갱신
+  $$('#overlayMenu .overlay__book-count[data-book-count]').forEach((countEl) => {
+    const bid = countEl.dataset.bookCount;
+    const b = findBook(bid);
+    if (b) {
+      const p = bookProgress(b);
+      countEl.textContent = `${p.done} / ${p.total}강`;
+    }
+  });
+
+  // 열 때 현재 보고 있는 강이 화면에 오도록 목록을 스크롤 (맨 위가 아니라 내 위치)
+  const activeLi = $('#overlayMenu .overlay__chapters li.is-active');
+  const booksEl = $('#overlayMenu');
+  if (booksEl) {
+    requestAnimationFrame(() => {
+      if (activeLi) {
+        const delta = activeLi.getBoundingClientRect().top - booksEl.getBoundingClientRect().top;
+        booksEl.scrollTop += delta - booksEl.clientHeight * 0.34;
+      } else {
+        booksEl.scrollTop = 0;
+      }
+    });
+  }
+}
+function toggleOverlayBookOpen(bookId) {
+  $$('#overlayMenu .overlay__book').forEach((el) => {
+    el.classList.toggle('is-expanded', el.dataset.bookId === bookId);
+  });
+  state.expandedBookId = bookId;
+}
+function closeOverlay() {
+  const ov = $('#overlay');
+  ov.classList.remove('is-open');
+  document.body.classList.remove('is-overlay-open');
+  setTimeout(() => { ov.hidden = true; }, 380);
+}
+
+// ---------- 학습 진도 (localStorage) ----------
+const PROGRESS_KEY = 'neotwin-edu:progress';
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (!raw) return { completed: [], last: null };
+    const p = JSON.parse(raw);
+    return { completed: Array.isArray(p.completed) ? p.completed : [], last: p.last || null };
+  } catch { return { completed: [], last: null }; }
+}
+function saveProgress(p) {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch {}
+}
+function markCompleted(chapterId) {
+  const p = loadProgress();
+  if (!p.completed.includes(chapterId)) p.completed.push(chapterId);
+  p.last = chapterId;
+  saveProgress(p);
+}
+function saveLast(chapterId) {
+  const p = loadProgress();
+  p.last = chapterId;
+  saveProgress(p);
+}
+function isCompleted(chapterId) {
+  return loadProgress().completed.includes(chapterId);
+}
+function getLast() {
+  return loadProgress().last;
+}
+function bookProgress(book) {
+  const p = loadProgress();
+  // 0강(프롤로그)은 강 수에 넣지 않는다. 분모에서 빼는 만큼 분자에서도 빼야 5/4 같은 값이 안 나온다
+  const counted = book.chapters.filter((c) => +c.no > 0);
+  const done = counted.filter((c) => p.completed.includes(c.id)).length;
+  return { done, total: counted.length };
+}
+
+// ---------- 이미지 preload ----------
+function preloadBackgrounds() {
+  const urls = ['img/배경3.webp', ...BOOKS.map((b) => b.cover)];
+  urls.forEach((u) => { const img = new Image(); img.src = u; });
+}
+
+// ---------- 초기화 ----------
+function init() {
+  preloadBackgrounds();
+  buildOverlayMenu();
+
+  $('#menuBtn').addEventListener('click', openOverlay);
+  $('#overlayClose').addEventListener('click', closeOverlay);
+  $('.overlay__backdrop').addEventListener('click', closeOverlay);
+
+
+  // 이용 안내 팝업 — 열기·닫기(배경 클릭·✕·ESC)
+  const legal = $('#legalModal');
+  if (legal) {
+    const openLegal = () => {
+      legal.hidden = false;
+      // rAF는 탭이 뒤에 있으면 안 돌아 팝업이 투명한 채로 남는다. 타이머로 켠다
+      setTimeout(() => legal.classList.add('is-open'), 10);
+    };
+    const closeLegal = () => {
+      legal.classList.remove('is-open');
+      // 사라지는 동안 클릭을 막고, 전환이 끝난 뒤에 감춘다
+      setTimeout(() => { legal.hidden = true; }, 220);
+    };
+    $('#legalBtn').addEventListener('click', () => { closeOverlay(); openLegal(); });
+    legal.querySelectorAll('[data-legal-close]').forEach((el) => el.addEventListener('click', closeLegal));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !legal.hidden) closeLegal();
+    });
+  }
+
+  // 오버레이 빠른 이동
+  $$('.overlay__quick').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.quick;
+      closeOverlay();
+      if (q === 'books')    go('#books');
+      if (q === 'glossary') go('#glossary');
+    });
+  });
+
+  $$('.rail__item').forEach((b) => {
+    b.addEventListener('click', () => {
+      const v = b.dataset.view;
+      if (v === 'books') go('#books');
+      else if (v === 'glossary') go('#glossary');
+    });
+  });
+
+  $$('[data-go]').forEach((el) => {
+    el.addEventListener('click', () => {
+      go(`#${el.dataset.go}`);
+    });
+  });
+
+  // 키보드
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeOverlay();
+    if (state.view === 'read' && !e.target.closest('input, textarea')) {
+      if (e.key === 'ArrowLeft')  $('#readPrev')?.click();
+      if (e.key === 'ArrowRight') $('#readNext')?.click();
+    }
+  });
+
+  window.addEventListener('hashchange', handleRoute);
+  handleRoute();
+}
+
+init();

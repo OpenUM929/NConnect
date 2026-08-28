@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)https://robotics.connect.or.kr/lecture#read/instinct/p3c14 -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/js"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function __gaPath(){var h=(location.hash||'').replace(/^#/,'');try{return decodeURIComponent(h);}catch(x){return h;}}function __gaUid(){var m=/(?:^|;\s*)gaUid=([^;]*)/.exec(document.cookie);return m?decodeURIComponent(m[1]):'';}window.__gaV='2026-08-13';var __gaDbg=/^localhost$|^127\.|^dev\./.test(location.hostname);var __gaCfg={lecture_path:__gaPath()},__gaU=__gaUid();if(__gaU)__gaCfg.user_id=__gaU;if(__gaDbg){__gaCfg.debug_mode=true;__gaCfg.traffic_type='internal';}gtag('js',new Date());gtag('config','G-KVC9YYWB8M',__gaCfg);var __gaLastHref=location.href;addEventListener('hashchange',function(){setTimeout(function(){if(location.href===__gaLastHref)return;__gaLastHref=location.href;gtag('event','page_view',{page_location:location.href,page_title:document.title,lecture_path:__gaPath()});},0);});var __gaIO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5)return;__gaIO.unobserve(e.target);var d=e.target.dataset;gtag('event','lecture_stage_view',{lecture_path:__gaPath(),lesson:d.lesson||'',lesson_no:d.lessonNo||'',stage_key:d.stageKey||'',stage_no:d.stageNo||'',stage_total:document.querySelectorAll('.ls-stage').length});});},{threshold:0.5,rootMargin:'0px 0px -50% 0px'});function __gaLesson(){var s=document.querySelector('.ls-stage');if(s)return{lesson:s.dataset.lesson||'',no:s.dataset.lessonNo||''};var seg=(__gaPath().split('/').pop()||''),m=/c(\d+)$/.exec(seg);return{lesson:seg,no:m?m[1]:''};}var __gaCO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5&&e.intersectionRect.height<innerHeight*0.5)return;__gaCO.unobserve(e.target);var L=__gaLesson();gtag('event','lecture_complete',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no});});},{threshold:[0,0.25,0.5,0.75,1]});addEventListener('click',function(e){if(!e.target||!e.target.closest)return;var mo=e.target.closest('.ls-gpanel__more');if(mo){var LM=__gaLesson(),nm=document.querySelector('.ls-gpanel__name'),tm='';try{tm=(nm&&nm.textContent.trim())||decodeURIComponent((mo.getAttribute('href')||'').split('/').pop()||'');}catch(x){}gtag('event','glossary_more_click',{lecture_path:__gaPath(),lesson:LM.lesson,lesson_no:LM.no,term:tm});}var nb=e.target.closest('.read__next-inline,.read__next');if(nb){var LN=__gaLesson();gtag('event','next_lesson_click',{lecture_path:__gaPath(),lesson:LN.lesson,lesson_no:LN.no,next_position:nb.classList.contains('read__next-inline')?'bottom':'top'});}var cp=e.target.closest('.ls-code__copy,.ls-coderun__copy,.ls-chall__copybtn');if(cp){var rt=cp.closest('.ls-code,.ls-coderun,.ls-chall'),LC=__gaLesson(),kd='code',cid='',ctt='';if(rt){kd=rt.classList.contains('ls-chall')?'challenge':rt.classList.contains('ls-coderun')?'code_run':'code';cid=kd==='challenge'?(rt.dataset.id||''):kd==='code_run'?'run':String([].indexOf.call(document.querySelectorAll('.ls-code'),rt)+1);var te=rt.querySelector('.ls-code__title,.ls-chall__title,.ls-coderun__tab.is-on');if(te)ctt=te.textContent.trim().replace(/\s+/g,' ').slice(0,100);}gtag('event','code_copy_click',{lecture_path:__gaPath(),lesson:LC.lesson,lesson_no:LC.no,copy_kind:kd,copy_id:cid,copy_title:ctt});}var w=e.target.closest('.ls-term');if(w){var LW=__gaLesson();gtag('event','term_click',{lecture_path:__gaPath(),lesson:LW.lesson,lesson_no:LW.no,term:w.dataset.term||'',term_text:(w.textContent||'').trim().replace(/\s+/g,' ').slice(0,100)});}var t=e.target.closest('.ls-quiz__opt,.ls-quiz_opt');if(!t)return;var box=t.closest('.ls-quiz__q')||t.parentElement;if(!box||box.getAttribute('data-ga-answered'))return;box.setAttribute('data-ga-answered','1');var d=t.dataset,L=__gaLesson(),ok=d.correct==='1';gtag('event','quiz_answer',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no,quiz_no:String((parseInt(d.q,10)||0)+1),quiz_option_no:String((parseInt(d.i,10)||0)+1),quiz_option_text:(t.textContent||'').trim().replace(/\s+/g,' ').slice(0,100),quiz_result:ok?'correct':'wrong',quiz_correct:ok?1:0});},true);function __gaScan(){if(!__gaIO)return;var n=document.querySelectorAll('.ls-stage:not([data-ga-observed])');for(var i=0;i<n.length;i++){n[i].setAttribute('data-ga-observed','1');__gaIO.observe(n[i]);}var c=document.querySelectorAll('[data-block="summary"]:not([data-ga-observed])');for(var j=0;j<c.length;j++){c[j].setAttribute('data-ga-observed','1');__gaCO.observe(c[j]);}}function __gaWatch(){__gaScan();new MutationObserver(function(){if(__gaT)return;__gaT=setTimeout(function(){__gaT=0;__gaScan();},200);}).observe(document.body,{childList:true,subtree:true});addEventListener('hashchange',function(){setTimeout(__gaScan,300);});}var __gaT=0;[400,1200,3000].forEach(function(ms){setTimeout(__gaScan,ms);});if(document.readyState==='loading')addEventListener('DOMContentLoaded',__gaWatch);else __gaWatch();</script><!--<base href="/lecture/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK</title>
+    <meta name="description" content="네이버 커넥트 로보틱스 경진대회 2026 — Isaac Sim으로 배우는 로봇 AI 가이드북">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Gowun Dodum(본문+디스플레이) + Noto Sans KR(폴백 한글, 실제 로딩) + JetBrains Mono(코드) -->
+    <link href="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2" rel="stylesheet">
+    <!-- marked.js: 강의 markdown 렌더링 -->
+    <script src="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/marked.min.js.다운로드"></script>
+
+    <!-- bare specifier(three / three/addons) 해석용 — 로컬 vendor로 고정해 CDN 의존 제거.
+         8강 lidar-orbit.js, 17강 errand-scene.js, voxel-kit.js 등이 사용. three r160 + addons 동봉(/vendor/three-addons/). -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js",
+        "three/addons/": "./vendor/three-addons/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/styles.css">
+  <style id="lsq-css">
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+</style><style id="ls-uicard-video-css">
+    a.ls-uicard{display:block;text-decoration:none;color:inherit}
+    /* 제목 줄 오른쪽 끝에 삼각형만. 배경·테두리 없음. */
+    .ls-uicard__play{margin-left:auto;align-self:center;font-size:20px;line-height:1;color:var(--ls-accent);
+      transition:color .18s,transform .18s}
+    a.ls-uicard:hover .ls-uicard__play{color:#8a5a12;transform:translateX(2px)}</style><style id="ls-jax-css">
+.ls-jax{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:16px;padding:18px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-jax__stage{background:#faf8f3;border-radius:12px;box-shadow:inset 0 0 0 1px #e8e5dc;position:relative;height:320px;perspective:850px;overflow:hidden;cursor:grab;touch-action:none}
+.ls-jax__stage:active{cursor:grabbing}
+.ls-jax__scene{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--cx,-22deg)) rotateY(var(--cy,-32deg))}
+.ls-jax__scene *{transform-style:preserve-3d}
+.ls-jax__stack{position:absolute;left:-75px;top:-70px;width:150px;height:275px}
+.ls-jax__layer{position:absolute;left:0;top:0;width:150px}
+.ls-jax__layer svg{display:block;width:150px;height:auto}
+.ls-jax__leg{transform-origin:75px 70px;transition:transform .06s linear;transform:rotateY(var(--yw,0deg)) rotateZ(var(--rl,0deg)) rotateX(var(--px,0deg))}
+.ls-jax__arc{position:absolute;left:-92px;top:-92px;width:184px;height:184px;opacity:0;transition:opacity .2s}
+.ls-jax__arc.on{opacity:1}
+.ls-jax__arc svg{width:184px;height:184px;display:block}
+.ls-jax__arc--pitch{transform:rotateY(90deg)}
+.ls-jax__arc--yaw{transform:rotateX(90deg)}
+.ls-jax__axis{position:absolute;left:0;top:0;opacity:.62;pointer-events:none;transition:opacity .2s,box-shadow .2s}
+.ls-jax__axis i{position:absolute;font-style:normal;font-weight:800;font-size:18px;font-family:ui-monospace,Menlo,monospace;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff,0 1px 1px #fff}
+.ls-jax__axis--z{width:6px;height:126px;margin:-126px 0 0 -3px;background:#2471c7;color:#2471c7;border-radius:3px}
+.ls-jax__axis--z i{top:-25px;left:9px}
+.ls-jax__axis--y{width:120px;height:6px;margin:-3px 0 0 0;background:#1e8449;color:#1e8449;border-radius:3px;transform:scaleX(-1);transform-origin:left center}
+.ls-jax__axis--y i{top:-10px;left:123px;transform:scaleX(-1)}
+.ls-jax__axis--x{width:120px;height:6px;margin:-3px 0 0 0;background:#c0392b;color:#c0392b;border-radius:3px;transform:rotateY(-90deg);transform-origin:left center}
+.ls-jax__axis--x i{top:-10px;left:123px;transform:rotateY(90deg);transform-origin:left center}
+.ls-jax__axis.on{opacity:1;box-shadow:0 0 12px currentColor}
+.ls-jax__giz{position:absolute;right:12px;bottom:12px;width:98px;height:auto;display:none;background:rgba(255,255,255,.72);border:1px solid #eee5cf;border-radius:10px;padding:3px 4px 2px}
+.ls-jax.has-giz .ls-jax__giz{display:block}
+.ls-jax.is-corner .ls-jax__axis{display:none}
+.ls-jax__gax{opacity:.55;transition:opacity .2s}
+.ls-jax__gax.on{opacity:1}
+.ls-jax__gax.on line{stroke-width:5}
+.ls-jax__play{display:flex;gap:8px;margin-top:14px}
+.ls-jax__pbtn{flex:1;font-family:inherit;font-size:13px;font-weight:700;padding:11px 6px;border-radius:10px;border:1.5px solid;background:#fff;cursor:pointer;transition:.15s;line-height:1.3}
+.ls-jax__pbtn small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.ls-jax__pbtn.roll{color:#c0392b;border-color:#eec6c1}.ls-jax__pbtn.pitch{color:#1e8449;border-color:#bfe0cc}.ls-jax__pbtn.yaw{color:#2471c7;border-color:#bcd4ee}
+.ls-jax__pbtn.roll.is-on{background:#c0392b;color:#fff;border-color:#c0392b}
+.ls-jax__pbtn.pitch.is-on{background:#1e8449;color:#fff;border-color:#1e8449}
+.ls-jax__pbtn.yaw.is-on{background:#2471c7;color:#fff;border-color:#2471c7}
+.ls-jax__ctrls{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.ls-jax__row{display:flex;align-items:center;gap:10px;font-size:13px}
+.ls-jax__row .nm{width:118px;font-weight:700}.ls-jax__row .nm i{font-style:normal;font-family:ui-monospace,Menlo,monospace}
+.ls-jax__row input[type=range]{flex:1;accent-color:currentColor}
+.ls-jax__row .val{width:48px;text-align:right;font-family:ui-monospace,Menlo,monospace;color:#8a8574}
+.ls-jax__row.roll{color:#c0392b}.ls-jax__row.pitch{color:#1e8449}.ls-jax__row.yaw{color:#2471c7}
+.ls-jax__foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ls-jax__hint{font-size:11.5px;color:#726c61}
+.ls-jax__rst{background:#efe9dc;color:#6b5f45;border:1px solid #e1d8c4;border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer}
+.ls-jax__cap{font-size:13px;color:#5c584d;margin-top:12px;line-height:1.75;text-align:center}.ls-jax__cap b{color:#222}</style><style id="ls-aa-css">
+.ls-aa{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-aa__cap{padding:16px 20px 12px;font-size:14.5px;line-height:1.6;color:#3a3a42}
+.ls-aa__cap b,.ls-aa__cap strong{color:#111}
+.ls-aa__cap code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f2f5;padding:1px 6px;border-radius:5px}
+.ls-aa__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-aa__body{grid-template-columns:1fr}}
+.ls-aa__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11)}
+.ls-aa__svg{display:block;width:100%;height:auto}
+.ls-aa-seg{fill:url(#ncShell);stroke:#8b929c;stroke-width:1.3;transition:stroke .45s}
+.ls-aa.is-bound .ls-aa-seg{stroke:#f0b441;stroke-width:2}
+.ls-aa-joint{fill:url(#ncDark);stroke:#0f1216;stroke-width:1;transition:fill .45s,stroke .45s}
+.ls-aa.is-bound .ls-aa-joint{fill:#f0d9a5;stroke:#c78f2e}
+.ls-aa-joint.is-pulse{fill:#fff}
+.ls-aa-lower{transform-box:view-box;transform-origin:110px 140px;transition:transform .55s cubic-bezier(.34,1.3,.5,1)}
+.ls-aa-arm{transform-box:view-box;transform-origin:110px 52px;transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.ls-aa.is-bound.is-lift .ls-aa-arm{transform:rotate(-68deg)}
+.ls-aa:not(.is-bound).is-lift .ls-aa-arm{animation:ls-aa-nudge .4s}
+@keyframes ls-aa-nudge{0%,100%{transform:none}30%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.ls-aa__panel{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ls-aa__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;transition:.3s}
+.ls-aa__badge.is-loose{background:#efeff2;color:#71717a}
+.ls-aa__badge.is-bound{background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-aa__desc{font-size:13.5px;line-height:1.7;color:#52525b;min-height:60px}
+.ls-aa__desc b,.ls-aa__desc strong{color:#222}
+.ls-aa__toggle{display:flex;gap:8px}
+.ls-aa__btn{flex:1;font-family:inherit;font-size:13px;padding:10px 8px;border-radius:10px;border:1.5px solid #e4e4e8;background:#fff;color:#52525b;cursor:pointer;transition:.2s}
+.ls-aa__btn.is-on{background:#16161b;color:#f0d9a5;border-color:#16161b}
+.ls-aa__cmd{font-family:inherit;font-size:13.5px;padding:11px;border-radius:10px;border:none;cursor:pointer;transition:.2s}
+.ls-aa__cmd:disabled{background:#f2f2f5;color:#b4b4bb;cursor:not-allowed}
+.ls-aa__cmd:not(:disabled){background:#f0d9a5;color:#3a2e12}
+.ls-aa__note{font-size:12.5px;line-height:1.5;color:#8a6a28;min-height:30px}</style><style id="ls-jt-css">
+.ls-jt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+@media(max-width:620px){.ls-jt{grid-template-columns:repeat(2,1fr)}}
+.ls-jt__card{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:12px;padding:16px 12px;text-align:center}
+.ls-jt__demo{perspective:560px}
+.ls-jt__stage{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d}
+.ls-jt__seg{width:20px;height:66px;border-radius:10px;background:linear-gradient(#d6dae0,#b4b9c1 55%,#949aa4);box-shadow:inset 0 0 0 1px rgba(139,146,156,.6);transform-origin:bottom center}
+.ls-jt__pivot{position:absolute;bottom:16px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#3d434c,#14171c);border:1.5px solid #0f1216;z-index:2}
+.ls-jt__base{position:absolute;bottom:0;left:50%;margin-left:-26px;width:52px;height:18px;border-radius:6px;background:#2b313c}
+@keyframes lsJtRev{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes lsJtPris{0%,100%{transform:translateY(0)}50%{transform:translateY(-36px)}}
+@keyframes lsJtSpin{to{transform:rotateY(360deg)}}
+.ls-jt__demo.rev .ls-jt__seg{animation:lsJtRev 2s ease-in-out infinite}
+.ls-jt__demo.pris .ls-jt__seg{animation:lsJtPris 1.8s ease-in-out infinite}
+.ls-jt__demo.sph .ls-jt__spin{transform-style:preserve-3d;animation:lsJtSpin 2.4s linear infinite}
+.ls-jt__demo.sph .ls-jt__seg{transform:rotateX(30deg)}
+.ls-jt__demo.fixed .ls-jt__seg{background:linear-gradient(#c4c9d0,#a4aab4 55%,#868d98)}
+.ls-jt__nm{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14.5px;margin-top:9px}
+.ls-jt__loc{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b08436;margin:3px 0 6px}
+.ls-jt__d{font-size:13.5px;color:var(--ls-text-soft);line-height:1.55}</style><style id="ls-coderun-clps-css">
+    .ls-coderun__panel.is-clps{position:relative;max-height:340px;overflow:hidden}
+    .ls-coderun__panel.is-clps.is-open{max-height:none;overflow:visible}
+    .ls-coderun__clps-fade{position:absolute;left:0;right:0;bottom:38px;height:44px;background:linear-gradient(to bottom,rgba(21,22,27,0),#15161b);pointer-events:none;border-radius:0}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-fade{display:none}
+    .ls-coderun__clps-btn{position:absolute;left:0;right:0;bottom:0;width:100%;background:#23252e;color:#f0d9a5;border:0;border-top:1px solid #34363f;padding:9px;font:700 12.5px/1 inherit;cursor:pointer}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-btn{position:static;border-radius:0 0 12px 12px;margin-top:8px}
+    .ls-coderun__clps-btn:hover{background:#2c2e38}</style><style id="ls-skit-css">
+    /* 표준 위젯 규격 = 2강 .ls-physx (단일 아레나가 폭을 꽉 채움) */
+    .ls-skit{--skg:#b08436;--skc:#4f6873;--skln:var(--ls-border);--skbad:#c0392b;--skwarm:#b7791f;background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-max-w);box-sizing:border-box;}
+    .ls-skit__title{font-size:14px;font-weight:700;color:var(--ls-text);text-align:center;margin:0 0 10px;line-height:1.5;}
+    .ls-skit__arena{position:relative;width:100%;aspect-ratio:460/140;}
+    .ls-skit__arena svg{width:100%;height:100%;display:block;border-radius:8px;}
+    .ls-skit__vox{position:absolute;left:56.5%;top:6%;width:32%;height:80%;}
+    .ls-skit__vox canvas{width:100%!important;height:100%!important;display:block;}
+    .ls-skit__vox .vox-loading{font-size:10px;color:var(--ls-muted);text-align:center;padding-top:42%;font-family:ui-monospace,monospace;}
+    .ls-skit__cap{text-align:center;margin-top:11px;font-size:13.5px;color:var(--ls-text-soft);line-height:1.55;min-height:20px;}
+    .ls-skit__cap b{color:var(--skg);}
+    .ls-skit__slot{font-family:ui-monospace,monospace;font-size:12.5px;background:var(--ls-soft);border:1px solid var(--ls-border);border-radius:9px;padding:9px 13px;margin-top:10px;color:var(--ls-muted);text-align:center;}
+    .ls-skit__slot .f{color:var(--skc);}.ls-skit__slot .n{color:#c2410c;}.ls-skit__slot .bad{color:var(--skbad);}
+    .ls-skit__slot .nb{white-space:nowrap;}   /* 좁은 화면에서 코드가 = 뒤에서 갈라지지 않게 */
+    /* 슬롯 = 첫 줄에 로봇에게 준 것(고정폭), 아래 줄에 그게 무엇인지 설명(본문 글꼴) */
+    .ls-skit__slot .why{display:block;margin-top:6px;font-family:var(--font-body);font-size:13px;color:var(--ls-text-soft);}
+    .ls-skit__acts{display:flex;gap:9px;justify-content:center;margin-top:11px;flex-wrap:wrap;}
+    .ls-skit__btn{font-family:inherit;font-weight:700;font-size:13.5px;color:#fff;background:var(--skg);border:0;border-radius:10px;padding:9px 17px;cursor:pointer;}
+    .ls-skit__btn--ghost{background:var(--ls-soft);color:var(--ls-muted);}
+    </style><style id="ls-lj-css">
+.ls-lj{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-lj__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-lj__body{grid-template-columns:1fr}}
+/* 스테이지 SVG는 세로로 길다. 폭에 맞춰 늘리면 카드 높이를 혼자 결정해 오른쪽 패널 아래가 비어 보인다.
+   높이를 고정하고 가운데 두면, 카드 높이는 패널이 정하고 그림은 그 안에서 균형을 잡는다. */
+.ls-lj__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);display:flex;align-items:center;justify-content:center;padding:18px 10px}
+.ls-lj__stage svg{display:block;height:236px;width:auto;max-width:100%}
+@media(max-width:620px){.ls-lj__stage svg{height:210px}}
+/* 뼈대는 정본 NC-01 셸 색. 캡슐은 외곽선 없이 그라디언트만 쓴다(리그와 동일) */
+.ls-lj-seg{fill:url(#ncShell)}
+.ls-lj-fixed{fill:url(#ncShell)}
+/* 고정 뼈대와 도는 뼈대가 같은 색이 되었으니, 위쪽이 안 움직인다는 건 다크 마운트가 대신 말한다 */
+.ls-lj-mount{fill:url(#ncDark)}
+.ls-lj-grip{fill:url(#ncShell);stroke:#aab3bc;stroke-width:0.8}
+.ls-lj-gear{transition:filter .25s}
+.ls-lj-gear.is-pulse{filter:drop-shadow(0 0 9px #f0d9a5)}
+.ls-lj-pin{fill:#6e747e}
+.ls-lj-fixtag{fill:#6e747e;font-size:10.5px;font-weight:700}
+.ls-lj__panel{padding:22px 24px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.ls-lj__ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ls-lj__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-lj__legend{font-size:13px;line-height:1.8;color:#52525b}
+.ls-lj__legend .chip{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:7px}
+.ls-lj__legend b{color:#222}
+.ls-lj__row{flex:1 1 240px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#52525b}
+.ls-lj__row .nm{width:74px;font-weight:700;color:#8a6a28}
+.ls-lj__row input[type=range]{flex:1;accent-color:#c9a24a}
+.ls-lj__row .val{width:40px;text-align:right;font-family:ui-monospace,Menlo,monospace}
+/* 버튼이 패널 폭(850px)을 통째로 가로지르면 슬라이더보다 무거워 보인다 — 슬라이더와 한 줄에 세운다 */
+.ls-lj__btn{flex:0 0 auto;font-family:inherit;font-size:13px;font-weight:700;padding:11px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;background:#f0d9a5;color:#3a2e12}
+.ls-lj__btn:hover{filter:brightness(.97)}
+.ls-lj__note{font-size:12.5px;line-height:1.6;color:#8a6a28}</style><style id="ls-jointmap-css">
+.ls-jointmap{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jointmap__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 3px}
+.ls-jointmap__sub{font-size:12.5px;color:#8a837a;margin:0 0 10px}
+.ls-jointmap__stage{background:#f1efe7;border-radius:12px;padding:6px}
+.ls-jointmap__svg{display:block;width:100%;height:auto}
+/* 가독성은 크기로만 확보한다 — 굵기까지 같이 올리면 리그보다 라벨이 먼저 읽혀 그림이 뒤로 밀린다 */
+.ls-jointmap .ko{font-size:12px;fill:#14130f;transition:.12s}
+/* 영문 관절명은 본문 <code>dof_names</code>와 같은 무게로 읽혀야 한다 — 본문 코드 칩 색(--ls-text)을 쓰고,
+   스테이지 배경색으로 글자 테두리를 둘러 리그 선 위에서도 칩처럼 또렷하게 떠오르게 한다. */
+.ls-jointmap .eng{font-size:10.5px;fill:#14130f;font-family:var(--font-mono);paint-order:stroke;stroke:#f1efe7;stroke-width:2.2px;stroke-linejoin:round;transition:.12s}
+.ls-jointmap .lblbox{cursor:pointer}
+.ls-jointmap .lblbox.on .ko{fill:#a06e18}
+.ls-jointmap .lblbox.on .eng{fill:#a0812f}
+.ls-jointmap .lead-line{stroke:#c3bdae;stroke-width:1;transition:.12s}
+.ls-jointmap .lead-line.on{stroke:#e0a83a;stroke-width:1.8}
+.ls-jointmap .jdot{fill:#3a3f47;stroke:#0f1216;stroke-width:1;transition:.12s;cursor:pointer}
+.ls-jointmap .jdot.on{fill:#f0d9a5;stroke:#c78f2e}
+.ls-jointmap .halo{fill:none;stroke:#f0d9a5;stroke-width:2.5;opacity:0;transition:.12s}
+.ls-jointmap .halo.on{opacity:.9}
+.ls-jointmap .ls-jm-pupils{transition:transform .22s ease-out}
+.ls-jointmap__foot{font-size:12px;color:#8a837a;margin:10px 2px 0}
+.ls-jointmap__foot code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#eceae2;padding:1px 6px;border-radius:5px}</style><style id="ls-jlim-css">
+.ls-jlim{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jlim__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-jlim__grid{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center}
+@media(max-width:640px){.ls-jlim__grid{grid-template-columns:1fr}}
+.ls-jlim__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);border-radius:12px;padding:6px}
+.ls-jlim__stage svg{display:block;width:100%;height:auto}
+.ls-jlim__ctrl label{font-size:13px;color:#52525b;display:block;margin:0 0 6px}
+.ls-jlim__ctrl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;outline:none;margin:8px 0}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-runnable-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-5.5px;width:20px;height:20px;border-radius:50%;background:#4a3410;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+.ls-jlim__ctrl input[type=range]::-moz-range-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#4a3410;border:3px solid #fff;cursor:pointer}
+.ls-jlim__zone{font-size:11px;color:#c0392b;font-weight:700;margin-top:5px}
+.ls-jlim__read{margin-top:14px;font-size:14px;color:#3a3630}
+.ls-jlim__read .app{font-family:ui-monospace,Menlo,monospace;font-weight:700}
+.ls-jlim__warn{margin-top:8px;font-size:13px;min-height:20px;color:#c0392b;font-weight:700}
+.ls-jlim__ref{margin-top:14px;font-size:12px;color:#8a837a;line-height:1.6}
+.ls-jlim__ref code{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#eceae2;padding:1px 5px;border-radius:5px}
+.ls-jlim-glow{animation:lsjlimGlow .65s ease-in-out infinite}
+@keyframes lsjlimGlow{0%,100%{filter:drop-shadow(0 0 5px #ff5b5b)}50%{filter:drop-shadow(0 0 16px #ff1a1a) drop-shadow(0 0 8px #ff4040)}}
+.ls-jlim-halo{animation:lsjlimHalo .65s ease-in-out infinite}
+@keyframes lsjlimHalo{0%,100%{opacity:.2}50%{opacity:.6}}</style><style id="ls-ctrlcmp-css">
+.ls-ctrlcmp{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-ctrlcmp__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-ctrlcmp__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.ls-ctrlcmp__grid{grid-template-columns:1fr}}
+.ls-ctrlcmp__box{border:1.5px solid #e8e5dc;border-radius:14px;padding:16px 18px}
+.ls-ctrlcmp__box.pos{border-color:#cfe0c9;background:#f7fbf5}
+.ls-ctrlcmp__box.tor{border-color:#e6ddc9;background:#fbf8f1}
+.ls-ctrlcmp__ti{font-size:15px;font-weight:700;margin:0 0 2px;color:#2a2622}
+.ls-ctrlcmp__say{font-size:13px;color:#5a5349;margin:0 0 8px}
+.ls-ctrlcmp__say b{color:#222}
+.ls-ctrlcmp__box ul{margin:0;padding-left:18px;font-size:12.5px;color:#6e695e;line-height:1.7;list-style:disc}
+.ls-ctrlcmp__box li{margin:0}
+.ls-ctrlcmp__box code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:5px}
+.ls-ctrlcmp__pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-top:8px}
+.ls-ctrlcmp__pill.now{background:#e3efe0;color:#3f7a35}
+.ls-ctrlcmp__pill.late{background:#f3e6cf;color:#8a6a28}</style></head>
+  <body class="is-view-read">
+    <!-- ============================== 사이드 레일 (책장 손잡이) ============================== -->
+    <aside class="rail" id="rail">
+      <button class="rail__menu" id="menuBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="rail__brand" aria-hidden="true">
+        <span class="rail__brand-text" id="railBrand">NAVER CONNECT</span>
+      </div>
+    </aside>
+
+    <!-- ============================== 메뉴 오버레이 ============================== -->
+    <div class="overlay" id="overlay" hidden="">
+      <div class="overlay__backdrop"></div>
+      <div class="overlay__panel">
+        <button class="overlay__close" id="overlayClose" aria-label="닫기">×</button>
+
+        <div class="overlay__head">
+          <h2 class="overlay__title">목차</h2>
+          <p class="overlay__sub" id="overlaySub">4개 챕터 · 21강</p>
+        </div>
+
+        <ul class="overlay__books" id="overlayMenu"><li class="overlay__book" data-book-id="creation"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">01</span>
+      <span class="overlay__book-name">탄생</span>
+      <span class="overlay__book-count" data-book-count="creation">1 / 4강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p1c0"><button>
+        <span class="ch-no">00</span>
+        <span class="ch-title">들어가며</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c1"><button>
+        <span class="ch-no">01</span>
+        <span class="ch-title">강화학습과 시뮬레이션 기초</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c2" class="is-done"><button>
+        <span class="ch-no">02</span>
+        <span class="ch-title">Isaac Sim 처음 열기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c3"><button>
+        <span class="ch-no">03</span>
+        <span class="ch-title">중력 만져보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c4" class=""><button>
+        <span class="ch-no">04</span>
+        <span class="ch-title">로봇 불러오기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="perception"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">02</span>
+      <span class="overlay__book-name">각성</span>
+      <span class="overlay__book-count" data-book-count="perception">0 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p2c5"><button>
+        <span class="ch-no">05</span>
+        <span class="ch-title">관절 움직이기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c6"><button>
+        <span class="ch-no">06</span>
+        <span class="ch-title">지형 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c7"><button>
+        <span class="ch-no">07</span>
+        <span class="ch-title">카메라로 보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c8"><button>
+        <span class="ch-no">08</span>
+        <span class="ch-title">라이다로 거리 재기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c9"><button>
+        <span class="ch-no">09</span>
+        <span class="ch-title">키보드로 조작하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="instinct"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">03</span>
+      <span class="overlay__book-name">진화</span>
+      <span class="overlay__book-count" data-book-count="instinct">0 / 7강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p3c10"><button>
+        <span class="ch-no">10</span>
+        <span class="ch-title">Isaac Lab과 강화학습 원리</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c11"><button>
+        <span class="ch-no">11</span>
+        <span class="ch-title">로봇 학습의 목표</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c12"><button>
+        <span class="ch-no">12</span>
+        <span class="ch-title">로봇 학습 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c13"><button>
+        <span class="ch-no">13</span>
+        <span class="ch-title">로봇 학습 하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c14"><button>
+        <span class="ch-no">14</span>
+        <span class="ch-title">보상 함수 설계와 조정</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c15"><button>
+        <span class="ch-no">15</span>
+        <span class="ch-title">학습 관찰과 진단</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c16"><button>
+        <span class="ch-no">16</span>
+        <span class="ch-title">policy.pt 파일 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="wisdom"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">04</span>
+      <span class="overlay__book-name">초월</span>
+      <span class="overlay__book-count" data-book-count="wisdom">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p4c17"><button>
+        <span class="ch-no">17</span>
+        <span class="ch-title">자연어를 로봇 명령으로</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c18" class=""><button>
+        <span class="ch-no">18</span>
+        <span class="ch-title">믿을 수 있는 로봇 명령 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c19"><button>
+        <span class="ch-no">19</span>
+        <span class="ch-title">생각하는 로봇, 완성</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c20"><button>
+        <span class="ch-no">20</span>
+        <span class="ch-title">여기까지, 그리고 그다음</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c21" class="is-done"><button>
+        <span class="ch-no">21</span>
+        <span class="ch-title">부록 · 본선 연습 해보기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li></ol></li></ul>
+
+        <div class="overlay__quicks">
+          <button class="overlay__quick" data-quick="books">
+            <span class="overlay__quick-label">메인 화면</span>
+          </button>
+          <button class="overlay__quick" data-quick="glossary">
+            <span class="overlay__quick-label">단어 사전</span>
+          </button>
+          <a class="overlay__quick" href="https://robotics.connect.or.kr/lecture/teacher-guide.html">
+            <span class="overlay__quick-label">교사용 지도서</span>
+          </a>
+        </div>
+
+        <div class="overlay__legal">
+          NAVER CONNECT ROBOTICS CUP 2026<br>
+          <button class="overlay__legal-btn" type="button" id="legalBtn">이용 안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================== 메인 무대 ============================== -->
+    <main class="stage" id="stage">
+      <!-- 배경 슬롯 (뷰별 교체) -->
+      <div class="bgs" id="bgs"><div class="bgs__layer" style="background-image: url(&quot;img/배경1.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/1-7.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/3-5.webp&quot;);"></div></div>
+      <div class="bg-vignette" aria-hidden="true"></div>
+
+      <!-- ============== 뷰: 전체 목차 (4 챕터 strips) ============== -->
+      <section class="view view--books" data-view="books" hidden="">
+        <div class="books__head">
+          <h2 class="books__title">NAVER CONNECT ROBOTICS CUP <span class="books__title-guide">GUIDE BOOK</span></h2>
+          <p class="books__hero">시뮬레이션 · 강화학습 · LLM을 한 흐름으로 잇는 로보틱스 가이드북</p>
+          <div class="books__resume-slot" id="booksResume">
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">02강 · Isaac Sim 처음 열기</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  </div>
+        </div>
+        <div class="books__strips" id="booksStrips"><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/1-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">01</div>
+      <div class="strip__hanja">탄생</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">시뮬레이션 환경 접속하기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/2-7.webp&#39;); background-position: 40% center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">02</div>
+      <div class="strip__hanja">각성</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">로봇을 움직이고 감각 달기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/3-5.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">03</div>
+      <div class="strip__hanja">진화</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">스스로 걷는 법 가르치기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/4-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">04</div>
+      <div class="strip__hanja">초월</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">자연어로 명령 내리기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+    </button></div>
+      </section>
+
+      <!-- ============== 뷰: 챕터 목차 (다크 hero + 화이트 챕터 그리드) ============== -->
+      <section class="view view--bestiary" data-view="bestiary" hidden="">
+        <aside class="bestiary__hero">
+          <div class="bestiary__hero-bg" id="bestiaryHeroBg" style="background-image: url(&quot;img/3-5.webp&quot;); background-position: center center;"></div>
+          <div class="bestiary__hero-veil"></div>
+          <button class="bestiary__back" id="bestiaryBack" aria-label="메인 화면으로">
+            <span>◂</span> 메인
+          </button>
+          <div class="bestiary__hero-content">
+            <div class="bestiary__hero-no" id="bestiaryHeroNo">챕터 03</div>
+            <h2 class="bestiary__hero-title" id="bestiaryHeroTitle">진화</h2>
+            <div class="bestiary__hero-titleEn" id="bestiaryHeroTitleEn">스스로 걷는 법 가르치기</div>
+          </div>
+        </aside>
+
+        <main class="bestiary__chapters">
+          <header class="bestiary__chapters-head">
+            <h3 class="bestiary__chapters-title" id="bestiaryChaptersTitle">스스로 걷는 법을 가르쳐요</h3>
+            <p class="bestiary__chapters-desc" id="bestiaryChaptersDesc">수만 번 넘어지며 자기 몸을 발견하는 시간이에요.
+Isaac Lab과 강화학습으로 로봇의 소뇌를 함께 빚어가요.</p>
+          </header>
+          <ol class="bestiary__list" id="bestiaryList"><li class="chapter-card" data-chapter-id="p3c10">
+      <div class="chapter-card__index">10</div>
+      <h3 class="chapter-card__title">Isaac Lab과 강화학습 원리</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c11">
+      <div class="chapter-card__index">11</div>
+      <h3 class="chapter-card__title">로봇 학습의 목표</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c12">
+      <div class="chapter-card__index">12</div>
+      <h3 class="chapter-card__title">로봇 학습 준비하기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c13">
+      <div class="chapter-card__index">13</div>
+      <h3 class="chapter-card__title">로봇 학습 하기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c14">
+      <div class="chapter-card__index">14</div>
+      <h3 class="chapter-card__title">보상 함수 설계와 조정</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c15">
+      <div class="chapter-card__index">15</div>
+      <h3 class="chapter-card__title">학습 관찰과 진단</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p3c16">
+      <div class="chapter-card__index">16</div>
+      <h3 class="chapter-card__title">policy.pt 파일 준비하기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li></ol>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: 강의 본문 (풀스크린) ============== -->
+      <section class="view view--read is-visible" data-view="read">
+        <main class="read__main">
+          <header class="read__bar">
+            <div class="read__bar-left">
+              <button class="read__back" id="readBack" aria-label="챕터로">
+                <span class="read__back-arrow" aria-hidden="true">◂</span>
+                <span class="read__back-label">챕터</span>
+              </button>
+            </div>
+            <label class="read__bar-picker" aria-label="강의 이동">
+              <select class="read__bar-select" id="readBarSelect"><option value="p3c10">10강의. Isaac Lab과 강화학습 원리</option><option value="p3c11">11강의. 로봇 학습의 목표</option><option value="p3c12">12강의. 로봇 학습 준비하기</option><option value="p3c13">13강의. 로봇 학습 하기</option><option value="p3c14" selected="">14강의. 보상 함수 설계와 조정</option><option value="p3c15">15강의. 학습 관찰과 진단</option><option value="p3c16">16강의. policy.pt 파일 준비하기</option></select>
+              <span class="read__bar-picker-caret" aria-hidden="true">▾</span>
+            </label>
+            <button type="button" class="lsq-bar" aria-label="강의 본문 검색"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg><span>검색</span><span class="lsq-k">( / )</span></button><div class="read__nav" id="readNav">
+              <button class="read__prev" id="readPrev" aria-label="이전 강의" data-tooltip="13강의. 로봇 학습 하기">
+                <span class="read__nav-arrow">◂</span>
+                <span class="read__nav-label">이전 강의</span>
+              </button>
+              <button class="read__next" id="readNext" aria-label="다음 강의" data-tooltip="15강의. 학습 관찰과 진단">
+                <span class="read__nav-label">다음 강의</span>
+                <span class="read__nav-arrow">▸</span>
+              </button>
+            </div>
+          </header>
+          <article class="read__article ls-host" id="readContent" data-lesson-id="p3c14"><header class="ls-open is-revealed">
+    <h1 class="ls-open__title">14. 보상 함수 설계와 조정</h1>
+    <p class="ls-open__sub"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="강화학습" role="link" tabindex="0">강화학습</span>은 앞으로 받을 <span class="ls-term" data-term="보상" role="link" tabindex="0">보상</span>의 합을 가장 크게 만드는 방향으로 배워요.</span> <span class="ls-sentence">그래서 어떤 보상을, 얼마나 주느냐가 로봇의 <span class="ls-term" data-term="보행 패턴" role="link" tabindex="0">걸음걸이</span>를 좌우해요.</span></span></p>
+  </header><section class="ls-stage is-revealed" data-stage-key="intro" data-lesson="p3c14" data-lesson-no="14" data-stage-no="1" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">①</span>
+      <h2 class="ls-stage__label">생각 열기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">13강에서 기존에 설정된 보상 그대로 학습을 돌려봤어요.</span> <span class="ls-sentence">이번엔 그 보상을 직접 수정하여 로봇 걸음걸이 학습을 원하는 대로 바꿔봐요.</span></span></p>
+  </section><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상이 곧 <span class="ls-term" data-term="행동" role="link" tabindex="0">행동</span></h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">강화학습에는 <strong>"로봇은 시킨 대로가 아니라, 보상을 준 대로 움직인다"</strong>는 말이 자주 나와요.</span> <span class="ls-sentence">로봇이 이상하게 걷는다면 보상 설계가 원인일 수 있어요.</span> <span class="ls-sentence">"이렇게 걸어라"를 값으로 제대로 알려주지 않은 거죠.</span></span></p>
+  </section><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">"앞으로 이동하면 +보상"만 주면, 로봇이 <strong>등으로 누워 앞으로 미끄러져 갈 수 있어요</strong>.</span> <span class="ls-sentence">학습 입장에서는 정당한 행동이에요.</span> <span class="ls-sentence">"걸어서 가라"고는 안 알려줬으니까요.</span> <span class="ls-sentence">이걸 <strong><span class="ls-term" data-term="보상 해킹" role="link" tabindex="0">Reward Hacking</span></strong>이라고 불러요.</span></span></span></div><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">당근과 <span class="ls-term" data-term="페널티" role="link" tabindex="0">채찍</span>의 <span class="ls-term" data-term="가중합" role="link" tabindex="0">가중합</span></h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="Isaac Lab" role="link" tabindex="0">Isaac Lab</span>의 보상은 여러 항목의 <strong>가중합</strong>으로 구성돼요.</span> <span class="ls-sentence">양수는 +보상(강화), 음수는 -보상(패널티)예요.</span></span></p>
+  </section><div class="ls-vstable is-revealed" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">종류</th><th class="ls-vstable__th--1 ls-vstable--c">예</th><th class="ls-vstable__th--2 ls-vstable--c">의미</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">+보상</td><td class="ls-vstable--c"><span class="ls-term" data-term="track_lin_vel_xy_exp" role="link" tabindex="0">track_lin_vel_xy_exp</span> (+1.0)</td><td class="ls-vstable--c">명령받은 속도를 따라가면 보상</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">+보상</td><td class="ls-vstable--c"><span class="ls-term" data-term="feet_air_time" role="link" tabindex="0">feet_air_time</span> (+0.01)</td><td class="ls-vstable--c">발을 들었다 놓으면 보상</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">-보상(패널티)</td><td class="ls-vstable--c"><span class="ls-term" data-term="lin_vel_z_l2" role="link" tabindex="0">lin_vel_z_l2</span> (-3.0)</td><td class="ls-vstable--c">위아래 상하 흔들림 페널티</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">-보상(패널티)</td><td class="ls-vstable--c"><span class="ls-term" data-term="action_rate_l2" role="link" tabindex="0">action_rate_l2</span> (-0.01)</td><td class="ls-vstable--c"><span class="ls-term" data-term="관절" role="link" tabindex="0">관절</span> 명령 급변 페널티 (떨림 방지)</td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-stage is-revealed" data-stage-key="objective" data-lesson="p3c14" data-lesson-no="14" data-stage-no="2" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">②</span>
+      <h2 class="ls-stage__label">학습 목표</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><div class="ls-outcomes is-revealed" data-block="outcome-list">
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">01</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>보상을 당근과 채찍으로 설계할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">02</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>go2와 h1의 주요 보상 항목을 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">03</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>보상 <span class="ls-term" data-term="가중치" role="link" tabindex="0">가중치</span>를 한 번에 하나씩 요령 있게 조정할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  </div><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘은 <strong>왜 강화학습이 보상 설계 게임인지</strong>를 직접 경험하게 될 거예요.</span> <span class="ls-sentence">코드 한 줄 차이가 로봇 한 대의 걸음걸이 학습을 바꿔요.</span></span></span></div><section class="ls-stage is-revealed" data-stage-key="concept" data-lesson="p3c14" data-lesson-no="14" data-stage-no="3" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">③</span>
+      <h2 class="ls-stage__label">개념 만나기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para">먼저 보상과 가중치가 무엇인지 정리하고, <span class="ls-term" data-term="보상 함수" role="link" tabindex="0">보상 함수</span>가 어느 파일에 있는지, go2와 h1이 각각 어떤 항목을 쓰는지 살펴봐요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상과 가중치(weight)</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence"><strong>보상(reward)</strong>은 로봇의 행동에 매기는 점수예요.</span> <span class="ls-sentence">잘하면 +점수, 어기면 −점수를 줘요.</span></span><span class="ls-para"><span class="ls-sentence">각 보상 항목이 <strong>얼마나 크게</strong> 작용할지는 <strong>가중치(weight)</strong>라는 값으로 정해요.</span> <span class="ls-sentence">가중치가 클수록 로봇이 그 항목을 더 신경 써요.</span> <span class="ls-sentence">그래서 보상 설계는 곧 이 가중치들의 값을 조절해 로봇의 성격을 맞춰가는 일이에요.</span></span><span class="ls-para">가중치 하나를 조금씩 올리거나 내리는 걸, 볼륨 손잡이를 돌리듯 <strong>"다이얼을 돌린다"</strong>고 비유하기도 해요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상 함수는 어디에 있나</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">보상 항목은 로봇 종류별 보상 파일에 정의돼 있어요.</span> <span class="ls-sentence">수정할 때는 로봇에 맞는 파일을 열어요.</span></span></p>
+  </section><div class="ls-fstree" data-block="fs-tree"><div class="ls-fstree__title">항목을 누르면 각 파일의 설명을 볼 수 있어요</div>
+    <div class="ls-fstree__grid">
+      <div class="ls-fstree__tree" data-tree=""><button type="button" class="ls-fstree__row is-folder" data-i="0" style="padding-left:8px"><span class="ls-fstree__arw">▾</span><span class="ls-fstree__ic">📁</span><span class="ls-fstree__nm">training/</span></button><button type="button" class="ls-fstree__row is-folder is-on" data-i="1" style="padding-left:28px"><span class="ls-fstree__arw">▾</span><span class="ls-fstree__ic">📁</span><span class="ls-fstree__nm"><span class="ls-term" data-term="휴머노이드" role="link" tabindex="0">humanoid</span>/</span></button><button type="button" class="ls-fstree__row" data-i="2" style="padding-left:48px"><span class="ls-fstree__arw is-none"></span><span class="ls-fstree__ic">📄</span><span class="ls-fstree__nm">humanoid_rewards.py</span></button><button type="button" class="ls-fstree__row is-folder" data-i="3" style="padding-left:28px"><span class="ls-fstree__arw">▸</span><span class="ls-fstree__ic">📁</span><span class="ls-fstree__nm"><span class="ls-term" data-term="사족보행" role="link" tabindex="0">quadruped</span>/</span></button></div>
+      <div class="ls-fstree__detail">
+        <div class="ls-fstree__role" data-role=""><span class="ls-fstree__kind">📁 폴더</span><span class="ls-fstree__rolenm">휴머노이드 <span class="ls-term" data-term="H1" role="link" tabindex="0">H1</span> 학습 폴더</span></div>
+        <div class="ls-fstree__path" data-path="">/workspace/training/humanoid/</div>
+        <div class="ls-fstree__desc" data-desc="">H1 학습에 필요한 파일이 들어 있어요.</div>
+      </div>
+    </div>
+    <div class="ls-fstree__tipbar">💡 <code>*_rewards.py</code>의 <code>REWARD_WEIGHTS</code>만 수정하고, 폴더 안 다른 파일은 건드리지 않아요.</div></div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">두 파일의 구조는 비슷하지만 항목 구성이 달라요.</span> <span class="ls-sentence">사족은 상하 흔들림 억제가, 휴머노이드는 자세 안정과 넘어지지 않기(<span class="ls-term" data-term="낙상" role="link" tabindex="0">낙상</span> 방지)가 더 중요해요.</span> <span class="ls-sentence"><strong>로봇의 몸이 다르니 강조점도 달라지는 거예요.</strong></span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title"><span class="ls-term" data-term="Go2" role="link" tabindex="0">Go2</span>, 주요 보상 항목</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">사족보행 로봇(Go2)이 지정된 방향·속도로 이동하는 훈련(<span class="ls-term" data-term="Velocity" role="link" tabindex="0">Velocity</span> <span class="ls-term" data-term="태스크" role="link" tabindex="0">태스크</span>)에서 자주 등장하는 항목들이에요.</span> <span class="ls-sentence">영문으로 된 보상 항목과 이에 대응하는 의미를 <strong>함께 기억해두면 좋아요.</strong></span></span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">항목</th><th class="ls-vstable__th--1 ls-vstable--c">역할</th><th class="ls-vstable__th--2 ls-vstable--c">방향</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">track_lin_vel_xy_exp</td><td class="ls-vstable--c">명령 속도를 따라가라</td><td class="ls-vstable--c">+</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">feet_air_time</td><td class="ls-vstable--c">발을 적당히 들었다 놓으라</td><td class="ls-vstable--c">+</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">lin_vel_z_l2</td><td class="ls-vstable--c">위아래 상하 흔들림을 억제</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">action_rate_l2</td><td class="ls-vstable--c">명령을 급격히 바꾸지 마라 (부드러움)</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="ang_vel_xy_l2" role="link" tabindex="0">ang_vel_xy_l2</span></td><td class="ls-vstable--c"><span class="ls-term" data-term="몸통" role="link" tabindex="0">몸통</span>을 기울이지 마라</td><td class="ls-vstable--c">−</td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">H1, 주요 보상 항목</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">휴머노이드는 두 발로 서기 때문에 자세 안정과 넘어지지 않기(낙상 방지)가 특히 중요해요.</span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">항목</th><th class="ls-vstable__th--1 ls-vstable--c">역할</th><th class="ls-vstable__th--2 ls-vstable--c">방향</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">track_lin_vel_xy_exp</td><td class="ls-vstable--c">전진(속도) 명령을 따라가라</td><td class="ls-vstable--c">+</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="track_ang_vel_z_exp" role="link" tabindex="0">track_ang_vel_z_exp</span></td><td class="ls-vstable--c">회전(방향) 명령을 따라가라</td><td class="ls-vstable--c">+</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">feet_air_time</td><td class="ls-vstable--c">발을 적당히 들었다 놓으라</td><td class="ls-vstable--c">+</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="flat_orientation_l2" role="link" tabindex="0">flat_orientation_l2</span></td><td class="ls-vstable--c">몸통을 똑바로 유지 (자세 안정)</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="termination_penalty" role="link" tabindex="0">termination_penalty</span></td><td class="ls-vstable--c">넘어지면 큰 페널티 (낙상 회피)</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="joint_deviation_hip" role="link" tabindex="0">joint_deviation_hip</span></td><td class="ls-vstable--c">골반(엉덩이) 좌우 대칭 유지</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">joint_deviation_torso</td><td class="ls-vstable--c">상체(torso) 비틀림 억제</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">ang_vel_xy_l2</td><td class="ls-vstable--c">좌우 흔들림 억제</td><td class="ls-vstable--c">−</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">action_rate_l2</td><td class="ls-vstable--c">명령 급변 억제 (떨림 방지)</td><td class="ls-vstable--c">−</td></tr>
+      </tbody>
+    </table>
+  </div><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">절댓값보다 "비율"이 중요해요</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence">로봇이 받는 총 보상은 <strong>각 항목 × 가중치를 모두 더한 값</strong>이에요.</span> <span class="ls-sentence">그래서 로봇의 걸음을 정하는 건 가중치의 크기 그 자체가 아니라, <strong>항목들끼리의 비율</strong>이에요.</span></span><span class="ls-para"><span class="ls-sentence">예를 들어 속도 <code>+1.0</code>과 상하 흔들림 <code>-2.0</code>(비율 1:2)을 <strong>둘 다 2배</strong>로 키워 <code>+2.0</code>·<code>-4.0</code>으로 만들어도, 비율은 그대로 1:2라 로봇은 똑같이 걸어요.</span> <span class="ls-sentence">반대로 흔들림 벌점만 <code>-0.5</code>로 줄이면(비율 1:0.5) 속도가 상대적으로 중요해져 흔들려도 빨리 가려 하고, <code>-4.0</code>으로 키우면(1:4) 느려도 꼿꼿해져요.</span></span><span class="ls-para">즉 속도와 흔들림의 <strong>비율</strong>이 곧 "얼마나 빨리 vs 얼마나 안정적으로"라는 로봇의 우선순위를 정해요.</span></div>
+  </details><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">주의</span>
+      <span class="ls-noteexp__title"><span class="ls-para">표에 없는 보상 항목도 많아요</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence">위 표는 <strong>자주 만지는 주요 항목만</strong> 추린 거예요.</span> <span class="ls-sentence">실제로는 Isaac Lab이 정해 둔 더 많은 보상 항목이 <strong><span class="ls-term" data-term="기본값" role="link" tabindex="0">기본값</span>으로 함께 작동</strong>하고 있어요 (우리가 <code>REWARD_WEIGHTS</code>에 적지 않으면 그대로 유지돼요).</span></span><span class="ls-para"><span class="ls-sentence">그중에는 걸음의 <strong>토대</strong>가 되는 항목도 있어서, 잘 모르는 항목을 함부로 바꾸면 보행이 통째로 무너질 수 있어요.</span> <span class="ls-sentence"><strong>잘 아는 항목부터, 한 번에 하나씩, 조금씩</strong> 신중하게 건드리세요.</span></span></div>
+  </details><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">가중치가 바꾸는 로봇의 성격</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">아래는 예시일 뿐이고, 실제 결과는 로봇·<span class="ls-term" data-term="지형" role="link" tabindex="0">지형</span>·다른 값과의 조합에 따라 달라질 수 있어요.</span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">변경</th><th class="ls-vstable__th--1 ls-vstable--c">결과</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">track_lin_vel_xy_exp 1.0 → 2.0</td><td class="ls-vstable--c">더 빠릿하게 이동해요. 대신 <span class="ls-term" data-term="장애물" role="link" tabindex="0">장애물</span> 앞에서 과속해 균형을 잃기 쉬워요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">lin_vel_z_l2 -3.0 → -0.5</td><td class="ls-vstable--c">통통 튀며 역동적이 돼요. 대신 착지가 불안하고 <span class="ls-term" data-term="험지" role="link" tabindex="0">험지</span>에서 자세가 무너져요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">feet_air_time 0.25 → 0.75 (H1)</td><td class="ls-vstable--c">발을 과하게 들어 "한 발로 깡총" 편법에 빠져요 (대표적 Reward Hacking)</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">모든 값을 최대로 키운다고 점수가 오르지 않아요.</span> <span class="ls-sentence"><strong>한쪽을 키우면 다른 쪽을 잃어요.</strong> 여러 지형에서 생존과 추종의 균형점을 찾는 것이 목표예요.</span></span></span></div><section class="ls-stage" data-stage-key="practice" data-lesson="p3c14" data-lesson-no="14" data-stage-no="4" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">④</span>
+      <h2 class="ls-stage__label">직접 해보기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">13강에서 기본 보상 그대로 H1을 돌려봤죠.</span> <span class="ls-sentence">이번엔 H1 보상 파일을 열어 다이얼 하나만 바꾸고, 다시 학습해 걸음이 어떻게 달라지는지 비교해요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상은 REWARD_WEIGHTS에서 값만 바꿔요</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">보상 파일의 내용은 어렵지 않아요.</span> <span class="ls-sentence"><code>REWARD_WEIGHTS</code>라는 <span class="ls-term" data-term="딕셔너리" role="link" tabindex="0">딕셔너리</span>에 <strong>항목 이름 : 값(가중치)</strong>만 적혀 있고, 우리는 그 항목에 해당하는 <strong>값만</strong> 바꾸면 돼요.</span></span><span class="ls-para"><span class="ls-sentence">REWARD_WEIGHTS에 적어두지 않은 항목은 Isaac Lab 기본값을 그대로 쓰고, 이름을 잘못 적으면 무시(경고만)돼요.</span> <span class="ls-sentence">그래서 마음 놓고 실험할 수 있어요.</span> <span class="ls-sentence">단, <strong>한 번에 하나씩</strong> 바꿔야 어떤 변화가 영향을 줬는지 알 수 있어요.</span> <span class="ls-sentence">여러 값을 한꺼번에 바꾸면 원인을 특정하기 어려워져요.</span> <span class="ls-sentence">이걸 실험에서는 '변인 통제'라고 해요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">회전 속도 다이얼 하나만 올려보기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">H1 보상 파일 <code>humanoid_rewards.py</code>를 열고, 회전 속도 다이얼 <code>track_ang_vel_z_exp</code>를 기본값 <strong>0.5 → 1.0</strong>으로 올려봐요.</span> <span class="ls-sentence">이 값의 변화가 로봇이 명령받은 방향으로 얼마나 빠릿하게 꺾는지(방향 전환 추종)를 얼마나 강하게 학습시킬지 정해요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">humanoid_rewards.py, 값 한 줄만 수정</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--comment"># humanoid_rewards.py 의 REWARD_WEIGHTS</span></span><span class="ls-line ls-line--note" data-note="cn1">REWARD_WEIGHTS = {</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"track_lin_vel_xy_exp"</span>: <span class="ls-tok ls-tok--num">0.5</span>,</span><span class="ls-line ls-line--note" data-note="cn2">    <span class="ls-tok ls-tok--str">"track_ang_vel_z_exp"</span>:  <span class="ls-tok ls-tok--num">1.0</span>,    <span class="ls-tok ls-tok--comment"># 0.5 -&gt; 1.0 (회전 속도 up)</span></span><span class="ls-line">    <span class="ls-tok ls-tok--str">"feet_air_time"</span>:        <span class="ls-tok ls-tok--num">0.2</span>,</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"flat_orientation_l2"</span>: -<span class="ls-tok ls-tok--num">1.5</span>,</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"termination_penalty"</span>: -<span class="ls-tok ls-tok--num">5.0</span>,</span><span class="ls-line">}</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">바꾼 값으로 다시 학습하고 비교</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">13강 때처럼 <span class="ls-term" data-term="tmux" role="link" tabindex="0">tmux</span> 안에서 H1을 <strong>1000 <span class="ls-term" data-term="iteration" role="link" tabindex="0">iter</span></strong> 다시 학습시켜요.</span> <span class="ls-sentence">끝나면 <span class="ls-term" data-term="play.py" role="link" tabindex="0">play.py</span>로 영상을 뽑아, 기본값일 때(13강)와 걸음을 비교해봐요.</span> <span class="ls-sentence">(걸음 "성격"은 보통 3000~5000 iter에서 더 뚜렷해져요.)</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">다시 학습 → 결과 영상으로 비교</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line"><span class="ls-tok ls-tok--comment"># 1) tmux 안에서 다시 학습 (1000 iter)</span></span><span class="ls-line">tmux new -As train</span><span class="ls-line">cd /<span class="ls-term" data-term="Workspace" role="link" tabindex="0">workspace</span>/training/humanoid</span><span class="ls-line ls-line--note" data-note="cn0">/workspace/IsaacLab/isaaclab.sh -p train.py --task Humanoid-v0 --<span class="ls-term" data-term="num_envs" role="link" tabindex="0">num_envs</span> <span class="ls-tok ls-tok--num">4096</span> --max_iterations <span class="ls-tok ls-tok--num">1000</span> --headless</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--comment"># 2) 결과 영상 뽑아 기본값과 비교</span></span><span class="ls-line">cd /workspace/training/humanoid</span><span class="ls-line ls-line--note" data-note="cn1">/workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs <span class="ls-tok ls-tok--num">4</span> --headless --video --video_length <span class="ls-tok ls-tok--num">500</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">기본값 vs 회전 추종 ↑, 눈으로 비교</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">기본 보상과, 회전 속도 다이얼만 높인 실험을 나란히 놓고 걸음이 어떻게 달라지는지 눈으로 비교해봐요.</span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c" style="width:18%">항목</th><th class="ls-vstable__th--1 ls-vstable--c" style="width:41%">기본값</th><th class="ls-vstable__th--2 ls-vstable--c" style="width:41%">회전 추종 ↑</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_lin_vel_xy_exp</code></td><td class="ls-vstable--c">0.5</td><td class="ls-vstable--c">0.5</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_ang_vel_z_exp</code></td><td class="ls-vstable--c">0.5</td><td class="ls-vstable--c"><strong style="color:#d9622b;font-size:15px">1.0 <span style="font-size:18px">↑</span></strong></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>feet_air_time</code></td><td class="ls-vstable--c">0.2</td><td class="ls-vstable--c">0.2</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>flat_orientation_l2</code></td><td class="ls-vstable--c">-1.5</td><td class="ls-vstable--c">-1.5</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>termination_penalty</code></td><td class="ls-vstable--c">-5.0</td><td class="ls-vstable--c">-5.0</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">학습 iteration</td><td class="ls-vstable--c">1000</td><td class="ls-vstable--c">1000</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">결과 영상</td><td class="ls-vstable--c"><video src="video/h1_1000iter_default.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td><td class="ls-vstable--c"><video src="video/h1_1000iter_trackang1.0.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">해설</td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">H1이 제대로 서있지 못하고 계속 뒤로 발라당 넘어지는 모습이 보일 거예요.</div></td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">여전히 계속 넘어지지만, 아주 조금 더 버티는 게 눈에 보여요.</div></td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">낙상 벌점 크게 → 더 길게</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">낙상 페널티를 <strong>-5 → -40</strong>으로 크게 키우고, 그 다음엔 iteration을 <strong>1000 → 5000</strong>으로 늘려봤어요.</span> <span class="ls-sentence">각각 어떤 변화가 생겼는지 비교해봐요.</span></span><span class="ls-para"><span class="ls-sentence">보상 방향이 잡히면 iteration을 늘려 완성도를 높여요.</span> <span class="ls-sentence">짧게 실험해 방향을 잡은 뒤, 학습이 잘 진행되면 긴 학습을 돌리는 게 효율적이에요.</span></span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c" style="width:18%">항목</th><th class="ls-vstable__th--1 ls-vstable--c" style="width:41%">낙상 벌점 ↑</th><th class="ls-vstable__th--2 ls-vstable--c" style="width:41%">5000 iter</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_ang_vel_z_exp</code></td><td class="ls-vstable--c">1.0</td><td class="ls-vstable--c">1.0</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>termination_penalty</code></td><td class="ls-vstable--c"><strong style="color:#d9622b;font-size:15px">-40 <span style="font-size:18px">↓</span></strong></td><td class="ls-vstable--c">-40</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">학습 iteration</td><td class="ls-vstable--c">1000</td><td class="ls-vstable--c"><strong style="color:#d9622b;font-size:15px">5000 <span style="font-size:18px">↑</span></strong></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">결과 영상</td><td class="ls-vstable--c"><video src="video/h1_1000iter_trackang1.0_peantly40.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td><td class="ls-vstable--c"><video src="video/h1_5000iter_trackang1.0_peantly40.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">해설</td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569"><span class="ls-term" data-term="평지" role="link" tabindex="0">평지</span>에서 넘어지지 않고 서있을 수 있게 되었어요. 하지만 부들부들 떨며 아주 조금씩만 앞으로 나아갈 수 있어요. <span class="ls-term" data-term="계단" role="link" tabindex="0">계단</span>에서는 균형을 잃고 잘 넘어져요.</div></td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">드디어 앞으로 나아갈 수 있게 되었어요! 하지만 여전히 보폭이 작고 양쪽 발의 균형이 안맞고, 아직 계단·<span class="ls-term" data-term="경사" role="link" tabindex="0">경사</span>로 등 장애물을 올라가는데 어색해요.</div></td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상 설계가 부른 뜻밖의 결과들</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">클릭하면 각 사례의 원인과 해결법이 펼쳐져요.</span> <span class="ls-sentence">모두 "정당하지만 의도와 다른" Reward Hacking이에요.</span></span></p>
+  </section><div class="ls-errors" data-block="error-decoder">
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">가만히 서기</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>보상 설계:</strong> 채찍(−)만 잔뜩 주고, 원하는 행동엔 당근(+)이 약함<br><strong>결과:</strong> "안 움직이는 게 손해가 제일 적다"고 배워, 제자리에 가만히 서서 걷지 않아요.<br><strong>해결:</strong> 전진처럼 원하는 행동에 확실한 <strong>+보상</strong>을 줘서 움직일 이유를 만들어요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">한 발로 깡총</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>보상 설계:</strong> 발 들기 보상(<code>feet_air_time</code>)을 너무 크게 줌<br><strong>결과:</strong> "발이 오래 떠 있을수록 보상"을 악용해, 한 발로만 계속 뛰어(bounding) 정상 보행이 무너져요.<br><strong>해결:</strong> <code>feet_air_time</code>을 적당한 값으로 되돌려요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">제자리 <span class="ls-term" data-term="진동" role="link" tabindex="0">진동</span></span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>보상 설계:</strong> 명령 추종엔 큰 +보상, <code>action_rate</code> 페널티는 없음<br><strong>결과:</strong> 로봇이 제자리에서 덜덜 떨리며 평균 속도만 맞춰요.<br><strong>해결:</strong> <code>action_rate_l2</code>를 추가해 명령이 급변할 때 페널티를 줘요.</div>
+    </div>
+  </div><section class="ls-stage" data-stage-key="review" data-lesson="p3c14" data-lesson-no="14" data-stage-no="5" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">⑤</span>
+      <h2 class="ls-stage__label">스스로 다지기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">보상 조정의 다섯 가지 지혜</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">보상을 조정할 때 도움이 되는 원칙들이에요.</span></p>
+  </section><div class="ls-uigrid" data-block="ui-grid">
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">기본값에서 조금씩</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">이미 잘 도는 기본값에서 출발해, 크게 벗어나지 말고 조금씩 바꿔요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">한 번에 하나씩</h4>
+        <span class="ls-uicard__loc">isolate</span>
+        
+      </div>
+      <p class="ls-uicard__desc">여러 가중치를 동시에 바꾸면 어느 변경이 영향을 줬는지 알 수 없어요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">과한 벌점 주의</h4>
+        <span class="ls-uicard__loc">stillness</span>
+        
+      </div>
+      <p class="ls-uicard__desc">음수(벌점)가 너무 강하면 "안 움직이는 게 최선"이라고 배워요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">눈으로 확인</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">숫자만 보지 말고 play.py로 실제 동작을 관찰해요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">기록하며 비교</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">바꾼 값과 결과를 메모해 이전과 비교해요.</p>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para">특히 <strong>한 번에 하나씩</strong> 조금씩 바꾸고 결과를 확인하는 습관이, 결국 가장 빠른 길이에요.</span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">스스로 해보기, Go2 보상 직접 조정해보기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">직접 해보기에서는 H1 보상을 함께 만져봤어요.</span> <span class="ls-sentence">이번엔 <strong>Go2(사족)</strong> 보상을 스스로 조정해볼 차례예요.</span> <span class="ls-sentence">H1과 구조가 같으니, <code>quadruped_rewards.py</code>를 열어 <code>REWARD_WEIGHTS</code>의 값만 바꾸면 돼요.</span> <span class="ls-sentence">(적지 않은 항목은 기본값 그대로예요.)</span></span></p>
+  </section><div class="ls-challenges" data-block="challenges">
+    <div class="ls-chall has-hint" data-id="c0">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🥚</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">기본 · Go2 보상 파일 열어보기</div>
+          <div class="ls-chall__sub">quadruped_rewards.py를 열어 Go2의 REWARD_WEIGHTS 항목과 값을 목록으로 적어보기</div>
+        </div>
+        <div class="ls-chall__actions">
+          
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><code>/workspace/training/quadruped/quadruped_rewards.py</code>를 열어요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><code>REWARD_WEIGHTS</code> 안의 항목 이름과 값을 표로 옮겨 적어요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">당근(양수)과 채찍(음수)을 나눠 정리해봐요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint" data-id="c1">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐣</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">보통 · 속도 다이얼 올리기</div>
+          <div class="ls-chall__sub">track_lin_vel_xy_exp를 1.0 → 1.5로 높여 1000 iter 학습하고 기본값과 비교</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          <button class="ls-chall__resultbtn" type="button">결과 ▾</button>
+        </div>
+      </div>
+      
+      <pre class="ls-chall__fillcode ls-chall__hintcode" hidden=""># quadruped_rewards.py 의 REWARD_WEIGHTS 에서
+"track_lin_vel_xy_exp": 1.5,   # 기본값 1.0 → 1.5
+
+# 수정 후 tmux 안에서 학습
+tmux new -As train
+cd /workspace/training/quadruped
+/workspace/IsaacLab/isaaclab.sh -p train.py --task Quadruped-v0 --num_envs 4096 --max_iterations 1000 --headless</pre>
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">Go2 보상 파일 <code>quadruped_rewards.py</code>를 열어요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><span class="ls-sentence"><code>track_lin_vel_xy_exp</code>를 <strong>1.0 → 1.5</strong>로 바꿔요.</span> <span class="ls-sentence">(한 번에 하나씩!)</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">tmux 안에서 1000 iter 학습하고, play.py로 영상을 뽑아 기본값과 비교해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">4</span><span><span class="ls-para">아래 <strong>결과</strong> 버튼으로 예시 비교를 볼 수 있어요.</span></span></div>
+      </div>
+      
+      <div class="ls-chall__result" hidden="">
+        <div class="ls-chall__resultnote"><span class="ls-para">기본값과, 방금 <strong>속도만 높인</strong> 보상을 나란히 놓고 걸음을 비교해봐요.</span></div>
+        <div class="ls-vstable">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c" style="width:18%">항목</th><th class="ls-vstable__th--1 ls-vstable--c" style="width:41%">기본값</th><th class="ls-vstable__th--2 ls-vstable--c" style="width:41%">속도 높임</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_lin_vel_xy_exp</code></td><td class="ls-vstable--c">1.0</td><td class="ls-vstable--c"><strong>1.5</strong></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>lin_vel_z_l2</code></td><td class="ls-vstable--c">-3.0</td><td class="ls-vstable--c">-3.0</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>ang_vel_xy_l2</code></td><td class="ls-vstable--c">-0.08</td><td class="ls-vstable--c">-0.08</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>feet_air_time</code></td><td class="ls-vstable--c">0.01</td><td class="ls-vstable--c">0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>action_rate_l2</code></td><td class="ls-vstable--c">-0.01</td><td class="ls-vstable--c">-0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">학습 iteration</td><td class="ls-vstable--c">1000</td><td class="ls-vstable--c">1000</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">결과 영상</td><td class="ls-vstable--c"><video src="video/go2_1000iter_default.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td><td class="ls-vstable--c"><video src="video/go2_1000iter_track_1.5.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">해설</td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">시작하자마자 주저앉고 배가 바닥에 붙어요.</div></td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">배는 바닥에 붙지 않고 다리로 서려 하지만, 앞부분이 주저앉아 여전히 걷지 못해요.</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+      </div>
+    </div>
+    <div class="ls-chall has-hint" data-id="c2">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐥</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">도전 · 상하 흔들림 완화</div>
+          <div class="ls-chall__sub">보통 단계에 이어 lin_vel_z_l2를 -3.0 → -2.0으로 완화해 1000 iter 학습하고 비교</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          <button class="ls-chall__resultbtn" type="button">결과 ▾</button>
+        </div>
+      </div>
+      
+      <pre class="ls-chall__fillcode ls-chall__hintcode" hidden=""># quadruped_rewards.py 의 REWARD_WEIGHTS 에서
+"track_lin_vel_xy_exp": 1.5,   # 보통 단계에서 이미 1.5
+"lin_vel_z_l2":        -2.0,   # 기본값 -3.0 → -2.0 (상하 페널티 완화)
+
+# 수정 후 tmux 안에서 학습
+tmux new -As train
+cd /workspace/training/quadruped
+/workspace/IsaacLab/isaaclab.sh -p train.py --task Quadruped-v0 --num_envs 4096 --max_iterations 1000 --headless</pre>
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">보통 단계에서 <code>track_lin_vel_xy_exp</code>를 1.5로 바꾼 상태에서 이어가요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><code>lin_vel_z_l2</code>를 <strong>-3.0 → -2.0</strong>으로 완화해요 (상하 흔들림 페널티 약화).</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">다시 1000 iter 학습하고, 보통 단계 결과와 비교해요.</span></span></div>
+      </div>
+      
+      <div class="ls-chall__result" hidden="">
+        <div class="ls-chall__resultnote"><span class="ls-para">속도만 높인 상태(상하 −3.0)와, 거기에 상하 흔들림 페널티까지 완화한 상태(상하 −2.0)를 같은 1000 iter에서 비교해봐요.</span></div>
+        <div class="ls-vstable">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c" style="width:18%">항목</th><th class="ls-vstable__th--1 ls-vstable--c" style="width:41%">속도 높임</th><th class="ls-vstable__th--2 ls-vstable--c" style="width:41%">상하 흔들림 완화</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_lin_vel_xy_exp</code></td><td class="ls-vstable--c">1.5</td><td class="ls-vstable--c">1.5</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>lin_vel_z_l2</code></td><td class="ls-vstable--c">-3.0</td><td class="ls-vstable--c"><strong>-2.0</strong></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>ang_vel_xy_l2</code></td><td class="ls-vstable--c">-0.08</td><td class="ls-vstable--c">-0.08</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>feet_air_time</code></td><td class="ls-vstable--c">0.01</td><td class="ls-vstable--c">0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>action_rate_l2</code></td><td class="ls-vstable--c">-0.01</td><td class="ls-vstable--c">-0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">학습 iteration</td><td class="ls-vstable--c">1000</td><td class="ls-vstable--c">1000</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">결과 영상</td><td class="ls-vstable--c"><video src="video/go2_1000iter_track_1.5.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td><td class="ls-vstable--c"><video src="video/go2_1000iter_lin_2.0.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">해설</td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">배는 바닥에 붙지 않고 다리로 서려 하지만, 앞부분이 주저앉아 여전히 걷지 못해요.</div></td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">주저앉지 않고 앞으로 나아가요. 다만 네 발이 모두 동시에 움직여 어색하고, 발이 바닥에서 거의 뜨지 않아요.</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+      </div>
+    </div>
+    <div class="ls-chall has-hint" data-id="c3">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐓</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">심화 · 더 오래 학습하기</div>
+          <div class="ls-chall__sub">도전 단계 보상 그대로 학습 횟수를 5000 iter로 늘려 걸음의 완성도 비교</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          <button class="ls-chall__resultbtn" type="button">결과 ▾</button>
+        </div>
+      </div>
+      
+      <pre class="ls-chall__fillcode ls-chall__hintcode" hidden=""># 보상 값은 도전 단계 그대로, --max_iterations 만 5000 으로
+tmux new -As train
+cd /workspace/training/quadruped
+/workspace/IsaacLab/isaaclab.sh -p train.py --task Quadruped-v0 --num_envs 4096 --max_iterations 5000 --headless</pre>
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">도전 단계의 보상 값(<code>track 1.5</code>, <code>lin_vel_z_l2 -2.0</code>)은 그대로 둬요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">학습 횟수만 <strong>1000 → 5000 iter</strong>로 늘려 더 오래 학습해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">도전 단계(1000 iter)와 걸음이 얼마나 더 안정됐는지 비교해요.</span></span></div>
+      </div>
+      
+      <div class="ls-chall__result" hidden="">
+        <div class="ls-chall__resultnote"><span class="ls-para"><span class="ls-sentence">같은 보상으로 학습만 더 돌렸을 때를 비교해봐요.</span> <span class="ls-sentence">1000 iter와 5000 iter예요.</span></span></div>
+        <div class="ls-vstable">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c" style="width:18%">항목</th><th class="ls-vstable__th--1 ls-vstable--c" style="width:41%">상하 흔들림 완화</th><th class="ls-vstable__th--2 ls-vstable--c" style="width:41%">더 길게 학습</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>track_lin_vel_xy_exp</code></td><td class="ls-vstable--c">1.5</td><td class="ls-vstable--c">1.5</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>lin_vel_z_l2</code></td><td class="ls-vstable--c">-2.0</td><td class="ls-vstable--c">-2.0</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>ang_vel_xy_l2</code></td><td class="ls-vstable--c">-0.08</td><td class="ls-vstable--c">-0.08</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>feet_air_time</code></td><td class="ls-vstable--c">0.01</td><td class="ls-vstable--c">0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>action_rate_l2</code></td><td class="ls-vstable--c">-0.01</td><td class="ls-vstable--c">-0.01</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">학습 iteration</td><td class="ls-vstable--c">1000</td><td class="ls-vstable--c"><strong>5000</strong></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">결과 영상</td><td class="ls-vstable--c"><video src="video/go2_1000iter_lin_2.0.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td><td class="ls-vstable--c"><video src="video/go2_5000iter_lin2.0.mp4" autoplay="" controls="" muted="" loop="" playsinline="" preload="metadata" style="width:100%;border-radius:8px;display:block"></video></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">해설</td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">주저앉지 않고 앞으로 나아가요. 다만 네 발이 모두 동시에 움직여 어색하고, 발이 바닥에서 거의 뜨지 않아요.</div></td><td class="ls-vstable--c"><div style="text-align:center;font-size:13px;line-height:1.55;color:#475569">같은 보상으로 <strong>5000 iter</strong>까지 더 돌렸어요. 걸음이 한결 안정되고 자연스러워져요. 하지만 걸음 너비가 작고, 계단 등을 올라가는 데 많이 어색해요.</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+      </div>
+    </div>
+    <div class="ls-chall has-hint" data-id="c4">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🔍</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">탐구 · 가장 잘 걷는 보상 찾기</div>
+          <div class="ls-chall__sub">이제 보상 값을 바꿔가며 적절하게 학습을 시키며 Go2가 가장 잘 걷는 보상을 찾아가세요</div>
+        </div>
+        <div class="ls-chall__actions">
+          
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">보상 값을 <strong>한 번에 하나씩</strong> 바꿔가며 학습을 돌려요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">play.py 영상과 <span class="ls-term" data-term="report.html" role="link" tabindex="0">report.html</span>로 매번 결과를 확인하고, 값과 결과를 메모해 비교해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">방향이 좋으면 iteration을 늘려, Go2가 가장 잘 걷는 보상 조합을 찾아가세요.</span></span></div>
+      </div>
+      
+    </div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">14강 한눈에 정리</h3>
+    
+  </section><div class="ls-summary" data-block="summary" data-ga-observed="1"><ul><li>강화학습은 받은 <strong>보상의 합</strong>을 가장 크게 만드는 방향으로 배워요. 그래서 보상이 걸음걸이를 좌우해요.</li><li>보상은 <strong>당근(+)과 채찍(-)</strong>의 가중합이고, 절댓값보다 <strong>비율</strong>이 중요해요.</li><li>보상은 로봇별 파일에 있어요. 사족은 <code>quadruped_rewards.py</code>, 휴머노이드는 <code>humanoid_rewards.py</code>예요.</li><li>로봇마다 강조점이 달라요. 사족은 상하 흔들림 억제, 휴머노이드는 자세 안정·낙상 회피예요.</li><li>가중치는 <strong>한 번에 하나씩</strong> 조금씩 바꿔 결과를 확인해요.</li></ul></div><div class="ls-next" data-block="next-preview">
+    <div class="ls-next__eyebrow">다음 강 안내</div>
+    <p class="ls-next__body"><span class="ls-para"><span class="ls-sentence">보상을 바꿔 학습을 다시 돌렸어요.</span> <span class="ls-sentence">그런데 이 학습이 잘 되고 있는 걸까요, 아니면 엉뚱한 길로 새고 있을까요?</span> <span class="ls-sentence">다음 강에서는 <strong><span class="ls-term" data-term="TensorBoard" role="link" tabindex="0">TensorBoard</span>와 영상</strong>으로 학습을 관찰하고, 성공인지 실패인지 진단하는 법을 배워요.</span></span></p>
+  </div><button class="read__next-inline is-revealed" type="button" aria-label="다음 강의로 이동 — 15강의. 학습 관찰과 진단">
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">15강의. 학습 관찰과 진단</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      </button></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: GLOSSARY (단어집) ============== -->
+      <section class="view view--glossary" data-view="glossary" hidden="">
+        <main class="glossary__main">
+          <article class="glossary__list" id="glossaryList"></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: EXPLORE (가이드북 안내 중심) ============== -->
+      <section class="view view--explore" data-view="explore" hidden="">
+        <div class="explore__inner">
+          <header class="explore__hero">
+            <div class="explore__eyebrow">NAVER CONNECT ROBOTICS 2026 · 가이드북</div>
+            <h2 class="explore__title">
+              처음 보시는 분들도<br>
+              <strong>천천히 따라오면 돼요</strong>
+            </h2>
+            <p class="explore__lead">
+              21강짜리 가이드북이에요. 가상 로봇을 만드는 것부터 시작해서, 감각을 달고,
+              스스로 걷는 법을 가르치다 보면, 끝에는 말 한 마디로 움직이는 자율 로봇이 손에 남아요.
+              하루에 한 강씩 가도 좋고, 주말에 몰아서 봐도 좋아요. 본인 페이스로요.
+            </p>
+          </header>
+
+          <section class="explore__steps">
+            <div class="explore-eyebrow-2">쓰는 법</div>
+            <ol class="explore-guide__rows">
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">01</div>
+                <div>
+                  <h4 class="explore-guide__title">챕터부터 하나 골라요</h4>
+                  <p class="explore-guide__body">
+                    탄생 → 각성 → 진화 → 초월, 이 네 묶음이에요.
+                    처음이면 그냥 1번 <b>탄생</b>부터 들어가시면 돼요.
+                    좌측 <b>목차</b>에서 네 챕터가 한눈에 보여요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">02</div>
+                <div>
+                  <h4 class="explore-guide__title">강의 안에서 넘어다녀요</h4>
+                  <p class="explore-guide__body">
+                    강의는 글과 코드가 섞인 형태예요.
+                    좌측 사이드바에서 강을 옮겨다닐 수 있고, 키보드 <b>← →</b>로도 됩니다.
+                    모바일이면 상단 드롭다운으로 강을 바꿔주세요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">03</div>
+                <div>
+                  <h4 class="explore-guide__title">코드는 직접 돌려보세요</h4>
+                  <p class="explore-guide__body">
+                    글로만 읽으면 잊혀요. 강의 안 Python 코드는 Isaac Sim에 그대로 붙여 돌리면 됩니다.
+                    한 번씩 직접 돌려본 사람만 다음 강을 편하게 봐요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">04</div>
+                <div>
+                  <h4 class="explore-guide__title">끝까지 가면 본선이에요</h4>
+                  <p class="explore-guide__body">
+                    21강을 다 마치면 자율로 걸어다니는 휴머노이드 로봇이 손에 남아요.
+                    그걸 들고 <b>네이버 커넥트 로보틱스 본선</b>에 나가시면 됩니다.
+                  </p>
+                </div>
+              </div>
+            </ol>
+          </section>
+
+          <section class="explore__support">
+            <div class="explore-eyebrow-2">대회 지원 안내</div>
+            <h3 class="explore-h3">참가팀에게 이런 지원이 있어요</h3>
+            <div class="explore__cards" id="exploreCards">
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">2억 원 상당<br>AI 로보틱스 패키지</h3>
+                <p class="support-card__body">
+                  우승팀이 소속된 학교에 고성능 GPU와 AI 시스템이 들어가요.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">글로벌 표준<br>Isaac Sim 제공</h3>
+                <p class="support-card__body">
+                  엔비디아가 실제로 쓰는 로봇 트레이닝 시뮬레이터, 참가하면 그대로 받습니다.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">NVIDIA 엔지니어<br>전문가 멘토링</h3>
+                <p class="support-card__body">
+                  막힐 때 현업 엔지니어가 옆에서 도와줘요. 혼자 끙끙대지 않아도 돼요.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <div class="explore__cta-row">
+            <button class="explore__cta" data-go="books">
+              <span class="explore__cta-arrow" style="font-size:1.5em">▸</span>
+              <span>메인 화면으로 가기</span>
+            </button>
+          </div>
+
+          <footer class="explore__footer">
+            <div class="explore__footer-row">
+              <div class="explore__footer-brand">
+                <div class="explore__footer-title">NAVER CONNECT ROBOTICS CUP</div>
+                <div class="explore__footer-tag">Isaac Sim · 가이드북</div>
+              </div>
+              <div class="explore__footer-cols">
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">관련</div>
+                  <a class="explore__footer-link" href="https://github.com/entryofficial-ctrl/edu-content" target="_blank" rel="noopener">GitHub</a>
+                  <a class="explore__footer-link" href="https://developer.nvidia.com/isaac-sim" target="_blank" rel="noopener">Isaac Sim</a>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">대회</div>
+                  <span class="explore__footer-link">NAVER CONNECT ROBOTICS CUP 2026</span>
+                  <span class="explore__footer-link">NVIDIA Partner</span>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">교육 주관</div>
+                  <span class="explore__footer-link">네이버 커넥트재단</span>
+                </div>
+              </div>
+            </div>
+            <div class="explore__footer-legal">
+              © 2026 NAVER CONNECT ROBOTICS CUP. Powered by NAVER CONNECT.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <!-- 이용 안내 팝업 (좌측 메뉴 하단 「이용 안내」로 열림) -->
+    <div class="legal" id="legalModal" hidden="">
+      <div class="legal__backdrop" data-legal-close=""></div>
+      <div class="legal__panel" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button class="legal__close" type="button" data-legal-close="" aria-label="닫기">✕</button>
+
+        <div class="legal__eyebrow">NAVER CONNECT ROBOTICS CUP 2026</div>
+        <h2 class="legal__title" id="legalTitle">저작권 및 이용 안내</h2>
+        <p class="legal__copy">© NAVER Connect Foundation. All rights reserved.</p>
+
+        <p class="legal__lead">이 가이드북의 모든 글·이미지·코드·구성은 네이버 커넥트재단에 저작권이 있습니다. 누구나 웹에서 자유롭게 읽고 학습에 활용할 수 있습니다.</p>
+
+        <div class="legal__cols">
+          <section class="legal__col legal__col--ok">
+            <h3 class="legal__col-head"><span class="legal__mark">○</span> 이렇게 쓰실 수 있어요</h3>
+            <ul class="legal__list">
+              <li>수업·발표에서 화면으로 보여주기</li>
+              <li>출처를 밝히고 일부를 인용하기</li>
+            </ul>
+          </section>
+          <section class="legal__col legal__col--no">
+            <h3 class="legal__col-head"><span class="legal__mark">×</span> 이건 허락이 필요해요</h3>
+            <ul class="legal__list">
+              <li>내용을 복제해 다시 배포하기</li>
+              <li>고쳐 쓰거나 2차 저작물로 만들기</li>
+              <li>상업적 목적으로 이용하기</li>
+              <li>다른 서비스·교재에 옮겨 싣기</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="legal__note">실습에 쓰인 오픈소스(NVIDIA Isaac Sim·Isaac Lab, three.js 등)와 인용한 영상·이미지는 각 권리자에게 저작권이 있으며, 해당 라이선스와 출처 표기를 따릅니다.</p>
+
+        <p class="legal__contact">이용 문의 · 사용 허락 요청 — <a href="mailto:ncrc@connect.or.kr">ncrc@connect.or.kr</a></p>
+      </div>
+    </div>
+
+    <script type="module" src="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/app.js.다운로드"></script>
+    <script type="module" src="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/search.js.다운로드"></script>
+    <script src="./14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/comments.js.다운로드" defer=""></script>
+  
+
+<aside class="ls-gpanel" role="complementary"><button type="button" class="ls-gpanel__close" aria-label="닫기">×</button><div class="ls-gpanel__body" data-body=""><div class="ls-gpanel__head"><h3 class="ls-gpanel__name">None</h3></div><div class="ls-gpanel__def"><span class="ls-sentence">None은 '값이 없음'을 나타내는 파이썬의 특별한 값입니다.</span> <span class="ls-sentence">함수가 아무것도 돌려주지 않거나 아직 정해지지 않은 변수를 표시할 때 쓰입니다.</span> <span class="ls-sentence"><code>if World.instance() is not None:</code> 처럼 '무언가가 존재하는지' 확인할 때 자주 봅니다.</span></div><div class="ls-gpanel__rel"><span class="ls-gpanel__rel-label">관련어</span><div class="ls-gpanel__chips"><button type="button" class="ls-gpanel__chip" data-gterm="return">return</button><button type="button" class="ls-gpanel__chip" data-gterm="if문">if문</button><button type="button" class="ls-gpanel__chip" data-gterm="clear_instance">clear_instance</button><button type="button" class="ls-gpanel__chip" data-gterm="변수">변수</button></div></div><a class="ls-gpanel__more" href="https://robotics.connect.or.kr/lecture/#glossary/None">단어 사전 바로 가기 →</a></div></aside></body></html>

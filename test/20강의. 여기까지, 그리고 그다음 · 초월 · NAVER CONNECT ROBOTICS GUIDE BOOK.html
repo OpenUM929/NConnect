@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://robotics.connect.or.kr/lecture#read/wisdom/p4c20 -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/js"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function __gaPath(){var h=(location.hash||'').replace(/^#/,'');try{return decodeURIComponent(h);}catch(x){return h;}}function __gaUid(){var m=/(?:^|;\s*)gaUid=([^;]*)/.exec(document.cookie);return m?decodeURIComponent(m[1]):'';}window.__gaV='2026-08-13';var __gaDbg=/^localhost$|^127\.|^dev\./.test(location.hostname);var __gaCfg={lecture_path:__gaPath()},__gaU=__gaUid();if(__gaU)__gaCfg.user_id=__gaU;if(__gaDbg){__gaCfg.debug_mode=true;__gaCfg.traffic_type='internal';}gtag('js',new Date());gtag('config','G-KVC9YYWB8M',__gaCfg);var __gaLastHref=location.href;addEventListener('hashchange',function(){setTimeout(function(){if(location.href===__gaLastHref)return;__gaLastHref=location.href;gtag('event','page_view',{page_location:location.href,page_title:document.title,lecture_path:__gaPath()});},0);});var __gaIO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5)return;__gaIO.unobserve(e.target);var d=e.target.dataset;gtag('event','lecture_stage_view',{lecture_path:__gaPath(),lesson:d.lesson||'',lesson_no:d.lessonNo||'',stage_key:d.stageKey||'',stage_no:d.stageNo||'',stage_total:document.querySelectorAll('.ls-stage').length});});},{threshold:0.5,rootMargin:'0px 0px -50% 0px'});function __gaLesson(){var s=document.querySelector('.ls-stage');if(s)return{lesson:s.dataset.lesson||'',no:s.dataset.lessonNo||''};var seg=(__gaPath().split('/').pop()||''),m=/c(\d+)$/.exec(seg);return{lesson:seg,no:m?m[1]:''};}var __gaCO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5&&e.intersectionRect.height<innerHeight*0.5)return;__gaCO.unobserve(e.target);var L=__gaLesson();gtag('event','lecture_complete',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no});});},{threshold:[0,0.25,0.5,0.75,1]});addEventListener('click',function(e){if(!e.target||!e.target.closest)return;var mo=e.target.closest('.ls-gpanel__more');if(mo){var LM=__gaLesson(),nm=document.querySelector('.ls-gpanel__name'),tm='';try{tm=(nm&&nm.textContent.trim())||decodeURIComponent((mo.getAttribute('href')||'').split('/').pop()||'');}catch(x){}gtag('event','glossary_more_click',{lecture_path:__gaPath(),lesson:LM.lesson,lesson_no:LM.no,term:tm});}var nb=e.target.closest('.read__next-inline,.read__next');if(nb){var LN=__gaLesson();gtag('event','next_lesson_click',{lecture_path:__gaPath(),lesson:LN.lesson,lesson_no:LN.no,next_position:nb.classList.contains('read__next-inline')?'bottom':'top'});}var cp=e.target.closest('.ls-code__copy,.ls-coderun__copy,.ls-chall__copybtn');if(cp){var rt=cp.closest('.ls-code,.ls-coderun,.ls-chall'),LC=__gaLesson(),kd='code',cid='',ctt='';if(rt){kd=rt.classList.contains('ls-chall')?'challenge':rt.classList.contains('ls-coderun')?'code_run':'code';cid=kd==='challenge'?(rt.dataset.id||''):kd==='code_run'?'run':String([].indexOf.call(document.querySelectorAll('.ls-code'),rt)+1);var te=rt.querySelector('.ls-code__title,.ls-chall__title,.ls-coderun__tab.is-on');if(te)ctt=te.textContent.trim().replace(/\s+/g,' ').slice(0,100);}gtag('event','code_copy_click',{lecture_path:__gaPath(),lesson:LC.lesson,lesson_no:LC.no,copy_kind:kd,copy_id:cid,copy_title:ctt});}var w=e.target.closest('.ls-term');if(w){var LW=__gaLesson();gtag('event','term_click',{lecture_path:__gaPath(),lesson:LW.lesson,lesson_no:LW.no,term:w.dataset.term||'',term_text:(w.textContent||'').trim().replace(/\s+/g,' ').slice(0,100)});}var t=e.target.closest('.ls-quiz__opt,.ls-quiz_opt');if(!t)return;var box=t.closest('.ls-quiz__q')||t.parentElement;if(!box||box.getAttribute('data-ga-answered'))return;box.setAttribute('data-ga-answered','1');var d=t.dataset,L=__gaLesson(),ok=d.correct==='1';gtag('event','quiz_answer',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no,quiz_no:String((parseInt(d.q,10)||0)+1),quiz_option_no:String((parseInt(d.i,10)||0)+1),quiz_option_text:(t.textContent||'').trim().replace(/\s+/g,' ').slice(0,100),quiz_result:ok?'correct':'wrong',quiz_correct:ok?1:0});},true);function __gaScan(){if(!__gaIO)return;var n=document.querySelectorAll('.ls-stage:not([data-ga-observed])');for(var i=0;i<n.length;i++){n[i].setAttribute('data-ga-observed','1');__gaIO.observe(n[i]);}var c=document.querySelectorAll('[data-block="summary"]:not([data-ga-observed])');for(var j=0;j<c.length;j++){c[j].setAttribute('data-ga-observed','1');__gaCO.observe(c[j]);}}function __gaWatch(){__gaScan();new MutationObserver(function(){if(__gaT)return;__gaT=setTimeout(function(){__gaT=0;__gaScan();},200);}).observe(document.body,{childList:true,subtree:true});addEventListener('hashchange',function(){setTimeout(__gaScan,300);});}var __gaT=0;[400,1200,3000].forEach(function(ms){setTimeout(__gaScan,ms);});if(document.readyState==='loading')addEventListener('DOMContentLoaded',__gaWatch);else __gaWatch();</script><!--<base href="/lecture/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK</title>
+    <meta name="description" content="네이버 커넥트 로보틱스 경진대회 2026 — Isaac Sim으로 배우는 로봇 AI 가이드북">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Gowun Dodum(본문+디스플레이) + Noto Sans KR(폴백 한글, 실제 로딩) + JetBrains Mono(코드) -->
+    <link href="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2" rel="stylesheet">
+    <!-- marked.js: 강의 markdown 렌더링 -->
+    <script src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/marked.min.js.다운로드"></script>
+
+    <!-- bare specifier(three / three/addons) 해석용 — 로컬 vendor로 고정해 CDN 의존 제거.
+         8강 lidar-orbit.js, 17강 errand-scene.js, voxel-kit.js 등이 사용. three r160 + addons 동봉(/vendor/three-addons/). -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js",
+        "three/addons/": "./vendor/three-addons/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/styles.css">
+  <style id="lsq-css">
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+</style><link id="p1c0-hook-css" rel="stylesheet" href="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/p1c0-hook.css"><link id="p1c0-hook-font" rel="stylesheet" href="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2(1)"><style id="ls-balance-joints-css">
+    .ls-balance__joints{display:flex;gap:6px;justify-content:center;margin:6px 0 2px;min-height:22px}
+    .ls-balance__joints span{font-size:11.5px;font-family:var(--font-mono);padding:3px 9px;border-radius:999px;
+      border:1px solid var(--ls-border);color:#9a9384;background:transparent;opacity:.35;transition:all .18s}
+    .ls-balance__joints span.on{opacity:1;color:#5a3d0a;background:#f0d9a5;border-color:#c8a046;transform:translateY(-2px)}</style><style id="ls-uicard-video-css">
+    a.ls-uicard{display:block;text-decoration:none;color:inherit}
+    /* 제목 줄 오른쪽 끝에 삼각형만. 배경·테두리 없음. */
+    .ls-uicard__play{margin-left:auto;align-self:center;font-size:20px;line-height:1;color:var(--ls-accent);
+      transition:color .18s,transform .18s}
+    a.ls-uicard:hover .ls-uicard__play{color:#8a5a12;transform:translateX(2px)}</style><style id="ls-jax-css">
+.ls-jax{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:16px;padding:18px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-jax__stage{background:#faf8f3;border-radius:12px;box-shadow:inset 0 0 0 1px #e8e5dc;position:relative;height:320px;perspective:850px;overflow:hidden;cursor:grab;touch-action:none}
+.ls-jax__stage:active{cursor:grabbing}
+.ls-jax__scene{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--cx,-22deg)) rotateY(var(--cy,-32deg))}
+.ls-jax__scene *{transform-style:preserve-3d}
+.ls-jax__stack{position:absolute;left:-75px;top:-70px;width:150px;height:275px}
+.ls-jax__layer{position:absolute;left:0;top:0;width:150px}
+.ls-jax__layer svg{display:block;width:150px;height:auto}
+.ls-jax__leg{transform-origin:75px 70px;transition:transform .06s linear;transform:rotateY(var(--yw,0deg)) rotateZ(var(--rl,0deg)) rotateX(var(--px,0deg))}
+.ls-jax__arc{position:absolute;left:-92px;top:-92px;width:184px;height:184px;opacity:0;transition:opacity .2s}
+.ls-jax__arc.on{opacity:1}
+.ls-jax__arc svg{width:184px;height:184px;display:block}
+.ls-jax__arc--pitch{transform:rotateY(90deg)}
+.ls-jax__arc--yaw{transform:rotateX(90deg)}
+.ls-jax__axis{position:absolute;left:0;top:0;opacity:.62;pointer-events:none;transition:opacity .2s,box-shadow .2s}
+.ls-jax__axis i{position:absolute;font-style:normal;font-weight:800;font-size:18px;font-family:ui-monospace,Menlo,monospace;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff,0 1px 1px #fff}
+.ls-jax__axis--z{width:6px;height:126px;margin:-126px 0 0 -3px;background:#2471c7;color:#2471c7;border-radius:3px}
+.ls-jax__axis--z i{top:-25px;left:9px}
+.ls-jax__axis--y{width:120px;height:6px;margin:-3px 0 0 0;background:#1e8449;color:#1e8449;border-radius:3px;transform:scaleX(-1);transform-origin:left center}
+.ls-jax__axis--y i{top:-10px;left:123px;transform:scaleX(-1)}
+.ls-jax__axis--x{width:120px;height:6px;margin:-3px 0 0 0;background:#c0392b;color:#c0392b;border-radius:3px;transform:rotateY(-90deg);transform-origin:left center}
+.ls-jax__axis--x i{top:-10px;left:123px;transform:rotateY(90deg);transform-origin:left center}
+.ls-jax__axis.on{opacity:1;box-shadow:0 0 12px currentColor}
+.ls-jax__giz{position:absolute;right:12px;bottom:12px;width:98px;height:auto;display:none;background:rgba(255,255,255,.72);border:1px solid #eee5cf;border-radius:10px;padding:3px 4px 2px}
+.ls-jax.has-giz .ls-jax__giz{display:block}
+.ls-jax.is-corner .ls-jax__axis{display:none}
+.ls-jax__gax{opacity:.55;transition:opacity .2s}
+.ls-jax__gax.on{opacity:1}
+.ls-jax__gax.on line{stroke-width:5}
+.ls-jax__play{display:flex;gap:8px;margin-top:14px}
+.ls-jax__pbtn{flex:1;font-family:inherit;font-size:13px;font-weight:700;padding:11px 6px;border-radius:10px;border:1.5px solid;background:#fff;cursor:pointer;transition:.15s;line-height:1.3}
+.ls-jax__pbtn small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.ls-jax__pbtn.roll{color:#c0392b;border-color:#eec6c1}.ls-jax__pbtn.pitch{color:#1e8449;border-color:#bfe0cc}.ls-jax__pbtn.yaw{color:#2471c7;border-color:#bcd4ee}
+.ls-jax__pbtn.roll.is-on{background:#c0392b;color:#fff;border-color:#c0392b}
+.ls-jax__pbtn.pitch.is-on{background:#1e8449;color:#fff;border-color:#1e8449}
+.ls-jax__pbtn.yaw.is-on{background:#2471c7;color:#fff;border-color:#2471c7}
+.ls-jax__ctrls{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.ls-jax__row{display:flex;align-items:center;gap:10px;font-size:13px}
+.ls-jax__row .nm{width:118px;font-weight:700}.ls-jax__row .nm i{font-style:normal;font-family:ui-monospace,Menlo,monospace}
+.ls-jax__row input[type=range]{flex:1;accent-color:currentColor}
+.ls-jax__row .val{width:48px;text-align:right;font-family:ui-monospace,Menlo,monospace;color:#8a8574}
+.ls-jax__row.roll{color:#c0392b}.ls-jax__row.pitch{color:#1e8449}.ls-jax__row.yaw{color:#2471c7}
+.ls-jax__foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ls-jax__hint{font-size:11.5px;color:#726c61}
+.ls-jax__rst{background:#efe9dc;color:#6b5f45;border:1px solid #e1d8c4;border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer}
+.ls-jax__cap{font-size:13px;color:#5c584d;margin-top:12px;line-height:1.75;text-align:center}.ls-jax__cap b{color:#222}</style><style id="ls-aa-css">
+.ls-aa{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-aa__cap{padding:16px 20px 12px;font-size:14.5px;line-height:1.6;color:#3a3a42}
+.ls-aa__cap b,.ls-aa__cap strong{color:#111}
+.ls-aa__cap code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f2f5;padding:1px 6px;border-radius:5px}
+.ls-aa__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-aa__body{grid-template-columns:1fr}}
+.ls-aa__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11)}
+.ls-aa__svg{display:block;width:100%;height:auto}
+.ls-aa-seg{fill:url(#ncShell);stroke:#8b929c;stroke-width:1.3;transition:stroke .45s}
+.ls-aa.is-bound .ls-aa-seg{stroke:#f0b441;stroke-width:2}
+.ls-aa-joint{fill:url(#ncDark);stroke:#0f1216;stroke-width:1;transition:fill .45s,stroke .45s}
+.ls-aa.is-bound .ls-aa-joint{fill:#f0d9a5;stroke:#c78f2e}
+.ls-aa-joint.is-pulse{fill:#fff}
+.ls-aa-lower{transform-box:view-box;transform-origin:110px 140px;transition:transform .55s cubic-bezier(.34,1.3,.5,1)}
+.ls-aa-arm{transform-box:view-box;transform-origin:110px 52px;transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.ls-aa.is-bound.is-lift .ls-aa-arm{transform:rotate(-68deg)}
+.ls-aa:not(.is-bound).is-lift .ls-aa-arm{animation:ls-aa-nudge .4s}
+@keyframes ls-aa-nudge{0%,100%{transform:none}30%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.ls-aa__panel{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ls-aa__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;transition:.3s}
+.ls-aa__badge.is-loose{background:#efeff2;color:#71717a}
+.ls-aa__badge.is-bound{background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-aa__desc{font-size:13.5px;line-height:1.7;color:#52525b;min-height:60px}
+.ls-aa__desc b,.ls-aa__desc strong{color:#222}
+.ls-aa__toggle{display:flex;gap:8px}
+.ls-aa__btn{flex:1;font-family:inherit;font-size:13px;padding:10px 8px;border-radius:10px;border:1.5px solid #e4e4e8;background:#fff;color:#52525b;cursor:pointer;transition:.2s}
+.ls-aa__btn.is-on{background:#16161b;color:#f0d9a5;border-color:#16161b}
+.ls-aa__cmd{font-family:inherit;font-size:13.5px;padding:11px;border-radius:10px;border:none;cursor:pointer;transition:.2s}
+.ls-aa__cmd:disabled{background:#f2f2f5;color:#b4b4bb;cursor:not-allowed}
+.ls-aa__cmd:not(:disabled){background:#f0d9a5;color:#3a2e12}
+.ls-aa__note{font-size:12.5px;line-height:1.5;color:#8a6a28;min-height:30px}</style><style id="ls-jt-css">
+.ls-jt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+@media(max-width:620px){.ls-jt{grid-template-columns:repeat(2,1fr)}}
+.ls-jt__card{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:12px;padding:16px 12px;text-align:center}
+.ls-jt__demo{perspective:560px}
+.ls-jt__stage{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d}
+.ls-jt__seg{width:20px;height:66px;border-radius:10px;background:linear-gradient(#d6dae0,#b4b9c1 55%,#949aa4);box-shadow:inset 0 0 0 1px rgba(139,146,156,.6);transform-origin:bottom center}
+.ls-jt__pivot{position:absolute;bottom:16px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#3d434c,#14171c);border:1.5px solid #0f1216;z-index:2}
+.ls-jt__base{position:absolute;bottom:0;left:50%;margin-left:-26px;width:52px;height:18px;border-radius:6px;background:#2b313c}
+@keyframes lsJtRev{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes lsJtPris{0%,100%{transform:translateY(0)}50%{transform:translateY(-36px)}}
+@keyframes lsJtSpin{to{transform:rotateY(360deg)}}
+.ls-jt__demo.rev .ls-jt__seg{animation:lsJtRev 2s ease-in-out infinite}
+.ls-jt__demo.pris .ls-jt__seg{animation:lsJtPris 1.8s ease-in-out infinite}
+.ls-jt__demo.sph .ls-jt__spin{transform-style:preserve-3d;animation:lsJtSpin 2.4s linear infinite}
+.ls-jt__demo.sph .ls-jt__seg{transform:rotateX(30deg)}
+.ls-jt__demo.fixed .ls-jt__seg{background:linear-gradient(#c4c9d0,#a4aab4 55%,#868d98)}
+.ls-jt__nm{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14.5px;margin-top:9px}
+.ls-jt__loc{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b08436;margin:3px 0 6px}
+.ls-jt__d{font-size:13.5px;color:var(--ls-text-soft);line-height:1.55}</style><style id="ls-coderun-clps-css">
+    .ls-coderun__panel.is-clps{position:relative;max-height:340px;overflow:hidden}
+    .ls-coderun__panel.is-clps.is-open{max-height:none;overflow:visible}
+    .ls-coderun__clps-fade{position:absolute;left:0;right:0;bottom:38px;height:44px;background:linear-gradient(to bottom,rgba(21,22,27,0),#15161b);pointer-events:none;border-radius:0}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-fade{display:none}
+    .ls-coderun__clps-btn{position:absolute;left:0;right:0;bottom:0;width:100%;background:#23252e;color:#f0d9a5;border:0;border-top:1px solid #34363f;padding:9px;font:700 12.5px/1 inherit;cursor:pointer}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-btn{position:static;border-radius:0 0 12px 12px;margin-top:8px}
+    .ls-coderun__clps-btn:hover{background:#2c2e38}</style><style id="ls-skit-css">
+    /* 표준 위젯 규격 = 2강 .ls-physx (단일 아레나가 폭을 꽉 채움) */
+    .ls-skit{--skg:#b08436;--skc:#4f6873;--skln:var(--ls-border);--skbad:#c0392b;--skwarm:#b7791f;background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-max-w);box-sizing:border-box;}
+    .ls-skit__title{font-size:14px;font-weight:700;color:var(--ls-text);text-align:center;margin:0 0 10px;line-height:1.5;}
+    .ls-skit__arena{position:relative;width:100%;aspect-ratio:460/140;}
+    .ls-skit__arena svg{width:100%;height:100%;display:block;border-radius:8px;}
+    .ls-skit__vox{position:absolute;left:56.5%;top:6%;width:32%;height:80%;}
+    .ls-skit__vox canvas{width:100%!important;height:100%!important;display:block;}
+    .ls-skit__vox .vox-loading{font-size:10px;color:var(--ls-muted);text-align:center;padding-top:42%;font-family:ui-monospace,monospace;}
+    .ls-skit__cap{text-align:center;margin-top:11px;font-size:13.5px;color:var(--ls-text-soft);line-height:1.55;min-height:20px;}
+    .ls-skit__cap b{color:var(--skg);}
+    .ls-skit__slot{font-family:ui-monospace,monospace;font-size:12.5px;background:var(--ls-soft);border:1px solid var(--ls-border);border-radius:9px;padding:9px 13px;margin-top:10px;color:var(--ls-muted);text-align:center;}
+    .ls-skit__slot .f{color:var(--skc);}.ls-skit__slot .n{color:#c2410c;}.ls-skit__slot .bad{color:var(--skbad);}
+    .ls-skit__slot .nb{white-space:nowrap;}   /* 좁은 화면에서 코드가 = 뒤에서 갈라지지 않게 */
+    /* 슬롯 = 첫 줄에 로봇에게 준 것(고정폭), 아래 줄에 그게 무엇인지 설명(본문 글꼴) */
+    .ls-skit__slot .why{display:block;margin-top:6px;font-family:var(--font-body);font-size:13px;color:var(--ls-text-soft);}
+    .ls-skit__acts{display:flex;gap:9px;justify-content:center;margin-top:11px;flex-wrap:wrap;}
+    .ls-skit__btn{font-family:inherit;font-weight:700;font-size:13.5px;color:#fff;background:var(--skg);border:0;border-radius:10px;padding:9px 17px;cursor:pointer;}
+    .ls-skit__btn--ghost{background:var(--ls-soft);color:var(--ls-muted);}
+    </style><style id="ls-lj-css">
+.ls-lj{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-lj__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-lj__body{grid-template-columns:1fr}}
+/* 스테이지 SVG는 세로로 길다. 폭에 맞춰 늘리면 카드 높이를 혼자 결정해 오른쪽 패널 아래가 비어 보인다.
+   높이를 고정하고 가운데 두면, 카드 높이는 패널이 정하고 그림은 그 안에서 균형을 잡는다. */
+.ls-lj__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);display:flex;align-items:center;justify-content:center;padding:18px 10px}
+.ls-lj__stage svg{display:block;height:236px;width:auto;max-width:100%}
+@media(max-width:620px){.ls-lj__stage svg{height:210px}}
+/* 뼈대는 정본 NC-01 셸 색. 캡슐은 외곽선 없이 그라디언트만 쓴다(리그와 동일) */
+.ls-lj-seg{fill:url(#ncShell)}
+.ls-lj-fixed{fill:url(#ncShell)}
+/* 고정 뼈대와 도는 뼈대가 같은 색이 되었으니, 위쪽이 안 움직인다는 건 다크 마운트가 대신 말한다 */
+.ls-lj-mount{fill:url(#ncDark)}
+.ls-lj-grip{fill:url(#ncShell);stroke:#aab3bc;stroke-width:0.8}
+.ls-lj-gear{transition:filter .25s}
+.ls-lj-gear.is-pulse{filter:drop-shadow(0 0 9px #f0d9a5)}
+.ls-lj-pin{fill:#6e747e}
+.ls-lj-fixtag{fill:#6e747e;font-size:10.5px;font-weight:700}
+.ls-lj__panel{padding:22px 24px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.ls-lj__ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ls-lj__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-lj__legend{font-size:13px;line-height:1.8;color:#52525b}
+.ls-lj__legend .chip{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:7px}
+.ls-lj__legend b{color:#222}
+.ls-lj__row{flex:1 1 240px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#52525b}
+.ls-lj__row .nm{width:74px;font-weight:700;color:#8a6a28}
+.ls-lj__row input[type=range]{flex:1;accent-color:#c9a24a}
+.ls-lj__row .val{width:40px;text-align:right;font-family:ui-monospace,Menlo,monospace}
+/* 버튼이 패널 폭(850px)을 통째로 가로지르면 슬라이더보다 무거워 보인다 — 슬라이더와 한 줄에 세운다 */
+.ls-lj__btn{flex:0 0 auto;font-family:inherit;font-size:13px;font-weight:700;padding:11px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;background:#f0d9a5;color:#3a2e12}
+.ls-lj__btn:hover{filter:brightness(.97)}
+.ls-lj__note{font-size:12.5px;line-height:1.6;color:#8a6a28}</style><style id="ls-jointmap-css">
+.ls-jointmap{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jointmap__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 3px}
+.ls-jointmap__sub{font-size:12.5px;color:#8a837a;margin:0 0 10px}
+.ls-jointmap__stage{background:#f1efe7;border-radius:12px;padding:6px}
+.ls-jointmap__svg{display:block;width:100%;height:auto}
+/* 가독성은 크기로만 확보한다 — 굵기까지 같이 올리면 리그보다 라벨이 먼저 읽혀 그림이 뒤로 밀린다 */
+.ls-jointmap .ko{font-size:12px;fill:#14130f;transition:.12s}
+/* 영문 관절명은 본문 <code>dof_names</code>와 같은 무게로 읽혀야 한다 — 본문 코드 칩 색(--ls-text)을 쓰고,
+   스테이지 배경색으로 글자 테두리를 둘러 리그 선 위에서도 칩처럼 또렷하게 떠오르게 한다. */
+.ls-jointmap .eng{font-size:10.5px;fill:#14130f;font-family:var(--font-mono);paint-order:stroke;stroke:#f1efe7;stroke-width:2.2px;stroke-linejoin:round;transition:.12s}
+.ls-jointmap .lblbox{cursor:pointer}
+.ls-jointmap .lblbox.on .ko{fill:#a06e18}
+.ls-jointmap .lblbox.on .eng{fill:#a0812f}
+.ls-jointmap .lead-line{stroke:#c3bdae;stroke-width:1;transition:.12s}
+.ls-jointmap .lead-line.on{stroke:#e0a83a;stroke-width:1.8}
+.ls-jointmap .jdot{fill:#3a3f47;stroke:#0f1216;stroke-width:1;transition:.12s;cursor:pointer}
+.ls-jointmap .jdot.on{fill:#f0d9a5;stroke:#c78f2e}
+.ls-jointmap .halo{fill:none;stroke:#f0d9a5;stroke-width:2.5;opacity:0;transition:.12s}
+.ls-jointmap .halo.on{opacity:.9}
+.ls-jointmap .ls-jm-pupils{transition:transform .22s ease-out}
+.ls-jointmap__foot{font-size:12px;color:#8a837a;margin:10px 2px 0}
+.ls-jointmap__foot code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#eceae2;padding:1px 6px;border-radius:5px}</style><style id="ls-jlim-css">
+.ls-jlim{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jlim__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-jlim__grid{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center}
+@media(max-width:640px){.ls-jlim__grid{grid-template-columns:1fr}}
+.ls-jlim__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);border-radius:12px;padding:6px}
+.ls-jlim__stage svg{display:block;width:100%;height:auto}
+.ls-jlim__ctrl label{font-size:13px;color:#52525b;display:block;margin:0 0 6px}
+.ls-jlim__ctrl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;outline:none;margin:8px 0}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-runnable-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-5.5px;width:20px;height:20px;border-radius:50%;background:#4a3410;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+.ls-jlim__ctrl input[type=range]::-moz-range-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#4a3410;border:3px solid #fff;cursor:pointer}
+.ls-jlim__zone{font-size:11px;color:#c0392b;font-weight:700;margin-top:5px}
+.ls-jlim__read{margin-top:14px;font-size:14px;color:#3a3630}
+.ls-jlim__read .app{font-family:ui-monospace,Menlo,monospace;font-weight:700}
+.ls-jlim__warn{margin-top:8px;font-size:13px;min-height:20px;color:#c0392b;font-weight:700}
+.ls-jlim__ref{margin-top:14px;font-size:12px;color:#8a837a;line-height:1.6}
+.ls-jlim__ref code{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#eceae2;padding:1px 5px;border-radius:5px}
+.ls-jlim-glow{animation:lsjlimGlow .65s ease-in-out infinite}
+@keyframes lsjlimGlow{0%,100%{filter:drop-shadow(0 0 5px #ff5b5b)}50%{filter:drop-shadow(0 0 16px #ff1a1a) drop-shadow(0 0 8px #ff4040)}}
+.ls-jlim-halo{animation:lsjlimHalo .65s ease-in-out infinite}
+@keyframes lsjlimHalo{0%,100%{opacity:.2}50%{opacity:.6}}</style><style id="ls-ctrlcmp-css">
+.ls-ctrlcmp{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-ctrlcmp__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-ctrlcmp__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.ls-ctrlcmp__grid{grid-template-columns:1fr}}
+.ls-ctrlcmp__box{border:1.5px solid #e8e5dc;border-radius:14px;padding:16px 18px}
+.ls-ctrlcmp__box.pos{border-color:#cfe0c9;background:#f7fbf5}
+.ls-ctrlcmp__box.tor{border-color:#e6ddc9;background:#fbf8f1}
+.ls-ctrlcmp__ti{font-size:15px;font-weight:700;margin:0 0 2px;color:#2a2622}
+.ls-ctrlcmp__say{font-size:13px;color:#5a5349;margin:0 0 8px}
+.ls-ctrlcmp__say b{color:#222}
+.ls-ctrlcmp__box ul{margin:0;padding-left:18px;font-size:12.5px;color:#6e695e;line-height:1.7;list-style:disc}
+.ls-ctrlcmp__box li{margin:0}
+.ls-ctrlcmp__box code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:5px}
+.ls-ctrlcmp__pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-top:8px}
+.ls-ctrlcmp__pill.now{background:#e3efe0;color:#3f7a35}
+.ls-ctrlcmp__pill.late{background:#f3e6cf;color:#8a6a28}</style><style id="ls-dvf-css">
+    .ls-dvf{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box}
+    .ls-dvf__title{text-align:center;color:var(--ls-text);font-size:13px;margin-bottom:12px}
+    .ls-dvf__arena{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ls-dvf__pan{position:relative;background:#f1efe7;border-radius:10px;padding:12px 10px 10px;overflow:hidden}
+    .ls-dvf__lbl{text-align:center;font-family:var(--font-mono);font-size:12.5px;font-weight:700;margin-bottom:2px}
+    .ls-dvf__pan.dyn .ls-dvf__lbl{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__lbl{color:#1a7440}
+    .ls-dvf__scene{position:relative;height:210px;overflow:hidden}
+    .ls-dvf__cap{position:relative;z-index:3}
+    .ls-dvf__ground{position:absolute;left:0;right:0;bottom:0;height:16px;background:#c9c4b3;border-top:2px solid #b6b09c;box-sizing:border-box}
+    .ls-dvf__rsvg{position:absolute;left:50%;margin-left:-21px;bottom:48px;width:42px;height:auto;transition:transform .6s cubic-bezier(.4,.7,.5,1),bottom .6s;transform-origin:bottom center;z-index:2}
+    .ls-dvf__blk{position:absolute;bottom:18px;width:38px;height:30px;border-radius:3px;transition:transform .75s cubic-bezier(.3,.85,.35,1),opacity .75s}
+    .ls-dvf__pan.dyn .ls-dvf__blk{background:#cf9081;border:1px solid #ad6b59;border-top-color:#e2ab99}
+    .ls-dvf__pan.fix .ls-dvf__blk{background:#a3b487;border:1px solid #7f9165;border-top-color:#bccba3}
+    .ls-dvf__blk.b1{left:calc(50% - 57px)}
+    .ls-dvf__blk.b2{left:calc(50% - 19px)}
+    .ls-dvf__blk.b3{left:calc(50% + 19px)}
+    .ls-dvf__cap{text-align:center;font-family:var(--font-mono);font-size:11.5px;margin-top:8px;min-height:16px}
+    .ls-dvf__pan.dyn .ls-dvf__cap{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__cap{color:#1a7440}
+    .ls-dvf__row{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+    .ls-dvf__btn{background:rgba(240,217,165,.24);color:#8a6410;border:1px solid rgba(176,132,54,.45);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+    .ls-dvf__btn--ghost{color:var(--ls-muted);border-color:var(--ls-border);background:transparent}
+    .ls-dvf__msg{font-size:12px;color:var(--ls-muted);margin-left:6px}
+    .ls-dvf.go .dyn .b1{transform:translate(-40px,12px) rotate(-26deg)}
+    .ls-dvf.go .dyn .b2{transform:translate(2px,16px) rotate(16deg)}
+    .ls-dvf.go .dyn .b3{transform:translate(40px,12px) rotate(26deg)}
+    .ls-dvf.go .dyn .ls-dvf__rsvg{bottom:26px;transform:rotate(74deg)}
+    .ls-dvf.go .fix .ls-dvf__rsvg{animation:lsDvfLand .45s .5s both}
+    @keyframes lsDvfLand{0%{transform:translateY(-5px)}60%{transform:translateY(2px)}100%{transform:translateY(0)}}</style><style id="ls-kbj-css">
+    .ls-kbj{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kbj__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:12px}
+    .ls-kbj__toggle{display:flex;justify-content:center;margin-bottom:12px}
+    .ls-kbj__tg{display:inline-flex;border:1px solid var(--ls-border);border-radius:8px;overflow:hidden}
+    .ls-kbj__tg button{background:transparent;color:#7a7364;border:0;padding:7px 13px;font-size:12px;font-family:inherit;cursor:pointer;font-weight:700}
+    .ls-kbj__tg button.on{background:#f0d9a5;color:#5a3d0a}
+    /* 가운데 칸 폭을 묶는다 — 1fr로 두면 1100px 카드에서 라벨과 값이 700px 넘게 벌어져 짝이 안 보인다(§7.1) */
+    .ls-kbj__stage{background:#faf7f0;border:1px solid var(--ls-border);border-radius:10px;padding:18px 12px;display:grid;grid-template-columns:auto minmax(0,300px) auto;gap:34px;align-items:center;justify-content:center}
+    @media(max-width:560px){.ls-kbj__stage{grid-template-columns:1fr;justify-items:center;gap:16px}}
+    .ls-kbj__key{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .ls-kbj__cap{min-width:34px;padding:9px 13px;border-radius:8px;border:1.5px solid #d8c9ab;font-family:var(--font-mono);font-size:16px;font-weight:700;color:#8a6a2c;background:#f5eddf;transition:.2s}
+    .ls-kbj__cap.on{background:#f0d9a5;border-color:#d6b25a;color:#5a3d0a}
+    .ls-kbj__klabel{font-size:10.5px;color:#726c61}
+    .ls-kbj__blanks{display:flex;flex-direction:column;gap:7px}
+    .ls-kbj__blank{border:1.5px dashed #c9b98f;border-radius:9px;padding:7px 11px;font-size:11.5px;color:#8a8271;display:flex;justify-content:space-between;gap:10px;transition:.25s;background:#fffdf9}
+    .ls-kbj__blank .v{font-family:var(--font-mono);color:#c2a86a;font-weight:700}
+    .ls-kbj__blank.filled{border-style:solid;border-color:#8bbf9f;background:#eef7f0;color:#3f6b53}
+    .ls-kbj__blank.filled .v{color:#2f7a4f}
+    .ls-kbj__joints{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:92px}
+    .ls-kbj__jt{width:12px;height:12px;border-radius:50%;background:#cfc7b5;justify-self:center;transition:.2s}
+    .ls-kbj__jt.move{background:#f0d9a5;box-shadow:0 0 7px #e0b94e}
+    .ls-kbj__jlabel{text-align:center;font-size:10.5px;color:#726c61;margin-top:6px}
+    .ls-kbj__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+    .ls-kbj__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+    .ls-kbj__msg{font-size:12px;color:#6a6455;margin-left:4px}
+    .ls-kbj__hint{font-size:11.5px;color:#8a8578;margin-left:auto}
+    .ls-kbj__hint b{color:#8a5a12}</style><style id="ls-kev-css">
+    .ls-kev{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kev__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:12px}
+    .ls-kev__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .ls-kev__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-mono);user-select:none;touch-action:none;min-width:52px}
+    .ls-kev__btn.on{background:#f0d9a5;border-color:#d6b25a;color:#5a3d0a}
+    .ls-kev__btn--ghost{color:#6a6455;border-color:#cfc7b5;font-weight:600;font-size:13px}
+    .ls-kev__guide{font-size:12px;color:#6a6455}
+    /* 집합 상자와 조회 결과를 한 줄에 — 집합이 바뀌는 순간 조회 값이 같이 뒤집히는 게 보여야 한다 */
+    .ls-kev__state{display:grid;grid-template-columns:minmax(0,1.6fr) 1fr 1fr;gap:10px;margin-bottom:12px}
+    .ls-kev__cell{background:#faf7f0;border:1px solid var(--ls-border);border-radius:9px;padding:10px 13px}
+    .ls-kev__cell .lbl{display:block;font-size:11.5px;color:#726c61;margin-bottom:5px;font-family:var(--font-mono)}
+    .ls-kev__cell b{font-family:var(--font-mono);font-size:15px;color:#8a5a12}
+    .ls-kev__cell b.f{color:#8a8271}
+    .ls-kev__log{background:#f1efe7;border:1px solid var(--ls-border);border-radius:9px;padding:10px 12px;min-height:62px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    .ls-kev__ph{font-size:12px;color:#8a8271}
+    .ls-kev__ev{font-family:var(--font-mono);font-size:11.5px;border-radius:6px;padding:4px 8px;white-space:nowrap;border:1px solid transparent}
+    .ls-kev__ev--press{background:#eef7f0;color:#2f7a4f;border-color:#bcdcc7}
+    .ls-kev__ev--repeat{background:#fff;color:#8a8271;border-color:#e2daca}
+    .ls-kev__ev--release{background:#f9eae5;color:#a8524c;border-color:#e5c2bb}
+    .ls-kev__note{font-size:12px;color:#6a6455;line-height:1.7;margin:12px 2px 0}
+    .ls-kev__note b{color:#8a5a12}
+    @media(max-width:640px){.ls-kev__state{grid-template-columns:1fr}}</style><style id="ls-kbt-css">
+    .ls-kbt{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kbt__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:10px}
+    /* 2단 — 스테이지 폭을 고정해 로봇이 그 안을 채우게 하고, 카드 높이는 오른쪽 조작부가 정한다(§7.1) */
+    .ls-kbt__body{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:stretch}
+    @media(max-width:640px){.ls-kbt__body{grid-template-columns:1fr}}
+    .ls-kbt__stage{background:#f1efe7;border:1px solid var(--ls-border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px 8px;overflow:hidden}
+    .ls-kbt__stage svg{display:block;height:250px;width:auto;max-width:100%}
+    .ls-kbt__panel{display:flex;flex-direction:column;gap:14px;justify-content:center}
+    /* 읽는 값이 셋이라 세로로 쌓지 않고 가로 카드로 나눈다(§7.1) */
+    .ls-kbt__reads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .ls-kbt__read{background:#faf7f0;border:1px solid var(--ls-border);border-radius:9px;padding:9px 12px}
+    .ls-kbt__read .lbl{display:block;font-size:11.5px;color:#726c61;margin-bottom:4px}
+    .ls-kbt__read b{font-family:var(--font-mono);font-size:15px;color:#8a5a12}
+    .ls-kbt__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .ls-kbt__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-mono);user-select:none;touch-action:none;min-width:52px}
+    .ls-kbt__btn:active{background:rgba(240,217,165,.42)}
+    .ls-kbt__btn--ghost{color:#6a6455;border-color:#cfc7b5;font-weight:600}
+    .ls-kbt__msg{font-size:12px;color:#6a6455;line-height:1.7;margin:0}
+    .ls-kbt__msg b{color:#8a5a12}</style></head>
+  <body class="is-view-read">
+    <!-- ============================== 사이드 레일 (책장 손잡이) ============================== -->
+    <aside class="rail" id="rail">
+      <button class="rail__menu" id="menuBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="rail__brand" aria-hidden="true">
+        <span class="rail__brand-text" id="railBrand">NAVER CONNECT</span>
+      </div>
+    </aside>
+
+    <!-- ============================== 메뉴 오버레이 ============================== -->
+    <div class="overlay" id="overlay" hidden="">
+      <div class="overlay__backdrop"></div>
+      <div class="overlay__panel">
+        <button class="overlay__close" id="overlayClose" aria-label="닫기">×</button>
+
+        <div class="overlay__head">
+          <h2 class="overlay__title">목차</h2>
+          <p class="overlay__sub" id="overlaySub">4개 챕터 · 21강</p>
+        </div>
+
+        <ul class="overlay__books" id="overlayMenu"><li class="overlay__book" data-book-id="creation"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">01</span>
+      <span class="overlay__book-name">탄생</span>
+      <span class="overlay__book-count" data-book-count="creation">2 / 4강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p1c0" class="is-done"><button>
+        <span class="ch-no">00</span>
+        <span class="ch-title">들어가며</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c1" class="is-done"><button>
+        <span class="ch-no">01</span>
+        <span class="ch-title">강화학습과 시뮬레이션 기초</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c2" class="is-done"><button>
+        <span class="ch-no">02</span>
+        <span class="ch-title">Isaac Sim 처음 열기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c3" class=""><button>
+        <span class="ch-no">03</span>
+        <span class="ch-title">중력 만져보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c4" class=""><button>
+        <span class="ch-no">04</span>
+        <span class="ch-title">로봇 불러오기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="perception"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">02</span>
+      <span class="overlay__book-name">각성</span>
+      <span class="overlay__book-count" data-book-count="perception">2 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p2c5" class="is-done"><button>
+        <span class="ch-no">05</span>
+        <span class="ch-title">관절 움직이기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p2c6" class="is-done"><button>
+        <span class="ch-no">06</span>
+        <span class="ch-title">지형 만들기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p2c7"><button>
+        <span class="ch-no">07</span>
+        <span class="ch-title">카메라로 보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c8"><button>
+        <span class="ch-no">08</span>
+        <span class="ch-title">라이다로 거리 재기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c9"><button>
+        <span class="ch-no">09</span>
+        <span class="ch-title">키보드로 조작하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="instinct"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">03</span>
+      <span class="overlay__book-name">진화</span>
+      <span class="overlay__book-count" data-book-count="instinct">0 / 7강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p3c10" class="is-active"><button>
+        <span class="ch-no">10</span>
+        <span class="ch-title">Isaac Lab과 강화학습 원리</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c11"><button>
+        <span class="ch-no">11</span>
+        <span class="ch-title">로봇 학습의 목표</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c12"><button>
+        <span class="ch-no">12</span>
+        <span class="ch-title">로봇 학습 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c13"><button>
+        <span class="ch-no">13</span>
+        <span class="ch-title">로봇 학습 하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c14"><button>
+        <span class="ch-no">14</span>
+        <span class="ch-title">보상 함수 설계와 조정</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c15"><button>
+        <span class="ch-no">15</span>
+        <span class="ch-title">학습 관찰과 진단</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c16"><button>
+        <span class="ch-no">16</span>
+        <span class="ch-title">policy.pt 파일 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="wisdom"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">04</span>
+      <span class="overlay__book-name">초월</span>
+      <span class="overlay__book-count" data-book-count="wisdom">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p4c17"><button>
+        <span class="ch-no">17</span>
+        <span class="ch-title">자연어를 로봇 명령으로</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c18"><button>
+        <span class="ch-no">18</span>
+        <span class="ch-title">믿을 수 있는 로봇 명령 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c19"><button>
+        <span class="ch-no">19</span>
+        <span class="ch-title">생각하는 로봇, 완성</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c20"><button>
+        <span class="ch-no">20</span>
+        <span class="ch-title">여기까지, 그리고 그다음</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c21" class="is-done"><button>
+        <span class="ch-no">21</span>
+        <span class="ch-title">부록 · 본선 연습 해보기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li></ol></li></ul>
+
+        <div class="overlay__quicks">
+          <button class="overlay__quick" data-quick="books">
+            <span class="overlay__quick-label">메인 화면</span>
+          </button>
+          <button class="overlay__quick" data-quick="glossary">
+            <span class="overlay__quick-label">단어 사전</span>
+          </button>
+          <a class="overlay__quick" href="https://robotics.connect.or.kr/lecture/teacher-guide.html">
+            <span class="overlay__quick-label">교사용 지도서</span>
+          </a>
+        </div>
+
+        <div class="overlay__legal">
+          NAVER CONNECT ROBOTICS CUP 2026<br>
+          <button class="overlay__legal-btn" type="button" id="legalBtn">이용 안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================== 메인 무대 ============================== -->
+    <main class="stage" id="stage">
+      <!-- 배경 슬롯 (뷰별 교체) -->
+      <div class="bgs" id="bgs"><div class="bgs__layer" style="background-image: url(&quot;img/배경1.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/1-7.webp&quot;);"></div></div>
+      <div class="bg-vignette" aria-hidden="true"></div>
+
+      <!-- ============== 뷰: 전체 목차 (4 챕터 strips) ============== -->
+      <section class="view view--books" data-view="books" hidden="">
+        <div class="books__head">
+          <h2 class="books__title">NAVER CONNECT ROBOTICS CUP <span class="books__title-guide">GUIDE BOOK</span></h2>
+          <p class="books__hero">시뮬레이션 · 강화학습 · LLM을 한 흐름으로 잇는 로보틱스 가이드북</p>
+          <div class="books__resume-slot" id="booksResume">
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">16강 · policy.pt 파일 준비하기</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  </div>
+        </div>
+        <div class="books__strips" id="booksStrips"><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/1-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">01</div>
+      <div class="strip__hanja">탄생</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">시뮬레이션 환경 접속하기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/2-7.webp&#39;); background-position: 40% center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">02</div>
+      <div class="strip__hanja">각성</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">로봇을 움직이고 감각 달기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/3-5.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">03</div>
+      <div class="strip__hanja">진화</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">스스로 걷는 법 가르치기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/4-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">04</div>
+      <div class="strip__hanja">초월</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">자연어로 명령 내리기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+    </button></div>
+      </section>
+
+      <!-- ============== 뷰: 챕터 목차 (다크 hero + 화이트 챕터 그리드) ============== -->
+      <section class="view view--bestiary" data-view="bestiary" hidden="">
+        <aside class="bestiary__hero">
+          <div class="bestiary__hero-bg" id="bestiaryHeroBg" style="background-image: url(&quot;img/1-7.webp&quot;); background-position: center center;"></div>
+          <div class="bestiary__hero-veil"></div>
+          <button class="bestiary__back" id="bestiaryBack" aria-label="메인 화면으로">
+            <span>◂</span> 메인
+          </button>
+          <div class="bestiary__hero-content">
+            <div class="bestiary__hero-no" id="bestiaryHeroNo">챕터 01</div>
+            <h2 class="bestiary__hero-title" id="bestiaryHeroTitle">탄생</h2>
+            <div class="bestiary__hero-titleEn" id="bestiaryHeroTitleEn">시뮬레이션 환경 접속하기</div>
+          </div>
+        </aside>
+
+        <main class="bestiary__chapters">
+          <header class="bestiary__chapters-head">
+            <h3 class="bestiary__chapters-title" id="bestiaryChaptersTitle">시뮬레이션 환경을 손에 쥐어요</h3>
+            <p class="bestiary__chapters-desc" id="bestiaryChaptersDesc">강화학습과 시뮬레이션이 왜 필요한지부터 짚고, Isaac Sim을 처음 열어봐요.
+중력을 만지고, 첫 로봇을 시뮬레이션 환경으로 불러오기까지 함께 해요.</p>
+          </header>
+          <ol class="bestiary__list" id="bestiaryList"><li class="chapter-card" data-chapter-id="p1c0">
+      <div class="chapter-card__index">00</div>
+      <h3 class="chapter-card__title">들어가며</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c1">
+      <div class="chapter-card__index">01</div>
+      <h3 class="chapter-card__title">강화학습과 시뮬레이션 기초</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card chapter-card--done" data-chapter-id="p1c2">
+      <div class="chapter-card__index">02</div>
+      <h3 class="chapter-card__title">Isaac Sim 처음 열기</h3>
+      <div class="chapter-card__check" aria-hidden="true">✓</div>
+    </li><li class="chapter-card" data-chapter-id="p1c3">
+      <div class="chapter-card__index">03</div>
+      <h3 class="chapter-card__title">중력 만져보기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c4">
+      <div class="chapter-card__index">04</div>
+      <h3 class="chapter-card__title">로봇 불러오기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li></ol>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: 강의 본문 (풀스크린) ============== -->
+      <section class="view view--read is-visible" data-view="read">
+        <main class="read__main">
+          <header class="read__bar">
+            <div class="read__bar-left">
+              <button class="read__back" id="readBack" aria-label="챕터로">
+                <span class="read__back-arrow" aria-hidden="true">◂</span>
+                <span class="read__back-label">챕터</span>
+              </button>
+            </div>
+            <label class="read__bar-picker" aria-label="강의 이동">
+              <select class="read__bar-select" id="readBarSelect"><option value="p4c17">17강의. 자연어를 로봇 명령으로</option><option value="p4c18">18강의. 믿을 수 있는 로봇 명령 만들기</option><option value="p4c19">19강의. 생각하는 로봇, 완성</option><option value="p4c20" selected="">20강의. 여기까지, 그리고 그다음</option><option value="p4c21">21강의. 부록 · 본선 연습 해보기</option></select>
+              <span class="read__bar-picker-caret" aria-hidden="true">▾</span>
+            </label>
+            <button type="button" class="lsq-bar" aria-label="강의 본문 검색"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg><span>검색</span><span class="lsq-k">( / )</span></button><div class="read__nav" id="readNav">
+              <button class="read__prev" id="readPrev" aria-label="이전 강의" data-tooltip="19강의. 생각하는 로봇, 완성">
+                <span class="read__nav-arrow">◂</span>
+                <span class="read__nav-label">이전 강의</span>
+              </button>
+              <button class="read__next" id="readNext" aria-label="다음 강의" data-tooltip="21강의. 부록 · 본선 연습 해보기">
+                <span class="read__nav-label">다음 강의</span>
+                <span class="read__nav-arrow">▸</span>
+              </button>
+            </div>
+          </header>
+          <article class="read__article ls-host" id="readContent" data-lesson-id="p4c20"><header class="ls-open is-revealed">
+    <h1 class="ls-open__title">20. 여기까지, 그리고 그다음</h1>
+    <p class="ls-open__sub"><span class="ls-para"><span class="ls-sentence">여기까지 온 여러분께 먼저 이 말을 전해요.</span> <span class="ls-sentence">정말 잘하셨어요!</span></span><span class="ls-para">여러분이 가진 것을 정리하고, 다음 갈 곳을 함께 봐요.</span></p>
+  </header><section class="ls-stage is-revealed" data-stage-key="intro" data-lesson="p4c20" data-lesson-no="20" data-stage-no="1" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">①</span>
+      <h2 class="ls-stage__label">생각 열기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">여러분은 시뮬레이터 안으로 로봇을 가져오고, 로봇이 시뮬레이터 안의 세상을 인지할 수 있게 하고, 걷는 법을 학습시키고, 판단하는 <span class="ls-term" data-term="대뇌" role="link" tabindex="0">대뇌</span>까지 얹었어요.</span> <span class="ls-sentence">그 여정이 손에 무엇을 남겼는지부터 짚어요.</span></span></p>
+  </section><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">여러분이 실제로 할 수 있게 된 것</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">아래 다섯 가지는 여러분이 직접 해낸 일이에요.</span> <span class="ls-sentence">이제 이런 걸 할 수 있다는 것, 충분히 자랑스러워해도 돼요.</span></span></p>
+  </section><div class="ls-vstable is-revealed" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0">이제 할 수 있는 것</th><th class="ls-vstable__th--1 ls-vstable--c">어디서 했나</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item"><span class="ls-term" data-term="Isaac Sim" role="link" tabindex="0">Isaac Sim</span> 로봇 <span class="ls-term" data-term="시뮬레이션" role="link" tabindex="0">시뮬레이션</span> <span class="ls-term" data-term="환경" role="link" tabindex="0">환경</span> 이해와 활용</td><td class="ls-vstable--c">1챕터</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item"><span class="ls-term" data-term="카메라" role="link" tabindex="0">카메라</span>·<span class="ls-term" data-term="라이다" role="link" tabindex="0">라이다</span> 인지 파이프라인 구성</td><td class="ls-vstable--c">2챕터</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item"><span class="ls-term" data-term="강화학습" role="link" tabindex="0">강화학습</span> 파이프라인 운영 (<span class="ls-term" data-term="보상" role="link" tabindex="0">보상</span> 설계 → 학습 → 평가)</td><td class="ls-vstable--c">3챕터</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item"><span class="ls-term" data-term="LLM" role="link" tabindex="0">LLM</span> + <span class="ls-term" data-term="RL" role="link" tabindex="0">RL</span> <span class="ls-term" data-term="정책" role="link" tabindex="0">정책</span>의 계층형 자율 제어 구조 이해와 운용</td><td class="ls-vstable--c">4챕터</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item">자율 로봇 경기 시스템에서의 전략 수립과 복기</td><td class="ls-vstable--c">본선</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">이 다섯 가지는 대학 로봇공학 전공 고학년 수준의 경험 요약이에요.</span> <span class="ls-sentence">과장이 아니에요.</span></span></span></div><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">시작하기 전의 나와 비교하면</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">이 다섯 가지 뒤에는 실제로 해낸 일들이 있어요.</span> <span class="ls-sentence">이 과정을 시작하기 전의 나는, 이 중 몇 개를 할 수 있었을까요?</span></span></p>
+  </section><div class="ls-checklist is-revealed" data-block="checklist">
+    <div class="ls-check" data-id="d1">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">강화학습으로 로봇이 <strong>스스로 걷게</strong> 만들었다 (1~3챕터)</div>
+    </div>
+  
+    <div class="ls-check" data-id="d2">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">LLM을 불러 <strong><span class="ls-term" data-term="자연어" role="link" tabindex="0">자연어</span>로 로봇에게</strong> 말을 걸어봤다 (4챕터)</div>
+    </div>
+  
+    <div class="ls-check" data-id="d3">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">LLM의 답을 믿되 <strong>검증하는 법</strong>을 안다 (4챕터 · <span class="ls-term" data-term="JSON" role="link" tabindex="0">JSON</span>·<span class="ls-term" data-term="clamp" role="link" tabindex="0">clamp</span>·<span class="ls-term" data-term="환각" role="link" tabindex="0">환각</span>)</div>
+    </div>
+  
+    <div class="ls-check" data-id="d4">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">빠른 <span class="ls-term" data-term="소뇌" role="link" tabindex="0">소뇌</span>와 느린 대뇌를 나누는 <strong><span class="ls-term" data-term="계층" role="link" tabindex="0">계층</span> 제어</strong>를 이해한다 (4챕터)</div>
+    </div>
+  </div><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">몇 개에 체크했든, 시작 전엔 0개였을 거예요.</span> <span class="ls-sentence">그 차이가 여러분이 이 여정에서 자란 거리예요.</span></span></span></div><section class="ls-stage is-revealed" data-stage-key="objective" data-lesson="p4c20" data-lesson-no="20" data-stage-no="2" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">②</span>
+      <h2 class="ls-stage__label">학습 목표</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><div class="ls-outcomes" data-block="outcome-list">
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">01</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>내가 할 수 있게 된 것을 정리해 말할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">02</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="계층 구조" role="link" tabindex="0">계층 구조</span>와 <span class="ls-term" data-term="VLA" role="link" tabindex="0">VLA</span>의 차이를 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">03</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="Sim-to-Real" role="link" tabindex="0">Sim-to-Real</span>의 세 가지 과제를 짚을 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">04</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>다음 한 걸음(심화 프로젝트)을 계획할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘 할 일은 두 가지예요.</span> <span class="ls-sentence"><strong>가진 것을 정리하고, 다음 갈 곳을 보는 것.</strong></span></span></span></div><section class="ls-stage" data-stage-key="concept" data-lesson="p4c20" data-lesson-no="20" data-stage-no="3" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">③</span>
+      <h2 class="ls-stage__label">개념 만나기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para">마지막 수업답게, 지금 <span class="ls-term" data-term="로보틱스" role="link" tabindex="0">로보틱스</span>의 최전선이 어디를 향하는지 봐요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">우리가 만든 구조의 미래, VLA</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">여러분이 만든 건 <strong>계층 구조</strong>예요.</span> <span class="ls-sentence">언어 모델(전략)과 운동 정책(보행)이 분리되어 협업하죠.</span> <span class="ls-sentence">빠르고, 디버깅이 쉽고, 각 층을 따로 개선할 수 있어요.</span> <span class="ls-sentence">지금 산업 현장의 실용 표준이에요.</span></span><span class="ls-para"><span class="ls-sentence">그런데 연구의 최전선에서는 그 경계를 허무는 시도가 진행 중이에요.</span> <span class="ls-sentence"><strong>VLA(Vision-Language-Action)</strong>, 곧 보고(Vision) 읽고(Language) 행동(Action)하는 것을 <strong>하나의 모델</strong>이 끝까지 해내는 구조예요.</span></span><span class="ls-para">이렇게 <strong>입력에서 출력까지 한 모델이 통째로 처리하는 방식</strong>을 <strong><span class="ls-term" data-term="end-to-end" role="link" tabindex="0">end-to-end</span>(엔드 투 엔드)</strong> 구조라고 해요.</span><span class="ls-para"><span class="ls-sentence">우리가 만든 계층 구조에는 "상황 → 전략 → 경로 → <span class="ls-term" data-term="속도 벡터" role="link" tabindex="0">속도 벡터</span> → <span class="ls-term" data-term="관절" role="link" tabindex="0">관절</span>"처럼 단계마다 사람이 정해둔 중간 결과물이 있었어요.</span> <span class="ls-sentence">end-to-end는 그 중간을 없애요.</span> <span class="ls-sentence">카메라 화면과 사람의 말을 넣으면 관절 명령이 바로 나오죠.</span> <span class="ls-sentence">입력 데이터 처리부터 제어까지를 <strong>모델이 스스로 배우게</strong> 두는 거예요.</span></span><span class="ls-para"><span class="ls-sentence">구글 딥마인드의 <span class="ls-term" data-term="RT-2" role="link" tabindex="0">RT-2</span>가 웹 지식을 <span class="ls-term" data-term="로봇 팔" role="link" tabindex="0">로봇 팔</span> 동작에 직접 연결하며 길을 열었고, 지금은 같은 곳의 <strong>Gemini Robotics</strong>가 그 뒤를 잇고 있어요.</span> <span class="ls-sentence">Physical Intelligence의 π0, Figure의 Helix도 같은 방향으로 달리고 있어요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">직접 보기, end-to-end 로봇들</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">글로만 읽으면 잘 안 그려져요.</span> <span class="ls-sentence">두 회사가 공개한 영상을 보면, 사람이 중간 단계를 짜주지 않았는데도 로봇이 처음 보는 일을 해내는 모습이 보여요.</span></span></p>
+  </section><div class="ls-vcards" data-block="video-cards">
+    <div class="ls-vcards__grid">
+      
+          <a class="ls-vcards__card" href="https://youtu.be/lQsvTrRTBRs" target="_blank" rel="noopener" aria-label="Introducing Helix 02">
+            <div class="ls-vcards__thumb">
+              <img src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/hqdefault.jpg" data-fb="https://img.youtube.com/vi/lQsvTrRTBRs/default.jpg" alt="Introducing Helix 02 썸네일" decoding="async">
+              <span class="ls-vcards__play" aria-hidden="true">▶</span>
+              <span class="ls-vcards__flag">🇺🇸</span>
+            </div>
+            <div class="ls-vcards__body">
+              <span class="ls-vcards__channel">Figure 공식 · 2026.01</span>
+              <strong class="ls-vcards__title">Introducing Helix 02</strong>
+              <span class="ls-vcards__desc">신경망 하나가 로봇의 온몸을 움직여요. 층을 나눠주지 않았는데 처음 보는 집안일을 해내는 모습이 나와요.</span>
+            </div>
+          </a>
+        
+          <a class="ls-vcards__card" href="https://youtu.be/4lSQnrMC6nY" target="_blank" rel="noopener" aria-label="Gemini Robotics 2, 온몸을 다루는 지능">
+            <div class="ls-vcards__thumb">
+              <img src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/hqdefault(1).jpg" data-fb="https://img.youtube.com/vi/4lSQnrMC6nY/default.jpg" alt="Gemini Robotics 2, 온몸을 다루는 지능 썸네일" decoding="async">
+              <span class="ls-vcards__play" aria-hidden="true">▶</span>
+              <span class="ls-vcards__flag">🇺🇸</span>
+            </div>
+            <div class="ls-vcards__body">
+              <span class="ls-vcards__channel">Google DeepMind 공식 · 2026.08</span>
+              <strong class="ls-vcards__title">Gemini Robotics 2, 온몸을 다루는 지능</strong>
+              <span class="ls-vcards__desc">RT-2의 뒤를 잇는 모델이에요. 손끝만이 아니라 발끝까지, 로봇의 온몸을 하나의 모델이 맡아요.</span>
+            </div>
+          </a>
+        
+    </div>
+  </div><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c"></th><th class="ls-vstable__th--1 ls-vstable--c">계층 구조 (우리가 만든 것)</th><th class="ls-vstable__th--2 ls-vstable--c">VLA (최전선)</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">구조</td><td class="ls-vstable--c">전략·경로·제어·정책을 분리</td><td class="ls-vstable--c">하나의 모델이 처음부터 끝까지</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">강점</td><td class="ls-vstable--c">분업이 명확, 디버깅 쉬움, 층별 개선</td><td class="ls-vstable--c">통합의 유연함, 새 상황 <span class="ls-term" data-term="일반화" role="link" tabindex="0">일반화</span></td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">약점</td><td class="ls-vstable--c">층 사이 정보 <span class="ls-term" data-term="손실값" role="link" tabindex="0">손실</span></td><td class="ls-vstable--c">느림, 비싸고, 왜 그랬는지 설명 어려움</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">대표</td><td class="ls-vstable--c">지금 산업 현장의 실용 표준</td><td class="ls-vstable--c">RT-2, π0, Helix</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">그런데 지금 현장이 계층 구조를 쓰는 건 취향 문제가 아니에요.</span> <span class="ls-sentence">아직 <strong>기술이 거기까지 오지 않았기</strong> 때문이에요.</span></span><span class="ls-para"><strong>① 아직 느려요.</strong> 로봇 제어는 1초에 수십 번 명령을 내야 하는데, 큰 모델 하나가 그 속도를 맞추기 어려워요.</span><span class="ls-para"><span class="ls-sentence"><strong>② 내부를 들여다볼 수 없어요.</strong> 계층 구조는 어느 층에서 틀렸는지 짚어 그 층만 고칠 수 있어요.</span> <span class="ls-sentence">하나로 합친 모델은 <strong><span class="ls-term" data-term="블랙박스" role="link" tabindex="0">블랙박스</span></strong>(안에서 무슨 일이 일어나는지 들여다볼 수 없는 상태) 영역이 훨씬 넓어서, 왜 그렇게 움직였는지 찾기가 어려워요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">그럼 계층은 사라질까요</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">아니에요.</span> <span class="ls-sentence"><strong>최전선 모델도 안을 열어보면 느린 층과 빠른 층으로 나뉘어</strong> 있어요.</span></span><span class="ls-para"><span class="ls-sentence">Figure가 공개한 Helix 기술 문서를 보면, 장면을 이해하고 말을 알아듣는 층(70억 파라미터)은 <strong>초당 7~9번</strong>, 관절을 움직이는 층(8천만 파라미터)은 <strong>초당 200번</strong> 돌아요.</span> <span class="ls-sentence">앞 강에서 만든 느린 대뇌와 빠른 소뇌, 바로 그 두 루프예요.</span> <span class="ls-sentence">Gemini Robotics도 <span class="ls-term" data-term="추론" role="link" tabindex="0">추론</span>을 맡는 모델과 행동을 맡는 모델이 함께 묶여 나와요.</span></span><span class="ls-para"><span class="ls-sentence">왜 그럴까요?</span> <span class="ls-sentence">큰 모델은 구조상 초당 수백 번을 낼 수 없고, 반대로 관절을 흔드는 층에는 상식 추론이 필요하지 않아요.</span> <span class="ls-sentence"><strong>속도가 다른 일을 한 층에 몰아넣을 이유가 없는 거예요.</strong></span></span><span class="ls-para"><span class="ls-sentence">그래서 앞으로 달라지는 건 계층이 없어지는 게 아니라, <strong>그 경계를 사람이 정하느냐 학습이 정하느냐</strong>예요.</span> <span class="ls-sentence">지금은 우리가 "여기서 속도 벡터를 넘긴다"고 손으로 그었지만, 최전선은 그 선을 학습으로 찾게 두고 있어요.</span></span></p>
+  </section><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><strong>여러분은 계층을 손으로 만들어봤기 때문에, VLA가 "무엇을 합치려는 것인지" 정확히 알아요.</strong> 분업을 해본 사람만이 통합의 가치와 비용을 평가할 수 있어요.</span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">Sim-to-Real, 시뮬레이션에서 현실 세계로</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">지금까지의 여정은 전부 가상 세계였어요.</span> <span class="ls-sentence">시뮬레이션 속 로봇이 아니라 <strong>현실에서 움직이는 로봇</strong>을 다루는 게 다음 단계예요.</span> <span class="ls-sentence">주요 과제는 세 가지예요.</span></span></p>
+  </section><div class="ls-uigrid" style="grid-template-columns: repeat(3, 1fr);" data-block="ui-grid">
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name"><span class="ls-term" data-term="관측" role="link" tabindex="0">관측</span>(Observation) 차이</h4>
+        <span class="ls-uicard__loc">노이즈·지연</span>
+        
+      </div>
+      <p class="ls-uicard__desc">시뮬은 완벽한 센서값, 실물은 노이즈와 지연이 있어요. 3 챕터의 랜덤화를 충분히 했다면 꽤 잘 걸어요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">구동(Action) 차이</h4>
+        <span class="ls-uicard__loc"><span class="ls-term" data-term="토크" role="link" tabindex="0">토크</span> 한계</span>
+        
+      </div>
+      <p class="ls-uicard__desc">실물 모터는 토크 한계와 응답 지연이 있어요. 모터 사양에 맞춘 <span class="ls-term" data-term="재학습" role="link" tabindex="0">재학습</span>이 필요해요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">물리 차이</h4>
+        <span class="ls-uicard__loc"><span class="ls-term" data-term="PhysX" role="link" tabindex="0">PhysX</span> ≠ 현실</span>
+        
+      </div>
+      <p class="ls-uicard__desc"><span class="ls-term" data-term="마찰력" role="link" tabindex="0">마찰</span>·<span class="ls-term" data-term="질량" role="link" tabindex="0">질량</span>·지면 <span class="ls-term" data-term="탄성" role="link" tabindex="0">탄성</span>이 달라요. 물성을 랜덤화해 학습하는 게 현실과 시뮬레이션 간의 간극을 줄여가는 방법이에요.</p>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para">실물 이식은 또 하나의 챕터 규모 프로젝트지만, 지금 스킬셋이면 <strong>몇 주의 추가 학습으로 도전 가능한 거리</strong>예요.</span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">깊이 파고들 다섯 갈래</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">피지컬 AI 안에도 갈래가 많아요.</span> <span class="ls-sentence">흥미가 가는 쪽 하나만 깊이 파도 전문가가 될 만큼 넓어요.</span></span></p>
+  </section><div class="ls-uigrid" style="grid-template-columns: repeat(3, 1fr);" data-block="ui-grid">
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">Locomotion</h4>
+        <span class="ls-uicard__loc">이동</span>
+        
+      </div>
+      <p class="ls-uicard__desc">더 빠르고 험한 보행, 점프·파쿠르. <span class="ls-term" data-term="Unitree" role="link" tabindex="0">Unitree</span>, ANYmal 계열이 이끌어요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">Manipulation</h4>
+        <span class="ls-uicard__loc">조작</span>
+        
+      </div>
+      <p class="ls-uicard__desc">집기·조립·양손 협업. Physical Intelligence가 대표 주자예요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">Navigation</h4>
+        <span class="ls-uicard__loc"><span class="ls-term" data-term="탐색" role="link" tabindex="0">탐색</span></span>
+        
+      </div>
+      <p class="ls-uicard__desc">SLAM과 대규모 환경 탐색. Isaac Navigation, Habitat이 도구예요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">HRI</h4>
+        <span class="ls-uicard__loc">사람과 협업</span>
+        
+      </div>
+      <p class="ls-uicard__desc">의도 이해와 자연어 협업. 이번 챕터에서 맛본 바로 그 분야예요.</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">Multi-agent</h4>
+        <span class="ls-uicard__loc">군집</span>
+        
+      </div>
+      <p class="ls-uicard__desc">다중 로봇의 협업과 분업. 물류 현장의 군집 제어가 대표예요.</p>
+    </div>
+  </div><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">더 깊이 갈 사람을 위한 자료</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><strong>필수(무료).</strong> <span class="ls-term" data-term="Isaac Lab" role="link" tabindex="0">Isaac Lab</span> 공식 튜토리얼(이 교재에서 배운 걸 확장해요), Spinning Up in Deep RL(OpenAI의 강화학습 이론), Sutton &amp; Barto 강화학습 교과서(온라인 공개).</span><span class="ls-para"><span class="ls-sentence"><strong>추천(무료).</strong> Modern Robotics(유튜브 강의 + 책), Underactuated Robotics, 그리고 RT-2·π0 논문.</span> <span class="ls-sentence">이제 읽혀요.</span> <span class="ls-sentence">진짜로.</span></span><span class="ls-para"><span class="ls-sentence"><strong>이 강의 근거로 쓴 자료.</strong> Figure의 Helix 기술 문서(figure.ai/news/helix, S2 7~9Hz와 S1 200Hz의 층 구조가 여기 나와요), Google DeepMind의 Gemini Robotics 발표 영상.</span> <span class="ls-sentence">앞의 두 영상 카드가 그 출처예요.</span></span><span class="ls-para"><span class="ls-sentence"><strong>커뮤니티.</strong> GitHub에 이번 프로젝트를 공개하고(README에 실패와 극복까지), r/robotics 같은 곳에서 사람을 만나고, 세계 주요 로봇 학회인 ICRA·IROS·CoRL의 발표 영상을 무료로 봐요.</span> <span class="ls-sentence">한국어 커뮤니티도 늘고 있어요.</span></span></div>
+  </details><section class="ls-stage" data-stage-key="practice" data-lesson="p4c20" data-lesson-no="20" data-stage-no="4" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">④</span>
+      <h2 class="ls-stage__label">직접 해보기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">19강에서 본 계층 구조, 기억나죠?</span> <span class="ls-sentence">①전략 ②경로 ③제어는 시스템이 맡고, 여러분 몫은 ④정책이었어요.</span> <span class="ls-sentence">이제 그 ①~③층까지 직접 만들어보는 게 가장 좋은 다음 한 걸음이에요.</span> <span class="ls-sentence">재료는 이미 다 갖고 있어요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">심화 프로젝트, 이번엔 네 손으로 대뇌를</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">19강의 예제(<span class="ls-term" data-term="두 루프 분리" role="link" tabindex="0">두 루프</span> 골격), 18강의 변환기(<span class="ls-term" data-term="검증" role="link" tabindex="0">검증</span>·clamp까지 거친 출력), 그리고 3챕터의 정책(진짜 소뇌).</span> <span class="ls-sentence">이 셋을 Isaac Sim 안에서 합치는 거예요.</span> <span class="ls-sentence">이식 순서는 아래 체크리스트대로예요.</span></span></p>
+  </section><div class="ls-checklist" data-block="checklist">
+    <div class="ls-check" data-id="p1">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><strong>1단계</strong> · Isaac Sim에서 내 로봇 + 정책(.pt)을 로드하고, 키보드로 속도 벡터를 줘본다 (LLM 없이 수동 조종부터)</div>
+    </div>
+  
+    <div class="ls-check" data-id="p2">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><strong>2단계</strong> · 19강 예제의 느린 대뇌 <span class="ls-term" data-term="루프" role="link" tabindex="0">루프</span>를 그대로 가져와 연결한다 (키보드 대신 LLM이 속도 벡터를 <span class="ls-term" data-term="갱신" role="link" tabindex="0">갱신</span>, 2~3초 주기)</div>
+    </div>
+  
+    <div class="ls-check" data-id="p3">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><strong>3단계</strong> · 상태 전달을 고도화한다 (로봇 위치·주변 물체를 user 메시지로, 18강 "숫자로, 간결하게")</div>
+    </div>
+  
+    <div class="ls-check" data-id="p4">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><strong>4단계</strong> · 미션을 부여한다 ("<span class="ls-term" data-term="큐브" role="link" tabindex="0">큐브</span> 3개를 순서대로 방문하라", 내 손으로 만든 미니 본선)</div>
+    </div>
+  
+    <div class="ls-check" data-id="p5">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text"><strong>5단계(도전)</strong> · ②층을 추가한다 (LLM은 목표점만 내고, 경로·속도는 코드로)</div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">4단계까지 가면, 그동안 시스템이 맡아주던 <strong>①전략 ②경로 ③제어층을 여러분이 직접 만든 셈</strong>이에요.</span> <span class="ls-sentence">대회에서는 ④정책 한 층만 채웠는데, 이제 위층까지 손에 들어온 거예요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">자주 마주치는 문제</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">심화 프로젝트에서 자주 만나는 세 가지.</span> <span class="ls-sentence">클릭하면 대응법이 펼쳐져요.</span></span></p>
+  </section><div class="ls-errors" data-block="error-decoder">
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">1단계부터 로봇이 안 걸어요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 정책 로드나 관측(observation) 구성이 학습 때와 달라요.<br><strong>해결:</strong> 3 챕터의 평가 코드로 돌아가 정책 단독 보행부터 재확인해요. LLM은 그다음이에요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">2단계에서 로봇이 움찔거려요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> <span class="ls-term" data-term="LLM 호출" role="link" tabindex="0">LLM 호출</span>이 메인 루프 안에 들어가 있어요.<br><strong>해결:</strong> 19강 구조 그대로, 대뇌는 별도 <span class="ls-term" data-term="스레드" role="link" tabindex="0">스레드</span>로 떼고 소뇌는 공유 명령만 읽게 해요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">어디서부터 디버깅할지 모르겠어요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 여러 층을 한꺼번에 붙였어요.<br><strong>해결:</strong> 체크리스트 순서대로 한 단계씩이에요. 각 단계가 "되는 것"을 확인하고 다음으로 가요. 본선 복기의 "한 번에 하나"와 같은 원리예요.</div>
+    </div>
+  </div><section class="ls-stage" data-stage-key="review" data-lesson="p4c20" data-lesson-no="20" data-stage-no="5" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">⑤</span>
+      <h2 class="ls-stage__label">스스로 다지기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">개념 점검하기</h3>
+    
+  </section><div class="ls-quiz" data-block="quiz">
+    <div class="ls-quiz__q" data-q="0">
+      <div class="ls-quiz__qtext">Q1. 우리가 만든 계층 구조의 강점이 아닌 것은?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="0" data-i="0" data-correct="0">층별로 따로 디버깅·개선할 수 있다</button><button class="ls-quiz__opt" data-q="0" data-i="1" data-correct="0">각 층이 잘하는 도구를 골라 쓸 수 있다</button><button class="ls-quiz__opt" data-q="0" data-i="2" data-correct="1">새로운 상황에 모델 하나로 유연하게 일반화한다</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="1">
+      <div class="ls-quiz__qtext">Q2. Sim-to-Real에서 <span class="ls-term" data-term="도메인 랜덤화" role="link" tabindex="0">도메인 랜덤화</span>가 현실과 시뮬레이션의 간극을 줄여주는 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="1" data-i="0" data-correct="0">학습이 빨라져서</button><button class="ls-quiz__opt" data-q="1" data-i="1" data-correct="0">하드웨어 비용을 줄여줘서</button><button class="ls-quiz__opt" data-q="1" data-i="2" data-correct="1">다양한 물성을 미리 겪어 현실의 차이를 견디게 해줘서</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="2">
+      <div class="ls-quiz__qtext">Q3. 심화 프로젝트를 "키보드 수동 조종"부터 시작하는 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="2" data-i="0" data-correct="0">LLM보다 키보드가 재미있어서</button><button class="ls-quiz__opt" data-q="2" data-i="1" data-correct="0">LLM 서버가 없을 때를 대비해서</button><button class="ls-quiz__opt" data-q="2" data-i="2" data-correct="1">아래층(정책)이 되는 걸 확인한 뒤 위층을 얹으려고</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">본선에 가든, 가지 않든</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">본선 무대에 서는 건 일부예요.</span> <span class="ls-sentence">그래도 정말 괜찮아요.</span> <span class="ls-sentence">이 여정의 진짜 목적은 트로피가 아니라 <strong>직접 시도하고 한 바퀴 돌아본 경험</strong> 그 자체거든요.</span> <span class="ls-sentence">완주가 아니라 도전이 목적이에요.</span></span><span class="ls-para"><span class="ls-sentence">이번에 끝까지 못 갔다면 다음 회차가 있어요.</span> <span class="ls-sentence">오늘 만든 정책과 감각은 그대로 남아 다음 출발선을 훨씬 앞으로 당겨줘요.</span> <span class="ls-sentence">그리고 이 길은 대회 밖으로도 이어져요.</span> <span class="ls-sentence">로보틱스·AI는 지금 막 문이 열리는 분야예요.</span></span></p>
+  </section><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">한 가지만 기억한다면 이거예요.</span> <span class="ls-sentence">여러분은 AI를 "쓰는" 사람이 아니라, <strong>AI에게 일을 시켜 더 큰 시스템을 움직이는 사람</strong>이 됐어요.</span> <span class="ls-sentence">그 감각은 어느 분야로 가든 무기가 돼요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">20강 한눈에 정리</h3>
+    
+  </section><div class="ls-summary" data-block="summary" data-ga-observed="1"><ul><li><strong>계층 구조는 지금의 실용 표준, VLA는 최전선.</strong> 분업을 해본 사람만이 통합을 평가할 수 있어요</li><li><strong>Sim-to-Real의 세 과제는 관측·구동·물리 차이.</strong> 랜덤화가 그 간극을 줄여줘요</li><li>다음 한 걸음은 <strong>①~③층을 내 손으로</strong> 만드는 심화 프로젝트예요. 재료는 이미 다 있어요</li><li>도구는 전부 무료고, <strong>포트폴리오(코드·영상·기록)가 무기</strong>예요</li><li>로봇공학은 느린 분야예요. <strong>긴 호흡에 맞는 사람이 오래 가요.</strong> 여러분은 이미 일찍 시작했어요</li></ul></div><div class="ls-quote" data-block="quote-block">
+    <div class="ls-quote__eyebrow">마지막으로 하나만</div>
+    <blockquote class="ls-quote__body"><span class="ls-para"><span class="ls-sentence"><strong>처음 학습시킨 로봇이 처음 혼자 걷던 순간의 감정.</strong> 그걸 잊지 마세요.</span> <span class="ls-sentence">그 감정이 여러분을 5년, 10년 끌고 갈 에너지예요.</span></span></blockquote>
+    
+  </div><button class="read__next-inline is-revealed" type="button" aria-label="다음 강의로 이동 — 21강의. 부록 · 본선 연습 해보기">
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">21강의. 부록 · 본선 연습 해보기</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      </button></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: GLOSSARY (단어집) ============== -->
+      <section class="view view--glossary" data-view="glossary" hidden="">
+        <main class="glossary__main">
+          <article class="glossary__list" id="glossaryList"></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: EXPLORE (가이드북 안내 중심) ============== -->
+      <section class="view view--explore" data-view="explore" hidden="">
+        <div class="explore__inner">
+          <header class="explore__hero">
+            <div class="explore__eyebrow">NAVER CONNECT ROBOTICS 2026 · 가이드북</div>
+            <h2 class="explore__title">
+              처음 보시는 분들도<br>
+              <strong>천천히 따라오면 돼요</strong>
+            </h2>
+            <p class="explore__lead">
+              21강짜리 가이드북이에요. 가상 로봇을 만드는 것부터 시작해서, 감각을 달고,
+              스스로 걷는 법을 가르치다 보면, 끝에는 말 한 마디로 움직이는 자율 로봇이 손에 남아요.
+              하루에 한 강씩 가도 좋고, 주말에 몰아서 봐도 좋아요. 본인 페이스로요.
+            </p>
+          </header>
+
+          <section class="explore__steps">
+            <div class="explore-eyebrow-2">쓰는 법</div>
+            <ol class="explore-guide__rows">
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">01</div>
+                <div>
+                  <h4 class="explore-guide__title">챕터부터 하나 골라요</h4>
+                  <p class="explore-guide__body">
+                    탄생 → 각성 → 진화 → 초월, 이 네 묶음이에요.
+                    처음이면 그냥 1번 <b>탄생</b>부터 들어가시면 돼요.
+                    좌측 <b>목차</b>에서 네 챕터가 한눈에 보여요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">02</div>
+                <div>
+                  <h4 class="explore-guide__title">강의 안에서 넘어다녀요</h4>
+                  <p class="explore-guide__body">
+                    강의는 글과 코드가 섞인 형태예요.
+                    좌측 사이드바에서 강을 옮겨다닐 수 있고, 키보드 <b>← →</b>로도 됩니다.
+                    모바일이면 상단 드롭다운으로 강을 바꿔주세요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">03</div>
+                <div>
+                  <h4 class="explore-guide__title">코드는 직접 돌려보세요</h4>
+                  <p class="explore-guide__body">
+                    글로만 읽으면 잊혀요. 강의 안 Python 코드는 Isaac Sim에 그대로 붙여 돌리면 됩니다.
+                    한 번씩 직접 돌려본 사람만 다음 강을 편하게 봐요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">04</div>
+                <div>
+                  <h4 class="explore-guide__title">끝까지 가면 본선이에요</h4>
+                  <p class="explore-guide__body">
+                    21강을 다 마치면 자율로 걸어다니는 휴머노이드 로봇이 손에 남아요.
+                    그걸 들고 <b>네이버 커넥트 로보틱스 본선</b>에 나가시면 됩니다.
+                  </p>
+                </div>
+              </div>
+            </ol>
+          </section>
+
+          <section class="explore__support">
+            <div class="explore-eyebrow-2">대회 지원 안내</div>
+            <h3 class="explore-h3">참가팀에게 이런 지원이 있어요</h3>
+            <div class="explore__cards" id="exploreCards">
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">2억 원 상당<br>AI 로보틱스 패키지</h3>
+                <p class="support-card__body">
+                  우승팀이 소속된 학교에 고성능 GPU와 AI 시스템이 들어가요.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">글로벌 표준<br>Isaac Sim 제공</h3>
+                <p class="support-card__body">
+                  엔비디아가 실제로 쓰는 로봇 트레이닝 시뮬레이터, 참가하면 그대로 받습니다.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">NVIDIA 엔지니어<br>전문가 멘토링</h3>
+                <p class="support-card__body">
+                  막힐 때 현업 엔지니어가 옆에서 도와줘요. 혼자 끙끙대지 않아도 돼요.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <div class="explore__cta-row">
+            <button class="explore__cta" data-go="books">
+              <span class="explore__cta-arrow" style="font-size:1.5em">▸</span>
+              <span>메인 화면으로 가기</span>
+            </button>
+          </div>
+
+          <footer class="explore__footer">
+            <div class="explore__footer-row">
+              <div class="explore__footer-brand">
+                <div class="explore__footer-title">NAVER CONNECT ROBOTICS CUP</div>
+                <div class="explore__footer-tag">Isaac Sim · 가이드북</div>
+              </div>
+              <div class="explore__footer-cols">
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">관련</div>
+                  <a class="explore__footer-link" href="https://github.com/entryofficial-ctrl/edu-content" target="_blank" rel="noopener">GitHub</a>
+                  <a class="explore__footer-link" href="https://developer.nvidia.com/isaac-sim" target="_blank" rel="noopener">Isaac Sim</a>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">대회</div>
+                  <span class="explore__footer-link">NAVER CONNECT ROBOTICS CUP 2026</span>
+                  <span class="explore__footer-link">NVIDIA Partner</span>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">교육 주관</div>
+                  <span class="explore__footer-link">네이버 커넥트재단</span>
+                </div>
+              </div>
+            </div>
+            <div class="explore__footer-legal">
+              © 2026 NAVER CONNECT ROBOTICS CUP. Powered by NAVER CONNECT.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <!-- 이용 안내 팝업 (좌측 메뉴 하단 「이용 안내」로 열림) -->
+    <div class="legal" id="legalModal" hidden="">
+      <div class="legal__backdrop" data-legal-close=""></div>
+      <div class="legal__panel" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button class="legal__close" type="button" data-legal-close="" aria-label="닫기">✕</button>
+
+        <div class="legal__eyebrow">NAVER CONNECT ROBOTICS CUP 2026</div>
+        <h2 class="legal__title" id="legalTitle">저작권 및 이용 안내</h2>
+        <p class="legal__copy">© NAVER Connect Foundation. All rights reserved.</p>
+
+        <p class="legal__lead">이 가이드북의 모든 글·이미지·코드·구성은 네이버 커넥트재단에 저작권이 있습니다. 누구나 웹에서 자유롭게 읽고 학습에 활용할 수 있습니다.</p>
+
+        <div class="legal__cols">
+          <section class="legal__col legal__col--ok">
+            <h3 class="legal__col-head"><span class="legal__mark">○</span> 이렇게 쓰실 수 있어요</h3>
+            <ul class="legal__list">
+              <li>수업·발표에서 화면으로 보여주기</li>
+              <li>출처를 밝히고 일부를 인용하기</li>
+            </ul>
+          </section>
+          <section class="legal__col legal__col--no">
+            <h3 class="legal__col-head"><span class="legal__mark">×</span> 이건 허락이 필요해요</h3>
+            <ul class="legal__list">
+              <li>내용을 복제해 다시 배포하기</li>
+              <li>고쳐 쓰거나 2차 저작물로 만들기</li>
+              <li>상업적 목적으로 이용하기</li>
+              <li>다른 서비스·교재에 옮겨 싣기</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="legal__note">실습에 쓰인 오픈소스(NVIDIA Isaac Sim·Isaac Lab, three.js 등)와 인용한 영상·이미지는 각 권리자에게 저작권이 있으며, 해당 라이선스와 출처 표기를 따릅니다.</p>
+
+        <p class="legal__contact">이용 문의 · 사용 허락 요청 — <a href="mailto:ncrc@connect.or.kr">ncrc@connect.or.kr</a></p>
+      </div>
+    </div>
+
+    <script type="module" src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/app.js.다운로드"></script>
+    <script type="module" src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/search.js.다운로드"></script>
+    <script src="./20강의. 여기까지, 그리고 그다음 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/comments.js.다운로드" defer=""></script>
+  
+
+<div class="player" id="player" data-hook0=""><div class="pwrap"><span class="px" id="px">✕</span><div class="pbox" id="pbox"></div></div></div></body></html>

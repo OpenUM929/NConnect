@@ -1,0 +1,401 @@
+// 전역 본문 검색 — 검색어가 어느 강 어느 자리에 나오는지 찾아 그 블록으로 이동시킨다.
+//
+// 색인은 빌드하지 않고 첫 검색 때 lessons/*.js 를 모두 import 해 그 자리에서 만든다.
+// 생성 파일(glossary.js 처럼)로 두면 본문을 고칠 때마다 색인이 어긋나기 때문이다.
+// 강의 데이터가 단계 → 블록 구조라, 어느 단계 어느 블록에서 나왔는지까지 짚을 수 있다.
+//
+// 이 파일 하나로 UI·CSS·색인이 모두 끝난다(styles.css 미변경). index.html 은 script 한 줄만 추가.
+import { BOOKS } from './data.js';
+import { GLOSSARY as GLOSSARY_BASE, GLOSSARY_ALIAS as GLOSSARY_ALIAS_BASE } from './glossary.js';
+import { GLOSSARY_EXTRA, GLOSSARY_ALIAS_EXTRA } from './glossary-extra.js';
+// 소비처(lesson.js·app.js)와 같은 방식으로 합친다. base만 읽으면 수기 추가분이 검색에서 빠진다.
+const GLOSSARY = { ...GLOSSARY_BASE, ...GLOSSARY_EXTRA };
+const GLOSSARY_ALIAS = { ...GLOSSARY_ALIAS_BASE, ...GLOSSARY_ALIAS_EXTRA };
+
+// 정답이 드러나므로 검색 대상에서 뺀다.
+const SKIP_BLOCK_TYPES = new Set(['quiz', 'challenges']);
+// 사람이 읽는 글이 아닌 값(그림·색·경로·아이콘)은 색인하지 않는다.
+const SKIP_KEYS = new Set([
+  'svg', 'src', 'img', 'icon', 'cover', 'glyph', 'color', 'fill', 'stroke', 'href', 'url',
+  'type', 'id', 'key', 'fit', 'pos', 'emoji', 'medal', 'hideCopy', 'stageH', 'ver',
+]);
+// 자리별 무게 — 제목에서 걸린 것이 본문보다 위로 온다.
+const W = { lesson: 100, subtitle: 62, objective: 58, blockTitle: 50, stage: 40, note: 26, body: 30, code: 18 };
+const KIND_LABEL = { objective: '학습 목표', blockTitle: '중제목', stage: '단계 소개', note: '코드 노트', code: '코드', body: '본문', subtitle: '부제', lesson: '강 제목' };
+
+// 태그는 빈 문자로 지운다. 공백으로 바꾸면 <strong>도메인 랜덤화</strong>라고 → '랜덤화 라고' 가 되어
+// 조사가 떨어져 보이고, 렌더된 DOM 글자와도 어긋나 검색 결과에서 그 블록을 못 찾는다. <br> 만 공백.
+const clean = (s) => String(s).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const norm = (s) => String(s).replace(/\s+/g, ' ').trim();
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+let INDEX = null;          // [{ book, lid, no, ltitle, stage, blockTitle, kind, text, low }]
+let TERMS = null;          // [{ term, short, low }]
+let building = null;       // 중복 빌드 방지
+let PENDING = null;        // 강 이동 뒤 스크롤할 대상
+
+// ── 색인 ────────────────────────────────────────────────────────
+function pushText(out, meta, kind, raw) {
+  const t = kind === 'code' ? norm(raw) : clean(raw);
+  if (t.length < 2) return;
+  // 코드가 아닌 자리에서 한글도 공백도 없는 짧은 토큰은 클래스명·식별자일 뿐이다.
+  if (kind !== 'code' && t.length < 5 && !/[가-힣\s]/.test(t)) return;
+  out.push({ ...meta, kind, text: t, low: t.toLowerCase() });
+}
+
+function walkAny(node, meta, out, kind) {
+  if (node == null) return;
+  if (typeof node === 'string') { pushText(out, meta, kind, node); return; }
+  if (Array.isArray(node)) { node.forEach((v) => walkAny(v, meta, out, kind)); return; }
+  if (typeof node !== 'object') return;
+  for (const [k, v] of Object.entries(node)) {
+    if (SKIP_KEYS.has(k)) continue;
+    walkAny(v, meta, out, kind);
+  }
+}
+
+// code-block 의 lines 는 [['var','world'],['plain','.']] 같은 토큰 쌍이라, 한 줄로 이어 붙여야 코드가 된다.
+function linesToCode(lines) {
+  return (lines || [])
+    .map((l) => (l && Array.isArray(l.tokens) ? l.tokens.map((t) => (Array.isArray(t) ? t[1] : '')).join('') : ''))
+    .filter((s) => s.trim());
+}
+
+function indexBlock(block, meta, out) {
+  if (!block || SKIP_BLOCK_TYPES.has(block.type)) return;
+  const p = block.props || {};
+  const bt = clean(p.title || '');
+  const m = { ...meta, blockTitle: bt };
+  if (bt) pushText(out, m, 'blockTitle', bt);
+
+  for (const [k, v] of Object.entries(p)) {
+    if (k === 'title' || SKIP_KEYS.has(k)) continue;
+    if (k === 'lines' && Array.isArray(v)) { linesToCode(v).forEach((l) => pushText(out, m, 'code', l)); continue; }
+    if (k === 'copyText' && typeof v === 'string') { v.split('\n').forEach((l) => pushText(out, m, 'code', l)); continue; }
+    if (k === 'notes') { walkAny(v, m, out, 'note'); continue; }
+    if (k === 'items' && meta.stageKey === 'objective') { walkAny(v, m, out, 'objective'); continue; }
+    walkAny(v, m, out, 'body');
+  }
+}
+
+async function buildIndex() {
+  const lessons = [];
+  BOOKS.forEach((b) => (b.chapters || []).forEach((c) => lessons.push({ book: b.id, lid: c.id, no: c.no, ltitle: c.title })));
+
+  const mods = await Promise.all(lessons.map((l) => import(`./lessons/${l.lid}.js`).then((m) => m.default).catch(() => null)));
+  const out = [];
+  lessons.forEach((l, i) => {
+    const d = mods[i];
+    if (!d) return;
+    const base = { book: l.book, lid: l.lid, no: l.no, ltitle: d.title || l.ltitle };
+    pushText(out, { ...base, stage: '', blockTitle: '' }, 'lesson', base.ltitle);
+    if (d.subtitle) pushText(out, { ...base, stage: '', blockTitle: '' }, 'subtitle', d.subtitle);
+    (d.stages || []).forEach((st) => {
+      const meta = { ...base, stage: st.label || '', stageKey: st.key || '' };
+      if (st.intro) pushText(out, { ...meta, blockTitle: '' }, 'stage', st.intro);
+      (st.blocks || []).forEach((b) => indexBlock(b, meta, out));
+    });
+  });
+
+  const aliasOf = new Map();
+  for (const [a, t] of Object.entries(GLOSSARY_ALIAS)) {
+    if (!GLOSSARY[t]) continue;
+    if (!aliasOf.has(t)) aliasOf.set(t, []);
+    aliasOf.get(t).push(a);
+  }
+  const terms = Object.entries(GLOSSARY).map(([term, v]) => {
+    const al = aliasOf.get(term) || [];
+    return {
+      term, short: clean(v && v.short) || '', alias: al,
+      // 표제어·다른 표기·뜻풀이를 모두 검색 키로 (「에셋」으로 찾아도 Asset 이 나오게)
+      low: (term + ' ' + al.join(' ') + ' ' + clean(v && v.short)).toLowerCase(),
+      lowTerm: (term + ' ' + al.join(' ')).toLowerCase(),
+    };
+  });
+  return { index: out, terms };
+}
+
+function ensureIndex() {
+  if (INDEX) return Promise.resolve();
+  if (!building) building = buildIndex().then((r) => { INDEX = r.index; TERMS = r.terms; });
+  return building;
+}
+
+// ── 검색 ────────────────────────────────────────────────────────
+function snippet(text, needle) {
+  const at = text.toLowerCase().indexOf(needle);
+  if (at < 0) return esc(text.slice(0, 90));
+  const from = Math.max(0, at - 34);
+  const to = Math.min(text.length, at + needle.length + 52);
+  return (from > 0 ? '…' : '') + esc(text.slice(from, at))
+    + '<mark>' + esc(text.slice(at, at + needle.length)) + '</mark>'
+    + esc(text.slice(at + needle.length, to)) + (to < text.length ? '…' : '');
+}
+
+function runSearch(q) {
+  const needle = q.trim().toLowerCase();
+  if (!needle) return { groups: [], terms: [], total: 0 };
+
+  const byLesson = new Map();
+  let total = 0;
+  for (const e of INDEX) {
+    if (!e.low.includes(needle)) continue;
+    total++;
+    if (!byLesson.has(e.lid)) byLesson.set(e.lid, { book: e.book, lid: e.lid, no: e.no, ltitle: e.ltitle, hits: [] });
+    byLesson.get(e.lid).hits.push(e);
+  }
+  const groups = [...byLesson.values()].sort((a, b) => String(a.no).localeCompare(String(b.no)));
+  groups.forEach((g) => {
+    // 같은 블록에서 여러 번 걸리면 한 줄로 합친다.
+    const seen = new Set();
+    g.hits = g.hits
+      .sort((a, b) => (W[b.kind] || 0) - (W[a.kind] || 0))
+      .filter((h) => { const k = h.stage + '|' + h.blockTitle + '|' + h.kind; if (seen.has(k)) return false; seen.add(k); return true; });
+    g.more = Math.max(0, g.hits.length - 4);
+    g.hits = g.hits.slice(0, 4);
+  });
+  // 표제어(또는 다른 표기)가 걸린 것 → 뜻풀이만 걸린 것 순. 이 정렬이 없어서 앞의 6개에
+  // 잘리며 「시뮬레이션」처럼 표제어로 있는 낱말이 목록에서 빠지곤 했다.
+  const rankOf = (t) => {
+    const names = t.lowTerm.split(' ').filter(Boolean);
+    if (names.includes(needle)) return 0;                       // 완전히 같은 이름
+    if (names.some((n) => n.startsWith(needle))) return 1;      // 이름이 그 말로 시작
+    if (t.lowTerm.includes(needle)) return 2;                   // 이름 안에 있음
+    return 3;                                                   // 뜻풀이에만 있음
+  };
+  const terms = TERMS.filter((t) => t.low.includes(needle))
+    .map((t) => ({ ...t, rank: rankOf(t) }))
+    .sort((a, b) => a.rank - b.rank || a.term.length - b.term.length || a.term.localeCompare(b.term, 'ko'))
+    .slice(0, 8);
+  return { groups, terms, total };
+}
+
+// ── 강 이동 후 그 블록으로 스크롤 ───────────────────────────────
+function scrollToHit(needle) {
+  const host = document.getElementById('readContent');
+  if (!host) return false;
+  const want = norm(needle).toLowerCase();
+  const hit = [...host.children].find((c) => norm(c.textContent).toLowerCase().includes(want));
+  if (!hit) return false;
+  hit.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  hit.classList.add('lsq-flash');
+  setTimeout(() => hit.classList.remove('lsq-flash'), 1800);
+  return true;
+}
+
+function waitAndScroll(needle, tries = 60) {
+  if (scrollToHit(needle)) return;
+  if (tries <= 0) return;
+  setTimeout(() => waitAndScroll(needle, tries - 1), 100);
+}
+
+function jump(hit) {
+  close();
+  const hash = `#read/${hit.book}/${hit.lid}`;
+  if (location.hash === hash) { waitAndScroll(hit.text); return; }
+  PENDING = hit.text;
+  location.hash = hash;
+}
+
+// 단어 사전 결과 → 사전 페이지의 그 표제어로. app.js renderGlossary(term)가 페이지를 찾아 강조까지 한다.
+function jumpTerm(term) {
+  close();
+  const hash = '#glossary/' + encodeURIComponent(term);
+  if (location.hash === hash) location.hash = '#glossary';   // 같은 주소면 한 번 비워 다시 타게 한다
+  location.hash = hash;
+}
+
+window.addEventListener('hashchange', () => {
+  if (!PENDING) return;
+  const n = PENDING; PENDING = null;
+  waitAndScroll(n);
+});
+
+// ── UI ──────────────────────────────────────────────────────────
+const CSS = `
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+`;
+
+let wrap, input, bodyEl, footEl, cur = -1, rows = [];
+
+function injectCss() {
+  if (document.getElementById('lsq-css')) return;
+  const st = document.createElement('style');
+  st.id = 'lsq-css';
+  st.textContent = CSS;
+  document.head.appendChild(st);
+}
+
+function build() {
+  injectCss();
+  wrap = document.createElement('div');
+  wrap.className = 'lsq-wrap';
+  wrap.setAttribute('role', 'dialog');
+  wrap.setAttribute('aria-label', '강의 본문 검색');
+  wrap.innerHTML = `
+    <div class="lsq-dim" data-close></div>
+    <div class="lsq-panel">
+      <div class="lsq-head">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+        <input class="lsq-input" type="search" autocomplete="off" spellcheck="false" aria-label="검색어" placeholder="찾고 싶은 낱말을 넣어보세요.">
+        <span class="lsq-esc">esc</span>
+      </div>
+      <div class="lsq-body" data-body></div>
+      <div class="lsq-foot" data-foot><span>↑ ↓ 이동</span><span>Enter 그 자리로</span></div>
+    </div>`;
+  document.body.appendChild(wrap);
+  input = wrap.querySelector('.lsq-input');
+  bodyEl = wrap.querySelector('[data-body]');
+  footEl = wrap.querySelector('[data-foot]');
+
+  wrap.querySelector('[data-close]').addEventListener('click', close);
+  input.addEventListener('input', onType);
+  input.addEventListener('keydown', onKeyInPanel);
+}
+
+// 강의 화면 상단 바에 검색 칸을 노출한다(단축키를 모르는 사람도 보이게).
+function mountBar() {
+  const bar = document.querySelector('.read__bar');
+  if (!bar || bar.querySelector('.lsq-bar')) return;
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'lsq-bar';
+  b.setAttribute('aria-label', '강의 본문 검색');
+  b.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg><span>검색</span><span class="lsq-k">( / )</span>`;
+  b.addEventListener('click', () => open());
+  // 강 이동 버튼 왼쪽에 둔다(맨 오른쪽 끝은 다음 강의 버튼 자리).
+  const nav = bar.querySelector('.read__nav');
+  if (nav) bar.insertBefore(b, nav); else bar.appendChild(b);
+}
+
+let timer = null;
+function onType() {
+  clearTimeout(timer);
+  timer = setTimeout(render, 110);
+}
+
+function render() {
+  const q = input.value;
+  if (!q.trim()) {
+    bodyEl.innerHTML = '<div class="lsq-empty">강 제목, 본문, 학습 목표, 실습 코드, 단어 사전을 함께 찾아요.</div>';
+    rows = []; cur = -1; footEl.firstChild.textContent = '↑ ↓ 이동';
+    return;
+  }
+  if (!INDEX) {
+    bodyEl.innerHTML = '<div class="lsq-empty">본문을 불러오는 중이에요…</div>';
+    ensureIndex().then(render);
+    return;
+  }
+  const { groups, terms, total } = runSearch(q);
+  if (!groups.length && !terms.length) {
+    bodyEl.innerHTML = `<div class="lsq-empty"><b>${esc(q)}</b>는 강의 본문에 없어요.<br>낱말을 줄여서 다시 찾아보세요.</div>`;
+    rows = []; cur = -1;
+    footEl.firstChild.textContent = '0곳';
+    return;
+  }
+  const needle = q.trim().toLowerCase();
+  let html = '';
+  groups.forEach((g) => {
+    html += `<div class="lsq-lesson">${esc(g.no)}강 · ${esc(g.ltitle)}</div>`;
+    g.hits.forEach((h) => {
+      const where = [h.stage, h.blockTitle].filter(Boolean).map(esc).join(' · ');
+      html += `<button type="button" class="lsq-row${h.kind === 'code' ? ' lsq-code' : ''}" data-lid="${esc(h.lid)}" data-book="${esc(h.book)}" data-text="${esc(h.text)}">`
+        + `<div class="lsq-where">${where || '강 머리'} <b>${KIND_LABEL[h.kind] || ''}</b></div>`
+        + `<div class="lsq-snip">${snippet(h.text, needle)}</div></button>`;
+    });
+    if (g.more) html += `<div class="lsq-more">이 강에 ${g.more}곳 더 있어요</div>`;
+  });
+  if (terms.length) {
+    html += '<div class="lsq-termhead">단어 사전</div>';
+    terms.forEach((t) => {
+      const other = t.alias.length ? `<span class="lsq-term-a">${esc(t.alias.slice(0, 4).join(' · '))}</span>` : '';
+      html += `<button type="button" class="lsq-row lsq-term" data-term="${esc(t.term)}">`
+        + `<div class="lsq-term-t">${esc(t.term)}${other}</div>`
+        + `<div class="lsq-term-d">${snippet(t.short, needle)}</div></button>`;
+    });
+  }
+  bodyEl.innerHTML = html;
+  bodyEl.scrollTop = 0;
+  rows = [...bodyEl.querySelectorAll('.lsq-row')];
+  rows.forEach((r) => r.addEventListener('click', () => (r.dataset.term
+    ? jumpTerm(r.dataset.term)
+    : jump({ book: r.dataset.book, lid: r.dataset.lid, text: r.dataset.text }))));
+  cur = -1;
+  footEl.firstChild.textContent = `${total}곳 · ${groups.length}개 강`;
+}
+
+function move(d) {
+  if (!rows.length) return;
+  if (cur >= 0) rows[cur].classList.remove('is-cur');
+  cur = (cur + d + rows.length) % rows.length;
+  rows[cur].classList.add('is-cur');
+  rows[cur].scrollIntoView({ block: 'nearest' });
+}
+
+function onKeyInPanel(e) {
+  if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+  else if (e.key === 'Enter') { e.preventDefault(); (cur >= 0 ? rows[cur] : rows[0]) && (cur >= 0 ? rows[cur] : rows[0]).click(); }
+  else if (e.key === 'Escape') { e.preventDefault(); close(); }
+}
+
+function open(seed) {
+  if (!wrap) build();
+  wrap.classList.add('is-on');
+  input.value = seed || '';
+  render();
+  ensureIndex();
+  setTimeout(() => input.focus(), 0);
+}
+
+function close() {
+  if (wrap) wrap.classList.remove('is-on');
+}
+
+// `/` 는 글자를 넣는 중이면 그대로 입력돼야 한다. 입력 칸 밖에서만 검색을 연다.
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && wrap && wrap.classList.contains('is-on')) { e.preventDefault(); e.stopPropagation(); close(); return; }
+  const t = e.target;
+  const typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+  if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open(); return; }
+  if (e.key === '/' && !typing) { e.preventDefault(); open(); }
+}, true);
+
+function init() { injectCss(); mountBar(); }
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+// .read__bar 는 index.html 정적 마크업이라 한 번 꽂으면 된다. 해시 이동은 값싼 안전망으로만 둔다.
+window.addEventListener('hashchange', () => setTimeout(mountBar, 60));

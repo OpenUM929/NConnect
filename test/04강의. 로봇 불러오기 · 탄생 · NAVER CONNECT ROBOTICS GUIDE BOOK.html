@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://robotics.connect.or.kr/lecture#read/creation/p1c4 -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/js"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function __gaPath(){var h=(location.hash||'').replace(/^#/,'');try{return decodeURIComponent(h);}catch(x){return h;}}function __gaUid(){var m=/(?:^|;\s*)gaUid=([^;]*)/.exec(document.cookie);return m?decodeURIComponent(m[1]):'';}window.__gaV='2026-08-13';var __gaDbg=/^localhost$|^127\.|^dev\./.test(location.hostname);var __gaCfg={lecture_path:__gaPath()},__gaU=__gaUid();if(__gaU)__gaCfg.user_id=__gaU;if(__gaDbg){__gaCfg.debug_mode=true;__gaCfg.traffic_type='internal';}gtag('js',new Date());gtag('config','G-KVC9YYWB8M',__gaCfg);var __gaLastHref=location.href;addEventListener('hashchange',function(){setTimeout(function(){if(location.href===__gaLastHref)return;__gaLastHref=location.href;gtag('event','page_view',{page_location:location.href,page_title:document.title,lecture_path:__gaPath()});},0);});var __gaIO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5)return;__gaIO.unobserve(e.target);var d=e.target.dataset;gtag('event','lecture_stage_view',{lecture_path:__gaPath(),lesson:d.lesson||'',lesson_no:d.lessonNo||'',stage_key:d.stageKey||'',stage_no:d.stageNo||'',stage_total:document.querySelectorAll('.ls-stage').length});});},{threshold:0.5,rootMargin:'0px 0px -50% 0px'});function __gaLesson(){var s=document.querySelector('.ls-stage');if(s)return{lesson:s.dataset.lesson||'',no:s.dataset.lessonNo||''};var seg=(__gaPath().split('/').pop()||''),m=/c(\d+)$/.exec(seg);return{lesson:seg,no:m?m[1]:''};}var __gaCO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5&&e.intersectionRect.height<innerHeight*0.5)return;__gaCO.unobserve(e.target);var L=__gaLesson();gtag('event','lecture_complete',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no});});},{threshold:[0,0.25,0.5,0.75,1]});addEventListener('click',function(e){if(!e.target||!e.target.closest)return;var mo=e.target.closest('.ls-gpanel__more');if(mo){var LM=__gaLesson(),nm=document.querySelector('.ls-gpanel__name'),tm='';try{tm=(nm&&nm.textContent.trim())||decodeURIComponent((mo.getAttribute('href')||'').split('/').pop()||'');}catch(x){}gtag('event','glossary_more_click',{lecture_path:__gaPath(),lesson:LM.lesson,lesson_no:LM.no,term:tm});}var nb=e.target.closest('.read__next-inline,.read__next');if(nb){var LN=__gaLesson();gtag('event','next_lesson_click',{lecture_path:__gaPath(),lesson:LN.lesson,lesson_no:LN.no,next_position:nb.classList.contains('read__next-inline')?'bottom':'top'});}var cp=e.target.closest('.ls-code__copy,.ls-coderun__copy,.ls-chall__copybtn');if(cp){var rt=cp.closest('.ls-code,.ls-coderun,.ls-chall'),LC=__gaLesson(),kd='code',cid='',ctt='';if(rt){kd=rt.classList.contains('ls-chall')?'challenge':rt.classList.contains('ls-coderun')?'code_run':'code';cid=kd==='challenge'?(rt.dataset.id||''):kd==='code_run'?'run':String([].indexOf.call(document.querySelectorAll('.ls-code'),rt)+1);var te=rt.querySelector('.ls-code__title,.ls-chall__title,.ls-coderun__tab.is-on');if(te)ctt=te.textContent.trim().replace(/\s+/g,' ').slice(0,100);}gtag('event','code_copy_click',{lecture_path:__gaPath(),lesson:LC.lesson,lesson_no:LC.no,copy_kind:kd,copy_id:cid,copy_title:ctt});}var w=e.target.closest('.ls-term');if(w){var LW=__gaLesson();gtag('event','term_click',{lecture_path:__gaPath(),lesson:LW.lesson,lesson_no:LW.no,term:w.dataset.term||'',term_text:(w.textContent||'').trim().replace(/\s+/g,' ').slice(0,100)});}var t=e.target.closest('.ls-quiz__opt,.ls-quiz_opt');if(!t)return;var box=t.closest('.ls-quiz__q')||t.parentElement;if(!box||box.getAttribute('data-ga-answered'))return;box.setAttribute('data-ga-answered','1');var d=t.dataset,L=__gaLesson(),ok=d.correct==='1';gtag('event','quiz_answer',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no,quiz_no:String((parseInt(d.q,10)||0)+1),quiz_option_no:String((parseInt(d.i,10)||0)+1),quiz_option_text:(t.textContent||'').trim().replace(/\s+/g,' ').slice(0,100),quiz_result:ok?'correct':'wrong',quiz_correct:ok?1:0});},true);function __gaScan(){if(!__gaIO)return;var n=document.querySelectorAll('.ls-stage:not([data-ga-observed])');for(var i=0;i<n.length;i++){n[i].setAttribute('data-ga-observed','1');__gaIO.observe(n[i]);}var c=document.querySelectorAll('[data-block="summary"]:not([data-ga-observed])');for(var j=0;j<c.length;j++){c[j].setAttribute('data-ga-observed','1');__gaCO.observe(c[j]);}}function __gaWatch(){__gaScan();new MutationObserver(function(){if(__gaT)return;__gaT=setTimeout(function(){__gaT=0;__gaScan();},200);}).observe(document.body,{childList:true,subtree:true});addEventListener('hashchange',function(){setTimeout(__gaScan,300);});}var __gaT=0;[400,1200,3000].forEach(function(ms){setTimeout(__gaScan,ms);});if(document.readyState==='loading')addEventListener('DOMContentLoaded',__gaWatch);else __gaWatch();</script><!--<base href="/lecture/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK</title>
+    <meta name="description" content="네이버 커넥트 로보틱스 경진대회 2026 — Isaac Sim으로 배우는 로봇 AI 가이드북">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Gowun Dodum(본문+디스플레이) + Noto Sans KR(폴백 한글, 실제 로딩) + JetBrains Mono(코드) -->
+    <link href="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2" rel="stylesheet">
+    <!-- marked.js: 강의 markdown 렌더링 -->
+    <script src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/marked.min.js.다운로드"></script>
+
+    <!-- bare specifier(three / three/addons) 해석용 — 로컬 vendor로 고정해 CDN 의존 제거.
+         8강 lidar-orbit.js, 17강 errand-scene.js, voxel-kit.js 등이 사용. three r160 + addons 동봉(/vendor/three-addons/). -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js",
+        "three/addons/": "./vendor/three-addons/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/styles.css">
+  <style id="lsq-css">
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+</style><link id="p1c0-hook-css" rel="stylesheet" href="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/p1c0-hook.css"><link id="p1c0-hook-font" rel="stylesheet" href="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2(1)"><style id="ls-balance-joints-css">
+    .ls-balance__joints{display:flex;gap:6px;justify-content:center;margin:6px 0 2px;min-height:22px}
+    .ls-balance__joints span{font-size:11.5px;font-family:var(--font-mono);padding:3px 9px;border-radius:999px;
+      border:1px solid var(--ls-border);color:#9a9384;background:transparent;opacity:.35;transition:all .18s}
+    .ls-balance__joints span.on{opacity:1;color:#5a3d0a;background:#f0d9a5;border-color:#c8a046;transform:translateY(-2px)}</style><style id="ls-uicard-video-css">
+    a.ls-uicard{display:block;text-decoration:none;color:inherit}
+    /* 제목 줄 오른쪽 끝에 삼각형만. 배경·테두리 없음. */
+    .ls-uicard__play{margin-left:auto;align-self:center;font-size:20px;line-height:1;color:var(--ls-accent);
+      transition:color .18s,transform .18s}
+    a.ls-uicard:hover .ls-uicard__play{color:#8a5a12;transform:translateX(2px)}</style><style id="ls-jax-css">
+.ls-jax{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:16px;padding:18px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-jax__stage{background:#faf8f3;border-radius:12px;box-shadow:inset 0 0 0 1px #e8e5dc;position:relative;height:320px;perspective:850px;overflow:hidden;cursor:grab;touch-action:none}
+.ls-jax__stage:active{cursor:grabbing}
+.ls-jax__scene{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--cx,-22deg)) rotateY(var(--cy,-32deg))}
+.ls-jax__scene *{transform-style:preserve-3d}
+.ls-jax__stack{position:absolute;left:-75px;top:-70px;width:150px;height:275px}
+.ls-jax__layer{position:absolute;left:0;top:0;width:150px}
+.ls-jax__layer svg{display:block;width:150px;height:auto}
+.ls-jax__leg{transform-origin:75px 70px;transition:transform .06s linear;transform:rotateY(var(--yw,0deg)) rotateZ(var(--rl,0deg)) rotateX(var(--px,0deg))}
+.ls-jax__arc{position:absolute;left:-92px;top:-92px;width:184px;height:184px;opacity:0;transition:opacity .2s}
+.ls-jax__arc.on{opacity:1}
+.ls-jax__arc svg{width:184px;height:184px;display:block}
+.ls-jax__arc--pitch{transform:rotateY(90deg)}
+.ls-jax__arc--yaw{transform:rotateX(90deg)}
+.ls-jax__axis{position:absolute;left:0;top:0;opacity:.62;pointer-events:none;transition:opacity .2s,box-shadow .2s}
+.ls-jax__axis i{position:absolute;font-style:normal;font-weight:800;font-size:18px;font-family:ui-monospace,Menlo,monospace;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff,0 1px 1px #fff}
+.ls-jax__axis--z{width:6px;height:126px;margin:-126px 0 0 -3px;background:#2471c7;color:#2471c7;border-radius:3px}
+.ls-jax__axis--z i{top:-25px;left:9px}
+.ls-jax__axis--y{width:120px;height:6px;margin:-3px 0 0 0;background:#1e8449;color:#1e8449;border-radius:3px;transform:scaleX(-1);transform-origin:left center}
+.ls-jax__axis--y i{top:-10px;left:123px;transform:scaleX(-1)}
+.ls-jax__axis--x{width:120px;height:6px;margin:-3px 0 0 0;background:#c0392b;color:#c0392b;border-radius:3px;transform:rotateY(-90deg);transform-origin:left center}
+.ls-jax__axis--x i{top:-10px;left:123px;transform:rotateY(90deg);transform-origin:left center}
+.ls-jax__axis.on{opacity:1;box-shadow:0 0 12px currentColor}
+.ls-jax__giz{position:absolute;right:12px;bottom:12px;width:98px;height:auto;display:none;background:rgba(255,255,255,.72);border:1px solid #eee5cf;border-radius:10px;padding:3px 4px 2px}
+.ls-jax.has-giz .ls-jax__giz{display:block}
+.ls-jax.is-corner .ls-jax__axis{display:none}
+.ls-jax__gax{opacity:.55;transition:opacity .2s}
+.ls-jax__gax.on{opacity:1}
+.ls-jax__gax.on line{stroke-width:5}
+.ls-jax__play{display:flex;gap:8px;margin-top:14px}
+.ls-jax__pbtn{flex:1;font-family:inherit;font-size:13px;font-weight:700;padding:11px 6px;border-radius:10px;border:1.5px solid;background:#fff;cursor:pointer;transition:.15s;line-height:1.3}
+.ls-jax__pbtn small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.ls-jax__pbtn.roll{color:#c0392b;border-color:#eec6c1}.ls-jax__pbtn.pitch{color:#1e8449;border-color:#bfe0cc}.ls-jax__pbtn.yaw{color:#2471c7;border-color:#bcd4ee}
+.ls-jax__pbtn.roll.is-on{background:#c0392b;color:#fff;border-color:#c0392b}
+.ls-jax__pbtn.pitch.is-on{background:#1e8449;color:#fff;border-color:#1e8449}
+.ls-jax__pbtn.yaw.is-on{background:#2471c7;color:#fff;border-color:#2471c7}
+.ls-jax__ctrls{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.ls-jax__row{display:flex;align-items:center;gap:10px;font-size:13px}
+.ls-jax__row .nm{width:118px;font-weight:700}.ls-jax__row .nm i{font-style:normal;font-family:ui-monospace,Menlo,monospace}
+.ls-jax__row input[type=range]{flex:1;accent-color:currentColor}
+.ls-jax__row .val{width:48px;text-align:right;font-family:ui-monospace,Menlo,monospace;color:#8a8574}
+.ls-jax__row.roll{color:#c0392b}.ls-jax__row.pitch{color:#1e8449}.ls-jax__row.yaw{color:#2471c7}
+.ls-jax__foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ls-jax__hint{font-size:11.5px;color:#726c61}
+.ls-jax__rst{background:#efe9dc;color:#6b5f45;border:1px solid #e1d8c4;border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer}
+.ls-jax__cap{font-size:13px;color:#5c584d;margin-top:12px;line-height:1.75;text-align:center}.ls-jax__cap b{color:#222}</style><style id="ls-aa-css">
+.ls-aa{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-aa__cap{padding:16px 20px 12px;font-size:14.5px;line-height:1.6;color:#3a3a42}
+.ls-aa__cap b,.ls-aa__cap strong{color:#111}
+.ls-aa__cap code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f2f5;padding:1px 6px;border-radius:5px}
+.ls-aa__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-aa__body{grid-template-columns:1fr}}
+.ls-aa__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11)}
+.ls-aa__svg{display:block;width:100%;height:auto}
+.ls-aa-seg{fill:url(#ncShell);stroke:#8b929c;stroke-width:1.3;transition:stroke .45s}
+.ls-aa.is-bound .ls-aa-seg{stroke:#f0b441;stroke-width:2}
+.ls-aa-joint{fill:url(#ncDark);stroke:#0f1216;stroke-width:1;transition:fill .45s,stroke .45s}
+.ls-aa.is-bound .ls-aa-joint{fill:#f0d9a5;stroke:#c78f2e}
+.ls-aa-joint.is-pulse{fill:#fff}
+.ls-aa-lower{transform-box:view-box;transform-origin:110px 140px;transition:transform .55s cubic-bezier(.34,1.3,.5,1)}
+.ls-aa-arm{transform-box:view-box;transform-origin:110px 52px;transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.ls-aa.is-bound.is-lift .ls-aa-arm{transform:rotate(-68deg)}
+.ls-aa:not(.is-bound).is-lift .ls-aa-arm{animation:ls-aa-nudge .4s}
+@keyframes ls-aa-nudge{0%,100%{transform:none}30%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.ls-aa__panel{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ls-aa__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;transition:.3s}
+.ls-aa__badge.is-loose{background:#efeff2;color:#71717a}
+.ls-aa__badge.is-bound{background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-aa__desc{font-size:13.5px;line-height:1.7;color:#52525b;min-height:60px}
+.ls-aa__desc b,.ls-aa__desc strong{color:#222}
+.ls-aa__toggle{display:flex;gap:8px}
+.ls-aa__btn{flex:1;font-family:inherit;font-size:13px;padding:10px 8px;border-radius:10px;border:1.5px solid #e4e4e8;background:#fff;color:#52525b;cursor:pointer;transition:.2s}
+.ls-aa__btn.is-on{background:#16161b;color:#f0d9a5;border-color:#16161b}
+.ls-aa__cmd{font-family:inherit;font-size:13.5px;padding:11px;border-radius:10px;border:none;cursor:pointer;transition:.2s}
+.ls-aa__cmd:disabled{background:#f2f2f5;color:#b4b4bb;cursor:not-allowed}
+.ls-aa__cmd:not(:disabled){background:#f0d9a5;color:#3a2e12}
+.ls-aa__note{font-size:12.5px;line-height:1.5;color:#8a6a28;min-height:30px}</style><style id="ls-jt-css">
+.ls-jt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+@media(max-width:620px){.ls-jt{grid-template-columns:repeat(2,1fr)}}
+.ls-jt__card{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:12px;padding:16px 12px;text-align:center}
+.ls-jt__demo{perspective:560px}
+.ls-jt__stage{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d}
+.ls-jt__seg{width:20px;height:66px;border-radius:10px;background:linear-gradient(#d6dae0,#b4b9c1 55%,#949aa4);box-shadow:inset 0 0 0 1px rgba(139,146,156,.6);transform-origin:bottom center}
+.ls-jt__pivot{position:absolute;bottom:16px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#3d434c,#14171c);border:1.5px solid #0f1216;z-index:2}
+.ls-jt__base{position:absolute;bottom:0;left:50%;margin-left:-26px;width:52px;height:18px;border-radius:6px;background:#2b313c}
+@keyframes lsJtRev{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes lsJtPris{0%,100%{transform:translateY(0)}50%{transform:translateY(-36px)}}
+@keyframes lsJtSpin{to{transform:rotateY(360deg)}}
+.ls-jt__demo.rev .ls-jt__seg{animation:lsJtRev 2s ease-in-out infinite}
+.ls-jt__demo.pris .ls-jt__seg{animation:lsJtPris 1.8s ease-in-out infinite}
+.ls-jt__demo.sph .ls-jt__spin{transform-style:preserve-3d;animation:lsJtSpin 2.4s linear infinite}
+.ls-jt__demo.sph .ls-jt__seg{transform:rotateX(30deg)}
+.ls-jt__demo.fixed .ls-jt__seg{background:linear-gradient(#c4c9d0,#a4aab4 55%,#868d98)}
+.ls-jt__nm{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14.5px;margin-top:9px}
+.ls-jt__loc{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b08436;margin:3px 0 6px}
+.ls-jt__d{font-size:13.5px;color:var(--ls-text-soft);line-height:1.55}</style><style id="ls-coderun-clps-css">
+    .ls-coderun__panel.is-clps{position:relative;max-height:340px;overflow:hidden}
+    .ls-coderun__panel.is-clps.is-open{max-height:none;overflow:visible}
+    .ls-coderun__clps-fade{position:absolute;left:0;right:0;bottom:38px;height:44px;background:linear-gradient(to bottom,rgba(21,22,27,0),#15161b);pointer-events:none;border-radius:0}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-fade{display:none}
+    .ls-coderun__clps-btn{position:absolute;left:0;right:0;bottom:0;width:100%;background:#23252e;color:#f0d9a5;border:0;border-top:1px solid #34363f;padding:9px;font:700 12.5px/1 inherit;cursor:pointer}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-btn{position:static;border-radius:0 0 12px 12px;margin-top:8px}
+    .ls-coderun__clps-btn:hover{background:#2c2e38}</style></head>
+  <body class="is-view-read">
+    <!-- ============================== 사이드 레일 (책장 손잡이) ============================== -->
+    <aside class="rail" id="rail">
+      <button class="rail__menu" id="menuBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="rail__brand" aria-hidden="true">
+        <span class="rail__brand-text" id="railBrand">NAVER CONNECT</span>
+      </div>
+    </aside>
+
+    <!-- ============================== 메뉴 오버레이 ============================== -->
+    <div class="overlay" id="overlay" hidden="">
+      <div class="overlay__backdrop"></div>
+      <div class="overlay__panel">
+        <button class="overlay__close" id="overlayClose" aria-label="닫기">×</button>
+
+        <div class="overlay__head">
+          <h2 class="overlay__title">목차</h2>
+          <p class="overlay__sub" id="overlaySub">4개 챕터 · 21강</p>
+        </div>
+
+        <ul class="overlay__books" id="overlayMenu"><li class="overlay__book" data-book-id="creation"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">01</span>
+      <span class="overlay__book-name">탄생</span>
+      <span class="overlay__book-count" data-book-count="creation">2 / 4강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p1c0" class="is-done"><button>
+        <span class="ch-no">00</span>
+        <span class="ch-title">들어가며</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c1" class="is-done"><button>
+        <span class="ch-no">01</span>
+        <span class="ch-title">강화학습과 시뮬레이션 기초</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c2" class="is-done"><button>
+        <span class="ch-no">02</span>
+        <span class="ch-title">Isaac Sim 처음 열기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c3" class="is-active"><button>
+        <span class="ch-no">03</span>
+        <span class="ch-title">중력 만져보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c4"><button>
+        <span class="ch-no">04</span>
+        <span class="ch-title">로봇 불러오기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="perception"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">02</span>
+      <span class="overlay__book-name">각성</span>
+      <span class="overlay__book-count" data-book-count="perception">0 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p2c5"><button>
+        <span class="ch-no">05</span>
+        <span class="ch-title">관절 움직이기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c6"><button>
+        <span class="ch-no">06</span>
+        <span class="ch-title">지형 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c7"><button>
+        <span class="ch-no">07</span>
+        <span class="ch-title">카메라로 보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c8"><button>
+        <span class="ch-no">08</span>
+        <span class="ch-title">라이다로 거리 재기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c9"><button>
+        <span class="ch-no">09</span>
+        <span class="ch-title">키보드로 조작하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="instinct"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">03</span>
+      <span class="overlay__book-name">진화</span>
+      <span class="overlay__book-count" data-book-count="instinct">0 / 7강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p3c10"><button>
+        <span class="ch-no">10</span>
+        <span class="ch-title">Isaac Lab과 강화학습 원리</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c11"><button>
+        <span class="ch-no">11</span>
+        <span class="ch-title">로봇 학습의 목표</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c12"><button>
+        <span class="ch-no">12</span>
+        <span class="ch-title">로봇 학습 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c13"><button>
+        <span class="ch-no">13</span>
+        <span class="ch-title">로봇 학습 하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c14"><button>
+        <span class="ch-no">14</span>
+        <span class="ch-title">보상 함수 설계와 조정</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c15"><button>
+        <span class="ch-no">15</span>
+        <span class="ch-title">학습 관찰과 진단</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c16"><button>
+        <span class="ch-no">16</span>
+        <span class="ch-title">policy.pt 파일 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="wisdom"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">04</span>
+      <span class="overlay__book-name">초월</span>
+      <span class="overlay__book-count" data-book-count="wisdom">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p4c17"><button>
+        <span class="ch-no">17</span>
+        <span class="ch-title">자연어를 로봇 명령으로</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c18"><button>
+        <span class="ch-no">18</span>
+        <span class="ch-title">믿을 수 있는 로봇 명령 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c19"><button>
+        <span class="ch-no">19</span>
+        <span class="ch-title">생각하는 로봇, 완성</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c20"><button>
+        <span class="ch-no">20</span>
+        <span class="ch-title">여기까지, 그리고 그다음</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c21" class="is-done"><button>
+        <span class="ch-no">21</span>
+        <span class="ch-title">부록 · 본선 연습 해보기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li></ol></li></ul>
+
+        <div class="overlay__quicks">
+          <button class="overlay__quick" data-quick="books">
+            <span class="overlay__quick-label">메인 화면</span>
+          </button>
+          <button class="overlay__quick" data-quick="glossary">
+            <span class="overlay__quick-label">단어 사전</span>
+          </button>
+          <a class="overlay__quick" href="https://robotics.connect.or.kr/lecture/teacher-guide.html">
+            <span class="overlay__quick-label">교사용 지도서</span>
+          </a>
+        </div>
+
+        <div class="overlay__legal">
+          NAVER CONNECT ROBOTICS CUP 2026<br>
+          <button class="overlay__legal-btn" type="button" id="legalBtn">이용 안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================== 메인 무대 ============================== -->
+    <main class="stage" id="stage">
+      <!-- 배경 슬롯 (뷰별 교체) -->
+      <div class="bgs" id="bgs"><div class="bgs__layer" style="background-image: url(&quot;img/배경1.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/1-7.webp&quot;);"></div></div>
+      <div class="bg-vignette" aria-hidden="true"></div>
+
+      <!-- ============== 뷰: 전체 목차 (4 챕터 strips) ============== -->
+      <section class="view view--books" data-view="books" hidden="">
+        <div class="books__head">
+          <h2 class="books__title">NAVER CONNECT ROBOTICS CUP <span class="books__title-guide">GUIDE BOOK</span></h2>
+          <p class="books__hero">시뮬레이션 · 강화학습 · LLM을 한 흐름으로 잇는 로보틱스 가이드북</p>
+          <div class="books__resume-slot" id="booksResume">
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">16강 · policy.pt 파일 준비하기</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  </div>
+        </div>
+        <div class="books__strips" id="booksStrips"><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/1-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">01</div>
+      <div class="strip__hanja">탄생</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">시뮬레이션 환경 접속하기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/2-7.webp&#39;); background-position: 40% center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">02</div>
+      <div class="strip__hanja">각성</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">로봇을 움직이고 감각 달기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/3-5.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">03</div>
+      <div class="strip__hanja">진화</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">스스로 걷는 법 가르치기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/4-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">04</div>
+      <div class="strip__hanja">초월</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">자연어로 명령 내리기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+    </button></div>
+      </section>
+
+      <!-- ============== 뷰: 챕터 목차 (다크 hero + 화이트 챕터 그리드) ============== -->
+      <section class="view view--bestiary" data-view="bestiary" hidden="">
+        <aside class="bestiary__hero">
+          <div class="bestiary__hero-bg" id="bestiaryHeroBg" style="background-image: url(&quot;img/1-7.webp&quot;); background-position: center center;"></div>
+          <div class="bestiary__hero-veil"></div>
+          <button class="bestiary__back" id="bestiaryBack" aria-label="메인 화면으로">
+            <span>◂</span> 메인
+          </button>
+          <div class="bestiary__hero-content">
+            <div class="bestiary__hero-no" id="bestiaryHeroNo">챕터 01</div>
+            <h2 class="bestiary__hero-title" id="bestiaryHeroTitle">탄생</h2>
+            <div class="bestiary__hero-titleEn" id="bestiaryHeroTitleEn">시뮬레이션 환경 접속하기</div>
+          </div>
+        </aside>
+
+        <main class="bestiary__chapters">
+          <header class="bestiary__chapters-head">
+            <h3 class="bestiary__chapters-title" id="bestiaryChaptersTitle">시뮬레이션 환경을 손에 쥐어요</h3>
+            <p class="bestiary__chapters-desc" id="bestiaryChaptersDesc">강화학습과 시뮬레이션이 왜 필요한지부터 짚고, Isaac Sim을 처음 열어봐요.
+중력을 만지고, 첫 로봇을 시뮬레이션 환경으로 불러오기까지 함께 해요.</p>
+          </header>
+          <ol class="bestiary__list" id="bestiaryList"><li class="chapter-card" data-chapter-id="p1c0">
+      <div class="chapter-card__index">00</div>
+      <h3 class="chapter-card__title">들어가며</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c1">
+      <div class="chapter-card__index">01</div>
+      <h3 class="chapter-card__title">강화학습과 시뮬레이션 기초</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card chapter-card--done" data-chapter-id="p1c2">
+      <div class="chapter-card__index">02</div>
+      <h3 class="chapter-card__title">Isaac Sim 처음 열기</h3>
+      <div class="chapter-card__check" aria-hidden="true">✓</div>
+    </li><li class="chapter-card" data-chapter-id="p1c3">
+      <div class="chapter-card__index">03</div>
+      <h3 class="chapter-card__title">중력 만져보기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c4">
+      <div class="chapter-card__index">04</div>
+      <h3 class="chapter-card__title">로봇 불러오기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li></ol>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: 강의 본문 (풀스크린) ============== -->
+      <section class="view view--read is-visible" data-view="read">
+        <main class="read__main">
+          <header class="read__bar">
+            <div class="read__bar-left">
+              <button class="read__back" id="readBack" aria-label="챕터로">
+                <span class="read__back-arrow" aria-hidden="true">◂</span>
+                <span class="read__back-label">챕터</span>
+              </button>
+            </div>
+            <label class="read__bar-picker" aria-label="강의 이동">
+              <select class="read__bar-select" id="readBarSelect"><option value="p1c0">00강의. 들어가며</option><option value="p1c1">01강의. 강화학습과 시뮬레이션 기초</option><option value="p1c2">02강의. Isaac Sim 처음 열기</option><option value="p1c3">03강의. 중력 만져보기</option><option value="p1c4" selected="">04강의. 로봇 불러오기</option></select>
+              <span class="read__bar-picker-caret" aria-hidden="true">▾</span>
+            </label>
+            <button type="button" class="lsq-bar" aria-label="강의 본문 검색"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg><span>검색</span><span class="lsq-k">( / )</span></button><div class="read__nav" id="readNav">
+              <button class="read__prev" id="readPrev" aria-label="이전 강의" data-tooltip="03강의. 중력 만져보기">
+                <span class="read__nav-arrow">◂</span>
+                <span class="read__nav-label">이전 강의</span>
+              </button>
+              <button class="read__next" id="readNext" aria-label="다음 강의" data-tooltip="05강의. 관절 움직이기">
+                <span class="read__nav-label">다음 강의</span>
+                <span class="read__nav-arrow">▸</span>
+              </button>
+            </div>
+          </header>
+          <article class="read__article ls-host" id="readContent" data-lesson-id="p1c4"><header class="ls-open is-revealed">
+    <h1 class="ls-open__title">04. 로봇 불러오기</h1>
+    <p class="ls-open__sub"><span class="ls-para"><span class="ls-sentence">파일 하나에 로봇 한 대가 담겨 있다면, 그 안은 어떻게 생겼을까요?</span> <span class="ls-sentence">파일을 화면에 불러와 부품을 하나씩 열어 봐요.</span></span></p>
+  </header><section class="ls-stage is-revealed" data-stage-key="intro" data-lesson="p1c4" data-lesson-no="04" data-stage-no="1" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">①</span>
+      <h2 class="ls-stage__label">생각 열기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">우리가 물체를 올려놓는 3D 공간을 <span class="ls-term" data-term="Stage" role="link" tabindex="0">스테이지</span>라고 불러요.</span> <span class="ls-sentence">지금까지는 스테이지에 공이나 상자처럼 단순한 도형만 올려봤죠.</span> <span class="ls-sentence">오늘은 로봇을 불러올 차례예요.</span> <span class="ls-sentence">이번 대회에서 우리가 쓸 로봇은 두 종류인데, 어떤 것이 다를까요?</span></span></p>
+  </section><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">네 발로 걷는 로봇과 두 발로 걷는 로봇</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">하나는 네 발 달린 <span class="ls-term" data-term="사족보행" role="link" tabindex="0">사족보행</span> 로봇이에요.</span> <span class="ls-sentence">강아지처럼 땅을 딛고 다녀요.</span> <span class="ls-sentence">다른 하나는 사람의 형태로 두 다리로 걷는 <span class="ls-term" data-term="휴머노이드" role="link" tabindex="0">휴머노이드</span> 로봇이에요.</span> <span class="ls-sentence">두 팔까지 달려 있어요.</span> <span class="ls-sentence">두 로봇 모두 여러 개의 <span class="ls-term" data-term="관절" role="link" tabindex="0">관절</span>을 따로 움직일 수 있는데, 이렇게 독립적으로 움직일 수 있는 관절 수를 <strong><span class="ls-term" data-term="자유도" role="link" tabindex="0">자유도</span>(DoF)</strong>라고 해요.</span></span></p>
+  </section><div class="ls-rselect is-revealed" data-block="robot-select">
+    <div class="ls-rselect__hero">
+      <div class="ls-rselect__half is-l"><img src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/hf_20260404_013848_95bfa67b-79d3-46c7-9d3c-e09e8fccd944.webp" alt="사족보행 로봇"></div>
+      <div class="ls-rselect__half is-r"><img src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/7-1.png" alt="휴머노이드 로봇"></div>
+      <div class="ls-rselect__nm is-l"><span class="ls-rselect__t">사족보행 로봇</span><span class="ls-rselect__str">강점 · 기동성</span></div>
+      <div class="ls-rselect__vs">VS</div>
+      <div class="ls-rselect__nm is-r"><span class="ls-rselect__t">휴머노이드 로봇</span><span class="ls-rselect__str">강점 · 손재주</span></div>
+    </div>
+    <div class="ls-rselect__cmp">
+      
+    <div class="ls-rselect__col is-l">
+      <div class="ls-rselect__desc">네 발로 빠르게 달리고, 뒤집혀도 스스로 일어나요. 험한 땅에 강해요.</div>
+      <div class="ls-rselect__specs"><span class="ls-rselect__spec"><span class="ls-rselect__spk">키</span><span class="ls-rselect__spv">0.4m</span></span><span class="ls-rselect__spec"><span class="ls-rselect__spk">무게</span><span class="ls-rselect__spv">15kg</span></span></div>
+      <div class="ls-rselect__seclab">특징</div>
+      <div class="ls-rselect__chips"><span class="ls-rselect__chip">험지 주행</span><span class="ls-rselect__chip">뒤집힘 복구</span><span class="ls-rselect__chip">고속 기동</span></div>
+      <div class="ls-rselect__seclab">스탯</div>
+      <div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>DoF</span><b>12</b></div><div class="ls-rselect__meter"><i style="width:48%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>최고 속도</span><b>3.7 m/s</b></div><div class="ls-rselect__meter"><i style="width:62%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>안정성</span><b>높음</b></div><div class="ls-rselect__meter"><i style="width:92%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>상체 작업</span><b>낮음</b></div><div class="ls-rselect__meter"><i style="width:22%"></i></div></div>
+    </div>
+      
+    <div class="ls-rselect__col is-r">
+      <div class="ls-rselect__desc">두 발로 서서 두 손으로 도구를 다루고 물건을 날라요. 섬세한 손작업에 강해요.</div>
+      <div class="ls-rselect__specs"><span class="ls-rselect__spec"><span class="ls-rselect__spk">키</span><span class="ls-rselect__spv">1.8m</span></span><span class="ls-rselect__spec"><span class="ls-rselect__spk">무게</span><span class="ls-rselect__spv">47kg</span></span></div>
+      <div class="ls-rselect__seclab">특징</div>
+      <div class="ls-rselect__chips"><span class="ls-rselect__chip">팔과 손 작업</span><span class="ls-rselect__chip">도구 사용</span><span class="ls-rselect__chip">정밀 조작</span></div>
+      <div class="ls-rselect__seclab">스탯</div>
+      <div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>DoF</span><b>19</b></div><div class="ls-rselect__meter"><i style="width:76%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>최고 속도</span><b>3.3 m/s</b></div><div class="ls-rselect__meter"><i style="width:55%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>안정성</span><b>보통</b></div><div class="ls-rselect__meter"><i style="width:55%"></i></div></div><div class="ls-rselect__stat"><div class="ls-rselect__sr"><span>상체 작업</span><b>높음</b></div><div class="ls-rselect__meter"><i style="width:95%"></i></div></div>
+    </div>
+    </div></div><section class="ls-stage is-revealed" data-stage-key="objective" data-lesson="p1c4" data-lesson-no="04" data-stage-no="2" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">②</span>
+      <h2 class="ls-stage__label">학습 목표</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><div class="ls-outcomes is-revealed" data-block="outcome-list">
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">01</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="USD" role="link" tabindex="0">USD</span>가 무엇인지 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">02</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="prim_path" role="link" tabindex="0">prim_path</span>로 원하는 부품을 찾을 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">03</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="roll" role="link" tabindex="0">roll</span>, <span class="ls-term" data-term="pitch" role="link" tabindex="0">pitch</span>, <span class="ls-term" data-term="yaw" role="link" tabindex="0">yaw</span>를 구분할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">04</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>USD 파일을 스테이지에 불러올 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘은 로봇 한 대를 통째로 데려와요.</span> <span class="ls-sentence">본 강에서 배우는 로봇 <span class="ls-term" data-term="관절 이름" role="link" tabindex="0">관절 이름</span>과 관절이 도는 축은 <strong>다음 강에서 로봇을 움직일 때 바로 활용돼요.</strong></span></span></span></div><section class="ls-stage" data-stage-key="concept" data-lesson="p1c4" data-lesson-no="04" data-stage-no="3" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">③</span>
+      <h2 class="ls-stage__label">개념 만나기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">로봇 한 대는 어떤 파일에 담겨 있을까요?</span> <span class="ls-sentence">그 안의 부품 하나는 또 어떻게 콕 집어 부를까요?</span> <span class="ls-sentence">불러오기 전에 파일 안의 구조부터 들여다봐요.</span></span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">USD, 로봇의 디지털 설계도</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="Isaac Sim" role="link" tabindex="0">Isaac Sim</span>에서 모든 물체는 <strong>USD(범용 장면 표현)</strong> 형식으로 저장돼요.</span> <span class="ls-sentence">단순한 3D 모델 파일이 아니라, 다음 정보를 모두 담고 있어요.</span></span></p>
+  </section><div class="ls-uigrid" data-block="ui-grid">
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">관절 구조</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">몇 개의 관절이 어디에 연결돼 있는지</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">무게 정보</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">각 부품이 몇 kg인지</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">외형</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc">색깔, 재질, 반사도 등</p>
+    </div>
+  
+    <div class="ls-uicard">
+      
+      <div class="ls-uicard__head">
+        <h4 class="ls-uicard__name">센서 위치</h4>
+        
+        
+      </div>
+      <p class="ls-uicard__desc"><span class="ls-term" data-term="카메라" role="link" tabindex="0">카메라</span>와 <span class="ls-term" data-term="라이다" role="link" tabindex="0">라이다</span>(LiDAR)가 어디에 붙어 있는지</p>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">USD는 원래 픽사(Pixar)가 장편 애니메이션용으로 만든 포맷인데, 엔비디아가 로봇 공학에 들여왔어요.</span> <span class="ls-sentence">로봇을 <strong>부품 단위로 나눠</strong> 저장하는 게 핵심이에요.</span> <span class="ls-sentence">그래서 위 정보들을 부품마다 담을 수 있고, 다음 강에서 다룰 관절 제어도 이 구조 위에서 이뤄져요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">prim_path, 부품 하나를 정확히 가리키는 주소</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">USD 안에서 모든 부품은 <strong>슬래시로 구분된 경로</strong>로 식별돼요.</span> <span class="ls-sentence">파일 시스템의 디렉터리와 똑같은 구조예요.</span> <span class="ls-sentence">예를 들어, <code>/World/H1</code>은 "<span class="ls-term" data-term="World" role="link" tabindex="0">World</span>라는 스테이지 위에 올린 휴머노이드 로봇"을 가리켜요.</span> <span class="ls-sentence">여기에 한 단계 더 붙인 <code>/World/H1/Joints/left_shoulder_pitch</code>는 "그 로봇의 왼쪽 어깨 pitch 관절"이에요.</span> <span class="ls-sentence">이 경로 하나로 어느 부품이든 직접 잡을 수 있어요.</span></span></p>
+  </section><div class="ls-diagram" data-block="diagram"><div class="ls-diagram__stage"><svg viewBox="0 0 1040 268" xmlns="http://www.w3.org/2000/svg" font-family="&#39;Noto Sans KR&#39;,sans-serif"><rect x="0" y="4" width="1040" height="58" rx="12" fill="#fff"></rect><text x="20" y="38" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="32" y="20" width="59" height="26" rx="7" fill="#b08436"></rect><text x="42" y="38" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" font-weight="600" fill="#ffffff">World</text><line x1="430" y1="19" x2="430" y2="47" stroke="#eae6dc"></line><text x="452" y="38" font-size="13" fill="#6b675d">모든 것이 올라가는 최상위 공간</text><rect x="0" y="70" width="1040" height="58" rx="12" fill="#fff"></rect><text x="20" y="104" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="32" y="86" width="59" height="26" rx="7" fill="#f2efe7"></rect><text x="42" y="104" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">World</text><text x="97" y="104" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="103" y="86" width="36" height="26" rx="7" fill="#b08436"></rect><text x="113" y="104" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" font-weight="600" fill="#ffffff">H1</text><line x1="430" y1="85" x2="430" y2="113" stroke="#eae6dc"></line><text x="452" y="104" font-size="13" fill="#6b675d">휴머노이드 로봇, USD를 이 자리에 참조로 올려요</text><rect x="0" y="136" width="1040" height="58" rx="12" fill="#fff"></rect><text x="20" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="32" y="152" width="59" height="26" rx="7" fill="#f2efe7"></rect><text x="42" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">World</text><text x="97" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="103" y="152" width="36" height="26" rx="7" fill="#f2efe7"></rect><text x="113" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">H1</text><text x="145" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="151" y="152" width="67" height="26" rx="7" fill="#b08436"></rect><text x="161" y="170" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" font-weight="600" fill="#ffffff">Joints</text><line x1="430" y1="151" x2="430" y2="179" stroke="#eae6dc"></line><text x="452" y="170" font-size="13" fill="#6b675d">로봇의 관절들을 담은 묶음</text><rect x="0" y="202" width="1040" height="58" rx="12" fill="#fff"></rect><text x="20" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="32" y="218" width="59" height="26" rx="7" fill="#f2efe7"></rect><text x="42" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">World</text><text x="97" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="103" y="218" width="36" height="26" rx="7" fill="#f2efe7"></rect><text x="113" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">H1</text><text x="145" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="151" y="218" width="67" height="26" rx="7" fill="#f2efe7"></rect><text x="161" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#8b8578">Joints</text><text x="224" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" fill="#cfc9ba">/</text><rect x="230" y="218" width="168" height="26" rx="7" fill="#b08436"></rect><text x="240" y="236" font-family="&#39;JetBrains Mono&#39;,&#39;Noto Sans KR&#39;,monospace" font-size="13" font-weight="600" fill="#ffffff">left_shoulder_pitch</text><line x1="430" y1="217" x2="430" y2="245" stroke="#eae6dc"></line><text x="452" y="236" font-size="13" fill="#6b675d">왼쪽 어깨 pitch 관절, 우리가 실제로 잡는 부품</text></svg></div><div class="ls-diagram__cap">칸이 하나씩 늘어날 때마다 경로가 한 단계 깊어져요. 금색 칸이 그 줄에서 새로 붙은 이름이에요.</div></div><div class="ls-rprim" data-block="robot-prim"><div class="ls-rprim__tabs"><button type="button" class="ls-rprim__tab is-active" data-robot="h1">휴머노이드 로봇</button><button type="button" class="ls-rprim__tab" data-robot="go2">사족보행 로봇</button></div><div class="ls-rprim__body" data-body="">
+      <div class="ls-rprim__grid">
+        <div class="ls-rprim__stagecol">
+          <div class="ls-rprim__stage" style="height:460px">
+            <div class="ls-rprim__wash"></div>
+            <img class="ls-rprim__img" src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/hf_20260403_090432_a6e66f48-4a01-4222-a621-4d5297c94aaa.webp" style="object-fit: cover; object-position: center 42%; filter: brightness(0.92) contrast(1.04);" alt="휴머노이드 로봇">
+            <div class="ls-rprim__floor"></div>
+            <div class="ls-rprim__hot" data-key="world" style="left:3%;top:3%;width:94%;height:94%"></div><div class="ls-rprim__hot is-pt" data-key="light" style="left:3%;top:2%;width:22%;height:15%"></div><div class="ls-rprim__hot is-pt" data-key="ground" style="left:2%;top:80%;width:96%;height:18%"></div><div class="ls-rprim__hot is-sel" data-key="h1" style="left:21%;top:5%;width:58%;height:88%"></div><div class="ls-rprim__hot is-pt" data-key="pelvis" style="left:31%;top:38%;width:40%;height:20%"></div><div class="ls-rprim__hot is-pt" data-key="lleg" style="left:51%;top:54%;width:13%;height:40%"></div><div class="ls-rprim__hot is-pt" data-key="rleg" style="left:36%;top:54%;width:13%;height:40%"></div><div class="ls-rprim__hot is-pt" data-key="torso" style="left:34%;top:33%;width:32%;height:15%"></div><div class="ls-rprim__hot is-pt" data-key="larm" style="left:57%;top:24%;width:18%;height:24%"></div><div class="ls-rprim__hot is-pt" data-key="rarm" style="left:25%;top:24%;width:18%;height:24%"></div><div class="ls-rprim__hot is-pt" data-key="head" style="left:41%;top:6%;width:20%;height:13%"></div>
+            <div class="ls-rprim__sel" style="left: 32.6%; top: 22.6%; width: 34.8%; height: 52.8%;"><b class="tl"></b><b class="tr"></b><b class="bl"></b><b class="br"></b></div>
+          </div>
+          <div class="ls-rprim__hint">부위를 누르면 관절이 펼쳐져요</div>
+        </div>
+        <div class="ls-rprim__panel">
+          <div class="ls-rprim__ph">휴머노이드 로봇의 USD 월드 트리</div>
+          <div class="ls-rprim__tree" style="min-height:460px">
+            <div class="ls-rprim__tn is-path" data-key="world" data-parent="undefined" style="padding-left:9px"><span class="ls-rprim__guides"></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">/World</span></div><div class="ls-rprim__tn" data-key="light" data-parent="world" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">defaultLight</span></div><div class="ls-rprim__tn" data-key="ground" data-parent="world" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">GroundPlane</span></div><div class="ls-rprim__tn is-on" data-key="h1" data-parent="world" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">H1</span><span class="ls-rprim__bdg">Articulation Root</span></div><div class="ls-rprim__tn" data-key="pelvis" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">pelvis</span><span class="ls-rprim__ko">골반 (root)</span></div><div class="ls-rprim__tn is-folder" data-key="lleg" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw">▶</span><span class="ls-rprim__nm">left_leg</span><span class="ls-rprim__ko">왼다리 (5 DoF)</span><span class="ls-rprim__cnt">5</span></div><div class="ls-rprim__tn is-hidden" data-key="l_hy" data-parent="lleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_hip_yaw</span></div><div class="ls-rprim__tn is-hidden" data-key="l_hr" data-parent="lleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_hip_roll</span></div><div class="ls-rprim__tn is-hidden" data-key="l_hp" data-parent="lleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_hip_pitch</span></div><div class="ls-rprim__tn is-hidden" data-key="l_k" data-parent="lleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_knee</span></div><div class="ls-rprim__tn is-hidden" data-key="l_a" data-parent="lleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_ankle</span></div><div class="ls-rprim__tn is-folder" data-key="rleg" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw">▶</span><span class="ls-rprim__nm">right_leg</span><span class="ls-rprim__ko">오른다리 (5 DoF)</span><span class="ls-rprim__cnt">5</span></div><div class="ls-rprim__tn is-hidden" data-key="r_hy" data-parent="rleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_hip_yaw</span></div><div class="ls-rprim__tn is-hidden" data-key="r_hr" data-parent="rleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_hip_roll</span></div><div class="ls-rprim__tn is-hidden" data-key="r_hp" data-parent="rleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_hip_pitch</span></div><div class="ls-rprim__tn is-hidden" data-key="r_k" data-parent="rleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_knee</span></div><div class="ls-rprim__tn is-hidden" data-key="r_a" data-parent="rleg" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_ankle</span></div><div class="ls-rprim__tn" data-key="torso" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">torso</span><span class="ls-rprim__ko">허리</span></div><div class="ls-rprim__tn is-folder" data-key="larm" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw">▶</span><span class="ls-rprim__nm">left_arm</span><span class="ls-rprim__ko">왼팔 (4 DoF)</span><span class="ls-rprim__cnt">4</span></div><div class="ls-rprim__tn is-hidden" data-key="l_sp" data-parent="larm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_shoulder_pitch</span></div><div class="ls-rprim__tn is-hidden" data-key="l_sr" data-parent="larm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_shoulder_roll</span></div><div class="ls-rprim__tn is-hidden" data-key="l_sy" data-parent="larm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_shoulder_yaw</span></div><div class="ls-rprim__tn is-hidden" data-key="l_e" data-parent="larm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">left_elbow</span></div><div class="ls-rprim__tn is-folder" data-key="rarm" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw">▶</span><span class="ls-rprim__nm">right_arm</span><span class="ls-rprim__ko">오른팔 (4 DoF)</span><span class="ls-rprim__cnt">4</span></div><div class="ls-rprim__tn is-hidden" data-key="r_sp" data-parent="rarm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_shoulder_pitch</span></div><div class="ls-rprim__tn is-hidden" data-key="r_sr" data-parent="rarm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_shoulder_roll</span></div><div class="ls-rprim__tn is-hidden" data-key="r_sy" data-parent="rarm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_shoulder_yaw</span></div><div class="ls-rprim__tn is-hidden" data-key="r_e" data-parent="rarm" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g v"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">right_elbow</span></div><div class="ls-rprim__tn" data-key="head" data-parent="h1" style="padding-left:9px"><span class="ls-rprim__guides"><span class="ls-rprim__g"></span><span class="ls-rprim__g up"></span></span><span class="ls-rprim__arw is-none"></span><span class="ls-rprim__nm">head_camera</span><span class="ls-rprim__ko">머리 (센서)</span></div>
+          </div>
+          <div class="ls-rprim__cap">
+            <div class="ls-rprim__role" data-role="">ARTICULATION ROOT</div>
+            <div class="ls-rprim__path" data-path="">/World/H1</div>
+            <div class="ls-rprim__desc" data-desc="">휴머노이드 로봇 전체. 관절 19개가 한 덩어리(Articulation)로 묶여요.</div>
+          </div>
+        </div>
+      </div></div></div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">경로는 <strong>대문자와 소문자를 서로 다른 글자로 봐요</strong>.</span> <span class="ls-sentence"><code>/World/H1</code>과 <code>/World/h1</code>은 우리 눈엔 비슷해 보여도 컴퓨터에겐 아예 다른 주소예요.</span> <span class="ls-sentence">그래서 대문자 하나만 소문자로 잘못 적어도 "그런 <span class="ls-term" data-term="Prim" role="link" tabindex="0">prim</span>이 없다"는 에러가 나요.</span> <span class="ls-sentence">띄어쓰기도 쓸 수 없고, 대신 언더바(_)로 이어 붙여요.</span> <span class="ls-sentence">즉, <code>/World/My H1</code>은 틀렸고, <code>/World/My_H1</code>이 맞아요.</span> <span class="ls-sentence">익숙해지면 prim_path만 봐도 USD <span class="ls-term" data-term="트리 구조" role="link" tabindex="0">트리 구조</span>가 머릿속에 그려져요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">roll, pitch, yaw, 관절이 도는 세 방향</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">앞의 트리에서 본 것처럼, <span class="ls-term" data-term="고관절" role="link" tabindex="0">고관절</span>(hip)은 <code>yaw</code>, <code>roll</code>, <code>pitch</code> 세 관절로 나뉘어요.</span> <span class="ls-sentence">roll, pitch, yaw는 원래 비행기에서 온 말이에요.</span></span><span class="ls-para">셋 다 회전이라는 점은 같고, 어느 축을 중심으로 도느냐만 달라요.</span><span class="ls-para"><span class="ls-sentence"><strong style="color:#c0392b">roll</strong>은 앞뒤로 뻗은 <span class="ls-term" data-term="X축" role="link" tabindex="0">X축</span>을 중심으로 돌아요.</span> <span class="ls-sentence">다리를 옆으로 들어 올렸다 내리는 움직임이에요.</span></span><span class="ls-para"><span class="ls-sentence"><strong style="color:#1e8449">pitch</strong>는 좌우로 뻗은 <span class="ls-term" data-term="Y축" role="link" tabindex="0">Y축</span>을 중심으로 돌아요.</span> <span class="ls-sentence">걸을 때처럼 다리를 앞뒤로 움직여요.</span></span><span class="ls-para"><span class="ls-sentence"><strong style="color:#2471c7">yaw</strong>는 위로 선 <span class="ls-term" data-term="Z축" role="link" tabindex="0">Z축</span>을 중심으로 돌아요.</span> <span class="ls-sentence">발끝이 안팎을 향하게 다리를 비틀어요.</span></span><span class="ls-para">아래에서 하나씩 돌려보면 차이가 한눈에 들어와요.</span></p>
+  </section><div class="ls-jax has-giz" data-block="joint-axes" style="--cx: -26deg; --cy: 52deg;">
+    <div class="ls-jax__stage" data-stage="">
+      <div class="ls-jax__scene" data-scene="">
+        <div class="ls-jax__arc ls-jax__arc--yaw" data-arc="yaw"><svg viewBox="0 0 184 184" xmlns="http://www.w3.org/2000/svg"><path d="M92 16 A76 76 0 1 1 16 92" fill="none" stroke="#2471c7" stroke-width="5" stroke-linecap="round"></path><path d="M8 97 L24 97 L16 81 Z" fill="#2471c7"></path></svg></div>
+        <div class="ls-jax__arc ls-jax__arc--pitch" data-arc="pitch"><svg viewBox="0 0 184 184" xmlns="http://www.w3.org/2000/svg"><path d="M92 16 A76 76 0 1 1 16 92" fill="none" stroke="#1e8449" stroke-width="5" stroke-linecap="round"></path><path d="M8 97 L24 97 L16 81 Z" fill="#1e8449"></path></svg></div>
+        <div class="ls-jax__arc" data-arc="roll"><svg viewBox="0 0 184 184" xmlns="http://www.w3.org/2000/svg"><path d="M92 16 A76 76 0 1 1 16 92" fill="none" stroke="#c0392b" stroke-width="5" stroke-linecap="round"></path><path d="M8 97 L24 97 L16 81 Z" fill="#c0392b"></path></svg></div>
+        <div class="ls-jax__axis ls-jax__axis--z" data-axis="yaw"><i>Z</i></div>
+        <div class="ls-jax__axis ls-jax__axis--y" data-axis="pitch"><i>Y</i></div>
+        <div class="ls-jax__axis ls-jax__axis--x" data-axis="roll"><i>X</i></div>
+        <div class="ls-jax__stack" data-stack="pelvis"><div class="ls-jax__layer" style="transform:translateZ(-10.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(43,49,60)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-8.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(46,53,64)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-7.2px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(50,56,68)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-5.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(53,60,73)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-4.0px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(56,63,77)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-2.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(60,67,81)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-0.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(63,70,85)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(0.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(66,74,90)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(2.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(69,77,94)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(4.0px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(73,81,98)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(5.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(76,84,102)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(7.2px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(79,88,107)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(8.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(83,91,111)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(10.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="140" y="50" width="80" height="26" rx="13" fill="rgb(86,95,115)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(10.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="146" y="55" width="68" height="7" rx="3.5" fill="#5c6576" opacity="0.7"></rect><circle cx="180" cy="96" r="14" fill="#d2d7df" stroke="#9aa2b1" stroke-width="2.5"></circle><circle cx="180" cy="96" r="6" fill="#6b7280"></circle></svg></div></div>
+        <div class="ls-jax__stack ls-jax__leg" data-stack="leg" data-leg="" style="--yw: 0deg; --rl: 0deg; --px: 0deg;"><div class="ls-jax__layer" style="transform:translateZ(-10.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(43,49,60)"></rect><circle cx="180" cy="200" r="12" fill="rgb(43,49,60)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(43,49,60)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-8.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(46,53,64)"></rect><circle cx="180" cy="200" r="12" fill="rgb(46,53,64)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(46,53,64)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-7.2px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(50,56,68)"></rect><circle cx="180" cy="200" r="12" fill="rgb(50,56,68)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(50,56,68)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-5.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(53,60,73)"></rect><circle cx="180" cy="200" r="12" fill="rgb(53,60,73)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(53,60,73)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-4.0px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(56,63,77)"></rect><circle cx="180" cy="200" r="12" fill="rgb(56,63,77)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(56,63,77)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-2.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(60,67,81)"></rect><circle cx="180" cy="200" r="12" fill="rgb(60,67,81)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(60,67,81)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(-0.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(63,70,85)"></rect><circle cx="180" cy="200" r="12" fill="rgb(63,70,85)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(63,70,85)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(0.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(66,74,90)"></rect><circle cx="180" cy="200" r="12" fill="rgb(66,74,90)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(66,74,90)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(2.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(69,77,94)"></rect><circle cx="180" cy="200" r="12" fill="rgb(69,77,94)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(69,77,94)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(4.0px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(73,81,98)"></rect><circle cx="180" cy="200" r="12" fill="rgb(73,81,98)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(73,81,98)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(5.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(76,84,102)"></rect><circle cx="180" cy="200" r="12" fill="rgb(76,84,102)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(76,84,102)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(7.2px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(79,88,107)"></rect><circle cx="180" cy="200" r="12" fill="rgb(79,88,107)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(79,88,107)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(8.8px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(83,91,111)"></rect><circle cx="180" cy="200" r="12" fill="rgb(83,91,111)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(83,91,111)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(10.4px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="164" y="96" width="32" height="104" rx="16" fill="rgb(86,95,115)"></rect><circle cx="180" cy="200" r="12" fill="rgb(86,95,115)"></circle><rect x="169" y="200" width="22" height="54" rx="11" fill="rgb(86,95,115)"></rect></svg></div><div class="ls-jax__layer" style="transform:translateZ(10.6px)"><svg viewBox="120 40 120 220" xmlns="http://www.w3.org/2000/svg"><rect x="170" y="104" width="7" height="88" rx="3.5" fill="#6b7688" opacity="0.6"></rect><circle cx="180" cy="200" r="12" fill="#d2d7df" stroke="#9aa2b1" stroke-width="2"></circle><circle cx="180" cy="200" r="4.5" fill="#6b7280"></circle></svg></div></div>
+      </div>
+      <svg class="ls-jax__giz" viewBox="0 0 104 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="52" y="99" text-anchor="middle" font-size="10" fill="#a49c88">기준 축</text>
+        <g class="ls-jax__gax" data-gax="yaw"><line x1="50" y1="54" x2="50" y2="14" stroke="#2471c7" stroke-width="3.5" stroke-linecap="round"></line><polygon points="50,7 44,18 56,18" fill="#2471c7"></polygon><text x="40" y="16" font-size="14" font-weight="800" fill="#2471c7">Z</text></g>
+        <g class="ls-jax__gax" data-gax="pitch"><line x1="50" y1="54" x2="14" y2="76" stroke="#1e8449" stroke-width="3.5" stroke-linecap="round"></line><polygon points="7,80 16,71 20,79" fill="#1e8449"></polygon><text x="2" y="92" font-size="14" font-weight="800" fill="#1e8449">Y</text></g>
+        <g class="ls-jax__gax" data-gax="roll"><line x1="50" y1="54" x2="90" y2="76" stroke="#c0392b" stroke-width="3.5" stroke-linecap="round"></line><polygon points="97,80 88,71 84,79" fill="#c0392b"></polygon><text x="92" y="92" font-size="14" font-weight="800" fill="#c0392b">X</text></g>
+      </svg>
+    </div>
+    <div class="ls-jax__play">
+      <button class="ls-jax__pbtn roll" data-ax="roll" type="button">roll 움직이기<small>옆으로 들어올리기</small></button>
+      <button class="ls-jax__pbtn pitch" data-ax="pitch" type="button">pitch 움직이기<small>앞뒤로 움직이기</small></button>
+      <button class="ls-jax__pbtn yaw" data-ax="yaw" type="button">yaw 움직이기<small>좌우로 비틀기</small></button>
+    </div>
+    <div class="ls-jax__ctrls">
+      <label class="ls-jax__row roll"><span class="nm"><i>roll</i> 옆으로</span><input type="range" data-s="roll" min="-45" max="45" value="0"><span class="val" data-v="roll">0°</span></label>
+      <label class="ls-jax__row pitch"><span class="nm"><i>pitch</i> 앞뒤</span><input type="range" data-s="pitch" min="-90" max="90" value="0"><span class="val" data-v="pitch">0°</span></label>
+      <label class="ls-jax__row yaw"><span class="nm"><i>yaw</i> 비틀기</span><input type="range" data-s="yaw" min="-70" max="70" value="0"><span class="val" data-v="yaw">0°</span></label>
+    </div>
+    <div class="ls-jax__foot"><span class="ls-jax__hint">골반은 고정이라 다리만 움직여요. 버튼은 자동으로 돌려 주고, 슬라이더는 원하는 각도로 직접 맞출 때 써요. 화면을 끌면 보는 방향이 바뀌어요.</span><button class="ls-jax__rst" data-rst="" type="button">처음으로</button></div>
+    <div class="ls-jax__cap">버튼을 누르면 그 축이 굵게 켜지고, 곡선 화살표가 도는 방향을 보여줘요. 오른쪽 아래 <strong>기준 축</strong>은 X, Y, Z 방향을 반듯하게 보여줘요.</div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title"><span class="ls-term" data-term="Articulation" role="link" tabindex="0">Articulation</span>, 관절 전체를 잡는 손잡이 하나</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">오늘 사용할 휴머노이드 로봇은 관절이 19개예요.</span> <span class="ls-sentence">이 관절들은 USD 안에서 이미 하나의 트리로 이어져 있어요.</span> <span class="ls-sentence">이렇게 연결된 관절 묶음을 <strong>Articulation</strong>(아티큘레이션)이라고 해요.</span> <span class="ls-sentence">다만 불러오기만 해선 관절을 코드로 움직일 손잡이가 없어요.</span> <span class="ls-sentence">관절 19개를 한 번에 잡아 명령하는 <strong>하나의 제어 핸들</strong>을 만들어주는 도구가 <code>SingleArticulation</code>이에요.</span> <span class="ls-sentence">아래 위젯은 팔 하나로 이 원리를 보여줘요.</span> <span class="ls-sentence">휴머노이드 로봇 전체도 관절이 똑같이 한 덩어리로 묶여요.</span></span></p>
+  </section><div class="ls-aa" data-block="articulation">
+    
+    <div class="ls-aa__body">
+      <div class="ls-aa__stage">
+        <svg class="ls-aa__svg" viewBox="0 0 220 270" xmlns="http://www.w3.org/2000/svg">
+          <defs><lineargradient id="ncShell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6dae0"></stop><stop offset="0.55" stop-color="#b4b9c1"></stop><stop offset="1" stop-color="#949aa4"></stop></lineargradient><radialgradient id="ncHead" cx="0.38" cy="0.28" r="1"><stop offset="0" stop-color="#dee2e7"></stop><stop offset="0.6" stop-color="#b7bdc7"></stop><stop offset="1" stop-color="#949aa4"></stop></radialgradient><lineargradient id="ncDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d434c"></stop><stop offset="0.5" stop-color="#23272e"></stop><stop offset="1" stop-color="#14171c"></stop></lineargradient><lineargradient id="ncVisor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3038"></stop><stop offset="0.45" stop-color="#14181e"></stop><stop offset="1" stop-color="#0b0e12"></stop></lineargradient><radialgradient id="ncEye" cx="0.35" cy="0.3" r="1"><stop offset="0" stop-color="#c9f8ff"></stop><stop offset="0.45" stop-color="#22d3ee"></stop><stop offset="1" stop-color="#0e9cb8"></stop></radialgradient><lineargradient id="ncRub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#33373d"></stop><stop offset="1" stop-color="#15171b"></stop></lineargradient></defs>
+          <g class="ls-aa-arm">
+            <rect class="ls-aa-seg" x="95" y="55" width="30" height="80" rx="14"></rect>
+            <circle class="ls-aa-joint" cx="110" cy="52" r="9"></circle>
+            <g class="ls-aa-lower">
+              <rect class="ls-aa-seg" x="98" y="150" width="24" height="58" rx="11"></rect>
+              <circle class="ls-aa-joint" cx="110" cy="140" r="7.5"></circle>
+              <rect class="ls-aa-seg" x="97" y="212" width="26" height="19" rx="6"></rect>
+              <rect class="ls-aa-seg" x="100" y="229" width="6" height="14" rx="3"></rect>
+              <rect class="ls-aa-seg" x="114" y="229" width="6" height="14" rx="3"></rect>
+              <circle class="ls-aa-joint" cx="110" cy="210" r="6.5"></circle>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="ls-aa__panel">
+        <span class="ls-aa__badge is-loose" data-badge="">○ 부품 모음, 손잡이 없음</span>
+        <div class="ls-aa__desc" data-desc="">관절은 <b>이미 이어져 있지만</b>, 코드로 잡을 <b>손잡이</b>가 아직 없어요. 명령을 보낼 창구가 없어서 "팔 들어 올리기"가 로봇에 닿지 않아요.</div>
+        <div class="ls-aa__toggle">
+          <button class="ls-aa__btn is-on" data-loose="" type="button">그냥 부품 모음</button>
+          <button class="ls-aa__btn" data-bound="" type="button">손잡이로 묶기</button>
+        </div>
+        <button class="ls-aa__cmd" data-cmd="" type="button">▶ "팔 들어올리기" 실행</button>
+        <div class="ls-aa__note" data-note=""></div>
+      </div>
+    </div></div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">엔비디아가 배포한 공식 USD 로봇은 <strong>관절 트리(<span class="ls-term" data-term="ArticulationRoot" role="link" tabindex="0">ArticulationRoot</span>)가 이미 설정돼 있어요</strong>.</span> <span class="ls-sentence">직접 만든 로봇이라면 이 트리를 따로 잡아줘야 하지만, 이번 강에선 신경 쓰지 않아도 돼요.</span> <span class="ls-sentence">다만 관절을 코드로 잡을 손잡이(<code>SingleArticulation</code> 등록)는 그것과 별개로 우리가 만들어야 해요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title"><span class="ls-term" data-term="Revolute" role="link" tabindex="0">Revolute</span>와 <span class="ls-term" data-term="Prismatic" role="link" tabindex="0">Prismatic</span>, 관절이 움직이는 두 방식</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">방금 묶은 관절들도 다 똑같이 움직이는 건 아니에요.</span> <span class="ls-sentence">우리 로봇의 어깨, 팔꿈치, 무릎은 전부 <strong>문이 여닫히듯 도는</strong> 관절이에요.</span> <span class="ls-sentence">대부분 이 한 종류라, 나머지는 "이런 것도 있구나" 정도로만 봐도 충분해요.</span></span></p>
+  </section><div class="ls-jt" data-block="joint-types"><div class="ls-jt__card"><div class="ls-jt__demo rev"><div class="ls-jt__stage"><div class="ls-jt__base"></div><div class="ls-jt__pivot"></div><div class="ls-jt__seg"></div></div></div><div class="ls-jt__nm">Revolute</div><div class="ls-jt__loc">// 문처럼 회전</div><div class="ls-jt__d">한 축을 중심으로 도는 관절이에요.<br>문을 여닫는 모습을 떠올려 봐요.<br><strong>무릎, 팔꿈치처럼 한 방향으로<br>접히는 관절</strong>이 이 유형이에요.</div></div><div class="ls-jt__card"><div class="ls-jt__demo pris"><div class="ls-jt__stage"><div class="ls-jt__base"></div><div class="ls-jt__seg"></div></div></div><div class="ls-jt__nm">Prismatic</div><div class="ls-jt__loc">// 서랍처럼 밀고 당김</div><div class="ls-jt__d">밀고 당기며 길이가 늘었다 줄어요.<br>서랍이나 셀카봉을 떠올려 봐요.<br>도는 게 아니라 곧게 미끄러져요.</div></div><div class="ls-jt__card"><div class="ls-jt__demo sph"><div class="ls-jt__stage"><div class="ls-jt__base"></div><div class="ls-jt__pivot"></div><div class="ls-jt__spin"><div class="ls-jt__seg"></div></div></div></div><div class="ls-jt__nm"><span class="ls-term" data-term="Spherical" role="link" tabindex="0">Spherical</span></div><div class="ls-jt__loc">// 공처럼 사방 회전</div><div class="ls-jt__d">공을 끼워 사방으로 돌아요.<br>사람 어깨가 비슷하죠.<br>시뮬레이션에선 회전 관절 3개로<br>쪼개서 다뤄요. 앞에서 본<br>roll, pitch, yaw가 그 셋이에요.</div></div><div class="ls-jt__card"><div class="ls-jt__demo fixed"><div class="ls-jt__stage"><div class="ls-jt__base"></div><div class="ls-jt__seg"></div></div></div><div class="ls-jt__nm"><span class="ls-term" data-term="Fixed" role="link" tabindex="0">Fixed</span></div><div class="ls-jt__loc">// 붙여서 고정</div><div class="ls-jt__d">두 부품을 아예 붙여 고정해요.<br>움직이지 않으니<br>관절 목록(<code>dof_names</code>)에는<br>나오지 않아요.</div></div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title"><span class="ls-term" data-term="get_assets_root_path" role="link" tabindex="0">get_assets_root_path</span>(), <span class="ls-term" data-term="Asset" role="link" tabindex="0">에셋</span> 경로를 안전하게 얻기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">엔비디아는 공식 로봇 USD 파일들을 AWS <span class="ls-term" data-term="클라우드" role="link" tabindex="0">클라우드</span>에 공개해뒀어요.</span> <span class="ls-sentence">로봇·물체·<span class="ls-term" data-term="환경" role="link" tabindex="0">환경</span>·재질처럼 <span class="ls-term" data-term="시뮬레이션" role="link" tabindex="0">시뮬레이션</span>에 가져다 쓰는 이 파일들을 <strong>에셋(asset)</strong>이라고 불러요.</span> <span class="ls-sentence">그 URL을 코드에 그대로 적어두면 Isaac Sim 버전이 바뀔 때 경로가 어긋날 수 있어요.</span> <span class="ls-sentence">대신 <code>get_assets_root_path()</code> <span class="ls-term" data-term="함수" role="link" tabindex="0">함수</span>를 쓰면 버전에 맞는 에셋 경로를 알아서 받아와요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">에셋 경로 안전하게 가져오기</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="import"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.storage.native </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="import" role="link" tabindex="0">import</span> </span><span class="ls-tok ls-tok--fn">get_assets_root_path</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="root"><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">get_assets_root_path</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="concat"><span class="ls-tok ls-tok--var">h1_usd </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">+ </span><span class="ls-tok ls-tok--str">"/Isaac/Robots/<span class="ls-term" data-term="Unitree" role="link" tabindex="0">Unitree</span>/<span class="ls-term" data-term="H1" role="link" tabindex="0">H1</span>/h1.usd"</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-stage" data-stage-key="practice" data-lesson="p1c4" data-lesson-no="04" data-stage-no="4" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">④</span>
+      <h2 class="ls-stage__label">직접 해보기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para">휴머노이드 로봇과 사족보행 로봇을 스테이지에 함께 소환해봐요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">두 로봇 한 번에 불러오기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">USD 파일을 스테이지에 <strong><span class="ls-term" data-term="참조" role="link" tabindex="0">참조</span>(Reference)</strong>로 올린 뒤 <code>SingleArticulation</code>으로 등록해요.</span> <span class="ls-sentence"><strong>바닥과 겹치지 않게 살짝 띄우는 것</strong>이 중요해요.</span> <span class="ls-sentence">두 발로 서 있는 휴머노이드 로봇은 높게(<code>1.05</code>), 사족보행 로봇은 낮게(<code>0.5</code>) 둬요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">핵심 코드 : 참조로 올리고 손잡이로 등록</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="k_ref"><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="add_reference_to_stage" role="link" tabindex="0">add_reference_to_stage</span></span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="usd_path" role="link" tabindex="0">usd_path</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">h1_usd</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="k_art"><span class="ls-tok ls-tok--var">h1 </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">add</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="SingleArticulation" role="link" tabindex="0">SingleArticulation</span></span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="k_args"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">name</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"h1_humanoid"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="k_pos"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="Position" role="link" tabindex="0">position</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">1.05</span><span class="ls-tok ls-tok--plain">])))</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">전체 코드와 실행 결과</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">핵심을 포함한 전체 코드예요.</span> <span class="ls-sentence">그대로 복사해 실행하고, 실행 결과 탭에서 확인해보세요.</span></span></p>
+  </section><div class="ls-coderun" data-block="code-run">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on is-clps" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="imp_omni"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="omni.usd" role="link" tabindex="0">omni.usd</span></span></span><span class="ls-line ls-line--note" data-note="imp_numpy"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="numpy" role="link" tabindex="0">numpy</span> </span><span class="ls-tok ls-tok--kw">as </span><span class="ls-tok ls-tok--var">np</span></span><span class="ls-line ls-line--note" data-note="imp_world"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.api </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">World</span></span><span class="ls-line ls-line--note" data-note="imp_stage"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.utils.stage </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">add_reference_to_stage</span></span><span class="ls-line ls-line--note" data-note="imp_art"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.core.prims </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">SingleArticulation</span></span><span class="ls-line ls-line--note" data-note="imp_assets"><span class="ls-tok ls-tok--kw">from </span><span class="ls-tok ls-tok--var">isaacsim.storage.native </span><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--fn">get_assets_root_path</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="init_if"><span class="ls-tok ls-tok--kw">if </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">instance</span><span class="ls-tok ls-tok--plain">() </span><span class="ls-tok ls-tok--kw">is not </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="None" role="link" tabindex="0">None</span></span><span class="ls-tok ls-tok--plain">:</span></span><span class="ls-line ls-line--note" data-note="init_clear"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">instance</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="clear_instance" role="link" tabindex="0">clear_instance</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="init_stage"><span class="ls-tok ls-tok--var">omni.usd</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">get_context</span><span class="ls-tok ls-tok--plain">().</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="new_stage" role="link" tabindex="0">new_stage</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="init_world"><span class="ls-tok ls-tok--var">world </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">World</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="stage_units_in_meters" role="link" tabindex="0">stage_units_in_meters</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--num">1.0</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="ground"><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="add_default_ground_plane" role="link" tabindex="0">add_default_ground_plane</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="root"><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">get_assets_root_path</span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line ls-line--note" data-note="h1_path"><span class="ls-tok ls-tok--var">h1_usd </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">+ </span><span class="ls-tok ls-tok--str">"/Isaac/Robots/Unitree/H1/h1.usd"</span></span><span class="ls-line ls-line--note" data-note="go2_path"><span class="ls-tok ls-tok--var">go2_usd </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">assets_root </span><span class="ls-tok ls-tok--plain">+ </span><span class="ls-tok ls-tok--str">"/Isaac/Robots/Unitree/<span class="ls-term" data-term="Go2" role="link" tabindex="0">Go2</span>/go2.usd"</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="ref"><span class="ls-tok ls-tok--fn">add_reference_to_stage</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">usd_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">h1_usd</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="ref_go2"><span class="ls-tok ls-tok--fn">add_reference_to_stage</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">usd_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">go2_usd</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/Go2"</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="register"><span class="ls-tok ls-tok--var">h1 </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">add</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="art_class"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">SingleArticulation</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="art_prim"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/H1"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="art_name"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">name</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"h1_humanoid"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="pos"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">position</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">1.05</span><span class="ls-tok ls-tok--plain">])</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">    )</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="reg_go2"><span class="ls-tok ls-tok--var">go2 </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--var">scene</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">add</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="art_class_go2"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">SingleArticulation</span><span class="ls-tok ls-tok--plain">(</span></span><span class="ls-line ls-line--note" data-note="art_prim_go2"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">prim_path</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"/World/Go2"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="art_name_go2"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">name</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--str">"go2_dog"</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="pos_go2"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--var">position</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">np</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">array</span><span class="ls-tok ls-tok--plain">([</span><span class="ls-tok ls-tok--num">1.5</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.0</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--num">0.5</span><span class="ls-tok ls-tok--plain">])</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">    )</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="imp_asyncio"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="asyncio" role="link" tabindex="0">asyncio</span></span></span><span class="ls-line ls-line--note" data-note="async_def"><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="async" role="link" tabindex="0">async</span> def </span><span class="ls-tok ls-tok--fn">run</span><span class="ls-tok ls-tok--plain">():</span></span><span class="ls-line ls-line--note" data-note="reset"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="await" role="link" tabindex="0">await</span> </span><span class="ls-tok ls-tok--var">world</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn"><span class="ls-term" data-term="reset_async" role="link" tabindex="0">reset_async</span></span><span class="ls-tok ls-tok--plain">()</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="ensure"><span class="ls-tok ls-tok--var">asyncio</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">ensure_future</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--fn">run</span><span class="ls-tok ls-tok--plain">())</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><div class="ls-coderun__clps-fade"></div><button type="button" class="ls-coderun__clps-btn">⌄ 클릭해서 코드 보기</button></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result"><div class="ls-imgsteps--nav is-revealed"><div class="ls-imgsteps__vp"><div class="ls-imgsteps__track" style="transform: translateX(10%);"><figure class="ls-imgsteps__cell is-current"><img class="ls-imgsteps__img" src="https://robotics.connect.or.kr/lecture/img/chap1/4-1.png" alt="H1과 Go2가 한 화면에 함께 올라온 Isaac Sim 실행 결과" loading="lazy"><figcaption class="ls-imgsteps__lab"><span class="ls-imgsteps__t">두 로봇이 한 화면에</span><span class="ls-imgsteps__d">/World/H1, /World/Go2</span></figcaption></figure></div></div><div class="ls-imgsteps__count" style="display: none;">1 / 1</div></div></div>
+      <div class="ls-coderun__foot">휴머노이드 로봇과 사족보행 로봇이 한 화면에 함께 올라왔어요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">▶ <span class="ls-term" data-term="Play 버튼" role="link" tabindex="0">Play</span> 직후 로봇이 주저앉는 이유</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">스크립트를 실행하면 로봇이 서 있지만, <strong>▶ Play</strong>로 물리가 돌기 시작하면 두 로봇 모두 그대로 바닥에 주저앉아요.</span> <span class="ls-sentence">버그가 아니라 정상이에요.</span> <span class="ls-sentence">지금 코드는 로봇을 스테이지에 올리기만 했을 뿐, 관절에 힘을 줘 자세를 잡아주는 <strong><span class="ls-term" data-term="제어기" role="link" tabindex="0">제어기</span></strong>가 아직 없거든요.</span> <span class="ls-sentence">전원을 끈 실제 로봇이 힘없이 무너지는 것과 똑같아요.</span> <span class="ls-sentence">특히 휴머노이드 로봇은 가만히 서 있는 것조차 끊임없이 균형을 잡아야 해서, 제어기 없이는 더더욱 버티지 못해요.</span></span></p>
+  </section><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">주저앉는 건 실패가 아니라 출발점이에요.</span> <span class="ls-sentence"><strong>■ <span class="ls-term" data-term="Stop 버튼" role="link" tabindex="0">Stop</span></strong>을 누르면 불러온 자세로 돌아오니, 이 강에서는 그대로 두고 구조를 살펴봐요.</span> <span class="ls-sentence">스스로 균형을 잡고 서는 건 훨씬 뒤 <span class="ls-term" data-term="강화학습" role="link" tabindex="0">강화학습</span>에서 다뤄요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">자주 마주치는 문제</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">실습 중 가장 많이 마주치는 세 가지예요.</span> <span class="ls-sentence">클릭하면 원인과 해결법이 펼쳐져요.</span></span></p>
+  </section><div class="ls-errors" data-block="error-decoder">
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">에셋 경로를 못 찾아요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 인터넷이 끊겨 있거나, Isaac Sim이 에셋 경로를 잡지 못한 경우예요.<br><strong>해결:</strong> 먼저 인터넷 연결을 확인하고, <code>print(assets_root)</code>로 값을 찍어봐요. <code>None</code>이 나오면 Isaac Sim의 에셋 경로 설정을 확인해요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">로봇이 하나만 보여요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 두 로봇에 같은 <code>prim_path</code>(예: <code>/World/H1</code>)를 주면, 한 자리에 두 USD가 겹쳐 붙어요. 그래서 서로 파묻힌 채 한 대처럼 보여요.<br><strong>해결:</strong> <code>/World/H1</code>, <code>/World/Go2</code>처럼 경로를 서로 다르게 줘요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">로봇이 튕겨 날아가요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> <code>position</code>의 z를 <code>0</code>이나 음수로 두면 로봇이 바닥과 겹친 채 시작해, ▶ Play 순간 <span class="ls-term" data-term="충돌" role="link" tabindex="0">충돌</span>이 튕겨 로봇이 솟구쳐요.<br><strong>해결:</strong> 휴머노이드 로봇은 <code>z=1.05</code>, 사족보행 로봇은 <code>z=0.5</code>처럼 바닥보다 살짝 띄워요.</div>
+    </div>
+  </div><section class="ls-stage" data-stage-key="review" data-lesson="p1c4" data-lesson-no="04" data-stage-no="5" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">⑤</span>
+      <h2 class="ls-stage__label">스스로 다지기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">개념 점검하기</h3>
+    
+  </section><div class="ls-quiz" data-block="quiz">
+    <div class="ls-quiz__q" data-q="0">
+      <div class="ls-quiz__qtext">Q1. USD는 원래 어디서 만든 포맷일까요?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="0" data-i="0" data-correct="1">픽사가 장편 애니메이션을 위해 개발</button><button class="ls-quiz__opt" data-q="0" data-i="1" data-correct="0">구글이 머신러닝 데이터셋용으로 공개</button><button class="ls-quiz__opt" data-q="0" data-i="2" data-correct="0">엔비디아가 Isaac Sim용으로 처음 설계</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="1">
+      <div class="ls-quiz__qtext">Q2. URL을 코드에 직접 적지 않고 <code>get_assets_root_path()</code>를 쓰는 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="1" data-i="0" data-correct="0">로딩 속도가 빨라져서</button><button class="ls-quiz__opt" data-q="1" data-i="1" data-correct="0">오프라인에서도 동작해서</button><button class="ls-quiz__opt" data-q="1" data-i="2" data-correct="1">Isaac Sim 버전이 바뀌어도 코드가 안 깨져서</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="2">
+      <div class="ls-quiz__qtext">Q3. prim_path <code>/World/H1</code>이 가리키는 것은?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="2" data-i="0" data-correct="0">하드디스크의 실제 파일 경로</button><button class="ls-quiz__opt" data-q="2" data-i="1" data-correct="0">Isaac Sim 설치 디렉터리</button><button class="ls-quiz__opt" data-q="2" data-i="2" data-correct="1">USD 트리에서 휴머노이드 로봇이 자리 잡은 위치</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="3">
+      <div class="ls-quiz__qtext">Q4. <code>SingleArticulation</code>으로 등록하지 않으면 어떻게 될까요?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="3" data-i="0" data-correct="0">화면에 아예 안 보여요</button><button class="ls-quiz__opt" data-q="3" data-i="1" data-correct="0">시뮬레이션이 충돌로 바로 멈춰요</button><button class="ls-quiz__opt" data-q="3" data-i="2" data-correct="1">보이긴 하지만 관절 제어가 안 돼요</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">코드 실습하기</h3>
+    
+  </section><div class="ls-challenges" data-block="challenges">
+    <div class="ls-chall has-hint has-fill" data-id="c1">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🥚</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">기본 · 로봇 여러 대</div>
+          <div class="ls-chall__sub">같은 USD를 서로 다른 주소와 이름으로 등록해 사족보행 로봇을 여러 대 세워요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import omni.usd
+import numpy as np
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+
+if World.instance() is not None:
+    World.instance().clear_instance()
+omni.usd.get_context().new_stage()
+world = World(stage_units_in_meters=1.0)
+world.scene.add_default_ground_plane()
+
+assets_root = get_assets_root_path()
+go2_usd = assets_root + "/Isaac/Robots/Unitree/Go2/go2.usd"
+
+dogs = []
+for i in range(2):
+    add_reference_to_stage(usd_path=go2_usd, prim_path=f"/World/Go2_{i}")
+    dog = world.scene.add(SingleArticulation(
+        prim_path=f"/World/Go2_{i}", name=f"go2_dog_{i}",
+        position=np.array([i * 1.5, 0, 0.5])))
+    dogs.append(dog)
+
+import asyncio
+async def run():
+    await world.reset_async()
+    print(f"스테이지에 올린 로봇 수 = {len(dogs)}")
+
+asyncio.ensure_future(run())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">같은 <code>go2_usd</code>를 주소와 이름만 바꿔 여러 번 등록해요. <span class="ls-term" data-term="Script Editor" role="link" tabindex="0">Script Editor</span>에 찍힌 <strong>로봇 수</strong>를 입력해보세요.</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="exact" size="3" data-answer="2"><span class="ls-chall__unit">대</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 2대.</span> <span class="ls-sentence">주소와 이름만 다르면 같은 USD로 얼마든 늘릴 수 있어요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence"><span class="ls-term" data-term="for문" role="link" tabindex="0">for문</span>으로 같은 <code>go2_usd</code>를 반복 등록해요.</span> <span class="ls-sentence"><code>range(...)</code> 횟수가 곧 로봇 수예요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">prim_path와 name에 <code>f"..._{i}"</code>로 번호를 붙여 겹치지 않게 해요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c2">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐣</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">보통 · 삼각형 대형</div>
+          <div class="ls-chall__sub">120° 간격, 반경 1m 정삼각형 꼭짓점마다 사족보행 로봇을 세우고, 이웃한 두 대 사이 거리를 재요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import omni.usd
+import numpy as np
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+
+if World.instance() is not None:
+    World.instance().clear_instance()
+omni.usd.get_context().new_stage()
+world = World(stage_units_in_meters=1.0)
+world.scene.add_default_ground_plane()
+
+assets_root = get_assets_root_path()
+go2_usd = assets_root + "/Isaac/Robots/Unitree/Go2/go2.usd"
+
+dogs = []
+for i in range(3):
+    theta = np.deg2rad(90 + i * 120)
+    x, y = np.cos(theta), np.sin(theta)
+    add_reference_to_stage(usd_path=go2_usd, prim_path=f"/World/Go2_{i}")
+    dogs.append(world.scene.add(SingleArticulation(
+        prim_path=f"/World/Go2_{i}", name=f"go2_dog_{i}",
+        position=np.array([x, y, 0.5]))))
+
+import asyncio
+async def run():
+    await world.reset_async()
+    p0 = dogs[0].get_world_pose()[0]
+    p1 = dogs[1].get_world_pose()[0]
+    side = float(np.linalg.norm(p0[:2] - p1[:2]))
+    print(f"이웃한 두 로봇 사이 거리 = {side:.2f} m")
+
+asyncio.ensure_future(run())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><code>120°</code> 간격으로 반경 1m 원 위에 세 대를 세웠어요. <strong>이웃한 두 로봇 사이 거리</strong>는 몇 m일까요?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="4" data-min="1.65" data-max="1.8"><span class="ls-chall__unit">m</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 약 1.73 m.</span> <span class="ls-sentence">반경보다 길어요.</span> <span class="ls-sentence">원 위에서 120°나 떨어져 있으니까요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence">정삼각형 꼭짓점은 <code>120°</code> 간격이에요.</span> <span class="ls-sentence">세 점이 원 위에 어떻게 놓이는지 종이에 그려봐요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><code>np.cos(θ), np.sin(θ)</code>로 반경 1m 원 위 좌표를 구해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">반경이 1m니까 두 로봇 사이 거리가 1m보다 길지 짧을지 먼저 어림해봐요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c3">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐥</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">도전 · 5층 탑 쌓기</div>
+          <div class="ls-chall__sub">로봇 다섯 대를 0.5m씩 높여 쌓고, 맨 위 로봇의 높이를 읽어요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import omni.usd
+import numpy as np
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+
+if World.instance() is not None:
+    World.instance().clear_instance()
+omni.usd.get_context().new_stage()
+world = World(stage_units_in_meters=1.0)
+world.scene.add_default_ground_plane()
+
+assets_root = get_assets_root_path()
+go2_usd = assets_root + "/Isaac/Robots/Unitree/Go2/go2.usd"
+
+tower = []
+for i in range(5):
+    z = 0.5 + i * 0.5
+    add_reference_to_stage(usd_path=go2_usd, prim_path=f"/World/Go2_{i}")
+    dog = world.scene.add(SingleArticulation(
+        prim_path=f"/World/Go2_{i}", name=f"go2_dog_{i}",
+        position=np.array([0, 0, z])))
+    tower.append(dog)
+
+import asyncio
+async def run():
+    await world.reset_async()
+    top_z = tower[-1].get_world_pose()[0][2]
+    print(f"맨 위 로봇의 높이 Z = {top_z:.1f}")
+
+asyncio.ensure_future(run())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">로봇 다섯 대를 <code>0.5m</code>부터 <code>0.5m</code>씩 높여 쌓아요. <strong>■ Stop</strong> 상태로 실행하면 다섯 대가 높이대로 떠 있고, ▶ Play를 켜면 제어기가 없어 곧 무너져요. <strong>맨 위(다섯째) 로봇의 높이 Z</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="4" data-min="2.4" data-max="2.6"><span class="ls-chall__unit">m</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 약 2.5 m.</span> <span class="ls-sentence">맨 위 로봇이라 가장 높이 쌓여요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence">높이는 <code>0.5 + i * 0.5</code> 공식으로 정해요.</span> <span class="ls-sentence">맨 위 로봇은 몇 번째 <code>i</code>일까요?</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><code>await world.reset_async()</code> 직후 <code>get_world_pose()[0][2]</code>로 높이를 읽어요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c4">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐔</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">심화 · <span class="ls-term" data-term="무중력" role="link" tabindex="0">무중력</span> 로봇</div>
+          <div class="ls-chall__sub">중력을 0으로 끄고 휴머노이드 로봇을 띄워, 150스텝 뒤에도 그대로 있는지 확인해요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import asyncio
+import omni.usd
+import omni.kit.app
+import numpy as np
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+
+async def main():
+    if World.instance() is not None:
+        World.instance().clear_instance()
+    omni.usd.get_context().new_stage()
+    world = World(stage_units_in_meters=1.0)
+    world.scene.add_default_ground_plane()
+    world.get_physics_context().set_gravity(0.0)
+
+    assets_root = get_assets_root_path()
+    h1_usd = assets_root + "/Isaac/Robots/Unitree/H1/h1.usd"
+    add_reference_to_stage(usd_path=h1_usd, prim_path="/World/H1")
+    h1 = world.scene.add(SingleArticulation(
+        prim_path="/World/H1", name="h1_humanoid",
+        position=np.array([0, 0, 2.0])))
+
+    await world.reset_async()
+    for _ in range(150):
+        world.step(render=False)
+        await omni.kit.app.get_app().next_update_async()
+    z = h1.get_world_pose()[0][2]
+    print(f"무중력 150스텝 뒤 높이 Z = {z:.1f}")
+
+asyncio.ensure_future(main())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext"><span class="ls-term" data-term="중력" role="link" tabindex="0">중력</span>을 <code>0</code>으로 끄고 휴머노이드 로봇을 <code>2.0m</code>에 띄워요. 150스텝 뒤 높이 Z는? (떨어질까요?)</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="4" data-min="1.9" data-max="2.1"><span class="ls-chall__unit">m</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 약 2.0 m.</span> <span class="ls-sentence">무중력이라 그 자리에 떠 있어요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><code>set_gravity(0.0)</code>은 <code>world.reset_async()</code> 전에 호출해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">시작 높이를 기억해두고, 150스텝 뒤 Z와 비교해보세요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c5">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐓</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">탐구 · 이름으로 다시 찾기</div>
+          <div class="ls-chall__sub">사족보행 로봇 세 대를 일렬로 세운 뒤, 이름만 가지고 셋째 로봇을 찾아 그 자리를 읽어요</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import omni.usd
+import numpy as np
+from isaacsim.core.api import World
+from isaacsim.core.utils.stage import add_reference_to_stage
+from isaacsim.core.prims import SingleArticulation
+from isaacsim.storage.native import get_assets_root_path
+
+if World.instance() is not None:
+    World.instance().clear_instance()
+omni.usd.get_context().new_stage()
+world = World(stage_units_in_meters=1.0)
+world.scene.add_default_ground_plane()
+
+assets_root = get_assets_root_path()
+go2_usd = assets_root + "/Isaac/Robots/Unitree/Go2/go2.usd"
+
+for i in range(3):
+    add_reference_to_stage(usd_path=go2_usd, prim_path=f"/World/Go2_{i}")
+    world.scene.add(SingleArticulation(
+        prim_path=f"/World/Go2_{i}", name=f"go2_dog_{i}",
+        position=np.array([i * 1.5, 0, 0.5])))
+
+import asyncio
+async def run():
+    await world.reset_async()
+    third = world.scene.get_object("go2_dog_2")
+    x = third.get_world_pose()[0][0]
+    print(f"이름으로 찾은 로봇의 x = {x:.1f}")
+
+asyncio.ensure_future(run())</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">세 대를 <code>1.5m</code> 간격으로 세우고, <code>get_object("go2_dog_2")</code>로 그중 한 대만 다시 찾아요. 그 로봇의 <strong>x 좌표</strong>는?</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="4" data-min="2.9" data-max="3.1"><span class="ls-chall__unit">m</span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para"><span class="ls-sentence">정답 → 약 3.0 m.</span> <span class="ls-sentence">이름을 붙여둔 덕에 여러 대 중에서 원하는 로봇만 골라 다룰 수 있어요.</span></span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-sentence"><code>name</code>은 코드에서 그 로봇을 다시 부를 때 쓰는 별칭이에요.</span> <span class="ls-sentence">주소인 <code>prim_path</code>와는 쓰임이 달라요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para"><span class="ls-sentence">이름 끝에 붙은 번호는 for문의 <code>i</code>와 같아요.</span> <span class="ls-sentence"><code>go2_dog_2</code>는 몇 번째로 세운 로봇일까요.</span></span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para"><span class="ls-sentence"><code>get_world_pose()[0]</code>은 <code>[x, y, z]</code>를 돌려줘요.</span> <span class="ls-sentence">x는 그중 첫 칸이에요.</span></span></span></div>
+      </div>
+      
+    </div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">4강 한눈에 정리</h3>
+    
+  </section><div class="ls-summary" data-block="summary" data-ga-observed="1"><ul><li><strong>USD는 로봇의 디지털 설계도 파일이에요.</strong> 관절, 무게, 외형, 센서를 모두 담아요</li><li><strong>prim_path는 USD 안 부품 주소예요.</strong> <code>/World/H1</code>처럼 슬래시로 트리 구조를 따라가요</li><li><strong><code>SingleArticulation</code>으로 묶어야 관절을 제어할 수 있어요.</strong> 휴머노이드 로봇의 관절 19개가 하나의 손잡이로 묶여요</li><li><strong>관절이 도는 세 방향은 roll, pitch, yaw예요.</strong> 다리를 옆으로 들어 올리는 roll, 앞뒤로 움직이는 pitch, 발끝이 안팎을 향하게 비트는 yaw예요</li><li><strong>URL은 직접 적지 말고 <code>get_assets_root_path()</code>를 써요.</strong> 버전이 바뀌어도 안 깨져요</li><li><strong>불러오기만으론 로봇이 서 있지 못해요.</strong> 자세를 잡아줄 제어기가 아직 없거든요</li></ul></div><div class="ls-next" data-block="next-preview">
+    <div class="ls-next__eyebrow">다음 강 안내</div>
+    <p class="ls-next__body"><span class="ls-para"><span class="ls-sentence">스테이지에 올라온 휴머노이드 로봇이 <strong>왼팔을 들게</strong> 하려면 무엇이 더 있어야 할까요?</span> <span class="ls-sentence">다음 강에서는 관절 하나를 골라 원하는 <span class="ls-term" data-term="각도" role="link" tabindex="0">각도</span>로 직접 움직여봐요.</span> <span class="ls-sentence">관절 제어의 첫걸음이에요.</span></span></p>
+  </div><button class="read__next-inline is-revealed" type="button" aria-label="다음 강의로 이동 — 05강의. 관절 움직이기">
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">05강의. 관절 움직이기</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      </button></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: GLOSSARY (단어집) ============== -->
+      <section class="view view--glossary" data-view="glossary" hidden="">
+        <main class="glossary__main">
+          <article class="glossary__list" id="glossaryList"></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: EXPLORE (가이드북 안내 중심) ============== -->
+      <section class="view view--explore" data-view="explore" hidden="">
+        <div class="explore__inner">
+          <header class="explore__hero">
+            <div class="explore__eyebrow">NAVER CONNECT ROBOTICS 2026 · 가이드북</div>
+            <h2 class="explore__title">
+              처음 보시는 분들도<br>
+              <strong>천천히 따라오면 돼요</strong>
+            </h2>
+            <p class="explore__lead">
+              21강짜리 가이드북이에요. 가상 로봇을 만드는 것부터 시작해서, 감각을 달고,
+              스스로 걷는 법을 가르치다 보면, 끝에는 말 한 마디로 움직이는 자율 로봇이 손에 남아요.
+              하루에 한 강씩 가도 좋고, 주말에 몰아서 봐도 좋아요. 본인 페이스로요.
+            </p>
+          </header>
+
+          <section class="explore__steps">
+            <div class="explore-eyebrow-2">쓰는 법</div>
+            <ol class="explore-guide__rows">
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">01</div>
+                <div>
+                  <h4 class="explore-guide__title">챕터부터 하나 골라요</h4>
+                  <p class="explore-guide__body">
+                    탄생 → 각성 → 진화 → 초월, 이 네 묶음이에요.
+                    처음이면 그냥 1번 <b>탄생</b>부터 들어가시면 돼요.
+                    좌측 <b>목차</b>에서 네 챕터가 한눈에 보여요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">02</div>
+                <div>
+                  <h4 class="explore-guide__title">강의 안에서 넘어다녀요</h4>
+                  <p class="explore-guide__body">
+                    강의는 글과 코드가 섞인 형태예요.
+                    좌측 사이드바에서 강을 옮겨다닐 수 있고, 키보드 <b>← →</b>로도 됩니다.
+                    모바일이면 상단 드롭다운으로 강을 바꿔주세요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">03</div>
+                <div>
+                  <h4 class="explore-guide__title">코드는 직접 돌려보세요</h4>
+                  <p class="explore-guide__body">
+                    글로만 읽으면 잊혀요. 강의 안 Python 코드는 Isaac Sim에 그대로 붙여 돌리면 됩니다.
+                    한 번씩 직접 돌려본 사람만 다음 강을 편하게 봐요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">04</div>
+                <div>
+                  <h4 class="explore-guide__title">끝까지 가면 본선이에요</h4>
+                  <p class="explore-guide__body">
+                    21강을 다 마치면 자율로 걸어다니는 휴머노이드 로봇이 손에 남아요.
+                    그걸 들고 <b>네이버 커넥트 로보틱스 본선</b>에 나가시면 됩니다.
+                  </p>
+                </div>
+              </div>
+            </ol>
+          </section>
+
+          <section class="explore__support">
+            <div class="explore-eyebrow-2">대회 지원 안내</div>
+            <h3 class="explore-h3">참가팀에게 이런 지원이 있어요</h3>
+            <div class="explore__cards" id="exploreCards">
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">2억 원 상당<br>AI 로보틱스 패키지</h3>
+                <p class="support-card__body">
+                  우승팀이 소속된 학교에 고성능 GPU와 AI 시스템이 들어가요.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">글로벌 표준<br>Isaac Sim 제공</h3>
+                <p class="support-card__body">
+                  엔비디아가 실제로 쓰는 로봇 트레이닝 시뮬레이터, 참가하면 그대로 받습니다.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">NVIDIA 엔지니어<br>전문가 멘토링</h3>
+                <p class="support-card__body">
+                  막힐 때 현업 엔지니어가 옆에서 도와줘요. 혼자 끙끙대지 않아도 돼요.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <div class="explore__cta-row">
+            <button class="explore__cta" data-go="books">
+              <span class="explore__cta-arrow" style="font-size:1.5em">▸</span>
+              <span>메인 화면으로 가기</span>
+            </button>
+          </div>
+
+          <footer class="explore__footer">
+            <div class="explore__footer-row">
+              <div class="explore__footer-brand">
+                <div class="explore__footer-title">NAVER CONNECT ROBOTICS CUP</div>
+                <div class="explore__footer-tag">Isaac Sim · 가이드북</div>
+              </div>
+              <div class="explore__footer-cols">
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">관련</div>
+                  <a class="explore__footer-link" href="https://github.com/entryofficial-ctrl/edu-content" target="_blank" rel="noopener">GitHub</a>
+                  <a class="explore__footer-link" href="https://developer.nvidia.com/isaac-sim" target="_blank" rel="noopener">Isaac Sim</a>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">대회</div>
+                  <span class="explore__footer-link">NAVER CONNECT ROBOTICS CUP 2026</span>
+                  <span class="explore__footer-link">NVIDIA Partner</span>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">교육 주관</div>
+                  <span class="explore__footer-link">네이버 커넥트재단</span>
+                </div>
+              </div>
+            </div>
+            <div class="explore__footer-legal">
+              © 2026 NAVER CONNECT ROBOTICS CUP. Powered by NAVER CONNECT.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <!-- 이용 안내 팝업 (좌측 메뉴 하단 「이용 안내」로 열림) -->
+    <div class="legal" id="legalModal" hidden="">
+      <div class="legal__backdrop" data-legal-close=""></div>
+      <div class="legal__panel" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button class="legal__close" type="button" data-legal-close="" aria-label="닫기">✕</button>
+
+        <div class="legal__eyebrow">NAVER CONNECT ROBOTICS CUP 2026</div>
+        <h2 class="legal__title" id="legalTitle">저작권 및 이용 안내</h2>
+        <p class="legal__copy">© NAVER Connect Foundation. All rights reserved.</p>
+
+        <p class="legal__lead">이 가이드북의 모든 글·이미지·코드·구성은 네이버 커넥트재단에 저작권이 있습니다. 누구나 웹에서 자유롭게 읽고 학습에 활용할 수 있습니다.</p>
+
+        <div class="legal__cols">
+          <section class="legal__col legal__col--ok">
+            <h3 class="legal__col-head"><span class="legal__mark">○</span> 이렇게 쓰실 수 있어요</h3>
+            <ul class="legal__list">
+              <li>수업·발표에서 화면으로 보여주기</li>
+              <li>출처를 밝히고 일부를 인용하기</li>
+            </ul>
+          </section>
+          <section class="legal__col legal__col--no">
+            <h3 class="legal__col-head"><span class="legal__mark">×</span> 이건 허락이 필요해요</h3>
+            <ul class="legal__list">
+              <li>내용을 복제해 다시 배포하기</li>
+              <li>고쳐 쓰거나 2차 저작물로 만들기</li>
+              <li>상업적 목적으로 이용하기</li>
+              <li>다른 서비스·교재에 옮겨 싣기</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="legal__note">실습에 쓰인 오픈소스(NVIDIA Isaac Sim·Isaac Lab, three.js 등)와 인용한 영상·이미지는 각 권리자에게 저작권이 있으며, 해당 라이선스와 출처 표기를 따릅니다.</p>
+
+        <p class="legal__contact">이용 문의 · 사용 허락 요청 — <a href="mailto:ncrc@connect.or.kr">ncrc@connect.or.kr</a></p>
+      </div>
+    </div>
+
+    <script type="module" src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/app.js.다운로드"></script>
+    <script type="module" src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/search.js.다운로드"></script>
+    <script src="./04강의. 로봇 불러오기 · 탄생 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/comments.js.다운로드" defer=""></script>
+  
+
+<div class="player" id="player" data-hook0=""><div class="pwrap"><span class="px" id="px">✕</span><div class="pbox" id="pbox"></div></div></div></body></html>

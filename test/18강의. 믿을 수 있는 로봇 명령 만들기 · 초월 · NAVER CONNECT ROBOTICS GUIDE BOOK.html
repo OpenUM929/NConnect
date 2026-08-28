@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://robotics.connect.or.kr/lecture#read/wisdom/p4c18 -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/js"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}function __gaPath(){var h=(location.hash||'').replace(/^#/,'');try{return decodeURIComponent(h);}catch(x){return h;}}function __gaUid(){var m=/(?:^|;\s*)gaUid=([^;]*)/.exec(document.cookie);return m?decodeURIComponent(m[1]):'';}window.__gaV='2026-08-13';var __gaDbg=/^localhost$|^127\.|^dev\./.test(location.hostname);var __gaCfg={lecture_path:__gaPath()},__gaU=__gaUid();if(__gaU)__gaCfg.user_id=__gaU;if(__gaDbg){__gaCfg.debug_mode=true;__gaCfg.traffic_type='internal';}gtag('js',new Date());gtag('config','G-KVC9YYWB8M',__gaCfg);var __gaLastHref=location.href;addEventListener('hashchange',function(){setTimeout(function(){if(location.href===__gaLastHref)return;__gaLastHref=location.href;gtag('event','page_view',{page_location:location.href,page_title:document.title,lecture_path:__gaPath()});},0);});var __gaIO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5)return;__gaIO.unobserve(e.target);var d=e.target.dataset;gtag('event','lecture_stage_view',{lecture_path:__gaPath(),lesson:d.lesson||'',lesson_no:d.lessonNo||'',stage_key:d.stageKey||'',stage_no:d.stageNo||'',stage_total:document.querySelectorAll('.ls-stage').length});});},{threshold:0.5,rootMargin:'0px 0px -50% 0px'});function __gaLesson(){var s=document.querySelector('.ls-stage');if(s)return{lesson:s.dataset.lesson||'',no:s.dataset.lessonNo||''};var seg=(__gaPath().split('/').pop()||''),m=/c(\d+)$/.exec(seg);return{lesson:seg,no:m?m[1]:''};}var __gaCO=window.IntersectionObserver&&new IntersectionObserver(function(es){es.forEach(function(e){if(e.intersectionRatio<0.5&&e.intersectionRect.height<innerHeight*0.5)return;__gaCO.unobserve(e.target);var L=__gaLesson();gtag('event','lecture_complete',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no});});},{threshold:[0,0.25,0.5,0.75,1]});addEventListener('click',function(e){if(!e.target||!e.target.closest)return;var mo=e.target.closest('.ls-gpanel__more');if(mo){var LM=__gaLesson(),nm=document.querySelector('.ls-gpanel__name'),tm='';try{tm=(nm&&nm.textContent.trim())||decodeURIComponent((mo.getAttribute('href')||'').split('/').pop()||'');}catch(x){}gtag('event','glossary_more_click',{lecture_path:__gaPath(),lesson:LM.lesson,lesson_no:LM.no,term:tm});}var nb=e.target.closest('.read__next-inline,.read__next');if(nb){var LN=__gaLesson();gtag('event','next_lesson_click',{lecture_path:__gaPath(),lesson:LN.lesson,lesson_no:LN.no,next_position:nb.classList.contains('read__next-inline')?'bottom':'top'});}var cp=e.target.closest('.ls-code__copy,.ls-coderun__copy,.ls-chall__copybtn');if(cp){var rt=cp.closest('.ls-code,.ls-coderun,.ls-chall'),LC=__gaLesson(),kd='code',cid='',ctt='';if(rt){kd=rt.classList.contains('ls-chall')?'challenge':rt.classList.contains('ls-coderun')?'code_run':'code';cid=kd==='challenge'?(rt.dataset.id||''):kd==='code_run'?'run':String([].indexOf.call(document.querySelectorAll('.ls-code'),rt)+1);var te=rt.querySelector('.ls-code__title,.ls-chall__title,.ls-coderun__tab.is-on');if(te)ctt=te.textContent.trim().replace(/\s+/g,' ').slice(0,100);}gtag('event','code_copy_click',{lecture_path:__gaPath(),lesson:LC.lesson,lesson_no:LC.no,copy_kind:kd,copy_id:cid,copy_title:ctt});}var w=e.target.closest('.ls-term');if(w){var LW=__gaLesson();gtag('event','term_click',{lecture_path:__gaPath(),lesson:LW.lesson,lesson_no:LW.no,term:w.dataset.term||'',term_text:(w.textContent||'').trim().replace(/\s+/g,' ').slice(0,100)});}var t=e.target.closest('.ls-quiz__opt,.ls-quiz_opt');if(!t)return;var box=t.closest('.ls-quiz__q')||t.parentElement;if(!box||box.getAttribute('data-ga-answered'))return;box.setAttribute('data-ga-answered','1');var d=t.dataset,L=__gaLesson(),ok=d.correct==='1';gtag('event','quiz_answer',{lecture_path:__gaPath(),lesson:L.lesson,lesson_no:L.no,quiz_no:String((parseInt(d.q,10)||0)+1),quiz_option_no:String((parseInt(d.i,10)||0)+1),quiz_option_text:(t.textContent||'').trim().replace(/\s+/g,' ').slice(0,100),quiz_result:ok?'correct':'wrong',quiz_correct:ok?1:0});},true);function __gaScan(){if(!__gaIO)return;var n=document.querySelectorAll('.ls-stage:not([data-ga-observed])');for(var i=0;i<n.length;i++){n[i].setAttribute('data-ga-observed','1');__gaIO.observe(n[i]);}var c=document.querySelectorAll('[data-block="summary"]:not([data-ga-observed])');for(var j=0;j<c.length;j++){c[j].setAttribute('data-ga-observed','1');__gaCO.observe(c[j]);}}function __gaWatch(){__gaScan();new MutationObserver(function(){if(__gaT)return;__gaT=setTimeout(function(){__gaT=0;__gaScan();},200);}).observe(document.body,{childList:true,subtree:true});addEventListener('hashchange',function(){setTimeout(__gaScan,300);});}var __gaT=0;[400,1200,3000].forEach(function(ms){setTimeout(__gaScan,ms);});if(document.readyState==='loading')addEventListener('DOMContentLoaded',__gaWatch);else __gaWatch();</script><!--<base href="/lecture/">--><base href=".">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK</title>
+    <meta name="description" content="네이버 커넥트 로보틱스 경진대회 2026 — Isaac Sim으로 배우는 로봇 AI 가이드북">
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Gowun Dodum(본문+디스플레이) + Noto Sans KR(폴백 한글, 실제 로딩) + JetBrains Mono(코드) -->
+    <link href="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2" rel="stylesheet">
+    <!-- marked.js: 강의 markdown 렌더링 -->
+    <script src="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/marked.min.js.다운로드"></script>
+
+    <!-- bare specifier(three / three/addons) 해석용 — 로컬 vendor로 고정해 CDN 의존 제거.
+         8강 lidar-orbit.js, 17강 errand-scene.js, voxel-kit.js 등이 사용. three r160 + addons 동봉(/vendor/three-addons/). -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js",
+        "three/addons/": "./vendor/three-addons/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/styles.css">
+  <style id="lsq-css">
+.lsq-bar{display:flex;align-items:center;gap:8px;margin-left:auto;padding:8px 13px;border:1px solid #e3ddcd;
+  border-radius:999px;background:#fffdf8;color:#a2998a;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap}
+.lsq-bar:hover{color:#6b675d;border-color:#c9a961}
+.lsq-wrap{position:fixed;inset:0;z-index:9200;display:none}
+.lsq-wrap.is-on{display:block}
+.lsq-dim{position:absolute;inset:0;background:rgba(28,24,18,.42);backdrop-filter:blur(2px)}
+.lsq-panel{position:relative;width:min(760px,calc(100vw - 32px));margin:9vh auto 0;background:#fff;
+  border:1px solid #e8e5dc;border-radius:16px;box-shadow:0 20px 60px rgba(40,32,20,.28);overflow:hidden;
+  display:flex;flex-direction:column;max-height:78vh}
+.lsq-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid #f0ece1}
+.lsq-head svg{flex:none;color:#b08436}
+.lsq-input{flex:1;border:0;outline:0;font:inherit;font-size:16.5px;color:#3a3a42;background:transparent}
+.lsq-input::placeholder{color:#b8b0a2}
+.lsq-esc{font:inherit;font-size:11.5px;color:#a2998a;border:1px solid #e3ddcd;border-radius:5px;padding:2px 7px}
+.lsq-body{overflow:auto;padding:6px 0 10px}
+.lsq-empty{padding:26px 20px;text-align:center;color:#a2998a;font-size:13.5px;line-height:1.7}
+.lsq-lesson{padding:12px 18px 3px;font-size:12px;font-weight:700;color:#b08436;letter-spacing:.2px}
+.lsq-row{display:block;width:100%;text-align:left;border:0;background:transparent;font:inherit;cursor:pointer;
+  padding:8px 18px;border-left:3px solid transparent}
+.lsq-row:hover,.lsq-row.is-cur{background:#faf8f3;border-left-color:#c9a961}
+.lsq-where{font-size:11.5px;color:#a2998a;margin-bottom:3px}
+.lsq-where b{color:#8a8578;font-weight:700}
+.lsq-snip{font-size:13.5px;color:#4a463d;line-height:1.62}
+.lsq-snip mark{background:#fff2cf;color:#7a5a12;border-radius:3px;padding:0 1px}
+.lsq-code .lsq-snip{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#3f4a5a}
+.lsq-more{padding:2px 18px 8px;font-size:11.5px;color:#b8b0a2}
+.lsq-termhead{padding:14px 18px 4px;font-size:12px;font-weight:700;color:#8a8578;border-top:1px solid #f0ece1;margin-top:6px}
+.lsq-term-a{font-weight:400;font-size:11.5px;color:#a2998a;margin-left:7px}
+.lsq-term-t{font-size:13.5px;font-weight:700;color:#3a3a42}
+.lsq-term-d{font-size:12.5px;color:#6b675d;line-height:1.6;margin-top:2px}
+.lsq-foot{padding:9px 18px;border-top:1px solid #f0ece1;font-size:11.5px;color:#b8b0a2;display:flex;gap:14px}
+.lsq-flash{animation:lsqFlash 1.8s ease-out}
+@keyframes lsqFlash{0%,18%{background:#fff5da;box-shadow:0 0 0 6px #fff5da}100%{background:transparent;box-shadow:none}}
+@media (max-width:640px){.lsq-panel{margin-top:4vh;max-height:88vh}.lsq-k{display:none}}
+</style><link id="p1c0-hook-css" rel="stylesheet" href="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/p1c0-hook.css"><link id="p1c0-hook-font" rel="stylesheet" href="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/css2(1)"><style id="ls-balance-joints-css">
+    .ls-balance__joints{display:flex;gap:6px;justify-content:center;margin:6px 0 2px;min-height:22px}
+    .ls-balance__joints span{font-size:11.5px;font-family:var(--font-mono);padding:3px 9px;border-radius:999px;
+      border:1px solid var(--ls-border);color:#9a9384;background:transparent;opacity:.35;transition:all .18s}
+    .ls-balance__joints span.on{opacity:1;color:#5a3d0a;background:#f0d9a5;border-color:#c8a046;transform:translateY(-2px)}</style><style id="ls-uicard-video-css">
+    a.ls-uicard{display:block;text-decoration:none;color:inherit}
+    /* 제목 줄 오른쪽 끝에 삼각형만. 배경·테두리 없음. */
+    .ls-uicard__play{margin-left:auto;align-self:center;font-size:20px;line-height:1;color:var(--ls-accent);
+      transition:color .18s,transform .18s}
+    a.ls-uicard:hover .ls-uicard__play{color:#8a5a12;transform:translateX(2px)}</style><style id="ls-jax-css">
+.ls-jax{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:16px;padding:18px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-jax__stage{background:#faf8f3;border-radius:12px;box-shadow:inset 0 0 0 1px #e8e5dc;position:relative;height:320px;perspective:850px;overflow:hidden;cursor:grab;touch-action:none}
+.ls-jax__stage:active{cursor:grabbing}
+.ls-jax__scene{position:absolute;left:50%;top:52%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(var(--cx,-22deg)) rotateY(var(--cy,-32deg))}
+.ls-jax__scene *{transform-style:preserve-3d}
+.ls-jax__stack{position:absolute;left:-75px;top:-70px;width:150px;height:275px}
+.ls-jax__layer{position:absolute;left:0;top:0;width:150px}
+.ls-jax__layer svg{display:block;width:150px;height:auto}
+.ls-jax__leg{transform-origin:75px 70px;transition:transform .06s linear;transform:rotateY(var(--yw,0deg)) rotateZ(var(--rl,0deg)) rotateX(var(--px,0deg))}
+.ls-jax__arc{position:absolute;left:-92px;top:-92px;width:184px;height:184px;opacity:0;transition:opacity .2s}
+.ls-jax__arc.on{opacity:1}
+.ls-jax__arc svg{width:184px;height:184px;display:block}
+.ls-jax__arc--pitch{transform:rotateY(90deg)}
+.ls-jax__arc--yaw{transform:rotateX(90deg)}
+.ls-jax__axis{position:absolute;left:0;top:0;opacity:.62;pointer-events:none;transition:opacity .2s,box-shadow .2s}
+.ls-jax__axis i{position:absolute;font-style:normal;font-weight:800;font-size:18px;font-family:ui-monospace,Menlo,monospace;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff,0 1px 1px #fff}
+.ls-jax__axis--z{width:6px;height:126px;margin:-126px 0 0 -3px;background:#2471c7;color:#2471c7;border-radius:3px}
+.ls-jax__axis--z i{top:-25px;left:9px}
+.ls-jax__axis--y{width:120px;height:6px;margin:-3px 0 0 0;background:#1e8449;color:#1e8449;border-radius:3px;transform:scaleX(-1);transform-origin:left center}
+.ls-jax__axis--y i{top:-10px;left:123px;transform:scaleX(-1)}
+.ls-jax__axis--x{width:120px;height:6px;margin:-3px 0 0 0;background:#c0392b;color:#c0392b;border-radius:3px;transform:rotateY(-90deg);transform-origin:left center}
+.ls-jax__axis--x i{top:-10px;left:123px;transform:rotateY(90deg);transform-origin:left center}
+.ls-jax__axis.on{opacity:1;box-shadow:0 0 12px currentColor}
+.ls-jax__giz{position:absolute;right:12px;bottom:12px;width:98px;height:auto;display:none;background:rgba(255,255,255,.72);border:1px solid #eee5cf;border-radius:10px;padding:3px 4px 2px}
+.ls-jax.has-giz .ls-jax__giz{display:block}
+.ls-jax.is-corner .ls-jax__axis{display:none}
+.ls-jax__gax{opacity:.55;transition:opacity .2s}
+.ls-jax__gax.on{opacity:1}
+.ls-jax__gax.on line{stroke-width:5}
+.ls-jax__play{display:flex;gap:8px;margin-top:14px}
+.ls-jax__pbtn{flex:1;font-family:inherit;font-size:13px;font-weight:700;padding:11px 6px;border-radius:10px;border:1.5px solid;background:#fff;cursor:pointer;transition:.15s;line-height:1.3}
+.ls-jax__pbtn small{display:block;font-size:10.5px;font-weight:600;opacity:.8}
+.ls-jax__pbtn.roll{color:#c0392b;border-color:#eec6c1}.ls-jax__pbtn.pitch{color:#1e8449;border-color:#bfe0cc}.ls-jax__pbtn.yaw{color:#2471c7;border-color:#bcd4ee}
+.ls-jax__pbtn.roll.is-on{background:#c0392b;color:#fff;border-color:#c0392b}
+.ls-jax__pbtn.pitch.is-on{background:#1e8449;color:#fff;border-color:#1e8449}
+.ls-jax__pbtn.yaw.is-on{background:#2471c7;color:#fff;border-color:#2471c7}
+.ls-jax__ctrls{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.ls-jax__row{display:flex;align-items:center;gap:10px;font-size:13px}
+.ls-jax__row .nm{width:118px;font-weight:700}.ls-jax__row .nm i{font-style:normal;font-family:ui-monospace,Menlo,monospace}
+.ls-jax__row input[type=range]{flex:1;accent-color:currentColor}
+.ls-jax__row .val{width:48px;text-align:right;font-family:ui-monospace,Menlo,monospace;color:#8a8574}
+.ls-jax__row.roll{color:#c0392b}.ls-jax__row.pitch{color:#1e8449}.ls-jax__row.yaw{color:#2471c7}
+.ls-jax__foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ls-jax__hint{font-size:11.5px;color:#726c61}
+.ls-jax__rst{background:#efe9dc;color:#6b5f45;border:1px solid #e1d8c4;border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer}
+.ls-jax__cap{font-size:13px;color:#5c584d;margin-top:12px;line-height:1.75;text-align:center}.ls-jax__cap b{color:#222}</style><style id="ls-aa-css">
+.ls-aa{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-aa__cap{padding:16px 20px 12px;font-size:14.5px;line-height:1.6;color:#3a3a42}
+.ls-aa__cap b,.ls-aa__cap strong{color:#111}
+.ls-aa__cap code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#f2f2f5;padding:1px 6px;border-radius:5px}
+.ls-aa__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-aa__body{grid-template-columns:1fr}}
+.ls-aa__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11)}
+.ls-aa__svg{display:block;width:100%;height:auto}
+.ls-aa-seg{fill:url(#ncShell);stroke:#8b929c;stroke-width:1.3;transition:stroke .45s}
+.ls-aa.is-bound .ls-aa-seg{stroke:#f0b441;stroke-width:2}
+.ls-aa-joint{fill:url(#ncDark);stroke:#0f1216;stroke-width:1;transition:fill .45s,stroke .45s}
+.ls-aa.is-bound .ls-aa-joint{fill:#f0d9a5;stroke:#c78f2e}
+.ls-aa-joint.is-pulse{fill:#fff}
+.ls-aa-lower{transform-box:view-box;transform-origin:110px 140px;transition:transform .55s cubic-bezier(.34,1.3,.5,1)}
+.ls-aa-arm{transform-box:view-box;transform-origin:110px 52px;transition:transform .6s cubic-bezier(.34,1.4,.5,1)}
+.ls-aa.is-bound.is-lift .ls-aa-arm{transform:rotate(-68deg)}
+.ls-aa:not(.is-bound).is-lift .ls-aa-arm{animation:ls-aa-nudge .4s}
+@keyframes ls-aa-nudge{0%,100%{transform:none}30%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.ls-aa__panel{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.ls-aa__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;transition:.3s}
+.ls-aa__badge.is-loose{background:#efeff2;color:#71717a}
+.ls-aa__badge.is-bound{background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-aa__desc{font-size:13.5px;line-height:1.7;color:#52525b;min-height:60px}
+.ls-aa__desc b,.ls-aa__desc strong{color:#222}
+.ls-aa__toggle{display:flex;gap:8px}
+.ls-aa__btn{flex:1;font-family:inherit;font-size:13px;padding:10px 8px;border-radius:10px;border:1.5px solid #e4e4e8;background:#fff;color:#52525b;cursor:pointer;transition:.2s}
+.ls-aa__btn.is-on{background:#16161b;color:#f0d9a5;border-color:#16161b}
+.ls-aa__cmd{font-family:inherit;font-size:13.5px;padding:11px;border-radius:10px;border:none;cursor:pointer;transition:.2s}
+.ls-aa__cmd:disabled{background:#f2f2f5;color:#b4b4bb;cursor:not-allowed}
+.ls-aa__cmd:not(:disabled){background:#f0d9a5;color:#3a2e12}
+.ls-aa__note{font-size:12.5px;line-height:1.5;color:#8a6a28;min-height:30px}</style><style id="ls-jt-css">
+.ls-jt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--ls-widget-w,1200px);margin:0 auto}
+@media(max-width:620px){.ls-jt{grid-template-columns:repeat(2,1fr)}}
+.ls-jt__card{background:#fff;border:1px solid var(--ls-border,#e8e5dc);border-radius:12px;padding:16px 12px;text-align:center}
+.ls-jt__demo{perspective:560px}
+.ls-jt__stage{position:relative;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-style:preserve-3d}
+.ls-jt__seg{width:20px;height:66px;border-radius:10px;background:linear-gradient(#d6dae0,#b4b9c1 55%,#949aa4);box-shadow:inset 0 0 0 1px rgba(139,146,156,.6);transform-origin:bottom center}
+.ls-jt__pivot{position:absolute;bottom:16px;left:50%;margin-left:-9px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#3d434c,#14171c);border:1.5px solid #0f1216;z-index:2}
+.ls-jt__base{position:absolute;bottom:0;left:50%;margin-left:-26px;width:52px;height:18px;border-radius:6px;background:#2b313c}
+@keyframes lsJtRev{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes lsJtPris{0%,100%{transform:translateY(0)}50%{transform:translateY(-36px)}}
+@keyframes lsJtSpin{to{transform:rotateY(360deg)}}
+.ls-jt__demo.rev .ls-jt__seg{animation:lsJtRev 2s ease-in-out infinite}
+.ls-jt__demo.pris .ls-jt__seg{animation:lsJtPris 1.8s ease-in-out infinite}
+.ls-jt__demo.sph .ls-jt__spin{transform-style:preserve-3d;animation:lsJtSpin 2.4s linear infinite}
+.ls-jt__demo.sph .ls-jt__seg{transform:rotateX(30deg)}
+.ls-jt__demo.fixed .ls-jt__seg{background:linear-gradient(#c4c9d0,#a4aab4 55%,#868d98)}
+.ls-jt__nm{font-family:ui-monospace,Menlo,monospace;font-weight:700;font-size:14.5px;margin-top:9px}
+.ls-jt__loc{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b08436;margin:3px 0 6px}
+.ls-jt__d{font-size:13.5px;color:var(--ls-text-soft);line-height:1.55}</style><style id="ls-coderun-clps-css">
+    .ls-coderun__panel.is-clps{position:relative;max-height:340px;overflow:hidden}
+    .ls-coderun__panel.is-clps.is-open{max-height:none;overflow:visible}
+    .ls-coderun__clps-fade{position:absolute;left:0;right:0;bottom:38px;height:44px;background:linear-gradient(to bottom,rgba(21,22,27,0),#15161b);pointer-events:none;border-radius:0}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-fade{display:none}
+    .ls-coderun__clps-btn{position:absolute;left:0;right:0;bottom:0;width:100%;background:#23252e;color:#f0d9a5;border:0;border-top:1px solid #34363f;padding:9px;font:700 12.5px/1 inherit;cursor:pointer}
+    .ls-coderun__panel.is-clps.is-open .ls-coderun__clps-btn{position:static;border-radius:0 0 12px 12px;margin-top:8px}
+    .ls-coderun__clps-btn:hover{background:#2c2e38}</style><style id="ls-skit-css">
+    /* 표준 위젯 규격 = 2강 .ls-physx (단일 아레나가 폭을 꽉 채움) */
+    .ls-skit{--skg:#b08436;--skc:#4f6873;--skln:var(--ls-border);--skbad:#c0392b;--skwarm:#b7791f;background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-max-w);box-sizing:border-box;}
+    .ls-skit__title{font-size:14px;font-weight:700;color:var(--ls-text);text-align:center;margin:0 0 10px;line-height:1.5;}
+    .ls-skit__arena{position:relative;width:100%;aspect-ratio:460/140;}
+    .ls-skit__arena svg{width:100%;height:100%;display:block;border-radius:8px;}
+    .ls-skit__vox{position:absolute;left:56.5%;top:6%;width:32%;height:80%;}
+    .ls-skit__vox canvas{width:100%!important;height:100%!important;display:block;}
+    .ls-skit__vox .vox-loading{font-size:10px;color:var(--ls-muted);text-align:center;padding-top:42%;font-family:ui-monospace,monospace;}
+    .ls-skit__cap{text-align:center;margin-top:11px;font-size:13.5px;color:var(--ls-text-soft);line-height:1.55;min-height:20px;}
+    .ls-skit__cap b{color:var(--skg);}
+    .ls-skit__slot{font-family:ui-monospace,monospace;font-size:12.5px;background:var(--ls-soft);border:1px solid var(--ls-border);border-radius:9px;padding:9px 13px;margin-top:10px;color:var(--ls-muted);text-align:center;}
+    .ls-skit__slot .f{color:var(--skc);}.ls-skit__slot .n{color:#c2410c;}.ls-skit__slot .bad{color:var(--skbad);}
+    .ls-skit__slot .nb{white-space:nowrap;}   /* 좁은 화면에서 코드가 = 뒤에서 갈라지지 않게 */
+    /* 슬롯 = 첫 줄에 로봇에게 준 것(고정폭), 아래 줄에 그게 무엇인지 설명(본문 글꼴) */
+    .ls-skit__slot .why{display:block;margin-top:6px;font-family:var(--font-body);font-size:13px;color:var(--ls-text-soft);}
+    .ls-skit__acts{display:flex;gap:9px;justify-content:center;margin-top:11px;flex-wrap:wrap;}
+    .ls-skit__btn{font-family:inherit;font-weight:700;font-size:13.5px;color:#fff;background:var(--skg);border:0;border-radius:10px;padding:9px 17px;cursor:pointer;}
+    .ls-skit__btn--ghost{background:var(--ls-soft);color:var(--ls-muted);}
+    </style><style id="ls-lj-css">
+.ls-lj{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);max-width:var(--ls-widget-w,1200px);margin:0 auto}
+.ls-lj__body{display:grid;grid-template-columns:250px 1fr}
+@media(max-width:620px){.ls-lj__body{grid-template-columns:1fr}}
+/* 스테이지 SVG는 세로로 길다. 폭에 맞춰 늘리면 카드 높이를 혼자 결정해 오른쪽 패널 아래가 비어 보인다.
+   높이를 고정하고 가운데 두면, 카드 높이는 패널이 정하고 그림은 그 안에서 균형을 잡는다. */
+.ls-lj__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);display:flex;align-items:center;justify-content:center;padding:18px 10px}
+.ls-lj__stage svg{display:block;height:236px;width:auto;max-width:100%}
+@media(max-width:620px){.ls-lj__stage svg{height:210px}}
+/* 뼈대는 정본 NC-01 셸 색. 캡슐은 외곽선 없이 그라디언트만 쓴다(리그와 동일) */
+.ls-lj-seg{fill:url(#ncShell)}
+.ls-lj-fixed{fill:url(#ncShell)}
+/* 고정 뼈대와 도는 뼈대가 같은 색이 되었으니, 위쪽이 안 움직인다는 건 다크 마운트가 대신 말한다 */
+.ls-lj-mount{fill:url(#ncDark)}
+.ls-lj-grip{fill:url(#ncShell);stroke:#aab3bc;stroke-width:0.8}
+.ls-lj-gear{transition:filter .25s}
+.ls-lj-gear.is-pulse{filter:drop-shadow(0 0 9px #f0d9a5)}
+.ls-lj-pin{fill:#6e747e}
+.ls-lj-fixtag{fill:#6e747e;font-size:10.5px;font-weight:700}
+.ls-lj__panel{padding:22px 24px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.ls-lj__ctrl{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ls-lj__badge{align-self:flex-start;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;padding:4px 11px;border-radius:999px;background:rgba(240,217,165,.24);color:#8a6a28}
+.ls-lj__legend{font-size:13px;line-height:1.8;color:#52525b}
+.ls-lj__legend .chip{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:7px}
+.ls-lj__legend b{color:#222}
+.ls-lj__row{flex:1 1 240px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#52525b}
+.ls-lj__row .nm{width:74px;font-weight:700;color:#8a6a28}
+.ls-lj__row input[type=range]{flex:1;accent-color:#c9a24a}
+.ls-lj__row .val{width:40px;text-align:right;font-family:ui-monospace,Menlo,monospace}
+/* 버튼이 패널 폭(850px)을 통째로 가로지르면 슬라이더보다 무거워 보인다 — 슬라이더와 한 줄에 세운다 */
+.ls-lj__btn{flex:0 0 auto;font-family:inherit;font-size:13px;font-weight:700;padding:11px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;background:#f0d9a5;color:#3a2e12}
+.ls-lj__btn:hover{filter:brightness(.97)}
+.ls-lj__note{font-size:12.5px;line-height:1.6;color:#8a6a28}</style><style id="ls-jointmap-css">
+.ls-jointmap{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jointmap__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 3px}
+.ls-jointmap__sub{font-size:12.5px;color:#8a837a;margin:0 0 10px}
+.ls-jointmap__stage{background:#f1efe7;border-radius:12px;padding:6px}
+.ls-jointmap__svg{display:block;width:100%;height:auto}
+/* 가독성은 크기로만 확보한다 — 굵기까지 같이 올리면 리그보다 라벨이 먼저 읽혀 그림이 뒤로 밀린다 */
+.ls-jointmap .ko{font-size:12px;fill:#14130f;transition:.12s}
+/* 영문 관절명은 본문 <code>dof_names</code>와 같은 무게로 읽혀야 한다 — 본문 코드 칩 색(--ls-text)을 쓰고,
+   스테이지 배경색으로 글자 테두리를 둘러 리그 선 위에서도 칩처럼 또렷하게 떠오르게 한다. */
+.ls-jointmap .eng{font-size:10.5px;fill:#14130f;font-family:var(--font-mono);paint-order:stroke;stroke:#f1efe7;stroke-width:2.2px;stroke-linejoin:round;transition:.12s}
+.ls-jointmap .lblbox{cursor:pointer}
+.ls-jointmap .lblbox.on .ko{fill:#a06e18}
+.ls-jointmap .lblbox.on .eng{fill:#a0812f}
+.ls-jointmap .lead-line{stroke:#c3bdae;stroke-width:1;transition:.12s}
+.ls-jointmap .lead-line.on{stroke:#e0a83a;stroke-width:1.8}
+.ls-jointmap .jdot{fill:#3a3f47;stroke:#0f1216;stroke-width:1;transition:.12s;cursor:pointer}
+.ls-jointmap .jdot.on{fill:#f0d9a5;stroke:#c78f2e}
+.ls-jointmap .halo{fill:none;stroke:#f0d9a5;stroke-width:2.5;opacity:0;transition:.12s}
+.ls-jointmap .halo.on{opacity:.9}
+.ls-jointmap .ls-jm-pupils{transition:transform .22s ease-out}
+.ls-jointmap__foot{font-size:12px;color:#8a837a;margin:10px 2px 0}
+.ls-jointmap__foot code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:#eceae2;padding:1px 6px;border-radius:5px}</style><style id="ls-jlim-css">
+.ls-jlim{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-jlim__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-jlim__grid{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center}
+@media(max-width:640px){.ls-jlim__grid{grid-template-columns:1fr}}
+.ls-jlim__stage{background:radial-gradient(125% 95% at 50% 12%,#22222c,#0c0c11);border-radius:12px;padding:6px}
+.ls-jlim__stage svg{display:block;width:100%;height:auto}
+.ls-jlim__ctrl label{font-size:13px;color:#52525b;display:block;margin:0 0 6px}
+.ls-jlim__ctrl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;background:transparent;outline:none;margin:8px 0}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-runnable-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-5.5px;width:20px;height:20px;border-radius:50%;background:#4a3410;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+.ls-jlim__ctrl input[type=range]::-moz-range-track{height:9px;border-radius:5px;background:linear-gradient(90deg,#e59a9a 0 13.2%,#bfe0b3 13.2% 82.6%,#e59a9a 82.6% 100%)}
+.ls-jlim__ctrl input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#4a3410;border:3px solid #fff;cursor:pointer}
+.ls-jlim__zone{font-size:11px;color:#c0392b;font-weight:700;margin-top:5px}
+.ls-jlim__read{margin-top:14px;font-size:14px;color:#3a3630}
+.ls-jlim__read .app{font-family:ui-monospace,Menlo,monospace;font-weight:700}
+.ls-jlim__warn{margin-top:8px;font-size:13px;min-height:20px;color:#c0392b;font-weight:700}
+.ls-jlim__ref{margin-top:14px;font-size:12px;color:#8a837a;line-height:1.6}
+.ls-jlim__ref code{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#eceae2;padding:1px 5px;border-radius:5px}
+.ls-jlim-glow{animation:lsjlimGlow .65s ease-in-out infinite}
+@keyframes lsjlimGlow{0%,100%{filter:drop-shadow(0 0 5px #ff5b5b)}50%{filter:drop-shadow(0 0 16px #ff1a1a) drop-shadow(0 0 8px #ff4040)}}
+.ls-jlim-halo{animation:lsjlimHalo .65s ease-in-out infinite}
+@keyframes lsjlimHalo{0%,100%{opacity:.2}50%{opacity:.6}}</style><style id="ls-ctrlcmp-css">
+.ls-ctrlcmp{max-width:var(--ls-widget-w,1100px);margin:0 auto;background:#fff;border:1px solid #eceae2;border-radius:14px;padding:16px 18px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.ls-ctrlcmp__cap{font-size:14px;color:#8a6a28;font-weight:700;margin:0 0 10px}
+.ls-ctrlcmp__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.ls-ctrlcmp__grid{grid-template-columns:1fr}}
+.ls-ctrlcmp__box{border:1.5px solid #e8e5dc;border-radius:14px;padding:16px 18px}
+.ls-ctrlcmp__box.pos{border-color:#cfe0c9;background:#f7fbf5}
+.ls-ctrlcmp__box.tor{border-color:#e6ddc9;background:#fbf8f1}
+.ls-ctrlcmp__ti{font-size:15px;font-weight:700;margin:0 0 2px;color:#2a2622}
+.ls-ctrlcmp__say{font-size:13px;color:#5a5349;margin:0 0 8px}
+.ls-ctrlcmp__say b{color:#222}
+.ls-ctrlcmp__box ul{margin:0;padding-left:18px;font-size:12.5px;color:#6e695e;line-height:1.7;list-style:disc}
+.ls-ctrlcmp__box li{margin:0}
+.ls-ctrlcmp__box code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:5px}
+.ls-ctrlcmp__pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;margin-top:8px}
+.ls-ctrlcmp__pill.now{background:#e3efe0;color:#3f7a35}
+.ls-ctrlcmp__pill.late{background:#f3e6cf;color:#8a6a28}</style><style id="ls-dvf-css">
+    .ls-dvf{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box}
+    .ls-dvf__title{text-align:center;color:var(--ls-text);font-size:13px;margin-bottom:12px}
+    .ls-dvf__arena{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .ls-dvf__pan{position:relative;background:#f1efe7;border-radius:10px;padding:12px 10px 10px;overflow:hidden}
+    .ls-dvf__lbl{text-align:center;font-family:var(--font-mono);font-size:12.5px;font-weight:700;margin-bottom:2px}
+    .ls-dvf__pan.dyn .ls-dvf__lbl{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__lbl{color:#1a7440}
+    .ls-dvf__scene{position:relative;height:210px;overflow:hidden}
+    .ls-dvf__cap{position:relative;z-index:3}
+    .ls-dvf__ground{position:absolute;left:0;right:0;bottom:0;height:16px;background:#c9c4b3;border-top:2px solid #b6b09c;box-sizing:border-box}
+    .ls-dvf__rsvg{position:absolute;left:50%;margin-left:-21px;bottom:48px;width:42px;height:auto;transition:transform .6s cubic-bezier(.4,.7,.5,1),bottom .6s;transform-origin:bottom center;z-index:2}
+    .ls-dvf__blk{position:absolute;bottom:18px;width:38px;height:30px;border-radius:3px;transition:transform .75s cubic-bezier(.3,.85,.35,1),opacity .75s}
+    .ls-dvf__pan.dyn .ls-dvf__blk{background:#cf9081;border:1px solid #ad6b59;border-top-color:#e2ab99}
+    .ls-dvf__pan.fix .ls-dvf__blk{background:#a3b487;border:1px solid #7f9165;border-top-color:#bccba3}
+    .ls-dvf__blk.b1{left:calc(50% - 57px)}
+    .ls-dvf__blk.b2{left:calc(50% - 19px)}
+    .ls-dvf__blk.b3{left:calc(50% + 19px)}
+    .ls-dvf__cap{text-align:center;font-family:var(--font-mono);font-size:11.5px;margin-top:8px;min-height:16px}
+    .ls-dvf__pan.dyn .ls-dvf__cap{color:#c0392b}
+    .ls-dvf__pan.fix .ls-dvf__cap{color:#1a7440}
+    .ls-dvf__row{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+    .ls-dvf__btn{background:rgba(240,217,165,.24);color:#8a6410;border:1px solid rgba(176,132,54,.45);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+    .ls-dvf__btn--ghost{color:var(--ls-muted);border-color:var(--ls-border);background:transparent}
+    .ls-dvf__msg{font-size:12px;color:var(--ls-muted);margin-left:6px}
+    .ls-dvf.go .dyn .b1{transform:translate(-40px,12px) rotate(-26deg)}
+    .ls-dvf.go .dyn .b2{transform:translate(2px,16px) rotate(16deg)}
+    .ls-dvf.go .dyn .b3{transform:translate(40px,12px) rotate(26deg)}
+    .ls-dvf.go .dyn .ls-dvf__rsvg{bottom:26px;transform:rotate(74deg)}
+    .ls-dvf.go .fix .ls-dvf__rsvg{animation:lsDvfLand .45s .5s both}
+    @keyframes lsDvfLand{0%{transform:translateY(-5px)}60%{transform:translateY(2px)}100%{transform:translateY(0)}}</style><style id="ls-kbj-css">
+    .ls-kbj{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kbj__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:12px}
+    .ls-kbj__toggle{display:flex;justify-content:center;margin-bottom:12px}
+    .ls-kbj__tg{display:inline-flex;border:1px solid var(--ls-border);border-radius:8px;overflow:hidden}
+    .ls-kbj__tg button{background:transparent;color:#7a7364;border:0;padding:7px 13px;font-size:12px;font-family:inherit;cursor:pointer;font-weight:700}
+    .ls-kbj__tg button.on{background:#f0d9a5;color:#5a3d0a}
+    /* 가운데 칸 폭을 묶는다 — 1fr로 두면 1100px 카드에서 라벨과 값이 700px 넘게 벌어져 짝이 안 보인다(§7.1) */
+    .ls-kbj__stage{background:#faf7f0;border:1px solid var(--ls-border);border-radius:10px;padding:18px 12px;display:grid;grid-template-columns:auto minmax(0,300px) auto;gap:34px;align-items:center;justify-content:center}
+    @media(max-width:560px){.ls-kbj__stage{grid-template-columns:1fr;justify-items:center;gap:16px}}
+    .ls-kbj__key{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .ls-kbj__cap{min-width:34px;padding:9px 13px;border-radius:8px;border:1.5px solid #d8c9ab;font-family:var(--font-mono);font-size:16px;font-weight:700;color:#8a6a2c;background:#f5eddf;transition:.2s}
+    .ls-kbj__cap.on{background:#f0d9a5;border-color:#d6b25a;color:#5a3d0a}
+    .ls-kbj__klabel{font-size:10.5px;color:#726c61}
+    .ls-kbj__blanks{display:flex;flex-direction:column;gap:7px}
+    .ls-kbj__blank{border:1.5px dashed #c9b98f;border-radius:9px;padding:7px 11px;font-size:11.5px;color:#8a8271;display:flex;justify-content:space-between;gap:10px;transition:.25s;background:#fffdf9}
+    .ls-kbj__blank .v{font-family:var(--font-mono);color:#c2a86a;font-weight:700}
+    .ls-kbj__blank.filled{border-style:solid;border-color:#8bbf9f;background:#eef7f0;color:#3f6b53}
+    .ls-kbj__blank.filled .v{color:#2f7a4f}
+    .ls-kbj__joints{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:92px}
+    .ls-kbj__jt{width:12px;height:12px;border-radius:50%;background:#cfc7b5;justify-self:center;transition:.2s}
+    .ls-kbj__jt.move{background:#f0d9a5;box-shadow:0 0 7px #e0b94e}
+    .ls-kbj__jlabel{text-align:center;font-size:10.5px;color:#726c61;margin-top:6px}
+    .ls-kbj__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+    .ls-kbj__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+    .ls-kbj__msg{font-size:12px;color:#6a6455;margin-left:4px}
+    .ls-kbj__hint{font-size:11.5px;color:#8a8578;margin-left:auto}
+    .ls-kbj__hint b{color:#8a5a12}</style><style id="ls-kev-css">
+    .ls-kev{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kev__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:12px}
+    .ls-kev__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    .ls-kev__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-mono);user-select:none;touch-action:none;min-width:52px}
+    .ls-kev__btn.on{background:#f0d9a5;border-color:#d6b25a;color:#5a3d0a}
+    .ls-kev__btn--ghost{color:#6a6455;border-color:#cfc7b5;font-weight:600;font-size:13px}
+    .ls-kev__guide{font-size:12px;color:#6a6455}
+    /* 집합 상자와 조회 결과를 한 줄에 — 집합이 바뀌는 순간 조회 값이 같이 뒤집히는 게 보여야 한다 */
+    .ls-kev__state{display:grid;grid-template-columns:minmax(0,1.6fr) 1fr 1fr;gap:10px;margin-bottom:12px}
+    .ls-kev__cell{background:#faf7f0;border:1px solid var(--ls-border);border-radius:9px;padding:10px 13px}
+    .ls-kev__cell .lbl{display:block;font-size:11.5px;color:#726c61;margin-bottom:5px;font-family:var(--font-mono)}
+    .ls-kev__cell b{font-family:var(--font-mono);font-size:15px;color:#8a5a12}
+    .ls-kev__cell b.f{color:#8a8271}
+    .ls-kev__log{background:#f1efe7;border:1px solid var(--ls-border);border-radius:9px;padding:10px 12px;min-height:62px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+    .ls-kev__ph{font-size:12px;color:#8a8271}
+    .ls-kev__ev{font-family:var(--font-mono);font-size:11.5px;border-radius:6px;padding:4px 8px;white-space:nowrap;border:1px solid transparent}
+    .ls-kev__ev--press{background:#eef7f0;color:#2f7a4f;border-color:#bcdcc7}
+    .ls-kev__ev--repeat{background:#fff;color:#8a8271;border-color:#e2daca}
+    .ls-kev__ev--release{background:#f9eae5;color:#a8524c;border-color:#e5c2bb}
+    .ls-kev__note{font-size:12px;color:#6a6455;line-height:1.7;margin:12px 2px 0}
+    .ls-kev__note b{color:#8a5a12}
+    @media(max-width:640px){.ls-kev__state{grid-template-columns:1fr}}</style><style id="ls-kbt-css">
+    .ls-kbt{background:var(--ls-card);border:1px solid var(--ls-border);border-radius:12px;padding:14px;margin:18px auto;width:100%;max-width:var(--ls-widget-w);box-sizing:border-box;color:var(--ls-text)}
+    .ls-kbt__title{text-align:center;color:var(--ls-accent);font-size:13px;margin-bottom:10px}
+    /* 2단 — 스테이지 폭을 고정해 로봇이 그 안을 채우게 하고, 카드 높이는 오른쪽 조작부가 정한다(§7.1) */
+    .ls-kbt__body{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:stretch}
+    @media(max-width:640px){.ls-kbt__body{grid-template-columns:1fr}}
+    .ls-kbt__stage{background:#f1efe7;border:1px solid var(--ls-border);border-radius:10px;display:flex;align-items:center;justify-content:center;padding:14px 8px;overflow:hidden}
+    .ls-kbt__stage svg{display:block;height:250px;width:auto;max-width:100%}
+    .ls-kbt__panel{display:flex;flex-direction:column;gap:14px;justify-content:center}
+    /* 읽는 값이 셋이라 세로로 쌓지 않고 가로 카드로 나눈다(§7.1) */
+    .ls-kbt__reads{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .ls-kbt__read{background:#faf7f0;border:1px solid var(--ls-border);border-radius:9px;padding:9px 12px}
+    .ls-kbt__read .lbl{display:block;font-size:11.5px;color:#726c61;margin-bottom:4px}
+    .ls-kbt__read b{font-family:var(--font-mono);font-size:15px;color:#8a5a12}
+    .ls-kbt__row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .ls-kbt__btn{background:rgba(240,217,165,.2);color:#8a5a12;border:1px solid rgba(200,160,70,.55);border-radius:8px;padding:9px 16px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-mono);user-select:none;touch-action:none;min-width:52px}
+    .ls-kbt__btn:active{background:rgba(240,217,165,.42)}
+    .ls-kbt__btn--ghost{color:#6a6455;border-color:#cfc7b5;font-weight:600}
+    .ls-kbt__msg{font-size:12px;color:#6a6455;line-height:1.7;margin:0}
+    .ls-kbt__msg b{color:#8a5a12}</style></head>
+  <body class="is-view-read">
+    <!-- ============================== 사이드 레일 (책장 손잡이) ============================== -->
+    <aside class="rail" id="rail">
+      <button class="rail__menu" id="menuBtn" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="rail__brand" aria-hidden="true">
+        <span class="rail__brand-text" id="railBrand">NAVER CONNECT</span>
+      </div>
+    </aside>
+
+    <!-- ============================== 메뉴 오버레이 ============================== -->
+    <div class="overlay" id="overlay" hidden="">
+      <div class="overlay__backdrop"></div>
+      <div class="overlay__panel">
+        <button class="overlay__close" id="overlayClose" aria-label="닫기">×</button>
+
+        <div class="overlay__head">
+          <h2 class="overlay__title">목차</h2>
+          <p class="overlay__sub" id="overlaySub">4개 챕터 · 21강</p>
+        </div>
+
+        <ul class="overlay__books" id="overlayMenu"><li class="overlay__book" data-book-id="creation"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">01</span>
+      <span class="overlay__book-name">탄생</span>
+      <span class="overlay__book-count" data-book-count="creation">2 / 4강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p1c0" class="is-done"><button>
+        <span class="ch-no">00</span>
+        <span class="ch-title">들어가며</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c1" class="is-done"><button>
+        <span class="ch-no">01</span>
+        <span class="ch-title">강화학습과 시뮬레이션 기초</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c2" class="is-done"><button>
+        <span class="ch-no">02</span>
+        <span class="ch-title">Isaac Sim 처음 열기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p1c3" class=""><button>
+        <span class="ch-no">03</span>
+        <span class="ch-title">중력 만져보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p1c4" class=""><button>
+        <span class="ch-no">04</span>
+        <span class="ch-title">로봇 불러오기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="perception"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">02</span>
+      <span class="overlay__book-name">각성</span>
+      <span class="overlay__book-count" data-book-count="perception">2 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p2c5" class="is-done"><button>
+        <span class="ch-no">05</span>
+        <span class="ch-title">관절 움직이기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p2c6" class="is-done"><button>
+        <span class="ch-no">06</span>
+        <span class="ch-title">지형 만들기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li><li data-chapter-id="p2c7"><button>
+        <span class="ch-no">07</span>
+        <span class="ch-title">카메라로 보기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c8"><button>
+        <span class="ch-no">08</span>
+        <span class="ch-title">라이다로 거리 재기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p2c9"><button>
+        <span class="ch-no">09</span>
+        <span class="ch-title">키보드로 조작하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="instinct"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">03</span>
+      <span class="overlay__book-name">진화</span>
+      <span class="overlay__book-count" data-book-count="instinct">0 / 7강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p3c10" class="is-active"><button>
+        <span class="ch-no">10</span>
+        <span class="ch-title">Isaac Lab과 강화학습 원리</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c11"><button>
+        <span class="ch-no">11</span>
+        <span class="ch-title">로봇 학습의 목표</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c12"><button>
+        <span class="ch-no">12</span>
+        <span class="ch-title">로봇 학습 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c13"><button>
+        <span class="ch-no">13</span>
+        <span class="ch-title">로봇 학습 하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c14"><button>
+        <span class="ch-no">14</span>
+        <span class="ch-title">보상 함수 설계와 조정</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c15"><button>
+        <span class="ch-no">15</span>
+        <span class="ch-title">학습 관찰과 진단</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p3c16"><button>
+        <span class="ch-no">16</span>
+        <span class="ch-title">policy.pt 파일 준비하기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li></ol></li><li class="overlay__book" data-book-id="wisdom"><div class="overlay__book-trigger">
+      <span class="overlay__book-no">04</span>
+      <span class="overlay__book-name">초월</span>
+      <span class="overlay__book-count" data-book-count="wisdom">1 / 5강</span>
+    </div><ol class="overlay__chapters"><li data-chapter-id="p4c17"><button>
+        <span class="ch-no">17</span>
+        <span class="ch-title">자연어를 로봇 명령으로</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c18"><button>
+        <span class="ch-no">18</span>
+        <span class="ch-title">믿을 수 있는 로봇 명령 만들기</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c19"><button>
+        <span class="ch-no">19</span>
+        <span class="ch-title">생각하는 로봇, 완성</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c20"><button>
+        <span class="ch-no">20</span>
+        <span class="ch-title">여기까지, 그리고 그다음</span>
+        <span class="ch-check" aria-hidden="true"></span>
+      </button></li><li data-chapter-id="p4c21" class="is-done"><button>
+        <span class="ch-no">21</span>
+        <span class="ch-title">부록 · 본선 연습 해보기</span>
+        <span class="ch-check" aria-hidden="true">✓</span>
+      </button></li></ol></li></ul>
+
+        <div class="overlay__quicks">
+          <button class="overlay__quick" data-quick="books">
+            <span class="overlay__quick-label">메인 화면</span>
+          </button>
+          <button class="overlay__quick" data-quick="glossary">
+            <span class="overlay__quick-label">단어 사전</span>
+          </button>
+          <a class="overlay__quick" href="https://robotics.connect.or.kr/lecture/teacher-guide.html">
+            <span class="overlay__quick-label">교사용 지도서</span>
+          </a>
+        </div>
+
+        <div class="overlay__legal">
+          NAVER CONNECT ROBOTICS CUP 2026<br>
+          <button class="overlay__legal-btn" type="button" id="legalBtn">이용 안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================== 메인 무대 ============================== -->
+    <main class="stage" id="stage">
+      <!-- 배경 슬롯 (뷰별 교체) -->
+      <div class="bgs" id="bgs"><div class="bgs__layer" style="background-image: url(&quot;img/배경1.webp&quot;);"></div><div class="bgs__layer" style="background-image: url(&quot;img/1-7.webp&quot;);"></div></div>
+      <div class="bg-vignette" aria-hidden="true"></div>
+
+      <!-- ============== 뷰: 전체 목차 (4 챕터 strips) ============== -->
+      <section class="view view--books" data-view="books" hidden="">
+        <div class="books__head">
+          <h2 class="books__title">NAVER CONNECT ROBOTICS CUP <span class="books__title-guide">GUIDE BOOK</span></h2>
+          <p class="books__hero">시뮬레이션 · 강화학습 · LLM을 한 흐름으로 잇는 로보틱스 가이드북</p>
+          <div class="books__resume-slot" id="booksResume">
+    <button class="books__resume" id="booksResumeBtn">
+      <span class="books__resume-label">이어보기</span>
+      <span class="books__resume-text">16강 · policy.pt 파일 준비하기</span>
+      <span class="books__resume-arrow">→</span>
+    </button>
+  </div>
+        </div>
+        <div class="books__strips" id="booksStrips"><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/1-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">01</div>
+      <div class="strip__hanja">탄생</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">시뮬레이션 환경 접속하기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:25%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/2-7.webp&#39;); background-position: 40% center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">02</div>
+      <div class="strip__hanja">각성</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">로봇을 움직이고 감각 달기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/3-5.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">03</div>
+      <div class="strip__hanja">진화</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">스스로 걷는 법 가르치기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:0%"></div>
+        </div>
+      </div>
+    </button><button class="strip">
+      <div class="strip__bg" style="background-image: url(&#39;img/4-7.webp&#39;); background-position: center;"></div>
+      <div class="strip__overlay"></div>
+      <div class="strip__wm" aria-hidden="true">04</div>
+      <div class="strip__hanja">초월</div>
+      <div class="strip__bottom">
+        <div class="strip__headline">자연어로 명령 내리기</div>
+        <div class="strip__progress" aria-hidden="true">
+          <div class="strip__progress-fill" style="width:20%"></div>
+        </div>
+      </div>
+    </button></div>
+      </section>
+
+      <!-- ============== 뷰: 챕터 목차 (다크 hero + 화이트 챕터 그리드) ============== -->
+      <section class="view view--bestiary" data-view="bestiary" hidden="">
+        <aside class="bestiary__hero">
+          <div class="bestiary__hero-bg" id="bestiaryHeroBg" style="background-image: url(&quot;img/1-7.webp&quot;); background-position: center center;"></div>
+          <div class="bestiary__hero-veil"></div>
+          <button class="bestiary__back" id="bestiaryBack" aria-label="메인 화면으로">
+            <span>◂</span> 메인
+          </button>
+          <div class="bestiary__hero-content">
+            <div class="bestiary__hero-no" id="bestiaryHeroNo">챕터 01</div>
+            <h2 class="bestiary__hero-title" id="bestiaryHeroTitle">탄생</h2>
+            <div class="bestiary__hero-titleEn" id="bestiaryHeroTitleEn">시뮬레이션 환경 접속하기</div>
+          </div>
+        </aside>
+
+        <main class="bestiary__chapters">
+          <header class="bestiary__chapters-head">
+            <h3 class="bestiary__chapters-title" id="bestiaryChaptersTitle">시뮬레이션 환경을 손에 쥐어요</h3>
+            <p class="bestiary__chapters-desc" id="bestiaryChaptersDesc">강화학습과 시뮬레이션이 왜 필요한지부터 짚고, Isaac Sim을 처음 열어봐요.
+중력을 만지고, 첫 로봇을 시뮬레이션 환경으로 불러오기까지 함께 해요.</p>
+          </header>
+          <ol class="bestiary__list" id="bestiaryList"><li class="chapter-card" data-chapter-id="p1c0">
+      <div class="chapter-card__index">00</div>
+      <h3 class="chapter-card__title">들어가며</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c1">
+      <div class="chapter-card__index">01</div>
+      <h3 class="chapter-card__title">강화학습과 시뮬레이션 기초</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card chapter-card--done" data-chapter-id="p1c2">
+      <div class="chapter-card__index">02</div>
+      <h3 class="chapter-card__title">Isaac Sim 처음 열기</h3>
+      <div class="chapter-card__check" aria-hidden="true">✓</div>
+    </li><li class="chapter-card" data-chapter-id="p1c3">
+      <div class="chapter-card__index">03</div>
+      <h3 class="chapter-card__title">중력 만져보기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li><li class="chapter-card" data-chapter-id="p1c4">
+      <div class="chapter-card__index">04</div>
+      <h3 class="chapter-card__title">로봇 불러오기</h3>
+      <div class="chapter-card__check" aria-hidden="true"></div>
+    </li></ol>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: 강의 본문 (풀스크린) ============== -->
+      <section class="view view--read is-visible" data-view="read">
+        <main class="read__main">
+          <header class="read__bar">
+            <div class="read__bar-left">
+              <button class="read__back" id="readBack" aria-label="챕터로">
+                <span class="read__back-arrow" aria-hidden="true">◂</span>
+                <span class="read__back-label">챕터</span>
+              </button>
+            </div>
+            <label class="read__bar-picker" aria-label="강의 이동">
+              <select class="read__bar-select" id="readBarSelect"><option value="p4c17">17강의. 자연어를 로봇 명령으로</option><option value="p4c18" selected="">18강의. 믿을 수 있는 로봇 명령 만들기</option><option value="p4c19">19강의. 생각하는 로봇, 완성</option><option value="p4c20">20강의. 여기까지, 그리고 그다음</option><option value="p4c21">21강의. 부록 · 본선 연습 해보기</option></select>
+              <span class="read__bar-picker-caret" aria-hidden="true">▾</span>
+            </label>
+            <button type="button" class="lsq-bar" aria-label="강의 본문 검색"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg><span>검색</span><span class="lsq-k">( / )</span></button><div class="read__nav" id="readNav">
+              <button class="read__prev" id="readPrev" aria-label="이전 강의" data-tooltip="17강의. 자연어를 로봇 명령으로">
+                <span class="read__nav-arrow">◂</span>
+                <span class="read__nav-label">이전 강의</span>
+              </button>
+              <button class="read__next" id="readNext" aria-label="다음 강의" data-tooltip="19강의. 생각하는 로봇, 완성">
+                <span class="read__nav-label">다음 강의</span>
+                <span class="read__nav-arrow">▸</span>
+              </button>
+            </div>
+          </header>
+          <article class="read__article ls-host" id="readContent" data-lesson-id="p4c18"><header class="ls-open is-revealed">
+    <h1 class="ls-open__title">18. 믿을 수 있는 로봇 명령 만들기</h1>
+    <p class="ls-open__sub"><span class="ls-para"><span class="ls-term" data-term="LLM" role="link" tabindex="0">LLM</span>은 사람처럼 말로 답하지만, 로봇은 그 말을 바로 알아들을 수 없어요.</span><span class="ls-para">오늘은 로봇이 알아들을 수 있는 구조인 <strong><span class="ls-term" data-term="JSON" role="link" tabindex="0">JSON</span></strong>이라는 약속으로, 그 답을 믿을 수 있게 만들어요.</span></p>
+  </header><section class="ls-stage is-revealed" data-stage-key="intro" data-lesson="p4c18" data-lesson-no="18" data-stage-no="1" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">①</span>
+      <h2 class="ls-stage__label">생각 열기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead is-revealed" data-block="block-head">
+    <h3 class="ls-blockhead__title">수다스러운 LLM</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">LLM은 원래 <strong>사람의 <span class="ls-term" data-term="자연어" role="link" tabindex="0">자연어</span> 대화를 처리하도록 개발된 모델</strong>이에요.</span> <span class="ls-sentence">그래서 무엇을 물어도 사람처럼 친절하게 설명하려는 성질이 있어요.</span></span><span class="ls-para"><span class="ls-sentence">숫자만 달라고 해도 앞에 "네!</span> <span class="ls-sentence">요청하신 명령입니다:"를 붙이거나, 뒤에 "안전 운행하세요!"라고 덧붙이곤 하죠.</span></span><span class="ls-para"><span class="ls-sentence">그런데 로봇은 달라요.</span> <span class="ls-sentence">0.1초 단위로 움직임을 갱신하는 로봇에게 필요한 건 설명이 아니라, <code>vx, vy, vyaw = 0.4, 0.0, 0.3</code>처럼 <strong>형식이 정해진 구조화된 데이터</strong>예요.</span></span><span class="ls-para">사람에게는 친절한 한마디지만, 오직 '숫자 데이터'만 받아 적어야 하는 로봇 코드에는 <strong>방해물(오류)</strong>이 될 뿐이에요.</span></p>
+  </section><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">그래서 필요한 건 부탁이 아니라 <strong><span class="ls-term" data-term="계약" role="link" tabindex="0">계약</span>(contract)</strong>이에요.</span> <span class="ls-sentence">"너는 반드시 이 형식으로만 답한다"는 약속이요.</span> <span class="ls-sentence">사람의 말과 기계의 숫자 사이, 그 계약의 표준 형식이 <strong>JSON</strong>이에요.</span></span></span></div><section class="ls-stage is-revealed" data-stage-key="objective" data-lesson="p4c18" data-lesson-no="18" data-stage-no="2" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">②</span>
+      <h2 class="ls-stage__label">학습 목표</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><div class="ls-outcomes is-revealed" data-block="outcome-list">
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">01</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>로봇 제어에 JSON이 필요한 이유를 설명할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">02</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>좋은 <span class="ls-term" data-term="프롬프트" role="link" tabindex="0">프롬프트</span>의 4요소를 갖춰 쓸 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">03</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong><span class="ls-term" data-term="자연어 명령" role="link" tabindex="0">자연어 명령</span>을 velocity JSON으로 바꿀 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">04</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>형식을 부탁하는 대신 강제할 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  
+    <div class="ls-outcome">
+      <div class="ls-outcome__no">05</div>
+      <div class="ls-outcome__main">
+        <div class="ls-outcome__text"><span class="ls-para"><strong>잘못된 답에 대비하는 <span class="ls-term" data-term="안전망" role="link" tabindex="0">안전망</span>을 두를 수 있어요.</strong></span></div>
+        
+      </div>
+    </div>
+  </div><div class="ls-takeaway is-revealed" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">오늘이 끝나면 "앞으로 가며 왼쪽으로 회전해"라는 자연어를 <code>[전진, 좌우, 회전]</code> 수치 데이터(예: <code>[0.4, 0.0, 0.3]</code>)로 변환해요.</span> <span class="ls-sentence">어디서 많이 봤죠?</span> <span class="ls-sentence"><strong>3 챕터에서 키운 <span class="ls-term" data-term="보행 정책" role="link" tabindex="0">보행 정책</span>이 제어 명령으로 전달받던 <span class="ls-term" data-term="velocity_command" role="link" tabindex="0">velocity_command</span></strong>예요.</span></span></span></div><section class="ls-stage is-revealed" data-stage-key="concept" data-lesson="p4c18" data-lesson-no="18" data-stage-no="3" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">③</span>
+      <h2 class="ls-stage__label">개념 만나기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para"><span class="ls-sentence">오늘 개념은 네 파트로 차근차근 쌓아요.</span> <span class="ls-sentence"><strong>JSON 이해하기</strong> → <strong>좋은 지시문 쓰기</strong> → <strong>형식 보장</strong> → <strong>못 믿을 때의 안전망</strong></span></span><span class="ls-para">하나씩 따라오면 돼요.</span></p>
+  </section><div class="ls-groupdiv" data-block="group-divider" style="max-width: var(--ls-max-w); margin: 2.8rem auto 0.4rem; padding-top: 1.5rem; border-top: 2px solid rgb(221, 216, 204);">
+    <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;">
+      <span style="font:700 12px/1 var(--font-mono,&#39;JetBrains Mono&#39;,monospace);letter-spacing:.05em;color:#fff;background:#15202f;border-radius:999px;padding:6px 13px;white-space:nowrap;">PART 1</span>
+      <span style="font-size:21px;font-weight:800;color:#15202f;letter-spacing:-.01em;">JSON 이해하기</span>
+    </div>
+    
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">왜 하필 JSON일까</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">사람의 글은 같은 뜻도 모양이 제각각이에요.</span> <span class="ls-sentence">"0.4로 전진"이라 쓰든 "전진 속도는 0.4"라 쓰든 사람은 다 알아듣죠.</span></span><span class="ls-para"><span class="ls-sentence">하지만 코드는 달라요.</span> <span class="ls-sentence">모양이 흔들리지 않는 <strong>구조화된 데이터</strong>라야 값을 꺼낼 수 있어요.</span></span><span class="ls-para"><span class="ls-sentence">그래서 기계끼리 데이터를 주고받을 땐 <strong>규격</strong>이 필요해요.</span> <span class="ls-sentence">그 표준이 <strong>JSON</strong>이에요.</span></span><span class="ls-para">사람도 읽을 수 있으면서, 파이썬은 <code>json.loads()</code> 한 줄로 안정적으로 읽어요.</span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">JSON 첫 만남, <span class="ls-term" data-term="속도 벡터" role="link" tabindex="0">속도 벡터</span> 하나</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0">{</span><span class="ls-line ls-line--note" data-note="cn1">  <span class="ls-tok ls-tok--str">"vx"</span>: <span class="ls-tok ls-tok--num">0.4</span>,</span><span class="ls-line">  <span class="ls-tok ls-tok--str">"vy"</span>: <span class="ls-tok ls-tok--num">0.0</span>,</span><span class="ls-line">  <span class="ls-tok ls-tok--str">"yaw"</span>: <span class="ls-tok ls-tok--num">0.3</span></span><span class="ls-line">}</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">세 숫자의 단위, 그리고 어느 정도인지</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><code>vx</code>·<code>vy</code>는 <strong>m/s</strong>(초당 미터), <code>yaw</code>는 <strong>rad/s</strong>(초당 <span class="ls-term" data-term="라디안" role="link" tabindex="0">라디안</span>)예요.</span><span class="ls-para"><span class="ls-sentence">왜 「초당」일까요?</span> <span class="ls-sentence">로봇 제어는 <strong>아주 짧은 주기로 "지금 이 순간의 속도"를 계속 새로 건네주는</strong> 방식이거든요.</span> <span class="ls-sentence">시속(km/h)은 자동차를 볼 때 편한 단위지만, 이렇게 촘촘히 갱신하는 제어에는 초 단위가 자연스러워요.</span></span><span class="ls-para"><span class="ls-sentence">회전은 왜 도(°)가 아니라 <strong>라디안</strong>일까요?</span> <span class="ls-sentence">라디안으로 적으면 <strong>돌아간 <span class="ls-term" data-term="각도" role="link" tabindex="0">각도</span>에 <span class="ls-term" data-term="반지름" role="link" tabindex="0">반지름</span>만 곱해 실제로 움직인 거리</strong>가 바로 나와요.</span> <span class="ls-sentence">도(°)를 쓰면 계산마다 변환을 끼워야 하죠.</span> <span class="ls-sentence">그래서 <span class="ls-term" data-term="물리 엔진" role="link" tabindex="0">물리 엔진</span>도 <span class="ls-term" data-term="정책" role="link" tabindex="0">정책</span>도 라디안으로 계산하고, 우리도 같은 단위로 건네요.</span> <span class="ls-sentence">참고로 1rad는 약 57°, 한 바퀴(360°)는 2π, 곧 약 6.28rad예요.</span></span><span class="ls-para"><span class="ls-sentence">그럼 <code>0.4</code>와 <code>0.3</code>은 몸으로 어느 정도일까요?</span> <span class="ls-sentence">아래에서 값을 직접 움직여보세요.</span></span></p>
+  </section><div class="ls-velsc" data-block="velocity-scale">
+    <div class="ls-velsc__row">
+      <div class="ls-velsc__head">
+        <span class="ls-velsc__key">vx</span>
+        <span class="ls-velsc__what">앞뒤로 가는 속도</span>
+        <b class="ls-velsc__val" data-out="v">0.4</b><span class="ls-velsc__unit">m/s</span>
+      </div>
+      <input class="ls-velsc__range" type="range" min="0" max="1" step="0.1" value="0.4" data-k="v" aria-label="전진 속도 (m/s)">
+      <div class="ls-velsc__mount" data-mount="run"><canvas data-engine="three.js r160" width="430" height="210" style="display: block; width: 430px; height: 210px;"></canvas></div>
+      <p class="ls-velsc__say" data-say="v">1초에 <b>0.4m</b> — 시속 <b>1.4km</b>예요. 사람 보통 걸음(약 1.2m/s)의 <b>33%</b> 정도라, 10m를 가려면 <b>25초</b>가 걸려요.</p>
+    </div>
+
+    <div class="ls-velsc__row">
+      <div class="ls-velsc__head">
+        <span class="ls-velsc__key">yaw</span>
+        <span class="ls-velsc__what">제자리에서 도는 속도</span>
+        <b class="ls-velsc__val" data-out="w">0.3</b><span class="ls-velsc__unit">rad/s</span>
+      </div>
+      <input class="ls-velsc__range" type="range" min="0" max="1" step="0.1" value="0.3" data-k="w" aria-label="회전 속도 (rad/s)">
+      <div class="ls-velsc__mount ls-velsc__mount--turn" data-mount="spin"><canvas data-engine="three.js r160" width="430" height="210" style="display: block; width: 430px; height: 210px;"></canvas></div>
+      <p class="ls-velsc__say" data-say="w">1초에 <b>약 17°</b> — 한 바퀴(360°) 도는 데 <b>약 21초</b>예요. 시계 초침(초당 6°)보다 <b>2.9배</b> 빨라요.</p>
+    </div>
+  </div><div class="ls-coderun" data-block="code-run">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="import" role="link" tabindex="0">import</span></span> json</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn1">text = <span class="ls-tok ls-tok--str">'{"vx": 0.4, "vy": 0.0, "yaw": 0.3}'</span></span><span class="ls-line ls-line--note" data-note="cn2">cmd  = json.<span class="ls-tok ls-tok--fn">loads</span>(text)</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn3"><span class="ls-tok ls-tok--fn">print</span>(cmd[<span class="ls-tok ls-tok--str">"vx"</span>])</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">0.4</pre></div>
+      <div class="ls-coderun__foot"><code>0.4</code>가 출력돼요. 글자 뭉치였던 <code>text</code>가 <code>json.loads()</code> 한 줄로, 이름표로 값을 꺼내 쓰는 데이터가 됐어요.</div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para">정리하면 <strong>LLM의 "말"과 로봇의 "숫자" 사이에 JSON이라는 규격을 끼운다</strong>예요.</span></span></div><div class="ls-groupdiv" data-block="group-divider" style="max-width: var(--ls-max-w); margin: 2.8rem auto 0.4rem; padding-top: 1.5rem; border-top: 2px solid rgb(221, 216, 204);">
+    <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;">
+      <span style="font:700 12px/1 var(--font-mono,&#39;JetBrains Mono&#39;,monospace);letter-spacing:.05em;color:#fff;background:#15202f;border-radius:999px;padding:6px 13px;white-space:nowrap;">PART 2</span>
+      <span style="font-size:21px;font-weight:800;color:#15202f;letter-spacing:-.01em;">좋은 지시문 쓰기</span>
+    </div>
+    
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">좋은 프롬프트의 4요소</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">LLM에게 일을 시키는 글(프롬프트)은 네 요소로 구성해요.</span></p>
+  </section><div class="ls-pp" data-block="prompt-parts" style="max-width: var(--ls-max-w); margin: 1.2rem auto;">
+    <div class="ls-pp__mount" style="width:100%;height:320px;border-radius:14px;overflow:hidden;background:#eef0f4;position:relative;">
+      
+    <canvas data-engine="three.js r160" width="942" height="320" style="display: block; width: 942px; height: 320px;"></canvas></div>
+    <div class="ls-pp__tabs" style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+      <button class="ls-pp__tab" data-step="1" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgb(21, 32, 47); background: rgb(21, 32, 47); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(255, 255, 255);">① 역할</button><button class="ls-pp__tab" data-step="2" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.12); background: rgb(255, 255, 255); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(31, 41, 55);">② 상태</button><button class="ls-pp__tab" data-step="3" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.12); background: rgb(255, 255, 255); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(31, 41, 55);">③ 목표</button><button class="ls-pp__tab" data-step="4" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.12); background: rgb(255, 255, 255); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(31, 41, 55);">④ 형식</button>
+    </div>
+    <div class="ls-pp__panel" style="margin-top:10px;padding:12px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:10px;background:#fafbfc;">
+      <p class="ls-pp__desc" style="margin:0;font-size:15px;line-height:1.6;color:#1f2937;">LLM에게 <b>맡길 일</b>을 정해줘요. 여기선 "사람 말을 로봇 속도(vx·vy·yaw)로 바꾸는 변환기"라고 역할을 분명히 정해요.</p>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">system과 user의 분리</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">우리 코드는 LLM을 <strong><span class="ls-term" data-term="API" role="link" tabindex="0">API</span></strong>로 불러 써요.</span> <span class="ls-sentence">API는 프로그램이 다른 프로그램에게 일을 시키는 창구예요.</span></span><span class="ls-para">LLM 서버에 "이 메시지에 답해줘"라고 요청을 보내면, 답이 돌아오는 구조예요.</span><span class="ls-para"><span class="ls-sentence">이 대화형 <span class="ls-term" data-term="LLM API" role="link" tabindex="0">LLM API</span>에는 메시지 자리가 두 개 있어요.</span> <span class="ls-sentence">규칙을 <code>system</code>에 한 번 넣어두면, <code>user</code>에는 상황만 갱신해서 보내면 돼요.</span> <span class="ls-sentence">역할이 흔들리지 않고 코드도 깔끔해져요.</span></span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">자리</th><th class="ls-vstable__th--1 ls-vstable--c">담는 것</th><th class="ls-vstable__th--2 ls-vstable--c"><span class="ls-term" data-term="갱신" role="link" tabindex="0">갱신</span></th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>system</code></td><td class="ls-vstable--c">변하지 않는 역할·규칙·출력 형식</td><td class="ls-vstable--c">한 번 정의 후 고정</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><code>user</code></td><td class="ls-vstable--c">지금 이 순간의 상황·명령</td><td class="ls-vstable--c">매 호출마다 갱신</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">실제로는 이렇게 써요, system + user</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0">messages = [</span><span class="ls-line ls-line--note" data-note="cn1">    {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"system"</span>, <span class="ls-tok ls-tok--str">"content"</span>:</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"너는 사람 말을 로봇 속도로 바꾸는 변환기다. "</span></span><span class="ls-line">        <span class="ls-tok ls-tok--str">'반드시 JSON으로만 답한다: {"vx":.., "vy":.., "yaw":..}'</span>},</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn2">    {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"user"</span>, <span class="ls-tok ls-tok--str">"content"</span>:</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"앞으로 천천히 가면서 살짝 왼쪽으로 틀어"</span>},</span><span class="ls-line">]</span><span class="ls-line ls-line--note" data-note="cn3">resp = <span class="ls-tok ls-tok--fn">call_llm</span>(messages)</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">LLM이 잘 알아듣게 쓰는 팁</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">4요소 중 손이 가장 많이 가는 건 <strong>상태</strong>예요.</span> <span class="ls-sentence">우리가 만든 구조에서 LLM은 세상을 직접 보지 못해요.</span> <span class="ls-sentence"><span class="ls-term" data-term="카메라" role="link" tabindex="0">카메라</span>와 센서를 LLM에 바로 연결하지 않았으니, 아는 건 오직 <strong>우리가 글과 숫자로 적어 보낸 것</strong>뿐이에요.</span></span><span class="ls-para"><span class="ls-sentence">그래서 같은 LLM이라도 어떻게 적어 주느냐에 따라 판단이 확 달라져요.</span> <span class="ls-sentence">잘 적는 팁 두 가지를 순서대로 볼게요.</span></span></p>
+  </section><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">카메라를 LLM에 바로 연결하면 안 되나요?</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence">연결할 수 있어요.</span> <span class="ls-sentence">글과 이미지를 함께 이해하는 모델을 <strong>VLM(Vision-Language Model, 시각 언어 모델)</strong>이라고 하고, 요즘 상용 모델은 대부분 사진을 같이 받아요.</span> <span class="ls-sentence">로봇 연구에서도 카메라 영상을 그대로 넣는 방식을 활발히 쓰고 있어요.</span></span><span class="ls-para"><span class="ls-sentence">그런데 이번 대회처럼 <strong>로봇을 실시간으로 움직여야 할 때</strong>는 그렇게 하지 않아요.</span> <span class="ls-sentence">이유가 세 가지예요.</span></span><span class="ls-para"><span class="ls-sentence">· <strong>느려요.</strong> LLM은 한 번 답하는 데 몇 초가 걸려요.</span> <span class="ls-sentence">0.1초마다 갱신되는 제어 <span class="ls-term" data-term="루프" role="link" tabindex="0">루프</span>에 영상을 매 장면 넣고 기다릴 수는 없어요.</span></span><span class="ls-para"><span class="ls-sentence">· <strong>이미 정확한 숫자가 있어요.</strong> 시뮬레이터와 센서가 위치·거리·각도를 이미 계산해 둬요.</span> <span class="ls-sentence">그걸 그림으로 바꿔 다시 짐작하게 하는 건 손해죠.</span></span><span class="ls-para">· <strong>판단의 근거가 보여요.</strong> 우리가 적어 보낸 숫자가 곧 근거라서, 답이 이상할 때 무엇이 빠졌는지 되짚을 수 있어요.</span><span class="ls-para"><span class="ls-sentence">그래서 실제 로봇은 <strong>카메라 → (인식) → 숫자로 요약한 상태 → LLM</strong> 순서로 이어 붙여요.</span> <span class="ls-sentence">보는 일은 빠른 인식 모델이 맡고, LLM은 요약된 숫자를 받아 판단만 하는 거예요.</span> <span class="ls-sentence">17강에서 본 <span class="ls-term" data-term="대뇌" role="link" tabindex="0">대뇌</span>·<span class="ls-term" data-term="소뇌" role="link" tabindex="0">소뇌</span> 분업과 같은 이야기죠.</span></span></div>
+  </details><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">팁 1 · 상태는 기준과 함께, 숫자로</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">보는 일은 인식이 맡고 우리는 그 결과를 적어 보내는 쪽이니, 센서가 이미 계산해 둔 값을 <strong>숫자 그대로</strong> 옮기는 게 가장 정확해요.</span> <span class="ls-sentence">"오른쪽 저기"는 모델마다 다르게 읽지만, 숫자는 누가 읽어도 같아요.</span></span><span class="ls-para"><span class="ls-sentence">대신 숫자에는 <strong>기준을 꼭 같이</strong> 적어요.</span> <span class="ls-sentence">"3.2m"만 적으면 어디서부터 3.2m인지 알 수 없으니까요.</span> <span class="ls-sentence">그래서 늘 <strong>로봇을 기준</strong>으로 적어요.</span> <span class="ls-sentence">목표물이 로봇에서 몇 m 떨어져 있고, <strong>로봇 정면을 0으로 두었을 때</strong> 어느 쪽으로 얼마나 틀어져 있는지를요.</span> <span class="ls-sentence">방향의 부호는 17강 규약 그대로예요.</span> <span class="ls-sentence">왼쪽이 +, 오른쪽이 −예요.</span></span><span class="ls-para">또 전체 <span class="ls-term" data-term="로그" role="link" tabindex="0">로그</span>를 다 던지면 LLM도 길을 잃으니, <strong>판단에 필요한 것만</strong> 보내요.</span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c">항목</th><th class="ls-vstable__th--1">좋은 전달</th><th class="ls-vstable__th--2">나쁜 전달</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">목표물</td><td>로봇에서 3.2m, 정면 기준 왼쪽으로 0.4 rad(약 23°)</td><td>저~기 오른쪽 어딘가에 있음</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="장애물" role="link" tabindex="0">장애물</span></td><td>로봇 정면에서 1.8m 앞</td><td>앞에 뭔가 있는 것 같기도</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">남은 시간</td><td>42초</td><td>(시간 정보 없음)</td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">팁 2 · 예시로 가르치기 (few-shot)</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">system prompt에 <strong>모범 예시 2~3개</strong>를 넣어두면, 응답의 들쭉날쭉함이 눈에 띄게 줄어요.</span><span class="ls-para"><span class="ls-sentence">보통 <strong>2~5개면 충분</strong>해요.</span> <span class="ls-sentence">더 늘려도 좋아지는 폭은 작고, 지시문만 길어져 답이 느려져요.</span></span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">실제로는 이렇게 써요, few-shot 예시</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0">SYSTEM_PROMPT = <span class="ls-tok ls-tok--str">""</span>"너는 사람 말을 로봇 속도로 바꾸는 변환기다.</span><span class="ls-line">반드시 JSON만 출력한다: {<span class="ls-tok ls-tok--str">"vx"</span>:.., <span class="ls-tok ls-tok--str">"vy"</span>:.., <span class="ls-tok ls-tok--str">"yaw"</span>:..}</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn1">입력: 앞으로 천천히</span><span class="ls-line ls-line--note" data-note="cn2">출력: {<span class="ls-tok ls-tok--str">"vx"</span>: <span class="ls-tok ls-tok--num">0.3</span>, <span class="ls-tok ls-tok--str">"vy"</span>: <span class="ls-tok ls-tok--num">0</span>, <span class="ls-tok ls-tok--str">"yaw"</span>: <span class="ls-tok ls-tok--num">0</span>}</span><span class="ls-line">&nbsp;</span><span class="ls-line">입력: 제자리에서 왼쪽으로 돌아</span><span class="ls-line">출력: {<span class="ls-tok ls-tok--str">"vx"</span>: <span class="ls-tok ls-tok--num">0</span>, <span class="ls-tok ls-tok--str">"vy"</span>: <span class="ls-tok ls-tok--num">0</span>, <span class="ls-tok ls-tok--str">"yaw"</span>: <span class="ls-tok ls-tok--num">0.5</span>}</span><span class="ls-line">&nbsp;</span><span class="ls-line">입력: 살짝 뒤로 가</span><span class="ls-line">출력: {<span class="ls-tok ls-tok--str">"vx"</span>: -<span class="ls-tok ls-tok--num">0.2</span>, <span class="ls-tok ls-tok--str">"vy"</span>: <span class="ls-tok ls-tok--num">0</span>, <span class="ls-tok ls-tok--str">"yaw"</span>: <span class="ls-tok ls-tok--num">0</span>}</span><span class="ls-line"><span class="ls-tok ls-tok--str">""</span>"</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><div class="ls-groupdiv" data-block="group-divider" style="max-width: var(--ls-max-w); margin: 2.8rem auto 0.4rem; padding-top: 1.5rem; border-top: 2px solid rgb(221, 216, 204);">
+    <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;">
+      <span style="font:700 12px/1 var(--font-mono,&#39;JetBrains Mono&#39;,monospace);letter-spacing:.05em;color:#fff;background:#15202f;border-radius:999px;padding:6px 13px;white-space:nowrap;">PART 3</span>
+      <span style="font-size:21px;font-weight:800;color:#15202f;letter-spacing:-.01em;">형식 보장</span>
+    </div>
+    
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">부탁하지 말고 강제하기, <span class="ls-term" data-term="함수 호출" role="link" tabindex="0">함수 호출</span></h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">좋은 지시문을 써도, LLM이 그 형식을 안 지키면 소용없죠.</span> <span class="ls-sentence">이번엔 형식을 아예 강제해요.</span></span><span class="ls-para"><span class="ls-sentence">지금까지 우리가 한 건 <strong>"제발 JSON으로만 답해줘"</strong>라고 단호히 부탁하고, 어기면 <span class="ls-term" data-term="파서" role="link" tabindex="0">파서</span>로 도려내는 방식이었어요.</span> <span class="ls-sentence">잘 통하지만 가끔은 어겨요.</span></span><span class="ls-para"><span class="ls-sentence">Claude·GPT·Gemini 같은 상용 API에는 한 수 위의 장치가 있어요.</span> <span class="ls-sentence">원하는 <strong>형식(<span class="ls-term" data-term="스키마" role="link" tabindex="0">스키마</span>)을 미리 등록</strong>해두면 모델이 <strong>그 형식에 맞게 출력해줘요</strong>.</span> <span class="ls-sentence">이걸 함수 호출(function calling), 또는 구조화 출력(<span class="ls-term" data-term="구조화된 출력" role="link" tabindex="0">structured output</span>)이라고 해요.</span></span></p>
+  </section><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c"></th><th class="ls-vstable__th--1 ls-vstable--c">프롬프트로 부탁 (우리 방식)</th><th class="ls-vstable__th--2 ls-vstable--c">스키마로 강제 (함수 호출)</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">형식 보장</td><td class="ls-vstable--c">대체로. 가끔 어김</td><td class="ls-vstable--c">지켜져요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c"><span class="ls-term" data-term="파서 안전망" role="link" tabindex="0">파서 안전망</span></td><td class="ls-vstable--c">필요 (extract_json)</td><td class="ls-vstable--c">거의 불필요</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">쓰는 곳</td><td class="ls-vstable--c">로컬·임베디드 등 어디서나</td><td class="ls-vstable--c">상용 API(<span class="ls-term" data-term="클라우드" role="link" tabindex="0">클라우드</span>)</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">배우는 값</td><td class="ls-vstable--c">원리를 손으로 익힘</td><td class="ls-vstable--c">실무에서 가장 빠르고 안전</td></tr>
+      </tbody>
+    </table>
+  </div><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">구조화 출력, 스키마로 형식 강제하기</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          <button class="ls-code__copy">복사</button>
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0">tools = [{</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"function"</span>,</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"function"</span>: {</span><span class="ls-line ls-line--note" data-note="cn1">        <span class="ls-tok ls-tok--str">"name"</span>: <span class="ls-tok ls-tok--str">"set_velocity"</span>,</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"description"</span>: <span class="ls-tok ls-tok--str">"로봇의 목표 속도를 설정한다"</span>,</span><span class="ls-line ls-line--note" data-note="cn2">        <span class="ls-tok ls-tok--str">"parameters"</span>: {</span><span class="ls-line">            <span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"object"</span>,</span><span class="ls-line">            <span class="ls-tok ls-tok--str">"properties"</span>: {</span><span class="ls-line ls-line--note" data-note="cn3">                <span class="ls-tok ls-tok--str">"velocity_x"</span>:   {<span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"number"</span>, <span class="ls-tok ls-tok--str">"minimum"</span>: -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--str">"maximum"</span>: <span class="ls-tok ls-tok--num">1.0</span>},</span><span class="ls-line">                <span class="ls-tok ls-tok--str">"velocity_y"</span>:   {<span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"number"</span>, <span class="ls-tok ls-tok--str">"minimum"</span>: -<span class="ls-tok ls-tok--num">0.5</span>, <span class="ls-tok ls-tok--str">"maximum"</span>: <span class="ls-tok ls-tok--num">0.5</span>},</span><span class="ls-line">                <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: {<span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"number"</span>, <span class="ls-tok ls-tok--str">"minimum"</span>: -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--str">"maximum"</span>: <span class="ls-tok ls-tok--num">1.0</span>},</span><span class="ls-line ls-line--note" data-note="cn4">                <span class="ls-tok ls-tok--str">"reason"</span>:       {<span class="ls-tok ls-tok--str">"type"</span>: <span class="ls-tok ls-tok--str">"string"</span>},</span><span class="ls-line">            },</span><span class="ls-line">            <span class="ls-tok ls-tok--str">"required"</span>: [<span class="ls-tok ls-tok--str">"velocity_x"</span>, <span class="ls-tok ls-tok--str">"velocity_y"</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>],</span><span class="ls-line">        },</span><span class="ls-line">    },</span><span class="ls-line">}]</span><span class="ls-line">&nbsp;</span><span class="ls-line">resp = <span class="ls-term" data-term="requests" role="link" tabindex="0">requests</span>.<span class="ls-tok ls-tok--fn">post</span>(LLM_URL, json={</span><span class="ls-line ls-line--note" data-note="cn5">    <span class="ls-tok ls-tok--str">"model"</span>: MODEL, <span class="ls-tok ls-tok--str">"messages"</span>: [...], <span class="ls-tok ls-tok--str">"tools"</span>: tools,</span><span class="ls-line">})</span><span class="ls-line ls-line--note" data-note="cn6">call = resp.<span class="ls-tok ls-tok--fn">json</span>()[<span class="ls-tok ls-tok--str">"choices"</span>][<span class="ls-tok ls-tok--num">0</span>][<span class="ls-tok ls-tok--str">"message"</span>][<span class="ls-tok ls-tok--str">"tool_calls"</span>][<span class="ls-tok ls-tok--num">0</span>]</span><span class="ls-line ls-line--note" data-note="cn7">cmd  = json.<span class="ls-tok ls-tok--fn">loads</span>(call[<span class="ls-tok ls-tok--str">"function"</span>][<span class="ls-tok ls-tok--str">"arguments"</span>])</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><details class="ls-noteexp" data-block="note-collapsible">
+    <summary class="ls-noteexp__summary">
+      <span class="ls-noteexp__chev">▶</span>
+      <span class="ls-noteexp__label">참고</span>
+      <span class="ls-noteexp__title"><span class="ls-para">스키마가 막아주지 않는 것들</span></span>
+    </summary>
+    <div class="ls-noteexp__body"><span class="ls-para"><span class="ls-sentence">스키마는 <strong>답의 모양</strong>을 지켜줘요.</span> <span class="ls-sentence">하지만 지켜주지 못하는 자리가 남아 있어요.</span></span><span class="ls-para"><span class="ls-sentence">· <strong>값의 범위는 안 막아요.</strong> <code>minimum</code>·<code>maximum</code>은 모델에게 주는 힌트일 뿐이에요.</span> <span class="ls-sentence"><code>velocity_x: 5.0</code>이 와도 에러 없이 통과해요.</span> <span class="ls-sentence">에러가 안 나는 대신 로봇이 위험하게 움직이니, 오히려 더 무서운 실패예요.</span></span><span class="ls-para"><span class="ls-sentence">· <strong>모양이 맞아도 값이 틀릴 수 있어요.</strong> "뒤로 가"라고 했는데 <code>velocity_x: 0.5</code>(전진)를 채워 넣을 수 있어요.</span> <span class="ls-sentence">형식 강제는 <strong>옳음까지 보장하지 않아요.</strong></span></span><span class="ls-para">· <strong><span class="ls-term" data-term="함수" role="link" tabindex="0">함수</span>를 아예 안 부를 수 있어요.</strong> 모델이 말로 답해버리면 <code>tool_calls</code>가 없어서 <code>KeyError</code>나 <code>IndexError: list index out of range</code>가 떠요.</span><span class="ls-para">· <strong>답이 길어 잘리면 <span class="ls-term" data-term="인자" role="link" tabindex="0">인자</span>도 잘려요.</strong> 응답 길이 제한에 걸려 중간에 끊기면, 미완성 JSON이 와서 <code>JSONDecodeError</code>가 나요.</span><span class="ls-para">· <strong>지원 여부가 제각각이에요.</strong> 모델과 API 버전에 따라 이 기능이 없거나, 옵션을 켜야 구조·타입까지 지켜주는 곳도 있어요.</span><span class="ls-para"><span class="ls-sentence">그래서 형식을 강제하더라도 <strong>안전망은 남겨둬요.</strong> 값을 자르는 <code>clamp</code>, 답이 없을 때의 대비, 마지막에는 <strong>정지</strong>.</span> <span class="ls-sentence">다음 파트에서 그 안전망을 만들어요.</span></span></div>
+  </details><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para">그런데 이 기능은 <strong>모든 LLM에 있는 게 아니에요.</strong> 우리 실습처럼 내 컴퓨터에서 돌리는 LLM에는 없을 때가 많아요.</span><span class="ls-para"><span class="ls-sentence">그래서 두 가지를 다 알아두면 좋아요.</span> <span class="ls-sentence"><strong>강제할 수 있으면 강제하고, 안 되면 앞에서 배운 대로 직접 부탁하고 검사하면 돼요.</strong></span></span></span></div><div class="ls-groupdiv" data-block="group-divider" style="max-width: var(--ls-max-w); margin: 2.8rem auto 0.4rem; padding-top: 1.5rem; border-top: 2px solid rgb(221, 216, 204);">
+    <div style="display:flex;align-items:center;gap:11px;flex-wrap:wrap;">
+      <span style="font:700 12px/1 var(--font-mono,&#39;JetBrains Mono&#39;,monospace);letter-spacing:.05em;color:#fff;background:#15202f;border-radius:999px;padding:6px 13px;white-space:nowrap;">PART 4</span>
+      <span style="font-size:21px;font-weight:800;color:#15202f;letter-spacing:-.01em;">못 믿을 때의 안전망</span>
+    </div>
+    
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">값도 한 번 더, <span class="ls-term" data-term="검증" role="link" tabindex="0">검증</span>과 <span class="ls-term" data-term="clamp" role="link" tabindex="0">clamp</span></h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">출력 형식까지 보장했어요.</span> <span class="ls-sentence">그래도 LLM은 느려지거나, 엉뚱한 값을 낼 수 있어요.</span></span><span class="ls-para"><span class="ls-sentence">출력 형식이 JSON이어도 <strong>값</strong> 자체는 안전하지 않을 수 있어요.</span> <span class="ls-sentence">"전속력으로!"라고 하면 <code>velocity_x: 5.0</code>처럼 너무 큰 값을 내놓는 식이죠.</span> <span class="ls-sentence">보행 정책은 학습 때 본 적 없는 속도를 받으면 이상하게 걷거나 휘청여요.</span></span><span class="ls-para"><span class="ls-sentence">그래서 규칙은 하나예요.</span> <span class="ls-sentence"><strong>LLM의 출력은 신뢰하되, 항상 확인한다.</strong> 범위 밖 값은 잘라내는(clamp) 한 겹을 둬요.</span></span></p>
+  </section><div class="ls-clamp is-clamped" data-block="clamp-demo">
+    <div class="ls-clamp__mount"><canvas data-engine="three.js r160" width="890" height="358" style="display: block; width: 890px; height: 358px;"></canvas></div>
+    <p class="ls-clamp__lead">초록 띠는 <b>로봇이 안전하게 받을 수 있는 범위</b>예요. LLM이 보낸 속도(주황 손잡이)를 아무리 멀리 끌어도, 로봇이 실제로 받는 값(청록)은 초록 끝에서 멈춰요.<br>즉 <b>로봇은 늘 안전 범위 안에서만 움직여요.</b></p>
+    <div class="ls-clamp__bartitle">🖐 주황 손잡이를 좌우로 드래그해보세요 <b>(LLM이 보낸 전진 속도)</b></div>
+    <div class="ls-clamp__bar" tabindex="0" role="slider" aria-label="LLM이 보낸 전진 속도" aria-valuemin="-2" aria-valuemax="2" aria-valuenow="1.6">
+      <div class="ls-clamp__tick" style="left:25%"></div>
+      <div class="ls-clamp__tick" style="left:75%"></div>
+      <div class="ls-clamp__rob" style="left: 75%;"><span class="ls-clamp__rdot"></span><span class="ls-clamp__rlab" style="left: 50%; right: auto; transform: translateX(-50%);">로봇이 받음 <b class="ls-clamp__v-out">1.0</b></span></div>
+      <div class="ls-clamp__handle" style="left: 90%;"><span class="ls-clamp__hlab" style="left: auto; right: 0px; transform: none;">LLM 출력 <b class="ls-clamp__v-llm">1.6</b></span><span class="ls-clamp__hdot"></span></div>
+    </div>
+    <div class="ls-clamp__legend"><span class="ls-clamp__legend-safe">초록 = 안전 범위 (−1.0 ~ +1.0)</span><span class="ls-clamp__status">✂ 범위 밖! 잘렸어요</span></div>
+    <div class="ls-clamp__note">초록이 정책이 학습한 안전 범위예요. LLM이 그 밖의 값을 줘도 <code>clamp</code>가 잘라서 보내니, 소뇌(정책)에는 늘 안전한 값만 도달해요.</div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">대뇌가 어떤 엉뚱한 값을 내도 소뇌에는 안전한 값만 도달하게.</span> <span class="ls-sentence">이 한 겹이 실제 로봇 시스템의 기본기예요.</span></span></span></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">침묵과 거짓, LLM 안전망</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">clamp로 "이상한 값"은 걸러냈어요.</span> <span class="ls-sentence">그런데 문제가 되는 경우가 두 가지 더 있어요.</span></span><span class="ls-para"><strong>① LLM이 답변을 아무것도 주지 않을 경우.</strong> 서버가 느리거나 연결이 끊기면, 2초면 올 답이 30초가 지나도 안 와요.</span><span class="ls-para"><span class="ls-sentence"><strong>② LLM이 없는 것을 지어낼 경우.</strong> "치울 <span class="ls-term" data-term="큐브" role="link" tabindex="0">큐브</span>는 1·3·7번이야"라고 알려줬는데도 "5번 큐브로 가겠습니다"라고 답하는 식이에요.</span> <span class="ls-sentence">코드는 있지도 않은 5번을 찾다가 <code>IndexError</code>로 멈추거나, 더 나쁘면 로봇을 엉뚱한 자리로 보내요.</span> <span class="ls-sentence">이렇게 <strong>그럴듯하지만 사실이 아닌 답</strong>을 지어내는 것을 <strong><span class="ls-term" data-term="환각" role="link" tabindex="0">환각</span></strong>이라고 해요.</span></span><span class="ls-para"><span class="ls-sentence">사람이라면 기다리거나 다시 물으면 되지만, 로봇은 그 사이에도 계속 움직여요.</span> <span class="ls-sentence">그래서 <strong>미리 대비</strong>해 둬야 해요.</span></span><span class="ls-para">아래 로봇에서 <strong>정상</strong>일 때와, 두 경우가 어긋날 때(<strong>침묵·거짓</strong>)를 직접 눌러봐요.</span></p>
+  </section><div class="ls-fm" data-block="fail-modes" style="max-width: var(--ls-max-w); margin: 1.2rem auto;">
+    <div class="ls-fm__mount" style="width:100%;height:340px;border-radius:14px;overflow:hidden;background:#eef0f4;position:relative;">
+      
+    <canvas data-engine="three.js r160" width="942" height="340" style="display: block; width: 942px; height: 340px;"></canvas></div>
+    <div class="ls-fm__tabs" style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+      <button class="ls-fm__tab" data-mode="1" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgb(21, 32, 47); background: rgb(21, 32, 47); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(255, 255, 255);">① 정상</button><button class="ls-fm__tab" data-mode="2" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.12); background: rgb(255, 255, 255); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(31, 41, 55);">② 침묵</button><button class="ls-fm__tab" data-mode="3" style="flex: 1 1 0%; min-width: 66px; padding: 9px 8px; border-radius: 9px; font-size: 14px; cursor: pointer; border: 1px solid rgba(0, 0, 0, 0.12); background: rgb(255, 255, 255); transition: background 0.15s, color 0.15s, border-color 0.15s; color: rgb(31, 41, 55);">③ 거짓</button>
+    </div>
+    <div class="ls-fm__panel" style="margin-top:10px;padding:12px 14px;border:1px solid rgba(0,0,0,0.1);border-radius:10px;background:#fafbfc;">
+      <p class="ls-fm__desc" style="margin:0;font-size:15px;line-height:1.6;color:#1f2937;">LLM이 제때 답하고, 고른 목표 <b>3</b>이 실제 목록 {1,3,7} 안에 있어요. 검증 통과 → 로봇이 실행해요.</p>
+    </div>
+  </div><div class="ls-vstable" data-block="vs-table">
+    <table>
+      <thead><tr><th class="ls-vstable__th--0 ls-vstable--c"></th><th class="ls-vstable__th--1 ls-vstable--c">그냥 맡기면</th><th class="ls-vstable__th--2 ls-vstable--c">데이터에 묶으면 (그라운딩)</th></tr></thead>
+      <tbody>
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">LLM에게 주는 것</td><td class="ls-vstable--c">"알아서 목표를 골라"</td><td class="ls-vstable--c">"목표는 1·3·7번뿐. 이 안에서만 골라"</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">LLM의 답</td><td class="ls-vstable--c">없는 "5번"을 지어내기도</td><td class="ls-vstable--c">반드시 준 목록 안에서</td></tr>
+      
+        <tr class=""><td class="ls-vstable__item ls-vstable--c">그다음</td><td class="ls-vstable--c">검증 없으면 엉뚱한 데로</td><td class="ls-vstable--c">답이 목록에 있는지 한 번 더 확인</td></tr>
+      </tbody>
+    </table>
+  </div><section class="ls-stage" data-stage-key="practice" data-lesson="p4c18" data-lesson-no="18" data-stage-no="4" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">④</span>
+      <h2 class="ls-stage__label">직접 해보기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    <p class="ls-stage__intro"><span class="ls-para">계약서(system prompt)를 쓰고, 변환기를 만들고, 안전망을 한 겹씩 둘러요.</span></p>
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">실습 1 · 자연어를 velocity JSON으로 바꾸기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">4요소를 모두 갖춘 첫 계약이에요.</span></p>
+  </section><div class="ls-code-wrap" data-block="code-block">
+    <div class="ls-code">
+      
+      <div class="ls-code__head">
+        <span class="ls-code__title">핵심 코드, 출력 형식을 계약으로 못박기</span>
+        <div class="ls-code__head-r">
+          <span class="ls-code__hint">줄을 누르면 해설</span>
+          
+        </div>
+      </div>
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">출력은 반드시 아래 JSON 한 개뿐이다.</span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">JSON 앞뒤로 인사말, 설명, 마크다운을 절대 붙이지 마라.</span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">{"velocity_x": <float>, "velocity_y": <float>,</float></float></span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str"> "velocity_yaw": <float>, "reason": "&lt;한 문장&gt;"}"""</float></span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">전체 코드와 실행 결과</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">핵심을 포함한 전체 코드예요.</span> <span class="ls-sentence">그대로 복사해 실행하고, 실행 결과 탭에서 확인해보세요.</span></span></p>
+  </section><div class="ls-coderun" data-block="code-run">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on is-clps" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="imp"><span class="ls-tok ls-tok--kw">import </span><span class="ls-tok ls-tok--var">requests</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">json</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">threading</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="cfg"><span class="ls-tok ls-tok--var">LLM_URL </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--str">"http://127.0.0.1:11434/api/chat"</span></span><span class="ls-line ls-line--note" data-note="cfg"><span class="ls-tok ls-tok--var">MODEL   </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--str">"isaac-tutor-ko-9b"</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="role"><span class="ls-tok ls-tok--var">SYSTEM_PROMPT </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--str">"""너는 <span class="ls-term" data-term="사족보행" role="link" tabindex="0">사족보행</span> 로봇의 속도 벡터 변환기다.</span></span><span class="ls-line ls-line--note" data-note="role"><span class="ls-tok ls-tok--str">사용자의 자연어 명령을 읽고, 로봇이 따라야 할 속도를 결정한다.</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="limits"><span class="ls-tok ls-tok--str">제약:</span></span><span class="ls-line ls-line--note" data-note="limits"><span class="ls-tok ls-tok--str">- velocity_x: 전진 속도 (m/s), -1.0 ~ 1.0 (양수=전진)</span></span><span class="ls-line ls-line--note" data-note="limits"><span class="ls-tok ls-tok--str">- velocity_y: 측면 속도 (m/s), -0.5 ~ 0.5 (양수=왼쪽)</span></span><span class="ls-line ls-line--note" data-note="limits"><span class="ls-tok ls-tok--str">- velocity_yaw: 회전 속도 (rad/s), -1.0 ~ 1.0 (양수=반시계)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">출력은 반드시 아래 JSON 한 개뿐이다.</span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">JSON 앞뒤로 인사말, 설명, 마크다운을 절대 붙이지 마라.</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str">{"velocity_x": <float>, "velocity_y": <float>,</float></float></span></span><span class="ls-line ls-line--note" data-note="format"><span class="ls-tok ls-tok--str"> "velocity_yaw": <float>, "reason": "&lt;한 문장&gt;"}"""</float></span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="fn"><span class="ls-tok ls-tok--kw">def </span><span class="ls-tok ls-tok--fn">ask_velocity</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">command_text</span><span class="ls-tok ls-tok--plain">):</span></span><span class="ls-line ls-line--note" data-note="fn"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">resp </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">requests</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">post</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">LLM_URL</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">json</span><span class="ls-tok ls-tok--plain">={</span></span><span class="ls-line ls-line--note" data-note="think"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--str">"model"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--var">MODEL</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--str">"think"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--kw">False</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--str">"stream"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--kw">False</span><span class="ls-tok ls-tok--plain">,</span></span><span class="ls-line ls-line--note" data-note="temp"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--str">"options"</span><span class="ls-tok ls-tok--plain">: {</span><span class="ls-tok ls-tok--str">"<span class="ls-term" data-term="temperature" role="link" tabindex="0">temperature</span>"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--num">0.1</span><span class="ls-tok ls-tok--plain">},</span></span><span class="ls-line ls-line--note" data-note="msgs"><span class="ls-tok ls-tok--plain">        </span><span class="ls-tok ls-tok--str">"messages"</span><span class="ls-tok ls-tok--plain">: [</span></span><span class="ls-line ls-line--note" data-note="msgs"><span class="ls-tok ls-tok--plain">            {</span><span class="ls-tok ls-tok--str">"role"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--str">"system"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--str">"content"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--var">SYSTEM_PROMPT</span><span class="ls-tok ls-tok--plain">},</span></span><span class="ls-line ls-line--note" data-note="msgs"><span class="ls-tok ls-tok--plain">            {</span><span class="ls-tok ls-tok--str">"role"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--str">"user"</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--str">"content"</span><span class="ls-tok ls-tok--plain">: </span><span class="ls-tok ls-tok--var">command_text</span><span class="ls-tok ls-tok--plain">},</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">        ],</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">    }, </span><span class="ls-tok ls-tok--var"><span class="ls-term" data-term="timeout" role="link" tabindex="0">timeout</span></span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--num">60</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="return" role="link" tabindex="0">return</span> </span><span class="ls-tok ls-tok--var">resp</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">json</span><span class="ls-tok ls-tok--plain">()[</span><span class="ls-tok ls-tok--str">"message"</span><span class="ls-tok ls-tok--plain">][</span><span class="ls-tok ls-tok--str">"content"</span><span class="ls-tok ls-tok--plain">]</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="run"><span class="ls-tok ls-tok--kw">def </span><span class="ls-tok ls-tok--fn">run</span><span class="ls-tok ls-tok--plain">():</span></span><span class="ls-line ls-line--note" data-note="run"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">raw </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--fn">ask_velocity</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--str">"앞으로 천천히 가면서 살짝 왼쪽으로 틀어."</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="parse"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--var">cmd </span><span class="ls-tok ls-tok--plain">= </span><span class="ls-tok ls-tok--var">json</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">loads</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">raw</span><span class="ls-tok ls-tok--plain">)</span></span><span class="ls-line ls-line--note" data-note="out"><span class="ls-tok ls-tok--plain">    </span><span class="ls-tok ls-tok--fn">print</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--str">"velocity_command ="</span><span class="ls-tok ls-tok--plain">, [</span><span class="ls-tok ls-tok--var">cmd</span><span class="ls-tok ls-tok--plain">[</span><span class="ls-tok ls-tok--str">"velocity_x"</span><span class="ls-tok ls-tok--plain">], </span><span class="ls-tok ls-tok--var">cmd</span><span class="ls-tok ls-tok--plain">[</span><span class="ls-tok ls-tok--str">"velocity_y"</span><span class="ls-tok ls-tok--plain">], </span><span class="ls-tok ls-tok--var">cmd</span><span class="ls-tok ls-tok--plain">[</span><span class="ls-tok ls-tok--str">"velocity_yaw"</span><span class="ls-tok ls-tok--plain">]])</span></span><span class="ls-line"><span class="ls-tok ls-tok--plain"></span></span><span class="ls-line ls-line--note" data-note="run"><span class="ls-tok ls-tok--var">threading</span><span class="ls-tok ls-tok--plain">.</span><span class="ls-tok ls-tok--fn">Thread</span><span class="ls-tok ls-tok--plain">(</span><span class="ls-tok ls-tok--var">target</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--var">run</span><span class="ls-tok ls-tok--plain">, </span><span class="ls-tok ls-tok--var">daemon</span><span class="ls-tok ls-tok--plain">=</span><span class="ls-tok ls-tok--kw">True</span><span class="ls-tok ls-tok--plain">).</span><span class="ls-tok ls-tok--fn">start</span><span class="ls-tok ls-tok--plain">()</span></span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div><div class="ls-coderun__clps-fade"></div><button type="button" class="ls-coderun__clps-btn">⌄ 클릭해서 코드 보기</button></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">velocity_command = [0.3, 0.0, 0.3]</pre></div>
+      <div class="ls-coderun__foot">"앞으로 천천히"가 전진 <code>0.3</code>, "살짝 왼쪽으로 틀어"가 회전 <code>0.3</code>이 됐어요. 값은 실행할 때마다 조금씩 달라질 수 있어요.</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">실습 2 · 안전망을 한 겹씩 쌓기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">실전 코드는 계약만 믿지 않아요.</span> <span class="ls-sentence">파서 안전망, 값 검증, 재시도와 안전 정지까지 세 겹을 둘러요.</span> <span class="ls-sentence">앞 두 탭은 각 안전망을 따로 테스트하는 조각이고, <strong>완성형 변환기</strong> 탭이 셋을 한 파일로 합친 <strong>전체 실행본</strong>이에요.</span> <span class="ls-sentence">그 탭을 그대로 복사하면 바로 돌아가요.</span></span></p>
+  </section><div class="ls-codetabs" data-block="code-tabs">
+    <button class="ls-codetabs__toggle" type="button" aria-expanded="false">
+      <span class="ls-codetabs__togglelabel">전체 실습 코드 <span class="ls-codetabs__count">4단계</span></span>
+      <span class="ls-codetabs__hint">클릭해서 코드 보기</span>
+      <span class="ls-codetabs__chev" aria-hidden="true">▾</span>
+    </button>
+    <div class="ls-codetabs__preview" aria-hidden="true"><pre>import json, re
+
+def extract_json(text):
+    """응답에서 첫 JSON 오브젝트만 도려내기 (앞뒤 잡담·코드펜스 무시)."""
+    m = re.search(r"\{.*\}", text, re.DOTALL)
+    if m is None:</pre><span class="ls-codetabs__preview-fade"></span></div>
+    <div class="ls-codetabs__panelwrap">
+      <div class="ls-codetabs__tabs"><button class="ls-codetabs__tab is-active" type="button"><span class="ls-codetabs__no">01</span> 파서 안전망</button><button class="ls-codetabs__tab" type="button"><span class="ls-codetabs__no">02</span> 값 검증</button><button class="ls-codetabs__tab" type="button"><span class="ls-codetabs__no">03</span> 완성형 변환기</button><button class="ls-codetabs__tab" type="button"><span class="ls-codetabs__no">04</span> few-shot</button></div>
+      <div class="ls-codetabs__body"><div class="ls-codetabs__panel is-active"><div class="ls-coderun">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--kw">import</span> json, re</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn1"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">extract_json</span>(text):</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"""응답에서 첫 JSON 오브젝트만 도려내기 (앞뒤 잡담·코드펜스 무시)."""</span></span><span class="ls-line ls-line--note" data-note="cn2">    m = re.<span class="ls-tok ls-tok--fn">search</span>(<span class="ls-tok ls-tok--str">r"\{.*\}"</span>, text, re.DOTALL)</span><span class="ls-line ls-line--note" data-note="cn3">    <span class="ls-tok ls-tok--kw">if</span> m <span class="ls-tok ls-tok--kw">is</span> <span class="ls-tok ls-tok--kw"><span class="ls-term" data-term="None" role="link" tabindex="0">None</span></span>:</span><span class="ls-line">        <span class="ls-tok ls-tok--kw">raise</span> <span class="ls-tok ls-tok--fn">ValueError</span>(<span class="ls-tok ls-tok--str">f"JSON 없음: {text[:80]}"</span>)</span><span class="ls-line ls-line--note" data-note="cn4">    <span class="ls-tok ls-tok--kw">return</span> json.<span class="ls-tok ls-tok--fn">loads</span>(m.<span class="ls-tok ls-tok--fn">group</span>(<span class="ls-tok ls-tok--num">0</span>))</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn5">messy = <span class="ls-tok ls-tok--str">'네! 요청하신 명령입니다: {"velocity_x": 0.4, "velocity_y": 0.0, "velocity_yaw": 0.0} 확인하세요.'</span></span><span class="ls-line ls-line--note" data-note="cn6"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--fn">extract_json</span>(messy))</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">{'velocity_x': 0.4, 'velocity_y': 0.0, 'velocity_yaw': 0.0}</pre></div>
+      <div class="ls-coderun__foot">인사말과 꼬리말이 붙은 지저분한 응답에서도 순수한 명령 딕셔너리만 남았어요.</div>
+    </div>
+  </div></div><div class="ls-codetabs__panel"><div class="ls-coderun">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">clamp</span>(v, lo, hi):</span><span class="ls-line ls-line--note" data-note="cn1">    <span class="ls-tok ls-tok--kw">return</span> <span class="ls-tok ls-tok--fn">max</span>(lo, <span class="ls-tok ls-tok--fn">min</span>(hi, <span class="ls-tok ls-tok--fn">float</span>(v)))</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn2"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">sanitize</span>(cmd):</span><span class="ls-line">    <span class="ls-tok ls-tok--str">"""LLM이 무슨 값을 주든 정책이 소화 가능한 범위로 자른다."""</span></span><span class="ls-line">    <span class="ls-tok ls-tok--kw">return</span> {</span><span class="ls-line ls-line--note" data-note="cn3">        <span class="ls-tok ls-tok--str">"velocity_x"</span>:   <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_x"</span>, <span class="ls-tok ls-tok--num">0.0</span>),  -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--num">1.0</span>),</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"velocity_y"</span>:   <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_y"</span>, <span class="ls-tok ls-tok--num">0.0</span>),  -<span class="ls-tok ls-tok--num">0.5</span>, <span class="ls-tok ls-tok--num">0.5</span>),</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_yaw"</span>, <span class="ls-tok ls-tok--num">0.0</span>), -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--num">1.0</span>),</span><span class="ls-line ls-line--note" data-note="cn4">        <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--fn">str</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"reason"</span>, <span class="ls-tok ls-tok--str">""</span>))[:<span class="ls-tok ls-tok--num">100</span>],</span><span class="ls-line">    }</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn5"><span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--fn">sanitize</span>({<span class="ls-tok ls-tok--str">"velocity_x"</span>: <span class="ls-tok ls-tok--num">5.0</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: -<span class="ls-tok ls-tok--num">9.0</span>, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"전속력"</span>}))</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">{'velocity_x': 1.0, 'velocity_y': 0.0, 'velocity_yaw': -1.0, 'reason': '전속력'}</pre></div>
+      <div class="ls-coderun__foot">위험하게 큰 5.0·-9.0이 각자의 안전 범위인 1.0·-1.0으로 잘렸어요.</div>
+    </div>
+  </div></div><div class="ls-codetabs__panel"><div class="ls-coderun">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--kw">import</span> requests, json, re, threading</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn1">LLM_URL = <span class="ls-tok ls-tok--str">"http://127.0.0.1:11434/api/chat"</span></span><span class="ls-line">MODEL   = <span class="ls-tok ls-tok--str">"isaac-tutor-ko-9b"</span></span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn2">SYSTEM_PROMPT = <span class="ls-tok ls-tok--str">""</span>"너는 사족보행 로봇의 속도 벡터 변환기다.</span><span class="ls-line">사용자의 자연어 명령을 읽고, 로봇이 따라야 할 속도를 결정한다.</span><span class="ls-line">&nbsp;</span><span class="ls-line">제약:</span><span class="ls-line">- velocity_x: 전진 속도 (m/s), -<span class="ls-tok ls-tok--num">1.0</span> ~ <span class="ls-tok ls-tok--num">1.0</span> (양수=전진)</span><span class="ls-line">- velocity_y: 측면 속도 (m/s), -<span class="ls-tok ls-tok--num">0.5</span> ~ <span class="ls-tok ls-tok--num">0.5</span> (양수=왼쪽)</span><span class="ls-line">- velocity_yaw: 회전 속도 (rad/s), -<span class="ls-tok ls-tok--num">1.0</span> ~ <span class="ls-tok ls-tok--num">1.0</span> (양수=반시계)</span><span class="ls-line">&nbsp;</span><span class="ls-line">출력은 반드시 아래 JSON 한 개뿐이다.</span><span class="ls-line">JSON 앞뒤로 인사말, 설명, 마크다운을 절대 붙이지 마라.</span><span class="ls-line">&nbsp;</span><span class="ls-line">{<span class="ls-tok ls-tok--str">"velocity_x"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"velocity_y"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"&lt;한 문장&gt;"</span>}<span class="ls-tok ls-tok--str">""</span>"</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn3"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">ask_velocity</span>(command_text):</span><span class="ls-line">    resp = requests.<span class="ls-tok ls-tok--fn">post</span>(LLM_URL, json={</span><span class="ls-line ls-line--note" data-note="cn4">        <span class="ls-tok ls-tok--str">"model"</span>: MODEL, <span class="ls-tok ls-tok--str">"think"</span>: <span class="ls-tok ls-tok--kw">False</span>, <span class="ls-tok ls-tok--str">"stream"</span>: <span class="ls-tok ls-tok--kw">False</span>,</span><span class="ls-line ls-line--note" data-note="cn5">        <span class="ls-tok ls-tok--str">"options"</span>: {<span class="ls-tok ls-tok--str">"temperature"</span>: <span class="ls-tok ls-tok--num">0.1</span>},</span><span class="ls-line ls-line--note" data-note="cn6">        <span class="ls-tok ls-tok--str">"messages"</span>: [</span><span class="ls-line">            {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"system"</span>, <span class="ls-tok ls-tok--str">"content"</span>: SYSTEM_PROMPT},</span><span class="ls-line">            {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"user"</span>,   <span class="ls-tok ls-tok--str">"content"</span>: command_text},</span><span class="ls-line">        ],</span><span class="ls-line ls-line--note" data-note="cn7">    }, timeout=<span class="ls-tok ls-tok--num">60</span>)</span><span class="ls-line ls-line--note" data-note="cn8">    <span class="ls-tok ls-tok--kw">return</span> resp.<span class="ls-tok ls-tok--fn">json</span>()[<span class="ls-tok ls-tok--str">"message"</span>][<span class="ls-tok ls-tok--str">"content"</span>]</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn9"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">extract_json</span>(text):</span><span class="ls-line ls-line--note" data-note="cn10">    m = re.<span class="ls-tok ls-tok--fn">search</span>(<span class="ls-tok ls-tok--str">r"\{.*\}"</span>, text, re.DOTALL)</span><span class="ls-line ls-line--note" data-note="cn11">    <span class="ls-tok ls-tok--kw">if</span> m <span class="ls-tok ls-tok--kw">is</span> <span class="ls-tok ls-tok--kw">None</span>:</span><span class="ls-line">        <span class="ls-tok ls-tok--kw">raise</span> <span class="ls-tok ls-tok--fn">ValueError</span>(<span class="ls-tok ls-tok--str">f"JSON 없음: {text[:80]}"</span>)</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">return</span> json.<span class="ls-tok ls-tok--fn">loads</span>(m.<span class="ls-tok ls-tok--fn">group</span>(<span class="ls-tok ls-tok--num">0</span>))</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn12"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">clamp</span>(v, lo, hi):</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">return</span> <span class="ls-tok ls-tok--fn">max</span>(lo, <span class="ls-tok ls-tok--fn">min</span>(hi, <span class="ls-tok ls-tok--fn">float</span>(v)))</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn13"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">sanitize</span>(cmd):</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">return</span> {</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"velocity_x"</span>:   <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_x"</span>, <span class="ls-tok ls-tok--num">0.0</span>),  -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--num">1.0</span>),</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"velocity_y"</span>:   <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_y"</span>, <span class="ls-tok ls-tok--num">0.0</span>),  -<span class="ls-tok ls-tok--num">0.5</span>, <span class="ls-tok ls-tok--num">0.5</span>),</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--fn">clamp</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"velocity_yaw"</span>, <span class="ls-tok ls-tok--num">0.0</span>), -<span class="ls-tok ls-tok--num">1.0</span>, <span class="ls-tok ls-tok--num">1.0</span>),</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--fn">str</span>(cmd.<span class="ls-tok ls-tok--fn">get</span>(<span class="ls-tok ls-tok--str">"reason"</span>, <span class="ls-tok ls-tok--str">""</span>))[:<span class="ls-tok ls-tok--num">100</span>],</span><span class="ls-line">    }</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn14">STOP = {<span class="ls-tok ls-tok--str">"velocity_x"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_y"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"안전 정지"</span>}</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn15"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">command_from_speech</span>(text, retries=<span class="ls-tok ls-tok--num">3</span>):</span><span class="ls-line ls-line--note" data-note="cn16">    <span class="ls-tok ls-tok--kw">for</span> attempt <span class="ls-tok ls-tok--kw">in</span> <span class="ls-tok ls-tok--fn">range</span>(<span class="ls-tok ls-tok--num">1</span>, retries + <span class="ls-tok ls-tok--num">1</span>):</span><span class="ls-line">        <span class="ls-tok ls-tok--kw">try</span>:</span><span class="ls-line">            raw = <span class="ls-tok ls-tok--fn">ask_velocity</span>(text)</span><span class="ls-line ls-line--note" data-note="cn17">            <span class="ls-tok ls-tok--kw">return</span> <span class="ls-tok ls-tok--fn">sanitize</span>(<span class="ls-tok ls-tok--fn">extract_json</span>(raw))</span><span class="ls-line ls-line--note" data-note="cn18">        <span class="ls-tok ls-tok--kw">except</span> Exception <span class="ls-tok ls-tok--kw">as</span> e:</span><span class="ls-line">            <span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"  {attempt}차 시도 실패: {e}"</span>)</span><span class="ls-line ls-line--note" data-note="cn19">    <span class="ls-tok ls-tok--kw">return</span> STOP</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn20"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">run</span>():</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">for</span> speech <span class="ls-tok ls-tok--kw">in</span> [<span class="ls-tok ls-tok--str">"뒤로 천천히"</span>, <span class="ls-tok ls-tok--str">"제자리에서 오른쪽으로 돌아"</span>,</span><span class="ls-line">                   <span class="ls-tok ls-tok--str">"전속력으로 가줘!"</span>, <span class="ls-tok ls-tok--str">"음... 알아서 해줘"</span>]:</span><span class="ls-line ls-line--note" data-note="cn21">        cmd = <span class="ls-tok ls-tok--fn">command_from_speech</span>(speech)</span><span class="ls-line ls-line--note" data-note="cn22">        <span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"'{speech}' -&gt; [{cmd['velocity_x']}, {cmd['velocity_y']},"</span></span><span class="ls-line">              <span class="ls-tok ls-tok--str">f" {cmd['velocity_yaw']}]  ({cmd['reason']})"</span>)</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn23">threading.<span class="ls-tok ls-tok--fn">Thread</span>(target=run, daemon=<span class="ls-tok ls-tok--kw">True</span>).<span class="ls-tok ls-tok--fn">start</span>()</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">'뒤로 천천히' -&gt; [-0.3, 0.0, 0.0]  (후진)
+'제자리에서 오른쪽으로 돌아' -&gt; [0.0, 0.0, -0.5]  (제자리 우선회)
+'전속력으로 가줘!' -&gt; [1.0, 0.0, 0.0]  (최고 속도 전진)
+'음... 알아서 해줘' -&gt; [0.0, 0.0, 0.0]  (명령이 모호해 정지)</pre></div>
+      <div class="ls-coderun__foot">"전속력"은 clamp가 1.0으로 잘라내고, 모호한 명령엔 안전 정지가 나와요. 값과 reason은 실행할 때마다 조금씩 달라져요.</div>
+    </div>
+  </div></div><div class="ls-codetabs__panel"><div class="ls-coderun">
+    <div class="ls-coderun__bar">
+      <div class="ls-coderun__tabs">
+        <button class="ls-coderun__tab is-on" data-tab="code" type="button">전체 코드</button>
+        <button class="ls-coderun__tab" data-tab="result" type="button">실행 결과</button>
+      </div>
+      <button class="ls-coderun__copy" type="button">복사</button>
+    </div>
+    <div class="ls-coderun__panel is-on" data-panel="code"><div class="ls-code-wrap">
+    <div class="ls-code">
+      
+      <div class="ls-code__body"><span class="ls-line ls-line--note" data-note="cn0"><span class="ls-tok ls-tok--kw">import</span> requests, json, threading</span><span class="ls-line">&nbsp;</span><span class="ls-line">LLM_URL = <span class="ls-tok ls-tok--str">"http://127.0.0.1:11434/api/chat"</span></span><span class="ls-line">MODEL   = <span class="ls-tok ls-tok--str">"isaac-tutor-ko-9b"</span></span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn1">BASE_PROMPT = <span class="ls-tok ls-tok--str">""</span>"너는 사족보행 로봇의 속도 벡터 변환기다.</span><span class="ls-line">사용자의 자연어 명령을 읽고, 로봇이 따라야 할 속도를 결정한다.</span><span class="ls-line">&nbsp;</span><span class="ls-line">제약:</span><span class="ls-line">- velocity_x: 전진 속도 (m/s), -<span class="ls-tok ls-tok--num">1.0</span> ~ <span class="ls-tok ls-tok--num">1.0</span> (양수=전진)</span><span class="ls-line">- velocity_y: 측면 속도 (m/s), -<span class="ls-tok ls-tok--num">0.5</span> ~ <span class="ls-tok ls-tok--num">0.5</span> (양수=왼쪽)</span><span class="ls-line">- velocity_yaw: 회전 속도 (rad/s), -<span class="ls-tok ls-tok--num">1.0</span> ~ <span class="ls-tok ls-tok--num">1.0</span> (양수=반시계)</span><span class="ls-line">&nbsp;</span><span class="ls-line">출력은 반드시 아래 JSON 한 개뿐이다.</span><span class="ls-line">JSON 앞뒤로 인사말, 설명, 마크다운을 절대 붙이지 마라.</span><span class="ls-line">&nbsp;</span><span class="ls-line">{<span class="ls-tok ls-tok--str">"velocity_x"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"velocity_y"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: &lt;float&gt;, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"&lt;한 문장&gt;"</span>}<span class="ls-tok ls-tok--str">""</span>"</span><span class="ls-line">&nbsp;</span><span class="ls-line">FEWSHOT = <span class="ls-tok ls-tok--str">""</span>"</span><span class="ls-line">&nbsp;</span><span class="ls-line ls-line--note" data-note="cn2">예시:</span><span class="ls-line">[명령] 앞으로 빠르게</span><span class="ls-line">[출력] {<span class="ls-tok ls-tok--str">"velocity_x"</span>: <span class="ls-tok ls-tok--num">0.9</span>, <span class="ls-tok ls-tok--str">"velocity_y"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"고속 전진"</span>}</span><span class="ls-line">&nbsp;</span><span class="ls-line">[명령] 멈춰</span><span class="ls-line">[출력] {<span class="ls-tok ls-tok--str">"velocity_x"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_y"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"정지"</span>}</span><span class="ls-line">&nbsp;</span><span class="ls-line">[명령] 왼쪽으로 크게 돌아</span><span class="ls-line">[출력] {<span class="ls-tok ls-tok--str">"velocity_x"</span>: <span class="ls-tok ls-tok--num">0.3</span>, <span class="ls-tok ls-tok--str">"velocity_y"</span>: <span class="ls-tok ls-tok--num">0.0</span>, <span class="ls-tok ls-tok--str">"velocity_yaw"</span>: <span class="ls-tok ls-tok--num">0.8</span>, <span class="ls-tok ls-tok--str">"reason"</span>: <span class="ls-tok ls-tok--str">"전진하며 좌선회"</span>}<span class="ls-tok ls-tok--str">""</span>"</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">ask_velocity</span>(command_text, system_prompt):</span><span class="ls-line">    resp = requests.<span class="ls-tok ls-tok--fn">post</span>(LLM_URL, json={</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"model"</span>: MODEL, <span class="ls-tok ls-tok--str">"think"</span>: <span class="ls-tok ls-tok--kw">False</span>, <span class="ls-tok ls-tok--str">"stream"</span>: <span class="ls-tok ls-tok--kw">False</span>,</span><span class="ls-line ls-line--note" data-note="cn3">        <span class="ls-tok ls-tok--str">"options"</span>: {<span class="ls-tok ls-tok--str">"temperature"</span>: <span class="ls-tok ls-tok--num">0.1</span>},</span><span class="ls-line">        <span class="ls-tok ls-tok--str">"messages"</span>: [</span><span class="ls-line">            {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"system"</span>, <span class="ls-tok ls-tok--str">"content"</span>: system_prompt},</span><span class="ls-line">            {<span class="ls-tok ls-tok--str">"role"</span>: <span class="ls-tok ls-tok--str">"user"</span>,   <span class="ls-tok ls-tok--str">"content"</span>: command_text},</span><span class="ls-line">        ],</span><span class="ls-line">    }, timeout=<span class="ls-tok ls-tok--num">60</span>)</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">return</span> resp.<span class="ls-tok ls-tok--fn">json</span>()[<span class="ls-tok ls-tok--str">"message"</span>][<span class="ls-tok ls-tok--str">"content"</span>]</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">try_five</span>(label, system_prompt, command):</span><span class="ls-line">    <span class="ls-tok ls-tok--fn">print</span>(label)</span><span class="ls-line">    <span class="ls-tok ls-tok--kw">for</span> i <span class="ls-tok ls-tok--kw">in</span> <span class="ls-tok ls-tok--fn">range</span>(<span class="ls-tok ls-tok--num">5</span>):</span><span class="ls-line ls-line--note" data-note="cn4">        <span class="ls-tok ls-tok--kw">try</span>:</span><span class="ls-line">            cmd = json.<span class="ls-tok ls-tok--fn">loads</span>(<span class="ls-tok ls-tok--fn">ask_velocity</span>(command, system_prompt))</span><span class="ls-line">            <span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"  {i + 1}회  vx={cmd['velocity_x']}"</span>)</span><span class="ls-line">        <span class="ls-tok ls-tok--kw">except</span> Exception <span class="ls-tok ls-tok--kw">as</span> e:</span><span class="ls-line">            <span class="ls-tok ls-tok--fn">print</span>(<span class="ls-tok ls-tok--str">f"  {i + 1}회  실패: {e}"</span>)</span><span class="ls-line">&nbsp;</span><span class="ls-line"><span class="ls-tok ls-tok--kw">def</span> <span class="ls-tok ls-tok--fn">run</span>():</span><span class="ls-line">    command = <span class="ls-tok ls-tok--str">"앞으로 적당히 빠르게"</span></span><span class="ls-line ls-line--note" data-note="cn5">    <span class="ls-tok ls-tok--fn">try_five</span>(<span class="ls-tok ls-tok--str">"[예시 없이]"</span>, BASE_PROMPT, command)</span><span class="ls-line">    <span class="ls-tok ls-tok--fn">try_five</span>(<span class="ls-tok ls-tok--str">"[예시 3개]"</span>, BASE_PROMPT + FEWSHOT, command)</span><span class="ls-line">&nbsp;</span><span class="ls-line">threading.<span class="ls-tok ls-tok--fn">Thread</span>(target=run, daemon=<span class="ls-tok ls-tok--kw">True</span>).<span class="ls-tok ls-tok--fn">start</span>()</span></div>
+    </div>
+    
+    <div class="ls-note">
+      <div class="ls-note__title">// 표시된 줄을 클릭하면 해설</div>
+      <div class="ls-note__body">밑줄 친 줄을 클릭하면 무슨 일을 하는지 짚어줄게요.</div>
+    </div>
+  </div></div>
+    <div class="ls-coderun__panel" data-panel="result">
+      <div class="ls-coderun__result ls-coderun__result--text"><pre class="ls-coderun__stdout" style="margin: 0px; padding: 16px 18px; background: rgb(14, 21, 32); border-radius: 12px; color: rgb(203, 213, 225); font: 13px / 1.7 &quot;JetBrains Mono&quot;, ui-monospace, monospace; white-space: pre-wrap; word-break: break-word; overflow: hidden auto; max-height: 340px;">[예시 없이]
+  1회  vx=0.5
+  2회  vx=0.6
+  3회  vx=0.4
+  4회  vx=0.7
+  5회  vx=0.5
+[예시 3개]
+  1회  vx=0.6
+  2회  vx=0.6
+  3회  vx=0.6
+  4회  vx=0.5
+  5회  vx=0.6</pre></div>
+      <div class="ls-coderun__foot">예시를 넣은 쪽이 값의 흔들림이 줄어드는 걸 숫자로 볼 수 있어요. 실제 값은 실행할 때마다 달라져요.</div>
+    </div>
+  </div></div></div>
+    </div>
+  </div><div class="ls-checklist" data-block="checklist">
+    <div class="ls-check" data-id="c1">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">실습 1에서 <code>velocity_command</code>가 숫자 세 개 <span class="ls-term" data-term="리스트" role="link" tabindex="0">리스트</span>(예: <code>[0.4, 0.0, 0.3]</code>) 형태로 출력된다</div>
+    </div>
+  
+    <div class="ls-check" data-id="c2">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">"전속력으로 가줘!"가 clamp에 잘려 <strong>1.0 이하</strong>로 나온다</div>
+    </div>
+  
+    <div class="ls-check" data-id="c3">
+      <div class="ls-check__box"></div>
+      <div class="ls-check__text">"알아서 해줘" 같은 모호한 자연어에도 변환기가 멈추지 않고 값이나 <strong>안전 정지</strong>를 내놓는다</div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">자주 마주치는 문제</h3>
+    <p class="ls-blockhead__body"><span class="ls-para"><span class="ls-sentence">변환기를 만들 때 자주 만나는 네 가지.</span> <span class="ls-sentence">클릭하면 원인과 해결법이 펼쳐져요.</span></span></p>
+  </section><div class="ls-errors" data-block="error-decoder">
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        <code class="ls-err__code">JSONDecodeError</code>
+        <span class="ls-err__title">JSON <span class="ls-term" data-term="파싱" role="link" tabindex="0">파싱</span>이 깨져요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> LLM이 JSON 밖에 텍스트를 붙였어요.<br><strong>해결:</strong> <code>extract_json()</code> 안전망을 적용하고, system prompt의 형식 문구를 더 단호하게 다듬어요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">같은 명령인데 매번 값이 달라요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> temperature가 높거나 예시가 없어요.<br><strong>해결:</strong> <code>temperature</code>를 0.0~0.1로 내리고, few-shot 예시를 2~3개 추가해요.</div>
+    </div>
+  
+    <div class="ls-err">
+      <div class="ls-err__head">
+        
+        
+        <span class="ls-err__title">reason이 영어로 나와요</span>
+        <span class="ls-err__arrow">›</span>
+      </div>
+      <div class="ls-err__body"><strong>원인:</strong> 출력 언어를 지정하지 않았어요.<br><strong>해결:</strong> system prompt에 "reason은 한국어로"를 명시해요.</div>
+    </div>
+  </div><div class="ls-takeaway" data-block="takeaway"><span class="ls-takeaway__text"><span class="ls-para"><span class="ls-sentence">실습 2의 마지막 두 입력을 주목하세요.</span> <span class="ls-sentence">"전속력으로 가줘"는 clamp가 잘라내고, LLM이 영 엉뚱한 답을 내면 <strong>정지</strong>가 나가요.</span> <span class="ls-sentence">로봇 세계의 철칙이에요.</span> <span class="ls-sentence"><strong>모르겠으면 멈춘다.</strong></span></span></span></div><section class="ls-stage" data-stage-key="review" data-lesson="p4c18" data-lesson-no="18" data-stage-no="5" data-ga-observed="1">
+    <div class="ls-stage__band">
+      <span class="ls-stage__glyph" aria-hidden="true">⑤</span>
+      <h2 class="ls-stage__label">스스로 다지기</h2>
+      <span class="ls-stage__bar" aria-hidden="true"></span>
+    </div>
+    
+  </section><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">개념 점검하기</h3>
+    
+  </section><div class="ls-quiz" data-block="quiz">
+    <div class="ls-quiz__q" data-q="0">
+      <div class="ls-quiz__qtext">Q1. 출력 형식을 JSON으로 못박는 진짜 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="0" data-i="0" data-correct="0">JSON이 제일 짧아서</button><button class="ls-quiz__opt" data-q="0" data-i="1" data-correct="0">LLM이 JSON만 출력할 수 있어서</button><button class="ls-quiz__opt" data-q="0" data-i="2" data-correct="1">코드가 한 줄로 안정적으로 읽을 수 있는 계약이라서</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="1">
+      <div class="ls-quiz__qtext">Q2. 형식이 멀쩡한 JSON인데도 clamp 검증이 필요한 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="1" data-i="0" data-correct="0">JSON 문법이 자주 틀려서</button><button class="ls-quiz__opt" data-q="1" data-i="1" data-correct="0">숫자를 <span class="ls-term" data-term="문자열" role="link" tabindex="0">문자열</span>로 줄 때가 있어서</button><button class="ls-quiz__opt" data-q="1" data-i="2" data-correct="1">값이 정책의 학습 범위를 벗어날 수 있어서</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="2">
+      <div class="ls-quiz__qtext">Q3. 재시도가 모두 실패했을 때 변환기가 "정지"를 내보내는 이유는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="2" data-i="0" data-correct="0">서버 비용을 아끼려고</button><button class="ls-quiz__opt" data-q="2" data-i="1" data-correct="0">에러 메시지를 보여주려고</button><button class="ls-quiz__opt" data-q="2" data-i="2" data-correct="1">모르는 상황에서 움직이는 것보다 멈추는 게 안전해서</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="3">
+      <div class="ls-quiz__qtext">Q4. LLM이 실제론 없는 목표를 자신 있게 지어냈어요(환각). 가장 먼저 할 일은?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="3" data-i="0" data-correct="0">더 똑똑한 LLM으로 바꾼다</button><button class="ls-quiz__opt" data-q="3" data-i="1" data-correct="0">temperature를 더 올린다</button><button class="ls-quiz__opt" data-q="3" data-i="2" data-correct="1">고를 수 있는 실제 목록을 주고 "이 안에서만 고르라"고 묶는다</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  
+    <div class="ls-quiz__q" data-q="4">
+      <div class="ls-quiz__qtext">Q5. 프롬프트로 "JSON만 답해"라고 부탁하는 것과, 함수 호출(구조화 출력)로 형식을 강제하는 것의 핵심 차이는?</div>
+      <div class="ls-quiz__opts">
+        <button class="ls-quiz__opt" data-q="4" data-i="0" data-correct="0">함수 호출이 항상 더 빠르다</button><button class="ls-quiz__opt" data-q="4" data-i="1" data-correct="0">부탁하는 방식이 더 정확하다</button><button class="ls-quiz__opt" data-q="4" data-i="2" data-correct="1">강제하면 API가 형식을 보장해, 파서 안전망이 거의 필요 없어진다</button>
+      </div>
+      <div class="ls-quiz__fb"></div>
+    </div>
+  </div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">코드 실습하기</h3>
+    <p class="ls-blockhead__body"><span class="ls-para">실습 2에서 만든 <strong>안전망 함수</strong>들을 다시 꺼내, 값이 어떻게 바뀌는지 눈으로 확인해요.</span><span class="ls-para"><span class="ls-sentence">각 문항은 <strong>짧은 독립 코드</strong>예요.</span> <span class="ls-sentence">위 실습 파일을 고치는 게 아니라, <strong>코드</strong> 버튼으로 코드를 보고 복사해 실행하면 답이 출력돼요.</span> <span class="ls-sentence">그 값을 적으면 돼요.</span> <span class="ls-sentence">세 문항 모두 LLM을 부르지 않는 순수 파이썬이에요.</span></span></p>
+  </section><div class="ls-challenges" data-block="challenges">
+    <div class="ls-chall has-hint has-fill" data-id="c1">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🥚</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">기본 · 범위 밖 값 잘라내기</div>
+          <div class="ls-chall__sub">실습 2 <strong>값 검증</strong> 탭에서 만든 <code>clamp</code>예요. LLM이 "전속력!"이라며 범위(−1.0~1.0)를 넘는 값을 냈을 때 어떻게 되는지 봐요.</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">def clamp(v, lo, hi):
+    return max(lo, min(hi, float(v)))
+
+print(clamp(1.8, -1.0, 1.0))</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">출력된 값을 입력해보세요.</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="5" data-min="0.95" data-max="1.05"><span class="ls-chall__unit"></span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para">정답 → 1.0</span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><code>min(hi, v)</code>로 위를, <code>max(lo, ...)</code>로 아래를 막아요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">1.8은 위쪽 경계로 잘려요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c2">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐣</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">보통 · 옆걸음만 범위가 좁아요</div>
+          <div class="ls-chall__sub">같은 탭의 <code>sanitize</code>예요. 세 속도를 각자의 범위로 자르는데, 옆으로 미는 <code>velocity_y</code>만 −0.5~0.5로 좁아요.</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">def clamp(v, lo, hi):
+    return max(lo, min(hi, float(v)))
+
+def sanitize(cmd):
+    return {
+        "velocity_x":   clamp(cmd.get("velocity_x", 0.0),  -1.0, 1.0),
+        "velocity_y":   clamp(cmd.get("velocity_y", 0.0),  -0.5, 0.5),
+        "velocity_yaw": clamp(cmd.get("velocity_yaw", 0.0), -1.0, 1.0),
+    }
+
+out = sanitize({"velocity_x": 0.3, "velocity_y": 0.9, "velocity_yaw": 2.0})
+print(out["velocity_y"])</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">출력된 <strong>velocity_y</strong> 값을 입력해보세요.</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="5" data-min="0.45" data-max="0.55"><span class="ls-chall__unit"></span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para">정답 → 0.5</span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">velocity_y의 범위는 −0.5~0.5예요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">0.9는 위쪽 경계로 잘려요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint has-fill" data-id="c3">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐥</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">도전 · 잡담 속에서 JSON만 건지기</div>
+          <div class="ls-chall__sub">실습 2 <strong>파서 안전망</strong> 탭의 <code>extract_json</code>이에요. 앞뒤 잡담이 붙어도 중괄호 안 JSON만 도려내요. (정규식은 지금 몰라도 괜찮아요)</div>
+        </div>
+        <div class="ls-chall__actions">
+          <button class="ls-chall__codebtn" type="button">코드 ▾</button><button class="ls-chall__copybtn" type="button">복사</button>
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__checkbtn" type="button">확인</button>
+          
+        </div>
+      </div>
+      
+      <div class="ls-chall__fill">
+        <pre class="ls-chall__fillcode" hidden="">import json, re
+
+def extract_json(text):
+    m = re.search(r"\{.*\}", text, re.DOTALL)
+    if m is None:
+        raise ValueError("JSON 없음")
+    return json.loads(m.group(0))
+
+messy = '좋아요! {"velocity_x": 0.6, "velocity_y": -0.3, "velocity_yaw": 0.0} 이렇게 갈게요.'
+cmd = extract_json(messy)
+print(cmd["velocity_y"])</pre>
+        <div class="ls-chall__observe">
+          <div class="ls-chall__qtext">건져낸 명령의 <strong>velocity_y</strong> 값을 입력해보세요.</div>
+          <div class="ls-chall__answer"><span class="ls-chall__alabel">내 답</span><input class="ls-chall__blank" type="text" placeholder="?" data-mode="range" size="5" data-min="-0.35" data-max="-0.25"><span class="ls-chall__unit"></span></div>
+        </div>
+        
+        <div class="ls-chall__fb"></div>
+      </div>
+      
+      <div class="ls-chall__output"><span class="ls-para">정답 → -0.3</span></div>
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para"><span class="ls-term" data-term="정규 표현식" role="link" tabindex="0">정규식</span>이 첫 <code>{</code>부터 마지막 <code>}</code>까지를 잡아요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">그 조각만 <code>json.loads</code>로 <span class="ls-term" data-term="딕셔너리" role="link" tabindex="0">딕셔너리</span>로 바꿔 키로 값을 꺼내요.</span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint" data-id="c4">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐔</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">심화 · few-shot 전후 비교</div>
+          <div class="ls-chall__sub">예시 3개를 넣기 전/후로 같은 명령을 5번씩 보내 흔들림을 비교해봐요. (라이브 LLM이라 정해진 정답은 없어요)</div>
+        </div>
+        <div class="ls-chall__actions">
+          
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">"앞으로 적당히 빠르게"처럼 살짝 애매한 명령이 비교에 좋아요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">전/후 각각 5번의 <code>velocity_x</code> 값을 나란히 적어요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para"><span class="ls-sentence">값의 퍼짐이 줄었는지 숫자로 확인해보세요.</span> <span class="ls-sentence">프롬프트 엔지니어링의 힘이에요.</span></span></span></div>
+      </div>
+      
+    </div>
+    <div class="ls-chall has-hint" data-id="c5">
+      <div class="ls-chall__head">
+        <div class="ls-chall__medal">🐓</div>
+        <div class="ls-chall__main">
+          <div class="ls-chall__title">탐구 · 금지 명령 방어</div>
+          <div class="ls-chall__sub">"벽에 부딪혀봐", "최고 속도의 두 배로" 같은 무리한 명령에 어떻게 반응하는지 확인해봐요.</div>
+        </div>
+        <div class="ls-chall__actions">
+          
+          <button class="ls-chall__hintbtn" type="button">힌트</button>
+          <button class="ls-chall__donebtn" type="button">도전</button>
+          
+        </div>
+      </div>
+      
+      
+      
+      
+      <div class="ls-chall__hint">
+        <div class="ls-chall__step"><span class="ls-chall__stepno">1</span><span><span class="ls-para">무리한 명령 5개를 만들어 변환기에 넣어요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">2</span><span><span class="ls-para">LLM이 스스로 거절하는지, 아니면 큰 값을 내놓는지 관찰해요.</span></span></div><div class="ls-chall__step"><span class="ls-chall__stepno">3</span><span><span class="ls-para">어느 쪽이든 <strong>clamp가 마지막 방어선</strong>으로 작동하는지 검증하세요.</span></span></div>
+      </div>
+      
+    </div></div><section class="ls-blockhead" data-block="block-head">
+    <h3 class="ls-blockhead__title">18강 한눈에 정리</h3>
+    
+  </section><div class="ls-summary" data-block="summary" data-ga-observed="1"><ul><li><strong>로봇과 LLM 사이의 계약 = JSON.</strong> 부탁이 아니라 약속이에요</li><li><strong>프롬프트 4요소는 역할·상태·목표·형식.</strong> 고정은 system, 가변은 user에 둬요</li><li><strong>LLM이 아는 세상은 우리가 적어 보낸 글이 전부.</strong> 상태는 로봇 기준의 숫자로 적어 보내요</li><li><strong>형식은 부탁보다 강제.</strong> 강제가 안 되면 파서(<code>extract_json</code>)로 JSON만 건져요</li><li><strong>신뢰하되 검증.</strong> clamp가 범위 밖 값을 잘라 소뇌를 지켜요</li><li><strong>환각은 그라운딩으로.</strong> 실제 목록에 묶고, 모든 시도가 실패하면 <strong>정지</strong>예요</li></ul></div><div class="ls-next" data-block="next-preview">
+    <div class="ls-next__eyebrow">다음 강 안내</div>
+    <p class="ls-next__body"><span class="ls-para"><span class="ls-sentence">자연어가 숫자가 됐어요.</span> <span class="ls-sentence">그럼 이 숫자를 정책에 그대로 연결하면 끝일까요?</span> <span class="ls-sentence">안 돼요.</span> <span class="ls-sentence">정책은 1초에 50번 명령을 원하는데, LLM은 한 번 생각에 2~3초가 걸리거든요.</span> <span class="ls-sentence">속도가 100배 다른 두 뇌가 한 몸에서 임무를 나누는 설계, <strong><span class="ls-term" data-term="계층" role="link" tabindex="0">계층</span> 제어</strong>를 다음 강에서 다뤄요.</span></span></p>
+  </div><button class="read__next-inline is-revealed" type="button" aria-label="다음 강의로 이동 — 19강의. 생각하는 로봇, 완성">
+        <div class="read__next-inline-content">
+          <span class="read__next-inline-label">다음 강의</span>
+          <span class="read__next-inline-title">19강의. 생각하는 로봇, 완성</span>
+        </div>
+        <span class="read__next-inline-arrow" aria-hidden="true">→</span>
+      </button></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: GLOSSARY (단어집) ============== -->
+      <section class="view view--glossary" data-view="glossary" hidden="">
+        <main class="glossary__main">
+          <article class="glossary__list" id="glossaryList"></article>
+        </main>
+      </section>
+
+      <!-- ============== 뷰: EXPLORE (가이드북 안내 중심) ============== -->
+      <section class="view view--explore" data-view="explore" hidden="">
+        <div class="explore__inner">
+          <header class="explore__hero">
+            <div class="explore__eyebrow">NAVER CONNECT ROBOTICS 2026 · 가이드북</div>
+            <h2 class="explore__title">
+              처음 보시는 분들도<br>
+              <strong>천천히 따라오면 돼요</strong>
+            </h2>
+            <p class="explore__lead">
+              21강짜리 가이드북이에요. 가상 로봇을 만드는 것부터 시작해서, 감각을 달고,
+              스스로 걷는 법을 가르치다 보면, 끝에는 말 한 마디로 움직이는 자율 로봇이 손에 남아요.
+              하루에 한 강씩 가도 좋고, 주말에 몰아서 봐도 좋아요. 본인 페이스로요.
+            </p>
+          </header>
+
+          <section class="explore__steps">
+            <div class="explore-eyebrow-2">쓰는 법</div>
+            <ol class="explore-guide__rows">
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">01</div>
+                <div>
+                  <h4 class="explore-guide__title">챕터부터 하나 골라요</h4>
+                  <p class="explore-guide__body">
+                    탄생 → 각성 → 진화 → 초월, 이 네 묶음이에요.
+                    처음이면 그냥 1번 <b>탄생</b>부터 들어가시면 돼요.
+                    좌측 <b>목차</b>에서 네 챕터가 한눈에 보여요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">02</div>
+                <div>
+                  <h4 class="explore-guide__title">강의 안에서 넘어다녀요</h4>
+                  <p class="explore-guide__body">
+                    강의는 글과 코드가 섞인 형태예요.
+                    좌측 사이드바에서 강을 옮겨다닐 수 있고, 키보드 <b>← →</b>로도 됩니다.
+                    모바일이면 상단 드롭다운으로 강을 바꿔주세요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">03</div>
+                <div>
+                  <h4 class="explore-guide__title">코드는 직접 돌려보세요</h4>
+                  <p class="explore-guide__body">
+                    글로만 읽으면 잊혀요. 강의 안 Python 코드는 Isaac Sim에 그대로 붙여 돌리면 됩니다.
+                    한 번씩 직접 돌려본 사람만 다음 강을 편하게 봐요.
+                  </p>
+                </div>
+              </div>
+              <div class="explore-guide__row">
+                <div class="explore-guide__no">04</div>
+                <div>
+                  <h4 class="explore-guide__title">끝까지 가면 본선이에요</h4>
+                  <p class="explore-guide__body">
+                    21강을 다 마치면 자율로 걸어다니는 휴머노이드 로봇이 손에 남아요.
+                    그걸 들고 <b>네이버 커넥트 로보틱스 본선</b>에 나가시면 됩니다.
+                  </p>
+                </div>
+              </div>
+            </ol>
+          </section>
+
+          <section class="explore__support">
+            <div class="explore-eyebrow-2">대회 지원 안내</div>
+            <h3 class="explore-h3">참가팀에게 이런 지원이 있어요</h3>
+            <div class="explore__cards" id="exploreCards">
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">2억 원 상당<br>AI 로보틱스 패키지</h3>
+                <p class="support-card__body">
+                  우승팀이 소속된 학교에 고성능 GPU와 AI 시스템이 들어가요.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">글로벌 표준<br>Isaac Sim 제공</h3>
+                <p class="support-card__body">
+                  엔비디아가 실제로 쓰는 로봇 트레이닝 시뮬레이터, 참가하면 그대로 받습니다.
+                </p>
+              </article>
+              <article class="support-card">
+                <div class="support-card__visual"></div>
+                <h3 class="support-card__title">NVIDIA 엔지니어<br>전문가 멘토링</h3>
+                <p class="support-card__body">
+                  막힐 때 현업 엔지니어가 옆에서 도와줘요. 혼자 끙끙대지 않아도 돼요.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <div class="explore__cta-row">
+            <button class="explore__cta" data-go="books">
+              <span class="explore__cta-arrow" style="font-size:1.5em">▸</span>
+              <span>메인 화면으로 가기</span>
+            </button>
+          </div>
+
+          <footer class="explore__footer">
+            <div class="explore__footer-row">
+              <div class="explore__footer-brand">
+                <div class="explore__footer-title">NAVER CONNECT ROBOTICS CUP</div>
+                <div class="explore__footer-tag">Isaac Sim · 가이드북</div>
+              </div>
+              <div class="explore__footer-cols">
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">관련</div>
+                  <a class="explore__footer-link" href="https://github.com/entryofficial-ctrl/edu-content" target="_blank" rel="noopener">GitHub</a>
+                  <a class="explore__footer-link" href="https://developer.nvidia.com/isaac-sim" target="_blank" rel="noopener">Isaac Sim</a>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">대회</div>
+                  <span class="explore__footer-link">NAVER CONNECT ROBOTICS CUP 2026</span>
+                  <span class="explore__footer-link">NVIDIA Partner</span>
+                </div>
+                <div class="explore__footer-col">
+                  <div class="explore__footer-col-label">교육 주관</div>
+                  <span class="explore__footer-link">네이버 커넥트재단</span>
+                </div>
+              </div>
+            </div>
+            <div class="explore__footer-legal">
+              © 2026 NAVER CONNECT ROBOTICS CUP. Powered by NAVER CONNECT.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <!-- 이용 안내 팝업 (좌측 메뉴 하단 「이용 안내」로 열림) -->
+    <div class="legal" id="legalModal" hidden="">
+      <div class="legal__backdrop" data-legal-close=""></div>
+      <div class="legal__panel" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+        <button class="legal__close" type="button" data-legal-close="" aria-label="닫기">✕</button>
+
+        <div class="legal__eyebrow">NAVER CONNECT ROBOTICS CUP 2026</div>
+        <h2 class="legal__title" id="legalTitle">저작권 및 이용 안내</h2>
+        <p class="legal__copy">© NAVER Connect Foundation. All rights reserved.</p>
+
+        <p class="legal__lead">이 가이드북의 모든 글·이미지·코드·구성은 네이버 커넥트재단에 저작권이 있습니다. 누구나 웹에서 자유롭게 읽고 학습에 활용할 수 있습니다.</p>
+
+        <div class="legal__cols">
+          <section class="legal__col legal__col--ok">
+            <h3 class="legal__col-head"><span class="legal__mark">○</span> 이렇게 쓰실 수 있어요</h3>
+            <ul class="legal__list">
+              <li>수업·발표에서 화면으로 보여주기</li>
+              <li>출처를 밝히고 일부를 인용하기</li>
+            </ul>
+          </section>
+          <section class="legal__col legal__col--no">
+            <h3 class="legal__col-head"><span class="legal__mark">×</span> 이건 허락이 필요해요</h3>
+            <ul class="legal__list">
+              <li>내용을 복제해 다시 배포하기</li>
+              <li>고쳐 쓰거나 2차 저작물로 만들기</li>
+              <li>상업적 목적으로 이용하기</li>
+              <li>다른 서비스·교재에 옮겨 싣기</li>
+            </ul>
+          </section>
+        </div>
+
+        <p class="legal__note">실습에 쓰인 오픈소스(NVIDIA Isaac Sim·Isaac Lab, three.js 등)와 인용한 영상·이미지는 각 권리자에게 저작권이 있으며, 해당 라이선스와 출처 표기를 따릅니다.</p>
+
+        <p class="legal__contact">이용 문의 · 사용 허락 요청 — <a href="mailto:ncrc@connect.or.kr">ncrc@connect.or.kr</a></p>
+      </div>
+    </div>
+
+    <script type="module" src="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/app.js.다운로드"></script>
+    <script type="module" src="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/search.js.다운로드"></script>
+    <script src="./18강의. 믿을 수 있는 로봇 명령 만들기 · 초월 · NAVER CONNECT ROBOTICS GUIDE BOOK_files/comments.js.다운로드" defer=""></script>
+  
+
+<div class="player" id="player" data-hook0=""><div class="pwrap"><span class="px" id="px">✕</span><div class="pbox" id="pbox"></div></div></div></body></html>
