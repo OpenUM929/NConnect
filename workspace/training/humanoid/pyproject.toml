@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "humanoid"
+version = "0.1.0"
+description = "Humanoid (H1) training package — NAVER Connect Robotics Cup 2026 예선"
+requires-python = ">=3.10"
+authors = [{ name = "NAVER Connect Robotics Cup 2026" }]
+dependencies = [
+    "isaaclab",
+    "isaaclab_assets",
+    "isaaclab_tasks",
+    "isaaclab_rl",
+]
+
+[tool.setuptools]
+py-modules = ["humanoid_rewards"]   # ★ 학생이 여는 top-level reward 파일
+
+[tool.setuptools.packages.find]
+include = ["h1_task"]
