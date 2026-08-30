@@ -5,7 +5,7 @@ body{font-family:system-ui,'Apple SD Gothic Neo',sans-serif;background:#faf9f7;c
 .head{font-size:18px;font-weight:600;border-bottom:1px solid #eee;padding-bottom:12px;overflow:hidden;}
 .head .meta{font-size:13px;color:#777;font-weight:400;float:right;font-family:ui-monospace,monospace;}
 .timing{clear:both;font-size:12px;color:#888;font-family:ui-monospace,monospace;padding-top:8px;}
-.banner{background:#E6F1FB;color:#0C447C;border-radius:8px;padding:12px 16px;margin:16px 0 22px;font-size:15px;font-weight:600;}
+.banner{background:#F1EFE8;color:#444441;border-radius:8px;padding:12px 16px;margin:16px 0 22px;font-size:15px;font-weight:600;}
 .banner small{display:block;font-size:11px;font-weight:400;text-transform:uppercase;opacity:.7;letter-spacing:.04em;}
 .axis{display:flex;justify-content:space-between;font-size:11px;color:#999;margin:0 132px 8px 152px;}
 .row{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
@@ -40,11 +40,11 @@ th{color:#777;font-weight:500;}
 .diagmsg.warn{background:#FBF3E2;color:#8A5A00;}
 .diagmsg.bad{background:#FCEBEB;color:#A32D2D;}
 </style></head><body><div class=card>
-<div class=head>휴머노이드 <span class=meta>19관절 · iter 2800 / 총 3000 · 0.30M params · NaN 없음(제출 파일)</span><div class=timing>학습시작 2026-08-28 09:48 · 종료 2026-08-28 10:25 · 소요 37분 32초</div></div>
-<div class=banner><small>튜닝 의도</small>안정 지향 — 안전↑</div>
+<div class=head>휴머노이드 <span class=meta>19관절 · iter 2700 / 총 3000 · 0.30M params · NaN 없음(제출 파일)</span><div class=timing>학습시작 2026-08-29 16:22 · 종료 2026-08-29 17:07 · 소요 45분 16초</div></div>
+<div class=banner><small>튜닝 의도</small>균형(혼합) — 속도↑·안전↑</div>
 <div class=axis><span>← 안정</span><span>공격 →</span></div>
-<div class=row><span class=lbl>속도 추종</span><div class=track><span class=tick style="left:0.0%"></span><span class=dot style="left:0.0%;background:#888780"></span></div><span class=val>0.5 <em>(변화없음)</em></span></div>
-<div class=row><span class=lbl>회전 추종</span><div class=track><span class=tick style="left:0.0%"></span><span class=dot style="left:0.0%;background:#888780"></span></div><span class=val>0.5 <em>(변화없음)</em></span></div>
+<div class=row><span class=lbl>속도 추종</span><div class=track><span class=tick style="left:0.0%"></span><span class=dot style="left:25.0%;background:#D85A30"></span></div><span class=val>1 <em>(+0.5)</em></span></div>
+<div class=row><span class=lbl>회전 추종</span><div class=track><span class=tick style="left:0.0%"></span><span class=dot style="left:33.3%;background:#D85A30"></span></div><span class=val>1 <em>(+0.5)</em></span></div>
 <div class=row><span class=lbl>발 들기</span><div class=track><span class=tick style="left:25.0%"></span><span class=dot style="left:25.0%;background:#888780"></span></div><span class=val>0.2 <em>(변화없음)</em></span></div>
 <div class=row><span class=lbl>낙상 벌점</span><div class=track><span class=tick style="left:100.0%"></span><span class=dot style="left:100.0%;background:#378ADD"></span></div><span class=val>-50 <em>(-45)</em></span></div>
 <div class=row><span class=lbl>자세(수평)</span><div class=track><span class=tick style="left:53.6%"></span><span class=dot style="left:53.6%;background:#888780"></span></div><span class=val>-1.5 <em>(변화없음)</em></span></div>
@@ -53,9 +53,9 @@ th{color:#777;font-weight:500;}
 <div class=row><span class=lbl>상체 정렬</span><div class=track><span class=tick style="left:71.4%"></span><span class=dot style="left:71.4%;background:#888780"></span></div><span class=val>-0.1 <em>(변화없음)</em></span></div>
 <div class=row><span class=lbl>동작 부드러움</span><div class=track><span class=tick style="left:100.0%"></span><span class=dot style="left:100.0%;background:#888780"></span></div><span class=val>-0.0005 <em>(변화없음)</em></span></div>
 
-<table><tr><th>항목</th><th>기본</th><th>제출</th><th>Δ</th><th>의도/효과</th></tr><tr><td>track_lin_vel_xy_exp</td><td>0.5</td><td>0.5</td><td>—</td><td>속도 추종: 바꾸지 않음</td></tr><tr><td>track_ang_vel_z_exp</td><td>0.5</td><td>0.5</td><td>—</td><td>회전 추종: 바꾸지 않음</td></tr><tr><td>feet_air_time</td><td>0.2</td><td>0.2</td><td>—</td><td>발 들기: 바꾸지 않음</td></tr><tr><td>termination_penalty</td><td>-5</td><td>-50</td><td>-45</td><td>낙상 벌점: 안전제일(소극)</td></tr><tr><td>flat_orientation_l2</td><td>-1.5</td><td>-1.5</td><td>—</td><td>자세(수평): 바꾸지 않음</td></tr><tr><td>ang_vel_xy_l2</td><td>-0.05</td><td>-0.05</td><td>—</td><td>좌우 흔들림: 바꾸지 않음</td></tr><tr><td>joint_deviation_hip</td><td>-0.2</td><td>-0.2</td><td>—</td><td>골반 대칭: 바꾸지 않음</td></tr><tr><td>joint_deviation_torso</td><td>-0.1</td><td>-0.1</td><td>—</td><td>상체 정렬: 바꾸지 않음</td></tr><tr><td>action_rate_l2</td><td>-0.0005</td><td>-0.0005</td><td>—</td><td>동작 부드러움: 바꾸지 않음</td></tr></table>
+<table><tr><th>항목</th><th>기본</th><th>제출</th><th>Δ</th><th>의도/효과</th></tr><tr><td>track_lin_vel_xy_exp</td><td>0.5</td><td>1</td><td>+0.5</td><td>속도 추종: 속도 ↑ 빠릿·멀리(과속 시 넘어짐)</td></tr><tr><td>track_ang_vel_z_exp</td><td>0.5</td><td>1</td><td>+0.5</td><td>회전 추종: 선회 ↑ 빠른 방향전환</td></tr><tr><td>feet_air_time</td><td>0.2</td><td>0.2</td><td>—</td><td>발 들기: 바꾸지 않음</td></tr><tr><td>termination_penalty</td><td>-5</td><td>-50</td><td>-45</td><td>낙상 벌점: 안전제일(소극)</td></tr><tr><td>flat_orientation_l2</td><td>-1.5</td><td>-1.5</td><td>—</td><td>자세(수평): 바꾸지 않음</td></tr><tr><td>ang_vel_xy_l2</td><td>-0.05</td><td>-0.05</td><td>—</td><td>좌우 흔들림: 바꾸지 않음</td></tr><tr><td>joint_deviation_hip</td><td>-0.2</td><td>-0.2</td><td>—</td><td>골반 대칭: 바꾸지 않음</td></tr><tr><td>joint_deviation_torso</td><td>-0.1</td><td>-0.1</td><td>—</td><td>상체 정렬: 바꾸지 않음</td></tr><tr><td>action_rate_l2</td><td>-0.0005</td><td>-0.0005</td><td>—</td><td>동작 부드러움: 바꾸지 않음</td></tr></table>
 </div>
-<div class="card diag"><div class=head>학습 결과 (수치) <span class=meta>실패 진단용 · 직접 정하는 값 아님</span></div><p class=note>아래는 <b>학습이 어떻게 끝났는지</b> 보여주는 결과예요. 보상·전략을 바꾼 게 어떤 결과로 이어졌는지, 특히 <b>실패 원인</b>을 여기서 읽습니다.</p><div class=stats><div class=stat><div class=sv>3.84</div><div class=sk>최고 보상 · iter 2776</div></div><div class=stat><div class=sv>5.64</div><div class=sk>지형 난이도 (마지막)</div></div><div class=stat><div class=sv>29.8%</div><div class=sk>낙상률 (마지막)</div></div><div class=stat><div class=sv>1.311</div><div class=sk>탐색 std (마지막)</div></div></div><div class="diagmsg warn">⚠️ 자주 넘어짐 — 불안정. 안정 쪽 보상 검토.<br>⚠️ 탐색 std 가 1.0 근처인데 지형·낙상 지표는 정상 — 학습은 됐지만 무작위성이 안 줄었습니다(엔트로피 과다). 발산으로 이어질 수 있으니 흔들림·튐 벌점을 너무 낮추지 않았는지 확인하세요.<br>실제 보행 안정성은 숫자만으로 판단하지 말고 play.py 로 영상 확인하세요.</div></div>
+<div class="card diag"><div class=head>학습 결과 (수치) <span class=meta>실패 진단용 · 직접 정하는 값 아님</span></div><p class=note>아래는 <b>학습이 어떻게 끝났는지</b> 보여주는 결과예요. 보상·전략을 바꾼 게 어떤 결과로 이어졌는지, 특히 <b>실패 원인</b>을 여기서 읽습니다.</p><div class=stats><div class=stat><div class=sv>12.09</div><div class=sk>최고 보상 · iter 2738</div></div><div class=stat><div class=sv>5.57</div><div class=sk>지형 난이도 (마지막)</div></div><div class=stat><div class=sv>30.4%</div><div class=sk>낙상률 (마지막)</div></div><div class=stat><div class=sv>1.672</div><div class=sk>탐색 std (마지막)</div></div></div><div class="diagmsg warn">⚠️ 자주 넘어짐 — 불안정. 안정 쪽 보상 검토.<br>⚠️ 탐색 std 가 1.0 근처인데 지형·낙상 지표는 정상 — 학습은 됐지만 무작위성이 안 줄었습니다(엔트로피 과다). 발산으로 이어질 수 있으니 흔들림·튐 벌점을 너무 낮추지 않았는지 확인하세요.<br>실제 보행 안정성은 숫자만으로 판단하지 말고 play.py 로 영상 확인하세요.</div></div>
 <div class="card guide">
 <h2>리포트 보는 법</h2>
 <h3>① 맨 윗줄 — 모델 정보</h3>

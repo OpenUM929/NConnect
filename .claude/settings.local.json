@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(export PYTHONIOENCODING=utf-8)",
+      "Bash(python \"C:/Users/Park/AppData/Local/Temp/claude/C--dev-NConnect/79066471-7455-4d75-a526-38d9b7b3c27c/scratchpad/tb.py\" 2026-08-28_09-48-44/*.tfevents* 2026-08-28_20-36-33/*.tfevents*)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(python \"C:/Users/Park/AppData/Local/Temp/claude/C--dev-NConnect/79066471-7455-4d75-a526-38d9b7b3c27c/scratchpad/tb.py\" 2026-08-28_21-59-39/*.tfevents*)"
+    ]
+  }
+}
