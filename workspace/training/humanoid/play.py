@@ -383,6 +383,11 @@ if __name__ == "__main__":
     _extract_push_flag()
     # ── 자식 모드: python.sh 가 띄운 실제 play 프로세스 ──
     if CHILD_FLAG in sys.argv:
+        # Fixed-policy evaluation only.  Normal play/training is unchanged when
+        # NCRC_EVAL_OUT is absent.
+        if os.environ.get("NCRC_EVAL_OUT"):
+            from eval_telemetry import install as _install_eval_telemetry
+            _install_eval_telemetry()
         _runpy_isaaclab_play()
         os._exit(0)
 

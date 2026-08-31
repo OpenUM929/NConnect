@@ -436,3 +436,39 @@
 - 판정에는 점수 근거를 붙인다. 근거 없는 순서 배정을 하지 않는다.
 - `최적`·`충분`·`통과 가능`은 검증된 경우에만 쓴다.
 - 배우 산출을 인용할 때는 원문임을 명시하고 고치지 않는다.
+
+## 260831 H1 과학 근거·현재 위치 동기화 규칙
+
+H1 일정과 단계 판정 전 `ARTIFACT_MANAGEMENT.md`와 `H1_REWARD_EVIDENCE_MASTER.md`를 읽는다. reward 후보의 과학적 지위가 `미측정` 또는 `INCONCLUSIVE`이면 이를 건너뛰고 단계 4 장기 학습을 현재 단계로 확정하지 않는다. 가장 이른 미완료 검증을 단계 2 또는 단계 3으로 되돌리고, 왜 되돌렸는지와 이미 소비된 run의 재분류를 첫 화면에 쓴다.
+
+모든 일정 행에는 `등급 / 현재 단계 / 목적 / 근거 / PASS·FAIL·INCONCLUSIVE / 안전 중단점 / 회수물 / 다음 분기`를 표시한다. 배포 기본값이나 단일 run을 근거로 `튜닝 완료`, `최종 후보`, `확실한 효과`라고 쓰지 않는다. 새 서버 결과를 받으면 마스터·`CAMPAIGN_SCHEDULE.md`·`PROJECT_STATE.md`를 같은 작업에서 동기화한다.
+
+서버 관련 일정은 `ARTIFACT_MANAGEMENT.md`의 작업 ID와 lifecycle 상태를 반드시 표시한다. `RECEIVED` 전에는 결과 확보로, `VERIFIED` 전에는 유효 run으로, `MERGED` 전에는 로컬 반영으로 보고하지 않는다. 필수 제출 행이 회수·검증 공백에 걸리면 `blocked`가 아니라 `▲ 제출 불가 — 즉시 해소 대상`으로 표시한다.
+
+모든 학습 일정에는 별도 하위 행으로 `영상 필요성 판정 → 생성 → 패키징 → 다운로드 → 검증`을
+배치한다. 학습 종료 시각만으로 작업을 완료 처리하지 않는다. 영상이 필요한 run은 영상 tar와
+SHA가 로컬에 도착하기 전까지 `행동 증거 PENDING`이며 서버 종료 게이트도 미통과다. 예외적으로
+영상이 불필요하면 동일 checkpoint tensor·동일 evaluator의 기존 영상 경로나 checkpoint 없는
+smoke test라는 근거를 일정 행에 쓴다. 생성 실패는 `VIDEO_REQUIRED_NOT_ACQUIRED`로 표시하고
+다음 서버 세션의 첫 필수 작업에 배치한다.
+
+다운로드 SHA·tar·manifest·파일 수·checkpoint 대응의 정형 검사는 `.codex/agents/artifact-verifier.md`를
+`explore`/`gpt-5.6-luna`로 호출해 수행할 수 있다. 단, 예상 입력값과 최종 서버 종료·일정 승급
+판정은 메인 팀장이 소유한다. verifier의 `PASS`를 행동 PASS나 예선 통과로 변환하지 않는다.
+
+## 260831 증거 계층·학습 승인 추가 규칙
+
+- 일정과 보고에서 bare `PASS`를 쓰지 않는다. `ARTIFACT_VERIFIED`, `VIDEO_OBSERVED/UNKNOWN`,
+  `INTERNAL_GATE_PASS/FAIL/INCONCLUSIVE`, `OFFICIAL_RESULT`로만 상태를 올린다.
+- 대회 가이드의 `survival_rate × tracking_score` 수식은 공식 채점 개념이지만, `base_contact`,
+  자체 MAE·회복시간·`W`는 운영진 evaluator 입력값으로 확인되지 않은 내부 proxy다.
+- 서버가 켜진 상태의 종료·다운로드 질문에는 첫 두 문장 안에 종료 가능/불가와 미회수물을 답한다.
+- 새 학습은 `내부 H1~H7 자체 채점의 최대 감점 → 약한 생존/추종 인수 → 미측정 reward 정보가치` 순으로 배치한다.
+  단일변수 1k~5k screening 없이 10k 이상 장기 학습을 일정에 넣지 않는다.
+- 현재 후속 계획의 정본은 `H1_REWARD_EVIDENCE_MASTER.md` §9다. Run06은 동결 기준선이고,
+  screening 승자만 독립 seed와 고정 evaluator 재검증 후 장기 후보로 승급한다.
+- 공식 결과가 평가 종료 뒤 공개되는 대회에서는 이를 개선의 선행조건으로 두지 않는다. 제출 전
+  H1~H7 전체 자체 evaluator와 `SELF_ASSESSMENT_PASS`를 먼저 확보한다.
+- 부분 telemetry, `VIDEO_OBSERVED`, 한 방향 결과는 자체 점수에 넣지 않는다. 빠진 시나리오는
+  `SELF_ASSESSMENT_INCOMPLETE`이며, 총 자체예상 70/100 미만 또는 H1~H7 중 하나라도
+  `INTERNAL_SCENARIO_FAIL`이면 제출 후보 성능 승급을 금지한다. 목표는 75/100 이상이다.

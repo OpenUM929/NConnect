@@ -705,6 +705,55 @@ F26 정정으로 "학습 5회 = 제출 5회"가 무너졌으므로 실제 제출
 >
 > 근거: `AGENTS.md` 「자력 검증 우선」 1-b ⚠️정정 · `CAMPAIGN_SCHEDULE.md` §5.
 
+> **아래 정정 전 결론(F44 말미)의 「H1 0점·제출 대기 확정」과 사용자 행위 유도 논리는 인용 금지다.**
+> 현재 표기는 위 표의 `원장상 지시 0건 · 실제 제출 여부 [미측정]`이다.
+
+### F45 — **현재 서버 세션은 미복원·학습 미실행 상태** (260831 · 사용자 터미널 실측)
+
+- `tmux ls` → socket 없음.
+- `pgrep -af 'train.py|isaaclab.sh'` → 결과 없음.
+- `/workspace/_keep/train_260830-06.log`, `train_260830-07.log` → 둘 다 없음.
+- 현재 `humanoid_rewards.py` → `track_lin_vel_xy_exp=0.5`, `track_ang_vel_z_exp=0.5`.
+
+이는 **현재 서버 세션에 B2가 실행 중이지 않고 Run 05 복원도 되지 않았음**을 확정한다. 서버 세션은
+초기화될 수 있으므로 과거 실행 자체의 부재까지 유도하지 않는다. 다만 회수된 artifact가 없으므로
+현재 작업 기준에서 B2는 **미실행**으로 둔다. 당시 다음 동작은 `_bootstrap/restore.sh` 단독 복원이었으나,
+서버 제한시간 제약이 확인된 뒤 D36이 이를 **Run 06 패키지 내부 사전검사**로 흡수했다.
+
+### F46 — **서버는 접속할 때마다 초기화된다 · 로컬 training이 지속 정본이다** (260831 · 사용자 재확정)
+
+- `/workspace`의 tmux·process·log·checkpoint·`_bootstrap`은 다음 접속까지 보존된다고 가정하지 않는다.
+- 사용자는 매 작업 종료 시 서버 산출물을 내려받아 `C:\dev\Nconnect\workspace\training`에 반영한다.
+- 다음 접속에서는 필요한 bootstrap·checkpoint·코드를 로컬에서 다시 업로드해야 한다.
+- 따라서 “서버에 이전 log가 없다”는 과거 run 부재의 증거가 아니다. **로컬에 회수된 artifact가 있는가**가 지속성 판정 기준이다.
+
+### F47 — **로컬 `workspace/training`에는 기존 학습 데이터가 보존돼 있다** (260831 · 재인벤토리)
+
+| 영역 | 파일 수 | 크기 |
+|---|---:|---:|
+| `workspace/training/humanoid` | **190** | **466,878,876 B** |
+| `humanoid/logs` | 25 | 66,110,150 B |
+| `humanoid/reports` | 47 | 132,738,395 B |
+| `humanoid/exported` | 76 | 246,677,367 B |
+| `humanoid/_safe` | 1 | 7,151,477 B |
+| `humanoid/_bootstrap` | 4 | 7,197,417 B |
+
+유형별로 tfevents **5**, checkpoint `.pt` **34**, 영상 `.mp4` **37**, 원문 `.log` **22**가 있다.
+따라서 서버가 비어 있어도 Run 01~05와 기존 평가가 사라진 것이 아니다. 새 실험은 이 데이터가
+동일 대상·동일 조건·동일 측정단위로 이미 답을 갖고 있는지 먼저 확인한 뒤에만 편성한다.
+
+### F48 — **Run 06 서버 패키지 준비 완료** (260831 · 로컬 검증)
+
+- 파일: `workspace/training/humanoid/run06_server_package.zip`
+- 크기: **6,654,894 B**
+- SHA-256: `35707c80a1d5aae4d37b530bf1b5e1cf254b8330cff047618782c249a166aa36`
+- ZIP 항목 14개: `train.py`, `play.py`, Run 05 `_bootstrap`, `h1_task/*.py`,
+  `server_run06_long.sh`, Run 06 사전등록이 포함된 `experiment_history.csv`.
+- 실행 스크립트는 restore·보상 9개 검증·from-scratch 학습·`NO_AUTO_SUBMIT=1`·tmux·
+  3000/5000/10000/15000 근접 checkpoint 구출·최종 download bundle 생성을 한 번에 수행한다.
+- `policy.pt`는 의도적으로 bundle에서 제외한다. `train.py`는 policy를 갱신하지 않으므로
+  기존 Run 05 policy가 섞이는 것을 막고, 최종 checkpoint 선정 뒤 별도 export한다.
+
 → **H1 0점 · Go2 0점 · 합계 0 / 200이 현재 확정치다.** 이틀간의 산출물은 전부
 제출 대기 상태이며, `policy.pt` 1회 복사 + 대시보드 업로드로 **GPU 0분에 H1 100점 축이 열린다.**
 이것이 Go2 기준선(예상 2.4시간)보다 먼저다.
@@ -858,6 +907,13 @@ H1 reward 미세조정 어느 것보다 크다.
 | **D29** | **최종 장기 학습(S3/B2)은 차단 대상이 아니다. 즉시 착수한다** — Run 05 보상 그대로 · from scratch · 15000 iter | **(1) 제출 요건이다.** `PRELIM_RL_GUID.md:190` 체크리스트 #3 "최종본은 충분히 길게(10000~15000 iter) 학습했나요?" — 현재 Run 05는 3000. 안 하면 게이트 #3이 영원히 미충족이고, 기다린다고 열리지 않는다. **(2) D28은 예산 혼용이었다.** 마감일(공백 C)은 **사람 시간** 축인데 그것으로 **벽시계** 작업을 막았다 — 관리자 정의 L91-96이 분리하라고 못박은 두 예산이고 D9가 경고한 바로 그 혼용이다. **(3) 정의는 동시 실행을 명령한다.** 관리자 정의 L101 "학습이 도는 동안 사람이 노는 것을 허용하지 않는다 — 그 시간에 리포트 30점 작업을 배치한다." D26(30점 우선)과 B2는 경쟁이 아니라 **병렬 설계**다. **(4) 기다려서 얻는 정보가 0이다.** D24로 보상 9개가 동결됐으므로 마감일을 알아도 학습 설정이 바뀌지 않는다. 마감일이 실제로 거는 것은 「시작 가부」가 아니라 **「10000 vs 15000」 선택**뿐이고, 15000으로 걸고 중간 체크포인트를 구출하면(D21·F41) 그것도 해소된다 |
 | **D30** | **단계표에 「등급」 열을 둔다 — `필수(제출요건)` / `개선` / `조사`.** **`필수` 행은 `blocked` 상태를 가질 수 없다** | 260830 근본원인 분석. B2(제출 요건 #3)가 A2(개선)와 같은 행 형식으로 나란히 놓여 둘 다 blocked가 될 수 있었다. 제출 요건이 막히면 그것은 일정 조정이 아니라 **제출 불가**이므로 다른 등급의 사건이다. 필수 행이 막히면 `blocked`가 아니라 **`▲ 제출 불가 — 즉시 해소 대상`** 으로 적는다 |
 | **D31** | **판정 요청의 선지는 원장 원문과 대조한 뒤 만든다.** 선지에 미검증 전제를 넣지 않는다 | 260830 실증. M0 지시 Q3의 선지 (b)「공백 C 미회수」는 메인 루프의 창작이었다. 원장 원문(L871)이 막은 것은 **① iter 상한** ② **공백 F**(50시간 해석)인데, 메인 루프가 이를 **① 시작 자체** ② **공백 C**(마감일)로 두 번 변형해 선지에 넣었다. 판정자는 선지 밖을 볼 수 없으므로 **틀린 선지는 반드시 틀린 판정을 낳는다.** 원칙 12(피측정자가 자를 소유하지 않는다)의 역방향 위반 — 질문자가 선지를 만들어 판정을 유도했다 |
+| **D32** | **D24를 부분 철회한다.** Run 04/05를 파라미터 공간의 “시소 양 끝”이라 한 것은 오류이며 survival을 제외하고 탐색 종료를 일반화할 수 없다. 다만 `lin=2.0` 단일 3000-iter 1회는 즉시 장기학습 승급 실험으로 승인하지 않는다 | `track_lin_vel_xy_exp` 추천범위는 0.5~2.5인데 관측점은 0.5·1.0뿐이다. 공식 점수는 survival×tracking이다. 반면 +6.78은 Run04→05의 혼합 학습지형 tracking proxy일 뿐 1.0 이후 단조성·공식 survival을 증명하지 않는다. 새 pilot은 동일설정 control, 새 RUN_ID, restore 전 백업, `NO_AUTO_SUBMIT=1`, 고유 tmux, H1~H7 고정 평가, artifact 정합을 갖춘 screening으로만 허용한다. 활성 B2가 있으면 동시 학습 금지 |
+| **D33** | **F45에 따라 B2 ‘착수’ 상태를 철회하고 현재 서버 세션을 미실행으로 확정한다.** 당시 복원 단독을 다음 명령으로 뒀으나 D36이 Run 06 원클릭 패키지 내부 preflight로 대체했다 | tmux/process/log가 모두 없고 reward가 배포값 0.5/0.5다. 복원 없이 `lin=2.0`을 적용하면 Run 05의 1.0/1.0에서 단일변수 변경하는 실험이 아니므로 비교가 무효다 |
+| **D34** | **상태를 두 층으로 관리한다.** 캠페인 진척은 로컬 artifact 기준, 현재 실행 가능 여부는 매 서버 세션의 단계 0 preflight 기준이다 | F46. 서버 초기화는 캠페인 진척의 소실이 아니라 실행환경 리셋이다. 모든 실행안은 `업로드 → 해시 검증 → 해제 → restore → 실행 → bundle 생성 → 다운로드 → 로컬 검증`을 완주해야 done이다 |
+| **D35** | **로컬 기존 학습 데이터 우선 게이트.** 서버 명령을 만들기 전에 `workspace/training`의 log·tfevents·checkpoint·영상·보고서를 검색한다 | F47·D19. 기존 데이터가 동일 질문에 답하면 재학습하지 않는다. 답이 없는 항목만 사전등록하고 서버에서 측정한다 |
+| **D36** | **서버는 명령 패키지 완성 전 켜지 않는다.** 복원만을 위한 접속을 금지하고 `업로드 1회 → 실행 1줄 → bundle 다운로드`로 운용한다 | 사용자 확정(260831): 서버 사용시간 제한 + 매 접속 초기화. 실행 목적·예상시간·중단조건·회수 경로는 메인 루프가 로컬에서 먼저 완성한다 |
+| **D37** | **H1 서기 및 기본 행동 튜닝은 완료 상태다.** 다음 Run 06은 서기 재튜닝이 아니라 Run 05 보상 고정 장기 수렴이다 | F30: H1 zero-command 직립, H2 전진, H3 좌우, H4 회전복합 관찰. F37: H5/H6 근사 1 episode 무낙상, H7 반복 push 무낙상. 남은 것은 최종 정책의 정량·격리 평가이지 서기 재개발이 아니다 |
+| **D38** | **현재 캠페인 단계는 4/6 장기 학습이다.** H5~H7 근사 행동 확인은 단계 3 완료 기준을 충족하며, 단일 episode·노출구간·방향격리 한계는 단계 5 최종 정책 정량평가로 이관한다 | 표준 단계 3 완료 기준은 요철·경사·밀침 행동 확인이다. F37·F30에서 확인 완료. 증거 한계를 숨기지 않되 이미 통과한 서기·환경 행동 게이트를 다시 열어 서버 시간을 중복 사용하지 않는다 |
 
 ## 미해소 (실측된 공백)
 
@@ -924,13 +980,18 @@ H1 reward 미세조정 어느 것보다 크다.
 | 26 | tfevents 로컬 파서 작성 + 5 run 곡선 분석 (GPU 0분) | done | `tools/tfcurve.py` · **F40** — 파서 검증 5/5 (CSV Run 04 값 재현) |
 | 27 | `_finalize.py` 체크포인트 정리 동작 실측 | done | **F41** — best 1개만 남기고 삭제. 3000·5000 비교 계획의 실패 지점 사전 검출 |
 | 28 | 다음 학습 확정 — 보상 불변 5000 iter | done | **D20·D21·D22** |
+| 29 | B2 15000 iter 착수 기록 검증 | **현재 서버 세션 미실행** | F45 — tmux/process/log 없음, reward 0.5/0.5 |
+| 30 | D24 반론 3자 교차검증·D32 판정 | done | `REPORT_260831.md` · `CAMPAIGN_SCHEDULE.md` §0/D32 |
+| 31 | F45 반영·B2 착수 상태 철회·복원 게이트 설정 | done | D33 · `CAMPAIGN_SCHEDULE.md` §0 |
+| 32 | 휘발성 서버 운영 규칙·세션 런북 확정 | done | F46·D34 · `SERVER_SESSION_RUNBOOK.md` |
+| 33 | 로컬 training 기존 데이터 재인벤토리·우선 게이트 확정 | done | F47·D35 |
+| 34 | 서버 제한시간 운영 정정·Run 06 원클릭 패키지 작성 | done | D36·D37 · `server_run06_long.sh` · `run06_server_package.zip` |
 
-NEXT: (0) **다음 학습은 보상 노브 변경이 아니라 Run 05 설정 그대로 5000 iter다**(D20).
-      이유는 F40 — `error_vel_yaw`가 아직 −0.106/1k로 내려가는 중이고 `terrain_levels`는
-      5.56/9.0로 미포화라, 지금 노브를 바꾸면 **보상 결함과 학습 중간 상태를 분리하지 못한다.**
-      실행 전 `experiment_history.csv`에 ① Run 05 행을 **사후 복구 기록으로 명시해** 채우고
-      ② D20 run 행을 **학습 시작 전에 사전 등록**한다. 학습 중 `model_3000.pt` 구출 필요(D21·F41).
-      (구 NEXT (1)은 아래에 그대로 둔다 — 노브 선정은 D20 결과 이후로 밀렸다.)
+NEXT: (0) **로컬 검증이 끝난 `run06_server_package.zip`을 서버 시작 직후 업로드한다.**
+      서버에서는 해시 통과 후 `MAX_ITERS=10000 bash server_run06_long.sh` 한 줄로 Run 05 복원,
+      보상 9개 검증, Run 06 장기 학습, 3000/5000/10000 checkpoint 구출, 다운로드 bundle 생성을 연속 수행한다.
+      3시간 20분 이상 확보되면 `MAX_ITERS=15000`을 쓴다. 이 run은 **서기 재튜닝이 아니라 장기 수렴**이다.
+      완료 bundle을 로컬 `workspace/training/humanoid`에 내려받기 전에는 run을 done으로 기록하지 않는다.
 
 구 NEXT: (1) **S0 종료. 다음은 S2 후보 1개를 확정하는 일이다.** S0c는 전부 done —
       커버리지 1.00(F37), 기준선 Run 05 확정(D18). 이제 **Run 05 위에서** 노브 1개를 골라
@@ -948,3 +1009,174 @@ NEXT: (0) **다음 학습은 보상 노브 변경이 아니라 Run 05 설정 그
       회수: 공백 F·G·H·C를 사용자에게. Go2 배우 신설(D11)은 사용자 승인 대기 — 대리 생성 금지.
       **학습은 편성하지 않는다** — D16. 기준선(Run 04 vs Run 05)이 미확정이고 D15의 1·2순위는
       F35로 근거가 약화됐다. 그 확정 전에 도는 학습은 기획이 아니라 추측이다.
+
+## 260831 최신 상태 정정 — Run06 회수 및 과학 근거 게이트
+
+> 이 절은 위 D37·D38 및 과거 NEXT 가운데 충돌하는 상태·명령을 대체한다. 과거 기록은 감사 이력으로 남긴다.
+
+### 추가 고정 사실
+
+| # | 사실 | 근거 |
+|---|---|---|
+| **F48** | 최초 Run06 패키지는 CRLF 때문에 서버 실행이 실패했으나, 새 서버 세션에서 `sed -i 's/\r$//'` 후 `bash -n` 두 파일이 통과했다 | 사용자 제공 서버 출력: `server_run06_long.sh`, `_bootstrap/restore.sh` 모두 `[OK] shell syntax` |
+| **F49** | Run06은 서버에서 실행 중이며 사용자 최신 관측 시 완료까지 약 30분이 남았다. 로컬에는 아직 완료 bundle이 없다 | 사용자 발화(260831). 실제 iter·종료 코드는 bundle 회수 전 `[미측정]` |
+| **F50** | Run06은 Run05의 보상 9개를 유지한 단일 seed(42) 장기 수렴/학습시간 실험이다. reward 튜닝 run이나 독립 seed 재현이 아니다 | `server_run06_long.sh`, `train.py`, `H1_REWARD_EVIDENCE_MASTER.md` |
+| **F51** | 서버의 `/workspace/training` 전체에는 업로드 당시의 과거 문서와 새 run이 섞인다. 최종 Run06 bundle은 기본적으로 `/workspace/_keep`에 있어 training 전체 다운로드만으로는 누락될 수 있다 | `server_run06_long.sh`: `KEEP=/workspace/_keep/...`, tar 생성 경로 확인 |
+
+### 추가 결정
+
+| # | 결정 | 근거 |
+|---|---|---|
+| **D39** | 현재 가장 이른 미완료 단계는 **2/6 짧은 pilot의 과학적 재검증**이다. D38의 단계 4/6 표기는 철회한다 | Run01~05는 단일 seed 탐색이며 독립 seed·고정 evaluator·시나리오별 survival×tracking 분리가 없다 |
+| **D40** | 모든 reward 제안은 `H1_REWARD_EVIDENCE_MASTER.md`의 만족/부분 만족/미만족/미측정 판정과 8개 근거 항목을 먼저 채운다 | 반복 질문 방지 및 단일 run 과잉해석 방지. `AGENTS.md`와 H1 기획·캠페인 관리자 지침에 반영 |
+| **D41** | Run06은 약 30분만 남은 최신 관측 때문에 중단하지 않고 10,000 iter를 자연 완료한다 | 추가 벽시계 비용이 작고, SIGINT보다 정상 종료 bundle 생성의 운영 위험이 낮다. 성능 보장 결정은 아님 |
+| **D42** | 서버 `training` 전체는 보험 snapshot으로 다운로드할 수 있으나 로컬 정본에 통째로 덮어쓰지 않는다 | F51. `workspace/server_returns/<RUN_ID>/` 격리 → SHA/STATUS/source/checkpoint/tfevents 검증 → 새 artifact 선택 병합 |
+
+### 최신 진행
+
+| no | 등급 | 단위 | state | 산출물/게이트 |
+|---:|---|---|---|---|
+| 35 | 개선 | Run06 10k 단일-seed 수렴 표본 | **서버 실행 중·결과 미회수** | `[DONE] DOWNLOAD=`와 `TRAIN_RC`, tar SHA 확인 필요 |
+| 36 | 조사 | reward 9개 과학 근거 마스터화 | done | `H1_REWARD_EVIDENCE_MASTER.md` |
+| 37 | 필수(제출요건) | Run06 artifact 로컬 정합성 검증 | **▲ 제출 불가 — 즉시 해소 대상** | bundle 미회수 |
+| 38 | 조사 | 고정 evaluator·독립 seed 설계 | 대기 | Run06 3k/5k/10k 분석 후 사전등록 |
+| 39 | 필수(제출요건) | 최종 H1~H7 평가·env↔리포트 일치·대시보드 제출 확인 | **▲ 제출 불가 — 즉시 해소 대상** | 최종 후보 미확정·공식 제출 이력 미측정 |
+
+**LATEST NEXT:** Run06을 건드리지 않고 자연 완료시킨다. `[DONE] DOWNLOAD=`가 나온 뒤
+`/workspace/_keep/train_260831-06_run05cfg_10000_DOWNLOAD.tar.gz`와 전체 `training` 보험 snapshot을
+내려받아 `workspace/server_returns/train_260831-06_run05cfg_10000/`에 격리한다. 로컬 정본에는
+통째로 덮어쓰지 않는다. SHA256·`STATUS.txt`·`TRAIN_RC`·source hash·checkpoint·tfevents를 검증한
+뒤에만 새 run artifact를 선택 병합하고 Run05 대비 3k/5k/10k 지표를 판정한다.
+
+### 260831 중앙 artifact 운영 정본 추가
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F52** | `ARTIFACT_MANAGEMENT.md`가 파일 목록, 서버 회수·검증·선택 병합, artifact 작업 내역의 단일 진입점으로 신설됐다 | 사용자 지시: 지침·파일 리스트·작업 내역을 모든 담당자가 알 수 있게 문서화 |
+| **D43** | 모든 서버·artifact 작업은 실행 전에 작업 ID를 등록하고 `PLANNED → RUNNING → RECEIVED → VERIFIED → MERGED → ANALYZED → REPORTED` 상태로 전진시킨다 | `AGENTS.md`와 기획자·스케줄러·보고서 작성자 지침에 강제 참조 반영 |
+
+| no | 등급 | 단위 | state | 산출물 |
+|---:|---|---|---|---|
+| 40 | 조사 | 중앙 artifact 운영·파일·작업 원장 신설 및 전 담당 연결 | done | `ARTIFACT_MANAGEMENT.md`, `workspace/server_returns/README.md`, `AGENTS.md`, `.codex/agents/*.md` |
+
+**LATEST NEXT (artifact 원장):** `A260831-02`는 Run06 `[DONE] DOWNLOAD=`까지 자연 완료를 기다린다.
+두 tar가 로컬에 도착하면 `A260831-03`을 `RECEIVED`로 전이하고, 원본 격리 → SHA/STATUS/source/params/checkpoint/tfevents
+검증 → `VERIFIED` 순서로 진행한다. `MERGE_PLAN.tsv` 승인 근거가 생기기 전에는 `workspace/training`을 변경하지 않는다.
+
+### 260831 Run06 수신 검증·영상 게이트 정정
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F53** | Run06 학습 bundle과 전체 training snapshot을 로컬에서 회수했다. bundle은 `TRAIN_RC=0`, `MAX_ITERS=10000`, tar PASS, 서버 기록 SHA 일치, 내부 checksum 18/18 PASS다 | `workspace/server_returns/train_260831-06_run05cfg_10000/INGEST_STATUS.md` |
+| **F54** | Run06 bundle에는 tfevents와 `model_9900.pt`는 있으나 `ckpt/`가 비어 3k·5k checkpoint가 없고, Run06 전용 영상도 0건이다 | bundle manifest·snapshot tar 실측 |
+| **D44** | 학습 artifact만으로 서버 종료 가능하다는 직전 판정을 철회한다. Run06 최종 정책의 H1~H7 영상 tar를 회수한 뒤 서버를 종료한다 | 학습 곡선은 실제 행동·퇴행을 보장하지 않으며 단계 1·3·5 증거에 영상이 필요 |
+| **D45** | `server_run06_videos.sh`로 core 4종을 먼저 안전 패키징하고 full 10종을 완성한다 | SHA `c28a36e2…abc65`, CRLF 0, `bash -n` PASS. 고정 seed·명령·지형·1000 step |
+
+| no | 등급 | 단위 | state | 산출물 |
+|---:|---|---|---|---|
+| 41 | 필수(제출요건) | Run06 학습 bundle 격리·무결성 검증 | done | `INGEST_STATUS.md`, `FILE_MANIFEST.tsv`, `LOCAL_SHA256SUMS.txt`, `MERGE_PLAN.tsv` |
+| 42 | 필수(제출요건) | Run06 H1~H7 영상 10종 | **실행 대기** | `server_run06_videos.sh` 준비·검증 완료 |
+
+**LATEST NEXT (영상 게이트):** 서버를 종료하지 않고 `server_run06_videos.sh`를 업로드한 뒤
+`VIDEO_SUITE=full bash server_run06_videos.sh`를 실행한다. `[DONE] Run06 video suite=full`과
+`*_VIDEOS_FULL.tar.gz`·`.sha256`을 회수해 `A260831-05`를 `VERIFIED`로 전이한 뒤 서버를 종료한다.
+3k·5k 정책 재생은 checkpoint 부재로 불가능하며, 해당 구간은 tfevents 곡선 분석으로만 판정한다.
+
+### 260831 Run06 영상 PARTIAL 검증·재개 결정
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F55** | 다운로드된 영상 결과는 FULL이 아니라 CORE와 PARTIAL이다. H1·H2·H3 좌우·H4 양방향·H7의 평지 7종은 `play_rc=0`이고, H5 rough에서 중단되어 H6 ±10°는 실행되지 않았다 | `VIDEO_STATUS.tsv`, `launcher.log`, 로컬 mp4·policy 개수 실측 |
+| **F56** | CORE/PARTIAL tar 외부 SHA와 tar 구조가 통과했고, PARTIAL 내부 checksum 36/36과 meta `model_best.pt` SHA가 Run06 model_9900 식별자 `8eb06e2…b636`에 일치한다 | `workspace/server_returns/train_260831-06_run05cfg_10000/videos/` 로컬 검증 |
+| **F57** | H5 실패 원인은 정책 성능이 아니라 Hydra 설정 타입 오류다. `terrain_generator.seed`의 런타임 타입이 `NoneType`인데 정수 `42`를 override해 config 변환 전에 rc=1로 종료됐다 | H5 로그의 `Expected: <class 'NoneType'>, Received: <class 'int'>` |
+| **D46** | 현재 서버는 종료하지 않는다. seed override를 제거하고 기존 평지 7종을 건너뛰는 resume 러너로 H5·H6만 재실행한 뒤 FULL tar·SHA를 회수한다 | 학습 후 영상 증거 게이트. 수정 script SHA `f89c925b…ed35`, CRLF 0, Git Bash `bash -n` PASS |
+
+**LATEST NEXT (영상 resume):** 수정된 `server_run06_videos.sh`를 서버 humanoid 폴더에 덮어쓰고
+SHA `f89c925b3889ff57e8ad64a16b07a8cfa4521173068d46456ea39a7dcb89ed35`와 `bash -n`을 확인한다.
+`VIDEO_SUITE=full VIDEO_RESUME=1 bash server_run06_videos.sh`로 재개한다. `[DONE]`과 FULL tar·SHA를
+로컬에서 검증하기 전에는 서버를 종료하지 않는다.
+
+### 260831 Run06 영상 FULL 검증 완료
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F58** | Run06 FULL 영상 package가 로컬에 도착했고 외부 tar SHA, 안전한 tar 경로, 내부 checksum 47/47, 10개 시나리오, 영상·policy 10/10, model SHA 대응이 모두 통과했다 | `videos/FULL_VERIFY.json`, FULL tar SHA `c80f972c…9be` |
+| **D47** | Run06 서버 세션의 필수 회수 조건이 충족됐으므로 서버를 종료한다 | 학습 bundle VERIFIED + 영상 FULL VERIFIED. 행동 품질 판정은 별도 A260831-04에서 수행 |
+| **D48** | 정형 다운로드 검증은 `artifact-verifier`를 Luna로 호출하고 `tools/verify_download_artifact.py` 결과를 사용한다. 메인 팀장은 예상 입력과 최종 의미 판정을 소유한다 | 비용 절감과 판정 권한 분리 |
+
+**LATEST NEXT:** 서버 종료 후 Run06 영상 10종의 육안·정량 행동 판정과 Run05 대비 tfevents 곡선
+분석을 수행한다. package 무결성 PASS를 H1~H7 행동 PASS로 해석하지 않는다.
+
+### 260831 Run06 분석 완료·고정 evaluator 승급
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F59** | Run06 마지막 500은 Run05 대비 xy 오차 9.7097%, yaw 오차 16.6120%, base_contact 14.76%, mean_std 4.39% 개선됐고 episode length는 7.25% 증가했다. `W=+7.487`이며 사전등록 게이트 5개가 모두 통과했다 | Run05/06 tfevents 직접 파싱, `experiment_history.csv` Run06 결과행 |
+| **F60** | Run05 전체 3000 iter와 Run06의 최초 3000 iter는 성능/시간 태그를 제외한 TensorBoard 31개 태그가 bit-identical하다 | 두 tfevents 전수 tag 비교. 같은 seed·설정 prefix이므로 Run06은 학습시간 확장 실험이다 |
+| **F61** | Run06 영상 10종에서 H1 제자리·H2 전진·H3 좌우·H5 rough는 시각 PASS다. H4 yaw 양, H6 실제 경사 통과 성능, H7 push 회복시간은 영상만으로 정량 확정할 수 없다 | FULL 영상 육안 감사. 모든 영상 약 20초·무명백 낙상, 명령·지형·push 로그 대응 확인 |
+| **D49** | Run06 `model_9900.pt`(SHA `8eb06e2…b636`)를 고정 evaluator 후보로 승급하고 reward tuning을 동결한다 | F59의 사전 게이트 통과. `lin=2.0`, `feet_air_time`, `flat_orientation` 즉시 실험은 undertraining과 reward 효과를 다시 혼합할 위험이 있다 |
+| **D50** | 가장 이른 미완료 표준 단계는 **1/6 H4 정량 게이트**다. 다음 서버 작업은 학습이 아니라 H4·H6·H7 fixed-policy telemetry다 | 단계 번호는 가장 이른 미완료 단계 규칙. H4 영상은 직립·이동만 보여 yaw tracking을 정량하지 못한다 |
+| **D51** | A260831-08은 `VIDEO_NOT_REQUIRED`다. 새 학습·reward·env·checkpoint 변경이 없고 같은 Run06 model_9900의 FULL 영상 10종이 이미 검증됐으므로 기존 영상을 재사용한다 | 영상 예외 조건: 동일 tensor·동일 고정 시나리오 영상 VERIFIED. 이번 run은 raw telemetry만 추가한다 |
+
+| no | 등급 | 단위 | state | 산출물/게이트 |
+|---:|---|---|---|---|
+| 43 | 조사 | Run05 대비 Run06 곡선·영상 분석 | done | F59~F61, D49 |
+| 44 | 필수(제출요건) | H4·H6·H7 고정 정량 evaluator package | 로컬 준비·검증 완료 / 서버 실행 대기 | `run06_fixed_eval_package.zip`, SHA `bf90f194…aac93`, unittest 5/5, bash syntax PASS |
+
+**LATEST NEXT:** 서버는 package가 완성되기 전에는 켜지 않는 D36을 유지한다. 현재 package는
+검증 완료됐으므로 다음 접속에서 `run06_fixed_eval_package.zip` 업로드 후 런북의 한 줄 명령만
+실행한다. 완료 tar와 `.sha256`을 내려받아 H4 yaw, H6 slope tracking/termination, H7 push recovery를
+판정한다. 이 평가 전에는 추가 학습·reward 수정·공식 제출 승급을 하지 않는다.
+
+### 260831 Run06 고정 정책 평가 완료·제출 후보 승격
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F62** | 고정 평가 5개 케이스(H4 좌·우, H6 ±10°, H7 push)가 모두 `EVAL_RC=0`으로 종료됐고 각 케이스의 `summary.json`·`steps.csv`가 회수됐다 | `workspace/server_returns/train_260831-06_run05cfg_10000/fixed_eval/original/` |
+| **F63** | H4 명령 `wz=+0.5/-0.5`에 대한 평균 실측은 `+0.4646/-0.4856`, yaw MAE는 `0.1241/0.1263`, 조기 종료는 0이다 | `fixed_eval/derived/FIXED_EVAL_REPORT.json`, raw `steps.csv` |
+| **F64** | H6 양 경사는 각각 32/32 환경이 timeout까지 생존했고 조기 종료 0, xy MAE `0.0643/0.0638`이다. H7은 관측 충격 114/114 회복, 중앙값 0.18초, 최대 0.88초, 조기 종료 0이다 | 동일 보고서와 raw telemetry |
+| **F65** | 서버 runner의 `RC=127`은 평가 후 `python3` 명령 부재로 보고서 생성만 실패한 것이다. 원본 5개 평가는 모두 성공했고 보고서는 로컬 Python으로 재생성했다 | `launcher.log`, `RUNNER_STATUS.txt`, 로컬 `FIXED_EVAL_REPORT.*` |
+| **F66** | 제출 후보 `policy.pt`의 TorchScript 텐서 8개와 Run06 iter 9900 checkpoint actor MLP 텐서 8개가 일치한다 | 로컬 `torch.jit.load(...).state_dict()` 대조 `MATCH True` |
+| **D52** | Run06을 H1 제출 후보로 승격하고 reward tuning을 동결한다. 추가 학습보다 제출 3종 정합성과 공식 업로드 증거를 우선한다 | F59~F66. 단일 seed·내부 evaluator이므로 공식 점수/통과는 보장하지 않음 |
+| **D53** | 가장 이른 미완료 단계는 **5/6 최종 평가·문서**다. H1~H7 내부 근거는 채웠고 공식 업로드 및 제출 이력 회수만 남았다 | 제출 후보: `workspace/submission_candidates/h1_run06_model9900/` |
+
+**LATEST NEXT:** `workspace/submission_candidates/h1_run06_model9900/`의 `policy.pt`, `env.yaml`, `TECHNICAL_REPORT.md`를 최종 대조한 뒤 팀 대시보드에 업로드한다. 업로드 완료 화면/제출 이력은 외부 시스템 사실이므로 회수 전까지 `[미측정]`으로 유지한다.
+
+### 260831 Run06 PASS 표현 정정
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F67** | 영상 감사 결과는 H1·H2·H3·H5만 시각상 요구 행동 확인이며, H4 yaw·H6 경사각·H7 외력 사건은 영상으로 판독할 수 없어 `UNKNOWN`이다 | `run06_video_audit`의 10개 영상 감사; 원거리 카메라와 명령·경사·외력 overlay 부재 |
+| **F68** | H4·H6·H7 고정 telemetry는 긍정적 실측이지만 사전 등록된 수치 PASS 기준이 없고 운영진 evaluator도 아니다 | `experiment_history.csv`의 “No preregistered numeric PASS threshold”; D52의 공식 점수/통과 미보장 단서 |
+| **D54** | D52의 “제출 후보 승격”은 artifact와 첫 공식 평가 기준선의 준비를 뜻한다. H1~H7 성능 PASS 또는 예선 합격 판정으로 해석하지 않는다 | 사용자 지적 수용. `측정 완료/양호`, `영상 판독`, `공식 PASS`를 분리 |
+| **D55** | 가장 이른 미완료 단계는 다시 **5/6 최종 평가·문서**로 유지한다. 정정 리포트와 영상/telemetry 증거 수준을 팀장에게 보고한 뒤에만 단계 6 공식 제출로 이동한다 | 성능 판정 근거를 사용자에게 보고하지 않은 상태에서 제출 단계로 성급히 승급한 오류 교정 |
+
+**LATEST NEXT:** 정정된 영상·telemetry 행렬을 팀장에게 보고한다. 현재 결론은 `제출 파일 정합성 VERIFIED / 내부 측정은 긍정적 / H1~H7 전체 PASS 미확정 / 공식 합격 미측정`이다.
+
+### 260831 증거 계층·후속 학습 승인 규칙 확정
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F69** | 대회 제공 가이드는 시나리오 점수를 `survival_rate × tracking_score`로 명시한다. 이전 정정 리포트의 “팀 내부 가설” 표현은 잘못이다 | `workspace/training/PRELIM_RL_GUIDE.md:95-100` |
+| **F70** | 위 공식 수식과 달리 Run06의 `base_contact`, 자체 MAE, recovery time, `W`는 운영진 evaluator의 공식 입력값과 동일성이 확인되지 않은 내부 proxy다 | 가이드는 evaluator 구현·threshold를 공개하지 않으며 참가자 사전 점수 확인 불가(`PRELIM_RL_GUIDE.md:117-119`) |
+| **D56** | 판정은 `ARTIFACT_VERIFIED / VIDEO_OBSERVED·UNKNOWN / INTERNAL_GATE_PASS·FAIL·INCONCLUSIVE / OFFICIAL_RESULT` 네 계층으로 분리한다. bare `PASS`, 합격, 통과 가능 표현은 금지한다 | F67~F70 및 사용자 지적 재발 방지 |
+| **D57** | Run06은 동결 기준선이다. 후속 개선은 공식 결과의 약점을 최우선으로 하며, 결과가 없을 때만 `lin 1.0→1.5`, `feet_air_time 0.2→0.3`, `flat_orientation -1.5→-1.0` 순의 단일변수 3k screening을 검토한다 | `H1_REWARD_EVIDENCE_MASTER.md` §9. 값은 최적값이 아니라 보수적 탐색점 |
+| **D58** | screening은 survival·tracking proxy 동시 판정, 동일 3k 대조, 필수 영상·telemetry, 결과별 분기를 사전등록해야 한다. 승자만 독립 seed/공식 평가 후 10k 장기 후보가 된다 | 공식 점수의 곱 구조와 단일-run 일반화 한계 |
+
+**LATEST NEXT:** 서버를 켜지 않는다. 수정된 보고서·마스터·일정의 증거 계층을 대조하고 Run06을 첫 공식 평가 기준선으로 제출할지, 공식 결과 전 단기 screening을 할지는 `공식 결과 정보가치 우선` 원칙으로 결정한다.
+
+### 260831 제출 전 자체 70점 게이트 확정
+
+| # | 사실/결정 | 근거 |
+|---|---|---|
+| **F71** | 운영진 평가는 제출본을 모아 일괄 진행하므로 공식 결과를 후속 튜닝 입력으로 기다리는 계획은 실전 개선 루프가 아니다 | `workspace/PRELIM_RL_GUID.md:113-119`, 사용자 정정 |
+| **F72** | 현재 Run06 고정 평가는 H1·H2·H3·H5 격리 telemetry가 없고 H4는 600 step이라 완주 survival이 계산되지 않는다 | 기존 `FIXED_EVAL_REPORT.json`, `server_run06_fixed_eval.sh` |
+| **D59** | D57의 “공식 결과 우선”을 철회한다. 제출 전 H1~H7 전체 자체 scorecard를 약점 지도로 사용한다 | F71; 공식 결과 공개 시점 이후에는 개선 기회가 없을 수 있음 |
+| **D60** | 부분 결과는 `SELF_ASSESSMENT_INCOMPLETE`이며 자체 점수에 포함하지 않는다. Run06의 현재 성능 판정은 자체 PASS가 아니라 **평가 미완료**다 | F72; 영상·일부 telemetry와 H1~H7 점수 분리 |
+| **D61** | 내부 proxy v1은 Run06 env의 `std=0.5`와 exponential tracking을 사용해 `exp(-(RMSE/0.5)^2)`로 계산한다. 각 시나리오는 survival≥0.95와 tracking≥0.70을 모두 요구하고, 쌍 방향은 최악값을 쓴다 | `_eval_run06/env.yaml:847-857`, 공식식은 survival×tracking이나 정확한 변환식은 비공개 |
+| **D62** | 제출 성능 최소조건은 H1~H7 전부 내부 시나리오 통과, 가중 시뮬 proxy≥0.70, 문서 자체감사를 포함한 총 자체예상≥70/100이다. 불확실성 여유를 둔 운영 목표는 75/100 이상이다 | 사용자 목표와 공식 70/20/10 배점 |
+
+**LATEST NEXT:** 새 학습이나 공식 결과 대기가 아니다. A260831-11 평가 전용 package로 Run06
+H1~H7 10 case를 모두 20초 평가해 `시뮬 proxy /70`을 확정한다. 70점 게이트를 통과하면 제출
+후보를 유지하고, 미달이면 `가중치 × (1-scenario_proxy)` 최대 감점 시나리오의 약한 인수만
+3,000-iteration 단일변수 screening한다.
