@@ -400,5 +400,34 @@
 | G-D70 | 다음 단일 변수는 **`feet_air_time` 0.20 → 0.35**(G-A015)다. | 사전등록 §15-c의 출력은 G3(`12.97/70`)이고 G3·G5 실점 인자는 모두 생존이다. `feet_air_time`은 험지와 계단에 동시에 작용하는 유일한 다이얼이며, 측정된 곡선이 있는 유일한 변수다(G-F93) |
 | G-D71 | `quadruped_rewards.py`는 Pilot-01 설정 정본이다. 로컬에서 이 파일의 값을 Default로 되돌리지 않는다. | 260903에 검증 중 `feet_air_time`을 0.2→0.01로 잘못 되돌려 `test_default_staging_changes_only_four_pilot_lines`가 실패했다. 엔진은 이 파일을 템플릿으로 렌더하므로 파일 값이 실행에 영향을 주지는 않으나, Pilot-01 정본으로서의 의미가 훼손된다 |
 
-**LATEST NEXT:** `workspace\training\quadruped\upload\G-A015\current\` 2파일 업로드 → 실행 →
-`workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A015** 절.
+**(마감)** G-A015는 실행·회수·검증 완료. 후속은 §23.
+
+## 23. G-A015 결과 회수·분석과 `feet_air_time` 상한 확정 — 260904
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F98 | `GO2_PILOT_FEET_AIR_TIME_035_RESULT.zip` 외부 SHA `8d8bb89b85ab4428ae499d19bb334528e787cd7ca28b24da2825edb389ce4a7f`가 서버 sidecar와 일치하고 ZIP CRC 무결, 내부 manifest 128/128 OK다. | 로컬 `sha256sum -c`, `unzip -t` |
+| G-F99 | `RESULT_STATE=FULL`, `RUNNER_RC=0`, telemetry 후보 7/7·기준 7/7, 영상 1/1(`G1_forward_fast_seed_101.mp4` 2,205,383 B), 정책 계보 `ACTOR_TENSORS_MATCH`(8/8). 서버가 기록한 `ENGINE_ARCHIVE_SHA256`·`EXPERIMENT_SHA256`은 업로드본과 동일하다. | `RESULT_STATUS.txt`, `RUNNER_STATUS.txt`, `POLICY_LINEAGE.json` |
+| G-F100 | 단일 변수는 실제로 적용됐다. 서버 `training/env.yaml`에 `feet_air_time: weight 0.35`, 나머지 5개는 Pilot-01 값(1.2 / −2.0 / −0.05 / −0.01 / 0.0) 그대로다. 후보 model SHA `994562a1…a6c909`. | `training/env.yaml:854-887`, `evaluation/candidate/identity.json` |
+| G-F101 | 기준선 arm은 동결 Pilot-01(`c4d78adf…f89af8d`)이고 tier-1 7 case 중 6개가 `SOURCE=VERIFIED_G_A012` 캐시, `dr_seed_101`만 신규 실행이다. tier-1(seed 101) 기준선 총점은 `46.49124/70`. | `evaluation/baseline_tier1/cases/*/STATUS.txt`, `reports/TIER1_DECISION.json` |
+| G-F102 | G-A015 판정은 `INTERNAL_EARLY_KILL_FAIL`, 총점 `−30.121932/70`(기준 `46.49124`, 후보 `16.36931`)이다. 발화한 게이트는 총점 절과 G1·G3·G4·G5·G7 생존 절 다섯이다. | `reports/TIER1_DECISION.json` |
+| G-F103 | 후보의 시나리오별 생존은 G2 `1.000`, G6 `0.938`, G7 `0.125`, G1 `0.031`, G3·G4·G5 `0.000`이다. 평지·저속만 살아남고 속도·험지·경사·계단은 전멸이다. | `evaluation/candidate/SELF_EVAL_REPORT.md` |
+| G-F104 | 실패 방식은 전복이 아니라 **주저앉음**이다. 후보 `dr_seed_101`의 `proj_grav_z` 평균 −0.964(기울어진 프레임 0.0%)인데 `height_rel` 평균 0.183 m(기준선 0.303 m), 0.20 m 미만 프레임 72.5%(기준선 2.8%), 속도 0.121(기준선 0.246)이다. | 양쪽 `steps.csv` 32,000행 집계 |
+| G-F105 | 7개 case 전부에서 같은 서명이 나온다. `height_rel` 평균은 `slope_plus_20` 0.154 ~ `push_pos_x` 0.347이고, `proj_grav_z`는 모든 case에서 −0.87 이하로 몸통은 수평을 유지한다. | 후보 case별 `steps.csv` |
+| G-F106 | 계단(G5)에서 후보는 32 env 중 **31개가 base contact로 종료**됐고(기준선 2개) 전진 거리는 `5.696 m → 1.888 m`다. | `cases/seed_101/stairs_15_up/summary.json` 양쪽 |
+| G-F107 | 엔진 1.2.0의 가중 총점 게이트는 설계대로 작동했다. 파국적 후보를 tier-1(약 1시간)에서 죽였고 seed 202·303 대표평가를 실행하지 않았다. | `evaluation/candidate/cases/`에 seed_101만 존재 |
+| G-F108 | G-A016 사양 `G_A016_pilot_ang_vel_xy_m015.json` SHA-256 `0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76`, 2,633 B. 추출본에서 `validate` VALID(`baseline=Pilot-01`), `materialize` 후보 `ang_vel_xy_l2 −0.15`·기준선 `−0.05`, 나머지 5개 동일. | 로컬 end-to-end 검증 |
+| G-F109 | 엔진 ZIP은 재빌드해도 `dfbe47ae…877b1a`로 동일하다. G-A016은 G-A015와 **바이트 동일한 엔진**을 쓴다. | 계약 테스트가 재빌드 후 출력한 SHA |
+| G-F110a | 표기 결함(무해): 기준선 arm의 `evaluation/baseline_tier1/identity.json`은 Pilot-01을 쓸 때도 `"policy":"default"`로 적힌다. 런타임 디렉터리 이름이 arm 고정(`default`/`candidate`)이기 때문이다. 실제 정체는 같은 파일의 `model_sha256`이 `c4d78adf…f89af8d`(Pilot-01)로 못박아 증명한다. | `evaluation/baseline_tier1/identity.json`, `meta/ENGINE_METADATA.json` |
+| G-F110 | 계약 테스트 50/50 OK. G-A015의 실측 7시나리오 수치를 게이트에 재생하는 회귀 테스트가 추가됐다. | `python -m unittest discover -s tools` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D72 | G-A015를 `ARTIFACT_VERIFIED`로 확정하고 **서버 종료를 승인**한다. 가설(`feet_air_time` 0.35가 험지·계단 생존을 올린다)은 **기각**한다. | FULL·RC=0·manifest 128/128·telemetry 7/7·영상 1/1, 서버에만 있는 산출물 없음 |
+| G-D73 | **`feet_air_time`의 상한을 0.20으로 확정**한다. 0.28 재탐색은 실행하지 않는다. | 사전등록 §18-e의 두 분기가 동시 발화했고, 더 좁고 구체적인 **생존 절이 우선**한다. 실패가 −1 수준의 후퇴가 아니라 보행 붕괴(G4 생존 −1.000)이므로 0.20~0.35 구간을 더 쪼갤 근거가 없다 |
+| G-D74 | 분기 충돌 시 **생존 절 > 총점 절** 우선 규칙을 캠페인 표준으로 못박는다. | 두 절이 동시에 발화할 수 있다는 사실이 G-A015에서 처음 드러났다. 사후에 유리한 분기를 고르는 것을 막으려면 우선순위를 문서에 남겨야 한다 |
+| G-D75 | 다음 단일 변수는 **`ang_vel_xy_l2` −0.05 → −0.15**(G-A016)다. 기준선은 동결 Pilot-01 그대로. | 실점 2순위 G5(`10.50/70`)의 인자는 생존이고, 계단 낙상은 몸통 pitch·roll 진동에서 시작한다. ④는 그 각속도에 직접 벌점을 매기는 유일한 다이얼이며 Pilot-01에서 미측정이고 기존 측정과 모순되지 않는다. ③ `lin_vel_z_l2` −2.5 안은 G-A010 실측(`+2.2572/70`)과 방향이 반대라 제외 |
+| G-D76 | 엔진은 v1.3(`1.2.0`)을 **그대로 재사용**한다. | 게이트는 이번 회차에서 설계대로 작동했다(G-F107). 결과 해석을 위해 엔진을 손댈 이유가 없고, 바이트 동일 재사용은 회차 간 비교 가능성을 지킨다 |
+
+**LATEST NEXT:** `workspace\training\quadruped\upload\G-A016\current\` 2파일 업로드 → 실행 →
+`workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A016** 절.

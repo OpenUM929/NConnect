@@ -182,7 +182,107 @@ C:\dev\Nconnect\workspace\_keep\
 2위 G5 `10.50`, 두 시나리오 모두 실점 인자는 생존이다.
 분석: `workspace/training/quadruped/reports/GO2_PILOT_V2_BASELINE_RESULT_ANALYSIS_260903.md`.
 
-다음 실행 절차는 아래 **G-A015** 절이다. G-A013 절은 완료(`ARTIFACT_VERIFIED`, 가설 기각)이며 이력으로 남긴다.
+다음 실행 절차는 아래 **G-A016** 절이다. G-A013·G-A015 절은 완료(`ARTIFACT_VERIFIED`, 두 가설 모두 기각)이며 이력으로 남긴다.
+
+## Go2 4족 — G-A016 Pilot-01 기준선 · `ang_vel_xy_l2` −0.05 → −0.15 (260904)
+
+**상태: 업로드 대기.** 정본 파일은 `workspace\training\quadruped\upload\G-A016\current\`.
+
+### 왜 `feet_air_time`을 더 밀지 않는가
+
+G-A015(`feet_air_time` 0.20 → 0.35)는 총점 `−30.1219/70`으로 기각됐다. 실패 방식은
+"조금 못하다"가 아니라 **보행 자체의 붕괴**다. 후보의 몸통은 넘어지지 않는다
+(`proj_grav_z` 평균 −0.964, 기울어진 프레임 0.0%). 대신 **주저앉는다** — 지면 대비
+몸통 높이 평균 0.183 m(기준선 0.303 m), 0.20 m 미만 프레임이 72.5%(기준선 2.8%),
+속도는 절반(0.121 vs 0.246). 공중 체류 시간에 큰 보상을 걸면 정책은 몸을 낮추고
+다리를 오래 들고 있는 느린 걸음으로 수렴하며, `posture_gate_v2`는 이를 정확히 낙상으로
+집계한다. 계단에서는 32개 env 중 31개가 base contact로 종료됐고 전진 거리는
+5.70 m → 1.89 m로 줄었다. 사전등록 §18-e의 "생존 후퇴 > 0.10" 분기에 따라
+**0.20을 `feet_air_time`의 상한으로 확정**하고 다음 실점 순위로 이동한다.
+
+### 왜 이 변수인가
+
+사전등록 §18-e의 두 분기(총점 후퇴 / 생존 후퇴)가 동시에 발화했다. **생존 절이
+우선한다** — 더 좁고 구체적인 조건이며, 그 증거가 명확하기 때문이다(G1 −0.969,
+G4 −1.000, G3·G7 −0.813, G5 −0.719). 따라서 "0.20~0.35 사이 재탐색(0.28)"은
+실행하지 않고 다음 실점 순위인 **G5(계단, `10.50/70`)**로 넘어간다.
+
+G5의 실점 인자는 생존이고, 계단 낙상의 물리적 시작점은 몸통의 pitch·roll 진동이다.
+④ `ang_vel_xy_l2`는 정확히 그 각속도에 벌점을 매기는 유일한 다이얼이며, Pilot-01
+기준선에서 **한 번도 측정된 적이 없고** 지금까지의 어떤 측정 결과와도 모순되지 않는다.
+(③ `lin_vel_z_l2`를 −2.0 → −2.5로 되돌리는 안은 G-A010의 실측 `+2.2572/70`과 방향이
+반대라 제외했다.) −0.15는 참가자 파일이 명시한 권장 구간 `-0.3 ~ -0.02` 안이다.
+
+### 1. 로컬 준비 (완료)
+
+| 파일 | 크기 | SHA-256 |
+|---|---:|---|
+| `go2_tuning_engine_v1_3.zip` | 12,781,997 B | `dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a` |
+| `G_A016_pilot_ang_vel_xy_m015.json` | 2,633 B | `0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76` |
+
+엔진은 G-A015에서 실제로 실행된 것과 **바이트 동일**하다(결정론적 빌드). 이번 회차의
+새 검증 대상은 실험 사양뿐이며, 추출본 `validate` VALID · `materialize` 후보 `−0.15`/
+기준선 `−0.05`(나머지 5개 동일) · 기준선 checkpoint `c4d78adf…` 일치 · 계약 테스트
+50/50 OK를 확인했다. 상세: `workspace/training/quadruped/G_A016.VERIFICATION.md`.
+
+### 2. 업로드
+
+두 파일을 `/workspace/` 직속에 올린다. `/workspace/training/quadruped/`에는 아무것도
+올리지 않는다(예선 규정 제14조 — 서버는 초기 설정 그대로 사용).
+
+### 3. 실행 한 줄
+
+```bash
+cd /workspace && printf 'dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a  go2_tuning_engine_v1_3.zip\n0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76  G_A016_pilot_ang_vel_xy_m015.json\n' | sha256sum -c - && unzip -oq go2_tuning_engine_v1_3.zip && cd /workspace/go2_tuning_engine_v1_3 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A016_pilot_ang_vel_xy_m015.json
+```
+
+정본 명령은 `workspace/training/quadruped/GO2_G_A016_RUN_GUIDE.txt`에 있다.
+
+### 4. 진행 확인
+
+`tmux attach -t go2_g_a016` (분리는 `Ctrl-b`, `d`).
+
+| 단계 | 내용 | 예상 |
+|---|---|---:|
+| PHASE 1/4 | 1,000 iter 학습 | 약 59분 |
+| PHASE 2/4 | tier-1 게이트 + G1 영상 | 약 5분 |
+| PHASE 3/4 | seed 202·303 (통과 시에만) | 약 5분 |
+| PHASE 4/4 | 포장 | 약 2분 |
+
+조기 종료 약 1시간 6분, 대표평가까지 약 1시간 11분.
+
+### 5. 완료 확인
+
+`[DONE] GO2_PILOT_ANG_VEL_XY_M015_RESULT_READY`.
+`DECISION=INTERNAL_EARLY_KILL_FAIL`은 **정상 종료**다. 어느 쪽이든 회수한다.
+
+### 6. 다운로드 2파일
+
+```
+/workspace/_keep/GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip
+/workspace/_keep/GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip.sha256
+```
+
+### 7. 로컬 배치
+
+`C:\dev\Nconnect\workspace\_keep\`에 그대로 둔다. 정본 트리
+`workspace\training\quadruped`는 검증을 통과한 산출물만 병합하며 전체 덮어쓰기는 금지다.
+
+### 8. 서버 종료 관문
+
+DONE 표시만으로 끄지 않는다. 외부 SHA · ZIP CRC · 내부 manifest ·
+`RESULT_STATE`/`RUNNER_RC` · telemetry 7/7 · G1 영상 · `training/env.yaml`의 가중치 ·
+정책 계보를 로컬에서 확인해야 종료 여부를 답한다.
+
+### 9. 사전등록 분기
+
+| tier-1 판정 | 다음 |
+|---|---|
+| PASS | seed 202·303 대표평가 → 69-case `posture_gate_v2` 재평가 → Pilot-01 `33.79311/70`과 비교 |
+| FAIL (총점 Δ < +1.0/70, 생존 후퇴는 허용 내) | −0.15가 과했다 → 다음 단일 변수는 `−0.05 → −0.10`, 같은 기준선·seed |
+| FAIL (G5 생존 후퇴 > 0.10) | 이 다이얼을 기각하고 다음 실점 순위(G4 경사)로 이동 |
+
+---
 
 ## Go2 4족 — G-A015 Pilot-01 기준선 · `feet_air_time` 0.20 → 0.35 (260903)
 
