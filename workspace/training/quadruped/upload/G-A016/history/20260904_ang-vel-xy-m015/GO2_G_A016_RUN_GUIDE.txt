@@ -1,0 +1,57 @@
+GO2 G-A016 — Pilot-01 기준선 · ang_vel_xy_l2 -0.05 → -0.15
+==========================================================
+
+업로드 2파일 (둘 다 /workspace/ 직속에 올린다. training/ 밑에는 아무것도 올리지 않는다)
+
+  go2_tuning_engine_v1_3.zip
+    SHA256 dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a
+    12,781,997 B  (G-A015에서 쓴 것과 바이트 동일. 엔진은 바뀌지 않았다)
+
+  G_A016_pilot_ang_vel_xy_m015.json
+    SHA256 0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76
+    2,633 B
+
+실행 한 줄
+----------
+cd /workspace && printf 'dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a  go2_tuning_engine_v1_3.zip\n0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76  G_A016_pilot_ang_vel_xy_m015.json\n' | sha256sum -c - && unzip -oq go2_tuning_engine_v1_3.zip && cd /workspace/go2_tuning_engine_v1_3 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A016_pilot_ang_vel_xy_m015.json
+
+진행 확인
+---------
+tmux attach -t go2_g_a016      (분리: Ctrl-b 누르고 d)
+
+  PHASE 1/4  1,000 iter 학습              약 59분 (실측 3.48초/iter)
+  PHASE 2/4  tier-1 게이트 + G1 영상       약 5분
+  PHASE 3/4  seed 202·303 (통과 시에만)    약 5분
+  PHASE 4/4  포장                          약 2분
+
+조기 종료 약 1시간 6분, 대표평가까지 약 1시간 11분.
+기준선 7개 case는 캐시(VERIFIED_G_A012)라 재평가 시간이 들지 않는다.
+
+완료 표시
+---------
+[DONE] GO2_PILOT_ANG_VEL_XY_M015_RESULT_READY
+
+DECISION=INTERNAL_EARLY_KILL_FAIL 은 정상 종료다. 후보에 대한 판정이지 실행 실패가
+아니며 RUNNER_RC=0 · RESULT_STATE=FULL 로 전량 포장된다. 어느 쪽이든 회수한다.
+
+다운로드 2파일
+--------------
+/workspace/_keep/GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip
+/workspace/_keep/GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip.sha256
+
+→ C:\dev\Nconnect\workspace\_keep\ 에 그대로 둔다.
+
+서버 종료 관문
+--------------
+DONE 표시만으로 끄지 않는다. 두 파일을 받은 뒤 외부 SHA · ZIP CRC · 내부 manifest ·
+RESULT_STATE/RUNNER_RC · telemetry 7/7 · G1 영상 · training/env.yaml 의 가중치 ·
+정책 계보를 로컬에서 확인해야 종료 여부를 답한다.
+
+병렬 실행 금지
+--------------
+GPU 1장(RTX 5080, 16,303 MiB)에 4096 env 학습이므로 다른 학습과 동시에 돌리지 않는다.
+
+폐기된 패키지
+-------------
+go2_tuning_engine_v1_1.zip, go2_tuning_engine_v1_2.zip 는 SUPERSEDED. 올리지 않는다.
+G_A015_pilot_feet_air_time_035.json 은 실행 완료(기각). 다시 올리지 않는다.

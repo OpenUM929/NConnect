@@ -1,0 +1,23 @@
+{
+  "experiment_id": "G-A016",
+  "note": "G-A015 rejected (-30.12/70, feet_air_time 0.35 collapse); single variable moves to ang_vel_xy_l2 -0.05 to -0.15 on the same frozen Pilot-01 baseline",
+  "published_at_utc": "2026-09-04T02:11:30+00:00",
+  "release_id": "20260904_ang-vel-xy-m015",
+  "status": "ACTIVE",
+  "support_files": [
+    "GO2_G_A016_RUN_GUIDE.txt",
+    "G_A016.VERIFICATION.md"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_3.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_3.zip",
+      "sha256": "dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a"
+    },
+    {
+      "name": "G_A016_pilot_ang_vel_xy_m015.json",
+      "server_path": "/workspace/G_A016_pilot_ang_vel_xy_m015.json",
+      "sha256": "0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76"
+    }
+  ]
+}

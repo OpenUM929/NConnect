@@ -1,0 +1,6 @@
+action	source	target	reason	status
+add	extracted/train_260831-06_run05cfg_10000/run/	workspace/training/humanoid/logs/rsl_rl/humanoid/2026-08-31_10-26-47/	검증된 새 Run06 학습 디렉터리	HOLD_ANALYSIS
+keep-local	extracted/train_260831-06_run05cfg_10000/experiment_history.csv	workspace/training/humanoid/reports/experiment_history.csv	서버 사본은 업로드 당시 과거 원장; 로컬 최신 원장 우선	DECIDED
+hold	extracted/train_260831-06_run05cfg_10000/final/model_best.pt	workspace/training/humanoid/exported/model_best.pt	성능 분석·승급 결정 전 기존 제출 후보 교체 금지	HOLD_ANALYSIS
+hold	extracted/train_260831-06_run05cfg_10000/final/env.yaml	workspace/training/humanoid/exported/env.yaml	채택 checkpoint 확정 전 교체 금지	HOLD_ANALYSIS
+missing	-	workspace/training/humanoid/exported/policy.pt	Run06 train은 policy를 export하지 않음; 최종 채택 후 별도 export 필요	EXPECTED

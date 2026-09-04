@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-04T02:11:30+00:00	G-A016	20260904_ang-vel-xy-m015	ACTIVE	go2_tuning_engine_v1_3.zip	dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a	G_A016_pilot_ang_vel_xy_m015.json	0eadb9a7a72dbbaaf3618faf7e07482ba0309054bc3bfaa9fccc149882e11f76	G-A015 rejected (-30.12/70, feet_air_time 0.35 collapse); single variable moves to ang_vel_xy_l2 -0.05 to -0.15 on the same frozen Pilot-01 baseline
