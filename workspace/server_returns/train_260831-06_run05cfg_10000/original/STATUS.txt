@@ -1,0 +1,5 @@
+RUN_ID=train_260831-06_run05cfg_10000
+MAX_ITERS=10000
+TRAIN_RC=0
+RUN_DIR=/workspace/training/humanoid/logs/rsl_rl/humanoid/2026-08-31_10-26-47
+2026-08-31T12:28:09+09:00

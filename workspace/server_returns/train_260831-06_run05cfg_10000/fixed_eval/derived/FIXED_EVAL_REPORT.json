@@ -1,0 +1,136 @@
+{
+  "cases": {
+    "H4_left": {
+      "completed": true,
+      "completed_episodes": 0,
+      "early_terminations": 0,
+      "rows": 19200,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5224649131382606,
+      "steps": 600,
+      "survival_rate_completed": null,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 0
+      },
+      "timeouts": 0,
+      "tracking_xy_mae": 0.058811506299803445,
+      "tracking_xy_rmse": 0.07993714530215676,
+      "tracking_yaw_mae": 0.12414169252990784,
+      "tracking_yaw_rmse": 0.1576011027035629,
+      "wall_seconds": 21.2334942817688
+    },
+    "H4_right": {
+      "completed": true,
+      "completed_episodes": 0,
+      "early_terminations": 0,
+      "rows": 19200,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5251377336032438,
+      "steps": 600,
+      "survival_rate_completed": null,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 0
+      },
+      "timeouts": 0,
+      "tracking_xy_mae": 0.06570976918667785,
+      "tracking_xy_rmse": 0.08680757433101308,
+      "tracking_yaw_mae": 0.12629217177139557,
+      "tracking_yaw_rmse": 0.15877613441063773,
+      "wall_seconds": 14.346707820892334
+    },
+    "H6_minus10": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5121133233374044,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06376332609754459,
+      "tracking_xy_rmse": 0.0809639225582916,
+      "tracking_yaw_mae": 0.12115283765865296,
+      "tracking_yaw_rmse": 0.15265292661795357,
+      "wall_seconds": 21.015551805496216
+    },
+    "H6_plus10": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.4929594574371676,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06429866516103058,
+      "tracking_xy_rmse": 0.08150997221912694,
+      "tracking_yaw_mae": 0.1196926823560375,
+      "tracking_yaw_rmse": 0.1506401990553847,
+      "wall_seconds": 21.028764009475708
+    },
+    "H7_push": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.06517696226699758,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06517696226699758,
+      "tracking_xy_rmse": 0.08428414484145799,
+      "tracking_yaw_mae": 0.11191103291976924,
+      "tracking_yaw_rmse": 0.13904483086480565,
+      "wall_seconds": 20.566347122192383
+    }
+  },
+  "h4_yaw_tracking": {
+    "H4_left": 0.12414169252990784,
+    "H4_right": 0.12629217177139557
+  },
+  "h6_slope_tracking": {
+    "H6_minus10": {
+      "early_terminations": 0,
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06376332609754459
+    },
+    "H6_plus10": {
+      "early_terminations": 0,
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06429866516103058
+    }
+  },
+  "h7_push_recovery_proxy": {
+    "expected_env_events": 128,
+    "max_recovery_s": 0.879999999999999,
+    "median_recovery_s": 0.1800000000000006,
+    "method": "push at configured 4 s intervals; peak >=0.20 m/s; recovery <=0.15 m/s for 0.5 s",
+    "observed_disturbances": 114,
+    "recovered_events": 114,
+    "recovery_rate_observed": 1.0
+  },
+  "limitations": [
+    "One checkpoint and one fixed seed do not establish generalization.",
+    "The H7 recovery calculation is an internal proxy, not an official score definition.",
+    "A completed run is evidence collection, not an automatic PASS decision."
+  ],
+  "schema_version": 1,
+  "scope": "fixed-policy evaluation; no training"
+}

@@ -1,0 +1,6 @@
+scenario	vx	vy	wz	push_mps	terrain	steps	play_rc
+H4_left	0.50	0.15	0.50	0	plane	600	0
+H4_right	0.50	-0.15	-0.50	0	plane	600	0
+H6_plus10	0.50	0.00	0.00	0	slope_inv	1000	0
+H6_minus10	0.50	0.00	0.00	0	slope	1000	0
+H7_push	0.00	0.00	0.00	0.5	plane	1000	0
