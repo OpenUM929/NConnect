@@ -1,0 +1,114 @@
+[
+  {
+    "policy": "default",
+    "video": "G1_forward_fast_seed_202.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G1_forward_fast_seed_202.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G2_diagonal_left_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G2_diagonal_left_seed_101.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G3_rough_forward_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G3_rough_forward_seed_303.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G4_slope_plus_20_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G4_slope_plus_20_seed_101.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G5_stairs_10_down_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G5_stairs_10_down_seed_101.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G6_push_neg_x_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G6_push_neg_x_seed_303.jpg"
+  },
+  {
+    "policy": "default",
+    "video": "G7_dr_seed_303_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\default__G7_dr_seed_303_seed_303.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G1_forward_fast_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G1_forward_fast_seed_303.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G2_combined_yaw_left_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G2_combined_yaw_left_seed_303.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G3_rough_lateral_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G3_rough_lateral_seed_303.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G4_slope_plus_20_seed_303.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G4_slope_plus_20_seed_303.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G5_stairs_15_down_seed_202.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G5_stairs_15_down_seed_202.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G6_push_pos_y_seed_202.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G6_push_pos_y_seed_202.jpg"
+  },
+  {
+    "policy": "pilot",
+    "video": "G7_dr_seed_101_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "duration_s": 9.98,
+    "contact_sheet": "workspace\\server_returns\\go2_default_vs_pilot_v1_full_260901\\extracted\\analysis_frames\\pilot__G7_dr_seed_101_seed_101.jpg"
+  }
+]
