@@ -1,0 +1,23 @@
+{
+  "experiment_id": "G-A015",
+  "note": "Pilot-01 baseline, feet_air_time 0.20 to 0.35, engine 1.2.0 weighted-total gate",
+  "published_at_utc": "2026-09-03T10:58:34+00:00",
+  "release_id": "20260903_engine-v1.3",
+  "status": "READY",
+  "support_files": [
+    "GO2_G_A015_RUN_GUIDE.txt",
+    "go2_tuning_engine_v1_3.VERIFICATION.md"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_3.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_3.zip",
+      "sha256": "dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a"
+    },
+    {
+      "name": "G_A015_pilot_feet_air_time_035.json",
+      "server_path": "/workspace/G_A015_pilot_feet_air_time_035.json",
+      "sha256": "f2ac4d7fb68da95ec982c708f95664a31ec46af8d38d7a9721dbc29c8c8ca693"
+    }
+  ]
+}

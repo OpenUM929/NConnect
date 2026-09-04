@@ -1,0 +1,312 @@
+{
+  "comparison_metrics": "reward-independent survival/tracking/completion/recovery only",
+  "decision": "SHARED_WEAKNESS_FOUND",
+  "default": {
+    "simulation_fraction": 0.25581417400744455,
+    "status": "INTERNAL_GATE_FAIL"
+  },
+  "no_seed_proxy_inversion_below_minus_0_02": true,
+  "official_result": false,
+  "per_scenario": {
+    "G1": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.0036292085048014273,
+          "202": 0.003619081346464135,
+          "303": 0.003628005906719665
+        },
+        "scenario_proxy": 0.003619081346464135,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.003619081346464135,
+        "weight": 0.15,
+        "weighted_fraction": 0.0005428622019696202,
+        "worst_case": {
+          "case_id": "forward_fast",
+          "seed": 202
+        }
+      },
+      "delta_proxy": 0.8888857648148576,
+      "delta_survival": 0.0,
+      "delta_tracking": 0.8888857648148576,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.8932188496646043,
+          "202": 0.8949989611004794,
+          "303": 0.8925048461613218
+        },
+        "scenario_proxy": 0.8925048461613218,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.8925048461613218,
+        "weight": 0.15,
+        "weighted_fraction": 0.13387572692419825,
+        "worst_case": {
+          "case_id": "forward_fast",
+          "seed": 303
+        }
+      }
+    },
+    "G2": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.26527558931143685,
+          "202": 0.2658756671092392,
+          "303": 0.26625373681654096
+        },
+        "scenario_proxy": 0.26527558931143685,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26527558931143685,
+        "weight": 0.15,
+        "weighted_fraction": 0.039791338396715524,
+        "worst_case": {
+          "case_id": "diagonal_left",
+          "seed": 101
+        }
+      },
+      "delta_proxy": 0.4867950109362434,
+      "delta_survival": 0.0,
+      "delta_tracking": 0.4867950109362434,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.7684778475944365,
+          "202": 0.7839062215153922,
+          "303": 0.7520706002476802
+        },
+        "scenario_proxy": 0.7520706002476802,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.7520706002476802,
+        "weight": 0.15,
+        "weighted_fraction": 0.11281059003715203,
+        "worst_case": {
+          "case_id": "combined_yaw_left",
+          "seed": 303
+        }
+      }
+    },
+    "G3": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uac70\uce5c \uc9c0\ud615",
+        "per_seed": {
+          "101": 0.2781883573358877,
+          "202": 0.27578717705965583,
+          "303": 0.2655141528809378
+        },
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.36771623607954107,
+        "weight": 0.2,
+        "weighted_fraction": 0.05310283057618757,
+        "worst_case": {
+          "case_id": "rough_forward",
+          "seed": 303
+        }
+      },
+      "delta_proxy": 0.17480347593054096,
+      "delta_survival": -0.15625,
+      "delta_tracking": 0.22269212383199977,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uac70\uce5c \uc9c0\ud615",
+        "per_seed": {
+          "101": 0.5780620368612868,
+          "202": 0.5235416863461679,
+          "303": 0.4403176288114788
+        },
+        "scenario_proxy": 0.4403176288114788,
+        "survival_proxy": 0.5625,
+        "tracking_proxy": 0.5904083599115408,
+        "weight": 0.2,
+        "weighted_fraction": 0.08806352576229576,
+        "worst_case": {
+          "case_id": "rough_lateral",
+          "seed": 303
+        }
+      }
+    },
+    "G4": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacbd\uc0ac \u00b120\u00b0",
+        "per_seed": {
+          "101": 0.38348082681621515,
+          "202": 0.3837828692653662,
+          "303": 0.384081697276151
+        },
+        "scenario_proxy": 0.38348082681621515,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38348082681621515,
+        "weight": 0.15,
+        "weighted_fraction": 0.05752212402243227,
+        "worst_case": {
+          "case_id": "slope_plus_20",
+          "seed": 101
+        }
+      },
+      "delta_proxy": 0.14531642860314736,
+      "delta_survival": -0.03125,
+      "delta_tracking": 0.14531642860314736,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacbd\uc0ac \u00b120\u00b0",
+        "per_seed": {
+          "101": 0.5533259149051781,
+          "202": 0.5643758129559993,
+          "303": 0.5287972554193625
+        },
+        "scenario_proxy": 0.5287972554193625,
+        "survival_proxy": 0.96875,
+        "tracking_proxy": 0.5287972554193625,
+        "weight": 0.15,
+        "weighted_fraction": 0.07931958831290438,
+        "worst_case": {
+          "case_id": "slope_plus_20",
+          "seed": 303
+        }
+      }
+    },
+    "G5": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacc4\ub2e8 10~15cm",
+        "per_seed": {
+          "101": 0.13175624012947082,
+          "202": 0.14368990659713746,
+          "303": 0.14604731202125548
+        },
+        "scenario_proxy": 0.13175624012947082,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.13175624012947082,
+        "weight": 0.15,
+        "weighted_fraction": 0.019763436019420624,
+        "worst_case": {
+          "case_id": "stairs_10_down",
+          "seed": 101
+        }
+      },
+      "delta_proxy": 0.09529201388359074,
+      "delta_survival": -0.125,
+      "delta_tracking": 0.12772747874259952,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacc4\ub2e8 10~15cm",
+        "per_seed": {
+          "101": 0.2598904926329851,
+          "202": 0.22704825401306156,
+          "303": 0.2520867887884378
+        },
+        "scenario_proxy": 0.22704825401306156,
+        "survival_proxy": 0.875,
+        "tracking_proxy": 0.25948371887207033,
+        "weight": 0.15,
+        "weighted_fraction": 0.03405723810195923,
+        "worst_case": {
+          "case_id": "stairs_15_down",
+          "seed": 202
+        }
+      }
+    },
+    "G6": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ubc00\uce68 \ud68c\ubcf5",
+        "per_seed": {
+          "101": 0.6177189368188416,
+          "202": 0.5902980984803394,
+          "303": 0.5854016750262515
+        },
+        "scenario_proxy": 0.5854016750262515,
+        "survival_proxy": 0.625,
+        "tracking_proxy": 0.9352197772704232,
+        "weight": 0.1,
+        "weighted_fraction": 0.058540167502625154,
+        "worst_case": {
+          "case_id": "push_neg_x",
+          "seed": 303
+        }
+      },
+      "delta_proxy": 0.35239794866383256,
+      "delta_survival": 0.34375,
+      "delta_tracking": 0.03090027638338455,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "name": "\ubc00\uce68 \ud68c\ubcf5",
+        "per_seed": {
+          "101": 0.9661200536538077,
+          "202": 0.9377996236900841,
+          "303": 0.9697442626973887
+        },
+        "scenario_proxy": 0.9377996236900841,
+        "survival_proxy": 0.96875,
+        "tracking_proxy": 0.9661200536538077,
+        "weight": 0.1,
+        "weighted_fraction": 0.09377996236900842,
+        "worst_case": {
+          "case_id": "push_pos_y",
+          "seed": 202
+        }
+      }
+    },
+    "G7": {
+      "default": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+        "per_seed": {
+          "101": 0.2781883573358877,
+          "202": 0.27578717705965583,
+          "303": 0.2655141528809378
+        },
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.36771623607954107,
+        "weight": 0.1,
+        "weighted_fraction": 0.026551415288093783,
+        "worst_case": {
+          "case_id": "dr_seed_303",
+          "seed": 303
+        }
+      },
+      "delta_proxy": 0.31254788398034894,
+      "delta_survival": 0.21875,
+      "delta_tracking": 0.22269212383199977,
+      "pilot": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+        "per_seed": {
+          "101": 0.5780620368612868,
+          "202": 0.5904083599115408,
+          "303": 0.6483203871695675
+        },
+        "scenario_proxy": 0.5780620368612868,
+        "survival_proxy": 0.9375,
+        "tracking_proxy": 0.5904083599115408,
+        "weight": 0.1,
+        "weighted_fraction": 0.05780620368612868,
+        "worst_case": {
+          "case_id": "dr_seed_101",
+          "seed": 101
+        }
+      }
+    }
+  },
+  "per_seed_delta": {
+    "101": 0.3784179015464082,
+    "202": 0.3667674314534741,
+    "303": 0.3554928881715052
+  },
+  "pilot": {
+    "simulation_fraction": 0.5997128351936467,
+    "status": "INTERNAL_GATE_FAIL"
+  },
+  "pilot_minus_default": 0.34389866118620216,
+  "schema_version": 1,
+  "seed_direction_consistent": true,
+  "video_status": "VIDEO_UNKNOWN"
+}

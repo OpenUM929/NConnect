@@ -1,0 +1,63 @@
+GO2 G-A013 SERVER RUN GUIDE — flat_orientation_l2 0.0 -> -1.0
+
+WHY THIS VARIABLE
+G-A012 measured the frozen Pilot-01 over 69 cases with posture_gate_v2. Weighted point loss:
+G3 12.97/70 and G5 10.50/70, and in both the losing factor is survival, not tracking
+(rough_lateral up to 23/32 fallen, stairs_15_down 32/32 fallen, G3 tracking still 0.78-0.80).
+The two survival dials the plan had named do not exist in this environment: the server env.yaml
+records undesired_contacts as null and has no termination_penalty term at all. flat_orientation_l2
+is the only defined posture dial that has never been touched (current weight 0.0), so it is the
+single variable for this run.
+
+LOCAL FILES TO UPLOAD
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A013\current\go2_tuning_engine_v1_2.zip
+   SHA256 9e79a9dff6a9f6a7636692df7780634f0d1ffe47372ef703e8c86c8fbdeb640e
+2. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A013\current\G_A013_flat_orientation_m1.json
+   SHA256 2e255c1e18165f2be7e17f09893503262a1c846998d12f20cb7ddbd9273cecb2
+
+SERVER DESTINATIONS
+/workspace/go2_tuning_engine_v1_2.zip
+/workspace/G_A013_flat_orientation_m1.json
+
+Do not upload anything into /workspace/training/quadruped/. The official tree stays as shipped
+(preliminary rules article 14).
+
+ONE-LINE RUN
+cd /workspace && printf '9e79a9dff6a9f6a7636692df7780634f0d1ffe47372ef703e8c86c8fbdeb640e  go2_tuning_engine_v1_2.zip\n2e255c1e18165f2be7e17f09893503262a1c846998d12f20cb7ddbd9273cecb2  G_A013_flat_orientation_m1.json\n' | sha256sum -c - && unzip -oq go2_tuning_engine_v1_2.zip && cd /workspace/go2_tuning_engine_v1_2 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A013_flat_orientation_m1.json
+
+MONITOR
+tmux attach -t go2_g_a013        (detach with Ctrl-b, then d)
+
+EXPECTED WINDOW
+PHASE 1/4 training 1000 iterations   about 59 minutes (G-A010 measured 3.48 s/iter)
+PHASE 2/4 tier-1 gate + G1 video     about 5 minutes
+PHASE 3/4 seeds 202/303, only if tier-1 passes   about 5 minutes
+PHASE 4/4 packaging                  about 2 minutes
+Early stop about 1 h 06 m; full representative path about 1 h 11 m.
+Prior-artifact estimates, not billing-time guarantees.
+
+DONE MARKER
+[DONE] GO2_FLAT_ORIENTATION_M1_RESULT_READY
+
+A DECISION OF INTERNAL_EARLY_KILL_FAIL IS A NORMAL FINISH
+The tier-1 gate is a judgment about the candidate, not about the run. Even on a fail the runner
+exits with RUNNER_RC=0 and RESULT_STATE=FULL and still packages training artifacts, telemetry,
+the video, the policy and its lineage. Download it either way.
+
+DOWNLOAD BOTH TO LOCAL workspace\_keep
+/workspace/_keep/GO2_FLAT_ORIENTATION_M1_RESULT.zip
+/workspace/_keep/GO2_FLAT_ORIENTATION_M1_RESULT.zip.sha256
+
+SERVER SHUTDOWN GATE
+Do not shut down on the DONE marker alone. Download both files first. Local verification must
+confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
+the required G1 video, model/env/source, and policy lineage. Then the main loop reports whether the
+server can be shut down.
+
+PARALLELISM
+Run one 4096-env training only. The confirmed server has one RTX 5080 with 16,303 MiB and no
+measured peak-VRAM margin for two concurrent jobs. CPU-only document work may run in parallel.
+
+SUPERSEDED
+go2_tuning_engine_v1_1.zip is SUPERSEDED_DO_NOT_REUSE. If it is uploaded by mistake it rejects this
+experiment at the validate step (engine_version 1.0.1 vs 1.1.0) before any training starts.

@@ -1,0 +1,23 @@
+{
+  "experiment_id": "G-A013",
+  "note": "flat_orientation_l2 0.0->-1.0 only; tier-1 target G3; engine v1.2 adds the key and frees target_scenario",
+  "published_at_utc": "2026-09-03T07:06:33+00:00",
+  "release_id": "20260903_engine-v1.2",
+  "status": "ACTIVE_ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A013_RUN_GUIDE.txt",
+    "go2_tuning_engine_v1_2.VERIFICATION.md"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_2.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_2.zip",
+      "sha256": "9e79a9dff6a9f6a7636692df7780634f0d1ffe47372ef703e8c86c8fbdeb640e"
+    },
+    {
+      "name": "G_A013_flat_orientation_m1.json",
+      "server_path": "/workspace/G_A013_flat_orientation_m1.json",
+      "sha256": "2e255c1e18165f2be7e17f09893503262a1c846998d12f20cb7ddbd9273cecb2"
+    }
+  ]
+}

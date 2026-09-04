@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A015
+
+UPLOAD ONLY THESE TWO FILES
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A015\current\go2_tuning_engine_v1_3.zip
+   SHA256 dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a
+2. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A015\current\G_A015_pilot_feet_air_time_035.json
+   SHA256 f2ac4d7fb68da95ec982c708f95664a31ec46af8d38d7a9721dbc29c8c8ca693
+
+RELEASE_ID 20260903_engine-v1.3-r2
+STATUS READY
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

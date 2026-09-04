@@ -1,0 +1,39 @@
+GO2 G-A010 SERVER RUN GUIDE
+
+LOCAL FILES TO UPLOAD
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A010\current\go2_tuning_engine_v1_1.zip
+   SHA256 e8f8b3cde9d5a4f8b2de3663dd7036f19b1c28c97bf6aa01a5a779660f72b7cd
+2. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A010\current\G_A010_lin_vel_z_m2.json
+   SHA256 e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9
+
+SERVER DESTINATIONS
+/workspace/go2_tuning_engine_v1_1.zip
+/workspace/G_A010_lin_vel_z_m2.json
+
+ONE-LINE RUN
+cd /workspace && unzip -oq go2_tuning_engine_v1_1.zip && cd /workspace/go2_tuning_engine_v1_1 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A010_lin_vel_z_m2.json
+
+MONITOR
+tmux attach -t go2_g_a010
+
+EXPECTED WINDOW
+Early stop: approximately 1 hour 5 minutes to 1 hour 20 minutes.
+Tier-1 pass and 21-case expansion: approximately 1 hour 15 minutes to 1 hour 35 minutes.
+These are prior-artifact estimates, not billing-time guarantees.
+
+DONE MARKER
+[DONE] GO2_LIN_VEL_Z_M2_RESULT_READY
+
+DOWNLOAD BOTH TO LOCAL workspace\_keep
+/workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip
+/workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip.sha256
+
+SERVER SHUTDOWN GATE
+Do not shut down based on the DONE marker alone. First download both files. Local verification must
+confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
+the required G1 video, model/env/source, and policy lineage. Then the main loop reports whether the
+server can be shut down.
+
+PARALLELISM
+Run one 4096-env training only. The confirmed server has one RTX 5080 with 16,303 MiB and no measured
+peak-VRAM margin for two concurrent jobs. CPU-only document/package work may run in parallel.

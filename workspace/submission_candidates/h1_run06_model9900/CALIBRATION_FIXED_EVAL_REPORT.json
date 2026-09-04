@@ -1,0 +1,376 @@
+{
+  "cases": {
+    "H1_stand": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.055861123817127385,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.055861123817127385,
+      "tracking_xy_rmse": 0.06268101270952146,
+      "tracking_yaw_mae": 0.1111637241438416,
+      "tracking_yaw_rmse": 0.1378863146958731,
+      "wall_seconds": 26.311136960983276
+    },
+    "H2_forward": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.7439501511397221,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06310838516123013,
+      "tracking_xy_rmse": 0.09690939748990647,
+      "tracking_yaw_mae": 0.12147282264639307,
+      "tracking_yaw_rmse": 0.15358436035555015,
+      "wall_seconds": 20.04532265663147
+    },
+    "H3_left": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.28250694996842435,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.0591664845454481,
+      "tracking_xy_rmse": 0.06756509691672251,
+      "tracking_yaw_mae": 0.11551584671547334,
+      "tracking_yaw_rmse": 0.14391778324593701,
+      "wall_seconds": 20.401355504989624
+    },
+    "H3_right": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.3002348579014354,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.060434671701575356,
+      "tracking_xy_rmse": 0.0688936468228591,
+      "tracking_yaw_mae": 0.11261887498029227,
+      "tracking_yaw_rmse": 0.13993081421686748,
+      "wall_seconds": 20.078962087631226
+    },
+    "H4_left": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5243005652404078,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.05645664626136165,
+      "tracking_xy_rmse": 0.07380700244708198,
+      "tracking_yaw_mae": 0.1230133025986288,
+      "tracking_yaw_rmse": 0.1553799565971793,
+      "wall_seconds": 20.19973611831665
+    },
+    "H4_right": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5275040926114448,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.0634153451099536,
+      "tracking_xy_rmse": 0.08109770058054779,
+      "tracking_yaw_mae": 0.12534940090340388,
+      "tracking_yaw_rmse": 0.15792746474181332,
+      "wall_seconds": 20.281485557556152
+    },
+    "H5_rough": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.4805843769627988,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.07977234089219636,
+      "tracking_xy_rmse": 0.10504844143155384,
+      "tracking_yaw_mae": 0.14586890675895825,
+      "tracking_yaw_rmse": 0.19230662112059177,
+      "wall_seconds": 20.741145610809326
+    },
+    "H6_minus10": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.5121133233374044,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06376332609754459,
+      "tracking_xy_rmse": 0.0809639225582916,
+      "tracking_yaw_mae": 0.12115283765865296,
+      "tracking_yaw_rmse": 0.15265292661795357,
+      "wall_seconds": 20.94413161277771
+    },
+    "H6_plus10": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.4929594574371676,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06429866516103058,
+      "tracking_xy_rmse": 0.08150997221912694,
+      "tracking_yaw_mae": 0.1196926823560375,
+      "tracking_yaw_rmse": 0.1506401990553847,
+      "wall_seconds": 21.009098291397095
+    },
+    "H7_push": {
+      "completed": true,
+      "completed_episodes": 32,
+      "early_terminations": 0,
+      "rows": 32000,
+      "schema_version": 1,
+      "speed_xy_mean": 0.06517696226699758,
+      "steps": 1000,
+      "survival_rate_completed": 1.0,
+      "termination_counts": {
+        "base_contact": 0,
+        "time_out": 32
+      },
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06517696226699758,
+      "tracking_xy_rmse": 0.08428414484145799,
+      "tracking_yaw_mae": 0.11191103291976924,
+      "tracking_yaw_rmse": 0.13904483086480565,
+      "wall_seconds": 20.19746446609497
+    }
+  },
+  "h4_yaw_tracking": {
+    "H4_left": 0.1230133025986288,
+    "H4_right": 0.12534940090340388
+  },
+  "h6_slope_tracking": {
+    "H6_minus10": {
+      "early_terminations": 0,
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06376332609754459
+    },
+    "H6_plus10": {
+      "early_terminations": 0,
+      "timeouts": 32,
+      "tracking_xy_mae": 0.06429866516103058
+    }
+  },
+  "h7_push_recovery_proxy": {
+    "expected_env_events": 128,
+    "max_recovery_s": 0.879999999999999,
+    "median_recovery_s": 0.1800000000000006,
+    "method": "push at configured 4 s intervals; peak >=0.20 m/s; recovery <=0.15 m/s for 0.5 s",
+    "observed_disturbances": 114,
+    "recovered_events": 114,
+    "recovery_rate_observed": 1.0
+  },
+  "limitations": [
+    "The exact official tracking-score transform is not disclosed; self_assessment is internal proxy v1.",
+    "Proxy-v1 thresholds were frozen after viewing partial H4/H6/H7 telemetry; those cases are calibration, not independent validation.",
+    "One checkpoint and one fixed seed do not establish generalization.",
+    "The H7 recovery calculation is an internal proxy, not an official score definition.",
+    "A completed run is evidence collection, not an automatic PASS decision."
+  ],
+  "schema_version": 1,
+  "scope": "fixed-policy evaluation; no training",
+  "self_assessment": {
+    "failed_scenarios": [],
+    "method": "internal proxy v1; survival * exp(-(tracking_RMSE/0.5)^2); worst case for paired directions",
+    "missing_scenarios": [],
+    "official_score": false,
+    "scenarios": {
+      "H1": {
+        "cases": {
+          "H1_stand": {
+            "scenario_proxy": 0.9267693635589243,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9267693635589243
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.9267693635589243,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9267693635589243,
+        "weight": 0.15,
+        "weighted_fraction": 0.13901540453383862
+      },
+      "H2": {
+        "cases": {
+          "H2_forward": {
+            "scenario_proxy": 0.9631311135712337,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9631311135712337
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.9631311135712337,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9631311135712337,
+        "weight": 0.2,
+        "weighted_fraction": 0.19262622271424676
+      },
+      "H3": {
+        "cases": {
+          "H3_left": {
+            "scenario_proxy": 0.9819055374617046,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9819055374617046
+          },
+          "H3_right": {
+            "scenario_proxy": 0.9811937481153263,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9811937481153263
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.9811937481153263,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9811937481153263,
+        "weight": 0.1,
+        "weighted_fraction": 0.09811937481153264
+      },
+      "H4": {
+        "cases": {
+          "H4_left": {
+            "scenario_proxy": 0.9079447741524341,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9079447741524341
+          },
+          "H4_right": {
+            "scenario_proxy": 0.9050506803358151,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9050506803358151
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.9050506803358151,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9050506803358151,
+        "weight": 0.1,
+        "weighted_fraction": 0.09050506803358152
+      },
+      "H5": {
+        "cases": {
+          "H5_rough": {
+            "scenario_proxy": 0.9568193233423086,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9568193233423086
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.9568193233423086,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9568193233423086,
+        "weight": 0.15,
+        "weighted_fraction": 0.14352289850134628
+      },
+      "H6": {
+        "cases": {
+          "H6_minus10": {
+            "scenario_proxy": 0.9741201486692144,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.9741201486692144
+          },
+          "H6_plus10": {
+            "scenario_proxy": 0.973774518859009,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.973774518859009
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.973774518859009,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.973774518859009,
+        "weight": 0.15,
+        "weighted_fraction": 0.14606617782885134
+      },
+      "H7": {
+        "cases": {
+          "H7_push": {
+            "scenario_proxy": 0.890625,
+            "survival_proxy": 1.0,
+            "tracking_proxy": 0.890625
+          }
+        },
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "scenario_proxy": 0.890625,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.890625,
+        "weight": 0.15,
+        "weighted_fraction": 0.13359374999999998
+      }
+    },
+    "schema_version": 1,
+    "simulation_fraction": 0.9434488964233971,
+    "simulation_normalized_100": 94.34488964233971,
+    "simulation_points_70": 66.0414227496378,
+    "status": "SELF_ASSESSMENT_PASS",
+    "thresholds": {
+      "min_simulation_fraction": 0.7,
+      "min_survival_per_scenario": 0.95,
+      "min_tracking_per_scenario": 0.7
+    }
+  }
+}

@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-03T07:06:33+00:00	G-A013	20260903_engine-v1.2	ACTIVE_ARTIFACT_VERIFIED	go2_tuning_engine_v1_2.zip	9e79a9dff6a9f6a7636692df7780634f0d1ffe47372ef703e8c86c8fbdeb640e	G_A013_flat_orientation_m1.json	2e255c1e18165f2be7e17f09893503262a1c846998d12f20cb7ddbd9273cecb2	flat_orientation_l2 0.0->-1.0 only; tier-1 target G3; engine v1.2 adds the key and frees target_scenario

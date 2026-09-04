@@ -1,0 +1,85 @@
+GO2 G-A015 SERVER RUN GUIDE — Pilot-01 baseline, feet_air_time 0.20 -> 0.35
+
+WHY THIS BASELINE
+Every screening run so far compared a candidate against Default-01, which the 69-case
+posture_gate_v2 suite measures at 17.90697/70. The same suite measures the frozen Pilot-01
+at 33.79311/70 (G-A012, verified). Screening against Default-01 therefore optimises a policy
+we would never submit. Engine 1.2.0 ships both frozen baselines and this experiment screens
+against Pilot-01.
+
+WHY THIS VARIABLE
+Pilot-01's weighted point loss ranks G3 12.97 > G5 10.50 > G4 4.95 > G7 3.61 > G2 2.60 >
+G1 1.13 > G6 0.45 (/70), and the G3 and G5 losses are survival-dominated: rough_lateral falls
+in up to 23 of 32 envs and stairs_15_down falls in 32 of 32. Pre-registration GO2_CAMPAIGN_
+SCHEDULE.md section 15-c selects the single largest weighted loss, which is G3. feet_air_time
+raises foot clearance, which is the one dial that acts on both G3 and G5, and it is the only
+variable with a measured curve: 0.01 -> 0.20 moved the same 69-case suite by +3.8656/70 with
+no survival regression on any scenario. This run adds the third point on that curve.
+
+WHY NOT THE PRE-REGISTERED G-A014
+G-A013 measured flat_orientation_l2 0.0 -> -1.0 at -1.4278/70. The failure was not a weak
+effect but a wrong-signed one: G3 survival +0.156 and G7 +0.250, against G4 -0.313,
+G5 -0.313, G2 -0.188 and G6 -0.125. On a +20 degree slope and on stairs the base must pitch
+with the terrain, and this term penalises exactly that. G-A014 would have doubled the weight
+in the direction measured to be harmful, so it is cancelled and recorded as cancelled.
+
+LOCAL FILES TO UPLOAD
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A015\current\go2_tuning_engine_v1_3.zip
+   SHA256 dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a
+2. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A015\current\G_A015_pilot_feet_air_time_035.json
+   SHA256 f2ac4d7fb68da95ec982c708f95664a31ec46af8d38d7a9721dbc29c8c8ca693
+
+SERVER DESTINATIONS
+/workspace/go2_tuning_engine_v1_3.zip
+/workspace/G_A015_pilot_feet_air_time_035.json
+
+Do not upload anything into /workspace/training/quadruped/. The official tree stays as shipped
+(preliminary rules article 14).
+
+ONE-LINE RUN
+cd /workspace && printf 'dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a  go2_tuning_engine_v1_3.zip\nf2ac4d7fb68da95ec982c708f95664a31ec46af8d38d7a9721dbc29c8c8ca693  G_A015_pilot_feet_air_time_035.json\n' | sha256sum -c - && unzip -oq go2_tuning_engine_v1_3.zip && cd /workspace/go2_tuning_engine_v1_3 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A015_pilot_feet_air_time_035.json
+
+MONITOR
+tmux attach -t go2_g_a015        (detach with Ctrl-b, then d)
+
+EXPECTED WINDOW
+PHASE 1/4 training 1000 iterations   about 59 minutes (G-A010 measured 3.48 s/iter)
+PHASE 2/4 tier-1 gate + G1 video     about 5 minutes
+PHASE 3/4 seeds 202/303, only if tier-1 passes   about 5 minutes
+PHASE 4/4 packaging                  about 2 minutes
+Early stop about 1 h 06 m; full representative path about 1 h 11 m.
+Prior-artifact estimates, not billing-time guarantees.
+
+DONE MARKER
+[DONE] GO2_PILOT_FEET_AIR_TIME_035_RESULT_READY
+
+A DECISION OF INTERNAL_EARLY_KILL_FAIL IS A NORMAL FINISH
+The tier-1 gate is a judgment about the candidate, not about the run. Even on a fail the runner
+exits with RUNNER_RC=0 and RESULT_STATE=FULL and still packages training artifacts, telemetry,
+the video, the policy and its lineage. Download it either way.
+
+WHAT THE GATE NOW CHECKS
+Engine 1.2.0 promotes on the weighted total, which is what the official rule scores, plus the
+per-scenario survival guard. Engine 1.1.0 gated on one pinned scenario instead, and on all four
+measured runs that clause disagreed with the weighted total: it killed G-A011 (+3.09/70) and
+G-A010 (+2.26/70) and passed only G-A013, the one candidate that was actually worse. The pinned
+scenario is now recorded as an observation and does not gate anything.
+
+DOWNLOAD BOTH TO LOCAL workspace\_keep
+/workspace/_keep/GO2_PILOT_FEET_AIR_TIME_035_RESULT.zip
+/workspace/_keep/GO2_PILOT_FEET_AIR_TIME_035_RESULT.zip.sha256
+
+SERVER SHUTDOWN GATE
+Do not shut down on the DONE marker alone. Download both files first. Local verification must
+confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
+the required G1 video, model/env/source, and policy lineage. Then the main loop reports whether the
+server can be shut down.
+
+PARALLELISM
+Run one 4096-env training only. The confirmed server has one RTX 5080 with 16,303 MiB and no
+measured peak-VRAM margin for two concurrent jobs. CPU-only document work may run in parallel.
+
+SUPERSEDED
+go2_tuning_engine_v1_1.zip and go2_tuning_engine_v1_2.zip are SUPERSEDED_DO_NOT_REUSE. If either
+is uploaded by mistake it rejects this experiment at the validate step (engine_version mismatch)
+before any training starts.

@@ -1,0 +1,23 @@
+{
+  "experiment_id": "G-A010",
+  "note": "v1.1 IsaacLab Python launcher hotfix; v1.0 is BUGGY_DO_NOT_REUSE",
+  "published_at_utc": "2026-09-02T05:40:31+00:00",
+  "release_id": "20260902_engine-v1.1",
+  "status": "ACTIVE_ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A010_RUN_GUIDE.txt",
+    "go2_tuning_engine_v1_1.VERIFICATION.md"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_1.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_1.zip",
+      "sha256": "e8f8b3cde9d5a4f8b2de3663dd7036f19b1c28c97bf6aa01a5a779660f72b7cd"
+    },
+    {
+      "name": "G_A010_lin_vel_z_m2.json",
+      "server_path": "/workspace/G_A010_lin_vel_z_m2.json",
+      "sha256": "e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9"
+    }
+  ]
+}

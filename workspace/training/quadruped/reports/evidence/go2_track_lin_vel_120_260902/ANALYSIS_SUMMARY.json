@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "work_id": "G-A009",
+  "run_id": "train_260902-Go2_track_lin_vel_120_1000",
+  "single_change": "track_lin_vel_xy_exp:1.0->1.2",
+  "artifact": "ARTIFACT_VERIFIED",
+  "video": {
+    "G1": "VIDEO_OBSERVED",
+    "G2_G7": "VIDEO_UNKNOWN",
+    "sha256": "9d81170136efebbcfb1e708a36b438900365a1da47a32d1cc25a83ba303c6cdb"
+  },
+  "internal_status": "INTERNAL_EARLY_KILL_FAIL",
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "baseline_points_70": 17.537120722509602,
+  "candidate_points_70": 20.62740534202216,
+  "delta_points_70": 3.090284619512559,
+  "scenario_delta_points_70": {
+    "G1": -0.0006964217684468357,
+    "G2": 0.02040338367254807,
+    "G3": 0.6158858272371102,
+    "G4": -0.016947251788155704,
+    "G5": -0.017083523997660395,
+    "G6": 2.4100714033708144,
+    "G7": 0.07865120278634852
+  },
+  "candidate_failed_scenarios": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G7"
+  ],
+  "candidate_model_sha256": "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4",
+  "next": {
+    "work_id": "G-A010",
+    "single_change": "lin_vel_z_l2:-3.0->-2.0",
+    "status": "PLANNED",
+    "engine_contract": "fixed engine ZIP + experiment.json"
+  },
+  "source_files": {
+    "decision": "workspace/server_returns/train_260902-Go2_track_lin_vel_120_1000_g_a009/extracted/go2_track_lin_vel_120_v1/reports/TIER1_DECISION.json",
+    "candidate_report": "workspace/server_returns/train_260902-Go2_track_lin_vel_120_1000_g_a009/extracted/go2_track_lin_vel_120_v1/evaluation/candidate/SELF_EVAL_REPORT.json",
+    "baseline_report": "workspace/server_returns/train_260902-Go2_track_lin_vel_120_1000_g_a009/extracted/go2_track_lin_vel_120_v1/evaluation/baseline_tier1/SELF_EVAL_REPORT.json"
+  }
+}
