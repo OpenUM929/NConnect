@@ -1,0 +1,8 @@
+scenario	case_id	seed
+G1	forward_fast	202
+G2	diagonal_left	101
+G3	rough_forward	303
+G4	slope_plus_20	101
+G5	stairs_10_down	101
+G6	push_neg_x	303
+G7	dr_seed_303	303
