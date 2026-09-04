@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.0.1",
+  "work_id": "G-A010",
+  "run_id": "train_260902-Go2_lin_vel_z_m2_1000",
+  "experiment_slug": "go2_g_a010_lin_vel_z_m2",
+  "baseline": {
+    "name": "Default-01",
+    "checkpoint_iter": 800,
+    "model_sha256": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
+    "env_sha256": "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.0,
+      "feet_air_time": 0.01,
+      "lin_vel_z_l2": -3.0,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.0,
+      "feet_air_time": 0.01,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01
+    }
+  },
+  "single_change": {"name": "lin_vel_z_l2", "from": -3.0, "to": -2.0},
+  "training": {"from_scratch": true, "seed": 42, "num_envs": 4096, "max_iterations": 1000},
+  "evaluation": {
+    "tier1_seed": 101,
+    "representative_seeds": [101, 202, 303],
+    "steps": 1000,
+    "case_attempts": 3,
+    "case_retry_delay_seconds": 10,
+    "cases": {
+      "G1": "forward_fast",
+      "G2": "diagonal_left",
+      "G3": "rough_forward",
+      "G4": "slope_plus_20",
+      "G5": "stairs_15_up",
+      "G6": "push_pos_x",
+      "G7": "dr_seed_{seed}"
+    },
+    "gates": {
+      "target_scenario": "G1",
+      "target_min_proxy_delta": 0.05,
+      "max_survival_regression": 0.10,
+      "minimum_points_70": 60.0,
+      "required_survival_proxy": 0.95,
+      "required_tracking_proxy": 0.70
+    }
+  },
+  "video": {"required": true, "scenario": "G1", "case": "forward_fast", "seed": 101, "num_envs": 4, "steps": 500},
+  "output": {
+    "keep_dir_name": "go2_g_a010_lin_vel_z_m2",
+    "result_zip": "GO2_LIN_VEL_Z_M2_RESULT.zip",
+    "done_marker": "[DONE] GO2_LIN_VEL_Z_M2_RESULT_READY",
+    "tmux_name": "go2_g_a010"
+  },
+  "branch": {
+    "on_tier1_fail": "G-A011: ang_vel_xy_l2 -0.08 to -0.05 only",
+    "on_tier1_pass": "run representative seeds 202 and 303",
+    "on_representative_pass": "independent training seed before 69-case or long training"
+  }
+}

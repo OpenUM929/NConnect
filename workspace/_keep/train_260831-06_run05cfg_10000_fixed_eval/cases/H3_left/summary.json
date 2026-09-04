@@ -1,0 +1,20 @@
+{
+  "completed": true,
+  "completed_episodes": 32,
+  "early_terminations": 0,
+  "rows": 32000,
+  "schema_version": 1,
+  "speed_xy_mean": 0.28250694996842435,
+  "steps": 1000,
+  "survival_rate_completed": 1.0,
+  "termination_counts": {
+    "base_contact": 0,
+    "time_out": 32
+  },
+  "timeouts": 32,
+  "tracking_xy_mae": 0.0591664845454481,
+  "tracking_xy_rmse": 0.06756509691672251,
+  "tracking_yaw_mae": 0.11551584671547334,
+  "tracking_yaw_rmse": 0.14391778324593701,
+  "wall_seconds": 20.401355504989624
+}

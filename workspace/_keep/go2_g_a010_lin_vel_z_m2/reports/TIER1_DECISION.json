@@ -1,0 +1,59 @@
+{
+  "baseline_points_70": 17.537120722509602,
+  "candidate_minus_baseline_points_70": 2.2571599301628034,
+  "candidate_points_70": 19.794280652672406,
+  "failure_reasons": [
+    "target_G1_improvement_below_0.05"
+  ],
+  "gates": {
+    "max_survival_regression": 0.1,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7,
+    "target_min_proxy_delta": 0.05,
+    "target_scenario": "G1"
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "train_260902-Go2_lin_vel_z_m2_1000",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -0.0005483970279556052,
+      "survival": 0.0,
+      "tracking": -0.0005483970279556052
+    },
+    "G2": {
+      "proxy": 0.000876683080577978,
+      "survival": 0.0,
+      "tracking": 0.000876683080577978
+    },
+    "G3": {
+      "proxy": 0.03378411832572992,
+      "survival": 0.09375,
+      "tracking": -0.001172653441488647
+    },
+    "G4": {
+      "proxy": -0.016402807448381684,
+      "survival": 0.0,
+      "tracking": -0.016402807448381684
+    },
+    "G5": {
+      "proxy": -0.033567110122952694,
+      "survival": 0.0,
+      "tracking": -0.033567110122952694
+    },
+    "G6": {
+      "proxy": 0.3418801882220842,
+      "survival": 0.34375,
+      "tracking": 0.01758839280590585
+    },
+    "G7": {
+      "proxy": -0.012534559000789813,
+      "survival": -0.03125,
+      "tracking": -0.0012309616732898432
+    }
+  },
+  "schema_version": 2,
+  "status": "INTERNAL_EARLY_KILL_FAIL",
+  "target_scenario": "G1",
+  "work_id": "G-A010"
+}

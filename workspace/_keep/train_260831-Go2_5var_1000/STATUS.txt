@@ -1,0 +1,31 @@
+RUN_ID=train_260831-Go2_5var_1000
+PACK_TIME=2026-08-31T16:41:06+09:00
+LATEST_RUN=2026-08-31_15-42-43
+REWARD_WEIGHTS:
+    "track_lin_vel_xy_exp": 1.2,    # 추천 0.5 ~ 2.0
+    "feet_air_time":        0.2,    # 추천 0.01 ~ 0.5
+    "lin_vel_z_l2":        -2,      # 추천 -5.0 ~ -0.5  (현재=강한 쪽 = 안정 우선)
+    "ang_vel_xy_l2":       -0.05,   # 추천 -0.3 ~ -0.02
+    "action_rate_l2":      -0.01,   # 추천 -0.02 ~ -0.005 (연속 스텝 간 관절 명령 변화량 벌점)
+#  · lin_vel_z_l2 를 -0.3 처럼 약하게 → 위아래로 통통 튀며 착지서 미끄러지고
+#  · feet_air_time 을 0.5+ 로 → 발을 과하게 들어 바운딩/절뚝 gait로 망가집니다.
+#   1) [이동·등반] feet_air_time : 값을 바꾸면 걸음걸이·험지 돌파가 어떻게 달라지나?
+#   2) [이동·등반] track_lin_vel_xy_exp : 올리면 빨라지나? 험지서 더 불안정해지나?
+#   3) [자세·안정] lin_vel_z_l2 : 약하게 하면 더 역동적? 착지가 불안해지나?
+--- exported ---
+total 20M
+-rw-r--r-- 1 root root  28K Aug 31 16:40 env.yaml
+-rw-r--r-- 1 root root  28K Aug 31 15:42 env_20260831154121.yaml
+-rw-r--r-- 1 root root  28K Aug 31 16:40 env_20260831154243.yaml
+-rw-r--r-- 1 root root 6.6M Aug 31 16:40 model_best.pt
+-rw-r--r-- 1 root root 6.6M Aug 31 15:42 model_best_20260831154121.pt
+-rw-r--r-- 1 root root 6.6M Aug 31 16:40 model_best_20260831154243.pt
+-rw-r--r-- 1 root root  12K Aug 31 16:40 report.html
+--- logs ---
+total 8.3M
+-rw-r--r-- 1 root root 1.7M Aug 31 16:40 events.out.tfevents.1788158571.da-perfect19.8724.0
+drwxr-xr-x 2 root root 4.0K Aug 31 15:42 git
+-rw-r--r-- 1 root root 6.6M Aug 31 16:40 model_999.pt
+drwxr-xr-x 2 root root 4.0K Aug 31 15:42 params
+3eb3b69711d247d5c2bff9ffdc96bfa6db3f7ce7767226d02545650a502c1b4a  /workspace/_keep/train_260831-Go2_5var_1000/train_260831-Go2_5var_1000_DOWNLOAD.tar.gz
+-rw-r--r-- 1 root root 6.5M Aug 31 16:41 /workspace/_keep/train_260831-Go2_5var_1000/train_260831-Go2_5var_1000_DOWNLOAD.tar.gz

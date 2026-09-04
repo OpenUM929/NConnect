@@ -1,0 +1,392 @@
+{
+  "cases": {
+    "G1/forward_fast/seed_101": {
+      "case_id": "forward_fast",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.003080811476845822,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.003080811476845822
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 1.1996714644980087,
+        "projected_progress_m": 0.0,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.023863970371374516,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 1.2023479373905746,
+        "tracking_yaw_rmse": 0.0995190304889301,
+        "wall_seconds": 24.232997179031372
+      },
+      "scenario_id": "G1",
+      "seed": 101
+    },
+    "G2/diagonal_left/seed_101": {
+      "case_id": "diagonal_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.26615227239201483,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26615227239201483
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5748607616793603,
+        "projected_progress_m": 0.17382800370635237,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.029919052931945567,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5752579163704234,
+        "tracking_yaw_rmse": 0.09401633772099242,
+        "wall_seconds": 28.247366189956665
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G3/rough_forward/seed_101": {
+      "case_id": "rough_forward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.3119724756616176,
+        "survival_proxy": 0.84375,
+        "tracking_proxy": 0.36974515633969496
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.499632112172246,
+        "projected_progress_m": 0.035744133707776175,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.030505840431668877,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.84375,
+        "terminated_env_count": 5,
+        "tracking_xy_rmse": 0.49873371584996684,
+        "tracking_yaw_rmse": 0.10289589357351943,
+        "wall_seconds": 22.824535369873047
+      },
+      "scenario_id": "G3",
+      "seed": 101
+    },
+    "G4/slope_plus_20/seed_101": {
+      "case_id": "slope_plus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.36707801936783346,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.36707801936783346
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5009109637137603,
+        "projected_progress_m": 0.007554480939920725,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.026596585874311962,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5005449197343861,
+        "tracking_yaw_rmse": 0.09937713196704669,
+        "wall_seconds": 20.078500509262085
+      },
+      "scenario_id": "G4",
+      "seed": 101
+    },
+    "G5/stairs_15_up/seed_101": {
+      "case_id": "stairs_15_up",
+      "proxy": {
+        "obstacle_completion": 0.0,
+        "recovery_rate": null,
+        "scenario_proxy": 0.0,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.0
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5010396695310895,
+        "projected_progress_m": 0.0,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027460002070716288,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5005418616714983,
+        "tracking_yaw_rmse": 0.09990350462822126,
+        "wall_seconds": 19.625588178634644
+      },
+      "scenario_id": "G5",
+      "seed": 101
+    },
+    "G6/push_pos_x/seed_101": {
+      "case_id": "push_pos_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.9609827067438792,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.9609827067438792
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.09974826469337564,
+        "projected_progress_m": null,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.17999999999999972,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.044464362132030116,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.09099932942819036,
+        "tracking_yaw_rmse": 0.10718416490496319,
+        "wall_seconds": 17.90715742111206
+      },
+      "scenario_id": "G6",
+      "seed": 101
+    },
+    "G7/dr_seed_101/seed_101": {
+      "case_id": "dr_seed_101",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2883600660310453,
+        "survival_proxy": 0.78125,
+        "tracking_proxy": 0.369100884519738
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49941452671384584,
+        "projected_progress_m": 0.044379921783838684,
+        "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03220842645935687,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.78125,
+        "terminated_env_count": 7,
+        "tracking_xy_rmse": 0.4991706302773712,
+        "tracking_yaw_rmse": 0.11507907730925677,
+        "wall_seconds": 21.58308506011963
+      },
+      "scenario_id": "G7",
+      "seed": 101
+    }
+  },
+  "expected_telemetry_count": 7,
+  "failed_scenarios": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G7"
+  ],
+  "identity": {
+    "env_sha256": "7e4c1f59dff0c274ac0611d9209776fc8d17889f011d8fb6f3ef3d4294259e3b",
+    "evaluator": "repaired_v2",
+    "model_sha256": "dc131ae512850b6bbb73a9c1391ba12be2be6d98ec99a896b065a2b45c6fd563",
+    "policy": "go2_g_a010_lin_vel_z_m2",
+    "training_seed": 42
+  },
+  "limitations": [
+    "tracking_score conversion",
+    "evaluation seeds and episode count",
+    "exact command grid",
+    "rough terrain generator parameters",
+    "push magnitude, direction, and timing",
+    "domain-randomization fields and ranges",
+    "official pass threshold"
+  ],
+  "method": "Go2 internal proxy v1; worst case across frozen cases and seeds",
+  "missing": [],
+  "observed_telemetry_count": 7,
+  "official_result": false,
+  "scenarios": {
+    "G1": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+      "per_seed": {
+        "101": 0.003080811476845822
+      },
+      "scenario_proxy": 0.003080811476845822,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.003080811476845822,
+      "weight": 0.15,
+      "weighted_fraction": 0.0004621217215268733,
+      "worst_case": {
+        "case_id": "forward_fast",
+        "seed": 101
+      }
+    },
+    "G2": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+      "per_seed": {
+        "101": 0.26615227239201483
+      },
+      "scenario_proxy": 0.26615227239201483,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.26615227239201483,
+      "weight": 0.15,
+      "weighted_fraction": 0.039922840858802225,
+      "worst_case": {
+        "case_id": "diagonal_left",
+        "seed": 101
+      }
+    },
+    "G3": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uac70\uce5c \uc9c0\ud615",
+      "per_seed": {
+        "101": 0.3119724756616176
+      },
+      "scenario_proxy": 0.3119724756616176,
+      "survival_proxy": 0.84375,
+      "tracking_proxy": 0.36974515633969496,
+      "weight": 0.2,
+      "weighted_fraction": 0.06239449513232353,
+      "worst_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      }
+    },
+    "G4": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uacbd\uc0ac \u00b120\u00b0",
+      "per_seed": {
+        "101": 0.36707801936783346
+      },
+      "scenario_proxy": 0.36707801936783346,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.36707801936783346,
+      "weight": 0.15,
+      "weighted_fraction": 0.055061702905175015,
+      "worst_case": {
+        "case_id": "slope_plus_20",
+        "seed": 101
+      }
+    },
+    "G5": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uacc4\ub2e8 10~15cm",
+      "per_seed": {
+        "101": 0.0
+      },
+      "scenario_proxy": 0.0,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.0,
+      "weight": 0.15,
+      "weighted_fraction": 0.0,
+      "worst_case": {
+        "case_id": "stairs_15_up",
+        "seed": 101
+      }
+    },
+    "G6": {
+      "gate": "INTERNAL_SCENARIO_PASS",
+      "name": "\ubc00\uce68 \ud68c\ubcf5",
+      "per_seed": {
+        "101": 0.9609827067438792
+      },
+      "scenario_proxy": 0.9609827067438792,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9609827067438792,
+      "weight": 0.1,
+      "weighted_fraction": 0.09609827067438792,
+      "worst_case": {
+        "case_id": "push_pos_x",
+        "seed": 101
+      }
+    },
+    "G7": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+      "per_seed": {
+        "101": 0.2883600660310453
+      },
+      "scenario_proxy": 0.2883600660310453,
+      "survival_proxy": 0.78125,
+      "tracking_proxy": 0.369100884519738,
+      "weight": 0.1,
+      "weighted_fraction": 0.028836006603104532,
+      "worst_case": {
+        "case_id": "dr_seed_101",
+        "seed": 101
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed_fractions": {
+    "101": 0.28277543789532006
+  },
+  "simulation_fraction": 0.28277543789532006,
+  "simulation_points_70": 19.794280652672406,
+  "status": "INTERNAL_GATE_FAIL"
+}

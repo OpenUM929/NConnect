@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quadruped"
+version = "0.1.0"
+description = "Quadruped (Unitree Go2) training package — NAVER Connect Robotics Cup 2026 예선"
+requires-python = ">=3.10"
+authors = [{ name = "NAVER Connect Robotics Cup 2026" }]
+dependencies = [
+    "isaaclab",
+    "isaaclab_assets",
+    "isaaclab_tasks",
+    "isaaclab_rl",
+]
+
+[tool.setuptools]
+py-modules = ["quadruped_rewards"]   # ★ 학생이 여는 top-level reward 파일
+
+[tool.setuptools.packages.find]
+include = ["go2_task"]

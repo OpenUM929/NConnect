@@ -1,0 +1,2 @@
+scenario=H4_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=42 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.15\,-0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[-0.50\,-0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 

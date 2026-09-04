@@ -1,0 +1,49 @@
+{
+  "baseline_points_70": 17.537120722509602,
+  "candidate_minus_baseline_points_70": 3.090284619512559,
+  "candidate_points_70": 20.62740534202216,
+  "failure_reasons": [
+    "target_G1_improvement_below_0.05"
+  ],
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "purpose": "Reject a clear track_lin_vel_xy_exp regression before 3-seed representative evaluation.",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -6.632588270922245e-05,
+      "survival": 0.0,
+      "tracking": -6.632588270922245e-05
+    },
+    "G2": {
+      "proxy": 0.0019431793973855305,
+      "survival": 0.0,
+      "tracking": 0.0019431793973855305
+    },
+    "G3": {
+      "proxy": 0.043991844802650726,
+      "survival": 0.09375,
+      "tracking": 0.010925392753380447
+    },
+    "G4": {
+      "proxy": -0.0016140239798243528,
+      "survival": 0.0,
+      "tracking": -0.0016140239798243528
+    },
+    "G5": {
+      "proxy": -0.0016270022854914662,
+      "survival": 0.0,
+      "tracking": -0.0016270022854914662
+    },
+    "G6": {
+      "proxy": 0.3442959147672592,
+      "survival": 0.34375,
+      "tracking": 0.020004119351080818
+    },
+    "G7": {
+      "proxy": 0.011235886112335502,
+      "survival": 0.0,
+      "tracking": 0.013828782907489845
+    }
+  },
+  "schema_version": 1,
+  "status": "INTERNAL_EARLY_KILL_FAIL"
+}

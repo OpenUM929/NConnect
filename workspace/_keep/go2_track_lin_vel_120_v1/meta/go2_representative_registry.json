@@ -1,0 +1,228 @@
+{
+  "campaign": "NCRC-2026-Go2-preliminary",
+  "evaluation_tiers": {
+    "policy_scope": "Apply the same staged promotion concept to H1 and Go2, using each robot's native scenario registry and full-suite case count.",
+    "tier_1_early_kill": {
+      "evaluation_seeds": [
+        101
+      ],
+      "purpose": "Reject clear regressions before representative or full evaluation.",
+      "required_video_count": 1,
+      "target_case_count": "6-8"
+    },
+    "tier_2_representative": {
+      "case_selection": "one valid representative case per G1-G7 scenario",
+      "evaluation_seeds": [
+        101,
+        202,
+        303
+      ],
+      "expected_case_count": 21,
+      "promotion_minimum_simulation_proxy_points": 60,
+      "stability_requirements": {
+        "all_required_seeds_complete": true,
+        "critical_video_anomaly_allowed": false,
+        "minimum_survival_proxy_each_scenario": 0.95,
+        "minimum_tracking_proxy_each_scenario": 0.7
+      }
+    },
+    "tier_3_full_native_suite": {
+      "go2_expected_case_count_after_evaluator_repair": 69,
+      "h1_expected_case_count": 30,
+      "note": "Do not run Go2's 69 cases on H1. Run each robot's own full suite.",
+      "run_only_after_tier_2_promotion": true
+    }
+  },
+  "evaluator_repairs": {
+    "G5_progress": "median per-env integral of body-frame command-projected velocity",
+    "G7_DR": "evaluation-only friction, restitution, base-mass, and joint-reset variation",
+    "official_equivalence": false
+  },
+  "legacy_invalid_runner": "workspace/training/quadruped/server_run_Go2_videos.sh",
+  "official_unknowns": [
+    "tracking_score conversion",
+    "evaluation seeds and episode count",
+    "exact command grid",
+    "rough terrain generator parameters",
+    "push magnitude, direction, and timing",
+    "domain-randomization fields and ranges",
+    "official pass threshold"
+  ],
+  "origin_audit": {
+    "conclusion": "69_CASES_NOT_COURSE_MANDATED",
+    "course_or_guide_direct": [
+      "G1-G7 scenario categories",
+      "G1-G7 terrain categories",
+      "G1-G7 weights",
+      "single-variable reward tuning guidance"
+    ],
+    "internally_designed": [
+      "per-scenario command and direction case grid",
+      "evaluation seeds 101, 202, and 303",
+      "69-case total",
+      "internal survival and tracking thresholds",
+      "video selection and aggregation rules"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "G1",
+      "internal_cases": [
+        "forward_fast"
+      ],
+      "name": "전진 속도 추종",
+      "required_metrics": [
+        "survival_proxy",
+        "vx_rmse",
+        "tracking_proxy"
+      ],
+      "required_video": true,
+      "terrain": "평지",
+      "weight": 0.15
+    },
+    {
+      "id": "G2",
+      "internal_cases": [
+        "diagonal_left"
+      ],
+      "name": "전방위 속도 추종",
+      "required_metrics": [
+        "survival_proxy",
+        "xy_rmse",
+        "yaw_rmse",
+        "tracking_proxy"
+      ],
+      "required_video": true,
+      "terrain": "평지",
+      "weight": 0.15
+    },
+    {
+      "id": "G3",
+      "internal_cases": [
+        "rough_forward"
+      ],
+      "name": "거친 지형",
+      "required_metrics": [
+        "survival_proxy",
+        "xy_rmse",
+        "tracking_proxy"
+      ],
+      "required_video": true,
+      "terrain": "험지",
+      "weight": 0.2
+    },
+    {
+      "id": "G4",
+      "internal_cases": [
+        "slope_plus_20"
+      ],
+      "name": "경사 ±20°",
+      "required_metrics": [
+        "survival_proxy",
+        "xy_rmse",
+        "tracking_proxy"
+      ],
+      "required_video": true,
+      "terrain": "경사",
+      "weight": 0.15
+    },
+    {
+      "id": "G5",
+      "internal_cases": [
+        "stairs_15_up"
+      ],
+      "name": "계단 10~15cm",
+      "required_metrics": [
+        "survival_proxy",
+        "xy_rmse",
+        "tracking_proxy",
+        "obstacle_completion"
+      ],
+      "required_video": true,
+      "terrain": "계단",
+      "weight": 0.15
+    },
+    {
+      "id": "G6",
+      "internal_cases": [
+        "push_pos_x"
+      ],
+      "name": "밀침 회복",
+      "required_metrics": [
+        "survival_proxy",
+        "recovery_time",
+        "post_push_tracking_proxy"
+      ],
+      "required_video": true,
+      "terrain": "평지+충격",
+      "weight": 0.1
+    },
+    {
+      "id": "G7",
+      "internal_cases": [
+        "dr_seed_101",
+        "dr_seed_202",
+        "dr_seed_303"
+      ],
+      "name": "도메인 랜덤화",
+      "required_metrics": [
+        "survival_proxy",
+        "xy_rmse",
+        "tracking_proxy",
+        "realized_randomization_values"
+      ],
+      "required_video": true,
+      "terrain": "험지+DR",
+      "weight": 0.1
+    }
+  ],
+  "schema_version": "1.1.0",
+  "score": {
+    "aggregation": "sum(weight * scenario_proxy)",
+    "env_track_std_path": "rewards.track_lin_vel_xy_exp.params.std",
+    "internal_gates": {
+      "minimum_survival_proxy_each": 0.95,
+      "minimum_total_self_assessment_points": 70,
+      "minimum_tracking_proxy_each": 0.7,
+      "minimum_weighted_simulation_proxy": 0.7,
+      "pair_aggregation": "worst_case",
+      "required_evaluation_seeds": [
+        101,
+        202,
+        303
+      ],
+      "target_total_self_assessment_points": 75
+    },
+    "scenario_proxy": "survival_proxy * tracking_proxy",
+    "simulation_points": 70,
+    "tracking_proxy_v1": "exp(-pow(rmse / env_track_std, 2))"
+  },
+  "source": {
+    "course_reward_guidance": "test/14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK.html:659-730,916-1121",
+    "scenario_registry": "workspace/PRELIM_RL_GUID.md:60-70",
+    "score_concept": "workspace/PRELIM_RL_GUID.md:95-100",
+    "submission_contract": "user-provided round-1 dashboard text, 2026-09-01"
+  },
+  "status": "INTERNAL_PROXY_SPEC_REPAIRED_V2",
+  "submission": {
+    "edit_window": "submission can be modified until judging starts",
+    "judging_started_state": "UNMEASURED",
+    "required_uploads": [
+      "policy.pt",
+      "env.yaml"
+    ],
+    "robot_selection": "Go2 quadruped",
+    "supporting_evidence_not_uploaded_by_default": [
+      "report.html",
+      "videos",
+      "telemetry",
+      "internal long report"
+    ],
+    "team_permissions": "any team member may modify or delete submitted files",
+    "technical_report": {
+      "location": "dashboard text field",
+      "maximum_characters": 200,
+      "minimum_characters": 30
+    }
+  }
+}

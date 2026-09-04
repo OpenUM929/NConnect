@@ -1,0 +1,12 @@
+[OK]   model_best.pt = Run 05
+[OK]   track_lin_vel_xy_exp = 1.0
+[OK]   track_ang_vel_z_exp = 1.0
+[OK]   feet_air_time = 0.2
+[OK]   termination_penalty = -50.0
+[OK]   flat_orientation_l2 = -1.5
+[OK]   ang_vel_xy_l2 = -0.05
+[OK]   joint_deviation_hip = -0.2
+[OK]   joint_deviation_torso = -0.1
+[OK]   action_rate_l2 = -0.0005
+----------------------------------------
+[DONE] 복구 완료 — Run 05 상태. play 실행 가능.
