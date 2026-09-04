@@ -101,18 +101,49 @@ class QuadrupedRoughEnvCfg(UnitreeGo2RoughEnvCfg):
         #    채점기가 별도로 구성하며 값도 여기와 다르다.
         #    이 설치본은 events.push_robot 이 None(비활성)이라 항을 새로 만든다.
         _push = os.environ.get("NCRC_PLAY_PUSH")
-        if _push:
+        _push_x = os.environ.get("NCRC_PLAY_PUSH_X")
+        _push_y = os.environ.get("NCRC_PLAY_PUSH_Y")
+        if _push or _push_x is not None or _push_y is not None:
             try:
                 from isaaclab.envs import mdp as _mdp
                 from isaaclab.managers import EventTermCfg as _EvT
-                _v = abs(float(_push)) or 0.5
+                if _push_x is not None or _push_y is not None:
+                    _vx = float(_push_x or 0.0)
+                    _vy = float(_push_y or 0.0)
+                    _velocity_range = {"x": (_vx, _vx), "y": (_vy, _vy)}
+                    _label = f"fixed ({_vx}, {_vy}) m/s"
+                else:
+                    _v = abs(float(_push)) or 0.5
+                    _velocity_range = {"x": (-_v, _v), "y": (-_v, _v)}
+                    _label = f"random ±{_v} m/s"
                 self.events.push_robot = _EvT(
                     func=_mdp.push_by_setting_velocity, mode="interval",
                     interval_range_s=(4.0, 4.0),
-                    params={"velocity_range": {"x": (-_v, _v), "y": (-_v, _v)}})
-                print(f"[Quadruped] 밀침 테스트 켜짐 — 4초마다 ±{_v} m/s (play 전용)")
+                    params={"velocity_range": _velocity_range})
+                print(f"[Quadruped] 밀침 테스트 켜짐 — 4초마다 {_label} (play 전용)")
             except Exception as e:                       # noqa: BLE001
                 # 조용히 넘기지 않는다 — 켜 달라고 했는데 못 켰으면 말한다.
                 print(f"[Quadruped] 🔴 --push 활성 실패 (밀침 없이 진행): {e}")
+
+        # G7 internal stress test only.  Stock Go2 already randomizes base mass
+        # but keeps contact material fixed; the old evaluator therefore ran G7
+        # with the exact same configuration as G3.  Widen several existing
+        # startup/reset ranges only when the runner explicitly requests G7.
+        # These are internal proxy ranges, not disclosed official evaluator
+        # parameters.
+        if os.environ.get("NCRC_EVAL_DR") == "1":
+            try:
+                material = self.events.physics_material.params
+                material["static_friction_range"] = (0.6, 1.0)
+                material["dynamic_friction_range"] = (0.5, 0.9)
+                material["restitution_range"] = (0.0, 0.1)
+                self.events.add_base_mass.params["mass_distribution_params"] = (-2.0, 4.0)
+                self.events.reset_robot_joints.params["position_range"] = (0.9, 1.1)
+                print(
+                    "[Quadruped] G7 internal DR enabled: friction, restitution, "
+                    "base mass, joint reset"
+                )
+            except Exception as e:  # noqa: BLE001
+                raise RuntimeError(f"G7 internal DR configuration failed: {e}") from e
 
 

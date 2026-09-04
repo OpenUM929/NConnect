@@ -105,6 +105,8 @@ def run_training() -> int:
 if __name__ == "__main__":
     # play.py 전용 밀침 스위치 — 학습에 새면 env 조건이 팀마다 달라진다.
     os.environ.pop("NCRC_PLAY_PUSH", None)
+    os.environ.pop("NCRC_PLAY_PUSH_X", None)
+    os.environ.pop("NCRC_PLAY_PUSH_Y", None)
     if CHILD_FLAG in sys.argv:
         _runpy_isaaclab_train()
         os._exit(0)

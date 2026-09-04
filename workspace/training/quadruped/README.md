@@ -1,5 +1,11 @@
 # Quadruped (Go2) 학습 — NAVER Connect Robotics Cup 2026 예선
 
+> **260901 캠페인 운영 정정:** 새 Go2 작업은 이 일반 강좌 README보다
+> `AGENTS.md` → `../../../GO2_PROJECT_STATE.md` → `reports/NEW_SESSION_HANDOFF.md`를 먼저 따른다.
+> 현재 1,000 iter 결과는 실질 4개 reward를 동시에 변경한 탐색 기준선이며 개별 튜닝 효과는
+> 미측정이다. `server_run_Go2_videos.sh`는 제공 Go2 G1~G7과 매핑이 다른
+> `LEGACY_INVALID_MAPPING`이므로 실행하거나 자체 점수 근거로 사용하지 않는다.
+
 사족로봇 Unitree Go2 의 보행 정책 학습 패키지. **reward 수정 → 학습 → 영상으로 검증 → 제출** 단계.
 
 > **실행 환경: Ubuntu + 클라우드 컨테이너 (headless, GUI 창 없음).**

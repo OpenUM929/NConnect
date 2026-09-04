@@ -372,6 +372,11 @@ if __name__ == "__main__":
     _extract_push_flag()
     # ── 자식 모드: python.sh 가 띄운 실제 play 프로세스 ──
     if CHILD_FLAG in sys.argv:
+        # 고정 정책 평가에서만 telemetry hook을 설치한다. 일반 play와 학습은
+        # NCRC_EVAL_OUT이 없으므로 기존 동작을 그대로 유지한다.
+        if os.environ.get("NCRC_EVAL_OUT"):
+            from go2_eval_telemetry import install as _install_eval_telemetry
+            _install_eval_telemetry()
         _runpy_isaaclab_play()
         os._exit(0)
 
