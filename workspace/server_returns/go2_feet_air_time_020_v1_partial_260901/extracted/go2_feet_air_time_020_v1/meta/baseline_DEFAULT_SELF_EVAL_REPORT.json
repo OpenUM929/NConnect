@@ -1,0 +1,2447 @@
+{
+  "cases": {
+    "G1/forward_fast/seed_101": {
+      "case_id": "forward_fast",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.0036292085048014273,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.0036292085048014273
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 1.1947056903186941,
+        "projected_progress_m": 15.973921298980713,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02646090512024766,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 1.1851941504701438,
+        "tracking_yaw_rmse": 0.060896765657388996,
+        "wall_seconds": 22.227870225906372
+      },
+      "scenario_id": "G1",
+      "seed": 101
+    },
+    "G1/forward_fast/seed_202": {
+      "case_id": "forward_fast",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.003619081346464135,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.003619081346464135
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 1.1959704859136069,
+        "projected_progress_m": 16.091618061065674,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.025602346187352746,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 1.185488829243546,
+        "tracking_yaw_rmse": 0.05477297565223187,
+        "wall_seconds": 17.946151733398438
+      },
+      "scenario_id": "G1",
+      "seed": 202
+    },
+    "G1/forward_fast/seed_303": {
+      "case_id": "forward_fast",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.003628005906719665,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.003628005906719665
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 1.1954408343504326,
+        "projected_progress_m": 16.210397720336914,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.026085707577544515,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 1.18522910429145,
+        "tracking_yaw_rmse": 0.05679902330494192,
+        "wall_seconds": 17.949954986572266
+      },
+      "scenario_id": "G1",
+      "seed": 303
+    },
+    "G1/forward_nominal/seed_101": {
+      "case_id": "forward_nominal",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.11395782930667833,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.11395782930667833
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.7448859721763101,
+        "projected_progress_m": 15.988767623901367,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.026747668902135046,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.7368729227938131,
+        "tracking_yaw_rmse": 0.06308373472804754,
+        "wall_seconds": 27.956520080566406
+      },
+      "scenario_id": "G1",
+      "seed": 101
+    },
+    "G1/forward_nominal/seed_202": {
+      "case_id": "forward_nominal",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.11376147058364446,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.11376147058364446
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.7461248464376249,
+        "projected_progress_m": 16.094177722930908,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.025909745730815625,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.7371654132451113,
+        "tracking_yaw_rmse": 0.056286745561899096,
+        "wall_seconds": 17.780868530273438
+      },
+      "scenario_id": "G1",
+      "seed": 202
+    },
+    "G1/forward_nominal/seed_303": {
+      "case_id": "forward_nominal",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.11404028475015389,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.11404028475015389
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.7453075409024297,
+        "projected_progress_m": 16.20131206512451,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02691196642433316,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.7367502151354508,
+        "tracking_yaw_rmse": 0.06070692108449364,
+        "wall_seconds": 17.86061692237854
+      },
+      "scenario_id": "G1",
+      "seed": 303
+    },
+    "G1/forward_slow/seed_101": {
+      "case_id": "forward_slow",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.7073985710910091,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.7073985710910091
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.29783929237508655,
+        "projected_progress_m": 15.71911907196045,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028901469497283016,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.29417725190675964,
+        "tracking_yaw_rmse": 0.07752318808601648,
+        "wall_seconds": 21.490780115127563
+      },
+      "scenario_id": "G1",
+      "seed": 101
+    },
+    "G1/forward_slow/seed_202": {
+      "case_id": "forward_slow",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.7071402405448035,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.7071402405448035
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.2982157978105176,
+        "projected_progress_m": 16.096813678741455,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03000017495340423,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.29433241102588076,
+        "tracking_yaw_rmse": 0.07906850622697546,
+        "wall_seconds": 17.730634927749634
+      },
+      "scenario_id": "G1",
+      "seed": 202
+    },
+    "G1/forward_slow/seed_303": {
+      "case_id": "forward_slow",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.7077387643769438,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.7077387643769438
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.2972592820816026,
+        "projected_progress_m": 16.19271183013916,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028960317446497116,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.2939728857589824,
+        "tracking_yaw_rmse": 0.0764598165092156,
+        "wall_seconds": 18.01065468788147
+      },
+      "scenario_id": "G1",
+      "seed": 303
+    },
+    "G2/backward/seed_101": {
+      "case_id": "backward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38833098030646473,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38833098030646473
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4958248125283964,
+        "projected_progress_m": 15.725595951080322,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03306680039832959,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48628624825442596,
+        "tracking_yaw_rmse": 0.08694238337659577,
+        "wall_seconds": 18.30869174003601
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/backward/seed_202": {
+      "case_id": "backward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38759017871114243,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38759017871114243
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49710146821886353,
+        "projected_progress_m": 15.923986911773682,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03264898278646202,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48677683233929164,
+        "tracking_yaw_rmse": 0.08540144090233906,
+        "wall_seconds": 17.759095430374146
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/backward/seed_303": {
+      "case_id": "backward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.3866298374327894,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.3866298374327894
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4965250000174371,
+        "projected_progress_m": 16.065239429473877,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.0319822758065286,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4874134631154707,
+        "tracking_yaw_rmse": 0.08971668268743269,
+        "wall_seconds": 17.990161180496216
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/combined_yaw_left/seed_101": {
+      "case_id": "combined_yaw_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.31808095398501907,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.31808095398501907
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5336164788701433,
+        "projected_progress_m": 18.466801653269837,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04513219144440382,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5351283388870492,
+        "tracking_yaw_rmse": 0.4285063485291455,
+        "wall_seconds": 17.929206132888794
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/combined_yaw_left/seed_202": {
+      "case_id": "combined_yaw_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.31868688062394485,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.31868688062394485
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5328940681355463,
+        "projected_progress_m": 18.484139475089783,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.043570202133283935,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.534683603566235,
+        "tracking_yaw_rmse": 0.43000199218261487,
+        "wall_seconds": 18.070586681365967
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/combined_yaw_left/seed_303": {
+      "case_id": "combined_yaw_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.3181881613037101,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.3181881613037101
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5340688358125797,
+        "projected_progress_m": 17.537920184269787,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.0458293231553689,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5350496166188157,
+        "tracking_yaw_rmse": 0.4303873231011566,
+        "wall_seconds": 17.902393579483032
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/combined_yaw_right/seed_101": {
+      "case_id": "combined_yaw_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.31695197707671535,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.31695197707671535
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5427852819928652,
+        "projected_progress_m": 15.305531559059798,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.10999999999999988,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.11884339808641944,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5359582559426782,
+        "tracking_yaw_rmse": 0.12476766568574124,
+        "wall_seconds": 17.899710178375244
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/combined_yaw_right/seed_202": {
+      "case_id": "combined_yaw_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.31457605630026436,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.31457605630026436
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5442905647862394,
+        "projected_progress_m": 15.840705762863145,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0600000000000005,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.11858349479819164,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5377102843644331,
+        "tracking_yaw_rmse": 0.12494124815448601,
+        "wall_seconds": 17.820269346237183
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/combined_yaw_right/seed_303": {
+      "case_id": "combined_yaw_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.31831506008190363,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.31831506008190363
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5416755824585479,
+        "projected_progress_m": 16.47413971931666,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.05999999999999961,
+          "recovered_events": 127,
+          "recovery_rate": 0.9921875
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.1192934748340648,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5349564542327715,
+        "tracking_yaw_rmse": 0.12533970671561928,
+        "wall_seconds": 18.2969810962677
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/diagonal_left/seed_101": {
+      "case_id": "diagonal_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.26527558931143685,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26527558931143685
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5799280101085742,
+        "projected_progress_m": 18.660926976723914,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.026275903253195895,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5759743991084911,
+        "tracking_yaw_rmse": 0.07243909590740562,
+        "wall_seconds": 17.901615619659424
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/diagonal_left/seed_202": {
+      "case_id": "diagonal_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2658756671092392,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.2658756671092392
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5796739934688421,
+        "projected_progress_m": 18.866733092530048,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02725221444309949,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5754838173998293,
+        "tracking_yaw_rmse": 0.06972799450150081,
+        "wall_seconds": 17.75258231163025
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/diagonal_left/seed_303": {
+      "case_id": "diagonal_left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.26625373681654096,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26625373681654096
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5786144370547468,
+        "projected_progress_m": 18.371723065977857,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028037391592028216,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5751750879222102,
+        "tracking_yaw_rmse": 0.07464608996012013,
+        "wall_seconds": 17.720770597457886
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/diagonal_right/seed_101": {
+      "case_id": "diagonal_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.26886066046255486,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26886066046255486
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5803424672832428,
+        "projected_progress_m": 16.14488981285737,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02798447291404338,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5730536677374605,
+        "tracking_yaw_rmse": 0.0658614221855093,
+        "wall_seconds": 17.90334463119507
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/diagonal_right/seed_202": {
+      "case_id": "diagonal_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.26772092310927637,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26772092310927637
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5823293192222638,
+        "projected_progress_m": 15.92653004541738,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.029682175035457267,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5739795668653223,
+        "tracking_yaw_rmse": 0.07390746341080814,
+        "wall_seconds": 17.728250741958618
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/diagonal_right/seed_303": {
+      "case_id": "diagonal_right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2687938770229417,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.2687938770229417
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.5814553263192836,
+        "projected_progress_m": 16.92464898523003,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02833000843623642,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.5731078540565238,
+        "tracking_yaw_rmse": 0.06856359175102653,
+        "wall_seconds": 18.088595867156982
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/left/seed_101": {
+      "case_id": "left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6068998608446236,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6068998608446236
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.352135123991939,
+        "projected_progress_m": 10.67223596572876,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.023120907074233452,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.35333817916733823,
+        "tracking_yaw_rmse": 0.0899665678969918,
+        "wall_seconds": 17.520164966583252
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/left/seed_202": {
+      "case_id": "left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6047521360195707,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6047521360195707
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.351735551808462,
+        "projected_progress_m": 11.165588855743408,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.024423043359865605,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.3545901145787359,
+        "tracking_yaw_rmse": 0.09188073438218602,
+        "wall_seconds": 17.820924758911133
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/left/seed_303": {
+      "case_id": "left",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6057988015956819,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6057988015956819
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3530541356990673,
+        "projected_progress_m": 11.092891216278076,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.023705184797736124,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.35397999894369575,
+        "tracking_yaw_rmse": 0.09179162500251567,
+        "wall_seconds": 17.71402096748352
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G2/right/seed_101": {
+      "case_id": "right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6070647227573193,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6070647227573193
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3536798621406763,
+        "projected_progress_m": 10.719412326812744,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.025751519480276115,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.35324207929181717,
+        "tracking_yaw_rmse": 0.08229152359088025,
+        "wall_seconds": 17.633070945739746
+      },
+      "scenario_id": "G2",
+      "seed": 101
+    },
+    "G2/right/seed_202": {
+      "case_id": "right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6057408077458951,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6057408077458951
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3533461520652713,
+        "projected_progress_m": 11.253671169281006,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02680326024438754,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.35401380424960205,
+        "tracking_yaw_rmse": 0.08315685715434969,
+        "wall_seconds": 17.731552600860596
+      },
+      "scenario_id": "G2",
+      "seed": 202
+    },
+    "G2/right/seed_303": {
+      "case_id": "right",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.6074642949487119,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.6074642949487119
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3527249216756356,
+        "projected_progress_m": 11.07176685333252,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.025926788376529186,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.35300916391846476,
+        "tracking_yaw_rmse": 0.08430938810858969,
+        "wall_seconds": 17.73021364212036
+      },
+      "scenario_id": "G2",
+      "seed": 303
+    },
+    "G3/rough_forward/seed_101": {
+      "case_id": "rough_forward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2781883573358877,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.3709178097811836
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4965763301065908,
+        "projected_progress_m": 1.3851125240325928,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.032012441863316934,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.4979394486018317,
+        "tracking_yaw_rmse": 0.12796139215828584,
+        "wall_seconds": 21.278756380081177
+      },
+      "scenario_id": "G3",
+      "seed": 101
+    },
+    "G3/rough_forward/seed_202": {
+      "case_id": "rough_forward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.27578717705965583,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.36771623607954107
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49872055621603756,
+        "projected_progress_m": 1.5906376242637634,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03608953296034914,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.5001109216643416,
+        "tracking_yaw_rmse": 0.13632078167007372,
+        "wall_seconds": 21.429049491882324
+      },
+      "scenario_id": "G3",
+      "seed": 202
+    },
+    "G3/rough_forward/seed_303": {
+      "case_id": "rough_forward",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.3694109953126091
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.496929771705776,
+        "projected_progress_m": 1.4722070097923279,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03713555839777791,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.71875,
+        "terminated_env_count": 9,
+        "tracking_xy_rmse": 0.4989602805661912,
+        "tracking_yaw_rmse": 0.14635012212540224,
+        "wall_seconds": 21.37707281112671
+      },
+      "scenario_id": "G3",
+      "seed": 303
+    },
+    "G3/rough_lateral/seed_101": {
+      "case_id": "rough_lateral",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.5133701129664837,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.6844934839553116
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3033822158451549,
+        "projected_progress_m": 24.97273540496826,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03465479499160206,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.30784580300916264,
+        "tracking_yaw_rmse": 0.14854416664421494,
+        "wall_seconds": 21.56937599182129
+      },
+      "scenario_id": "G3",
+      "seed": 101
+    },
+    "G3/rough_lateral/seed_202": {
+      "case_id": "rough_lateral",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.5308596425324249,
+        "survival_proxy": 0.78125,
+        "tracking_proxy": 0.6795003424415039
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.3056146915513706,
+        "projected_progress_m": 25.19262981414795,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.035981299712433024,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.78125,
+        "terminated_env_count": 7,
+        "tracking_xy_rmse": 0.3108044165669381,
+        "tracking_yaw_rmse": 0.14949768721821818,
+        "wall_seconds": 20.898340225219727
+      },
+      "scenario_id": "G3",
+      "seed": 202
+    },
+    "G3/rough_lateral/seed_303": {
+      "case_id": "rough_lateral",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.5584447528422248,
+        "survival_proxy": 0.8125,
+        "tracking_proxy": 0.6873166188827383
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.30279888422517304,
+        "projected_progress_m": 25.428878784179688,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.033501443336091834,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.8125,
+        "terminated_env_count": 6,
+        "tracking_xy_rmse": 0.30616997778701,
+        "tracking_yaw_rmse": 0.12851762386298188,
+        "wall_seconds": 21.229013681411743
+      },
+      "scenario_id": "G3",
+      "seed": 303
+    },
+    "G4/slope_minus_20/seed_101": {
+      "case_id": "slope_minus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38352982816832565,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38352982816832565
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49618340518601367,
+        "projected_progress_m": 1.3265385031700134,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028313430267045504,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48947366691255323,
+        "tracking_yaw_rmse": 0.07056165473919472,
+        "wall_seconds": 20.672877073287964
+      },
+      "scenario_id": "G4",
+      "seed": 101
+    },
+    "G4/slope_minus_20/seed_202": {
+      "case_id": "slope_minus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.3837828692653662,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.3837828692653662
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49651911244953456,
+        "projected_progress_m": 1.5388017296791077,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027813723146286527,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4893052040751127,
+        "tracking_yaw_rmse": 0.06489605085788745,
+        "wall_seconds": 21.103681087493896
+      },
+      "scenario_id": "G4",
+      "seed": 202
+    },
+    "G4/slope_minus_20/seed_303": {
+      "case_id": "slope_minus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.384081697276151,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.384081697276151
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4952223991907299,
+        "projected_progress_m": 1.5584701895713806,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027542484049239077,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48910632680938587,
+        "tracking_yaw_rmse": 0.06460756832781916,
+        "wall_seconds": 20.984180212020874
+      },
+      "scenario_id": "G4",
+      "seed": 303
+    },
+    "G4/slope_plus_20/seed_101": {
+      "case_id": "slope_plus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38348082681621515,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38348082681621515
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4963950532717795,
+        "projected_progress_m": 1.341957688331604,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028563521228560845,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.489506295845298,
+        "tracking_yaw_rmse": 0.07217332069240862,
+        "wall_seconds": 21.241376161575317
+      },
+      "scenario_id": "G4",
+      "seed": 101
+    },
+    "G4/slope_plus_20/seed_202": {
+      "case_id": "slope_plus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38389145023615534,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38389145023615534
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4964674818462155,
+        "projected_progress_m": 1.5376656651496887,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02779641440588552,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48923293226056574,
+        "tracking_yaw_rmse": 0.06403117803709829,
+        "wall_seconds": 21.015613317489624
+      },
+      "scenario_id": "G4",
+      "seed": 202
+    },
+    "G4/slope_plus_20/seed_303": {
+      "case_id": "slope_plus_20",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.38420802510950086,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38420802510950086
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49506316580678444,
+        "projected_progress_m": 1.5467484593391418,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027808632887277515,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48902227480510935,
+        "tracking_yaw_rmse": 0.06534092359431642,
+        "wall_seconds": 21.087958097457886
+      },
+      "scenario_id": "G4",
+      "seed": 303
+    },
+    "G5/stairs_10_down/seed_101": {
+      "case_id": "stairs_10_down",
+      "proxy": {
+        "obstacle_completion": 0.13175624012947082,
+        "recovery_rate": null,
+        "scenario_proxy": 0.13175624012947082,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.13175624012947082
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4965048460602276,
+        "projected_progress_m": 1.3175624012947083,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02859271931116013,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4894473205091878,
+        "tracking_yaw_rmse": 0.07208615568247939,
+        "wall_seconds": 19.876193046569824
+      },
+      "scenario_id": "G5",
+      "seed": 101
+    },
+    "G5/stairs_10_down/seed_202": {
+      "case_id": "stairs_10_down",
+      "proxy": {
+        "obstacle_completion": 0.14783684611320497,
+        "recovery_rate": null,
+        "scenario_proxy": 0.14783684611320497,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.14783684611320497
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49679522040024826,
+        "projected_progress_m": 1.4783684611320496,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027994990480314407,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4893874575377835,
+        "tracking_yaw_rmse": 0.06725268990573416,
+        "wall_seconds": 19.792997121810913
+      },
+      "scenario_id": "G5",
+      "seed": 202
+    },
+    "G5/stairs_10_down/seed_303": {
+      "case_id": "stairs_10_down",
+      "proxy": {
+        "obstacle_completion": 0.14912186861038207,
+        "recovery_rate": null,
+        "scenario_proxy": 0.14912186861038207,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.14912186861038207
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4957886237870832,
+        "projected_progress_m": 1.4912186861038208,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02864800578135811,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48913120007048927,
+        "tracking_yaw_rmse": 0.07058905728378616,
+        "wall_seconds": 19.872801065444946
+      },
+      "scenario_id": "G5",
+      "seed": 303
+    },
+    "G5/stairs_10_up/seed_101": {
+      "case_id": "stairs_10_up",
+      "proxy": {
+        "obstacle_completion": 0.1331219732761383,
+        "recovery_rate": null,
+        "scenario_proxy": 0.1331219732761383,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.1331219732761383
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4961372873877394,
+        "projected_progress_m": 1.331219732761383,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028457828870875477,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4895911197740281,
+        "tracking_yaw_rmse": 0.07073316294768821,
+        "wall_seconds": 19.668505907058716
+      },
+      "scenario_id": "G5",
+      "seed": 101
+    },
+    "G5/stairs_10_up/seed_202": {
+      "case_id": "stairs_10_up",
+      "proxy": {
+        "obstacle_completion": 0.15390611290931702,
+        "recovery_rate": null,
+        "scenario_proxy": 0.15390611290931702,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.15390611290931702
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49631337013700677,
+        "projected_progress_m": 1.5390611290931702,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027412214657065857,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4892497388722173,
+        "tracking_yaw_rmse": 0.06297332436686603,
+        "wall_seconds": 19.948986530303955
+      },
+      "scenario_id": "G5",
+      "seed": 202
+    },
+    "G5/stairs_10_up/seed_303": {
+      "case_id": "stairs_10_up",
+      "proxy": {
+        "obstacle_completion": 0.15601074695587158,
+        "recovery_rate": null,
+        "scenario_proxy": 0.15601074695587158,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.15601074695587158
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4948600685868966,
+        "projected_progress_m": 1.5601074695587158,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027625671458194053,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4889824501554859,
+        "tracking_yaw_rmse": 0.063243041263715,
+        "wall_seconds": 19.87516212463379
+      },
+      "scenario_id": "G5",
+      "seed": 303
+    },
+    "G5/stairs_15_down/seed_101": {
+      "case_id": "stairs_15_down",
+      "proxy": {
+        "obstacle_completion": 0.13220911026000975,
+        "recovery_rate": null,
+        "scenario_proxy": 0.13220911026000975,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.13220911026000975
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49655395634710664,
+        "projected_progress_m": 1.3220911026000977,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028761117084655202,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48951505118623345,
+        "tracking_yaw_rmse": 0.0738772825321918,
+        "wall_seconds": 19.96373677253723
+      },
+      "scenario_id": "G5",
+      "seed": 101
+    },
+    "G5/stairs_15_down/seed_202": {
+      "case_id": "stairs_15_down",
+      "proxy": {
+        "obstacle_completion": 0.14368990659713746,
+        "recovery_rate": null,
+        "scenario_proxy": 0.14368990659713746,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.14368990659713746
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49669563405538353,
+        "projected_progress_m": 1.4368990659713745,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028206304241765245,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4891811309685921,
+        "tracking_yaw_rmse": 0.0689506435470186,
+        "wall_seconds": 20.03900957107544
+      },
+      "scenario_id": "G5",
+      "seed": 202
+    },
+    "G5/stairs_15_down/seed_303": {
+      "case_id": "stairs_15_down",
+      "proxy": {
+        "obstacle_completion": 0.14604731202125548,
+        "recovery_rate": null,
+        "scenario_proxy": 0.14604731202125548,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.14604731202125548
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4957336310901228,
+        "projected_progress_m": 1.460473120212555,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.028951623872771656,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4891098151541467,
+        "tracking_yaw_rmse": 0.0721797793007542,
+        "wall_seconds": 20.118730783462524
+      },
+      "scenario_id": "G5",
+      "seed": 303
+    },
+    "G5/stairs_15_up/seed_101": {
+      "case_id": "stairs_15_up",
+      "proxy": {
+        "obstacle_completion": 0.13392515182495118,
+        "recovery_rate": null,
+        "scenario_proxy": 0.13392515182495118,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.13392515182495118
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4961664582277624,
+        "projected_progress_m": 1.3392515182495117,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02829039194216481,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48969895538174113,
+        "tracking_yaw_rmse": 0.07253312129424598,
+        "wall_seconds": 19.800503253936768
+      },
+      "scenario_id": "G5",
+      "seed": 101
+    },
+    "G5/stairs_15_up/seed_202": {
+      "case_id": "stairs_15_up",
+      "proxy": {
+        "obstacle_completion": 0.15552167892456054,
+        "recovery_rate": null,
+        "scenario_proxy": 0.15552167892456054,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.15552167892456054
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4964058543867385,
+        "projected_progress_m": 1.5552167892456055,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.027886064873958612,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.4892974662251188,
+        "tracking_yaw_rmse": 0.0642297532329669,
+        "wall_seconds": 19.844786882400513
+      },
+      "scenario_id": "G5",
+      "seed": 202
+    },
+    "G5/stairs_15_up/seed_303": {
+      "case_id": "stairs_15_up",
+      "proxy": {
+        "obstacle_completion": 0.15415269136428833,
+        "recovery_rate": null,
+        "scenario_proxy": 0.15415269136428833,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.15415269136428833
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49444478418346555,
+        "projected_progress_m": 1.5415269136428833,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.02794763460344667,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 1.0,
+        "terminated_env_count": 0,
+        "tracking_xy_rmse": 0.48891148218662533,
+        "tracking_yaw_rmse": 0.0658037113323492,
+        "wall_seconds": 19.85755681991577
+      },
+      "scenario_id": "G5",
+      "seed": 303
+    },
+    "G6/push_neg_x/seed_101": {
+      "case_id": "push_neg_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.642963596873416,
+        "survival_proxy": 0.6875,
+        "tracking_proxy": 0.9352197772704232
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12939640780424025,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.14999999999999902,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.051344661335040426,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.6875,
+        "terminated_env_count": 10,
+        "tracking_xy_rmse": 0.11904552514948341,
+        "tracking_yaw_rmse": 0.18855543860238955,
+        "wall_seconds": 18.545166015625
+      },
+      "scenario_id": "G6",
+      "seed": 101
+    },
+    "G6/push_neg_x/seed_202": {
+      "case_id": "push_neg_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.7129810860321878,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.9506414480429171
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.11249257061246282,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.11999999999999922,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04658870316049535,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.10669365747839389,
+        "tracking_yaw_rmse": 0.16649081046932596,
+        "wall_seconds": 18.645702123641968
+      },
+      "scenario_id": "G6",
+      "seed": 202
+    },
+    "G6/push_neg_x/seed_303": {
+      "case_id": "push_neg_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.5854016750262515,
+        "survival_proxy": 0.625,
+        "tracking_proxy": 0.9366426800420025
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12791932432830588,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.17999999999999972,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.050504657970423014,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.625,
+        "terminated_env_count": 12,
+        "tracking_xy_rmse": 0.11539227619515244,
+        "tracking_yaw_rmse": 0.19134500482355288,
+        "wall_seconds": 18.752065896987915
+      },
+      "scenario_id": "G6",
+      "seed": 303
+    },
+    "G6/push_neg_y/seed_101": {
+      "case_id": "push_neg_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.6177189368188416,
+        "survival_proxy": 0.65625,
+        "tracking_proxy": 0.9412859989620443
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12299212849831018,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.14000000000000012,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04872853566125692,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.65625,
+        "terminated_env_count": 11,
+        "tracking_xy_rmse": 0.1134774310044031,
+        "tracking_yaw_rmse": 0.18291584755788304,
+        "wall_seconds": 18.484492778778076
+      },
+      "scenario_id": "G6",
+      "seed": 101
+    },
+    "G6/push_neg_y/seed_202": {
+      "case_id": "push_neg_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.5902980984803394,
+        "survival_proxy": 0.625,
+        "tracking_proxy": 0.944476957568543
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.1195031262893233,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.11999999999999922,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04883339517219544,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.625,
+        "terminated_env_count": 12,
+        "tracking_xy_rmse": 0.11263346733899464,
+        "tracking_yaw_rmse": 0.18402141324525575,
+        "wall_seconds": 18.624430418014526
+      },
+      "scenario_id": "G6",
+      "seed": 202
+    },
+    "G6/push_neg_y/seed_303": {
+      "case_id": "push_neg_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.6792481016042692,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.9450408370146354
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.11887718310296297,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.16999999999999993,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04795110111685894,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.71875,
+        "terminated_env_count": 9,
+        "tracking_xy_rmse": 0.10736801542979307,
+        "tracking_yaw_rmse": 0.16539856767007458,
+        "wall_seconds": 18.589913845062256
+      },
+      "scenario_id": "G6",
+      "seed": 303
+    },
+    "G6/push_pos_x/seed_101": {
+      "case_id": "push_pos_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.619102518521795,
+        "survival_proxy": 0.65625,
+        "tracking_proxy": 0.9433943139379734
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12069686755647266,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.1599999999999988,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.049727873402308026,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.65625,
+        "terminated_env_count": 11,
+        "tracking_xy_rmse": 0.11148589215611253,
+        "tracking_yaw_rmse": 0.18381027747477496,
+        "wall_seconds": 18.579368591308594
+      },
+      "scenario_id": "G6",
+      "seed": 101
+    },
+    "G6/push_pos_x/seed_202": {
+      "case_id": "push_pos_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.7368773567592507,
+        "survival_proxy": 0.78125,
+        "tracking_proxy": 0.9432030166518409
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12090671140169326,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.13999999999999924,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.048504414294410825,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.78125,
+        "terminated_env_count": 7,
+        "tracking_xy_rmse": 0.11382699124422879,
+        "tracking_yaw_rmse": 0.1623724123196111,
+        "wall_seconds": 18.35190510749817
+      },
+      "scenario_id": "G6",
+      "seed": 202
+    },
+    "G6/push_pos_x/seed_303": {
+      "case_id": "push_pos_x",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.6143333390280121,
+        "survival_proxy": 0.65625,
+        "tracking_proxy": 0.9361269928045899
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.1284563502074063,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.14999999999999947,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.05003836624419249,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.65625,
+        "terminated_env_count": 11,
+        "tracking_xy_rmse": 0.11586914767731891,
+        "tracking_yaw_rmse": 0.19105641881506782,
+        "wall_seconds": 18.398163318634033
+      },
+      "scenario_id": "G6",
+      "seed": 303
+    },
+    "G6/push_pos_y/seed_101": {
+      "case_id": "push_pos_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.6777887210643073,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.9430103945242536
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12111768407641288,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.14000000000000057,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04911973835680997,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.71875,
+        "terminated_env_count": 9,
+        "tracking_xy_rmse": 0.111850854068593,
+        "tracking_yaw_rmse": 0.17880257178405803,
+        "wall_seconds": 18.5838143825531
+      },
+      "scenario_id": "G6",
+      "seed": 101
+    },
+    "G6/push_pos_y/seed_202": {
+      "case_id": "push_pos_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.6788780035024703,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.9445259179164804
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.11944889234672076,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.1399999999999988,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.048404792526381205,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.71875,
+        "terminated_env_count": 9,
+        "tracking_xy_rmse": 0.11258737743390036,
+        "tracking_yaw_rmse": 0.1628757478169102,
+        "wall_seconds": 18.613298177719116
+      },
+      "scenario_id": "G6",
+      "seed": 202
+    },
+    "G6/push_pos_y/seed_303": {
+      "case_id": "push_pos_y",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": 1.0,
+        "scenario_proxy": 0.5870233998231523,
+        "survival_proxy": 0.625,
+        "tracking_proxy": 0.9392374397170437
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.12518682767198852,
+        "projected_progress_m": null,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.17999999999999972,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.04925972228005622,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.625,
+        "terminated_env_count": 12,
+        "tracking_xy_rmse": 0.1129663508419962,
+        "tracking_yaw_rmse": 0.18276565050954288,
+        "wall_seconds": 18.758615970611572
+      },
+      "scenario_id": "G6",
+      "seed": 303
+    },
+    "G7/dr_seed_101/seed_101": {
+      "case_id": "dr_seed_101",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2781883573358877,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.3709178097811836
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.4965763301065908,
+        "projected_progress_m": 1.3851125240325928,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.032012441863316934,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.4979394486018317,
+        "tracking_yaw_rmse": 0.12796139215828584,
+        "wall_seconds": 21.28057050704956
+      },
+      "scenario_id": "G7",
+      "seed": 101
+    },
+    "G7/dr_seed_202/seed_202": {
+      "case_id": "dr_seed_202",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.27578717705965583,
+        "survival_proxy": 0.75,
+        "tracking_proxy": 0.36771623607954107
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.49872055621603756,
+        "projected_progress_m": 1.5906376242637634,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03608953296034914,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.75,
+        "terminated_env_count": 8,
+        "tracking_xy_rmse": 0.5001109216643416,
+        "tracking_yaw_rmse": 0.13632078167007372,
+        "wall_seconds": 20.88647723197937
+      },
+      "scenario_id": "G7",
+      "seed": 202
+    },
+    "G7/dr_seed_303/seed_303": {
+      "case_id": "dr_seed_303",
+      "proxy": {
+        "obstacle_completion": null,
+        "recovery_rate": null,
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.3694109953126091
+      },
+      "raw": {
+        "completed": true,
+        "post_push_tracking_xy_rmse": 0.496929771705776,
+        "projected_progress_m": 1.4722070097923279,
+        "recovery": {
+          "expected_events": 128,
+          "median_recovery_s": 0.0,
+          "recovered_events": 128,
+          "recovery_rate": 1.0
+        },
+        "rows": 32000,
+        "schema_version": 1,
+        "speed_xy_mean": 0.03713555839777791,
+        "step_dt": 0.02,
+        "steps": 1000,
+        "survival_proxy": 0.71875,
+        "terminated_env_count": 9,
+        "tracking_xy_rmse": 0.4989602805661912,
+        "tracking_yaw_rmse": 0.14635012212540224,
+        "wall_seconds": 21.385294437408447
+      },
+      "scenario_id": "G7",
+      "seed": 303
+    }
+  },
+  "expected_telemetry_count": 69,
+  "failed_scenarios": [
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "identity": {
+    "env_sha256": "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c",
+    "model_sha256": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
+    "policy": "default",
+    "registry_sha256": "5afdf425f0ea5e4261d81a2538b3276400ec8ec0341406a614dd5b21fa8a28fe"
+  },
+  "limitations": [
+    "tracking_score conversion",
+    "evaluation seeds and episode count",
+    "exact command grid",
+    "rough terrain generator parameters",
+    "push magnitude, direction, and timing",
+    "domain-randomization fields and ranges",
+    "official pass threshold"
+  ],
+  "method": "Go2 internal proxy v1; worst case across frozen cases and seeds",
+  "missing": [],
+  "observed_telemetry_count": 69,
+  "official_result": false,
+  "scenarios": {
+    "G1": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+      "per_seed": {
+        "101": 0.0036292085048014273,
+        "202": 0.003619081346464135,
+        "303": 0.003628005906719665
+      },
+      "scenario_proxy": 0.003619081346464135,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.003619081346464135,
+      "weight": 0.15,
+      "weighted_fraction": 0.0005428622019696202,
+      "worst_case": {
+        "case_id": "forward_fast",
+        "seed": 202
+      }
+    },
+    "G2": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+      "per_seed": {
+        "101": 0.26527558931143685,
+        "202": 0.2658756671092392,
+        "303": 0.26625373681654096
+      },
+      "scenario_proxy": 0.26527558931143685,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.26527558931143685,
+      "weight": 0.15,
+      "weighted_fraction": 0.039791338396715524,
+      "worst_case": {
+        "case_id": "diagonal_left",
+        "seed": 101
+      }
+    },
+    "G3": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uac70\uce5c \uc9c0\ud615",
+      "per_seed": {
+        "101": 0.2781883573358877,
+        "202": 0.27578717705965583,
+        "303": 0.2655141528809378
+      },
+      "scenario_proxy": 0.2655141528809378,
+      "survival_proxy": 0.71875,
+      "tracking_proxy": 0.36771623607954107,
+      "weight": 0.2,
+      "weighted_fraction": 0.05310283057618757,
+      "worst_case": {
+        "case_id": "rough_forward",
+        "seed": 303
+      }
+    },
+    "G4": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uacbd\uc0ac \u00b120\u00b0",
+      "per_seed": {
+        "101": 0.38348082681621515,
+        "202": 0.3837828692653662,
+        "303": 0.384081697276151
+      },
+      "scenario_proxy": 0.38348082681621515,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.38348082681621515,
+      "weight": 0.15,
+      "weighted_fraction": 0.05752212402243227,
+      "worst_case": {
+        "case_id": "slope_plus_20",
+        "seed": 101
+      }
+    },
+    "G5": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\uacc4\ub2e8 10~15cm",
+      "per_seed": {
+        "101": 0.13175624012947082,
+        "202": 0.14368990659713746,
+        "303": 0.14604731202125548
+      },
+      "scenario_proxy": 0.13175624012947082,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.13175624012947082,
+      "weight": 0.15,
+      "weighted_fraction": 0.019763436019420624,
+      "worst_case": {
+        "case_id": "stairs_10_down",
+        "seed": 101
+      }
+    },
+    "G6": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\ubc00\uce68 \ud68c\ubcf5",
+      "per_seed": {
+        "101": 0.6177189368188416,
+        "202": 0.5902980984803394,
+        "303": 0.5854016750262515
+      },
+      "scenario_proxy": 0.5854016750262515,
+      "survival_proxy": 0.625,
+      "tracking_proxy": 0.9352197772704232,
+      "weight": 0.1,
+      "weighted_fraction": 0.058540167502625154,
+      "worst_case": {
+        "case_id": "push_neg_x",
+        "seed": 303
+      }
+    },
+    "G7": {
+      "gate": "INTERNAL_SCENARIO_FAIL",
+      "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+      "per_seed": {
+        "101": 0.2781883573358877,
+        "202": 0.27578717705965583,
+        "303": 0.2655141528809378
+      },
+      "scenario_proxy": 0.2655141528809378,
+      "survival_proxy": 0.71875,
+      "tracking_proxy": 0.36771623607954107,
+      "weight": 0.1,
+      "weighted_fraction": 0.026551415288093783,
+      "worst_case": {
+        "case_id": "dr_seed_303",
+        "seed": 303
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed_fractions": {
+    "101": 0.26284968059693914,
+    "202": 0.26131109161366173,
+    "303": 0.25819602617000653
+  },
+  "simulation_fraction": 0.25581417400744455,
+  "simulation_points_70": 17.90699218052112,
+  "status": "INTERNAL_GATE_FAIL"
+}

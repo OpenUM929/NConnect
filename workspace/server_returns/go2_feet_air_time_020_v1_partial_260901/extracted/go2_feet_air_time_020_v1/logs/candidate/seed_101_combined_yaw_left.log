@@ -1,0 +1,71 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+Loading user config located at: '/isaac-sim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /isaac-sim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260901_202056.log
+2026-09-01T11:20:56Z [0ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash] A crash has occurred.  If a debugger should be attached, please set the '/crashreporter/debuggerAttachTimeoutMs' setting to a timeout in milliseconds.  This can be used to allow the crash reporter to wait for up to that long for a debugger to attach before processing or sending the crash report.
+2026-09-01T11:20:56Z [27ms] [Error] [carb.crashreporter-breakpad.plugin] [crash] Wrote dump file '/isaac-sim/kit/data/Kit/Isaac-Sim/5.1/53b4b538-dd16-45a4-faed8daa-12982962.dmp'
+2026-09-01T11:20:56Z [32ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash] preventing upload of minidump due to user opt-out: '/isaac-sim/kit/data/Kit/Isaac-Sim/5.1/53b4b538-dd16-45a4-faed8daa-12982962.dmp'
+2026-09-01T11:20:56Z [38ms] [Error] [carb.crashreporter-breakpad.plugin] [crash]     dump file size is 1097080 bytes, file is readable.
+2026-09-01T11:20:56Z [44ms] [Fatal] [carb.crashreporter-breakpad.plugin] [crash] Crash detected in pid 24512 thread 24547
+2026-09-01T11:20:56Z [49ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash] Crash metadata:
+2026-09-01T11:20:56Z [54ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  BuildGitlabJobID = '209507876'
+2026-09-01T11:20:56Z [59ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  CarbSdkVersion = '206.6+release.9587.07f17b1b.gl'
+2026-09-01T11:20:56Z [64ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  CrashTime = 'Tue Sep  1 11:20:56 2026 GMT'
+2026-09-01T11:20:56Z [69ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  DumpId = '53b4b538-dd16-45a4-faed8daa-12982962'
+2026-09-01T11:20:56Z [74ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  LastUploadStatus = '0'
+2026-09-01T11:20:56Z [79ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  ProductName = 'OmniverseKit'
+2026-09-01T11:20:56Z [84ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  PythonTracebackStatus = ''py-spy' successfully wrote info to '/isaac-sim/kit/data/Kit/Isaac-Sim/5.1/53b4b538-dd16-45a4-faed8daa-12982962.py.txt''
+2026-09-01T11:20:56Z [89ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  RetryCount = '0'
+2026-09-01T11:20:56Z [94ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  StartupTime = '1788261656'
+2026-09-01T11:20:56Z [99ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  UploadSuccessful = '0'
+2026-09-01T11:20:56Z [104ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  UptimeSeconds = '0'
+2026-09-01T11:20:56Z [110ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  UserStory = ''
+2026-09-01T11:20:56Z [115ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  UserStoryStatus = 'Running in headless mode; not gathering user story'
+2026-09-01T11:20:56Z [119ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  Version = '107.3.3+production.229672.69cbf6ad.gl'
+2026-09-01T11:20:56Z [124ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  appName = 'Isaac-Sim'
+2026-09-01T11:20:56Z [129ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  appState = 'startup'
+2026-09-01T11:20:56Z [134ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  appVersion = '5.1.0'
+2026-09-01T11:20:56Z [139ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  autoloadExts = ''
+2026-09-01T11:20:56Z [144ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildBranch = 'production'
+2026-09-01T11:20:56Z [149ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildCi = 'gl'
+2026-09-01T11:20:56Z [154ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildConfig = 'release'
+2026-09-01T11:20:56Z [159ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildGitlabJobName = 'kit-build-release-linux-x86_64'
+2026-09-01T11:20:56Z [164ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildGitlabJobStage = 'kit-build'
+2026-09-01T11:20:56Z [169ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildGitlabPipelineID = '34875094'
+2026-09-01T11:20:56Z [174ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildHash = '69cbf6ad'
+2026-09-01T11:20:56Z [179ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildMajor = '107'
+2026-09-01T11:20:56Z [184ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildMinor = '3'
+2026-09-01T11:20:56Z [189ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildNumber = '229672'
+2026-09-01T11:20:56Z [194ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildPatch = '3'
+2026-09-01T11:20:56Z [199ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  buildVersion = '107.3.3'
+2026-09-01T11:20:56Z [204ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  commandLine = '/isaac-sim/kit/python/bin/python3 /workspace/go2_feet_air_time_020_v1/candidate/play.py --_run_isaaclab_child --task Quadruped-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=[1000.0,1000.0] env.commands.base_velocity.ranges.lin_vel_x=[0.50,0.50] env.commands.base_velocity.ranges.lin_vel_y=[0.15,0.15] env.commands.base_velocity.ranges.ang_vel_z=[0.50,0.50] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null --checkpoint /workspace/go2_feet_air_time_020_v1/candidate/exported/model_best.pt'
+2026-09-01T11:20:56Z [209ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  environmentName = 'Individual'
+2026-09-01T11:20:56Z [214ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  experience = 'Isaac Sim'
+2026-09-01T11:20:56Z [219ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  externalBuild = '1'
+2026-09-01T11:20:56Z [224ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  memoryStats = '(avail/total) RAM: 51.1202/62.506GB, Swap: 8/8GB, VM: 1.71799e+10/1.71799e+10GB'
+2026-09-01T11:20:56Z [229ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  portableMode = '1'
+2026-09-01T11:20:56Z [234ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  runEnvironment = 'Individual'
+2026-09-01T11:20:56Z [239ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  runningInContainer = '1'
+2026-09-01T11:20:56Z [244ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  telemetrySessionId = '3676907616068171373'
+2026-09-01T11:20:56Z [249ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  terminatedByAbort = '0'
+2026-09-01T11:20:56Z [255ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  userId = 'default'
+2026-09-01T11:20:56Z [260ms] [Warning] [carb.crashreporter-breakpad.plugin] [crash]  workingDirectory = '/workspace/go2_feet_air_time_020_v1/candidate'
+2026-09-01T11:20:56Z [265ms] [Fatal] [carb.crashreporter-breakpad.plugin] [crash] Thread 24547 backtrace follows:
+2026-09-01T11:20:56Z [277ms] [Fatal] [carb.crashreporter-breakpad.plugin] 000: libc.so.6!__sigaction+0x50 (??:?)
+2026-09-01T11:20:56Z [285ms] [Fatal] [carb.crashreporter-breakpad.plugin] 001: libc.so.6!getenv+0x56 (??:?)
+2026-09-01T11:20:56Z [293ms] [Fatal] [carb.crashreporter-breakpad.plugin] 002: libX11.so.6!XOpenDisplay+0x6a (??:?)
+2026-09-01T11:20:56Z [300ms] [Fatal] [carb.crashreporter-breakpad.plugin] 003: libomni.platforminfo.plugin.so!std::mersenne_twister_engine<unsigned long, 64ul, 312ul, 156ul, 31ul, 13043109905998158313ul, 29ul, 6148914691236517205ul, 17ul, 8202884508482404352ul, 37ul, 18444473444759240704ul, 43ul, 6364136223846793005ul>::operator()()+0x1eee (??:?)
+2026-09-01T11:20:56Z [307ms] [Fatal] [carb.crashreporter-breakpad.plugin] 004: libomni.platforminfo.plugin.so!std::mersenne_twister_engine<unsigned long, 64ul, 312ul, 156ul, 31ul, 13043109905998158313ul, 29ul, 6148914691236517205ul, 17ul, 8202884508482404352ul, 37ul, 18444473444759240704ul, 43ul, 6364136223846793005ul>::operator()()+0x2569 (??:?)
+2026-09-01T11:20:56Z [314ms] [Fatal] [carb.crashreporter-breakpad.plugin] 005: libomni.platforminfo.plugin.so!std::mersenne_twister_engine<unsigned long, 64ul, 312ul, 156ul, 31ul, 13043109905998158313ul, 29ul, 6148914691236517205ul, 17ul, 8202884508482404352ul, 37ul, 18444473444759240704ul, 43ul, 6364136223846793005ul>::operator()()+0x3046 (??:?)
+2026-09-01T11:20:57Z [321ms] [Fatal] [carb.crashreporter-breakpad.plugin] 006: libomni.platforminfo.plugin.so!std::mersenne_twister_engine<unsigned long, 64ul, 312ul, 156ul, 31ul, 13043109905998158313ul, 29ul, 6148914691236517205ul, 17ul, 8202884508482404352ul, 37ul, 18444473444759240704ul, 43ul, 6364136223846793005ul>::operator()()+0x3255 (??:?)
+2026-09-01T11:20:57Z [328ms] [Fatal] [carb.crashreporter-breakpad.plugin] 007: libomni.platforminfo.plugin.so!std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >::operator[](std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)+0x45dd (??:?)
+2026-09-01T11:20:57Z [336ms] [Fatal] [carb.crashreporter-breakpad.plugin] 008: libcarb.so!omniCoreStart+0x325c1 (??:?)
+2026-09-01T11:20:57Z [343ms] [Fatal] [carb.crashreporter-breakpad.plugin] 009: libcarb.so!omniCoreStart+0x39f62 (??:?)
+2026-09-01T11:20:57Z [351ms] [Fatal] [carb.crashreporter-breakpad.plugin] 010: libomni.kit.telemetry.plugin.so!std::__detail::_Compiler<std::__cxx11::regex_traits<char> >::_M_assertion()+0x28d3 (??:?)
+2026-09-01T11:20:57Z [359ms] [Fatal] [carb.crashreporter-breakpad.plugin] 011: libomni.kit.telemetry.plugin.so!std::__throw_regex_error(std::regex_constants::error_type, char const*)+0xe39e (??:?)
+2026-09-01T11:20:57Z [366ms] [Fatal] [carb.crashreporter-breakpad.plugin] 012: libcarb.tasking.plugin.so!std::thread::_State_impl<std::thread::_Invoker<std::tuple<void (carb::tasking::Scheduler::*)(carb::tasking::Fiber*, carb::tasking::Scheduler::TrackedThread*), carb::tasking::Scheduler*, carb::tasking::Fiber*, carb::tasking::Scheduler::TrackedThread*> > >::_M_run()+0xa3a7 (??:?)
+2026-09-01T11:20:57Z [375ms] [Fatal] [carb.crashreporter-breakpad.plugin] 013: libcarb.tasking.plugin.so!void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)+0xb6dc (??:?)
+2026-09-01T11:20:57Z [382ms] [Fatal] [carb.crashreporter-breakpad.plugin] 014: libcarb.tasking.plugin.so!void std::vector<int, std::allocator<int> >::_M_realloc_insert<int const&>(__gnu_cxx::__normal_iterator<int*, std::vector<int, std::allocator<int> > >, int const&)+0xb6ff (??:?)
+2026-09-01T11:20:57Z [390ms] [Fatal] [carb.crashreporter-breakpad.plugin] 015: libcarb.tasking.plugin.so!make_fcontext+0x39 (??:?)
+/isaac-sim/python.sh: line 73: 24512 Segmentation fault      (core dumped) $python_exe "${filtered_args[@]}" $args
+There was an error running python
+There was an error running python

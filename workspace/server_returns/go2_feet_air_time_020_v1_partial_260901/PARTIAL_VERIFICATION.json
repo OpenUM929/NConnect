@@ -1,0 +1,17 @@
+{
+  "zip_sha256": "3853b4fcf38f78938a348a0f8d915512aaa8750277fdc1d9cea8366e16a2b8ef",
+  "manifest_entries": 95,
+  "manifest_bad": [
+    {
+      "path": "launcher.log",
+      "expected": "e7cb1d389e96b2fba003ba1670b0919c27d8fb8debb0b6c0b9c70fae8eae29d4",
+      "actual": "9cf4dd066c8b740804d8cb3a25badee9bce001a27e98ca13c9c9c140050fa513"
+    }
+  ],
+  "candidate_model_sha256": "0dc8815f54498642c8548093d31fde869a293de91401931876427101d2f393e5",
+  "telemetry_summaries": 8,
+  "videos": 0,
+  "result_status": "RESULT_STATE=PARTIAL\nPACKAGED_AT=2026-09-01T20:20:57+09:00\n",
+  "runner_status": "RUNNER_RC=5\nFAILED_AT=2026-09-01T20:20:57+09:00\n",
+  "train_status": "TRAIN_RC=0\nSEED=42\nNUM_ENVS=4096\nMAX_ITERATIONS=1000\nSINGLE_CHANGE=feet_air_time:0.01->0.20\n"
+}
