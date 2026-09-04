@@ -1,0 +1,12 @@
+{
+  "command_term": "base_velocity",
+  "max_steps": 1000,
+  "num_envs": 32,
+  "robot_asset": "robot",
+  "schema_version": 1,
+  "step_dt": 0.02,
+  "termination_terms": [
+    "time_out",
+    "base_contact"
+  ]
+}

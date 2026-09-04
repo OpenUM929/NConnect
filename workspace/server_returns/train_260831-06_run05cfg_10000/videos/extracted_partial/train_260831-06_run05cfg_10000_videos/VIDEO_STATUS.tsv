@@ -1,0 +1,9 @@
+scenario	vx	vy	wz	push_mps	terrain	play_rc	mp4_bytes	policy_bytes
+H1_stand	0.00	0.00	0.00	0	plane	0	6688463	1206166
+H2_forward	0.75	0.00	0.00	0	plane	0	8961729	1206166
+H4_complex	0.50	0.15	0.50	0	plane	0	8998034	1206166
+H7_push	0.00	0.00	0.00	0.5	plane	0	6712855	1206166
+H3_left	0.00	0.30	0.00	0	plane	0	7422905	1206166
+H3_right	0.00	-0.30	0.00	0	plane	0	7589243	1206166
+H4_complex_right	0.50	-0.15	-0.50	0	plane	0	9020757	1206166
+H5_rough	0.50	0.00	0.00	0	rough	1	0	0

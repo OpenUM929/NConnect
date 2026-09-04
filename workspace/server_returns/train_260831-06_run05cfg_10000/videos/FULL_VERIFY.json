@@ -1,0 +1,55 @@
+{
+  "behavior_assessment": "UNMEASURED",
+  "checks": {
+    "checkpoint_match": "PASS",
+    "files_exist": "PASS",
+    "manifest_present": "PASS",
+    "manifest_sha256": "PASS",
+    "safe_paths": "PASS",
+    "scenario_coverage": "PASS",
+    "tar_readable": "PASS",
+    "tar_sha256": "PASS",
+    "video_status": "PASS"
+  },
+  "final_authority": "main_agent",
+  "mismatches": [],
+  "missing": [],
+  "observed": {
+    "expected_scenarios": [
+      "H1_stand",
+      "H2_forward",
+      "H3_left",
+      "H3_right",
+      "H4_complex",
+      "H4_complex_right",
+      "H5_rough",
+      "H6_plus10_approx",
+      "H6_minus10_approx",
+      "H7_push"
+    ],
+    "internal_sha_bad": [],
+    "internal_sha_ok": 47,
+    "missing_scenarios": [],
+    "model_sha256": "8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636",
+    "policy_count": 10,
+    "successful_scenarios": [
+      "H1_stand",
+      "H2_forward",
+      "H3_left",
+      "H3_right",
+      "H4_complex",
+      "H4_complex_right",
+      "H5_rough",
+      "H6_minus10_approx",
+      "H6_plus10_approx",
+      "H7_push"
+    ],
+    "tar_file_count": 48,
+    "tar_sha256": "c80f972c75c92f212501cd12c0e8791909731495098e9b3fe67075fee55c59be",
+    "video_count": 10
+  },
+  "profile": "video",
+  "run_id": "train_260831-06_run05cfg_10000",
+  "status": "PASS",
+  "work_id": "A260831-05"
+}

@@ -1,0 +1,103 @@
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+Loading user config located at: '/isaac-sim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /isaac-sim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260831_124955.log
+2026-08-31T03:49:55Z [177ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:55Z [177ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:55Z [189ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.126.09    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5080          | Yes: 0 |     | 16303   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2c02      | f590048b.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 24.04.2 LTS (Noble Numbat) ubuntu, Version: 24.04.2, Kernel: 6.8.0-136-generic
+| Processor: Intel(R) Core(TM) Ultra 5 250KF Plus
+| Cores: 18 | Logical Cores: 18
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64006 | Free Memory: 55163
+| Total Page/Swap (MB): 8191 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+2026-08-31T03:49:55Z [641ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-08-31T03:49:55Z [652ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-08-31T03:49:56Z [979ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [979ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:56Z [992ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [992ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:56Z [998ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [998ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:56Z [1,002ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [1,002ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:56Z [1,003ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [1,003ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-08-31T03:49:56Z [1,004ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-08-31T03:49:56Z [1,004ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.rendering.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+Error executing job with overrides: ['agent.seed=42', 'env.commands.base_velocity.heading_command=false', 'env.commands.base_velocity.rel_standing_envs=0.0', 'env.commands.base_velocity.resampling_time_range=[1000.0,1000.0]', 'env.commands.base_velocity.ranges.lin_vel_x=[0.50,0.50]', 'env.commands.base_velocity.ranges.lin_vel_y=[0.00,0.00]', 'env.commands.base_velocity.ranges.ang_vel_z=[0.00,0.00]', 'env.scene.terrain.terrain_type=generator', 'env.curriculum.terrain_levels=null', 'env.scene.terrain.terrain_generator.seed=42', 'env.scene.terrain.terrain_generator.curriculum=false', 'env.scene.terrain.terrain_generator.num_rows=1', 'env.scene.terrain.terrain_generator.num_cols=4', 'env.scene.terrain.terrain_generator.difficulty_range=[1.0,1.0]', 'env.scene.terrain.max_init_terrain_level=0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0', 'env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=[0.02,0.10]', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0']
+Traceback (most recent call last):
+  File "/workspace/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/utils/hydra.py", line 90, in hydra_main
+    env_cfg.from_dict(hydra_env_cfg["env"])
+  File "/workspace/IsaacLab/source/isaaclab/isaaclab/utils/configclass.py", line 142, in _update_class_from_dict
+    update_class_from_dict(obj, data, _ns="")
+  File "/workspace/IsaacLab/source/isaaclab/isaaclab/utils/dict.py", line 102, in update_class_from_dict
+    update_class_from_dict(obj_mem, value, _ns=key_ns)
+  File "/workspace/IsaacLab/source/isaaclab/isaaclab/utils/dict.py", line 102, in update_class_from_dict
+    update_class_from_dict(obj_mem, value, _ns=key_ns)
+  File "/workspace/IsaacLab/source/isaaclab/isaaclab/utils/dict.py", line 102, in update_class_from_dict
+    update_class_from_dict(obj_mem, value, _ns=key_ns)
+  File "/workspace/IsaacLab/source/isaaclab/isaaclab/utils/dict.py", line 154, in update_class_from_dict
+    raise ValueError(
+ValueError: [Config]: Incorrect type under namespace: /scene/terrain/terrain_generator/seed. Expected: <class 'NoneType'>, Received: <class 'int'>.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+2026-08-31T03:49:56Z [1,119ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-08-31T03:49:56Z [1,299ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-08-31T03:49:56Z [1,303ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-08-31T03:49:57Z [2,454ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-08-31T03:49:57Z [2,515ms] [Warning] [omni.graph.core.plugin] Found duplicate of category 'Replicator' - was 'Annotators', adding 'Fabric Reader'
+2026-08-31T03:49:57Z [2,515ms] [Warning] [omni.graph.core.plugin] Category 'Replicator' not accepted on node type 'omni.replicator.core.FabricReader' in extension 'omni.replicator.core'
+2026-08-31T03:49:57Z [2,516ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-08-31T03:49:58Z [3,259ms] [Warning] [omni.kvdb.plugin] Disabling key-value database because another kit process is locking it
+2026-08-31T03:49:59Z [4,631ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-08-31T03:50:01Z [6,432ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Core' for removal
+2026-08-31T03:50:01Z [6,434ms] [Warning] [omni.physx.plugin] USD stage detach not called, holding a loose ptr to a stage!
+2026-08-31T03:50:01Z [6,437ms] [Warning] [omni.fabric.plugin] gFabricState->gUsdStageToSimStageWithHistoryMap had 1 outstanding SimStageWithHistory(s) at shutdown
+2026-08-31T03:50:01Z [6,483ms] [Warning] [carb] Recursive unloadAllPlugins() detected!
+There was an error running python
+There was an error running python

@@ -1,0 +1,1805 @@
+/workspace/training/humanoid/_eval_run06/model_best.pt: OK
+seed=101 scenario=H1_stand terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H1_stand steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-20-26.log[0m
+[36m======================================================================================[0m
+
+[33m08:20:26 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:20:27 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 1.208297 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 1.106016 seconds
+[33m08:20:29 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H1_stand
+seed=101 scenario=H2_forward terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.75\,0.75\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H2_forward steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-20-49.log[0m
+[36m======================================================================================[0m
+
+[33m08:20:49 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:20:50 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.937299 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.436431 seconds
+[33m08:20:51 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H2_forward
+seed=101 scenario=H3_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.30\,0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H3_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-21-10.log[0m
+[36m======================================================================================[0m
+
+[33m08:21:10 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:21:11 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.814768 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.433097 seconds
+[33m08:21:12 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H3_left
+seed=101 scenario=H3_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.30\,-0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H3_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-21-31.log[0m
+[36m======================================================================================[0m
+
+[33m08:21:31 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:21:32 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.811430 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.427419 seconds
+[33m08:21:33 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H3_right
+seed=101 scenario=H4_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.15\,0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[0.50\,0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H4_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-21-52.log[0m
+[36m======================================================================================[0m
+
+[33m08:21:52 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:21:52 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.821235 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.445710 seconds
+[33m08:21:54 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H4_left
+seed=101 scenario=H4_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.15\,-0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[-0.50\,-0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H4_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-22-13.log[0m
+[36m======================================================================================[0m
+
+[33m08:22:13 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:22:13 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.816415 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.428017 seconds
+[33m08:22:14 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H4_right
+seed=101 scenario=H5_rough terrain=rough steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=\[0.02\,0.10\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H5_rough steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-22-34.log[0m
+[36m======================================================================================[0m
+
+[33m08:22:34 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.014534 seconds
+[INFO]: Time taken for scene creation : 0.816351 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.497343 seconds
+[33m08:22:35 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H5_rough
+seed=101 scenario=H6_plus10 terrain=slope_inv steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.slope_range=\[0.17632698\,0.17632698\] 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H6_plus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-22-55.log[0m
+[36m======================================================================================[0m
+
+[33m08:22:55 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012557 seconds
+[INFO]: Time taken for scene creation : 0.805299 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.488167 seconds
+[33m08:22:57 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H6_plus10
+seed=101 scenario=H6_minus10 terrain=slope steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.slope_range=\[0.17632698\,0.17632698\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H6_minus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-23-17.log[0m
+[36m======================================================================================[0m
+
+[33m08:23:17 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012812 seconds
+[INFO]: Time taken for scene creation : 0.804070 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.481564 seconds
+[33m08:23:19 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H6_minus10
+seed=101 scenario=H7_push terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=101 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null --push 0.5 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_101/cases/H7_push steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[Humanoid] 밀침 테스트 켜짐 — 4초마다 ±0.5 m/s (play 전용)
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-23-38.log[0m
+[36m======================================================================================[0m
+
+[33m08:23:39 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 101
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:23:39 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.819498 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.427434 seconds
+[33m08:23:40 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=101 scenario=H7_push
+seed=202 scenario=H1_stand terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H1_stand steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-23-59.log[0m
+[36m======================================================================================[0m
+
+[33m08:23:59 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:24:00 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.929974 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.429193 seconds
+[33m08:24:01 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H1_stand
+seed=202 scenario=H2_forward terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.75\,0.75\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H2_forward steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-24-20.log[0m
+[36m======================================================================================[0m
+
+[33m08:24:21 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:24:21 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.933681 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.428099 seconds
+[33m08:24:22 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H2_forward
+seed=202 scenario=H3_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.30\,0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H3_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-24-42.log[0m
+[36m======================================================================================[0m
+
+[33m08:24:42 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:24:42 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.936661 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.429983 seconds
+[33m08:24:43 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H3_left
+seed=202 scenario=H3_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.30\,-0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H3_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-25-03.log[0m
+[36m======================================================================================[0m
+
+[33m08:25:03 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:25:03 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.823283 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.427278 seconds
+[33m08:25:04 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H3_right
+seed=202 scenario=H4_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.15\,0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[0.50\,0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H4_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-25-23.log[0m
+[36m======================================================================================[0m
+
+[33m08:25:23 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:25:24 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.967508 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.419292 seconds
+[33m08:25:25 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H4_left
+seed=202 scenario=H4_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.15\,-0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[-0.50\,-0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H4_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-25-44.log[0m
+[36m======================================================================================[0m
+
+[33m08:25:44 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:25:45 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.932727 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.423283 seconds
+[33m08:25:46 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H4_right
+seed=202 scenario=H5_rough terrain=rough steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=\[0.02\,0.10\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H5_rough steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-26-05.log[0m
+[36m======================================================================================[0m
+
+[33m08:26:05 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.014190 seconds
+[INFO]: Time taken for scene creation : 0.804562 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.501939 seconds
+[33m08:26:07 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H5_rough
+seed=202 scenario=H6_plus10 terrain=slope_inv steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.slope_range=\[0.17632698\,0.17632698\] 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H6_plus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-26-27.log[0m
+[36m======================================================================================[0m
+
+[33m08:26:27 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012942 seconds
+[INFO]: Time taken for scene creation : 0.702987 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.442678 seconds
+[33m08:26:29 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H6_plus10
+seed=202 scenario=H6_minus10 terrain=slope steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.slope_range=\[0.17632698\,0.17632698\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H6_minus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-26-49.log[0m
+[36m======================================================================================[0m
+
+[33m08:26:49 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012742 seconds
+[INFO]: Time taken for scene creation : 0.705757 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.444525 seconds
+[33m08:26:50 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H6_minus10
+seed=202 scenario=H7_push terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=202 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null --push 0.5 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_202/cases/H7_push steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[Humanoid] 밀침 테스트 켜짐 — 4초마다 ±0.5 m/s (play 전용)
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-27-10.log[0m
+[36m======================================================================================[0m
+
+[33m08:27:10 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:27:11 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.818758 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.426860 seconds
+[33m08:27:12 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=202 scenario=H7_push
+seed=303 scenario=H1_stand terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H1_stand steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-27-31.log[0m
+[36m======================================================================================[0m
+
+[33m08:27:31 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:27:32 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.807221 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.428376 seconds
+[33m08:27:33 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H1_stand
+seed=303 scenario=H2_forward terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.75\,0.75\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H2_forward steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-27-52.log[0m
+[36m======================================================================================[0m
+
+[33m08:27:52 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:27:52 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.810269 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.427472 seconds
+[33m08:27:53 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H2_forward
+seed=303 scenario=H3_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.30\,0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H3_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-28-13.log[0m
+[36m======================================================================================[0m
+
+[33m08:28:13 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:28:13 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.932461 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.418029 seconds
+[33m08:28:14 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H3_left
+seed=303 scenario=H3_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.30\,-0.30\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H3_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-28-34.log[0m
+[36m======================================================================================[0m
+
+[33m08:28:34 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:28:34 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.823188 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.441087 seconds
+[33m08:28:35 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H3_right
+seed=303 scenario=H4_left terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.15\,0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[0.50\,0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H4_left steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-28-54.log[0m
+[36m======================================================================================[0m
+
+[33m08:28:54 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:28:55 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.803490 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.430497 seconds
+[33m08:28:56 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H4_left
+seed=303 scenario=H4_right terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[-0.15\,-0.15\] env.commands.base_velocity.ranges.ang_vel_z=\[-0.50\,-0.50\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H4_right steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-29-15.log[0m
+[36m======================================================================================[0m
+
+[33m08:29:15 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:29:16 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.815988 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.433372 seconds
+[33m08:29:17 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H4_right
+seed=303 scenario=H5_rough terrain=rough steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=\[0.02\,0.10\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H5_rough steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-29-36.log[0m
+[36m======================================================================================[0m
+
+[33m08:29:36 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.014022 seconds
+[INFO]: Time taken for scene creation : 0.806630 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.505773 seconds
+[33m08:29:38 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H5_rough
+seed=303 scenario=H6_plus10 terrain=slope_inv steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.slope_range=\[0.17632698\,0.17632698\] 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H6_plus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-29-57.log[0m
+[36m======================================================================================[0m
+
+[33m08:29:57 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012717 seconds
+[INFO]: Time taken for scene creation : 0.706815 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.447841 seconds
+[33m08:29:59 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H6_plus10
+seed=303 scenario=H6_minus10 terrain=slope steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.50\,0.50\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=generator env.curriculum.terrain_levels=null env.scene.terrain.terrain_generator.curriculum=false env.scene.terrain.terrain_generator.num_rows=1 env.scene.terrain.terrain_generator.num_cols=4 env.scene.terrain.terrain_generator.difficulty_range=\[1.0\,1.0\] env.scene.terrain.max_init_terrain_level=0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=1.0 env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.slope_range=\[0.17632698\,0.17632698\] env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H6_minus10 steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-30-19.log[0m
+[36m======================================================================================[0m
+
+[33m08:30:19 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.012733 seconds
+[INFO]: Time taken for scene creation : 0.802125 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.434671 seconds
+[33m08:30:21 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H6_minus10
+seed=303 scenario=H7_push terrain=plane steps=1000
+COMMAND: /workspace/IsaacLab/isaaclab.sh -p play.py --task Humanoid-v0 --num_envs 32 --headless agent.seed=303 env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range=\[1000.0\,1000.0\] env.commands.base_velocity.ranges.lin_vel_x=\[0.00\,0.00\] env.commands.base_velocity.ranges.lin_vel_y=\[0.00\,0.00\] env.commands.base_velocity.ranges.ang_vel_z=\[0.00\,0.00\] env.scene.terrain.terrain_type=plane env.curriculum.terrain_levels=null --push 0.5 
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
+[eval] telemetry enabled: out=/workspace/_keep/train_260831-06_run05cfg_10000_independent_eval/seeds/seed_303/cases/H7_push steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /workspace/IsaacLab/apps/isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: h1_task.env_cfg:HumanoidRoughEnvCfg
+[Humanoid:student] 9 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.0
+  [OK] track_ang_vel_z_exp.weight = 1.0
+  [OK] feet_air_time.weight = 0.2
+  [OK] termination_penalty.weight = -50.0
+  [OK] flat_orientation_l2.weight = -1.5
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] joint_deviation_hip.weight = -0.2
+  [OK] joint_deviation_torso.weight = -0.1
+  [OK] action_rate_l2.weight = -0.0005
+[Humanoid:student] sub_terrains keys = ['pyramid_stairs', 'pyramid_stairs_inv', 'boxes', 'random_rough', 'hf_pyramid_slope', 'hf_pyramid_slope_inv']
+[Humanoid:student] 박스류 override: ['boxes.grid_height']
+[Humanoid:student] 계단 width override: ['pyramid_stairs.step_width=0.30', 'pyramid_stairs_inv.step_width=0.30']
+[Humanoid:student] proportion: ['boxes: 0.20→0.30', 'random_rough: 0.20→0.10', 'pyramid_stairs: 0.20→0.15', 'pyramid_stairs_inv: 0.20→0.15']
+[Humanoid] 밀침 테스트 켜짐 — 4초마다 ±0.5 m/s (play 전용)
+[INFO]: Parsing configuration from: h1_task.agent_cfg:HumanoidPPORunnerCfg
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/gymnasium/envs/registration.py:512: DeprecationWarning: [33mWARN: The environment Humanoid-v0 is out of date. You should consider upgrading to version `v5`.[0m
+  logger.deprecation(
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: /workspace/training/humanoid/logs/rsl_rl/humanoid
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-09-01_08-30-41.log[0m
+[36m======================================================================================[0m
+
+[33m08:30:41 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 303
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m08:30:42 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+[INFO]: Time taken for scene creation : 0.933704 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.418610 seconds
+[33m08:30:43 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/workspace/IsaacLab/_isaac_sim/kit/python/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[OK] seed=303 scenario=H7_push
+[3gH    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H    H   [INFO] Using python from: /workspace/IsaacLab/_isaac_sim/python.sh
