@@ -1,0 +1,316 @@
+{
+  "baseline_model_sha256": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
+  "baseline_simulation_points_70": 17.90699218052112,
+  "candidate_minus_baseline_fraction": 0.055222718553731065,
+  "candidate_model_sha256": "0dc8815f54498642c8548093d31fde869a293de91401931876427101d2f393e5",
+  "candidate_simulation_points_70": 21.772582479282292,
+  "experiment": "Default-01 vs feet_air_time_0.20-only candidate",
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "per_scenario": {
+    "G1": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.0036292085048014273,
+          "202": 0.003619081346464135,
+          "303": 0.003628005906719665
+        },
+        "scenario_proxy": 0.003619081346464135,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.003619081346464135,
+        "weight": 0.15,
+        "weighted_fraction": 0.0005428622019696202,
+        "worst_case": {
+          "case_id": "forward_fast",
+          "seed": 202
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\uc9c4 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.003558485070101594,
+          "202": 0.0035532586288450634,
+          "303": 0.003569779583191079
+        },
+        "scenario_proxy": 0.0035532586288450634,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.0035532586288450634,
+        "weight": 0.15,
+        "weighted_fraction": 0.0005329887943267595,
+        "worst_case": {
+          "case_id": "forward_fast",
+          "seed": 202
+        }
+      },
+      "delta_proxy": -6.582271761907147e-05,
+      "delta_survival": 0.0,
+      "delta_tracking": -6.582271761907147e-05
+    },
+    "G2": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.26527558931143685,
+          "202": 0.2658756671092392,
+          "303": 0.26625373681654096
+        },
+        "scenario_proxy": 0.26527558931143685,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26527558931143685,
+        "weight": 0.15,
+        "weighted_fraction": 0.039791338396715524,
+        "worst_case": {
+          "case_id": "diagonal_left",
+          "seed": 101
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uc804\ubc29\uc704 \uc18d\ub3c4 \ucd94\uc885",
+        "per_seed": {
+          "101": 0.26948567939095025,
+          "202": 0.26944451070048747,
+          "303": 0.2696703590705989
+        },
+        "scenario_proxy": 0.26944451070048747,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.26944451070048747,
+        "weight": 0.15,
+        "weighted_fraction": 0.04041667660507312,
+        "worst_case": {
+          "case_id": "diagonal_left",
+          "seed": 202
+        }
+      },
+      "delta_proxy": 0.004168921389050617,
+      "delta_survival": 0.0,
+      "delta_tracking": 0.004168921389050617
+    },
+    "G3": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uac70\uce5c \uc9c0\ud615",
+        "per_seed": {
+          "101": 0.2781883573358877,
+          "202": 0.27578717705965583,
+          "303": 0.2655141528809378
+        },
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.36771623607954107,
+        "weight": 0.2,
+        "weighted_fraction": 0.05310283057618757,
+        "worst_case": {
+          "case_id": "rough_forward",
+          "seed": 303
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uac70\uce5c \uc9c0\ud615",
+        "per_seed": {
+          "101": 0.3781705156728606,
+          "202": 0.36602557427566085,
+          "303": 0.35436476646733067
+        },
+        "scenario_proxy": 0.35436476646733067,
+        "survival_proxy": 0.90625,
+        "tracking_proxy": 0.3778328508651983,
+        "weight": 0.2,
+        "weighted_fraction": 0.07087295329346614,
+        "worst_case": {
+          "case_id": "rough_forward",
+          "seed": 303
+        }
+      },
+      "delta_proxy": 0.08885061358639285,
+      "delta_survival": 0.1875,
+      "delta_tracking": 0.01011661478565723
+    },
+    "G4": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacbd\uc0ac \u00b120\u00b0",
+        "per_seed": {
+          "101": 0.38348082681621515,
+          "202": 0.3837828692653662,
+          "303": 0.384081697276151
+        },
+        "scenario_proxy": 0.38348082681621515,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.38348082681621515,
+        "weight": 0.15,
+        "weighted_fraction": 0.05752212402243227,
+        "worst_case": {
+          "case_id": "slope_plus_20",
+          "seed": 101
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacbd\uc0ac \u00b120\u00b0",
+        "per_seed": {
+          "101": 0.37199241795998345,
+          "202": 0.3743096796529117,
+          "303": 0.372073104691547
+        },
+        "scenario_proxy": 0.37199241795998345,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.37199241795998345,
+        "weight": 0.15,
+        "weighted_fraction": 0.05579886269399752,
+        "worst_case": {
+          "case_id": "slope_plus_20",
+          "seed": 101
+        }
+      },
+      "delta_proxy": -0.011488408856231702,
+      "delta_survival": 0.0,
+      "delta_tracking": -0.011488408856231702
+    },
+    "G5": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacc4\ub2e8 10~15cm",
+        "per_seed": {
+          "101": 0.13175624012947082,
+          "202": 0.14368990659713746,
+          "303": 0.14604731202125548
+        },
+        "scenario_proxy": 0.13175624012947082,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.13175624012947082,
+        "weight": 0.15,
+        "weighted_fraction": 0.019763436019420624,
+        "worst_case": {
+          "case_id": "stairs_10_down",
+          "seed": 101
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\uacc4\ub2e8 10~15cm",
+        "per_seed": {
+          "101": 0.10038244724273682,
+          "202": 0.09968604147434235,
+          "303": 0.0990067481994629
+        },
+        "scenario_proxy": 0.0990067481994629,
+        "survival_proxy": 1.0,
+        "tracking_proxy": 0.0990067481994629,
+        "weight": 0.15,
+        "weighted_fraction": 0.014851012229919434,
+        "worst_case": {
+          "case_id": "stairs_15_up",
+          "seed": 303
+        }
+      },
+      "delta_proxy": -0.03274949193000792,
+      "delta_survival": 0.0,
+      "delta_tracking": -0.03274949193000792
+    },
+    "G6": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ubc00\uce68 \ud68c\ubcf5",
+        "per_seed": {
+          "101": 0.6177189368188416,
+          "202": 0.5902980984803394,
+          "303": 0.5854016750262515
+        },
+        "scenario_proxy": 0.5854016750262515,
+        "survival_proxy": 0.625,
+        "tracking_proxy": 0.9352197772704232,
+        "weight": 0.1,
+        "weighted_fraction": 0.058540167502625154,
+        "worst_case": {
+          "case_id": "push_neg_x",
+          "seed": 303
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_PASS",
+        "name": "\ubc00\uce68 \ud68c\ubcf5",
+        "per_seed": {
+          "101": 0.9312792229765955,
+          "202": 0.962051370980853,
+          "303": 0.9617531354093773
+        },
+        "scenario_proxy": 0.9312792229765955,
+        "survival_proxy": 0.96875,
+        "tracking_proxy": 0.961320488233905,
+        "weight": 0.1,
+        "weighted_fraction": 0.09312792229765955,
+        "worst_case": {
+          "case_id": "push_pos_x",
+          "seed": 101
+        }
+      },
+      "delta_proxy": 0.345877547950344,
+      "delta_survival": 0.34375,
+      "delta_tracking": 0.026100710963481877
+    },
+    "G7": {
+      "baseline": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+        "per_seed": {
+          "101": 0.2781883573358877,
+          "202": 0.27578717705965583,
+          "303": 0.2655141528809378
+        },
+        "scenario_proxy": 0.2655141528809378,
+        "survival_proxy": 0.71875,
+        "tracking_proxy": 0.36771623607954107,
+        "weight": 0.1,
+        "weighted_fraction": 0.026551415288093783,
+        "worst_case": {
+          "case_id": "dr_seed_303",
+          "seed": 303
+        }
+      },
+      "candidate": {
+        "gate": "INTERNAL_SCENARIO_FAIL",
+        "name": "\ub3c4\uba54\uc778 \ub79c\ub364\ud654",
+        "per_seed": {
+          "101": 0.3781705156728606,
+          "202": 0.36602557427566085,
+          "303": 0.35436476646733067
+        },
+        "scenario_proxy": 0.35436476646733067,
+        "survival_proxy": 0.9375,
+        "tracking_proxy": 0.3778328508651983,
+        "weight": 0.1,
+        "weighted_fraction": 0.03543647664673307,
+        "worst_case": {
+          "case_id": "dr_seed_303",
+          "seed": 303
+        }
+      },
+      "delta_proxy": 0.08885061358639285,
+      "delta_survival": 0.21875,
+      "delta_tracking": 0.01011661478565723
+    }
+  },
+  "per_seed_delta": {
+    "101": 0.05554225085214437,
+    "202": 0.05675074133560981,
+    "303": 0.05593671604285039
+  },
+  "pre_registered_gates": {
+    "all_seed_deltas_at_least_minus_0_02": true,
+    "all_survival_deltas_at_least_minus_0_02": true,
+    "all_tracking_deltas_at_least_minus_0_05": true,
+    "g5_proxy_delta_at_least_plus_0_03": false,
+    "g5_survival_delta_at_least_minus_0_02": true,
+    "telemetry_complete": true
+  },
+  "promotion_rule": "quantitative pass plus VIDEO_OBSERVED without increased adverse behavior; independent training seed still required",
+  "quantitative_status": "INTERNAL_SCREEN_FAIL",
+  "schema_version": 1,
+  "training_seed": 42,
+  "video_status": "VIDEO_UNKNOWN"
+}
