@@ -1,0 +1,5 @@
+action	source	target	reason	status
+hold	original/go2_default_vs_pilot_v1/	workspace/training/quadruped/	Partial result; Pilot telemetry/videos/report absent	HOLD_INCOMPLETE
+keep-local	GO2_PROJECT_STATE.md	GO2_PROJECT_STATE.md	Local ledger is canonical and newer	DECIDED
+recover	workspace/training/quadruped/go2_default_vs_pilot_v1_hotfix.zip	/workspace/go2_default_vs_pilot_v1_hotfix.zip	Resume without retraining Default	READY_FOR_SERVER
+receive	/workspace/_keep/GO2_DEFAULT_VS_PILOT_RESULT.zip	workspace/_keep/GO2_DEFAULT_VS_PILOT_RESULT.zip	Required complete bundle	MISSING_REQUIRED

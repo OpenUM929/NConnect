@@ -1,0 +1,4 @@
+action	source	target	result	status
+isolate	workspace/_keep/go2_default_vs_pilot_v1/	workspace/server_returns/go2_default_vs_pilot_v1_partial_260901/original/go2_default_vs_pilot_v1/	461 files preserved	DONE
+rename	workspace/_keep/GO2_DEFAULT_VS_PILOT_RESULT.zip.sha256	original/GO2_DEFAULT_VS_PILOT_RESULT.zip.sha256.empty	0-byte invalid companion preserved	DONE
+merge	-	workspace/training/quadruped/	No run artifact merged because result is partial	NOT_PERFORMED
