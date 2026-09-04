@@ -1,4 +1,4 @@
-"""Contracts for the reusable Go2 tuning engine and the G-A015 specification."""
+"""Contracts for the reusable Go2 tuning engine and the G-A016 specification."""
 
 from __future__ import annotations
 
@@ -13,7 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GO2 = ROOT / "workspace" / "training" / "quadruped"
-SPEC = GO2 / "config" / "experiments" / "G_A015_pilot_feet_air_time_035.json"
+SPEC = GO2 / "config" / "experiments" / "G_A016_pilot_ang_vel_xy_m015.json"
+RETIRED_SPEC = GO2 / "config" / "experiments" / "G_A015_pilot_feet_air_time_035.json"
 ENGINE_DIR = "go2_tuning_engine_v1_3"
 sys.path.insert(0, str(GO2))
 
@@ -44,17 +45,27 @@ class Go2TuningEngineContract(unittest.TestCase):
         self.assertIn("flat_orientation_l2", self.config.REWARD_NAMES)
         self.assertEqual(self.config.DEFAULT_REWARDS["flat_orientation_l2"], 0.0)
 
-    def test_g_a015_is_exactly_one_reward_change(self) -> None:
+    def test_g_a016_is_exactly_one_reward_change(self) -> None:
         experiment = self.experiment
-        self.assertEqual(experiment["work_id"], "G-A015")
+        self.assertEqual(experiment["work_id"], "G-A016")
         self.assertEqual(experiment["single_change"], {
-            "name": "feet_air_time", "from": 0.2, "to": 0.35
+            "name": "ang_vel_xy_l2", "from": -0.05, "to": -0.15
         })
         changed = [
             name for name, baseline in experiment["rewards"]["baseline"].items()
             if experiment["rewards"]["candidate"][name] != baseline
         ]
-        self.assertEqual(changed, ["feet_air_time"])
+        self.assertEqual(changed, ["ang_vel_xy_l2"])
+
+    def test_g_a016_keeps_feet_air_time_at_the_measured_ceiling(self) -> None:
+        # G-A015 measured feet_air_time 0.35 as a collapse (-30.12/70), so 0.20
+        # stays pinned on both arms; it is not the variable under test any more.
+        for arm in ("baseline", "candidate"):
+            self.assertEqual(self.experiment["rewards"][arm]["feet_air_time"], 0.2)
+
+    def test_the_retired_g_a015_spec_still_validates(self) -> None:
+        retired = self.config.load_and_validate(RETIRED_SPEC)
+        self.assertEqual(retired["work_id"], "G-A015")
 
     def test_invalid_second_reward_change_is_rejected(self) -> None:
         invalid = json.loads(json.dumps(self.experiment))
@@ -90,12 +101,12 @@ class Go2TuningEngineContract(unittest.TestCase):
         candidate = self.config.render_reward_source(
             template, self.experiment["rewards"]["candidate"]
         )
-        self.assertEqual(self.config.reward_dict(default)["feet_air_time"], 0.2)
-        self.assertEqual(self.config.reward_dict(candidate)["feet_air_time"], 0.35)
+        self.assertEqual(self.config.reward_dict(default)["ang_vel_xy_l2"], -0.05)
+        self.assertEqual(self.config.reward_dict(candidate)["ang_vel_xy_l2"], -0.15)
         for name in (
             "track_lin_vel_xy_exp",
+            "feet_air_time",
             "lin_vel_z_l2",
-            "ang_vel_xy_l2",
             "action_rate_l2",
             "flat_orientation_l2",
         ):
@@ -252,15 +263,65 @@ class Go2TuningEngineContract(unittest.TestCase):
             self.assertEqual(
                 self.config.reward_dict(
                     (runtime / "candidate" / "quadruped_rewards.py").read_text(encoding="utf-8")
-                )["feet_air_time"],
-                0.35,
+                )["ang_vel_xy_l2"],
+                -0.15,
             )
             self.assertEqual(
                 self.config.reward_dict(
                     (runtime / "default" / "quadruped_rewards.py").read_text(encoding="utf-8")
-                )["feet_air_time"],
-                0.2,
+                )["ang_vel_xy_l2"],
+                -0.05,
             )
+
+    def test_measured_g_a015_collapse_is_killed_on_both_clauses(self) -> None:
+        """Replay of the real G-A015 tier-1 measurement (-30.12/70)."""
+        measured = {
+            #        baseline (survival, tracking)   candidate (survival, tracking)
+            "G1": ((1.0, 0.8932), (0.03125, 0.5561)),
+            "G2": ((1.0, 0.9247), (1.0, 0.9122)),
+            "G3": ((0.8125, 0.5967), (0.0, 0.4312)),
+            "G4": ((1.0, 0.5533), (0.0, 0.4577)),
+            "G5": ((0.71875, 0.5696), (0.0, 0.1888)),
+            "G6": ((0.96875, 0.9712), (0.9375, 0.9481)),
+            "G7": ((0.9375, 0.5975), (0.125, 0.4427)),
+        }
+
+        weights = {"G1": 0.15, "G2": 0.15, "G3": 0.20, "G4": 0.15,
+                   "G5": 0.15, "G6": 0.10, "G7": 0.10}
+
+        def policy(index: int) -> dict:
+            scenarios = {}
+            for name, arms in measured.items():
+                survival, tracking = arms[index]
+                scenarios[name] = {
+                    "scenario_proxy": survival * tracking,
+                    "survival_proxy": survival,
+                    "tracking_proxy": tracking,
+                    "gate": "INTERNAL_SCENARIO_PASS",
+                }
+            points = 70.0 * sum(
+                weights[name] * item["scenario_proxy"]
+                for name, item in scenarios.items()
+            )
+            return {
+                "simulation_points_70": points,
+                "scenarios": scenarios,
+                "seed_fractions": {"101": 0.8, "202": 0.8, "303": 0.8},
+            }
+
+        baseline, candidate = policy(0), policy(1)
+        # The tracking proxies above are the 4-decimal values printed in
+        # SELF_EVAL_REPORT.md, so the replay lands within 0.01/70 of the run.
+        self.assertAlmostEqual(baseline["simulation_points_70"], 46.4912, delta=0.01)
+        self.assertAlmostEqual(candidate["simulation_points_70"], 16.3693, delta=0.01)
+
+        decision = self.report.tier1_decision(
+            baseline, candidate, self.experiment["evaluation"]["gates"]
+        )
+        self.assertEqual(decision["status"], "INTERNAL_EARLY_KILL_FAIL")
+        self.assertLess(decision["candidate_minus_baseline_points_70"], -30.0)
+        self.assertIn("total_points_70_delta_below_1.0", decision["failure_reasons"])
+        self.assertIn("G4_survival_regressed_over_0.1", decision["failure_reasons"])
 
 
 if __name__ == "__main__":
