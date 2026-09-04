@@ -1,0 +1,9 @@
+{
+  "baselines": {
+    "Default-01 iter 800": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
+    "Pilot-01 iter 1000": "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
+  },
+  "engine_version": "1.2.0",
+  "experiment_embedded": false,
+  "official_equivalence": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nconnect://go2/tuning-experiment/1.0",
+  "title": "NConnect Go2 single-variable tuning experiment",
+  "type": "object",
+  "required": [
+    "schema_version", "engine_version", "work_id", "run_id", "experiment_slug",
+    "baseline", "rewards", "single_change", "training", "evaluation", "video", "output", "branch"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "engine_version": {"const": "1.1.0"},
+    "work_id": {"type": "string"},
+    "run_id": {"type": "string"},
+    "experiment_slug": {"type": "string"},
+    "baseline": {"type": "object"},
+    "rewards": {"type": "object"},
+    "single_change": {"type": "object"},
+    "training": {"type": "object"},
+    "evaluation": {"type": "object"},
+    "video": {"type": "object"},
+    "output": {"type": "object"},
+    "branch": {"type": "object"}
+  },
+  "x-runtime-validator": "go2_tuning_config.py validates nested types, canonical values, and exactly-one-reward invariants without external dependencies"
+}

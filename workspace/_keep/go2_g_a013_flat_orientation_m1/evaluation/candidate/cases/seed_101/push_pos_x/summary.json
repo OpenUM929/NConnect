@@ -1,0 +1,40 @@
+{
+  "completed": true,
+  "fallen_env_count": 15,
+  "height_rel_mean": 0.3288479120594557,
+  "height_rel_median": 0.3812032111666419,
+  "height_rel_p10": 0.1110637190746751,
+  "post_push_tracking_xy_rmse": 0.1039229213238607,
+  "posture_gate": {
+    "grace_s": 0.5,
+    "height_rel_min_m": 0.18,
+    "hold_s": 0.5,
+    "tilt_cos_max": 0.5
+  },
+  "posture_measured": true,
+  "projected_progress_m": null,
+  "projected_progress_method": "median_per_env_body_velocity_integral_v2",
+  "recovery": {
+    "expected_events": 128,
+    "median_recovery_s": 0.14000000000000057,
+    "median_upright_recovery_s": 0.15999999999999837,
+    "posture_measured": true,
+    "recovered_events": 128,
+    "recovery_rate": 1.0,
+    "recovery_rate_upright": 0.734375,
+    "upright_recovered_events": 94
+  },
+  "rows": 32000,
+  "schema_version": 2,
+  "speed_xy_mean": 0.04952062880908478,
+  "step_dt": 0.02,
+  "steps": 1000,
+  "survival_proxy": 0.53125,
+  "survival_proxy_source": "posture_gate_v2",
+  "survival_proxy_v1": 1.0,
+  "survival_proxy_v2": 0.53125,
+  "terminated_env_count": 0,
+  "tracking_xy_rmse": 0.09538241329597838,
+  "tracking_yaw_rmse": 0.1218440993777255,
+  "wall_seconds": 18.615214109420776
+}
