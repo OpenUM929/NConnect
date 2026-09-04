@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "work_id": "G-A009",
+  "run_id": "train_260902-Go2_track_lin_vel_120_1000",
+  "checks": {
+    "files_exist": "PASS",
+    "outer_sha256": "PASS",
+    "zip_crc": "PASS",
+    "safe_paths": "PASS",
+    "required_files": "PASS",
+    "result_full": "PASS",
+    "runner_rc": "PASS",
+    "train_rc": "PASS",
+    "internal_manifest": "PASS",
+    "telemetry_contract": "PASS",
+    "video_contract": "PASS",
+    "policy_lineage": "PASS",
+    "model_identity": "PASS",
+    "training_bundle": "PASS"
+  },
+  "observed": {
+    "zip_sha256": "d9d84f68c19eac9c84ec932154c7edf9d40743b8a05e92468ff0348bbc7661c3",
+    "zip_member_count": 126,
+    "unsafe_paths": [],
+    "status_fields": {
+      "RESULT_STATE": "FULL",
+      "PACKAGED_AT": "2026-09-02T10:31:37+09:00",
+      "RUNNER_RC": "0",
+      "COMPLETED_AT": "2026-09-02T10:31:37+09:00",
+      "DECISION": "INTERNAL_EARLY_KILL_FAIL",
+      "CANDIDATE_MODEL_SHA": "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4",
+      "TELEMETRY_CANDIDATE": "7",
+      "TELEMETRY_BASELINE": "7",
+      "VIDEOS_CANDIDATE": "1",
+      "VIDEO_STATUS": "VIDEO_UNKNOWN",
+      "OFFICIAL_RESULT": "OFFICIAL_RESULT_UNMEASURED",
+      "TRAIN_RC": "0",
+      "SEED": "42",
+      "NUM_ENVS": "4096",
+      "MAX_ITERATIONS": "1000",
+      "SINGLE_CHANGE": "track_lin_vel_xy_exp:1.0->1.2"
+    },
+    "manifest_entries": 125,
+    "manifest_bad": [],
+    "candidate_summary_count": 7,
+    "baseline_summary_count": 7,
+    "candidate_steps_count": 7,
+    "case_status_count": 14,
+    "case_status_bad": [],
+    "videos": {
+      "go2_track_lin_vel_120_v1/evaluation/candidate/videos/G1_forward_fast_seed_101.mp4": 1932776
+    },
+    "video_headers": {
+      "go2_track_lin_vel_120_v1/evaluation/candidate/videos/G1_forward_fast_seed_101.mp4": "000000206674797069736f6d0000020069736f6d69736f32617663316d703431"
+    },
+    "policy_lineage_status": "ACTOR_TENSORS_MATCH",
+    "matched_tensor_count": 8,
+    "model_sha256": "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4",
+    "checkpoint_files": [
+      "go2_track_lin_vel_120_v1/training/logs/rsl_rl/quadruped/2026-09-02_09-27-11/model_900.pt"
+    ],
+    "tfevents_count": 1,
+    "params_count": 2
+  },
+  "missing": [],
+  "mismatches": [],
+  "behavior_assessment": "UNMEASURED",
+  "final_authority": "main_agent"
+}

@@ -1,0 +1,3 @@
+source	destination	action	status
+extracted/go2_track_lin_vel_120_v1/evaluation/candidate/videos/G1_forward_fast_seed_101.mp4	workspace/training/quadruped/reports/evidence/go2_track_lin_vel_120_260902/videos/G1_forward_fast_seed_101.mp4	copy-new-evidence	VERIFIED
+extracted/go2_track_lin_vel_120_v1/reports/TIER1_DECISION.json	workspace/training/quadruped/reports/evidence/go2_track_lin_vel_120_260902/ANALYSIS_SUMMARY.json	derive-machine-summary	VERIFIED
