@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "post_push_tracking_xy_rmse": 0.254223683371549,
+  "projected_progress_m": 19.754365059476292,
+  "recovery": {
+    "expected_events": 128,
+    "median_recovery_s": 3.3200000000000003,
+    "recovered_events": 24,
+    "recovery_rate": 0.1875
+  },
+  "rows": 32000,
+  "schema_version": 1,
+  "speed_xy_mean": 0.3391152790295726,
+  "step_dt": 0.02,
+  "steps": 1000,
+  "survival_proxy": 1.0,
+  "terminated_env_count": 0,
+  "tracking_xy_rmse": 0.25658504532143817,
+  "tracking_yaw_rmse": 0.18094177675500395,
+  "wall_seconds": 17.871256113052368
+}
