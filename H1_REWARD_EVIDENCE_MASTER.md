@@ -231,3 +231,143 @@ Isaac Lab/가이드의 의미 설명은 방향 가설을 지지하지만 NCRC �
 3. 개선·악화가 교환되거나 threshold가 없으면 `INCONCLUSIVE`; 장기 학습하지 않는다.
 4. screening winner만 독립 seed와 같은 자체 evaluator로 재검증한 뒤 10,000 iter 장기 후보가 된다.
 5. 최종 선택은 `Run06 동결본`과 `장기 후보`를 같은 evaluator·영상·artifact 계약으로 비교해 결정한다.
+
+## 10. Run06 seed-42 전체 평가와 신뢰성 판정 (260901)
+
+### 확보 결과
+
+| H | survival | tracking proxy | scenario proxy | 증거 상태 |
+|---|---:|---:|---:|---|
+| H1 | 1.0000 | 0.9268 | 0.9268 | calibration telemetry + video observed |
+| H2 | 1.0000 | 0.9631 | 0.9631 | calibration telemetry + video observed |
+| H3 | 1.0000 | 0.9812 | 0.9812 | calibration telemetry + video observed |
+| H4 | 1.0000 | 0.9051 | 0.9051 | calibration telemetry; video yaw unknown |
+| H5 | 1.0000 | 0.9568 | 0.9568 | calibration telemetry + video observed |
+| H6 | 1.0000 | 0.9738 | 0.9738 | calibration telemetry; video slope unknown |
+| H7 | 1.0000 | 0.8906 | 0.8906 | calibration telemetry; video push unknown |
+
+- simulation proxy: 0.9434489 = 66.0414/70
+- 문서 자체감사: 27/30
+- 산술 합계: 93.0414/100
+- 판정: `CALIBRATION_PASS / GENERALIZATION_UNVERIFIED`
+
+### 왜 바로 신뢰하지 않는가
+
+Run06은 Run05 reward를 그대로 10,000 iteration 학습한 장기학습 run이다. 실제 학습은 있었지만 새 reward 튜닝은 없었다. seed 42 평가가 높게 나온 것은 320개 environment-episode에서 조기 종료가 없고 RMSE가 내부 `std=0.5` 지수함수에서 높은 proxy로 변환됐기 때문이다. 이 식과 threshold는 공식 evaluator가 아니며 부분 seed 42 결과를 본 뒤 고정됐다.
+
+### 다음 과학적 게이트
+
+정책·proxy·threshold를 고정하고 seed 101·202·303에서 H1~H7 전체를 평가한다. 각 시나리오는 최악 seed를 사용하고 세 seed가 모두 통과해야 `INDEPENDENT_VALIDATION_PASS`다. 이 결과 전에는 추가 장기학습과 성능 제출 승급을 금지한다.
+
+## 11. Run06 독립 3-seed 검증 결과와 동결 결정 (260901)
+
+### 검증 결과
+
+- 동결 정책: Run06 `model_9900.pt`, SHA-256 `8eb06e2b…b636`
+- 사전등록 평가 seed: 101, 202, 303
+- 범위: seed별 H1~H7 10 case, 32 environments, 1,000 steps
+- 실행 완전성: 30/30 case 정상 종료, 누락 seed 0, 실패 seed 0
+- 판정 방식: 시나리오별 세 seed 중 최악 survival·tracking·proxy
+
+| H | 최악 survival | 최악 tracking | 최악 proxy | 내부 판정 |
+|---|---:|---:|---:|---|
+| H1 | 1.0000 | 0.9269 | 0.9269 | `INDEPENDENT_SCENARIO_PASS` |
+| H2 | 1.0000 | 0.9630 | 0.9630 | `INDEPENDENT_SCENARIO_PASS` |
+| H3 | 1.0000 | 0.9810 | 0.9810 | `INDEPENDENT_SCENARIO_PASS` |
+| H4 | 1.0000 | 0.9062 | 0.9062 | `INDEPENDENT_SCENARIO_PASS` |
+| H5 | 1.0000 | 0.9584 | 0.9584 | `INDEPENDENT_SCENARIO_PASS` |
+| H6 | 1.0000 | 0.9735 | 0.9735 | `INDEPENDENT_SCENARIO_PASS` |
+| H7 | 1.0000 | 0.8594 | 0.8594 | `INDEPENDENT_SCENARIO_PASS` |
+
+- 내부 simulation proxy: 0.9390233 = **65.73/70**
+- 문서 자체감사: 27/30
+- 내부 산술 합계: **92.73/100**
+- 판정: `ARTIFACT_VERIFIED / INDEPENDENT_VALIDATION_PASS`
+
+### 해석과 다음 결정
+
+seed 42 교정값 66.04/70과 독립 최악 seed 값 65.73/70의 차이가 작고, 모든 평가 seed에서
+H1~H7 내부 gate와 survival 1.0을 유지했다. 이는 **평가 seed 변화에 대한 안정성** 근거다.
+다만 정책은 training seed 42 한 번으로만 학습했으며 시나리오와 proxy도 내부 근사이므로
+training-seed 일반화나 운영진 공식 점수·예선 합격을 뜻하지 않는다.
+
+현재는 표 §9-b의 조건부 reward screening을 시작하지 않는다. 실패 시나리오가 없고 새 튜닝은
+이미 확보한 전 시나리오 안정성을 훼손할 위험이 있다. Run06을 제출 후보로 동결하고,
+`policy.pt`·`env.yaml`·기술 개선 리포트의 대시보드 제출과 접수 증거 회수를 우선한다.
+
+## 12. 규정집 대조 재평가와 H1 동결 확정 (260903)
+
+### 12-a. 가중치 검증 — 우리 표는 공식 표와 일치한다
+
+예선 규정집 제7조의 H1 공식 가중치(H1 0.15 · H2 0.20 · H3 0.10 · H4 0.10 · H5 0.15 ·
+H6 0.15 · H7 0.15)를 §11 최악-seed proxy에 적용하면 0.93905다. §11에 기록된
+`0.9390233`과 일치한다. **§11은 처음부터 공식 가중치로 계산돼 있었다.** 정정 없음.
+
+### 12-b. 생존 지표 재검증 — H1은 Go2의 결함에 감염되지 않았다
+
+Go2에서 발견된 결함(생존을 `terminated` 플래그로만 계산해 배를 깔고 누운 로봇을
+생존으로 집계)이 H1에도 적용되는지 검사했다. `eval_telemetry.py:206`의
+`survival_rate_completed = timeouts / completed_episodes`는 **같은 종류의 종료-전용
+지표**이므로 검사는 필요했다.
+
+`tools/retro_score_h1_flat_survival.py`로 평지 시나리오 7 case × 3 seed = **21 case,
+672 environment-episode**를 자세 게이트로 재채점했다(GPU 0분).
+
+| 항목 | 결과 |
+|---|---|
+| 재채점 case | 21/21 (H1·H2·H3좌우·H4좌우·H7 — 공식 가중치 **0.70** 커버) |
+| survival v1 → v2 | 모든 case **1.0000 → 1.0000** |
+| 낙상 판정 env | **0 / 672** |
+| 관측 pelvis 최저 높이 | **0.8764 m** (기립 ~0.91, 스폰 1.05) |
+| 낙상 임계 | 0.55 m를 0.5초 이상 유지 — 최저값이 임계의 **1.59배** |
+| 시뮬 점수 변화 | **±0.000 / 70** |
+
+**판정: `POSTURE_VERIFIED / SURVIVAL_GENUINE`.** H1의 survival 1.0000은 지표 결함이
+아니라 실제 행동이다. 사족은 다리를 벌리고 주저앉아도 종료가 걸리지 않지만, H1은
+골반 높이가 0.877 m 아래로 내려간 적이 **단 한 번도 없다**. §11의 `65.73/70`은 유효하다.
+
+**재채점 불가:** `H5_rough`, `H6_plus10`, `H6_minus10` — 지형 높이가 몸체 아래에서
+움직이므로 월드좌표 높이 검사가 성립하지 않는다(가중치 0.30). 이 두 시나리오는
+자세 채널을 포함한 evaluator로 재측정하기 전까지 `POSTURE_UNMEASURED`다.
+
+### 12-c. 남은 감점의 위치
+
+survival이 전 시나리오 1.0이므로 **잔여 4.27점은 전부 tracking이다.**
+
+| 시나리오 | proxy | 가중 | 실점 |
+|---|---:|---:|---:|
+| **H7 밀침 회복** | 0.8594 | 0.15 | **−1.476** |
+| H1 제자리 균형 | 0.9269 | 0.15 | −0.768 |
+| H4 회전 복합 | 0.9062 | 0.10 | −0.657 |
+| H2 전진 | 0.9630 | 0.20 | −0.518 |
+| H5 요철 | 0.9584 | 0.15 | −0.437 |
+| H6 경사 | 0.9735 | 0.15 | −0.278 |
+| H3 좌우 | 0.9810 | 0.10 | −0.133 |
+| 합계 | | | **−4.267 / 70** |
+
+### 12-d. 학습 지형과 평가 지형의 괴리 (규정 제7조)
+
+**H1 평가 시나리오에는 계단도 박스 단차도 없다.** 평지 계열 0.70 + 요철 0.15 +
+완만한 경사 ±10° 0.15가 전부다. 반면 학습 지형은 계단 33% + 박스 단차 33%로
+**66%가 예선 채점에 직접 기여하지 않는 지형**이다(규정은 이를 본선 과제로 명시).
+
+따라서 등반력 관련 reward 조정(`feet_air_time` 인상 등)의 **예선 기대이득은 0**이며,
+`H1_REWARD_EVIDENCE_MASTER.md` §9-b 조건 2(`feet_air_time: 0.2 → 0.3`, 목표 "요철·경사
+생존")는 이 근거로 **우선순위 최하위로 강등**한다. 요철·경사 시나리오의 생존은 이미 1.0이다.
+
+### 12-e. 결정 — H1 재학습 금지, 동결·제출
+
+| 축 | 값 |
+|---|---|
+| 상한 이득 | **+4.27점** (전 시나리오 tracking 완벽 시), 현실적으로 +1~2점 |
+| 위험 | 확보한 **65.73점** 전체. 전 시나리오 survival 1.0은 재학습으로 깨질 수 있다 |
+| 비용 | 10,000 iter ≈ 2h (0.72 s/iter 실측) |
+| 규정 근거 | 제10조 — 로봇 유형별 **최고점만** 반영. 나빠진 제출은 손해가 없지만, **미제출은 0점** |
+
+**판정: `H1_FROZEN_FOR_SUBMISSION`.** Run06 `model_9900.pt`(SHA `8eb06e2b…b636`)를
+동결하고 재학습하지 않는다. H1에 배정하는 GPU 시간은 **0시간**이다.
+남은 H1 작업은 전부 GPU를 쓰지 않는 제출·문서 작업이다.
+
+**⚠️ 최우선 미해결 항목:** H1의 **실제 제출 여부가 `[미측정]`**이다(`AGENTS.md` L66).
+자체예상 92.73/100의 정책이 제출되지 않았다면 규정 제10조에 따라 **0점으로 집계된다.**
+이것이 캠페인 전체에서 비용 0·기대이득 최대의 행동이다.

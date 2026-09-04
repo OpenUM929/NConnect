@@ -1180,3 +1180,57 @@ SHA `f89c925b3889ff57e8ad64a16b07a8cfa4521173068d46456ea39a7dcb89ed35`와 `bash 
 H1~H7 10 case를 모두 20초 평가해 `시뮬 proxy /70`을 확정한다. 70점 게이트를 통과하면 제출
 후보를 유지하고, 미달이면 `가중치 × (1-scenario_proxy)` 최대 감점 시나리오의 약한 인수만
 3,000-iteration 단일변수 screening한다.
+
+### 260901 Run06 전체 교정 평가와 독립 검증 결정
+
+| ID | 결정/사실 | 근거 |
+|---|---|---|
+| **F73** | Run06 전체 평가 FULL tar의 외부 SHA가 일치했고 안전 경로, 내부 checksum 69/69, case 10/10 `EVAL_RC=0`, `RUNNER_RC=0`, model SHA 대응이 모두 통과했다 | `CALIBRATION_VERIFICATION.md`, tar SHA `4e552b2c…860f` |
+| **F74** | seed 42에서 H1~H7 모두 survival 1.0, simulation proxy 0.9434489(66.0414/70)였으며 H7은 expected 128회 중 recovered 114회를 사용했다 | `CALIBRATION_FIXED_EVAL_REPORT.json` |
+| **F75** | 높은 점수는 오류가 아니라 seed 42·학습분포 내 명령·내부 지수 변환식의 결과다. 공식 evaluator 및 독립 seed 성능과 동일하지 않다 | `RUN06_CONFIDENCE_AUDIT.md` |
+| **D63** | 기존 `SELF_ASSESSMENT_PASS`는 `CALIBRATION_PASS / GENERALIZATION_UNVERIFIED`로 제한한다. 제출 파일 정합성과 성능 일반화를 분리한다 | seed·threshold 비독립성과 사용자 신뢰성 지적 |
+| **D64** | 추가 학습 전에 정책·proxy·threshold를 동결하고 seed 101·202·303에서 H1~H7 전체를 반복한다. 시나리오별 최악 seed와 세 seed 전부 통과를 요구한다 | 단일 seed 과대해석 방지 |
+| **D65** | 독립 검증이 통과하면 Run06을 성능 제출 후보로 승급하고, 실패하면 최대 감점 시나리오의 약한 인수 하나만 3k screening한다 | 장기학습 선행 금지·단일변수 원칙 |
+
+**LATEST NEXT:** `run06_independent_eval_package.zip`을 다음 서버 세션에서 실행한다. 학습은 없고 예상 15~25분이다. FULL tar와 `.sha256`를 로컬에서 검증하기 전에는 서버 종료 판정을 내리지 않는다.
+
+### 260901 Run06 독립 평가·제출 후보 동결 완료
+
+| ID | 결정/사실 | 근거 |
+|---|---|---|
+| **F76** | 독립평가 tar 외부 SHA `ae89423e…56eb`가 일치했고 안전하지 않은 경로 0, 내부 manifest 189/189, `RUNNER_RC=0`, 30/30 case `play_rc=0`였다 | `workspace/server_returns/train_260831-06_run05cfg_10000/independent_eval_20260901_084900/` |
+| **F77** | 사전등록 seed 101·202·303에서 누락·실패 seed 0, H1~H7 실패 시나리오 0이며 최악 seed 기준 내부 simulation proxy는 65.73/70이다 | `INDEPENDENT_EVAL_REPORT.md/.json` |
+| **F78** | 제출 후보 model·env가 독립평가 meta와 각각 SHA `8eb06e2…b636`, `506a54aa…e99d`로 일치하고 `policy.pt` actor tensor 8/8도 checkpoint와 일치한다 | 후보·독립평가 해시 대조 및 `torch.jit.load` tensor 대조 |
+| **D66** | Run06을 `ARTIFACT_VERIFIED / INDEPENDENT_VALIDATION_PASS` 제출 후보로 동결한다. 추가 reward tuning은 현재 실행하지 않는다 | 3개 독립 평가 seed와 H1~H7 전 시나리오 내부 gate 통과 |
+| **D67** | 단계 5/6의 내부 제출 준비는 완료했다. 단계 6/6은 팀 대시보드 업로드·접수 증거를 회수한 뒤에만 완료한다 | 외부 제출 여부는 원장으로 유도할 수 없어 `[미측정]` |
+
+**LATEST NEXT:** `workspace/submission_candidates/h1_run06_model9900/UPLOAD_READY/`의 `policy.pt`,
+`env.yaml`, `TECHNICAL_REPORT.md`를 팀 대시보드에 제출하고 완료 화면을 보존한다. 운영진
+공식 결과는 `OFFICIAL_RESULT_UNMEASURED`로 유지한다.
+
+### 260901 별도 Go2 캠페인 개시
+
+| ID | 결정/사실 | 근거 |
+|---|---|---|
+| **F79** | Go2 1차 결과 `train_260831-Go2_5var_1000`이 로컬에 있으며 model SHA는 `c4d78adf…af8d`, env SHA는 `f5550641…975d`다 | `workspace/training/quadruped/exported/`, `_keep/train_260831-Go2_5var_1000/` 직접 대조 |
+| **F80** | 이 run은 배포 기준 대비 `track_lin 1.0→1.2`, `feet_air 0.01→0.2`, `lin_vel_z -3→-2`, `ang_vel_xy -0.08→-0.05` 네 항을 동시에 변경했다. `action_rate=-0.01`은 불변이다 | `quadruped_rewards.py`, 강좌 14강 Go2 기준표 |
+| **F81** | 기존 Go2 영상 러너의 G1~G7 매핑은 제공 가이드의 Go2 시나리오와 일치하지 않는다 | `PRELIM_RL_GUID.md:60-70` ↔ `server_run_Go2_videos.sh` 비교 |
+| **F82** | 1라운드 제출 화면은 로봇 유형 선택, `policy.pt`, `.yaml`, 기술 개선 리포트 30~200자를 요구한다 | 사용자 제공 대시보드 원문(260901) |
+| **D68** | D23은 과거 H1 캠페인의 범위 결정으로 보존하고, Go2는 별도 원장·artifact namespace로 신규 개시한다 | 사용자 요청(260901). H1 완료 상태와 Go2 진행을 혼합하지 않음 |
+| **D69** | Go2 1차 run은 `MULTIVARIABLE_EXPLORATORY_BASELINE`으로 동결한다. 올바른 G1~G7 고정평가 전에는 추가 학습하지 않는다 | 개별 reward 인과효과와 G1~G7 성능이 미측정 |
+
+**GO2 NEXT:** `GO2_PROJECT_STATE.md`와 `workspace/training/quadruped/reports/NEW_SESSION_HANDOFF.md`를
+읽고, 기존 pilot의 provenance를 닫은 뒤 정확한 G1~G7 evaluator package를 구현·검증한다.
+
+
+### 260902 H1·Go2 공통 전체평가 승급 규칙
+
+| ID | 결정/사실 | 근거 |
+|---|---|---|
+| **F83** | Go2 69-case는 강좌가 직접 요구한 개수가 아니라, 제공된 G1~G7 범주·가중치를 내부에서 명령 격자와 seed 반복으로 확장한 평가 설계다 | `GO2_PROJECT_STATE.md` G-F38~G-F40 |
+| **D70** | H1·Go2 모두 조기중단 6~8건, 대표 7시나리오×3 seed, 승급 후보의 기체별 전체 평가 순으로 비용을 통제한다 | 사용자 결정 260902 |
+| **D71** | 전체 평가 승급은 대표 시뮬레이션 proxy ≥60/70과 시나리오별 survival ≥.95·tracking ≥.70, 3 seed 정상 완료, 필수 영상 치명 이상 0건을 동시에 요구한다 | 점수와 안정성 동시 확인 |
+| **D72** | 승급 뒤 H1은 H1 전용 30-case, Go2는 수리된 Go2 전용 69-case를 실행한다. 서로의 case grid를 복사하지 않는다 | 기체별 registry와 동역학 차이 |
+| **D73** | 이미 65.73/70과 30/30 독립 평가를 확보한 H1 Run06은 새 규칙을 충족한 기존 증거로 인정하며 재실행하지 않는다 | F76~F78; 중복 서버 비용 방지 |
+
+**H1 NEXT:** 신규 H1 후보가 생길 때만 D70~D72를 적용한다. 현재 Run06에는 추가 서버 평가가 없다.
