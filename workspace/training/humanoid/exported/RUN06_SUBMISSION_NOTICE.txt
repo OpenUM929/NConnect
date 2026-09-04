@@ -1,0 +1,7 @@
+﻿Run06 submission candidate promoted on 2026-08-31.
+Use these files for final submission:
+- policy.pt
+- env.yaml
+- TECHNICAL_REPORT.md
+Checkpoint identity: iter 9900; model_best.pt SHA256 8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636
+The existing report.html predates this promotion and is NOT a competition submission artifact.
