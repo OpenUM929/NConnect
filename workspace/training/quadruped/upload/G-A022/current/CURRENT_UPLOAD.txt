@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A022
+
+UPLOAD ONLY THESE TWO FILES
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A022\current\go2_tuning_engine_v1_4.zip
+   SHA256 a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A022\current\G_A022_chain01_feet_air_time_020.json
+   SHA256 5bb6ba1d4f90db9882e42e1de119c1f99cdb0c08c076a4c70c85df6d57507ec8
+
+RELEASE_ID 20260905_chain01-feet-air-time-020
+STATUS prepared
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

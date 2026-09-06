@@ -1,0 +1,63 @@
+GO2 G-A021 — Chain-01 기준선 · ang_vel_xy_l2 -0.08 → -0.05
+==========================================================
+
+G-A020(Chain-01 위에 lin_vel_z_l2를 동시에 얹은 조합)은 전 시나리오 생존 붕괴로
+기각됐다(baseline 18.61/70 -> candidate 0.43/70). Chain-02로 승격하지 않는다.
+Chain-01(track_lin_vel_xy_exp=1.2만)이 계속 동결 기준선이다. 이번부터는 한 번에
+하나씩만 쌓는다. 엔진은 v1_4 그대로(변경 없음, G-A020과 동일 엔진 재사용).
+
+업로드 2파일 (둘 다 /workspace/ 직속에 올린다. training/ 밑에는 아무것도 올리지 않는다)
+
+  go2_tuning_engine_v1_4.zip
+    SHA256 a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0
+    19,135,939 B  (G-A020과 동일 엔진, 재사용)
+
+  G_A021_chain01_ang_vel_xy_m005.json
+    SHA256 0177803887af8a9693fafdf9f5f6ec51dd6efcfe54c6e4577e4aa82a5df0e83e
+    2,882 B
+
+실행 한 줄
+----------
+cd /workspace && printf 'a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0  go2_tuning_engine_v1_4.zip\n0177803887af8a9693fafdf9f5f6ec51dd6efcfe54c6e4577e4aa82a5df0e83e  G_A021_chain01_ang_vel_xy_m005.json\n' | sha256sum -c --strict - && rm -rf go2_tuning_engine_v1_4 && unzip -oq go2_tuning_engine_v1_4.zip && cd /workspace/go2_tuning_engine_v1_4 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A021_chain01_ang_vel_xy_m005.json
+
+진행 확인
+---------
+tmux attach -t go2_g_a021      (분리: Ctrl-b 누르고 d)
+
+  PHASE 1/4  1,000 iter 학습              약 59분
+  PHASE 2/4  tier-1 게이트 + G1 영상       약 5분
+  PHASE 3/4  seed 202·303 (통과 시에만)    약 5분
+  PHASE 4/4  포장                          약 2분
+
+조기 종료 약 1시간 6분, 대표평가까지 약 1시간 11분.
+
+완료 표시
+---------
+[DONE] GO2_CHAIN01_ANG_VEL_XY_M005_RESULT_READY
+
+다운로드 2파일
+--------------
+/workspace/_keep/GO2_CHAIN01_ANG_VEL_XY_M005_RESULT.zip
+/workspace/_keep/GO2_CHAIN01_ANG_VEL_XY_M005_RESULT.zip.sha256
+
+→ C:\dev\Nconnect\workspace\_keep\ 에 그대로 둔다.
+
+왜 이 다이얼인가 (요약)
+--------------------
+G-A020 실패로 "개별 검증된 두 변경도 동시에 합치면 위험하다"는 게 확인됐다.
+남은 미검증 4항(feet_air_time·ang_vel_xy_l2·action_rate_l2·flat_orientation_l2)
+중 track_lin_vel_xy_exp와 상호작용 위험이 상대적으로 낮은 ang_vel_xy_l2를 먼저
+고른다. 후보값 -0.05는 Pilot-01이 4개를 동시에 바꿀 때 이 다이얼에 실제로 썼던
+값이다 — 그때는 다른 3개와 함께 바뀌어 개별 효과가 분리 측정된 적이 없었다.
+이번이 그 값의 첫 단독 검증이다.
+
+서버 종료 관문
+--------------
+DONE 표시만으로 끄지 않는다. 외부 SHA · ZIP CRC · 내부 manifest · RESULT_STATE/
+RUNNER_RC · telemetry 7/7 · G1 영상 · training/env.yaml 의 가중치(특히
+`ang_vel_xy_l2: -0.05`, `track_lin_vel_xy_exp: 1.2` 유지) · 정책 계보를 로컬에서
+확인해야 종료 여부를 답한다.
+
+병렬 실행 금지
+--------------
+GPU 1장(RTX 5080, 16,303 MiB)에 4096 env 학습이므로 다른 학습과 동시에 돌리지 않는다.

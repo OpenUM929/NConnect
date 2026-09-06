@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.2.0",
+  "work_id": "G-A016",
+  "run_id": "train_260904-Go2_pilot_ang_vel_xy_m015_1000",
+  "experiment_slug": "go2_g_a016_pilot_ang_vel_xy_m015",
+  "baseline": {
+    "name": "Pilot-01",
+    "checkpoint_iter": 1000,
+    "model_sha256": "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d",
+    "env_sha256": "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.2,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.2,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.15,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "ang_vel_xy_l2",
+    "from": -0.05,
+    "to": -0.15
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "tier1_seed": 101,
+    "representative_seeds": [
+      101,
+      202,
+      303
+    ],
+    "steps": 1000,
+    "case_attempts": 3,
+    "case_retry_delay_seconds": 10,
+    "cases": {
+      "G1": "forward_fast",
+      "G2": "diagonal_left",
+      "G3": "rough_forward",
+      "G4": "slope_plus_20",
+      "G5": "stairs_15_up",
+      "G6": "push_pos_x",
+      "G7": "dr_seed_{seed}"
+    },
+    "gates": {
+      "min_total_points_delta": 1.0,
+      "max_survival_regression": 0.1,
+      "minimum_points_70": 60.0,
+      "required_survival_proxy": 0.95,
+      "required_tracking_proxy": 0.7
+    }
+  },
+  "video": {
+    "required": true,
+    "scenario": "G1",
+    "case": "forward_fast",
+    "seed": 101,
+    "num_envs": 4,
+    "steps": 500
+  },
+  "output": {
+    "keep_dir_name": "go2_g_a016_pilot_ang_vel_xy_m015",
+    "result_zip": "GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip",
+    "done_marker": "[DONE] GO2_PILOT_ANG_VEL_XY_M015_RESULT_READY",
+    "tmux_name": "go2_g_a016"
+  },
+  "branch": {
+    "on_tier1_fail": "if the total regresses, ang_vel_xy_l2 -0.15 is too stiff for the terrain scenarios; next single variable is ang_vel_xy_l2 -0.05 to -0.10 against the same Pilot-01 baseline and seed. If instead G5 survival alone regresses, the dial is rejected outright and the campaign moves to the next loss rank (G4 slope)",
+    "on_tier1_pass": "run representative seeds 202 and 303",
+    "on_representative_pass": "69-case posture_gate_v2 re-evaluation and comparison against the frozen Pilot-01 measurement of 33.79311/70"
+  }
+}

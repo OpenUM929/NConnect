@@ -1,0 +1,20 @@
+{
+  "experiment_id": "G-A022",
+  "note": "Next single-variable dial after G-A021's rejected weakening: feet_air_time 0.01 -> 0.20 alone on top of Chain-01. Same fix2 engine (v1.4, no engine changes needed). Value reuses the exact candidate from G-A007 (tested on Default-01: +3.8656/70, only failure reason was G5 survival, not a collapse) -- first individual test of this direction on top of Chain-01's track_lin_vel_xy_exp increase.",
+  "published_at_utc": "2026-09-05T03:23:43+00:00",
+  "release_id": "20260905_chain01-feet-air-time-020",
+  "status": "prepared",
+  "support_files": [],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_4.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_4.zip",
+      "sha256": "a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0"
+    },
+    {
+      "name": "G_A022_chain01_feet_air_time_020.json",
+      "server_path": "/workspace/G_A022_chain01_feet_air_time_020.json",
+      "sha256": "5bb6ba1d4f90db9882e42e1de119c1f99cdb0c08c076a4c70c85df6d57507ec8"
+    }
+  ]
+}

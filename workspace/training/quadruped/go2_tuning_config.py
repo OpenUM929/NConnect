@@ -14,11 +14,16 @@ from pathlib import Path
 from typing import Any
 
 
-ENGINE_VERSION = "1.2.0"
+ENGINE_VERSION = "1.3.0"
 DEFAULT_BASELINE_MODEL_SHA = "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676"
-DEFAULT_BASELINE_ENV_SHA = "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
+# 260905: 원본 zip 결손으로 압축 해제본에서 다시 읽은 값(G-F143). model SHA는
+# byte-identical, env.yaml만 재직렬화로 바이트가 다르고 내용(6개 reward 가중치)은
+# 확인됨 — tools/build_go2_track_lin_vel_120_package.py 주석과 같은 근거.
+DEFAULT_BASELINE_ENV_SHA = "a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea"
 PILOT_BASELINE_MODEL_SHA = "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
-PILOT_BASELINE_ENV_SHA = "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
+PILOT_BASELINE_ENV_SHA = "89e7a11749e218081e9d2e9be0a7544e864ea9300472148bc64ccdf83eab77c9"
+CHAIN01_BASELINE_MODEL_SHA = "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4"
+CHAIN01_BASELINE_ENV_SHA = "2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71"
 REWARD_NAMES = (
     "track_lin_vel_xy_exp",
     "feet_air_time",
@@ -64,6 +69,26 @@ FROZEN_BASELINES = {
             "feet_air_time": 0.2,
             "lin_vel_z_l2": -2.0,
             "ang_vel_xy_l2": -0.05,
+            "action_rate_l2": -0.01,
+            "flat_orientation_l2": 0.0,
+        },
+    },
+    # Chain-01: Default-01 + track_lin_vel_xy_exp 1.0->1.2 only (G-A011, verified
+    # +3.0902846/70 over Default-01's 17.537121/70, zero survival regression).
+    # Unlike Pilot-01 (four rewards changed at once, one training seed, never
+    # reproduced), every reward on this checkpoint traces to an independently
+    # measured single-variable result. G-A020 resumes single-variable screening
+    # from here instead of from Pilot-01.
+    "Chain-01": {
+        "slug": "chain01",
+        "checkpoint_iter": 1000,
+        "model_sha256": CHAIN01_BASELINE_MODEL_SHA,
+        "env_sha256": CHAIN01_BASELINE_ENV_SHA,
+        "rewards": {
+            "track_lin_vel_xy_exp": 1.2,
+            "feet_air_time": 0.01,
+            "lin_vel_z_l2": -3.0,
+            "ang_vel_xy_l2": -0.08,
             "action_rate_l2": -0.01,
             "flat_orientation_l2": 0.0,
         },

@@ -1,0 +1,70 @@
+{
+  "checkpoint_actor_tensor_count": 8,
+  "matched_tensor_count": 8,
+  "matches": [
+    {
+      "checkpoint": "mlp.0.weight",
+      "policy": "mlp.0.weight",
+      "shape": [
+        512,
+        235
+      ]
+    },
+    {
+      "checkpoint": "mlp.0.bias",
+      "policy": "mlp.0.bias",
+      "shape": [
+        512
+      ]
+    },
+    {
+      "checkpoint": "mlp.2.weight",
+      "policy": "mlp.2.weight",
+      "shape": [
+        256,
+        512
+      ]
+    },
+    {
+      "checkpoint": "mlp.2.bias",
+      "policy": "mlp.2.bias",
+      "shape": [
+        256
+      ]
+    },
+    {
+      "checkpoint": "mlp.4.weight",
+      "policy": "mlp.4.weight",
+      "shape": [
+        128,
+        256
+      ]
+    },
+    {
+      "checkpoint": "mlp.4.bias",
+      "policy": "mlp.4.bias",
+      "shape": [
+        128
+      ]
+    },
+    {
+      "checkpoint": "mlp.6.weight",
+      "policy": "mlp.6.weight",
+      "shape": [
+        12,
+        128
+      ]
+    },
+    {
+      "checkpoint": "mlp.6.bias",
+      "policy": "mlp.6.bias",
+      "shape": [
+        12
+      ]
+    }
+  ],
+  "policy_tensor_count": 8,
+  "schema_version": 1,
+  "status": "ACTOR_TENSORS_MATCH",
+  "unmatched_policy": []
+}

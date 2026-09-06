@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "engine_version": "1.0.1",
+  "engine_version": "1.3.0",
   "work_id": "G-A010",
-  "run_id": "train_260902-Go2_lin_vel_z_m2_1000",
+  "run_id": "train_260905-Go2_lin_vel_z_m2_1000",
   "experiment_slug": "go2_g_a010_lin_vel_z_m2",
   "baseline": {
     "name": "Default-01",
     "checkpoint_iter": 800,
     "model_sha256": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
-    "env_sha256": "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
+    "env_sha256": "a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea"
   },
   "rewards": {
     "baseline": {
@@ -16,14 +16,16 @@
       "feet_air_time": 0.01,
       "lin_vel_z_l2": -3.0,
       "ang_vel_xy_l2": -0.08,
-      "action_rate_l2": -0.01
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
     },
     "candidate": {
       "track_lin_vel_xy_exp": 1.0,
       "feet_air_time": 0.01,
       "lin_vel_z_l2": -2.0,
       "ang_vel_xy_l2": -0.08,
-      "action_rate_l2": -0.01
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
     }
   },
   "single_change": {"name": "lin_vel_z_l2", "from": -3.0, "to": -2.0},
@@ -46,6 +48,7 @@
     "gates": {
       "target_scenario": "G1",
       "target_min_proxy_delta": 0.05,
+      "min_total_points_delta": 1.0,
       "max_survival_regression": 0.10,
       "minimum_points_70": 60.0,
       "required_survival_proxy": 0.95,

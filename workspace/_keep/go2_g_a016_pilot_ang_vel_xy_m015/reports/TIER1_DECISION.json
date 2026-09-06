@@ -1,0 +1,66 @@
+{
+  "baseline_points_70": 46.4912409491015,
+  "candidate_minus_baseline_points_70": -45.115543713910654,
+  "candidate_points_70": 1.3756972351908503,
+  "failure_reasons": [
+    "total_points_70_delta_below_1.0",
+    "G1_survival_regressed_over_0.1",
+    "G2_survival_regressed_over_0.1",
+    "G3_survival_regressed_over_0.1",
+    "G4_survival_regressed_over_0.1",
+    "G5_survival_regressed_over_0.1",
+    "G6_survival_regressed_over_0.1",
+    "G7_survival_regressed_over_0.1"
+  ],
+  "gates": {
+    "max_survival_regression": 0.1,
+    "min_total_points_delta": 1.0,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "train_260904-Go2_pilot_ang_vel_xy_m015_1000",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -0.8932188496646043,
+      "survival": -1.0,
+      "tracking": -0.8896652104268953
+    },
+    "G2": {
+      "proxy": -0.9247104145696612,
+      "survival": -1.0,
+      "tracking": -0.6560070028334744
+    },
+    "G3": {
+      "proxy": -0.484826224464305,
+      "survival": -0.8125,
+      "tracking": -0.2220084769201891
+    },
+    "G4": {
+      "proxy": -0.5533259149051781,
+      "survival": -1.0,
+      "tracking": -0.17180695062625556
+    },
+    "G5": {
+      "proxy": -0.4094089641427777,
+      "survival": -0.71875,
+      "tracking": -0.5416247029223153
+    },
+    "G6": {
+      "proxy": -0.7559716596285994,
+      "survival": -0.78125,
+      "tracking": 0.014700505590588997
+    },
+    "G7": {
+      "proxy": -0.5484573499352672,
+      "survival": -0.90625,
+      "tracking": -0.2238092188540034
+    }
+  },
+  "schema_version": 3,
+  "status": "INTERNAL_EARLY_KILL_FAIL",
+  "target_scenario": null,
+  "target_scenario_observation": null,
+  "work_id": "G-A016"
+}

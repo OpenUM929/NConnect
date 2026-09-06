@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A017
+
+UPLOAD ONLY THESE TWO FILES
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A017\current\go2_tuning_engine_v1_3.zip
+   SHA256 dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A017\current\G_A017_pilot_track_lin_vel_xy_140.json
+   SHA256 824753950d00bcddd9c4647b641a6b0f37632ecafc7064fd5d65bab68ee5f0b4
+
+RELEASE_ID 20260904_track-lin-vel-xy-140
+STATUS ACTIVE
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

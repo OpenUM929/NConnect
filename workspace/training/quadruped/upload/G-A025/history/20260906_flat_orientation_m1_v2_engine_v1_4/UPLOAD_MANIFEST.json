@@ -1,0 +1,22 @@
+{
+  "experiment_id": "G-A025",
+  "note": "G-A013(260903) 재측정 — v1 termination-only evaluator 결과 신뢰 불가, posture_gate_v2로 재실행",
+  "published_at_utc": "2026-09-06T06:03:49+00:00",
+  "release_id": "20260906_flat_orientation_m1_v2_engine_v1_4",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A025_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_4.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_4.zip",
+      "sha256": "81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37"
+    },
+    {
+      "name": "G_A025_flat_orientation_m1.json",
+      "server_path": "/workspace/G_A025_flat_orientation_m1.json",
+      "sha256": "fddddfd12f5487b04811bb0e3bf02b7ef38f5f6687f85e5b0f62f04b96b8f70f"
+    }
+  ]
+}

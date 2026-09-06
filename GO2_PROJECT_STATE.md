@@ -431,3 +431,195 @@
 
 **LATEST NEXT:** `workspace\training\quadruped\upload\G-A016\current\` 2파일 업로드 → 실행 →
 `workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A016** 절.
+
+**(마감)** G-A016은 실행·회수·검증 완료. 후속은 §24.
+
+## 24. G-A016 결과 회수·분석과 G-A017 준비 — 260904
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F111 | `GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip` 외부 SHA `84f483a6ba04fc0536ea22fbe824add29cedf49c367c77b7801e52db76de1844`가 서버 sidecar와 일치하고 ZIP CRC 무결, 내부 manifest 128/128 OK다. | 로컬 `sha256sum -c`, `zipfile.testzip` |
+| G-F112 | `RESULT_STATE=FULL`, `RUNNER_RC=0`, telemetry 후보 7/7·기준 7/7, 영상 1/1(`G1_forward_fast_seed_101.mp4` 1,834,069 B), 정책 계보 `ACTOR_TENSORS_MATCH`(8/8). `training/env.yaml`은 `ang_vel_xy_l2 -0.15`만 바뀌고 나머지 5개(`feet_air_time 0.2`, `lin_vel_z_l2 -2.0` 포함)는 Pilot-01 값 그대로다 — 단일 변수 원칙 유지 확인. | `RESULT_STATUS.txt`, `RUNNER_STATUS.txt`, `POLICY_LINEAGE.json`, `training/env.yaml` |
+| G-F113 | G-A016 판정은 `INTERNAL_EARLY_KILL_FAIL`, 총점 `−45.115544/70`(기준 `46.49124`, 후보 `1.37570`)이다. G1~G7 **전 시나리오**의 생존이 0.10 넘게 후퇴했다(G1 `−1.000`, G2 `−1.000`, G3 `−0.8125`, G4 `−1.000`, G5 `−0.71875`, G6 `−0.78125`, G7 `−0.90625`). G-A015보다 넓고 심각하다. | `reports/TIER1_DECISION.json` |
+| G-F114 | 실패 방식은 전복이 아니라 **학습 극초반(iter ~100~150)에 고착된 전역 동결**이다. 학습 로그에서 `track_lin_vel_xy_exp`는 iter 150 근처 `0.24`에서 정체해 남은 850 iteration 동안 개선되지 않았고, `ang_vel_xy_l2` 페널티는 `−0.54→−0.07`로 계속 줄었다. 평가 시계열(`forward_fast`, 명령 vx 1.2m/s)은 t=0.02s `height_rel 0.398`에서 t=1.02s `0.177`로 반토막, 이후 999 스텝 내내 `height_rel≈0.12~0.13`·`speed_xy≈0` 고정, `proj_grav_z`는 `−0.999→−0.81`로 서서히 안정(쓰러짐 아님)이다. | `logs/candidate_training.log`, `evaluation/candidate/cases/seed_101/forward_fast/steps.csv` |
+| G-F115 | G-A017 사양 `G_A017_pilot_track_lin_vel_xy_140.json` SHA-256 `824753950d00bcddd9c4647b641a6b0f37632ecafc7064fd5d65bab68ee5f0b4`, 2,978 B. 추출본에서 `validate` VALID(`baseline=Pilot-01`), `materialize` 후보 `track_lin_vel_xy_exp 1.4`·기준선 `1.2`, 나머지 5개 동일. | 로컬 end-to-end 검증 |
+| G-F116 | 엔진은 재빌드해도 `dfbe47ae…877b1a`로 동일하다. G-A017은 G-A015·G-A016과 **바이트 동일한 엔진**을 쓴다. 계약 테스트 실행 시 이번 사양 추가와 무관한 기존 실패(대형 원본 파일 미보유로 인한 재빌드 테스트, G-F94 이후 알려진 상태) 6/7건만 재현되고 엔진·게이트 계약은 전부 통과한다. | `python -m unittest discover -s tools` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D77 | `ang_vel_xy_l2` 다이얼을 **완전히 기각**한다. 더 작은 폭(예: −0.10) 재탐색은 실행하지 않는다. | 사전등록 §19-d 3행(G5 생존 후퇴 `0.71875` > 0.10) 발화. 붕괴가 iter 150 안에 이미 고착됐다는 근거(G-F114)로 볼 때 더 작은 폭도 같은 국소최적해 함정에 빠질 위험이 크고, §19-d 2행(생존 후퇴 허용 내) 조건은 발화하지 않았다 |
+| G-D78 | 다음 단일 변수는 **`track_lin_vel_xy_exp` 1.2 → 1.4**(G-A017)다. 기준선은 동결 Pilot-01 그대로, 엔진은 v1.3(1.2.0) 바이트 동일 재사용. | 실점 3순위 G4(경사, `4.95/70`)의 실점 인자는 순수 추종(`tracking_proxy 0.5533`, 생존은 이미 `1.0`)이다. 남은 미검증 reward 항은 `track_lin_vel_xy_exp`·`action_rate_l2` 뿐이고, G4 실점과 직접 연결되는 것은 전자뿐이다. `+0.2`는 G-A011이 이미 안전을 확인한 것과 같은 폭으로, G-A015·G-A016의 "3배 도약" 패턴을 반복하지 않는다 |
+
+**LATEST NEXT:** `workspace\training\quadruped\upload\G-A017\current\` 2파일 업로드 →
+실행 → `workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A017** 절.
+
+**(마감)** G-A017은 실행·회수·검증 완료. 후속은 §25.
+
+## 25. G-A017 결과 회수·분석과 G-A018 준비 — 260904
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F117 | `GO2_PILOT_TRACK_LIN_VEL_XY_140_RESULT.zip` 외부 SHA `7b056d0e7f36e421ebbddd79b117be8a5d75dc309c7ad8a8dbe6d8066cf521ab`가 서버 sidecar와 일치, ZIP CRC 무결(129 멤버 OK). | 로컬 `hashlib.sha256`, `zipfile.testzip` |
+| G-F118 | `RESULT_STATE=FULL`, `RUNNER_RC=0`, telemetry 후보 7/7·기준 7/7, 영상 1/1(`G1_forward_fast_seed_101.mp4`), 정책 계보 `ACTOR_TENSORS_MATCH`(8/8). `training/env.yaml`은 `track_lin_vel_xy_exp 1.4`만 바뀌고 나머지 5개(`feet_air_time 0.2`, `lin_vel_z_l2 -2.0`, `ang_vel_xy_l2 -0.05` 포함)는 Pilot-01 값 그대로다. | `RESULT_STATUS.txt`, `RUNNER_STATUS.txt`, `POLICY_LINEAGE.json`, `training/reward_only.diff` |
+| G-F119 | G-A017 판정은 `INTERNAL_EARLY_KILL_FAIL`이지만 총점은 실제로 개선됐다: 기준 `46.49124/70` → 후보 `50.19916/70`(`+3.70792`). Pilot-01 동결 뒤 처음으로 총점이 오른 회차다. 발화한 게이트는 `G4_survival_regressed_over_0.1` 하나뿐이다. | `reports/TIER1_DECISION.json` |
+| G-F120 | G4의 생존은 `1.0 → 0.78125`(`-0.21875`)로 후퇴 상한(0.10)의 두 배를 넘었다. 같은 시나리오에서 추종은 `0.5533 → 0.7286`(`+0.1752`, 요구 임계 0.70 육박)로 크게 개선됐다. 나머지 6개 시나리오는 생존이 유지되거나 개선됐다(G3 survival `+0.09375`, G7 survival `+0.0625`). | `reports/TIER1_DECISION.json` scenario_deltas, `evaluation/candidate,baseline_tier1/SELF_EVAL_REPORT.json` |
+| G-F121 | 사전등록 분기(24-e)는 G3·G5를 취약 후보로 지목했지만 실제 후퇴는 G4에서 발생했다. 규칙 자체("임의 시나리오 생존 후퇴 > 0.10")는 특정 시나리오 예측이 빗나가도 그대로 적용된다. | 24-e 분기표 vs 실측 |
+| G-F122 | G-A018 사양 `G_A018_pilot_action_rate_m008.json` SHA-256 `7844cbe1f8f81f83116252922ac2921bbf261baab6661d0e2160e2b6d1945567`, 3,000 B. 추출본에서 `validate` VALID(`baseline=Pilot-01`), `materialize` 후보 `action_rate_l2 -0.008`·기준선 `-0.01`, 나머지 5개 동일. 계약 테스트 `Ran 50 tests`, `FAILED (failures=6, errors=7)` — 13건 전부 기존에 알려진 실패(대형 원본 파일 미보유, G-F94 이후 상태)이며 G-A018 관련 실패는 0건. | 로컬 end-to-end 검증, `python -m unittest discover -s tools` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D79 | `track_lin_vel_xy_exp` 다이얼을 **완전히 기각**한다. 총점이 개선됐어도 `1.2 → 1.3` 축소 재탐색은 하지 않는다. | §19-b(생존 절 우선)와 24-e 분기표 3행(임의 시나리오 생존 후퇴 > 0.10 → 다이얼 기각) 발화. 축소 재탐색 경로는 "총점 후퇴 + 생존 후퇴 없음" 전용 조건이었고 이번엔 정반대 패턴이라 조건 자체가 다르다 |
+| G-D80 | 다음 단일 변수는 **`action_rate_l2` −0.01 → −0.008**(G-A018)이며, 참가자 파일 안에서 시도 가능한 **마지막** 단일 변수다. 기준선은 동결 Pilot-01로 복귀. | `feet_air_time`·`ang_vel_xy_l2`·`flat_orientation_l2`·`lin_vel_z_l2`·`track_lin_vel_xy_exp` 5개 항이 모두 막혔다(상한 확정 2건, 다이얼째 기각 2건, 방향 기확정 1건). 참가자 파일에서 방향 경고("⚠️")가 없는 유일한 항이라 위험 신호가 가장 약하다 |
+
+**LATEST NEXT:** `workspace\training\quadruped\upload\G-A018\current\` 2파일 업로드 →
+실행 → `workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A018** 절.
+
+**(마감)** G-A018은 실행·회수·검증 완료. 후속은 §26.
+
+## 26. G-A018 결과 회수·분석과 참가자 파일 6개 항 소진 확정 — 260905
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F123 | `GO2_PILOT_ACTION_RATE_M008_RESULT.zip` 외부 SHA `814d48ed5a36bd92ef64a319da3111a2fb58a857410ffe48ed8fc8eb63da728a`가 서버 sidecar와 일치, ZIP CRC 무결(129 멤버 OK). | 로컬 `hashlib.sha256`, `zipfile.testzip` |
+| G-F124 | `RESULT_STATE=FULL`, `RUNNER_RC=0`, telemetry 후보 7/7·기준 7/7, 영상 1/1, 정책 계보 `ACTOR_TENSORS_MATCH`(8/8). `training/env.yaml`은 `action_rate_l2 -0.008`만 바뀌고 나머지 5개는 Pilot-01 값 그대로다. | `RESULT_STATUS.txt`, `RUNNER_STATUS.txt`, `POLICY_LINEAGE.json`, `training/reward_only.diff` |
+| G-F125 | G-A018 판정은 `INTERNAL_EARLY_KILL_FAIL`, 총점 `-44.398639/70`(기준 `46.49124`, 후보 `2.09260`). G1~G7 전 시나리오의 생존이 0.10 넘게 후퇴했다(G-A016과 같은 규모의 전면 붕괴). | `reports/TIER1_DECISION.json` |
+| G-F126 | **(260905 정정)** 최초 분석은 G-A016과 "같은 서명"이라고 기록했으나 iteration 단위로 재확인한 결과 메커니즘이 다르다. G-A016은 학습 자체가 iter ~150에서 고착돼 걷기를 배우지 못했다(850 iter 무개선). G-A018은 학습이 정상이다 — `track_lin_vel_xy_exp`가 iter 100→1000 동안 꾸준히 올라 최종 `0.56`(episode 길이 900~1000/1000 유지). 실패는 평가 에피소드 **안에서** 일어난다: `forward_fast`(32 env 평균)는 t=0.6s까지 정상 보행(`height 0.331`·`speed 0.237`)하다가 t=1.0~2.0s 사이 약 1.4초에 걸쳐 부드럽게(급변 트리거 없이, `cmd_vx` 전 구간 `1.2` 일정) 붕괴해 `height≈0.10`·`speed≈0.01`로 얼어붙고 남은 18초 넘게 재개되지 않는다. `slope_plus_20`도 같은 타이밍. `dr_seed_101`은 정지 자세가 이분화(웅크림 `~0.10m` vs 직립 `~0.44m`)된다. 공통점은 "학습을 못했다"가 아니라 "학습한 보행 리듬이 에피소드 안에서 지속되지 못하고 붕괴한다"는 것 — G-A016과 구별되는 별개의 실패 양상이다. | iteration별 `logs/candidate_training.log` 재분석, 7개 case `steps.csv` 시계열 |
+| G-F127 | 참가자 파일이 명시한 6개 reward 항이 전부 소진됐다: `feet_air_time`(상한 확정)·`ang_vel_xy_l2`(다이얼째 기각)·`flat_orientation_l2`(부호 반대로 철회)·`lin_vel_z_l2`(방향 기확정)·`track_lin_vel_xy_exp`(1.4에서 기각, 단 유일하게 총점 개선)·`action_rate_l2`(다이얼째 기각). 새 미검증 항은 없다. | §26-c 종합 |
+| G-F128 | G-A019 사양 `G_A019_pilot_track_lin_vel_xy_130.json` SHA-256 `643b36c9572520038ebf4467534590a961becffc25fcc9a39088b394f8305e17`, 3,241 B. 추출본에서 `validate` VALID(`baseline=Pilot-01`), `materialize` 후보 `track_lin_vel_xy_exp 1.3`·기준선 `1.2`, 나머지 5개 동일. 계약 테스트 `Ran 50 tests`, `FAILED (failures=6, errors=7)` — 13건 전부 기존에 알려진 실패, G-A019 관련 실패 0건. | 로컬 end-to-end 검증 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D81 | `action_rate_l2` 다이얼을 **완전히 기각**한다. 강화 방향(`-0.01→-0.012`) 재탐색은 하지 않는다. | 25-d 분기표 3행(임의 시나리오 생존 후퇴 > 0.10, 실제로는 7개 전부) 발화. 붕괴가 전 시나리오·동일 서명(G-F126)으로 나타나 방향을 반대로 돌려도 같은 함정을 피할 근거가 없다 |
+| G-D82 | 다음 단일 변수는 **`track_lin_vel_xy_exp` 1.2 → 1.3**(G-A019)이며, 새 다이얼이 아니라 **유일하게 총점을 개선한 항의 크기를 절반으로 줄인 재탐색**이다. 기준선은 동결 Pilot-01 그대로. | 참가자 파일 6개 항이 전부 소진됐다(G-F127). `track_lin_vel_xy_exp`만 총점 개선(+3.71/70)을 낸 적이 있고, 그 실패는 G4 생존 단독 후퇴였다 — 크기를 줄이면 문턱 아래로 들어올 수 있다는 가설을 검증하지 않고 포기하는 것은 유일한 개선 신호를 버리는 것과 같다 |
+
+**LATEST NEXT:** `workspace\training\quadruped\upload\G-A019\current\` 2파일 업로드 →
+실행 → `workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A019** 절.
+
+**(리셋, 260905)** G-A019는 실행하지 않는다. 후속은 §27.
+
+## 27. 캠페인 리셋 — Pilot-01 폐기, Chain-01로 재출발 — 260905
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F129 | Pilot-01은 Default-01에서 reward 4개(`track_lin_vel_xy_exp`·`feet_air_time`·`lin_vel_z_l2`·`ang_vel_xy_l2`)를 동시에 바꾸고 학습 seed 42 하나로 260831에 만든 정책이다. `GO2_REWARD_EVIDENCE_MASTER.md`(260901)는 이미 "학습 seed는 42 하나라 독립 학습 재현성은 미확보" "control 생성 전까지 Pilot-01이 개선됐다는 표현은 금지"라고 명시했다. | `GO2_REWARD_EVIDENCE_MASTER.md` L65, L77-82 |
+| G-F130 | 260903 G-D69에서 이 규칙이 재검토 없이 뒤집혀 동결 기준선이 Pilot-01로 전환됐다. control(재현 검증)은 끝내 생성되지 않았다. 이후 G-A013~G-A019(5회 실행) 중 4회 후퇴, 2회(G-A016·G-A018) 전 시나리오 붕괴. 유일한 개선(G-A017 +3.71/70)도 시나리오 하나의 생존 후퇴로 기각됐다. | §19-26, 사용자 지시 260905 |
+| G-F131 | Pilot-01의 4개 동시 변경 중 2개는 이미 Default-01 위에서 개별 단일변수 검증이 끝나 있었다: `track_lin_vel_xy_exp` 1.0→1.2(G-A011, `+3.0902846/70`, 생존 후퇴 0건), `lin_vel_z_l2` -3.0→-2.0(G-A010, `+2.2571599/70`, G7 -0.03125만 허용 내). 두 검증은 각각 독립적으로 이뤄졌을 뿐, 함께 적용됐을 때의 안전성은 한 번도 측정되지 않았다. | `go2_track_lin_vel_120_v1/reports/TIER1_DECISION.json`, `go2_g_a010_lin_vel_z_m2/reports/TIER1_DECISION.json` |
+| G-F132 | Chain-01을 G-A011의 검증된 checkpoint(model SHA `143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4`, env SHA `2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71`)로 등록했다. `go2_tuning_config.py`의 `FROZEN_BASELINES`에 추가하고 `ENGINE_VERSION`을 1.2.0→1.3.0으로, `tools/build_go2_tuning_engine.py`의 baseline payload에 `baseline/chain01/`을 추가해 엔진을 v1.4(SHA `a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0`, 66 members)로 재빌드했다. Default-01 소스 체인이 로컬에 없어(`GO2_DEFAULT_VS_PILOT_RESULT.zip` 미보유, G-F94 계열 기존 문제) 전체 재빌드 대신 검증된 v1_3 ZIP을 그대로 읽어 Chain-01 baseline만 추가하는 방식으로 만들었다 — Default-01·Pilot-01 payload는 손대지 않았다. | `go2_tuning_config.py`, `tools/build_go2_tuning_engine.py`, 로컬 rebuild 스크립트 |
+| G-F133 | G-A020 사양 `G_A020_chain01_lin_vel_z_m2.json` SHA-256 `1bc313e5f2879666da81b427cac4355045b1e006caef981f31da914756e7cca2`, 3,155 B. 추출한 v1.4 엔진으로 `validate` VALID(`baseline=Chain-01`) · `materialize` 후보 `lin_vel_z_l2 -2.0`·기준선 `-3.0`(나머지 5개, `track_lin_vel_xy_exp 1.2` 포함, 동일) · 기준선 checkpoint `143871e3…` 일치 · `baseline_seed` 캐시 7/7 확인. 계약 테스트는 `go2_tuning_config.py`의 `ENGINE_VERSION` 변경으로 `test_go2_tuning_engine_contract.py`의 두 fixture(G-A015·G-A016 재검증)가 일시적으로 `engine_version mismatch`로 깨졌으나, 히스토리 spec 파일(SHA로 이미 원장에 기록됨)을 고치는 대신 테스트가 fixture 로드시 `engine_version`을 현재 값으로 패치하도록 수정해 해결했다. 이후 `Ran 50 tests`, `FAILED (failures=6, errors=7)` — 리셋 이전과 동일한 13건의 기존 알려진 실패만 남고 새 실패 0건. | 로컬 end-to-end 검증, `python -m unittest discover -s tools` |
+| G-F134 | fix1 엔진(`ebb8b5d4…`) 업로드 후 서버 실행이 `server_run_go2_tuning_engine_v1.sh: line 3: set: pipefail: invalid option name`로 즉시 죽었다. `od -An -tx1`로 원인 확인: v1.4 재빌드 때 로컬 디스크에서 새로 읽어 넣은 `server_run_go2_tuning_engine_v1.sh`·`go2_tuning_config.py` 두 파일이 그 시점 로컬 사본에 CRLF(`\r\n`)가 섞여 있었고, `set -euo pipefail\r`을 Linux bash가 `pipefail`이 아닌 알 수 없는 옵션으로 거부했다. (`grep -c $'\r'`는 이 MSYS 환경에서 CR을 못 잡아 오검출 0을 반환 — `od` byte dump로만 확정 가능했다.) 학습은 line 3에서 즉시 종료돼 iteration 소비 0, GPU 낭비 없음. 두 파일 CR 제거(`sed -i 's/\r$//'`) 후 `bash -n`·`ast.parse`·엔진 재조립·`validate`+`materialize` end-to-end 재검증 통과. fix2 엔진 SHA `a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0`, 19,135,939 B, 66 members(개수 불변) — `upload/G-A020/current`에 재게시, fix1은 `history/`에 보존. | 사용자 재현 보고(260905), `od -An -tx1` 직접 검증 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D83 | **Pilot-01을 동결 기준선에서 완전히 내린다.** 향후 어떤 실험도 Pilot-01과 비교·채택하지 않는다. | 재현성 미확인 상태로 260903에 채택된 것 자체가 260901 자체 규칙 위반이었고, 그 위에서 반복된 실패가 이를 뒷받침한다(G-F129, G-F130) |
+| G-D84 | 새 동결 기준선은 **Chain-01**(`track_lin_vel_xy_exp`=1.2만, Default-01 대비 개별 검증 완료)이다. | 참가자 파일 6개 항 중 유일하게 "단일변수·독립 검증·생존 후퇴 0건"을 모두 만족하는 항이 이것뿐이다(G-F131) |
+| G-D85 | 다음 실험(G-A020)은 Chain-01 위에 G-A010의 검증된 `lin_vel_z_l2 -3.0→-2.0`을 얹어 **두 검증된 개선의 합성 안전성**을 확인한다. PASS 시 이 지점을 Chain-02로 동결하고 남은 4개 미검증 항(`feet_air_time`·`ang_vel_xy_l2`·`action_rate_l2`·`flat_orientation_l2`)을 여기서부터 재개한다. | H1 캠페인이 검증된 변경을 하나씩 누적해(Run02→04→05) 최종 후보(Run06, 92.73/100)를 만든 방식과 동일 원칙(`H1_REWARD_EVIDENCE_MASTER.md` §3) |
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F135 | G-A020 실행 완료(260905, `RUNNER_RC=0`, `RESULT_STATE=FULL`). fix2 엔진 사용 확인(`RUNNER_STATUS.txt`의 `ENGINE_ARCHIVE_SHA256=a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0`, `EXPERIMENT_SHA256=1bc313e5f2879666da81b427cac4355045b1e006caef981f31da914756e7cca2` 둘 다 사양과 일치). `training/env.yaml`에서 `track_lin_vel_xy_exp weight=1.2`·`lin_vel_z_l2 weight=-2.0` 렌더링 확인(사양대로). **결과: 전 시나리오 생존 붕괴.** `baseline_points_70=18.610562`, `candidate_points_70=0.428330`, `delta=-18.182232`. G1·G2·G4·G5 survival ≈ -1.0(전멸), G3 -0.84375, G6 -0.9375, G7만 -0.0625(허용 범위 내). `status=INTERNAL_EARLY_KILL_FAIL`, `official_result=OFFICIAL_RESULT_UNMEASURED`. 개별로는 각각 안전했던 두 변경(G-A011 `+3.09/70`, G-A010 `+2.26/70`, 둘 다 생존 후퇴 0건)이 함께 학습되자 정반대로 전멸을 냈다 — G-F131에서 예고한 "합쳐졌을 때의 안전성은 한 번도 측정되지 않았다"는 위험이 실제로 발현된 사례. | `go2_g_a020_chain01_lin_vel_z_m2/RUNNER_STATUS.txt`, `reports/TIER1_DECISION.json`, `training/env.yaml` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D86 | G-A020 조합(Chain-01 + `lin_vel_z_l2 -2.0`)을 **완전히 기각**한다. Chain-02로 승격하지 않는다. 동결 기준선은 여전히 **Chain-01**(`track_lin_vel_xy_exp=1.2` 단독)이다. 두 검증된 개선을 "합치면 더 좋아질 것"이라는 가정 자체를 다음 실험에서 전제로 삼지 않는다. | 전 시나리오 생존 붕괴(G-F135)로 최소 통과 기준(생존 후퇴 ≤0.1) 정반대 방향으로 위배 — 재탐색으로 구제할 여지가 없다(G-D81과 동일 패턴: 전 시나리오·동일 방향 붕괴) |
+| G-D87 | 다음 실험은 Chain-01 위에 **미검증 4항 중 하나만** 개별로 얹는다(`feet_air_time`·`ang_vel_xy_l2`·`action_rate_l2`·`flat_orientation_l2` 중 택1, 동시 결합 금지). 어떤 항을 먼저 할지는 후속 턴에서 확정한다. | G-A020의 실패가 "동시 결합"에서 왔을 가능성이 높으므로, 이후로는 한 번에 하나씩만 쌓아 실패 시 원인 특정이 가능하게 한다(H1 원칙 재확인) |
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F136 | G-A021 사양 `G_A021_chain01_ang_vel_xy_m005.json`(SHA `0177803887af8a9693fafdf9f5f6ec51dd6efcfe54c6e4577e4aa82a5df0e83e`, 2,882 B) 준비 완료. Chain-01 위에 `ang_vel_xy_l2` -0.08→-0.05 단독 변경(G-D87의 4항 중 택1). 후보값 -0.05는 Pilot-01이 4개 동시 변경 때 이 다이얼에 실제로 썼던 값 — 그때는 다른 3개와 동시에 바뀌어 개별 효과가 한 번도 분리 측정되지 않았다. 엔진은 v1_4(fix2) 그대로 재사용, 변경 없음. `validate` VALID·`materialize` 후보 `ang_vel_xy_l2 -0.05`·나머지 5개(`track_lin_vel_xy_exp 1.2`·`lin_vel_z_l2 -3.0` 포함) 기준선과 동일 확인. | `config/experiments/G_A021_chain01_ang_vel_xy_m005.json`, 로컬 validate/materialize 검증 |
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F137 | G-A021 실행 완료(260905, `RUNNER_RC=0`, `RESULT_STATE=FULL`, `SHA256SUMS.txt` 9/9 자체 검증 통과). 엔진·사양 SHA 둘 다 일치(`ENGINE_ARCHIVE_SHA256=a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0`, `EXPERIMENT_SHA256=0177803887af8a9693fafdf9f5f6ec51dd6efcfe54c6e4577e4aa82a5df0e83e`). `training/env.yaml` 렌더링 확인(`ang_vel_xy_l2 weight=-0.05`, 나머지 5개 `track_lin_vel_xy_exp 1.2`·`lin_vel_z_l2 -3.0` 포함 기준선과 동일). `model_best.pt` SHA `414a4fd1...` 가 `RUNNER_STATUS.txt`의 `CANDIDATE_MODEL_SHA`와 일치. **결과: 게이트 재실패, 그러나 G-A020과 질적으로 다르다.** `baseline_points_70=18.610562`, `candidate_points_70=12.002626`, `delta=-6.607936`(`min_total_points_delta≥1.0` 미달). survival 후퇴는 G2 -0.75·G3 -0.375·G4 -0.59375·G5 -0.59375·G6 -0.15625로 전멸이 아니라 부분 후퇴이며, G1은 무변화(-0.0004), **G7(DR seed)은 오히려 개선**(survival +0.40625, proxy +0.1545) — 도메인 무작위화 조건에서만 이 완화가 도움이 됐다. `status=INTERNAL_EARLY_KILL_FAIL`, `official_result=OFFICIAL_RESULT_UNMEASURED`. | `go2_g_a021_chain01_ang_vel_xy_m005/RUNNER_STATUS.txt`, `reports/TIER1_DECISION.json`, `training/env.yaml`, `SHA256SUMS.txt` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D88 | G-A021(Chain-01 + `ang_vel_xy_l2 -0.05`)을 **기각**한다. Chain-02로 승격하지 않는다. 동결 기준선은 여전히 **Chain-01**이다. 이 값(-0.05)은 이 다이얼에서 재시도하지 않는다. 다음 실험은 사전등록된 분기(G-A021 spec `branch.on_tier1_fail`)에 따라 **이 실패한 후보 위가 아니라 Chain-01 위에서** 남은 미검증 항 중 `feet_air_time`을 개별로 얹는다(G-A022). 후보값은 `0.01→0.20`으로, Default-01 위에서 이미 측정된 값(G-A007, G-F93: `+3.8656/70`, 실패 사유가 G5 생존 후퇴 단 1건뿐 — 전멸이 아니었음)과 동일하게 맞춰 재사용해, Chain-01 위에서 같은 방향이 유지되는지만 새로 확인한다. | G-A021의 총점 delta가 음수이고 5개 시나리오 생존이 후퇴해 최소 통과 기준 미달(G-F137). `action_rate_l2`·`flat_orientation_l2`는 과거 다른 기준선에서 이미 다이얼째 기각/철회된 이력이 있어(G-F127) 상대적으로 우선순위가 낮고, `feet_air_time`은 유일하게 과거 기준선에서 총점이 실제로 개선된 이력이 있는 항이라 다음 순번으로 택한다 |
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F138 | G-A022 실행 완료(260905, `RUNNER_RC=0`, `RESULT_STATE=FULL`, `SHA256SUMS.txt` 자체 검증 통과). 엔진·사양 SHA 둘 다 일치(`ENGINE_ARCHIVE_SHA256=a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0`, `EXPERIMENT_SHA256=5bb6ba1d4f90db9882e42e1de119c1f99cdb0c08c076a4c70c85df6d57507ec8`). `training/env.yaml` 렌더링 확인(`feet_air_time weight=0.2`, 나머지 5개 `track_lin_vel_xy_exp 1.2`·`lin_vel_z_l2 -3.0`·`ang_vel_xy_l2 -0.08`·`action_rate_l2 -0.01`·`flat_orientation_l2 0.0` 포함 Chain-01 기준선과 동일). `model_best.pt` SHA `92c08d90...` 가 `RUNNER_STATUS.txt`의 `CANDIDATE_MODEL_SHA`와 일치. **결과: 게이트 재실패, G-A021보다 더 나쁘고 G-A020에 가깝다.** `baseline_points_70=18.610562`, `candidate_points_70=4.883013`, `delta=-13.727549`. G1~G6 전부 생존 후퇴 0.10 초과(G1 -1.0·G2 -1.0·G3 -0.84375·G4 -1.0·G5 -1.0·G6 -0.28125) — 사실상 전멸에 가깝다. G7만 -0.0625로 허용 범위 내. Default-01 위에서 유일하게 총점을 개선했던 값(G-A007, +3.8656/70)이 Chain-01 위에서는 G-A020(전멸)에 근접한 붕괴를 낸 것 — 세 다이얼(lin_vel_z_l2·ang_vel_xy_l2·feet_air_time) 개별 스택이 전부 실패했고, 가장 강한 사전 근거를 가졌던 항조차 예외가 아니었다. | `go2_g_a022_chain01_feet_air_time_020/RUNNER_STATUS.txt`, `reports/TIER1_DECISION.json`, `training/env.yaml`, `SHA256SUMS.txt` |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D89 | G-A022(Chain-01 + `feet_air_time 0.20`)을 **기각**한다. Chain-02로 승격하지 않는다. **남은 두 항(`action_rate_l2`·`flat_orientation_l2`)은 Chain-01 위에서 시도하지 않는다** — 단일변수 보상 스태킹 탐색을 여기서 종료한다. 동결 기준선은 Chain-01 그대로다. | (1) G-F127이 이미 260905 리셋 이전에 확정한 사실: 이 두 항은 각각 다이얼째 완전히 소진됐다 — `action_rate_l2`는 유일하게 시도된 값(-0.008, 완화 방향)이 전 시나리오 붕괴로 다이얼째 기각(G-D81)됐고 반대 방향(강화)도 "같은 함정을 피할 근거가 없다"는 이유로 재탐색이 명시적으로 배제됐다. `flat_orientation_l2`는 유일하게 시도된 방향(0.0→-1.0)이 실패(G-D66)했고 후속 강화(-2.0)는 "실패가 부호/메커니즘 오류이지 크기 부족이 아니다"라는 이유로 취소(G-D67)됐다 — 참가자 파일이 명시한 "↑ 키우면 안 넘어짐" 방향 자체가 +20°/계단 지형에서 필요한 지형 추종 기울임을 정확히 벌점 매겨 구조적으로 막혀 있다. 즉 두 항 모두 코히런트한 방향이 전부 이미 죽어 있어 새로 시도할 값이 없다. (2) Chain-01 위 개별 스태킹 3/3(G-A020·G-A021·G-A022)이 전부 실패했고, 그중 유일하게 양의 사전 근거를 가졌던 `feet_air_time`조차 가장 심한 후퇴 중 하나를 냈다 — 남은 두 항은 애초에 음의 사전 근거만 가지고 있어 기대값이 이보다 낮다. 이미 실패가 확정된 값을 Chain-01 위에서 재확인하는 것은 새 정보 없이 예산만 소모한다. | G-F127, G-D81, G-D66, G-D67, G-F138 |
+| G-D90 | 다음 작업은 새 보상 실험이 아니라 **Chain-01 자체의 실측**이다. Chain-01(G-A011)은 지금까지 seed 101 tier-1 프록시 점수(`+3.0902846/70`, 생존 후퇴 0건)만 있고 대표 seed(202·303)·69-case·posture_gate_v2 평가를 받은 적이 없다 — G-A011이 지정 시나리오 절만으로 조기 종료됐기 때문이다(G-F92). G-A012가 Pilot-01에 썼던 것과 같은 방식(학습 없이 frozen checkpoint를 69-case×3seed·영상 7종으로 측정)을 Chain-01용으로 새로 만든다(G-A023, work id, `tools/build_go2_chain01_baseline_package.py`+`server_run_go2_chain01_baseline.sh`, G-A012 스크립트에서 이름만 교체). 로컬에서 `bash -n`·CRLF 0·zip CRC·manifest 27/27·내장 model/env SHA 대조(`143871e3…`/`2ba9a1e1…`) 전부 통과했다. | G-F92(G-A011이 tier-1 프록시만 있음), G-A012 선례(`SERVER_SESSION_RUNBOOK.md` §"G-A012"), 예산 효율(학습 없음, 이미 실패 확정된 다이얼 재확인보다 정보가치 높음) |
+
+**LATEST NEXT:** (§28에서 갱신됨)
+
+## 28. G-A023 결과 회수 — Chain-01 실측 붕괴 발견과 evaluator 버전 불일치 확정 — 260905
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F139 | G-A023 실행 완료(260905, `RUNNER_RC=0`, `RESULT_STATE=FULL`, 외부 SHA·`SHA256SUMS.txt` 자체 검증 통과, telemetry 69/69·영상 7/7·`TRAINING=none`·`CHAIN01_MODEL_SHA` 일치). `go2_fixed_eval_report.build_policy()`로 직접 채점한 결과 **Chain-01의 실제 69-case×3seed 점수는 `2.307745/70`**(worst-case 집계)이며, G1·G2·G3·G4·G5·G7 6개 시나리오 전부 `survival_proxy=0.0`(3개 seed 전부 동일 패턴, 특정 seed의 우연이 아님) — 전진(느림·보통·빠름)·경사(±20°)·계단(4종)·대각선 이동·편측 yaw 전부 붕괴. 생존하는 것은 후진·좌우 이동·회전(`survival≈1.0`)과 push(부분)뿐이다. | `go2_chain01_baseline_result_extract/`, `go2_fixed_eval_report.build_policy()` 직접 실행, 로컬 SHA/manifest 검증 |
+| G-F140 | 이 결과는 지금까지 Chain-01 계보 전체(G-A011·13·18·20·21·22)의 tier-1 스크리닝이 써 온 `survival_proxy`와 **다른 evaluator**로 나왔다. `go2_g_a022_chain01_feet_air_time_020/evaluation/baseline_tier1/.../forward_fast/summary.json`은 `schema_version:1`이고 `survival_proxy:1.0`(termination-only — 물리 시뮬레이션이 강제 종료됐는지만 본다)인 반면, 같은 checkpoint·같은 forward_fast 케이스를 이번 G-A023(`schema_version:2`, `EVALUATOR=posture_gate_v2`)로 채점하면 `survival_proxy_v1:1.0`은 동일하게 남아있지만 `survival_proxy_v2:0.0`(`height_rel_mean=0.1427` `<` `height_rel_min_m=0.18` 기준 미달, 즉 쓰러지진 않았지만 기준 이하로 웅크린 채 회복하지 못함)이 새로 계산되고, 최종 `survival_proxy` 필드는 v2 값을 채택한다. `tracking_xy_rmse`(1.18714 vs 1.18714, 완전 일치) 등 물리 궤적 자체는 두 결과가 동일하다 — 같은 rollout을 두 개의 다른 채점 규칙으로 읽은 것이다. 코드(`go2_eval_telemetry.py`, git 커밋 `f229e06` 하나에 v1/v2 로직이 함께 들어있다)는 `posture_measured`가 참이면 항상 v2를 계산하므로, tier-1이 v1만 낸 이유는 실행 시점 분기가 아니라 **엔진 아카이브(fix2, SHA `a030427748…`)가 이 커밋 이전의 구버전 `go2_eval_telemetry.py`를 그대로 얼려서 담고 있기 때문**이다. G-A011~G-A022 전체가 이 엔진 하나로 실행됐다(G-F132, G-F134). | `evaluation/baseline_tier1/cases/seed_101/forward_fast/summary.json`(schema_version 1), `evaluation/chain01/cases/seed_101/forward_fast/summary.json`(schema_version 2), `go2_eval_telemetry.py` L159·L349-379, `git log -p` |
+| G-F141 | `GO2_DEFAULT_VS_PILOT_PAIRED_REPORT.json`(G-A012, 같은 posture_gate_v2 evaluator, G-F69)에서 Default-01의 실측을 다시 읽으면 **G1(forward_fast) survival_proxy=1.0**이고 7개 시나리오 전부 survival이 0.625~1.0으로 하나도 붕괴하지 않는다(총점 `17.90699/70`, 이미 알려진 값과 일치). Chain-01과 Default-01의 유일한 차이는 `track_lin_vel_xy_exp` 1.0→1.2뿐이다(G-F131). 즉 이 한 값 변경이, tier-1(v1 evaluator)에서는 `+3.09/70`의 "안전한 개선"으로 보였지만 실제로는 posture_gate_v2 기준 **survival을 6/7 시나리오에서 전멸시키는 회귀**였다 — 정책이 tracking 보상을 더 쫓도록 압박받자 낮게 웅크린 채로 버티는 전략에 빠졌고, termination-only 게이트는 이를 전혀 잡아내지 못했다. | `GO2_DEFAULT_VS_PILOT_PAIRED_REPORT.json` per_scenario.G1-G7.default, G-F131 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D91 | **Chain-01을 동결 기준선에서 즉시 내린다.** Chain-01 자체를 최종 후보로도, 향후 어떤 실험의 기준선으로도 쓰지 않는다. | 실측(G-F139) 결과 6/7 시나리오 survival 전멸(`2.307745/70`) — Chain-01은 애초에 Default-01보다 나은 정책이 아니라, tier-1의 낡은 evaluator가 놓친 심각한 posture 회귀였다(G-F140, G-F141) |
+| G-D92 | **동결 기준선을 Default-01로 되돌린다.** Default-01은 이미 posture_gate_v2로 실측된 유일한 정책이다(`17.90699/70`, 7개 시나리오 전부 생존, G-F141). G-A011~G-A022에서 나온 모든 "단일변수 검증 결과"(track_lin_vel_xy_exp·lin_vel_z_l2·ang_vel_xy_l2·feet_air_time 각각의 tier-1 PASS/FAIL 판정)는 termination-only(v1) evaluator로 내려진 것이라 **survival 결론은 신뢰하지 않는다** — tracking/속도 방향성 신호만 참고 가능하다. `track_lin_vel_xy_exp 1.0→1.2`는 이제 "검증된 안전한 개선"이 아니라 "posture_gate_v2 기준 실패가 확인된 변경"으로 재분류한다. | G-F139-141; H1 캠페인과 동일 원칙 — 신뢰할 수 없는 게이트로 승인된 누적 변경 위에 계속 쌓지 않는다 |
+| G-D93 | 다음 작업은 새 보상 실험이 아니라 **tuning engine의 evaluator를 현재 `go2_eval_telemetry.py`(posture_gate_v2 포함, 커밋 `f229e06`)로 재빌드하는 것**이다. 이 작업이 끝나기 전에는 어떤 신규 tier-1 결과도 survival 기준으로 신뢰하지 않는다. 재빌드·로컬 계약 테스트 통과 후에만 Default-01 위 새 단일변수 실험을 재개한다. | G-F140 — 엔진이 구버전 evaluator를 얼린 채로 있는 한 같은 맹점이 다음 실험에도 그대로 반복된다 |
+
+**LATEST NEXT:** 로컬에서 tuning engine을 posture_gate_v2 포함 최신 `go2_eval_telemetry.py`로 재빌드하고 계약 테스트를 통과시킨다. 서버 작업은 그 전까지 보류.
+
+## 29. PRD 감사·엔진 재빌드 진행 상황 (260905)
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F142 | living PRD `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 v1(Default-01 vs Pilot-01 쌍대 비교) 범위에서 멈춰 있고, Chain-01 계보 전체(G-A009~G-A023, 이 문서 §18~28)는 이 PRD를 갱신하지 않고 진행됐다. `Chain-01`이라는 문자열이 PRD 본문에 0회 등장한다. G-D12("Go2 기획자가 매 기획·실험·판정에서 참조하고 같은 턴에 갱신하는 살아있는 정본으로 운영한다")는 사실상 G-A009 시점부터 지켜지지 않았고, `GO2_PROJECT_STATE.md`가 실질적 living ledger 역할을 대신 수행해 왔다 | `GO2_DEFAULT_BASELINE_TEST_PRD.md` 전문 grep(`Chain-01` 0건), 본 문서 §18-28 |
+| G-F143 | G-D93 엔진 재빌드는 **부분 진행 상태**다. `tools/build_go2_tuning_engine.py`는 이미 로컬에서 output을 `go2_tuning_engine_v1_4.zip`으로 바꾸고 `go2_eval_telemetry.py`를 현재 워크스페이스 파일에서 직접 읽도록 돼 있다(수정 전부터 그랬음 — `source_files()`가 항상 라이브 경로를 읽는다). 디스크의 `go2_tuning_engine_v1_4.zip`(19,135,939 B, uncommitted)을 직접 열어 확인한 결과 내부 `go2_eval_telemetry.py`의 SHA(`f8ed1d014478865055d7b10a2e2bf6c238b7c41564b686f66cfd76271169f8c1`)가 현재 워크스페이스 파일과 완전히 일치 — **posture_gate_v2가 이미 임베드돼 있다.** 그러나 `python -m unittest tools/test_go2_tuning_engine_contract.py`는 16개 중 3개 실패하며, 실패 원인은 evaluator가 아니라 **Default-01 소스 zip `workspace/server_returns/go2_default_vs_pilot_v1_full_260901/original/GO2_DEFAULT_VS_PILOT_RESULT.zip`이 로컬에 없는 기존 결손**(주석에 이미 "Default-01 소스 체인이 로컬에 없어"로 기록된 G-F94 계열 문제)이다. `workspace/_keep/go2_default_vs_pilot_v1/training/model_best.pt`가 기대 SHA(`99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676`)와 일치하는 압축 해제본으로 존재하지만, 같은 디렉터리의 `env.yaml`은 기대 SHA `4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c`가 아니라 `a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea`를 낸다(내용까지 같은지는 미확인 — 재직렬화로 인한 무해한 바이트 차이일 수도, 실제 config drift일 수도 있다. 추측하지 않는다) | `zipfile` 직접 열람(`go2_tuning_engine_v1_4.zip:source_template/go2_eval_telemetry.py`), `python -m unittest` 출력, `sha256sum` 직접 실행 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D94 | **이 living PRD를 v1 범위(Default-01 vs Pilot-01)로 공식 종료한다.** 파일에 종료 note만 추가하고 Chain-01 이후 이력을 소급 기입하지 않는다. 앞으로 Go2의 유일한 living 정본은 `GO2_PROJECT_STATE.md`다 — 같은 역할의 문서 두 개를 동시에 운영하지 않는다 | G-F142. Chain-01이 이미 폐기됐고(G-D91) 새 PRD 버전을 소급 작성하는 것은 정보가치 없는 서류 작업이다 |
+| G-D95 | 엔진 v1_4는 `ENGINE_REBUILD_PARTIAL — EVALUATOR_FIXED / BASELINE_PAYLOAD_UNVERIFIED`로 기록한다. posture_gate_v2 임베드는 확인됐으므로 evaluator 문제 자체는 해결됐다고 봐도 되지만, 계약 테스트 3건이 실패하는 한 이 엔진을 서버에 올리지 않는다. 다음 로컬 작업은 `env.yaml` SHA 불일치의 원인(재직렬화 vs 실제 drift)을 확인해 3개 실패 테스트를 통과시키는 것이며, G-D93의 "재빌드·계약 테스트 통과 전 서버 작업 보류"는 그대로 유지한다 | G-F143 — evaluator는 고쳤지만 빌드 재현성이 아직 증명되지 않았다 |
+
+**LATEST NEXT:** `env.yaml` SHA 불일치 원인을 확인하고 `tools/test_go2_tuning_engine_contract.py` 16/16을 통과시킨 뒤 `go2_tuning_engine_v1_4.zip`을 커밋한다. 그 전까지 서버 작업은 보류(G-D93 유지).
+
+## 30. 엔진 재빌드 완료·G-A010 업로드 재등록 (260905)
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F144 | G-F143의 `env.yaml` SHA 불일치 원인을 확인했다 — **내용 동일, 재직렬화로 인한 바이트 차이**다. `_keep/go2_default_vs_pilot_v1/training/env.yaml`을 직접 열어 6개 reward 가중치(`track_lin_vel_xy_exp=1.0`·`feet_air_time=0.01`·`lin_vel_z_l2=-3.0`·`ang_vel_xy_l2=-0.08`·`action_rate_l2=-0.01`·`flat_orientation_l2=0.0`, `std=0.5`)가 Default-01 배포 기본값과 정확히 일치함을 확인했다. Pilot-01 쪽(`_keep/go2_pilot_v2_baseline/policy/pilot_env.yaml`)도 같은 방식으로 확인(`1.2/0.2/-2.0/-0.05/-0.01/0.0`, model SHA `c4d78adf…` byte-identical). 두 로더(`tools/build_go2_track_lin_vel_120_package.py`, `tools/build_go2_tuning_engine.py`)와 `go2_tuning_config.py`의 `FROZEN_BASELINES` 상수를 압축 해제본 경로·재직렬화 SHA로 갱신했다 | 직접 `sha256sum`·YAML grep 대조, AGENTS.md "해시 불일치는 내용 불일치의 증거가 아니다" 원칙과 동일 근거 |
+| G-F145 | `python -m unittest tools/test_go2_tuning_engine_contract.py` **16/16 전부 통과**. 남은 2건은 evaluator나 baseline payload가 아니라 테스트 픽스처 자체(`G_A016`/`G_A015` spec의 `engine_version`·`env_sha256`이 1.2.0/구버전 그대로 고정된 것)가 원인이었다 — 픽스처 파일을 수정하지 않고 테스트 안에서 임시 패치본을 만들어 검증했다(기존 `setUpClass` 방식과 동일 철학). 엔진은 클린 상태에서 재현 가능하게 빌드되며 최종 SHA는 `81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`(66 members), 내부 `go2_eval_telemetry.py` SHA `f8ed1d01…`가 현재 워크스페이스와 일치(posture_gate_v2 포함) | `python -m unittest` 16/16 OK 직접 실행, `python tools/build_go2_tuning_engine.py` 재실행으로 동일 SHA 재현 확인 |
+| G-F146 | **정정(260906) — G-F146 원문의 "한 번도 실행된 적 없이"는 오류였다.** G-A010은 260902에 engine v1.1(SHA `e8f8b3cde9d5a4f8b2de3663dd7036f19b1c28c97bf6aa01a5a779660f72b7cd`)로 **실제로 학습·평가까지 완료됐다**(G-F79·G-F80, `workspace/_keep/go2_g_a010_lin_vel_z_m2/`에 launcher.log·RUNNER_STATUS.txt·TIER1_DECISION.json 실물 존재, 1,000 iter 00:59:11 실측 GPU 시간 소비). 직접 재확인: 그 결과의 `evaluation/baseline_tier1/.../forward_fast/summary.json`은 `schema_version:1`이고 `RUNNER_STATUS.txt`의 `ENGINE_ARCHIVE_SHA256`도 `e8f8b3cde9…`로, G-D92가 신뢰 불가로 규정한 termination-only(v1) evaluator와 정확히 같은 세대다 — G-D92 본문은 "G-A011~G-A022"만 명시했지만 posture_gate_v2(commit `f229e06`)가 애초에 이보다 나중에 생겼으므로 260902에 실행된 G-A010도 논리적으로 같은 맹점 안에 있다. 즉 재실행 사유는 "실행 안 함"이 아니라 **"실행은 했지만 측정 도구(구버전 evaluator + 폐기된 target-scenario-only gate, G-D68로 대체됨) 자체가 신뢰 불가"**다. 스키마 필드(`engine_version` 1.0.1→1.3.0, `baseline.env_sha256`, `flat_orientation_l2` 키, `min_total_points_delta` gate)를 엔진 v1.4 대상으로 갱신해 `load_and_validate()`·`materialize_runtime()` 통과를 확인한 것은 원문 그대로 유효하다 | `workspace/_keep/go2_g_a010_lin_vel_z_m2/evaluation/baseline_tier1/cases/seed_101/forward_fast/summary.json`, 같은 디렉터리 `RUNNER_STATUS.txt`, `go2_tuning_config.py` 직접 실행 검증 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D96 | **G-D95의 `ENGINE_REBUILD_PARTIAL`을 `ENGINE_REBUILD_VERIFIED`로 승격한다.** G-D93(엔진을 posture_gate_v2로 재빌드하고 계약 테스트를 통과시키기 전 서버 작업 보류)이 완전히 충족됐다 — 서버 작업 보류를 해제한다 | G-F144, G-F145 |
+| G-D97 | **다음 서버 실행은 G-A010의 재측정이다**(같은 변수·같은 baseline, 새 ID를 발급하지 않는다 — G-D98 참조). `tools/publish_go2_upload_bundle.py`로 `upload/G-A010/current/`에 engine v1.4 + 갱신된 spec + 새 RUN_GUIDE를 재등록했다(release `20260905_lin_vel_z_m2_engine_v1_4_r2`, engine SHA `81c3bccef5…`, spec SHA `2910450db9…`) | G-F146; 문헌 근거(R-Sci-1)와 G1이 최대 실점 시나리오라는 진단(GO2_REWARD_EVIDENCE_MASTER.md §17-b)이 이미 사전등록돼 있음. **260902 결과(총점 `+2.2571599/70`, G1 개선 미달로 조기종료)는 폐기가 아니라 "방향성 참고, survival 결론 불신"으로 강등** — 새 결과가 나오면 이 값과 나란히 비교해 posture_gate_v2가 같은 변경을 다르게 평가하는지 직접 확인한다(G-A011의 `track_lin_vel_xy_exp` 사례처럼 v1-안전이 v2-위험으로 뒤집힐 수 있음, G-F141) |
+| G-D98 | **넘버링 일관성 규칙(260906 신설): 같은 experiment ID를 다른 엔진·gate로 재측정할 때는 ID를 재사용하되, 모든 언급에 "(재측정, 최초 실행 260902, engine v1.1→v1.4)"를 명시한다.** 새 개입에는 항상 다음 미사용 ID(현재 최대 G-A023 다음은 G-A024)를 쓴다. | 사용자 지적(260906) — ID가 시간순으로 왔다갔다 하면 "이미 한 것 아니냐"는 혼동이 생긴다. 재사용/재측정과 신규 실험을 텍스트로 항상 구분해 이 혼동을 원천 차단한다 |
+
+**LATEST NEXT:** (§31에서 갱신됨)
+
+## 31. G-A010 재측정 회수 — posture_gate_v2로 재실측하니 전멸 확인 — 260906
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F147 | `GO2_LIN_VEL_Z_M2_RESULT.zip` 다운로드본 검증 전부 통과: 외부 SHA `0c404c98d8…` 일치, zip CRC 이상 없음, 내부 `SHA256SUMS.txt` 128개 전부 `sha256sum -c` OK, `RUNNER_STATUS.txt`의 `ENGINE_ARCHIVE_SHA256=81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`·`EXPERIMENT_SHA256=2910450db9e107875410a80ed1d947d80cced0e31e67b1734f544e300374861d` 둘 다 사양과 일치(엔진이 v1.4임을 서버 산출물 자체가 증명), baseline `identity.json`의 `model_sha256`이 Default-01 고정값(`99ceeaa1a3a1ebee…`)과 일치, candidate `POLICY_LINEAGE.json`이 actor tensor 8/8 매치, G1 필수 영상(`G1_forward_fast_seed_101.mp4`, 유효 MP4 magic bytes) 존재. `RUNNER_RC=0`·`TRAIN_RC=0`. | 로컬 압축 해제·`sha256sum -c`·`unzip -t`·직접 파일 열람 |
+| G-F148 | **결과: `INTERNAL_EARLY_KILL_FAIL`.** `TIER1_DECISION.json`: `baseline_points_70=17.132070`, `candidate_points_70=9.499548`, delta `-7.632522`(`min_total_points_delta≥1.0` 대실패). G1~G6 survival 전부 `-0.1` 초과 회귀(G1 `-0.40625`, G2 `-0.65625`, G3 `-0.25`, G4 `-0.65625`, G5 `-0.6875`, G6 `-0.1875`), G7만 `-0.09375`로 허용 범위 내. 목표였던 G1 tracking 개선은 사실상 없었다(`tracking delta -0.00055`, 속도는 그대로인데 survival만 무너짐). | `go2_g_a010_lin_vel_z_m2_v2_260906/.../reports/TIER1_DECISION.json` |
+| G-F149 | 붕괴 메커니즘을 G1 raw case에서 직접 확인: `terminated_env_count:0`(구버전 v1 기준으론 "생존 100%"로 보임, `survival_proxy_v1:1.0`)이지만 `fallen_env_count:13/32`, `height_rel_mean:0.261`(임계 `0.18` 위에 있지만 중앙값·평균이 위태롭게 낮음), `height_rel_p10:0.103`(하위 10%는 임계 미달), 결과 `survival_proxy_v2:0.59375`. **G-A011의 `track_lin_vel_xy_exp` 사례(G-F141)와 정확히 같은 패턴** — 종료(termination)는 안 됐지만 자세가 무너진 채 회복 못 함을 v1 evaluator는 전혀 못 잡아낸다. | `evaluation/candidate/SELF_EVAL_REPORT.json` G1 case raw 블록 |
+| G-F150 | 260902 v1 측정값(`+2.2571599/70`, "생존 후퇴 0건")과 260906 v2 측정값(`-7.632522/70`, 6개 시나리오 생존 붕괴)은 **같은 checkpoint·같은 reward 변경에 대해 정반대 결론**이다. `lin_vel_z_l2` 페널티를 줄이면(`-3.0→-2.0`, 덜 벌준다) 정책은 속도를 더 내는 대신 낮게 웅크려 불안정해지는 쪽으로 붕괴했다 — 페널티 완화가 "속도 상한 해제"가 아니라 "안정화 제약 제거"로 작용한 것으로 해석한다(사후 해석, 추가 검증 없이 확정 아님). | G-F148, G-F150 비교 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D99 | **`lin_vel_z_l2 -3.0→-2.0`은 최종 기각한다. Default-01의 `-3.0`을 그대로 유지한다.** 이 다이얼은 문헌 근거 우선순위 1위였지만 posture_gate_v2 실측에서 전 시나리오급 생존 붕괴로 확정됐다 — G-A020(Chain-01 위 결합)과 무관하게 Default-01 위 단독으로도 이미 불량임이 증명됐다. | G-F148, G-F149 — R-2 생존 정의 기준 명백한 회귀, 방향성 가설도 기각(tracking 개선 없음) |
+| G-D100 | **정정: 다음 단일변수는 `ang_vel_xy_l2 -0.08→-0.15`(원안 `-0.05`가 아니라 반대 방향인 강화)로 확정하고, ID는 G-A011이 아니라 G-A024로 발급한다.** 원래 spec의 `branch.on_tier1_fail`이 "G-A011: -0.08→-0.05"를 지목했으나 그건 G-A010과 같은 "완화" 방향이라 채택하지 않았다(G-F148 참조 — 완화 방향은 이미 두 번 실패). ID는 이미 Chain-01의 `track_lin_vel_xy_exp` 실험에 쓰였다(G-F131) — 그대로 쓰면 번호 충돌·재사용 혼동이 발생해 G-D98 규칙에 따라 다음 미사용 번호를 발급했다. | G-D98; G-D75(Pilot-01 위 사전등록됐던 강화 방향 값 `-0.15`를 Default-01에 적용) |
+
+**LATEST NEXT:** (§32에서 갱신됨)
+
+## 32. G-A024 결과 회수 — 강화 방향도 전멸, 3전 3패 확정 — 260906
+
+| ID | 확정 사실 | 근거 |
+|---|---|---|
+| G-F151 | `GO2_ANG_VEL_XY_M015_RESULT.zip` 검증 전부 통과: 외부 SHA `d501e442c3…` 일치, zip CRC 이상 없음, 내부 manifest 128/128 `sha256sum -c` OK, `ENGINE_ARCHIVE_SHA256=81c3bccef543…`·`EXPERIMENT_SHA256=8cdc7a24f9…` 둘 다 사양과 일치, `training/env.yaml`에 `ang_vel_xy_l2 weight=-0.15` 렌더링 확인. `RUNNER_RC=0`·`TRAIN_RC=0`. | 로컬 압축 해제·`sha256sum -c`·`unzip -t`·직접 파일 열람 |
+| G-F152 | **결과: `INTERNAL_EARLY_KILL_FAIL`, G-A010보다 더 심하다.** `candidate_points_70=0.0`(완전 붕괴), delta `-17.132070/70`. **G1~G7 전 시나리오(7/7)** survival `-0.1` 초과 회귀 — G1·G2·G4·G5는 `-1.0`(완전 전멸), G3 `-0.75`, G6·G7 `-0.65625`. G1 raw: `fallen_env_count:32/32`(전원 낙상), `height_rel_mean:0.144`(임계 `0.18` 미달), `upright_recovered_events:0/128`(복구는 됐지만 하나도 직립 자세로 못 돌아옴), `survival_proxy_v1:1.0` vs `survival_proxy_v2:0.0`. 학습 자체는 수치적으로 안정됐다(`launcher.snapshot.log` 말미 mean reward 11.9~12.9, NaN·발산 없음) — 즉 이건 학습 실패가 아니라 **정책이 새 reward를 잘 최적화해서 낮게 웅크려 거의 움직이지 않는 안정적 국소최적해로 수렴한, 전형적 reward hacking**이다. | `go2_g_a024_ang_vel_xy_m015/reports/TIER1_DECISION.json`, `evaluation/candidate/SELF_EVAL_REPORT.json` G1 raw, `launcher.snapshot.log` |
+| G-F153 | Default-01 위에서 posture_gate_v2로 실측된 단일변수 실험은 이제 3건이고 **3건 전부 전면 실패**다: G-A011류 `track_lin_vel_xy_exp` 강화(6/7 붕괴, 원 캠페인), G-A010 `lin_vel_z_l2` 완화(6/7 붕괴), G-A024 `ang_vel_xy_l2` 강화(7/7 붕괴, 방향 반대인데도 더 나쁨). 완화·강화 양방향, 서로 다른 두 안정화 항 모두 실패했다는 것은 방향의 문제가 아니라 **Default-01의 현재 6개 reward 가중치 조합이 이미 안정성-추종 트레이드오프의 얇은 균형점에 있다**는 뜻이다. | G-F141, G-F148, G-F152 비교 |
+
+| ID | 결정 | 이유 |
+|---|---|---|
+| G-D101 | **`ang_vel_xy_l2 -0.08→-0.15`도 최종 기각한다. `-0.08` 유지.** 강화 방향도 안전하지 않다 — 오히려 더 나쁘다. | G-F152 |
+| G-D102 | **정정(발행 전 자체 재확인) — `flat_orientation_l2`는 "한 번도 시도 안 됨"이 아니라 이미 한 번 시도돼 기각됐다.** `G-A013`(260903)이 정확히 이 항을 Default-01 위에서 `0.0→-1.0`으로 시험해 `-1.4278/70`(G2·G4·G5·G6 총점·생존 후퇴)로 조기종료됐다. 그런데 직접 재확인한 결과 그 실행의 `RUNNER_STATUS.txt`는 `ENGINE_VERSION=1.1.0`, evaluator `schema_version:1`(termination-only) — **G-A010의 260902 원본 결과와 완전히 같은 세대의 신뢰 불가 evaluator**다. 즉 이 항은 "미검증"이 아니라 "검증됐지만 그 검증 도구가 이제 신뢰 불가로 판명된" 상태이고, 다음 단일변수(G-A025)는 새 실험이 아니라 **G-A013의 재측정**이다 — 같은 값(`0.0→-1.0`)을 그대로 posture_gate_v2로 다시 잰다. G-A010이 v1에서 "안전"→v2에서 "붕괴"로 뒤집혔던 것과 반대로, 이 항은 v1에서 "회귀"였던 것이 v2에서는 오히려 개선으로 뒤집힐 가능성이 있다(직접 자세 벌점이므로 termination-only 관점에서는 tracking 손실로만 보였을 수 있음). **위험 고지:** 지형과 무관하게 "평평한" 자세를 요구하므로 경사(G4)·계단(G5)에서는 필요한 기울임 자체를 벌줄 수 있다 — G4/G5 survival을 특히 주의 깊게 본다. | `workspace/_keep/go2_g_a013_flat_orientation_m1/RUNNER_STATUS.txt`, 같은 디렉터리 tier1 case summary.json(`schema_version:1`) 직접 재확인 |
+| G-D103 | **G-A025도 실패하면 reward 다이얼 탐색을 중단하고 무변경(no-op) 대조군을 먼저 돌린다** — Default-01과 완전히 같은 6개 reward로 seed 42, 1,000 iter를 재학습해 "reward를 안 바꿔도 1,000-iter from-scratch 재학습 자체가 이 정도로 불안정한가"를 분리 측정한다. 4전 4패가 되면 reward 값 문제가 아니라 재학습 절차(커리큘럼·seed·800→1000 iter 차이) 자체를 의심해야 한다. | G-F153의 "3전 3패가 방향이 아니라 균형점 문제"라는 해석이 맞다면, 그 다음 의심 대상은 재학습 절차 자체다 — 과학적 성실성 상 reward 가설을 계속 소모하기 전에 더 단순한 대안 설명(학습 변동성)을 배제해야 한다 |
+
+**LATEST NEXT:** `flat_orientation_l2 0.0→-1.0`(G-A013의 재측정, 새 값 아님)을 Default-01 위에서 G-A025로 준비한다(engine v1.4, 나머지 5개 항 불변, G4/G5 survival 특별 주시). spec 검증 후 `upload/G-A025/`에 게시하고 서버 실행을 안내한다.

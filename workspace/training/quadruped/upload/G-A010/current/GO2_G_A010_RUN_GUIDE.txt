@@ -1,20 +1,35 @@
-GO2 G-A010 SERVER RUN GUIDE
+GO2 G-A010 SERVER RUN GUIDE (v2 — engine v1.4, posture_gate_v2)
+
+⚠️ 이것은 새 실험이 아니라 재측정이다. G-A010은 260902에 engine v1.1로 실제로 실행됐고
+결과가 있다(가중 총점 +2.2571599/70, G1 개선 미달로 조기종료 — GO2_PROJECT_STATE.md G-F79).
+그러나 그 결과의 evaluator는 schema_version:1(termination-only, posture_gate_v2 이전)로
+직접 재확인됐다(G-F143/G-F146) — Chain-01(G-A011~22)이 같은 세대 evaluator로 잘못
+통과됐던 문제(GO2_PROJECT_STATE.md G-D91~93)와 동일한 맹점을 공유한다. 260902 값은
+폐기가 아니라 "방향성 참고, survival 결론 불신"으로 강등됐다. 이번 실행은 같은 변수
+(`lin_vel_z_l2 -3.0→-2.0`, 같은 baseline)를 posture_gate_v2가 포함된 engine v1.4로
+처음 제대로 측정하는 것이다 — ID는 재사용하지만 새 개입이 아니라는 뜻이다.
 
 LOCAL FILES TO UPLOAD
-1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A010\current\go2_tuning_engine_v1_1.zip
-   SHA256 e8f8b3cde9d5a4f8b2de3663dd7036f19b1c28c97bf6aa01a5a779660f72b7cd
-2. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A010\current\G_A010_lin_vel_z_m2.json
-   SHA256 e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A010\current\go2_tuning_engine_v1_4.zip
+   SHA256 81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A010\current\G_A010_lin_vel_z_m2.json
+   SHA256 2910450db9e107875410a80ed1d947d80cced0e31e67b1734f544e300374861d
 
 SERVER DESTINATIONS
-/workspace/go2_tuning_engine_v1_1.zip
+/workspace/go2_tuning_engine_v1_4.zip
 /workspace/G_A010_lin_vel_z_m2.json
 
 ONE-LINE RUN
-cd /workspace && unzip -oq go2_tuning_engine_v1_1.zip && cd /workspace/go2_tuning_engine_v1_1 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A010_lin_vel_z_m2.json
+cd /workspace && unzip -oq go2_tuning_engine_v1_4.zip && cd /workspace/go2_tuning_engine_v1_4 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A010_lin_vel_z_m2.json
 
 MONITOR
 tmux attach -t go2_g_a010
+
+무엇을 바꾸는 실험인가
+단일변수: `lin_vel_z_l2` -3.0 → -2.0 (Default-01 기준, 다른 5개 항은 불변).
+목표: G1(전진) tracking 개선 — Default-01의 실측 최대 감점 시나리오(GO2_REWARD_EVIDENCE_MASTER.md
+§17-b). 안정화 벌점이 상대적으로 강해 정책의 도달 가능 속도 자체에 상한이 걸려 있다는 가설의
+첫 검증이다(Rudin et al. 2021 R-Sci-1 근거, 같은 문서 §17-d 우선순위 1).
 
 EXPECTED WINDOW
 Early stop: approximately 1 hour 5 minutes to 1 hour 20 minutes.
@@ -31,8 +46,19 @@ DOWNLOAD BOTH TO LOCAL workspace\_keep
 SERVER SHUTDOWN GATE
 Do not shut down based on the DONE marker alone. First download both files. Local verification must
 confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
-the required G1 video, model/env/source, and policy lineage. Then the main loop reports whether the
-server can be shut down.
+the required G1 video, model/env/source, and policy lineage, and `ENGINE_ARCHIVE_SHA256` in
+RUNNER_STATUS.txt matches `81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`
+(confirms the server actually used the posture_gate_v2 engine, not a stale copy). Then the main
+loop reports whether the server can be shut down.
+
+RESULT INTERPRETATION
+Tier-1 pass alone is NOT survival-trustworthy proof by itself — it is now posture_gate_v2, so a
+PASS here means more than the old Chain-01-era PASS did, but still only 1 seed. Gate: G-D93/95
+already require this engine before trusting survival; that requirement is now satisfied for this
+run specifically. Do not generalize to Chain-01 or any other prior experiment — only this run's
+own artifact is covered. Compare the new total-points delta against the 260902 v1-evaluator value
+(+2.2571599/70) — if posture_gate_v2 flips this from "safe" to "survival regression" the way it did
+for G-A011's track_lin_vel_xy_exp change (GO2_PROJECT_STATE.md G-F141), that is itself the key finding.
 
 PARALLELISM
 Run one 4096-env training only. The confirmed server has one RTX 5080 with 16,303 MiB and no measured

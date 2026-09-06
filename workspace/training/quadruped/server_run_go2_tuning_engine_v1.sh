@@ -2,14 +2,14 @@
 # Fixed engine: validated experiment JSON -> training -> gated evaluation -> one result ZIP.
 set -euo pipefail
 
-PACKAGE_ROOT=${PACKAGE_ROOT:-/workspace/go2_tuning_engine_v1_3}
+PACKAGE_ROOT=${PACKAGE_ROOT:-/workspace/go2_tuning_engine_v1_4}
 if [[ "${1:-}" == "--inner" ]]; then
   EXPERIMENT_PATH=${EXPERIMENT_PATH:-/workspace/experiment.json}
 else
   EXPERIMENT_PATH=${1:-/workspace/experiment.json}
 fi
 ISAACLAB=${ISAACLAB:-/workspace/IsaacLab/isaaclab.sh}
-ENGINE_ZIP_PATH=${GO2_ENGINE_ZIP_PATH:-/workspace/go2_tuning_engine_v1_3.zip}
+ENGINE_ZIP_PATH=${GO2_ENGINE_ZIP_PATH:-/workspace/go2_tuning_engine_v1_4.zip}
 RESUME=${GO2_RESUME:-0}
 [[ -x "$ISAACLAB" && -s "$PACKAGE_ROOT/go2_tuning_config.py" && -s "$EXPERIMENT_PATH" ]] || {
   echo "[FAIL] missing engine config or experiment: $PACKAGE_ROOT $EXPERIMENT_PATH"; exit 2;

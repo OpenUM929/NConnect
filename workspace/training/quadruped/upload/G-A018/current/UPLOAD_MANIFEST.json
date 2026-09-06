@@ -1,0 +1,20 @@
+{
+  "experiment_id": "G-A018",
+  "note": "action_rate_l2 -0.01 to -0.008, last untested reward lever, Pilot-01 baseline frozen",
+  "published_at_utc": "2026-09-04T14:35:08+00:00",
+  "release_id": "20260904_action-rate-m008",
+  "status": "prepared",
+  "support_files": [],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_3.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_3.zip",
+      "sha256": "dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a"
+    },
+    {
+      "name": "G_A018_pilot_action_rate_m008.json",
+      "server_path": "/workspace/G_A018_pilot_action_rate_m008.json",
+      "sha256": "7844cbe1f8f81f83116252922ac2921bbf261baab6661d0e2160e2b6d1945567"
+    }
+  ]
+}

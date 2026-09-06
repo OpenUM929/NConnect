@@ -1,0 +1,71 @@
+GO2 G-A025 SERVER RUN GUIDE (engine v1.4, posture_gate_v2)
+
+이것은 재측정이다, 신규 실험이 아니다. `flat_orientation_l2 0.0→-1.0`은 G-A013(260903)이
+이미 Default-01 위에서 시험했고 `-1.4278/70`(G2·G4·G5·G6 총점·생존 후퇴)로 조기종료됐다.
+그런데 그 실행의 `RUNNER_STATUS.txt`(`ENGINE_VERSION=1.1.0`)와 tier1 case summary
+(`schema_version:1`)를 직접 열람해 확인한 결과 posture_gate_v2 이전의 termination-only
+evaluator였다 — G-A010의 260902 원본 결과와 완전히 같은 세대의 신뢰 불가 도구다. G-A010이
+이 evaluator 세대에서 "안전"으로 잘못 판정됐던 것처럼, G-A013도 "회귀"로 잘못 판정됐을
+가능성이 있다(반대 방향의 오류). 같은 값을 posture_gate_v2로 다시 잰다.
+
+다른 두 안정화 항(`lin_vel_z_l2` 완화 G-A010, `ang_vel_xy_l2` 강화 G-A024)은 posture_gate_v2
+실측에서 둘 다 전 시나리오급 붕괴로 최종 기각됐다(GO2_PROJECT_STATE.md G-D99/G-D101) —
+두 항 모두 자세를 간접적으로만 유도하는 항이었다. `flat_orientation_l2`는 몸통 기울기를
+직접 벌점화하는 유일한 미신뢰(재검증 필요) 레버라서 이번 우선순위다.
+
+LOCAL FILES TO UPLOAD
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A025\current\go2_tuning_engine_v1_4.zip
+   SHA256 81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A025\current\G_A025_flat_orientation_m1.json
+   SHA256 fddddfd12f5487b04811bb0e3bf02b7ef38f5f6687f85e5b0f62f04b96b8f70f
+
+SERVER DESTINATIONS
+/workspace/go2_tuning_engine_v1_4.zip
+/workspace/G_A025_flat_orientation_m1.json
+
+ONE-LINE RUN
+cd /workspace && unzip -oq go2_tuning_engine_v1_4.zip && cd /workspace/go2_tuning_engine_v1_4 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A025_flat_orientation_m1.json
+
+MONITOR
+tmux attach -t go2_g_a025
+
+무엇을 바꾸는 실험인가
+단일변수: `flat_orientation_l2` 0.0 → -1.0 (Default-01 기준, 다른 5개 항 불변 —
+`lin_vel_z_l2=-3.0`·`ang_vel_xy_l2=-0.08` 둘 다 G-A010/G-A024 기각 이후 원복 확정값).
+목표: 몸통을 수평(flat)으로 유지하도록 직접 벌점을 매겨 posture_gate_v2가 재는 실제
+자세 붕괴(height_rel/tilt)를 개선하는지 확인.
+**위험:** 이 항은 지형과 무관하게 "평평한" 자세를 요구한다. 경사(G4)·계단(G5)에서는
+오르막에 맞춰 몸통을 기울여야 하는데, 이 페널티가 그 자연스러운 기울임 자체를 벌줄 수
+있다 — G-A013의 v1 결과에서도 G4·G5가 실점 시나리오에 포함돼 있었다. G4/G5 survival을
+다른 시나리오보다 더 의심스럽게 본다.
+
+EXPECTED WINDOW
+Early stop: approximately 1 hour 5 minutes to 1 hour 20 minutes.
+Prior-artifact estimate (G-A010/G-A020/G-A024 wall time), not a billing-time guarantee.
+
+DONE MARKER
+[DONE] GO2_FLAT_ORIENTATION_M1_V2_RESULT_READY
+
+DOWNLOAD BOTH TO LOCAL workspace\_keep
+/workspace/_keep/GO2_FLAT_ORIENTATION_M1_V2_RESULT.zip
+/workspace/_keep/GO2_FLAT_ORIENTATION_M1_V2_RESULT.zip.sha256
+
+SERVER SHUTDOWN GATE
+Do not shut down based on the DONE marker alone. First download both files. Local verification must
+confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
+the required G1 video, model/env/source, and policy lineage, and `ENGINE_ARCHIVE_SHA256` in
+RUNNER_STATUS.txt matches `81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`. Then
+the main loop reports whether the server can be shut down.
+
+RESULT INTERPRETATION
+Compare against G-A013's v1-evaluator verdict (-1.4278/70, G2/G4/G5/G6 flagged) — if posture_gate_v2
+flips this to a net improvement without collapsing G4/G5, this is the first candidate in the whole
+campaign to survive honest measurement. If it also collapses (especially G4/G5 as predicted above),
+the next branch (already pre-registered) is a zero-reward-change control replicate — same Default-01
+rewards, seed 42, 1000 iterations from scratch — to separate "reward tuning is the problem" from
+"1000-iter from-scratch retraining is itself unstable regardless of reward values" (4 straight failures
+across 4 different reward terms and both directions would make the latter the more parsimonious
+explanation).
+
+PARALLELISM
+Run one 4096-env training only. Single RTX 5080, no measured peak-VRAM margin for two concurrent jobs.

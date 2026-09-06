@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A018
+
+UPLOAD ONLY THESE TWO FILES
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A018\current\go2_tuning_engine_v1_3.zip
+   SHA256 dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A018\current\G_A018_pilot_action_rate_m008.json
+   SHA256 7844cbe1f8f81f83116252922ac2921bbf261baab6661d0e2160e2b6d1945567
+
+RELEASE_ID 20260904_action-rate-m008
+STATUS prepared
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

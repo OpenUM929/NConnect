@@ -1,0 +1,20 @@
+{
+  "experiment_id": "G-A010",
+  "note": "Engine rebuilt with posture_gate_v2 evaluator (G-D93/G-D95); first real run of G-A010 (never executed before, previously blocked by v1.0.1 engine identity mismatch).",
+  "published_at_utc": "2026-09-05T09:24:22+00:00",
+  "release_id": "20260905_lin_vel_z_m2_engine_v1_4",
+  "status": "ACTIVE",
+  "support_files": [],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_4.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_4.zip",
+      "sha256": "81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37"
+    },
+    {
+      "name": "G_A010_lin_vel_z_m2.json",
+      "server_path": "/workspace/G_A010_lin_vel_z_m2.json",
+      "sha256": "2910450db9e107875410a80ed1d947d80cced0e31e67b1734f544e300374861d"
+    }
+  ]
+}

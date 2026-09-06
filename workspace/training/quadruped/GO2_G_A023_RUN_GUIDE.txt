@@ -1,0 +1,71 @@
+GO2 G-A023 — Chain-01 자체 69-case·3seed 실측 (학습 없음)
+==========================================================
+
+G-A022(Chain-01 위 feet_air_time 0.01→0.20)도 게이트 실패로 기각됐다(baseline
+18.61/70 -> candidate 4.88/70, delta -13.73). G-A021보다 나쁘고 G-A020(전멸)에
+가깝다 — G1~G6 전부 생존 후퇴 0.10 초과. Default-01에서 유일하게 총점을
+개선했던 값(G-A007)조차 Chain-01 위에서는 최악에 가까운 붕괴를 냈다.
+
+Chain-01 위 개별 스태킹은 이제 3전 3패(G-A020·21·22)다. 남은 두 항
+(action_rate_l2·flat_orientation_l2)은 각각 다이얼째 이미 완전히 소진돼
+있다(G-F127) — action_rate_l2는 유일하게 시도된 값이 전멸을 냈고 반대
+방향도 "같은 함정 피할 근거 없음"으로 재탐색이 배제됐으며, flat_orientation_l2는
+유일한 방향이 실패했고 강화는 "부호/메커니즘 오류"로 취소됐다. 두 항 다
+새로 시도할 코히런트한 값이 없다. 그래서 이 둘은 Chain-01 위에서도
+시도하지 않는다 — 단일변수 보상 스태킹 탐색은 여기서 종료한다.
+
+다음 작업은 새 보상 실험이 아니라 Chain-01 자체의 실측이다. Chain-01은
+지금까지 seed 101 tier-1 프록시 점수만 있고(+3.09/70, 생존 후퇴 0건),
+대표 seed(202·303)·69-case·posture_gate_v2 평가를 받은 적이 한 번도 없다
+— G-A011이 지정 시나리오 절만으로 조기 종료됐기 때문이다. 학습은 하지
+않는다(G-A012가 Pilot-01에 썼던 것과 동일한 방식, 이번엔 Chain-01용으로
+새로 빌드).
+
+업로드 1파일 (/workspace/ 직속에 올린다)
+
+  go2_chain01_baseline.zip
+    SHA256 51bac58e0126b2a1468acd893ab55851908109afdd027799a73ce4ba00907e8c
+    6,455,643 B
+
+실행 한 줄
+----------
+cd /workspace && printf '51bac58e0126b2a1468acd893ab55851908109afdd027799a73ce4ba00907e8c  go2_chain01_baseline.zip\n' | sha256sum -c --strict - && unzip -oq go2_chain01_baseline.zip && bash /workspace/go2_chain01_baseline/server_run_go2_chain01_baseline.sh
+
+진행 확인
+---------
+tmux attach -t go2_chain01_baseline      (분리: Ctrl-b 누르고 d)
+
+  PHASE 1/3  69 case × seed 101/202/303, 자세 게이트     약 55분
+  PHASE 2/3  G1~G7 시나리오별 영상 7건 (seed 101)         약 8분
+  PHASE 3/3  단일 ZIP 포장 + SHA                          약 2분
+
+총 약 1시간 5분. 학습이 없으므로 GPU 시간이 실제로는 더 짧을 수 있다
+(G-A012 실측: 예상 대비 실제 약 29분).
+
+완료 표시
+---------
+[DONE] GO2_CHAIN01_BASELINE_RESULT_READY
+
+다운로드 2파일
+--------------
+/workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip
+/workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip.sha256
+
+→ C:\dev\Nconnect\workspace\_keep\ 에 그대로 둔다.
+
+왜 이 작업인가 (요약)
+--------------------
+Chain-01 위 개별 보상 스태킹 3회가 전부 실패했고 남은 두 항도 소진됐다.
+새 단일변수를 추측하기보다, 지금까지 프록시 점수만 있던 Chain-01 자체의
+진짜 /70 점수를 먼저 확보하는 것이 다음으로 정보가치가 가장 높다. 학습이
+없어 제출 후보에 아무 위험이 없다.
+
+서버 종료 관문
+--------------
+DONE 표시만으로 끄지 않는다. 외부 SHA · ZIP CRC · 내부 manifest ·
+RESULT_STATE=FULL/RUNNER_RC=0 · telemetry 69/69 · 영상 7/7 · TRAINING=none ·
+CHAIN01_MODEL_SHA=143871e3… 일치를 로컬에서 확인해야 종료 여부를 답한다.
+
+병렬 실행 금지
+--------------
+GPU 1장(RTX 5080, 16,303 MiB)이므로 다른 학습과 동시에 돌리지 않는다.

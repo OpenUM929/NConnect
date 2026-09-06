@@ -1,0 +1,69 @@
+GO2 G-A020 — RESET: Chain-01 기준선 · lin_vel_z_l2 -3.0 → -2.0
+==========================================================
+
+이 실험부터 기준선이 Pilot-01(4개 reward 동시 변경, 재현 미검증)에서
+Chain-01(단일변수로 개별 검증된 값만 누적)로 바뀐다. 엔진도 v1_3 → v1_4로
+바뀐다(Chain-01 baseline 추가). 이전 엔진(v1_1/v1_2/v1_3)과 이전 사양
+(G_A013~G_A019)은 전부 SUPERSEDED다. 다시 올리지 않는다.
+
+업로드 2파일 (둘 다 /workspace/ 직속에 올린다. training/ 밑에는 아무것도 올리지 않는다)
+
+  go2_tuning_engine_v1_4.zip
+    SHA256 a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0
+    19,135,939 B  (Chain-01 baseline 추가로 새로 만든 엔진. 이전 v1_3과 다르다)
+
+  G_A020_chain01_lin_vel_z_m2.json
+    SHA256 1bc313e5f2879666da81b427cac4355045b1e006caef981f31da914756e7cca2
+    3,155 B
+
+실행 한 줄
+----------
+cd /workspace && printf 'a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0  go2_tuning_engine_v1_4.zip\n1bc313e5f2879666da81b427cac4355045b1e006caef981f31da914756e7cca2  G_A020_chain01_lin_vel_z_m2.json\n' | sha256sum -c --strict - && unzip -oq go2_tuning_engine_v1_4.zip && cd /workspace/go2_tuning_engine_v1_4 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A020_chain01_lin_vel_z_m2.json
+
+진행 확인
+---------
+tmux attach -t go2_g_a020      (분리: Ctrl-b 누르고 d)
+
+  PHASE 1/4  1,000 iter 학습              약 59분
+  PHASE 2/4  tier-1 게이트 + G1 영상       약 5분
+  PHASE 3/4  seed 202·303 (통과 시에만)    약 5분
+  PHASE 4/4  포장                          약 2분
+
+조기 종료 약 1시간 6분, 대표평가까지 약 1시간 11분.
+
+완료 표시
+---------
+[DONE] GO2_CHAIN01_LIN_VEL_Z_M2_RESULT_READY
+
+다운로드 2파일
+--------------
+/workspace/_keep/GO2_CHAIN01_LIN_VEL_Z_M2_RESULT.zip
+/workspace/_keep/GO2_CHAIN01_LIN_VEL_Z_M2_RESULT.zip.sha256
+
+→ C:\dev\Nconnect\workspace\_keep\ 에 그대로 둔다.
+
+왜 리셋했는가 (요약)
+--------------------
+Pilot-01은 배포 기본값(Default-01)에서 reward 4개를 동시에 바꾸고 학습 seed
+하나로 딱 한 번 만든 정책이었다(260831). 260901 문서에 "재현 검증 전까지
+Pilot-01을 기준으로 쓰지 말라"는 규칙이 이미 있었는데, 260903에 그 규칙이
+지켜지지 않은 채로 Pilot-01이 전체 스크리닝의 기준선이 됐다. 그 뒤 5번의
+단일변수 실험 중 4번이 후퇴했고 2번은 전 시나리오가 붕괴했다 — 다이얼 선택의
+문제가 아니라 애초에 재현성 미확인 지점 위에서 미세조정을 반복했을 가능성이 크다.
+
+Chain-01은 그 대신 이미 개별 검증된 두 결과만 쓴다: `track_lin_vel_xy_exp`
+1.0→1.2(G-A011, Default-01 대비 +3.09/70, 생존 후퇴 0건)를 새 기준선으로 동결하고,
+이번 회차는 그 위에 `lin_vel_z_l2` -3.0→-2.0(G-A010, Default-01 단독 대비
++2.26/70)을 얹어 두 검증된 개선이 실제로 합쳐지는지 확인한다. H1(2족) 캠페인이
+Run02→04→05로 검증된 변경을 하나씩 쌓아 Run06(92.73/100)을 만든 것과 같은 방식이다.
+
+서버 종료 관문
+--------------
+DONE 표시만으로 끄지 않는다. 외부 SHA · ZIP CRC · 내부 manifest · RESULT_STATE/
+RUNNER_RC · telemetry 7/7 · G1 영상 · training/env.yaml 의 가중치(특히
+`lin_vel_z_l2: -2.0`, `track_lin_vel_xy_exp: 1.2` 유지) · 정책 계보를 로컬에서
+확인해야 종료 여부를 답한다.
+
+병렬 실행 금지
+--------------
+GPU 1장(RTX 5080, 16,303 MiB)에 4096 env 학습이므로 다른 학습과 동시에 돌리지 않는다.

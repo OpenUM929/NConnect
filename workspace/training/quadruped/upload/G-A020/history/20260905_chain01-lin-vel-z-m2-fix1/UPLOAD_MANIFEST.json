@@ -1,0 +1,20 @@
+{
+  "experiment_id": "G-A020",
+  "note": "fix: server_run_go2_tuning_engine_v1.sh default PACKAGE_ROOT/ENGINE_ZIP_PATH were still v1_3, corrected to v1_4 before any upload",
+  "published_at_utc": "2026-09-04T16:21:58+00:00",
+  "release_id": "20260905_chain01-lin-vel-z-m2-fix1",
+  "status": "prepared",
+  "support_files": [],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_4.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_4.zip",
+      "sha256": "ebb8b5d47e1253699957bd1895eee55e6e258fe4cfbda9ce5f76b33558c39cab"
+    },
+    {
+      "name": "G_A020_chain01_lin_vel_z_m2.json",
+      "server_path": "/workspace/G_A020_chain01_lin_vel_z_m2.json",
+      "sha256": "1bc313e5f2879666da81b427cac4355045b1e006caef981f31da914756e7cca2"
+    }
+  ]
+}

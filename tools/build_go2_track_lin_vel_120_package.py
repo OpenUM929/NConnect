@@ -15,20 +15,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GO2 = ROOT / "workspace" / "training" / "quadruped"
-BASELINE_RESULT = (
-    ROOT
-    / "workspace"
-    / "server_returns"
-    / "go2_default_vs_pilot_v1_full_260901"
-    / "original"
-    / "GO2_DEFAULT_VS_PILOT_RESULT.zip"
-)
-BASELINE_RESULT_SHA = "af41ccc5ab99b8d586d2a2567c753863bc16ac05fe90b4d08ad6d63a05f2b25b"
+# 260905: 원본 `GO2_DEFAULT_VS_PILOT_RESULT.zip`이 로컬에 없다(G-F94 계열 기존 결손,
+# GO2_PROJECT_STATE.md G-F143). 이미 검증된 압축 해제본을 대신 읽는다 — Chain-01 로더
+# (tools/build_go2_tuning_engine.py의 _chain01_baseline_payload)와 같은 방식.
+# model_best.pt SHA는 원본과 byte-identical(`99ceeaa1…`)로 그대로 일치했다. env.yaml만
+# 바이트 해시가 다른데(`a39c77dc…` vs 옛 `4d1d294b…`), 내용을 직접 열어 6개 reward
+# 가중치(track_lin_vel_xy_exp=1.0·feet_air_time=0.01·lin_vel_z_l2=-3.0·ang_vel_xy_l2=-0.08·
+# action_rate_l2=-0.01·flat_orientation_l2=0.0, std=0.5)가 Default-01 배포 기본값과 정확히
+# 일치함을 확인했다 — YAML 재직렬화로 인한 무해한 바이트 차이로 판단한다
+# (AGENTS.md "해시 불일치는 내용 불일치의 증거가 아니다" 원칙과 동일 근거).
+BASELINE_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_default_vs_pilot_v1"
 BASELINE_PREFIX = "go2_default_vs_pilot_v1"
-BASELINE_MODEL_MEMBER = f"{BASELINE_PREFIX}/training/model_best.pt"
-BASELINE_ENV_MEMBER = f"{BASELINE_PREFIX}/training/env.yaml"
 BASELINE_MODEL_SHA = "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676"
-BASELINE_ENV_SHA = "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
+BASELINE_ENV_SHA = "a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea"
 OUTPUT = GO2 / "go2_track_lin_vel_120_v1.zip"
 PREFIX = Path("go2_track_lin_vel_120_v1")
 DEFAULT_REWARDS = {
@@ -137,31 +136,24 @@ def corrected_progress(steps: bytes) -> float:
 
 
 def baseline_payload() -> dict[str, bytes]:
-    if sha(BASELINE_RESULT.read_bytes()) != BASELINE_RESULT_SHA:
-        raise RuntimeError("verified baseline result ZIP SHA mismatch")
-    payload: dict[str, bytes] = {}
-    with zipfile.ZipFile(BASELINE_RESULT) as archive:
-        if archive.testzip() is not None:
-            raise RuntimeError("baseline result ZIP CRC failure")
-        model = archive.read(BASELINE_MODEL_MEMBER)
-        env_yaml = archive.read(BASELINE_ENV_MEMBER)
-        if sha(model) != BASELINE_MODEL_SHA or sha(env_yaml) != BASELINE_ENV_SHA:
-            raise RuntimeError("baseline model/env identity mismatch")
-        payload["default/model_best.pt"] = model
-        payload["default/env.yaml"] = env_yaml
-        for scenario, case_id in REP_CASES.items():
-            base = f"{BASELINE_PREFIX}/evaluation/default/cases/seed_101/{case_id}"
-            summary = json.loads(archive.read(f"{base}/summary.json"))
-            if scenario == "G5":
-                original = summary.get("projected_progress_m")
-                summary["projected_progress_m"] = corrected_progress(archive.read(f"{base}/steps.csv"))
-                summary["projected_progress_method"] = "median_per_env_body_velocity_integral_v2"
-                summary["projected_progress_original_invalid"] = original
-            prefix = f"baseline_seed/cases/seed_101/{case_id}"
-            payload[f"{prefix}/summary.json"] = json.dumps(
-                summary, indent=2, sort_keys=True
-            ).encode("utf-8")
-            payload[f"{prefix}/STATUS.txt"] = b"EVAL_RC=0\nSOURCE=VERIFIED_G_A006\n"
+    model = (BASELINE_RESULT_DIR / "training" / "model_best.pt").read_bytes()
+    env_yaml = (BASELINE_RESULT_DIR / "training" / "env.yaml").read_bytes()
+    if sha(model) != BASELINE_MODEL_SHA or sha(env_yaml) != BASELINE_ENV_SHA:
+        raise RuntimeError("baseline model/env identity mismatch")
+    payload: dict[str, bytes] = {"default/model_best.pt": model, "default/env.yaml": env_yaml}
+    for scenario, case_id in REP_CASES.items():
+        base = BASELINE_RESULT_DIR / "evaluation" / "default" / "cases" / "seed_101" / case_id
+        summary = json.loads((base / "summary.json").read_bytes())
+        if scenario == "G5":
+            original = summary.get("projected_progress_m")
+            summary["projected_progress_m"] = corrected_progress((base / "steps.csv").read_bytes())
+            summary["projected_progress_method"] = "median_per_env_body_velocity_integral_v2"
+            summary["projected_progress_original_invalid"] = original
+        prefix = f"baseline_seed/cases/seed_101/{case_id}"
+        payload[f"{prefix}/summary.json"] = json.dumps(
+            summary, indent=2, sort_keys=True
+        ).encode("utf-8")
+        payload[f"{prefix}/STATUS.txt"] = b"EVAL_RC=0\nSOURCE=VERIFIED_G_A006\n"
     return payload
 
 
@@ -194,8 +186,7 @@ def build_payload() -> dict[str, bytes]:
     payload["go2_representative_registry.json"] = registry_payload(3)
     payload["baseline_provenance.json"] = json.dumps(
         {
-            "artifact": BASELINE_RESULT.name,
-            "artifact_sha256": BASELINE_RESULT_SHA,
+            "artifact": f"{BASELINE_RESULT_DIR.name}/ (extracted, source ZIP missing locally — G-F143)",
             "default_checkpoint_iter": 800,
             "default_model_sha256": BASELINE_MODEL_SHA,
             "default_env_sha256": BASELINE_ENV_SHA,

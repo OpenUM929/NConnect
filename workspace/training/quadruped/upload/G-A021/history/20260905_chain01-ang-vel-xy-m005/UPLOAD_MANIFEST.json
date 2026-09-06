@@ -1,0 +1,20 @@
+{
+  "experiment_id": "G-A021",
+  "note": "Next single-variable dial after G-A020's rejected compound: ang_vel_xy_l2 -0.08 -> -0.05 alone on top of Chain-01. Same fix2 engine (v1.4, no engine changes needed). Value chosen to match Pilot-01's original bundled value for this dial, isolating it for its first individual test.",
+  "published_at_utc": "2026-09-05T01:57:04+00:00",
+  "release_id": "20260905_chain01-ang-vel-xy-m005",
+  "status": "prepared",
+  "support_files": [],
+  "upload_files": [
+    {
+      "name": "go2_tuning_engine_v1_4.zip",
+      "server_path": "/workspace/go2_tuning_engine_v1_4.zip",
+      "sha256": "a030427748aad4049b3591fd20370f75091fe6365941f92d46e123333e3877c0"
+    },
+    {
+      "name": "G_A021_chain01_ang_vel_xy_m005.json",
+      "server_path": "/workspace/G_A021_chain01_ang_vel_xy_m005.json",
+      "sha256": "0177803887af8a9693fafdf9f5f6ec51dd6efcfe54c6e4577e4aa82a5df0e83e"
+    }
+  ]
+}

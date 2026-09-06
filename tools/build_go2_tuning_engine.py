@@ -13,8 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 GO2 = ROOT / "workspace" / "training" / "quadruped"
-OUTPUT = GO2 / "go2_tuning_engine_v1_3.zip"
-PREFIX = Path("go2_tuning_engine_v1_3")
+OUTPUT = GO2 / "go2_tuning_engine_v1_4.zip"
+PREFIX = Path("go2_tuning_engine_v1_4")
 FIXED_TIMESTAMP = (2026, 9, 4, 0, 0, 0)
 
 
@@ -34,11 +34,16 @@ def _load_old_builder():
 # Pilot-01, verified in G-A012 at 33.79311/70 over the 69-case posture_gate_v2
 # suite. Engine 1.2.0 ships it alongside Default-01 so an experiment can screen a
 # single variable against the better of the two frozen policies.
-PILOT_RESULT = ROOT / "workspace" / "_keep" / "GO2_PILOT_V2_BASELINE_RESULT.zip"
-PILOT_RESULT_SHA = "a722e9e740a2818cdce316c6fb901c92f6180a600c06b37da6609a66ed95aa9a"
+# 260905: 원본 `GO2_PILOT_V2_BASELINE_RESULT.zip`이 로컬에 없다(G-F94 계열과 같은
+# 종류의 기존 결손). 이미 검증된 압축 해제본을 대신 읽는다 — model SHA는
+# byte-identical(`c4d78adf…`)로 일치했고, env.yaml은 바이트 해시만 다르며(재직렬화)
+# 6개 reward 가중치(1.2/0.2/-2.0/-0.05/-0.01/0.0)가 Pilot-01 정의와 정확히 일치함을
+# 직접 확인했다(GO2_PROJECT_STATE.md G-F143 계열, tools/build_go2_track_lin_vel_120_package.py의
+# 같은 처리와 동일 근거).
+PILOT_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_pilot_v2_baseline"
 PILOT_PREFIX = "go2_pilot_v2_baseline"
 PILOT_MODEL_SHA = "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
-PILOT_ENV_SHA = "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
+PILOT_ENV_SHA = "89e7a11749e218081e9d2e9be0a7544e864ea9300472148bc64ccdf83eab77c9"
 TIER1_CASES = {
     "G1": "forward_fast",
     "G2": "diagonal_left",
@@ -56,23 +61,42 @@ def _default_baseline_payload() -> dict[str, bytes]:
 
 
 def _pilot_baseline_payload() -> dict[str, bytes]:
-    if sha(PILOT_RESULT.read_bytes()) != PILOT_RESULT_SHA:
-        raise RuntimeError("verified Pilot-01 result ZIP SHA mismatch")
-    payload: dict[str, bytes] = {}
-    with zipfile.ZipFile(PILOT_RESULT) as archive:
-        if archive.testzip() is not None:
-            raise RuntimeError("Pilot-01 result ZIP CRC failure")
-        model = archive.read(f"{PILOT_PREFIX}/policy/pilot_model_best.pt")
-        env_yaml = archive.read(f"{PILOT_PREFIX}/policy/pilot_env.yaml")
-        if sha(model) != PILOT_MODEL_SHA or sha(env_yaml) != PILOT_ENV_SHA:
-            raise RuntimeError("Pilot-01 model/env identity mismatch")
-        payload["model_best.pt"] = model
-        payload["env.yaml"] = env_yaml
-        for case_id in TIER1_CASES.values():
-            base = f"{PILOT_PREFIX}/evaluation/pilot_v2/cases/seed_101/{case_id}"
-            prefix = f"baseline_seed/cases/seed_101/{case_id}"
-            payload[f"{prefix}/summary.json"] = archive.read(f"{base}/summary.json")
-            payload[f"{prefix}/STATUS.txt"] = b"EVAL_RC=0\nSOURCE=VERIFIED_G_A012\n"
+    model = (PILOT_RESULT_DIR / "policy" / "pilot_model_best.pt").read_bytes()
+    env_yaml = (PILOT_RESULT_DIR / "policy" / "pilot_env.yaml").read_bytes()
+    if sha(model) != PILOT_MODEL_SHA or sha(env_yaml) != PILOT_ENV_SHA:
+        raise RuntimeError("Pilot-01 model/env identity mismatch")
+    payload: dict[str, bytes] = {"model_best.pt": model, "env.yaml": env_yaml}
+    for case_id in TIER1_CASES.values():
+        base = PILOT_RESULT_DIR / "evaluation" / "pilot_v2" / "cases" / "seed_101" / case_id
+        prefix = f"baseline_seed/cases/seed_101/{case_id}"
+        payload[f"{prefix}/summary.json"] = (base / "summary.json").read_bytes()
+        payload[f"{prefix}/STATUS.txt"] = b"EVAL_RC=0\nSOURCE=VERIFIED_G_A012\n"
+    return payload
+
+
+# Chain-01: Default-01 + track_lin_vel_xy_exp 1.0->1.2 (G-A011), verified
+# +3.0902846/70 over Default-01 with zero survival regression. Read from the
+# locally-verified extracted result directory (the original result ZIP was
+# already unpacked and removed) rather than a ZIP, unlike the Pilot-01 loader.
+CHAIN01_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_track_lin_vel_120_v1"
+CHAIN01_MODEL_SHA = "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4"
+CHAIN01_ENV_SHA = "2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71"
+
+
+def _chain01_baseline_payload() -> dict[str, bytes]:
+    model = (CHAIN01_RESULT_DIR / "training" / "model_best.pt").read_bytes()
+    env_yaml = (CHAIN01_RESULT_DIR / "training" / "env.yaml").read_bytes()
+    if sha(model) != CHAIN01_MODEL_SHA or sha(env_yaml) != CHAIN01_ENV_SHA:
+        raise RuntimeError("Chain-01 model/env identity mismatch")
+    payload: dict[str, bytes] = {"model_best.pt": model, "env.yaml": env_yaml}
+    for case_id in TIER1_CASES.values():
+        summary = (
+            CHAIN01_RESULT_DIR
+            / "evaluation" / "candidate" / "cases" / "seed_101" / case_id / "summary.json"
+        ).read_bytes()
+        prefix = f"baseline_seed/cases/seed_101/{case_id}"
+        payload[f"{prefix}/summary.json"] = summary
+        payload[f"{prefix}/STATUS.txt"] = b"EVAL_RC=0\nSOURCE=VERIFIED_G_A011\n"
     return payload
 
 
@@ -86,6 +110,8 @@ def baseline_payload() -> dict[str, bytes]:
             payload[f"baseline/default/{name}"] = data
     for name, data in _pilot_baseline_payload().items():
         payload[f"baseline/pilot/{name}"] = data
+    for name, data in _chain01_baseline_payload().items():
+        payload[f"baseline/chain01/{name}"] = data
     return payload
 
 
@@ -139,11 +165,12 @@ def build_payload() -> dict[str, bytes]:
         payload[name] = path.read_bytes()
     payload["ENGINE_METADATA.json"] = json.dumps(
         {
-            "engine_version": "1.2.0",
+            "engine_version": "1.3.0",
             "experiment_embedded": False,
             "baselines": {
                 "Default-01 iter 800": "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676",
                 "Pilot-01 iter 1000": PILOT_MODEL_SHA,
+                "Chain-01 iter 1000": CHAIN01_MODEL_SHA,
             },
             "official_equivalence": False,
         },

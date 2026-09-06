@@ -17,13 +17,13 @@ Go2 reward 값의 **출처**, 실제 **성능 증거**, G1~G7 직접 측정 범�
 
 | reward | 강좌 배포 기준 | Pilot-01 | 변경 | 역할·출처 | 현재 성능 판정 | 직접 측정 G | 한계 |
 |---|---:|---:|---:|---|---|---|---|
-| `track_lin_vel_xy_exp` | 1.0 | 1.2 | +0.2 | 속도 추종. 강좌 14강은 1.0→1.5 단일변수 예시 | **미만족 — G-A009 단독 1.20 조기중단** | G1~G7 tier 1 | seed 101 G1 delta `-0.0000663`; Pilot 개선은 다른 동시 변경 또는 상호작용 가능 |
-| `feet_air_time` | 0.01 | 0.2 | +0.19 | 발 들기. 강좌는 낮으면 발을 거의 안 든다고 설명 | **미만족 — G-A007 단독 0.20 screen fail** | G1~G7 69-case·7영상 | G1 정체, 보정 G5 진행 회귀, 60/70 승급선 미달; foot contact 직접 계측 없음 |
-| `lin_vel_z_l2` | -3.0 | -2.0 | 완화 | 상하 흔들림. 강좌 14강의 1k 예시는 -3→-2 후 전진 관찰 | **INCONCLUSIVE** | G3~G5·G7 | 적극적 이동과 안정성 trade-off 가능, 단독 실험 없음 |
-| `ang_vel_xy_l2` | -0.08 | -0.05 | 완화 | 몸통 roll/pitch 흔들림 억제 | **INCONCLUSIVE** | G2~G5·G7 | 경사·회전 개선과 rough/stairs 불안정이 공존, 단독 실험 없음 |
-| `action_rate_l2` | -0.01 | -0.01 | 불변 | 관절 명령 급변·떨림 억제 | **미측정** | 14개 영상은 관찰 | jerk·관절 명령 급변 정량 없음 |
+| `track_lin_vel_xy_exp` | 1.0 | 1.2 | +0.2 | 속도 추종. 강좌 14강은 1.0→1.5 단일변수 예시. **Rudin et al. 2021(R-Sci-1) Table 2: `φ(v*-v)` 가중 1·dt, φ std²=0.25(std=0.5) — 우리 내부 `tracking_proxy=exp(-(RMSE/0.5)^2)`의 0.5와 동일 커널** | **미만족 — G-A009 단독 1.20 조기중단, G-A023 posture_gate_v2 재채점 결과 G1·G2·G3·G4·G5·G7 survival 전멸(GO2_PROJECT_STATE.md G-F139)** | G1~G7 tier 1 · 69-case | seed 101 G1 delta `-0.0000663`; 논문은 이 항 **단독**이 아니라 9항 동시 튜닝의 결과이므로 이 항만 올리는 것의 안전성은 논문 근거가 아니다 |
+| `feet_air_time` | 0.01 | 0.2 | +0.19 | 발 들기. 강좌는 낮으면 발을 거의 안 든다고 설명. **R-Sci-1 Table 2: `Σ(t_air-0.5)` 가중 2·dt — 목표 체공시간 0.5초가 `quadruped_rewards.py`의 "0.5+ 면 바운딩 가능성" 경고와 정확히 일치** | **미만족 — G-A007 단독 0.20 screen fail** | G1~G7 69-case·7영상 | G1 정체, 보정 G5 진행 회귀, 60/70 승급선 미달; foot contact 직접 계측 없음. 논문 가중치(2·dt)는 track_lin_vel(1·dt)보다 **크다** — 우리 기본값(0.01≪1.0)과는 상대적 비중이 반대 방향 |
+| `lin_vel_z_l2` | -3.0 | -2.0 | 완화 | 상하 흔들림. 강좌 14강의 1k 예시는 -3→-2 후 전진 관찰. **R-Sci-1 Table 2: `-v²_z` 가중 4·dt** | **최종 기각(260906, posture_gate_v2, G-A010) — `-3.0` 유지** | G1~G6 survival 전부 붕괴 | 단독 실험 완료(G-A010 재측정), 방향 가설 기각. 상세 §15 |
+| `ang_vel_xy_l2` | -0.08 | -0.15 | 강화 | 몸통 roll/pitch 흔들림 억제. **R-Sci-1 Table 2: `-\|ω_xy\|²` 가중 0.05·dt** | **최종 기각(260906, posture_gate_v2, G-A024) — `-0.08` 유지** | G1~G7 전 시나리오 붕괴(전멸) | 단독 실험 완료, 완화(G-A010)·강화(G-A024) 양방향 모두 실패 확인. 상세 §18 |
+| `action_rate_l2` | -0.01 | -0.01 | 불변 | 관절 명령 급변·떨림 억제. **R-Sci-1 Table 2: action rate 가중 0.25·dt(정의가 관절속도 항이라 Isaac Lab의 "직전 액션과의 차분" 정의와 완전히 같지 않음 — 이름만 대응, 수식은 다름)** | **미측정** | 14개 영상은 관찰 | jerk·관절 명령 급변 정량 없음 |
 | `track_ang_vel_z_exp` | 0.75 | 0.75 | 불변 | 회전 추종, env 기본 활성 | **부분 만족** | G2 | Pilot G2 worst survival 1.0·tracking .7521, 단독 yaw reward 효과는 아님 |
-| `flat_orientation_l2` | 0.0 | 0.0 | 불변 | 현재 Go2 env에서는 비활성 | **미측정** | 없음 | H1 자세 reward 결론 복사 금지 |
+| `flat_orientation_l2` | 0.0 | -1.0 | 자세 직접 벌점 활성화 | 현재 Go2 env는 비활성(0.0) | **재측정 대기(G-A025) — G-A013(260903)이 같은 값으로 이미 시험했으나 그 결과(`-1.4278/70` 기각)는 v1 termination-only evaluator였음이 확인돼 신뢰 불가, posture_gate_v2로 재측정** | G2·G4·G5·G6(G-A013 v1 실측 실점 시나리오) | H1 자세 reward 결론 복사 금지. G4/G5는 경사·계단에서 기울임 자체를 벌줄 위험 있음 — 상세 §18 |
 | termination penalty | 미정의 | 미정의 | — | 현재 env termination은 base contact 조건 | **미측정** | 없음 | 없는 항을 임의 추가하지 않음 |
 
 ## 3. 현재 만족/미만족 표
@@ -58,7 +58,7 @@ Pilot-01은 1항의 trade-off를 탐색한 기준선이지만 2항의 인과설�
 
 Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_time 0.20` 단일변수**로 확정됐다. 이는 최적값 판정이 아니라 G5 개선과 G3/G5 survival 회귀의 인과 분리점이다.
 
-## 8. Default-vs-Pilot FULL 분석 — 260901
+## 6. Default-vs-Pilot FULL 분석 — 260901
 
 - Default `17.90699/70`, Pilot `41.97990/70`, delta `+24.07291/70`; 둘 다 `INTERNAL_GATE_FAIL`.
 - Pilot은 G1·G2·G6 `INTERNAL_SCENARIO_PASS`, G3·G4·G5·G7 `INTERNAL_SCENARIO_FAIL`이다.
@@ -69,7 +69,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 영상: 정책별 7개, 총 14개 contact sheet 직접 관찰로 `VIDEO_OBSERVED`; 연속 gait timing·foot contact는 미측정.
 - 상세: `workspace/training/quadruped/reports/GO2_DEFAULT_VS_PILOT_ANALYSIS_260901.md`.
 
-## 5-a. 배포 기본 control 상태 — 260901 결정
+## 6-a. 배포 기본 control 상태 — 260901 결정
 
 - `exported/model_best_20260831154121.pt`는 별도 SHA를 가지지만 paired
   `env_20260831154121.yaml`도 Pilot-01 튜닝 reward `1.2/0.2/-2.0/-0.05/-0.01`을 보유한다.
@@ -81,7 +81,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - control 생성 전까지 Pilot-01이 배포 기본보다 개선됐다는 표현은 금지한다.
 - 향후 reward screening은 Default-01 계보에서 하나씩 추가한다. Pilot-01은 resume하지 않는다.
 
-## 5-b. Default-01 ↔ Pilot-01 비교 규칙
+## 6-b. Default-01 ↔ Pilot-01 비교 규칙
 
 - 두 정책 모두 같은 G1~G7 registry, 평가 seed 101/202/303, case fingerprint를 사용한다.
 - `Train/mean_reward`는 reward 계수가 달라 정책 간 비교에서 제외한다.
@@ -90,7 +90,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
   내부 의사결정 허용오차로 사전등록한다.
 - 상세 분기는 `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md` §6을 따른다.
 
-## 6. 과학적 표현 규칙
+## 7. 과학적 표현 규칙
 
 - 두 관측점은 탐색이지 최적값 증명이 아니다.
 - 평가 seed 반복은 정책 평가 변동성만 다루며 독립 학습 seed 재현성을 증명하지 않는다.
@@ -98,7 +98,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 내부 `exp(-(RMSE/std)^2)`는 candidate env의 reward 모양을 빌린 proxy이며 공식식이 아니다.
 - 최종 제출문은 실제 검증된 문제·변경·결과·한계만 30~200자로 요약한다.
 
-## 7. Default-vs-Pilot 부분 결과 반영 — 260901
+## 8. Default-vs-Pilot 부분 결과 반영 — 260901
 
 - Default-01은 seed 42, 4096 env, 1,000 iter의 학습 artifact와 G1~G7 telemetry 69/69까지 확보했다.
 - Pilot-01 telemetry는 runner 오류로 0/69이며 비교 보고서와 영상도 아직 없다.
@@ -121,16 +121,21 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 외부 실행·candidate 성능·공식 결과는 아직 `[미측정]` / `OFFICIAL_RESULT_UNMEASURED`다.
 - 상세 사전등록: `workspace/training/quadruped/reports/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`.
 
-## 10. G-A007 PARTIAL? evaluator v2 ?? ? 260901
+## 10. G-A007 PARTIAL 결과 (인코딩 손상 구간 재구성) — 260901
 
-- candidate ??? ????? telemetry 8/69??? 0/7??? `feet_air_time=0.20` ??? ?? `INCONCLUSIVE`?.
-- ??? reward ?? ??? ??? ?? runner ?? ??? ????. ??? reward ?? ???? ????? ???.
-- ?? ??? ?? candidate model SHA `0dc8815f54498642c8548093d31fde869a293de91401931876427101d2f393e5`? ?? ??? ????.
-- v1 runner? ?? ???? `BUGGY_DO_NOT_REUSE`; graceful shutdown?bounded retry? ??? v2 package? ????.
+> ⚠️ 이 섹션 원문은 한글 부분이 인코딩 손상으로 `?`로 깨져 있었다. 아래는 남아 있는 영문·수치·상태코드(SHA, `INCONCLUSIVE`, `BUGGY_DO_NOT_REUSE` 등)를 근거로 재구성한 내용이며, 원본 기록 시스템에서 대조 확인이 필요하다.
+
+- candidate 실행에서 telemetry 8/69, 영상 0/7만 확보되어 `feet_air_time=0.20` 후보는 여전히 `INCONCLUSIVE`다.
+- reward 값 자체는 변경되지 않았고 runner 오류로 나머지 case가 수집되지 못한 것으로 보인다 — reward 설정 문제로 인한 실패는 아니다.
+- 확보된 candidate model SHA: `0dc8815f54498642c8548093d31fde869a293de91401931876427101d2f393e5`.
+- v1 runner는 `BUGGY_DO_NOT_REUSE`로 확정됐고, graceful shutdown과 bounded retry를 갖춘 v2 package로 교체됐다.
+- 이 실험의 최종 결과는 §11 "G-A007 최종 결과와 후속 평가비용 결정 — 260902" 참고.
 
 
 
-## 8. 260902 G-A007 결과와 후속 평가비용 결정
+## 11. G-A007 최종 결과와 후속 평가비용 결정 — 260902
+
+(PARTIAL 중간 기록: §10)
 
 - `feet_air_time 0.01→0.20` 단일변수 후보는 artifact·7영상까지 확보했지만 내부 v1 proxy가 `21.77258/70`로 대표평가 full-suite 승급선 `60/70`에 미달한다.
 - G5 기존 진행도는 env 간 초기 위치를 섞은 전역 max-min이므로 무효다. 기존 CSV를 body-frame 속도로 재적분하면 계단 진행 중앙값은 Default 약 `0.336m`, Pilot 약 `4.218m`, candidate 약 `0.049m`다.
@@ -139,7 +144,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 이후 모든 H1·Go2 신규 후보는 `6~8 case 조기중단 → 21 case 대표평가 → 60/70과 안정성 동시 충족 시 기체별 전체평가` 순서를 사용한다.
 - 69-case의 직접 출처는 강좌가 아니다. 강좌·가이드는 G1~G7 범주·가중치와 단일변수 조정 원칙을 제공했고, case grid·평가 seed·69건 합계는 내부 설계다.
 
-## 9. G-A009 `track_lin_vel_xy_exp=1.20` 단일변수 사전등록 — 260902
+## 12. G-A009 `track_lin_vel_xy_exp=1.20` 단일변수 사전등록 — 260902
 
 | reward | 기준 | candidate | 상태 | 직접 측정 | 승급 전 필요한 증거 |
 |---|---:|---:|---|---|---|
@@ -154,7 +159,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 외부 실행: 완료. candidate `20.62741/70`, repaired baseline `17.53712/70`; G1 delta `-0.0000663`, `VIDEO_UNKNOWN`, `OFFICIAL_RESULT_UNMEASURED`.
 - 상세 PRD: `workspace/training/quadruped/reports/GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md`.
 
-## 10. G-A009 결과 — 260902
+## 13. G-A009 결과 — 260902
 
 - artifact: FULL result ZIP SHA `d9d84f68c19eac9c84ec932154c7edf9d40743b8a05e92468ff0348bbc7661c3`, manifest 125/125, candidate/baseline 7/7, 영상 1, lineage 8/8로 `ARTIFACT_VERIFIED`.
 - primary: G1 proxy `0.00356288`, baseline `0.00362921`, delta `-0.0000663`; 사전 최소 개선 `+0.05`에 미달.
@@ -163,7 +168,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 판정: `track_lin_vel_xy_exp=1.20` 단독 후보는 **미만족 / INTERNAL_EARLY_KILL_FAIL**. 대표 3-seed·69-case·장기학습으로 승급하지 않는다.
 - 영상·공식: G1 영상은 직접 판독해 `VIDEO_OBSERVED`; 네 환경 모두 전진 명령 대비 시작 격자 부근에 머물러 정량 실패와 일치한다. G2~G7은 `VIDEO_UNKNOWN`; `OFFICIAL_RESULT_UNMEASURED`.
 
-## 11. G-A009 최종 분석과 G-A010 선정 — 260902
+## 14. G-A009 최종 분석과 G-A010 선정 — 260902
 
 - 동일 repaired-v2 tier-1에서 총 내부 proxy는 Default `17.53712/70` 대비 candidate `20.62741/70`, `+3.09028`이다.
 - 증가분 기여는 G6 `+2.41007/70`(`77.99%`), G3 `+0.61589/70`(`19.93%`) 순이다. 목표 G1은 `-0.00070/70`로 개선되지 않았다.
@@ -172,18 +177,111 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 다음 정보가치 1순위는 Default 계보 `lin_vel_z_l2 -3.0→-2.0` 단독 1,000 iter다. 강좌의 1k 전진 관찰과 남은 미분리 Pilot 항이라는 점을 근거로 하며 최적값 주장은 아니다.
 - G-A010 실패 시 `ang_vel_xy_l2 -0.08→-0.05` 단독 G-A011로 간다. 둘 다 실패할 때만 두 항의 상호작용을 검토한다.
 
-## 12. G-A010 `lin_vel_z_l2=-2.0` 단일변수 사전등록·package — 260902
+## 15. G-A010 `lin_vel_z_l2=-2.0` 단일변수 사전등록·package — 260902
 
 | reward | 기준 | candidate | 현재 상태 | 직접 측정 | 승급 전 필요한 증거 |
 |---|---:|---:|---|---|---|
-| `lin_vel_z_l2` | `-3.0` | `-2.0` | **미측정 — upload package `ARTIFACT_VERIFIED`** | 실행 뒤 G1~G7 tier-1 survival·tracking, G1 영상 | G1 `+0.05`, 전 G survival 회귀 `≤0.10`, weighted proxy 비회귀 |
+| `lin_vel_z_l2` | `-3.0` | `-2.0` | **최종 기각(260906, posture_gate_v2 실측) — `-3.0` 유지** | G1~G6 survival 전부 `-0.1` 초과 회귀, 총점 `-7.63/70`, tracking 개선 없음 | (탈락 — 승급 대상 아님) |
 
 - 유지값: `track_lin_vel_xy_exp=1.0`, `feet_air_time=0.01`, `ang_vel_xy_l2=-0.08`, `action_rate_l2=-0.01`.
 - 학습: Default-01 from-scratch, seed 42, 4096 env, 1,000 iter. 단일 학습 seed이므로 결과는 exploratory다.
 - engine v1.0 SHA `4489bef4…8a5a`는 서버 bare `python3` 결함으로 `BUGGY_DO_NOT_REUSE`; 학습 시작 전 실패했다.
-- 현재 engine v1.1: `workspace/training/quadruped/upload/G-A010/current/go2_tuning_engine_v1_1.zip`, SHA `e8f8b3cde9d5a4f8b2de3663dd7036f19b1c28c97bf6aa01a5a779660f72b7cd`.
+- **정정(260906): engine v1.1(SHA `e8f8b3cde…`)은 폐기되지 않고 실제로 260902에 실행됐다.** `workspace/_keep/go2_g_a010_lin_vel_z_m2/`에 launcher.log(1,000 iter, 실측 00:59:11)·RUNNER_STATUS.txt(`ENGINE_ARCHIVE_SHA256=e8f8b3cde9…`)·TIER1_DECISION.json이 실물로 남아 있다. 결과: 가중 총점 `+2.2571599/70`(17.54→19.79), G3 survival `+0.094`, G6 survival `+0.344`, 그러나 목표 시나리오 G1 개선이 `+0.05` 미달이라는 이유 하나로 `target_G1_improvement_below_0.05` 조기종료 판정(당시 gate는 G1 단독 기준 — 이후 G-D68로 가중 총점 기준으로 교체됨). 이 결과의 evaluator는 `schema_version:1`(termination-only, 직접 재확인)이라 **G-D92가 규정한 신뢰 불가 evaluator와 같은 세대다** — Chain-01(G-A011~22)과 별개로 실행됐지만 posture_gate_v2(commit `f229e06`)보다 시간상 앞서므로 같은 맹점을 공유한다. 따라서 이 값은 폐기가 아니라 **"방향성 참고(총점 개선 신호), survival 결론은 불신"**으로 다룬다.
+- **260905 재등록:** engine v1.4(posture_gate_v2 포함, SHA `81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`, 계약 테스트 16/16 통과 — G-F144·G-F145)로 spec을 재검증(`engine_version`·`baseline.env_sha256`·`flat_orientation_l2` 키·`min_total_points_delta` gate 갱신)해 `upload/G-A010/current/`에 재게시했다(release `20260905_lin_vel_z_m2_engine_v1_4_r2`, spec SHA `2910450db9e107875410a80ed1d947d80cced0e31e67b1734f544e300374861d`).
+- **260906 재측정 결과(FINAL):** `INTERNAL_EARLY_KILL_FAIL`. `baseline_points_70=17.132070`→`candidate_points_70=9.499548`(`-7.632522/70`), G1~G6 survival 전부 `-0.1` 초과 회귀(G1 `-0.40625`~G5 `-0.6875`), G7만 허용 내(`-0.09375`). G1 tracking 개선은 사실상 없었다(`-0.00055`). G1 raw case에서 메커니즘 직접 확인: `terminated_env_count:0`(v1은 "전원 생존"으로 봄)인데 `fallen_env_count:13/32`·`height_rel_mean:0.261`·`survival_proxy_v1:1.0` vs `survival_proxy_v2:0.59375` — G-A011의 `track_lin_vel_xy_exp` 사례(§14-a 아래, `GO2_PROJECT_STATE.md` G-F141)와 동일 패턴으로 v1→v2 뒤집힘이 재현됐다. 260902 v1 측정값(`+2.2571599/70`, "생존 후퇴 0건")은 폐기가 아니라 이제 "termination-only evaluator의 맹점을 보여주는 반증 사례"로 확정한다. `-3.0`을 그대로 유지하고 이 다이얼은 닫는다(`GO2_PROJECT_STATE.md` G-D99). 아티팩트: `workspace/_keep/go2_g_a010_lin_vel_z_m2_v2_260906/`, 검증 상세는 같은 문서 G-F147~150.
 - 현재 experiment spec: 같은 폴더의 `G_A010_lin_vel_z_m2.json`, SHA `e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9`; release 이력은 `upload/G-A010/UPLOAD_HISTORY.tsv`에서 관리한다.
 - 같은 폴더의 spec: `workspace/training/quadruped/G_A010_lin_vel_z_m2.json`, SHA `e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9`.
 - engine은 reward 값을 내장하지 않고 JSON을 schema·Default identity·정확히 한 reward 변경으로 검증한 뒤 runtime source를 만든다.
 - 실행 전 상태는 `ARTIFACT_VERIFIED`일 뿐 candidate 성능·영상·내부 gate·공식 결과는 `[미측정]` / `VIDEO_UNKNOWN` / `OFFICIAL_RESULT_UNMEASURED`다.
 - 상세 PRD: `workspace/training/quadruped/reports/GO2_LIN_VEL_Z_M2_SCREENING_PRD.md`.
+
+## 16. 과학적 근거 감사 — 260905
+
+사용자가 이전에 지시한 "튜닝 수치는 논문 등 과학적 근거로 잡는다"가 실제로 지켜졌는지 감사했다.
+
+- **감사 결과: 지켜지지 않았다.** §2 reward 대장 전체(260905 이전 판)에서 외부 논문·arXiv·DOI 인용은
+  **0건**이었다. 모든 "역할·출처" 칸은 "강좌 14강" 또는 "코드/env 기본값"이었다 — 이는 후보
+  출발점의 출처이지 논문 근거가 아니다(본 문서 §0 원칙과 이미 모순).
+- Isaac Lab 자체의 Go2/H1 rough_env_cfg.py도 논문을 인용하지 않는다(직접 GitHub 소스 확인,
+  H1 쪽은 `H1_REWARD_EVIDENCE_MASTER.md` §7 항목3-4가 이미 같은 파일을 인용하되 "합리적
+  screening 점이지 최적값 근거 아님"으로 정확히 한계를 밝혀 두었다). 즉 Isaac Lab 기본값 자체도
+  논문에서 그대로 받아온 숫자가 아니라 엔지니어링 관행값이다.
+- **실제로 존재하는 논문 근거를 찾아 연결했다(R-Sci-1):** Rudin, Hoeller, Reist, Hutter,
+  *Learning to Walk in Minutes Using Massively Parallel Deep Reinforcement Learning*, CoRL 2021,
+  arXiv:2109.11978. 이 논문 Table 2가 우리가 지금 튜닝 중인 5개 항(`track_lin_vel_xy_exp`,
+  `feet_air_time`, `lin_vel_z_l2`, `ang_vel_xy_l2`, `action_rate_l2`)과 **같은 이름·같은 함수형**의
+  보상항을 정의한다 — Isaac Lab의 사족 locomotion 보상 구조가 유래한 실제 1차 문헌이다. 상세는
+  §2 표에 각 항목별로 직접 붙였다(WebFetch로 arXiv 원문·ar5iv 렌더링에서 Table 2 직접 확인,
+  추측 아님).
+- **이 논문이 실제로 뒷받침하는 것과 뒷받침하지 못하는 것을 분리한다:**
+  - 뒷받침: 보상항의 **형태**(exponential tracking, L2 penalty, feet-air-time bonus)와 **목표
+    체공시간 0.5초**(우리 저장소의 "0.5+ 면 바운딩" 경고와 독립적으로 일치), tracking 커널
+    std=0.5(우리 내부 `tracking_proxy` 공식과 일치).
+  - 뒷받침하지 못함: 우리 config의 정확한 가중치 값. 논문의 가중치(`dt` 스케일링, ANYmal 시뮬레이터·제어주기 50Hz 기준)는 Isaac Lab Go2 config의 dt·decimation과 다르므로 **숫자를 그대로 이식할 수 없다** — 형태·상대적 방향성의 근거이지 정확한 값의 근거가 아니다.
+  - **가장 중요한 발견:** 논문의 9개 항은 **하나의 고정된 조합으로 함께 튜닝**된 것이지, 개별
+    항을 하나씩 올려도 안전하다는 근거가 아니다. 이는 Chain-01이 왜 무너졌는지(G-D91,
+    `GO2_PROJECT_STATE.md`)와 정확히 같은 결론이다 — **개별로 검증된 변경들의 단순 합이 안전
+    하다는 것은 이 논문에서도, 우리 실험에서도 증명된 적이 없다.**
+- **결정 — 앞으로 새 reward 후보를 사전등록할 때마다 §2 표의 "역할·출처" 칸에 실제 논문/1차
+  문헌을 찾아 붙인다.** 못 찾으면 "강좌/코드 기본값 — 논문 근거 없음"이라고 명시하고 추측하지
+  않는다. 이번 감사로 5개 항은 R-Sci-1로 채웠다. 나머지(`track_ang_vel_z_exp`,
+  `flat_orientation_l2`, termination penalty)는 R-Sci-1 Table 2에 없는 항이라 **여전히 논문 근거
+  없음** — 다음에 이 항을 건드릴 실험을 사전등록할 때 별도로 찾는다.
+
+## 17. 우리 환경과 같은 계열의 문헌 확장 탐색 — 260905
+
+우리 환경(`go2_task/env_cfg.py:3`)은 IsaacLab `UnitreeGo2RoughEnvCfg` — **height_scanner(지형
+스캔) 장착 rough terrain 과제**다. R-Sci-1(Rudin et al. 2021)의 직접 후속 계보에서 두 편을 더
+찾아 WebFetch로 원문을 직접 확인했다(추측 아님).
+
+### 17-a. 새로 연결한 문헌
+
+| ID | 문헌 | 확인된 사실 | 우리 환경과의 관계 |
+|---|---|---|---|
+| **R-Sci-2** | Lee, Hwangbo, Wellhausen, Koltun, Hutter, *Learning Quadrupedal Locomotion over Challenging Terrain*, Science Robotics 2020, arXiv:2010.11251 | 배포 정책은 **순수 proprioceptive(맹목)** — 지형 스캔 없이 진흙·자갈·잔해 지형을 극복. 핵심 주장: "훨씬 단순한 도메인에서 훈련해도 실제 환경의 강인성을 얻을 수 있다"(curriculum + domain randomization) | **부분 일치.** 우리 env는 height_scanner가 있어 이 논문의 맹목 정책과 센서 조건이 다르다. 그러나 이 논문이 확립한 "지형 커리큘럼 + 도메인 랜덤화가 강인성의 주 동력이지 reward 미세조정이 아니다"라는 결론은 우리에게도 적용된다 — 그리고 그 커리큘럼·DR은 **IsaacLab의 terrain_generator·이벤트 매니저가 이미 담당**하고 있어 우리가 만질 수 있는 부분(reward weight)이 아니다 |
+| **R-Sci-3** | Miki, Lee, Hwangbo, Wellhausen, Koltun, Hutter, *Learning Robust Perceptive Locomotion for Quadrupedal Robots in the Wild*, Science Robotics 2022, arXiv:2201.08117 | height_scanner류 exteroceptive 입력과 proprioceptive 입력을 **attention 기반 encoder**로 결합해 노이즈·가림·반사 지형에서도 강인하게 만듦. 계단 접촉 전에 지형을 "미리 인지"하는 것이 핵심 | **센서 구성은 우리와 가장 가깝다**(둘 다 height-scan 보유). 그러나 핵심 기여는 **신경망 구조**(attention encoder)이며 이는 R-6-1 규정상 우리가 건드릴 수 없는 `go2_task/`·`train.py` 영역이다. 이 논문에서 우리가 가져올 수 있는 것은 구조가 아니라 "지형 정보를 다리가 닿기 전에 미리 반영해야 계단·경사 실패가 준다"는 **문제 진단**뿐이다 |
+
+### 17-b. 내 지식으로 보태는 분석 — G1이 가장 크게 깎이는 이유
+
+Default-01의 시나리오별 실점(가중치×(1-proxy))을 다시 계산하면 **G1(전진, 가중 .15)이
+`0.1495`로 전 시나리오 중 최대 실점**이다 — G3(거친 지형, `0.1469`)이나 G5(계단, `0.1302`)보다도
+크다. G1의 `tracking_xy_rmse=1.18714 m/s`는 tracking 커널 std(0.5, R-Sci-1과 우리 내부식이 공유하는
+값)의 2배가 넘어 `exp(-(1.187/0.5)^2)≈0.0036`으로 사실상 0에 가깝다.
+
+이미 두 번(G-A007 `feet_air_time→0.2`, G-A009 `track_lin_vel_xy_exp→1.2`) **개별** 단일변수로
+이 G1을 겨냥했지만 **둘 다 실패**했다(delta 사실상 0). R-Sci-1의 발견(§16 — 9개 항은 하나의
+고정 조합으로 튜닝됐다)에 내 지식을 더하면, 이건 우연이 아니라 **legged RL의 잘 알려진 패턴과
+일치한다**: `lin_vel_z_l2`·`ang_vel_xy_l2` 같은 안정화 벌점이 상대적으로 강하면 정책이 빠른 보폭
+자체를 회피해 **추종 보상을 올려도(또는 발 들기를 늘려도) 물리적으로 도달 가능한 속도 자체가
+오르지 않는** 상한(ceiling)이 생긴다. 이 경우 필요한 건 track 항 단독 인상이 아니라 **안정화
+벌점을 같은 방향으로 함께 낮추는 조합**이거나, 애초에 **1,000 iter가 빠른 gait를 형성하기엔
+짧을 수 있다**(R-Sci-1·R-Sci-2 둘 다 이 종류의 정책을 수만 iteration 단위로 학습시킨다 — 우리
+1,000 iter 스크리닝은 방향 탐색용이지 최종 gait 형성용이 아니었을 가능성).
+
+### 17-c. G6(밀침 회복)에 대한 기대치 조정 — 정직하게 미리 밝힌다
+
+`env_cfg.py:98-102`의 주석대로 **`push_robot` 이벤트는 학습 중엔 항상 비활성**이고 평가(`play.py
+--push`)에서만 켠다. R-Sci-1·R-Sci-2 모두 밀침 강인성을 **학습 중 외력 랜덤화(도메인
+랜덤화)의 결과물**로 얻는다 — 즉 문헌상 G6 개선의 주 레버는 reward 가중치가 아니라 학습 중
+이벤트 설정이다. 그런데 이벤트 설정은 `go2_task/`이고 우리가 만질 수 있는 건 `quadruped_rewards.py`
+뿐이다(R-6-1). **정직한 결론: G6은 reward 튜닝만으로 문헌이 뒷받침하는 만큼의 개선을 기대하기
+어렵다.** 과욕으로 G6에 실험을 우선 배정하지 않는다.
+
+### 17-d. 결정 — 엔진 재빌드 이후 실험 우선순위 (문헌 기반, 사전등록)
+
+| 우선 | 후보 | 문헌 근거 | 목표 | 이전 실패와의 차이 |
+|---:|---|---|---|---|
+| 1 | ~~`lin_vel_z_l2 -3.0→-2.0`~~ — **260906 posture_gate_v2 실측 결과 최종 기각**(G-A010, G1~G6 survival 전부 붕괴, 총점 `-7.63/70`). `-3.0` 유지, 이 다이얼은 닫힘 | R-Sci-1 Table 2 근거는 방향만 맞았고 크기는 틀렸다 — 안정화 벌점을 낮추는 건 안전하지 않았다 | (기각) | §15 260906 갱신, `GO2_PROJECT_STATE.md` G-D99 |
+| 2 | ~~`ang_vel_xy_l2 -0.08→-0.15`~~(방향 정정: 완화(`-0.05`)는 1과 같은 이미 실패한 방향이라 반대인 강화로 실행) — **260906 posture_gate_v2 실측 결과 최종 기각**(G-A024, G1~G7 전 시나리오 붕괴, 총점 `-17.13/70`, 1보다 더 심함). `-0.08` 유지, 이 다이얼도 닫힘 | 동일 진단, R-Sci-1 안정화 계열 — 방향은 틀렸다 | (기각) | §18, `GO2_PROJECT_STATE.md` G-D101 |
+| 3 | **재측정**: `flat_orientation_l2 0.0→-1.0`(G-A013, 260903의 재측정 — 새 실험 아님. 그때 evaluator가 v1 termination-only였음이 확인돼 결과 불신, ID는 G-A025) | 이 항은 R-Sci-1에 없으나 자세를 간접이 아니라 직접 벌점화하는 유일한 미신뢰 레버 | G4/G5 survival 특별 주시, 전 시나리오 비붕괴 | posture_gate_v2 엔진(v1.4)으로 재실행 — `GO2_PROJECT_STATE.md` G-D102 |
+| 4 | 1·2·3이 모두 실패하면 iteration 수를 3,000~5,000으로 늘린 **동일 reward 재실행**(새 변수 아님) 또는 reward 무변경 대조군으로 재학습 자체의 변동성부터 분리 측정 | R-Sci-1·R-Sci-2 원 실험은 수만 iter 단위 학습 | gait 성숙 시간 부족 가설 vs 재학습 변동성 가설 분리 | 지금까지 posture_gate_v2로 측정한 Default-01 단일변수 3건(track_lin_vel_xy_exp·lin_vel_z_l2·ang_vel_xy_l2)이 방향 불문 전부 실패 — `GO2_PROJECT_STATE.md` G-D103 |
+| 보류 | G6 전용 reward 실험 | §17-c | — | 문헌상 reward만으로는 기대이득이 낮음 — DR/이벤트 변경은 규정상 우리 권한 밖 |
+
+이 순서는 G-D93·G-D95(엔진 재빌드·계약 테스트 통과 전 신규 실험 금지)를 대체하지 않는다.
+재빌드가 끝난 뒤 다음 실험을 고를 때 이 순서를 따른다.
+
+## 18. G-A024 결과와 G-A025 재측정 등록 — 260906
+
+- **G-A024 결과(FINAL): `INTERNAL_EARLY_KILL_FAIL`.** `ang_vel_xy_l2 -0.08→-0.15`(강화)는 `candidate_points_70=0.0`(완전 붕괴), G1~G7 **전 시나리오** survival `-0.1` 초과 회귀(G1·G2·G4·G5 `-1.0` 완전 전멸). G1 raw: `fallen_env_count:32/32`, `height_rel_mean:0.144`(임계 `0.18` 미달), 학습 자체는 수치적으로 안정(mean reward 11.9~12.9, 발산 없음) — 정책이 새 reward를 잘 최적화해서 낮게 웅크려 거의 움직이지 않는 국소최적해로 수렴한 전형적 reward hacking. `-0.08` 유지, 다이얼 닫힘. 아티팩트: `workspace/_keep/go2_g_a024_ang_vel_xy_m015/`, 상세는 `GO2_PROJECT_STATE.md` G-F151~153·G-D101.
+- **패턴 확정:** Default-01 위 posture_gate_v2 실측 단일변수 3건(`track_lin_vel_xy_exp` 강화, `lin_vel_z_l2` 완화, `ang_vel_xy_l2` 강화) 전부 실패 — 완화·강화 양방향, 서로 다른 두 안정화 항 모두 붕괴. 방향의 문제가 아니라 Default-01의 현재 6개 가중치 조합 자체가 얇은 균형점에 있다는 뜻(`GO2_PROJECT_STATE.md` G-F153).
+- **G-A025 재측정 등록:** `flat_orientation_l2 0.0→-1.0`, Default-01, 나머지 5개 항 불변(`lin_vel_z_l2=-3.0`·`ang_vel_xy_l2=-0.08` 둘 다 위 실패로 원복 확정값 그대로). G-A013(260903)이 같은 값을 이미 시험해 `-1.4278/70`(G2·G4·G5·G6 후퇴)로 기각했으나, 그 실행의 `RUNNER_STATUS.txt`(`ENGINE_VERSION=1.1.0`) 및 tier1 case summary(`schema_version:1`)를 직접 열람해 v1 termination-only evaluator였음을 확인했다 — G-A010과 같은 세대 결함이라 결과 불신, posture_gate_v2로 재측정한다. engine v1.4 대상 `load_and_validate`·`materialize_runtime` 드라이런 통과, `upload/G-A025/current/`에 게시. 위험 고지: 이 항은 지형과 무관하게 평평한 자세를 요구하므로 G4(경사)·G5(계단)에서 필요한 기울임을 오히려 벌줄 수 있다 — 결과 해석 시 G4/G5를 특히 주의 깊게 본다.

@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-06T04:26:59+00:00	G-A024	20260906_ang_vel_xy_m015_engine_v1_4	ARTIFACT_VERIFIED	go2_tuning_engine_v1_4.zip	81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37	G_A024_ang_vel_xy_m015.json	8cdc7a24f92a62f0db1006f2f2e3bc828b6a88dce008c4634206b4050984272f	G-A010 fail 이후 반대 방향(ang_vel_xy_l2 -0.08->-0.15, 페널티 강화) 신규 단일변수, ID G-A011 충돌 회피용 G-A024 발급

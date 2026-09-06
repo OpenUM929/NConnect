@@ -1,0 +1,73 @@
+{
+  "baseline_points_70": 17.13207026573598,
+  "candidate_minus_baseline_points_70": -17.13207026573598,
+  "candidate_points_70": 0.0,
+  "failure_reasons": [
+    "total_points_70_delta_below_1.0",
+    "G1_survival_regressed_over_0.1",
+    "G2_survival_regressed_over_0.1",
+    "G3_survival_regressed_over_0.1",
+    "G4_survival_regressed_over_0.1",
+    "G5_survival_regressed_over_0.1",
+    "G6_survival_regressed_over_0.1",
+    "G7_survival_regressed_over_0.1"
+  ],
+  "gates": {
+    "max_survival_regression": 0.1,
+    "min_total_points_delta": 1.0,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7,
+    "target_min_proxy_delta": 0.05,
+    "target_scenario": "G1"
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "train_260906-Go2_ang_vel_xy_m015_1000",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -0.0036292085048014273,
+      "survival": -1.0,
+      "tracking": 3.2604910142832073e-05
+    },
+    "G2": {
+      "proxy": -0.26527558931143685,
+      "survival": -1.0,
+      "tracking": 0.002192077669082637
+    },
+    "G3": {
+      "proxy": -0.2781883573358877,
+      "survival": -0.75,
+      "tracking": 0.0008137149257721465
+    },
+    "G4": {
+      "proxy": -0.38348082681621515,
+      "survival": -1.0,
+      "tracking": -0.003976591540901853
+    },
+    "G5": {
+      "proxy": -0.033567110122952694,
+      "survival": -1.0,
+      "tracking": -0.0010860144827311152
+    },
+    "G6": {
+      "proxy": -0.619102518521795,
+      "survival": -0.65625,
+      "tracking": 0.03515816359147339
+    },
+    "G7": {
+      "proxy": -0.24303027406417452,
+      "survival": -0.65625,
+      "tracking": -0.001371885868956424
+    }
+  },
+  "schema_version": 3,
+  "status": "INTERNAL_EARLY_KILL_FAIL",
+  "target_scenario": "G1",
+  "target_scenario_observation": {
+    "note": "informational since engine 1.2.0; does not gate promotion",
+    "proxy_delta": -0.0036292085048014273,
+    "reference_min_proxy_delta": 0.05,
+    "scenario": "G1"
+  },
+  "work_id": "G-A024"
+}

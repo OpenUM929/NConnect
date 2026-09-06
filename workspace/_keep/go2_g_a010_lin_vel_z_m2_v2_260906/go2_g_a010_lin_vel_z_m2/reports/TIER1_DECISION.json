@@ -1,0 +1,72 @@
+{
+  "baseline_points_70": 17.13207026573598,
+  "candidate_minus_baseline_points_70": -7.63252241368663,
+  "candidate_points_70": 9.49954785204935,
+  "failure_reasons": [
+    "total_points_70_delta_below_1.0",
+    "G1_survival_regressed_over_0.1",
+    "G2_survival_regressed_over_0.1",
+    "G3_survival_regressed_over_0.1",
+    "G4_survival_regressed_over_0.1",
+    "G5_survival_regressed_over_0.1",
+    "G6_survival_regressed_over_0.1"
+  ],
+  "gates": {
+    "max_survival_regression": 0.1,
+    "min_total_points_delta": 1.0,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7,
+    "target_min_proxy_delta": 0.05,
+    "target_scenario": "G1"
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "train_260905-Go2_lin_vel_z_m2_1000",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -0.0017999766904242204,
+      "survival": -0.40625,
+      "tracking": -0.0005483970279556052
+    },
+    "G2": {
+      "proxy": -0.17378574567668176,
+      "survival": -0.65625,
+      "tracking": 0.000876683080577978
+    },
+    "G3": {
+      "proxy": -0.09331577916604022,
+      "survival": -0.25,
+      "tracking": -0.001172653441488647
+    },
+    "G4": {
+      "proxy": -0.25729775765852236,
+      "survival": -0.65625,
+      "tracking": -0.016402807448381684
+    },
+    "G5": {
+      "proxy": -0.033567110122952694,
+      "survival": -0.6875,
+      "tracking": -0.033567110122952694
+    },
+    "G6": {
+      "proxy": -0.1686418747356016,
+      "survival": -0.1875,
+      "tracking": 0.01758839280590585
+    },
+    "G7": {
+      "proxy": -0.0354110265218219,
+      "survival": -0.09375,
+      "tracking": -0.0012309616732898432
+    }
+  },
+  "schema_version": 3,
+  "status": "INTERNAL_EARLY_KILL_FAIL",
+  "target_scenario": "G1",
+  "target_scenario_observation": {
+    "note": "informational since engine 1.2.0; does not gate promotion",
+    "proxy_delta": -0.0017999766904242204,
+    "reference_min_proxy_delta": 0.05,
+    "scenario": "G1"
+  },
+  "work_id": "G-A010"
+}

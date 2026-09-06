@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-04T14:35:08+00:00	G-A018	20260904_action-rate-m008	prepared	go2_tuning_engine_v1_3.zip	dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a	G_A018_pilot_action_rate_m008.json	7844cbe1f8f81f83116252922ac2921bbf261baab6661d0e2160e2b6d1945567	action_rate_l2 -0.01 to -0.008, last untested reward lever, Pilot-01 baseline frozen

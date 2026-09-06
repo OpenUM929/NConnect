@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A025
+
+UPLOAD ONLY THESE TWO FILES
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A025\current\go2_tuning_engine_v1_4.zip
+   SHA256 81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A025\current\G_A025_flat_orientation_m1.json
+   SHA256 fddddfd12f5487b04811bb0e3bf02b7ef38f5f6687f85e5b0f62f04b96b8f70f
+
+RELEASE_ID 20260906_flat_orientation_m1_v2_engine_v1_4
+STATUS ARTIFACT_VERIFIED
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

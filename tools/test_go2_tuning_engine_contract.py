@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GO2 = ROOT / "workspace" / "training" / "quadruped"
 SPEC = GO2 / "config" / "experiments" / "G_A016_pilot_ang_vel_xy_m015.json"
 RETIRED_SPEC = GO2 / "config" / "experiments" / "G_A015_pilot_feet_air_time_035.json"
-ENGINE_DIR = "go2_tuning_engine_v1_3"
+ENGINE_DIR = "go2_tuning_engine_v1_4"
 sys.path.insert(0, str(GO2))
 
 
@@ -27,6 +27,20 @@ def load_module(name: str, path: Path):
     return module
 
 
+def _patched_spec_path(tmp_dir: Path, engine_version: str, pilot_env_sha: str) -> Path:
+    """`materialize_runtime` re-reads its `experiment_path` from disk, so the
+    setUpClass in-memory patch (SPEC's stale engine_version 1.2.0 -> live, and its
+    stale Pilot-01 env_sha256) does not reach it. Write a patched copy into the
+    test's own temp dir instead of mutating the immutable, SHA-tracked spec file
+    on disk."""
+    raw = json.loads(SPEC.read_text(encoding="utf-8"))
+    raw["engine_version"] = engine_version
+    raw["baseline"]["env_sha256"] = pilot_env_sha
+    patched = tmp_dir / SPEC.name
+    patched.write_text(json.dumps(raw), encoding="utf-8")
+    return patched
+
+
 class Go2TuningEngineContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -35,7 +49,20 @@ class Go2TuningEngineContract(unittest.TestCase):
         cls.builder = load_module(
             "go2_tuning_builder", ROOT / "tools" / "build_go2_tuning_engine.py"
         )
-        cls.experiment = cls.config.load_and_validate(SPEC)
+        # G-A016's spec targets engine_version 1.2.0 (it ran before Chain-01 / v1.3.0
+        # existed). The engine_version gate exists to stop materializing a spec
+        # against a baseline set it wasn't written for; it isn't part of what this
+        # class checks (single-variable shape, retired-spec re-validation), so the
+        # tag is patched to the live engine version before validating the historical
+        # fixture rather than mutating the immutable, SHA-tracked spec file on disk.
+        # 260905: the spec's embedded Pilot-01 env_sha256 is likewise stale (it
+        # pins the byte hash of the original result ZIP's env.yaml member, which
+        # no longer exists locally — G-F143). Patch it to the re-serialized,
+        # content-verified value the engine now embeds (go2_tuning_config.PILOT_BASELINE_ENV_SHA).
+        raw = json.loads(SPEC.read_text(encoding="utf-8"))
+        raw["engine_version"] = cls.config.ENGINE_VERSION
+        raw["baseline"]["env_sha256"] = cls.config.PILOT_BASELINE_ENV_SHA
+        cls.experiment = cls.config.validate_experiment(raw)
 
     def test_flat_orientation_is_an_active_reward_key_not_a_comment(self) -> None:
         weights = self.config.reward_dict(
@@ -64,7 +91,10 @@ class Go2TuningEngineContract(unittest.TestCase):
             self.assertEqual(self.experiment["rewards"][arm]["feet_air_time"], 0.2)
 
     def test_the_retired_g_a015_spec_still_validates(self) -> None:
-        retired = self.config.load_and_validate(RETIRED_SPEC)
+        raw = json.loads(RETIRED_SPEC.read_text(encoding="utf-8"))
+        raw["engine_version"] = self.config.ENGINE_VERSION
+        raw["baseline"]["env_sha256"] = self.config.PILOT_BASELINE_ENV_SHA
+        retired = self.config.validate_experiment(raw)
         self.assertEqual(retired["work_id"], "G-A015")
 
     def test_invalid_second_reward_change_is_rejected(self) -> None:
@@ -119,7 +149,9 @@ class Go2TuningEngineContract(unittest.TestCase):
             runtime = Path(temporary) / "runtime"
             self.config.materialize_runtime(
                 engine_root=GO2,
-                experiment_path=SPEC,
+                experiment_path=_patched_spec_path(
+                    Path(temporary), self.config.ENGINE_VERSION, self.config.PILOT_BASELINE_ENV_SHA
+                ),
                 runtime_root=runtime,
                 source_root=GO2,
                 baseline_root=self.builder.baseline_fixture_root(),
@@ -256,7 +288,9 @@ class Go2TuningEngineContract(unittest.TestCase):
             runtime = root / "runtime"
             self.config.materialize_runtime(
                 engine_root=engine,
-                experiment_path=SPEC,
+                experiment_path=_patched_spec_path(
+                    root, self.config.ENGINE_VERSION, self.config.PILOT_BASELINE_ENV_SHA
+                ),
                 runtime_root=runtime,
             )
             self.assertTrue((runtime / "candidate" / "train.py").is_file())

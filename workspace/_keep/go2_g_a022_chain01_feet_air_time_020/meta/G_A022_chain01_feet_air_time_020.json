@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.3.0",
+  "work_id": "G-A022",
+  "run_id": "train_260905-Go2_chain01_feet_air_time_020_1000",
+  "experiment_slug": "go2_g_a022_chain01_feet_air_time_020",
+  "baseline": {
+    "name": "Chain-01",
+    "checkpoint_iter": 1000,
+    "model_sha256": "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4",
+    "env_sha256": "2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.2,
+      "feet_air_time": 0.01,
+      "lin_vel_z_l2": -3.0,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.2,
+      "feet_air_time": 0.20,
+      "lin_vel_z_l2": -3.0,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "feet_air_time",
+    "from": 0.01,
+    "to": 0.20
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "tier1_seed": 101,
+    "representative_seeds": [
+      101,
+      202,
+      303
+    ],
+    "steps": 1000,
+    "case_attempts": 3,
+    "case_retry_delay_seconds": 10,
+    "cases": {
+      "G1": "forward_fast",
+      "G2": "diagonal_left",
+      "G3": "rough_forward",
+      "G4": "slope_plus_20",
+      "G5": "stairs_15_up",
+      "G6": "push_pos_x",
+      "G7": "dr_seed_{seed}"
+    },
+    "gates": {
+      "min_total_points_delta": 1.0,
+      "max_survival_regression": 0.1,
+      "minimum_points_70": 60.0,
+      "required_survival_proxy": 0.95,
+      "required_tracking_proxy": 0.7
+    }
+  },
+  "video": {
+    "required": true,
+    "scenario": "G1",
+    "case": "forward_fast",
+    "seed": 101,
+    "num_envs": 4,
+    "steps": 500
+  },
+  "output": {
+    "keep_dir_name": "go2_g_a022_chain01_feet_air_time_020",
+    "result_zip": "GO2_CHAIN01_FEET_AIR_TIME_020_RESULT.zip",
+    "done_marker": "[DONE] GO2_CHAIN01_FEET_AIR_TIME_020_RESULT_READY",
+    "tmux_name": "go2_g_a022"
+  },
+  "branch": {
+    "on_tier1_fail": "if feet_air_time 0.20 (same value that showed +3.8656/70 on Default-01 in G-A007, failing only on G5 survival) regresses total score or any scenario survival beyond 0.10 on top of Chain-01, this direction does not compose safely with Chain-01's track_lin_vel_xy_exp increase; report Chain-01 as still the best-verified point and move to the next untested dial (action_rate_l2 or flat_orientation_l2) individually from Chain-01, not from this failed candidate",
+    "on_tier1_pass": "this becomes the new frozen reference point (Chain-02 = Chain-01 + feet_air_time=0.20); run representative seeds 202 and 303; resume screening the remaining untested dials (action_rate_l2, flat_orientation_l2) one at a time from here",
+    "on_representative_pass": "69-case posture_gate_v2 evaluation to get a real /70 score for this chain"
+  }
+}

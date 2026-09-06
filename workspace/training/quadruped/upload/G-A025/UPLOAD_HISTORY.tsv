@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-06T06:03:49+00:00	G-A025	20260906_flat_orientation_m1_v2_engine_v1_4	ARTIFACT_VERIFIED	go2_tuning_engine_v1_4.zip	81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37	G_A025_flat_orientation_m1.json	fddddfd12f5487b04811bb0e3bf02b7ef38f5f6687f85e5b0f62f04b96b8f70f	G-A013(260903) 재측정 — v1 termination-only evaluator 결과 신뢰 불가, posture_gate_v2로 재실행

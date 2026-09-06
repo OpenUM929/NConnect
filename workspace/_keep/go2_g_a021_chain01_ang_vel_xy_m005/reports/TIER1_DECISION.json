@@ -1,0 +1,64 @@
+{
+  "baseline_points_70": 18.610562039244442,
+  "candidate_minus_baseline_points_70": -6.607935563312559,
+  "candidate_points_70": 12.002626475931883,
+  "failure_reasons": [
+    "total_points_70_delta_below_1.0",
+    "G2_survival_regressed_over_0.1",
+    "G3_survival_regressed_over_0.1",
+    "G4_survival_regressed_over_0.1",
+    "G5_survival_regressed_over_0.1",
+    "G6_survival_regressed_over_0.1"
+  ],
+  "gates": {
+    "max_survival_regression": 0.1,
+    "min_total_points_delta": 1.0,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "train_260905-Go2_chain01_ang_vel_xy_m005_1000",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": -0.0004078211391243618,
+      "survival": 0.0,
+      "tracking": -0.0004078211391243618
+    },
+    "G2": {
+      "proxy": -0.20013074779769466,
+      "survival": -0.75,
+      "tracking": 0.001133314935688523
+    },
+    "G3": {
+      "proxy": -0.14300032033578866,
+      "survival": -0.375,
+      "tracking": 0.00040721197796877995
+    },
+    "G4": {
+      "proxy": -0.22647742235306104,
+      "survival": -0.59375,
+      "tracking": 0.000630133737959393
+    },
+    "G5": {
+      "proxy": -0.018323932636837036,
+      "survival": -0.59375,
+      "tracking": 0.0015766311179214038
+    },
+    "G6": {
+      "proxy": -0.1444781914314721,
+      "survival": -0.15625,
+      "tracking": 0.00717370520882088
+    },
+    "G7": {
+      "proxy": 0.15449792323418812,
+      "survival": 0.40625,
+      "tracking": -0.0033436423208473287
+    }
+  },
+  "schema_version": 3,
+  "status": "INTERNAL_EARLY_KILL_FAIL",
+  "target_scenario": null,
+  "target_scenario_observation": null,
+  "work_id": "G-A021"
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": "1.0.0",
+  "campaign": "NCRC-2026-Go2-preliminary",
+  "status": "INTERNAL_PROXY_SPEC",
+  "source": {
+    "scenario_registry": "workspace/PRELIM_RL_GUID.md:60-70",
+    "score_concept": "workspace/PRELIM_RL_GUID.md:95-100",
+    "course_reward_guidance": "test/14강의. 보상 함수 설계와 조정 · 진화 · NAVER CONNECT ROBOTICS GUIDE BOOK.html:659-730,916-1121",
+    "submission_contract": "user-provided round-1 dashboard text, 2026-09-01"
+  },
+  "origin_audit": {
+    "course_or_guide_direct": [
+      "G1-G7 scenario categories",
+      "G1-G7 terrain categories",
+      "G1-G7 weights",
+      "single-variable reward tuning guidance"
+    ],
+    "internally_designed": [
+      "per-scenario command and direction case grid",
+      "evaluation seeds 101, 202, and 303",
+      "69-case total",
+      "internal survival and tracking thresholds",
+      "video selection and aggregation rules"
+    ],
+    "conclusion": "69_CASES_NOT_COURSE_MANDATED"
+  },
+  "official_unknowns": [
+    "tracking_score conversion",
+    "evaluation seeds and episode count",
+    "exact command grid",
+    "rough terrain generator parameters",
+    "push magnitude, direction, and timing",
+    "domain-randomization fields and ranges",
+    "official pass threshold"
+  ],
+  "score": {
+    "scenario_proxy": "survival_proxy * tracking_proxy",
+    "tracking_proxy_v1": "exp(-pow(rmse / env_track_std, 2))",
+    "env_track_std_path": "rewards.track_lin_vel_xy_exp.params.std",
+    "aggregation": "sum(weight * scenario_proxy)",
+    "simulation_points": 70,
+    "internal_gates": {
+      "minimum_survival_proxy_each": 0.95,
+      "minimum_tracking_proxy_each": 0.70,
+      "minimum_weighted_simulation_proxy": 0.70,
+      "minimum_total_self_assessment_points": 70,
+      "target_total_self_assessment_points": 75,
+      "required_evaluation_seeds": [101, 202, 303],
+      "pair_aggregation": "worst_case"
+    }
+  },
+  "evaluation_tiers": {
+    "policy_scope": "Apply the same staged promotion concept to H1 and Go2, using each robot's native scenario registry and full-suite case count.",
+    "tier_1_early_kill": {
+      "target_case_count": "6-8",
+      "evaluation_seeds": [101],
+      "required_video_count": 1,
+      "purpose": "Reject clear regressions before representative or full evaluation."
+    },
+    "tier_2_representative": {
+      "case_selection": "one valid representative case per G1-G7 scenario",
+      "evaluation_seeds": [101, 202, 303],
+      "expected_case_count": 21,
+      "promotion_minimum_simulation_proxy_points": 60,
+      "stability_requirements": {
+        "minimum_survival_proxy_each_scenario": 0.95,
+        "minimum_tracking_proxy_each_scenario": 0.70,
+        "all_required_seeds_complete": true,
+        "critical_video_anomaly_allowed": false
+      }
+    },
+    "tier_3_full_native_suite": {
+      "run_only_after_tier_2_promotion": true,
+      "go2_expected_case_count_after_evaluator_repair": 69,
+      "h1_expected_case_count": 30,
+      "note": "Do not run Go2's 69 cases on H1. Run each robot's own full suite."
+    }
+  },
+  "scenarios": [
+    {
+      "id": "G1",
+      "name": "전진 속도 추종",
+      "terrain": "평지",
+      "weight": 0.15,
+      "internal_cases": ["forward_slow", "forward_nominal", "forward_fast"],
+      "required_metrics": ["survival_proxy", "vx_rmse", "tracking_proxy"],
+      "required_video": true
+    },
+    {
+      "id": "G2",
+      "name": "전방위 속도 추종",
+      "terrain": "평지",
+      "weight": 0.15,
+      "internal_cases": ["backward", "left", "right", "diagonal_left", "diagonal_right", "combined_yaw_left", "combined_yaw_right"],
+      "required_metrics": ["survival_proxy", "xy_rmse", "yaw_rmse", "tracking_proxy"],
+      "required_video": true
+    },
+    {
+      "id": "G3",
+      "name": "거친 지형",
+      "terrain": "험지",
+      "weight": 0.20,
+      "internal_cases": ["rough_forward", "rough_lateral"],
+      "required_metrics": ["survival_proxy", "xy_rmse", "tracking_proxy"],
+      "required_video": true
+    },
+    {
+      "id": "G4",
+      "name": "경사 ±20°",
+      "terrain": "경사",
+      "weight": 0.15,
+      "internal_cases": ["slope_plus_20", "slope_minus_20"],
+      "required_metrics": ["survival_proxy", "xy_rmse", "tracking_proxy"],
+      "required_video": true
+    },
+    {
+      "id": "G5",
+      "name": "계단 10~15cm",
+      "terrain": "계단",
+      "weight": 0.15,
+      "internal_cases": ["stairs_10_up", "stairs_10_down", "stairs_15_up", "stairs_15_down"],
+      "required_metrics": ["survival_proxy", "xy_rmse", "tracking_proxy", "obstacle_completion"],
+      "required_video": true
+    },
+    {
+      "id": "G6",
+      "name": "밀침 회복",
+      "terrain": "평지+충격",
+      "weight": 0.10,
+      "internal_cases": ["push_pos_x", "push_neg_x", "push_pos_y", "push_neg_y"],
+      "required_metrics": ["survival_proxy", "recovery_time", "post_push_tracking_proxy"],
+      "required_video": true
+    },
+    {
+      "id": "G7",
+      "name": "도메인 랜덤화",
+      "terrain": "험지+DR",
+      "weight": 0.10,
+      "internal_cases": ["dr_seed_101", "dr_seed_202", "dr_seed_303"],
+      "required_metrics": ["survival_proxy", "xy_rmse", "tracking_proxy", "realized_randomization_values"],
+      "required_video": true
+    }
+  ],
+  "submission": {
+    "robot_selection": "Go2 quadruped",
+    "required_uploads": ["policy.pt", "env.yaml"],
+    "team_permissions": "any team member may modify or delete submitted files",
+    "edit_window": "submission can be modified until judging starts",
+    "judging_started_state": "UNMEASURED",
+    "technical_report": {
+      "location": "dashboard text field",
+      "minimum_characters": 30,
+      "maximum_characters": 200
+    },
+    "supporting_evidence_not_uploaded_by_default": ["report.html", "videos", "telemetry", "internal long report"]
+  },
+  "legacy_invalid_runner": "workspace/training/quadruped/server_run_Go2_videos.sh"
+}

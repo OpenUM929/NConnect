@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-04T13:19:00+00:00	G-A017	20260904_track-lin-vel-xy-140	ACTIVE	go2_tuning_engine_v1_3.zip	dfbe47aecb5584ad07583caea726d23a372764b22e12962e0cbd76b268877b1a	G_A017_pilot_track_lin_vel_xy_140.json	824753950d00bcddd9c4647b641a6b0f37632ecafc7064fd5d65bab68ee5f0b4	G4 slope tracking deficit; track_lin_vel_xy_exp 1.2 to 1.4; next in loss-rank order after feet_air_time cap and ang_vel_xy_l2 rejection

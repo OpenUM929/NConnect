@@ -1,0 +1,66 @@
+GO2 G-A024 SERVER RUN GUIDE (engine v1.4, posture_gate_v2)
+
+이 실험은 신규 개입이다(재측정 아님). G-A010(`lin_vel_z_l2 -3.0→-2.0`, 안정화 벌점 완화)이
+260906에 posture_gate_v2로 실측 결과 G1~G6 survival 전부 붕괴로 최종 기각됐다
+(GO2_PROJECT_STATE.md G-F148/G-D99) — `-3.0`은 그대로 유지한다.
+
+원래 사전등록된 분기(`G_A010_lin_vel_z_m2.json` `branch.on_tier1_fail`)는 "ang_vel_xy_l2
+-0.08→-0.05"(페널티 완화, G-A010과 같은 방향)를 지목했지만, 이제 그 방향(안정화 벌점을
+줄이는 방향)이 G-A010·G-A011 두 건에서 이미 survival 붕괴로 확인됐으므로(G-F148, G-F141)
+같은 방향을 세 번째로 반복하지 않는다. 대신 **반대 방향(안정화 벌점 강화, `-0.08→-0.15`)**을
+쓴다 — Pilot-01 위에서 이미 사전등록됐던 G-D75(계단 낙상은 몸통 pitch/roll 진동에서
+시작한다는 진단)의 값을 Default-01에 그대로 적용한 것이다. ID는 Chain-01의
+`track_lin_vel_xy_exp`(G-A011, G-F131)와 충돌을 피해 다음 미사용 번호 G-A024로 발급했다
+(G-D98/G-D100).
+
+LOCAL FILES TO UPLOAD
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A024\current\go2_tuning_engine_v1_4.zip
+   SHA256 81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37
+2. C:\dev\NConnect\workspace\training\quadruped\upload\G-A024\current\G_A024_ang_vel_xy_m015.json
+   SHA256 8cdc7a24f92a62f0db1006f2f2e3bc828b6a88dce008c4634206b4050984272f
+
+SERVER DESTINATIONS
+/workspace/go2_tuning_engine_v1_4.zip
+/workspace/G_A024_ang_vel_xy_m015.json
+
+ONE-LINE RUN
+cd /workspace && unzip -oq go2_tuning_engine_v1_4.zip && cd /workspace/go2_tuning_engine_v1_4 && bash server_run_go2_tuning_engine_v1.sh /workspace/G_A024_ang_vel_xy_m015.json
+
+MONITOR
+tmux attach -t go2_g_a024
+
+무엇을 바꾸는 실험인가
+단일변수: `ang_vel_xy_l2` -0.08 → -0.15 (Default-01 기준, 페널티 강화 — 다른 5개 항 불변,
+`lin_vel_z_l2`는 G-A010 기각 결과에 따라 -3.0 유지).
+목표: 가중 실점이 큰 지형 시나리오(G3 거친 지형·G5 계단, 생존이 실점 지배 인자 — G-F71/73)에서
+몸통 roll/pitch 각속도 진동을 직접 벌점으로 눌러 생존을 개선하는지 확인. G1 tracking은 약간
+희생될 수 있다(informational gate일 뿐, 승급 조건 아님).
+
+EXPECTED WINDOW
+Early stop: approximately 1 hour 5 minutes to 1 hour 20 minutes.
+Tier-1 pass and 21-case expansion: approximately 1 hour 15 minutes to 1 hour 35 minutes.
+Prior-artifact estimates (G-A010/G-A020 wall time), not billing-time guarantees.
+
+DONE MARKER
+[DONE] GO2_ANG_VEL_XY_M015_RESULT_READY
+
+DOWNLOAD BOTH TO LOCAL workspace\_keep
+/workspace/_keep/GO2_ANG_VEL_XY_M015_RESULT.zip
+/workspace/_keep/GO2_ANG_VEL_XY_M015_RESULT.zip.sha256
+
+SERVER SHUTDOWN GATE
+Do not shut down based on the DONE marker alone. First download both files. Local verification must
+confirm outer SHA, ZIP CRC, internal manifest, RESULT_STATE/RUNNER_RC/TRAIN_RC, expected telemetry,
+the required G1 video, model/env/source, and policy lineage, and `ENGINE_ARCHIVE_SHA256` in
+RUNNER_STATUS.txt matches `81c3bccef543eae116732a3965f6ad5fee692431243eb0ec00615acab2243b37`. Then
+the main loop reports whether the server can be shut down.
+
+RESULT INTERPRETATION
+Compare G3/G5 survival deltas against G-A010's posture_gate_v2 result (G3 -0.25, G5 -0.6875 there).
+If this run improves G3/G5 survival without collapsing G1/G2/G4/G6/G7 the way G-A010 and G-A011 did,
+this is the first candidate change in the whole campaign to survive posture_gate_v2 measurement.
+If it also collapses, the next branch is iteration-count expansion (§17-d priority 3), not another
+reward dial — two directions on two different stabilization terms will have both failed.
+
+PARALLELISM
+Run one 4096-env training only. Single RTX 5080, no measured peak-VRAM margin for two concurrent jobs.
