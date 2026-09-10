@@ -104,7 +104,22 @@ else
   rm -rf -- logs exported
   mkdir -p exported
   set +e
-  NO_AUTO_SUBMIT=1 /workspace/IsaacLab/isaaclab.sh -p train.py \
+  # NO_AUTO_SUBMIT=1 suppressed the operator's automatic training-history upload on
+  # every Go2 run, and G-A017 logged the skip.  Rule 14 says the submitted policy
+  # and env.yaml may be checked against the training history recorded on the
+  # contest server, so a campaign whose entire history was suppressed cannot
+  # produce that record.  The variable is unset by default now.  go2_task/_finalize.py
+  # tests it for truthiness, so any non-empty value including "0" turns the backup
+  # off -- to opt out deliberately, export NO_AUTO_SUBMIT=1 before invoking this
+  # script and the value is passed through unchanged.
+  declare -a train_env=(env)
+  if [[ -n "${NO_AUTO_SUBMIT:-}" ]]; then
+    train_env+=("NO_AUTO_SUBMIT=$NO_AUTO_SUBMIT")
+    echo "[WARN] NO_AUTO_SUBMIT=$NO_AUTO_SUBMIT — operator training-history backup is OFF for this run"
+  else
+    train_env+=(-u NO_AUTO_SUBMIT)
+  fi
+  "${train_env[@]}" /workspace/IsaacLab/isaaclab.sh -p train.py \
     --task Quadruped-v0 --num_envs "$NUM_ENVS" --max_iterations "$MAX_ITERATIONS" --seed "$TRAIN_SEED" --headless \
     2>&1 | tee "$KEEP/logs/candidate_training.log"
   TRAIN_RC=${PIPESTATUS[0]}

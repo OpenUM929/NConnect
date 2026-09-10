@@ -37,6 +37,10 @@
     "scenario_proxy": "survival_proxy * tracking_proxy",
     "tracking_proxy_v1": "exp(-pow(rmse / env_track_std, 2))",
     "env_track_std_path": "rewards.track_lin_vel_xy_exp.params.std",
+    "tracking_proxy_std": 0.5,
+    "tracking_proxy_std_note": "Mirrors the env value at env_track_std_path. go2_fixed_eval_report.py reads this field instead of its own constant, so a reviewer can see which number was scored.",
+    "scenario_aggregation": "min over cases of (survival_proxy * tracking_proxy); the survival and tracking reported beside it are that same case's own factors",
+    "survival_definition": "posture_gate_v2 only; a run whose posture channels were unavailable reports POSTURE_UNMEASURED and is scored as incomplete, never as termination_only_v1",
     "aggregation": "sum(weight * scenario_proxy)",
     "simulation_points": 70,
     "internal_gates": {

@@ -124,7 +124,7 @@ ZERO_TERRAINS=(
 
 set_case() {
   local case_id=$1
-  VX=0 VY=0 WZ=0 PUSH_X= PUSH_Y= TERRAIN_LABEL=plane
+  VX=0 VY=0 WZ=0 PUSH_X= PUSH_Y= DR_MODE=0 TERRAIN_LABEL=plane
   TERRAIN_ARGS=("${PLANE[@]}")
   case "$case_id" in
     forward_slow) VX=0.30 ;;
@@ -137,9 +137,19 @@ set_case() {
     diagonal_right) VX=0.50; VY=-0.30 ;;
     combined_yaw_left) VX=0.50; VY=0.15; WZ=0.50 ;;
     combined_yaw_right) VX=0.50; VY=-0.15; WZ=-0.50 ;;
-    rough_forward|rough_lateral|dr_seed_*)
+    rough_forward|rough_lateral)
       [[ "$case_id" == rough_lateral ]] && VY=0.30 || VX=0.50
       TERRAIN_LABEL=rough
+      TERRAIN_ARGS=("${GEN_BASE[@]}" "${ZERO_TERRAINS[@]}"
+        'env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0'
+        'env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=[0.02,0.10]')
+      ;;
+    # G7 shared this branch with G3 and never set NCRC_EVAL_DR, so every dr_seed_*
+    # case ran the identical configuration to rough_forward and its steps.csv came
+    # out byte-identical.  G7 carries weight 0.10 and was rescoring G3.
+    dr_seed_*)
+      VX=0.50; DR_MODE=1
+      TERRAIN_LABEL=rough_dr
       TERRAIN_ARGS=("${GEN_BASE[@]}" "${ZERO_TERRAINS[@]}"
         'env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=1.0'
         'env.scene.terrain.terrain_generator.sub_terrains.random_rough.noise_range=[0.02,0.10]')
@@ -197,7 +207,8 @@ run_eval_case() {
   rm -rf -- "$out"
   mkdir -p "$out"
   printf 'COMMAND: '; printf '%q ' "${cmd[@]}"; printf '\n'
-  local -a push_env=(env -u NCRC_PLAY_PUSH_X -u NCRC_PLAY_PUSH_Y)
+  local -a push_env=(env -u NCRC_PLAY_PUSH_X -u NCRC_PLAY_PUSH_Y -u NCRC_EVAL_DR)
+  [[ "${DR_MODE:-0}" == 1 ]] && push_env+=("NCRC_EVAL_DR=1")
   [[ -n "$PUSH_X" ]] && push_env+=("NCRC_PLAY_PUSH_X=$PUSH_X")
   [[ -n "$PUSH_Y" ]] && push_env+=("NCRC_PLAY_PUSH_Y=$PUSH_Y")
   set +e
@@ -289,7 +300,8 @@ run_video() {
     "env.commands.base_velocity.ranges.lin_vel_y=[$VY,$VY]"
     "env.commands.base_velocity.ranges.ang_vel_z=[$WZ,$WZ]" "${TERRAIN_ARGS[@]}"
   )
-  local -a push_env=(env -u NCRC_PLAY_PUSH_X -u NCRC_PLAY_PUSH_Y)
+  local -a push_env=(env -u NCRC_PLAY_PUSH_X -u NCRC_PLAY_PUSH_Y -u NCRC_EVAL_DR)
+  [[ "${DR_MODE:-0}" == 1 ]] && push_env+=("NCRC_EVAL_DR=1")
   [[ -n "$PUSH_X" ]] && push_env+=("NCRC_PLAY_PUSH_X=$PUSH_X")
   [[ -n "$PUSH_Y" ]] && push_env+=("NCRC_PLAY_PUSH_Y=$PUSH_Y")
   "${push_env[@]}" "${cmd[@]}" \

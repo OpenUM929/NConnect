@@ -14,16 +14,27 @@ from pathlib import Path
 from typing import Any
 
 
-ENGINE_VERSION = "1.3.0"
+# 1.5.0 (260908, post re-audit): symmetric instrument fingerprint required, the
+# tier-1 kill clause moved from the survival factor to the scenario product, a
+# non-walking policy can no longer serve as a baseline, G6 scores
+# recovery_rate_upright, and the scenario aggregation order is stated in the
+# registry.  config/go2_tuning_experiment_schema.json tracks this constant.
+ENGINE_VERSION = "1.5.4"
 DEFAULT_BASELINE_MODEL_SHA = "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676"
 # 260905: 원본 zip 결손으로 압축 해제본에서 다시 읽은 값(G-F143). model SHA는
 # byte-identical, env.yaml만 재직렬화로 바이트가 다르고 내용(6개 reward 가중치)은
 # 확인됨 — tools/build_go2_track_lin_vel_120_package.py 주석과 같은 근거.
-DEFAULT_BASELINE_ENV_SHA = "a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea"
+# 260908: 위 a39c77dc… 값은 로컬 어느 아티팩트와도 일치하지 않아 Default-01
+# 패키지 빌드가 계속 실패했다. 로컬 Default-01 env.yaml 6부(_keep, server_returns,
+# _go2_tuning_runtime, rsl_rl params)는 모두 아래 해시로 동일하고, 내용은 6개 reward
+# 가중치가 DEFAULT_REWARDS와 일치함을 확인했다. 재현 가능한 값으로 교체한다.
+DEFAULT_BASELINE_ENV_SHA = "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
 PILOT_BASELINE_MODEL_SHA = "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
-PILOT_BASELINE_ENV_SHA = "89e7a11749e218081e9d2e9be0a7544e864ea9300472148bc64ccdf83eab77c9"
+# 260908: repinned to the on-disk artifact, same reason as DEFAULT_BASELINE_ENV_SHA.
+PILOT_BASELINE_ENV_SHA = "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
 CHAIN01_BASELINE_MODEL_SHA = "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4"
-CHAIN01_BASELINE_ENV_SHA = "2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71"
+# 260908: repinned to the on-disk artifact, same reason as DEFAULT_BASELINE_ENV_SHA.
+CHAIN01_BASELINE_ENV_SHA = "903d437e47aaf7c73c9e0a2f1a1835d1fe1432e66a0a2576282d02cc3cd7c2f2"
 REWARD_NAMES = (
     "track_lin_vel_xy_exp",
     "feet_air_time",
@@ -45,8 +56,14 @@ DEFAULT_REWARDS = {
 # measurement puts Pilot-01 at 33.79311/70 against Default-01's 17.90697/70, so
 # screening against Default-01 optimises a policy we would never submit.
 FROZEN_BASELINES = {
+    # 260908 re-audit: on its own G-A006 telemetry Default-01 holds 0.023-0.032 m/s
+    # against commands of 0.30-1.20 m/s, and its G1 tracking proxy is 0.003619.  It
+    # was scored survival 1.0 only because the termination-only definition never
+    # terminates a robot that stands still.  It is therefore not admissible as a
+    # screening baseline until it has been remeasured under posture_gate_v2.
     "Default-01": {
         "slug": "default",
+        "locomotion_status": "BASELINE_INVALID_PENDING_MEASUREMENT",
         "checkpoint_iter": 800,
         "model_sha256": DEFAULT_BASELINE_MODEL_SHA,
         "env_sha256": DEFAULT_BASELINE_ENV_SHA,
@@ -59,8 +76,13 @@ FROZEN_BASELINES = {
             "flat_orientation_l2": 0.0,
         },
     },
+    # 260908 re-audit: the only frozen baseline that actually walks. Its own
+    # 69-case suite returns POLICY_LOCOMOTES on 69 of 69 cases at 33.793106/70,
+    # against Default-01's 17.906992/70 with 51 of 69 cases stationary and
+    # Chain-01's 1.579102/70 with 39 of 69 stationary. Screening resumes here.
     "Pilot-01": {
         "slug": "pilot",
+        "locomotion_status": "BASELINE_WALKS_VERIFIED_69_CASE",
         "checkpoint_iter": 1000,
         "model_sha256": PILOT_BASELINE_MODEL_SHA,
         "env_sha256": PILOT_BASELINE_ENV_SHA,
@@ -79,8 +101,14 @@ FROZEN_BASELINES = {
     # reproduced), every reward on this checkpoint traces to an independently
     # measured single-variable result. G-A020 resumes single-variable screening
     # from here instead of from Pilot-01.
+    # 260908 re-audit: rescoring Chain-01's own 69-case suite with the repaired
+    # evaluator returns POLICY_DOES_NOT_LOCOMOTE on 39 of 69 cases and
+    # 1.579102/70. Chain-01 is Default-01 plus one reward, and it inherited
+    # Default-01's standing behaviour; the +3.09/70 that promoted it was measured
+    # against a baseline that also stands still. Inadmissible until remeasured.
     "Chain-01": {
         "slug": "chain01",
+        "locomotion_status": "BASELINE_INVALID_PENDING_MEASUREMENT",
         "checkpoint_iter": 1000,
         "model_sha256": CHAIN01_BASELINE_MODEL_SHA,
         "env_sha256": CHAIN01_BASELINE_ENV_SHA,
@@ -162,6 +190,10 @@ def validate_experiment(experiment: dict[str, Any]) -> dict[str, Any]:
     baseline = experiment.get("baseline", {})
     _require(baseline.get("name") in FROZEN_BASELINES, f"baseline must be one of {sorted(FROZEN_BASELINES)}")
     frozen = FROZEN_BASELINES[baseline["name"]]
+    _require(
+        frozen.get("locomotion_status") != "BASELINE_INVALID_PENDING_MEASUREMENT",
+        f"baseline {baseline['name']} is not admissible until it is remeasured under posture_gate_v2",
+    )
     _require(baseline.get("checkpoint_iter") == frozen["checkpoint_iter"], "baseline checkpoint iteration mismatch")
     _require(baseline.get("model_sha256") == frozen["model_sha256"], "baseline model SHA mismatch")
     _require(baseline.get("env_sha256") == frozen["env_sha256"], "baseline env SHA mismatch")
@@ -203,12 +235,14 @@ def validate_experiment(experiment: dict[str, Any]) -> dict[str, Any]:
     for key in (
         "min_total_points_delta",
         "max_survival_regression",
+        "max_scenario_proxy_regression",
         "minimum_points_70",
         "required_survival_proxy",
         "required_tracking_proxy",
     ):
         _require(isinstance(gates.get(key), (int, float)), f"invalid gate {key}")
     _require(float(gates["min_total_points_delta"]) > 0.0, "min_total_points_delta must be positive")
+    _require(float(gates["max_scenario_proxy_regression"]) > 0.0, "max_scenario_proxy_regression must be positive")
 
     video = experiment.get("video", {})
     _require(video.get("required") is True, "video must be required")
