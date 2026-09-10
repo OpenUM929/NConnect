@@ -270,3 +270,11 @@ Go2 착수(D11)는 **폐기**한다. 합산 상한 100점을 수용하고 H1 100
 - H1 Run06은 중복 실행하지 않는다.
 - 69-case는 Go2 내부 full suite이며 H1에 그대로 적용하지 않는다.
 - `OFFICIAL_RESULT_UNMEASURED`는 유지한다.
+
+### 2026-09-11 기록 — H1-CAL-20260910 사용자 결정
+- 기존 채점 보존 + 보정 참고점수 병기. 일정/기체 범위 변경이나 새 GPU 학습 승인 아님.
+- 등급: 조사. 공식57.45와 Run06 raw65.73163 비교는 제출 identity 확인 전 조건부.
+- 근거·정본: SCORING_CALIBRATION_POLICY_20260910.md, H1_OFFICIAL_CALIBRATION_20260910.md, PROJECT_STATE.md:H1-CAL-D1.
+
+### 2026-09-11 결정 참조 — A027
+- 사용자 지정 순서: Codex 계획→Opus 검토→Codex 재감사. GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md 참조. 서버 일정·학습 착수 미정.

@@ -461,3 +461,25 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 - `history/<RELEASE_ID>/`는 release snapshot이며 과거 파일을 현재 사용본으로 승격하지 않는다.
 - `UPLOAD_HISTORY.tsv`는 v1.0 `WITHDRAWN_BUGGY_DO_NOT_REUSE`와 v1.1 `ACTIVE_ARTIFACT_VERIFIED`를 분리 기록한다.
 - publisher는 원본과 current/history 복사본 SHA를 비교하고, 같은 release identity는 ledger에 중복 추가하지 않는다.
+
+
+## G-A027-RESULT-AUDIT-20260909 — 독립 결과 감사 착수
+- 대상 실행: G-A027 (기존 A017/Pilot 재평가). 등급: 조사.
+- 상태: PLANNED. 회수 여부부터 확인하며 외부 실행/수신을 추정하지 않는다.
+- 범위: 승인 입력 고정, 로컬 회수물 탐색, 실제 입력이 있을 때만 검증·비교. 기존 파일 병합·삭제 없음.
+- 예정 증거: workspace/server_returns/G-A027/audit_20260909/INPUT_INVENTORY.json 및 root 결과 감사 보고서.
+
+### G-A027-RESULT-AUDIT-20260909 — 2026-09-10 재개 / H1-CAL-20260910
+- 새 관찰: `_keep/GO2_A017_FULL_SUITE_RESULT.zip`, 동명 SHA, 결과 디렉터리 존재. 과거 미회수 관찰을 현재 상태로 사용하지 않는다.
+- 상태: RECEIVED → VERIFIED. 외부 실행은 회수 RUNNER_STATUS의 rc=0·TRAINING=none과 대조했다. 새 학습이 아니다.
+- 범위 확장: 사용자 전사 H1 공식 57.45/70과 자체 점수 비교, 보정 참고점수 추가, Go2 별도 적용 검토. 기존 채점·원자료 보존은 사용자 명시 결정이다.
+- 격리: `workspace/server_returns/G-A027/received/`. training 병합 없음(MERGED 해당 없음); 상태를 임의로 건너뛰어 REPORTED로 표기하지 않는다. 로컬 감사 보고서는 별도 완료 기록.
+- 검증: 반환 ZIP SHA `5108b047175c6fc0cb0982b1434c686e413bac5d75469ae9c71cb2d17d144ace`, ZIP CRC·안전 경로, 내부 manifest 882/882, 승인 package 대비 model/env 4/4 일치. tar 전용 공용 도구는 ZIP 적용 대상 밖이므로 ZIP 검사와 전용 harvest 도구를 사용했다.
+- 정량: 전용 검증기 exit 0, 두 arm 69/69 `INTERNAL_MEASUREMENT_OK`. 파일 무결성 및 측정 유효성 판정이지 정책 성능 통과가 아니다.
+- 산출물: `workspace/server_returns/G-A027/audit_20260910/`, `GO2_RESULT_AUDIT_G-A027_20260910.md`, `H1_OFFICIAL_CALIBRATION_20260910.md`. 초기 예정 디렉터리 audit_20260909 대신 실제 재개일 audit_20260910 사용.
+
+### G-A027-RESULT-AUDIT-20260909 / H1-CAL-20260910 — 2026-09-11 로컬 감사 마감
+- 파일 lifecycle VERIFIED 유지, training 선택병합 미실시(MERGED 해당없음). 별도 로컬 감사·보고 산출물 완료.
+- H1 공식 전사·raw/보정 비교를 workspace/calibration/h1_official_20260910/에 보존. 기존 결과 덮어쓰기 없음.
+- Go2 기존/보정 결과와 원자료를 workspace/server_returns/G-A027/에 격리보존. 영상7개 관찰판정 별도, 하강영상 미확보.
+- 보고서 날짜260910은 감사입력일이며 마감일은260911. GO2_RESULT_AUDIT_G-A027_20260910.md와 H1_OFFICIAL_CALIBRATION_20260910.md 참조.

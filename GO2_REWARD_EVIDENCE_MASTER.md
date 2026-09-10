@@ -285,3 +285,15 @@ Default-01의 시나리오별 실점(가중치×(1-proxy))을 다시 계산하�
 - **G-A024 결과(FINAL): `INTERNAL_EARLY_KILL_FAIL`.** `ang_vel_xy_l2 -0.08→-0.15`(강화)는 `candidate_points_70=0.0`(완전 붕괴), G1~G7 **전 시나리오** survival `-0.1` 초과 회귀(G1·G2·G4·G5 `-1.0` 완전 전멸). G1 raw: `fallen_env_count:32/32`, `height_rel_mean:0.144`(임계 `0.18` 미달), 학습 자체는 수치적으로 안정(mean reward 11.9~12.9, 발산 없음) — 정책이 새 reward를 잘 최적화해서 낮게 웅크려 거의 움직이지 않는 국소최적해로 수렴한 전형적 reward hacking. `-0.08` 유지, 다이얼 닫힘. 아티팩트: `workspace/_keep/go2_g_a024_ang_vel_xy_m015/`, 상세는 `GO2_PROJECT_STATE.md` G-F151~153·G-D101.
 - **패턴 확정:** Default-01 위 posture_gate_v2 실측 단일변수 3건(`track_lin_vel_xy_exp` 강화, `lin_vel_z_l2` 완화, `ang_vel_xy_l2` 강화) 전부 실패 — 완화·강화 양방향, 서로 다른 두 안정화 항 모두 붕괴. 방향의 문제가 아니라 Default-01의 현재 6개 가중치 조합 자체가 얇은 균형점에 있다는 뜻(`GO2_PROJECT_STATE.md` G-F153).
 - **G-A025 재측정 등록:** `flat_orientation_l2 0.0→-1.0`, Default-01, 나머지 5개 항 불변(`lin_vel_z_l2=-3.0`·`ang_vel_xy_l2=-0.08` 둘 다 위 실패로 원복 확정값 그대로). G-A013(260903)이 같은 값을 이미 시험해 `-1.4278/70`(G2·G4·G5·G6 후퇴)로 기각했으나, 그 실행의 `RUNNER_STATUS.txt`(`ENGINE_VERSION=1.1.0`) 및 tier1 case summary(`schema_version:1`)를 직접 열람해 v1 termination-only evaluator였음을 확인했다 — G-A010과 같은 세대 결함이라 결과 불신, posture_gate_v2로 재측정한다. engine v1.4 대상 `load_and_validate`·`materialize_runtime` 드라이런 통과, `upload/G-A025/current/`에 게시. 위험 고지: 이 항은 지형과 무관하게 평평한 자세를 요구하므로 G4(경사)·G5(계단)에서 필요한 기울임을 오히려 벌줄 수 있다 — 결과 해석 시 G4/G5를 특히 주의 깊게 본다.
+
+## 19. G-A027 실제 회수 독립 감사 — 2026-09-11 기록
+- 기존 A017/Pilot 재평가이며 새 학습 아님. 원시69case씩 승인 대응 검증완료. raw39.76495 vs33.67132(+6.09363), 양쪽 절대성능 INTERNAL_GATE_FAIL.
+- track_lin_vel_xy_exp1.2→1.4: **부분 만족**(동일 evaluator 총점 증가), G4/G6 손실 및 동일case 생존회귀 때문에 확정만족/안전비열등은 아님. 다른 유지 reward의 개별 인과효과는 **INCONCLUSIVE**다.
+- 최대손실 G5 10.50, 다음G3 9.03. A017 stairs_15_down 생존3seed 모두0. G5하강 영상없음; 원인을 reward로 단정하지 않는다. 다음 reward 변경값은 추가행동증거 전 지정하지 않음.
+- 사용자 결정대로 raw를 보존하고 H1관측비율 보정참고34.75490 vs29.42901을 별도표시. 공식점수·검증된 Go2 예측식 아님.
+- §17~18의 과거 무효비교 기반 기각이나 인과패턴 단정은 이번 결과의 근거로 재사용하지 않는다. 개별과거 정책 재판정은 이번 감사범위 밖.
+- 근거: GO2_RESULT_AUDIT_G-A027_20260910.md; workspace/server_returns/G-A027/audit_20260910/COMPARISON.json 및 H1_RATIO_SENSITIVITY.json.
+
+## 20. A027 후속 조건부 가설 — 2026-09-11
+- GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md에 T1 ang_vel_xy_l2 -0.05→-0.06 초안 등록. INCONCLUSIVE/미실행. 과도한 몸통 회전이 하강 실패 전에 관찰되는 경우에만 검토하며, 정확한 값의 성능·외부문헌 보증 없음.
+- 사용자 요청은 Opus 검토 후 Codex 재감사. §19 결과를 변경하지 않고 새 성공·안전 조건은 새 실험에만 적용한다.

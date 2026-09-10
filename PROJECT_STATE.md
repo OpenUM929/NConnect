@@ -1244,3 +1244,15 @@ H1~H7 10 case를 모두 20초 평가해 `시뮬 proxy /70`을 확정한다. 70�
 | **F86** | H1은 이미 260903에 자체 posture-gate 재검증을 거쳤다(`H1_REWARD_EVIDENCE_MASTER.md` §12) — `eval_telemetry.py`의 `survival_rate_completed`도 Go2와 같은 termination-only 지표이지만, 평지 시나리오 21 case·672 episode를 자세 게이트로 재채점한 결과 survival 1.0000이 실제 행동임을 확인했다(`POSTURE_VERIFIED`, 낙상 판정 0/672). 반면 Go2는 이 재검증이 이번 세션(G-A023, 260905)까지 없었고, 실제로 재검증하자 tier-1이 "안전한 개선"으로 승인했던 `track_lin_vel_xy_exp 1.0→1.2`가 6/7 시나리오 survival 전멸이었음이 드러났다(`GO2_PROJECT_STATE.md` G-F139-141). **두 캠페인 다 같은 종류의 결함 위험을 안고 있었지만, H1은 이미 걷어냈고 Go2는 이번에 처음 걷어냈다** | `H1_REWARD_EVIDENCE_MASTER.md` §12-b, `GO2_PROJECT_STATE.md` G-F139-141 |
 | **D74** | "사족이 더 쉬울 것"이라는 전제를 **부분 기각**으로 정정한다. 기본 보상으로 안 넘어지는 것은 사족이 여전히 더 쉽다(F84). 하지만 예선 고득점은 지형 난이도 배점이 훨씬 큰 Go2 쪽이 구조적으로 더 어렵고(F85), Go2 캠페인이 실제로 "더 어렵게 느껴진" 상당 부분은 로봇 동역학이 아니라 **자체 tuning engine이 낡은 evaluator를 얼려 쓰며 6개 실험(G-A011~22)의 survival 판정을 헛돌게 한 도구 결함**이었다(F86, G-D91-93). 다음 Go2 튜닝의 우선순위는(엔진 재빌드 완료 후) tracking 배점이 가장 크게 깎이는 G3(거친 지형, 0.20)·G5(계단, 0.15)를 Default-01 위에서 단일변수로 겨냥하는 것이지, survival 여유가 있다고 다시 tracking 가중치부터 올리는 것이 아니다 | F84-86; `GO2_PROJECT_STATE.md` G-D93·G-D95 |
 | **F87** | D74의 우려가 260906에 실측으로 확인됐다: 엔진 재빌드 후 처음 posture_gate_v2로 재측정한 Go2 실험(G-A010, `lin_vel_z_l2 -3.0→-2.0`)이 G1~G6 survival 전부 붕괴(`-7.63/70`)로 최종 기각됐다 — 260902 구버전 evaluator는 이 변경을 "안전한 `+2.26/70` 개선"으로 오판했다. Go2에서 termination-only evaluator가 낸 과거 "성공" 판정은 하나도 신뢰할 수 없다는 결론이 재확인됐다 | `GO2_PROJECT_STATE.md` G-F148~150, G-D99 |
+
+### H1-CAL-20260910 — 공식 비교·기존/보정 병기 (마감 기록 2026-09-11)
+| ID | 검증된 사실/사용자 결정 | 근거 |
+|---|---|---|
+| H1-CAL-F1 | 사용자 전사 H1 OFFICIAL_RESULT 57.45/70을 보존. 제출본이 Run06인지는 미확인 | workspace/calibration/h1_official_20260910/OFFICIAL_RESULT_TRANSCRIPTION.json:submission_identity |
+| H1-CAL-F2 | Run06 과거 자체65.73163과 공식57.45 차이는8.28163. 동일 제출본 조건부 비교이며 H5/H6 POSTURE_UNMEASURED 이력 유지 | H1_OFFICIAL_CALIBRATION_20260910.md; H1_OFFICIAL_CALIBRATION.json:totals/evidence |
+| H1-CAL-D1 | 사용자 결정: 기존 채점을 삭제하지 않고 기존/변경 점수 모두 보고. raw65.73163, 보정참고57.45, 공식57.45 별도 열. 계수0.8740084는 단일표본 조건부 참고값 | SCORING_CALIBRATION_POLICY_20260910.md |
+| H1-CAL-D2 | 과거 자체65.73을 공식점수 또는 현행 전범위 자세검증 완료로 읽는 해석을 철회. raw 기록 자체는 보존 | H1_REWARD_EVIDENCE_MASTER.md:§12-b; H1_OFFICIAL_CALIBRATION_20260910.md |
+NEXT: 공식 제출 identity 대응을 확인하고, 이후 독립 공식 표본에서 기존/보정 오차를 비교한다. 현 단계에서 추가 H1 학습은 실행하지 않는다.
+
+### 2026-09-11 사용자 결정 — Go2 A027 후속 검토
+- Codex 튜닝 계획을 Opus가 검토하고 Codex가 다시 감사한다. 계획 GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md. H1 캠페인·기존 채점 변경 및 새 학습 승인 아님.

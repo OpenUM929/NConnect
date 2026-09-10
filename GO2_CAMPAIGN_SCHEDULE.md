@@ -737,3 +737,10 @@ Chain-01 위에서 같은 다이얼을 다시 시험할 때도 여전히 유효�
 
 **LATEST NEXT:** `workspace\training\quadruped\upload\G-A020\current\` 2파일 업로드 →
 실행 → `workspace\_keep`로 회수. 절차 정본은 `SERVER_SESSION_RUNBOOK.md`의 **G-A020** 절.
+
+### 2026-09-11 참조 기록 (CLOSED 상태 유지)
+- 사용자 결정: 기존점수/변경점수 모두 보존·보고. 새 일정 또는 학습 승인 아님.
+- G-A027 독립 감사와 조건부 다음평가는 GO2_PROJECT_STATE.md:§46, GO2_RESULT_AUDIT_G-A027_20260910.md:§6 참조. 이 과거 일정표를 현재 실행정본으로 재개하지 않는다.
+
+### 2026-09-11 후속 검토 참조 (CLOSED 유지)
+- GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md: 사용자 요청 Codex 계획→Opus 검토→Codex 재감사. 실행 일정·잔여 GPU 시간 미확정; 본 과거 일정 재개 아님.
