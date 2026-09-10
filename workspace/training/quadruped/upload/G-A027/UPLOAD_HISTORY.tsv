@@ -1,0 +1,3 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-08T00:00:00+00:00	G-A027	20260908_a017_full_suite_engine_v1_5_1	ARTIFACT_VERIFIED	go2_a017_full_suite.zip	8d97fc1b1963524dbb402e383ce6c878dc61eed8fe5bd0ce39bc7f45b79ffb93	(none — self-contained)	(none)	G-A017(260904)을 engine 1.5.0 재판정에서 INTERNAL_EARLY_KILL_PASS로 복원 — 학습 없이 두 정책 각각 69 case-run 실측(Codex 검토 R1~R8 반영, 엔진 1.5.1)
+2026-09-09T00:00:00+00:00	G-A027	20260909_a017_full_suite_posture_check_interpreter	ARTIFACT_VERIFIED	go2_a017_full_suite.zip	e7749d0f6adc4abb2b32fca9393523b8059b8954cec068ba2c7c2930af0a7d15	(none — self-contained)	(none)	posture check interpreter resolution (server has no system python3; falls back to isaaclab.sh -p)

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A027",
+  "note": "A017 후보(track_lin_vel_xy_exp 1.4)와 동결 Pilot-01의 69 case 전량 실측 — 학습 없음, engine 1.5.4/posture_gate_v2. 260909 수리: 자세 계약 검사가 시스템 python3를 직접 부르다 서버 preflight에서 멈춰, 다른 러너와 같이 isaaclab.sh -p로 떨어지는 인터프리터 해석으로 바꾸고 검사 본문을 posture_contract_check.py로 분리했다. 파일명의 a017은 회차가 아니라 재는 정책 이름이다(G-D175/G-D176).",
+  "published_at_utc": "2026-09-09T00:00:00+00:00",
+  "release_id": "20260909_a017_full_suite_posture_check_interpreter",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A027_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_a017_full_suite.zip",
+      "server_path": "/workspace/go2_a017_full_suite.zip",
+      "sha256": "e7749d0f6adc4abb2b32fca9393523b8059b8954cec068ba2c7c2930af0a7d15"
+    }
+  ]
+}

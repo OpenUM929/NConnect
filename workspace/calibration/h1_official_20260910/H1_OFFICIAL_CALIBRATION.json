@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "H1_OFFICIAL_OBSERVATION_CALIBRATION",
+  "evidence": {
+    "official_result_layer": "OFFICIAL_RESULT_USER_TRANSCRIPTION",
+    "internal_result_layer": "HISTORICAL_INTERNAL_GATE_PASS",
+    "current_posture_scope": {
+      "status": "PARTIAL",
+      "verified_scenarios": [
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H7"
+      ],
+      "posture_unmeasured_scenarios": [
+        "H5",
+        "H6"
+      ],
+      "effect": "The 65.73/70 raw proxy is not a current all-scenario posture-verified score."
+    },
+    "official_input_path": "workspace/calibration/h1_official_20260910/OFFICIAL_RESULT_TRANSCRIPTION.json",
+    "official_input_sha256": "65666027d522c283c9084d0f4c99e7fd78b29958c865edf538c86b5971b5b53c",
+    "internal_input_path": "workspace/submission_candidates/h1_run06_model9900/INDEPENDENT_EVAL_REPORT.json",
+    "internal_input_sha256": "46cc3e9aa9edad457efb414fbebaef1092ba9c4c929adcd5c681d980ddb1a159"
+  },
+  "comparison_eligibility": {
+    "submission_identity_match_status": "UNCONFIRMED",
+    "status": "CONDITIONAL_ONLY_IDENTITY_UNCONFIRMED",
+    "reason": "The supplied official scores do not identify the submitted policy, checkpoint, file hash, or round."
+  },
+  "totals": {
+    "internal_points_original": 65.73163359451405,
+    "official_points_transcribed": 57.45,
+    "maximum_points": 70.0,
+    "internal_minus_official_points": 8.281633594514048,
+    "absolute_error_points": 8.281633594514048,
+    "observed_ratio_official_over_internal": 0.8740084014098619,
+    "adjusted_reference_points_global_ratio": 57.45
+  },
+  "observed_precision_diagnostics": {
+    "scenario_fraction_signed_bias_mean": 0.11709344539468591,
+    "scenario_fraction_mae": 0.11709344539468591,
+    "scenario_fraction_rmse": 0.12535926181893947,
+    "maximum_fraction_error_scenario": "H5",
+    "internal_weakest_to_strongest": [
+      "H7",
+      "H4",
+      "H1",
+      "H5",
+      "H2",
+      "H6",
+      "H3"
+    ],
+    "official_weakest_to_strongest": [
+      "H5",
+      "H6",
+      "H2",
+      "H7",
+      "H4",
+      "H3",
+      "H1"
+    ],
+    "weakest_scenario_agrees": false
+  },
+  "scenarios": {
+    "H1": {
+      "weight": 0.15,
+      "maximum_points": 10.5,
+      "internal_fraction_original": 0.9268503828301918,
+      "internal_points_original": 9.731929019717015,
+      "official_fraction_transcribed": 0.8314285714285715,
+      "official_points_transcribed": 8.73,
+      "internal_minus_official_points": 1.0019290197170143,
+      "absolute_error_points": 1.0019290197170143,
+      "observed_ratio_official_over_internal": 0.8970472331141038,
+      "adjusted_reference_points_global_ratio": 8.505787725157113
+    },
+    "H2": {
+      "weight": 0.2,
+      "maximum_points": 14.0,
+      "internal_fraction_original": 0.9629767750496637,
+      "internal_points_original": 13.481674850695292,
+      "official_fraction_transcribed": 0.8242857142857142,
+      "official_points_transcribed": 11.54,
+      "internal_minus_official_points": 1.9416748506952928,
+      "absolute_error_points": 1.9416748506952928,
+      "observed_ratio_official_over_internal": 0.8559767334401218,
+      "adjusted_reference_points_global_ratio": 11.783097084583732
+    },
+    "H3": {
+      "weight": 0.1,
+      "maximum_points": 7.0,
+      "internal_fraction_original": 0.9809818540635532,
+      "internal_points_original": 6.8668729784448725,
+      "official_fraction_transcribed": 0.83,
+      "official_points_transcribed": 5.81,
+      "internal_minus_official_points": 1.056872978444873,
+      "absolute_error_points": 1.056872978444873,
+      "observed_ratio_official_over_internal": 0.8460910837054364,
+      "adjusted_reference_points_global_ratio": 6.00170467457518
+    },
+    "H4": {
+      "weight": 0.1,
+      "maximum_points": 7.0,
+      "internal_fraction_original": 0.9062048186990712,
+      "internal_points_original": 6.343433730893499,
+      "official_fraction_transcribed": 0.8257142857142857,
+      "official_points_transcribed": 5.78,
+      "internal_minus_official_points": 0.5634337308934985,
+      "absolute_error_points": 0.5634337308934985,
+      "observed_ratio_official_over_internal": 0.911178431935138,
+      "adjusted_reference_points_global_ratio": 5.544214374587623
+    },
+    "H5": {
+      "weight": 0.15,
+      "maximum_points": 10.5,
+      "internal_fraction_original": 0.9583559309795262,
+      "internal_points_original": 10.062737275285025,
+      "official_fraction_transcribed": 0.7895238095238094,
+      "official_points_transcribed": 8.29,
+      "internal_minus_official_points": 1.7727372752850261,
+      "absolute_error_points": 1.7727372752850261,
+      "observed_ratio_official_over_internal": 0.8238315056044416,
+      "adjusted_reference_points_global_ratio": 8.794916919779295
+    },
+    "H6": {
+      "weight": 0.15,
+      "maximum_points": 10.5,
+      "internal_fraction_original": 0.9734807847122238,
+      "internal_points_original": 10.22154823947835,
+      "official_fraction_transcribed": 0.822857142857143,
+      "official_points_transcribed": 8.64,
+      "internal_minus_official_points": 1.5815482394783498,
+      "absolute_error_points": 1.5815482394783498,
+      "observed_ratio_official_over_internal": 0.8452731227770381,
+      "adjusted_reference_points_global_ratio": 8.93371903672026
+    },
+    "H7": {
+      "weight": 0.15,
+      "maximum_points": 10.5,
+      "internal_fraction_original": 0.859375,
+      "internal_points_original": 9.0234375,
+      "official_fraction_transcribed": 0.8247619047619048,
+      "official_points_transcribed": 8.66,
+      "internal_minus_official_points": 0.36343749999999986,
+      "absolute_error_points": 0.36343749999999986,
+      "observed_ratio_official_over_internal": 0.9597229437229438,
+      "adjusted_reference_points_global_ratio": 7.886560184596801
+    }
+  },
+  "calibration_review": {
+    "original_proxy_changed": false,
+    "exploratory_global_multiplier": 0.8740084014098619,
+    "exploratory_per_scenario_multipliers": {
+      "H1": 0.8970472331141038,
+      "H2": 0.8559767334401218,
+      "H3": 0.8460910837054364,
+      "H4": 0.911178431935138,
+      "H5": 0.8238315056044416,
+      "H6": 0.8452731227770381,
+      "H7": 0.9597229437229438
+    },
+    "coefficients_enabled_for_prediction": false,
+    "validated_prediction": false,
+    "sample_count_official_submissions": 1,
+    "out_of_sample_validation_count": 0,
+    "uncertainty_interval": null,
+    "same_sample_fit_warning": "Applying these coefficients to the source observation reproduces it by construction; that is calibration fit, not predictive validation.",
+    "recommended_reporting_policy": {
+      "raw_internal_proxy": "retain as the decision and gate input",
+      "h1_global_ratio_sensitivity": "show alongside raw and official; label non-validated",
+      "h1_per_scenario_ratios": "diagnostic only; do not use for tuning priority"
+    }
+  },
+  "cross_robot_transfer": {
+    "apply_h1_coefficients_to_go2": false,
+    "default_enabled": false,
+    "reason": "H1 and Go2 use different bodies, scenarios, commands, terrains, and evaluator implementations.",
+    "allowed_use": "disabled sensitivity projection only, never Go2 score evidence"
+  }
+}

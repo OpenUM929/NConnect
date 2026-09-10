@@ -1,0 +1,13 @@
+CURRENT GO2 UPLOAD — G-A027
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A027\current\go2_a017_full_suite.zip
+   SHA256 8d97fc1b1963524dbb402e383ce6c878dc61eed8fe5bd0ce39bc7f45b79ffb93
+
+이 패키지는 학습을 하지 않는다. 이미 동결된 G-A017 정책과 Pilot-01 정책을 재생만 한다.
+러너·evaluator·registry·두 정책 아티팩트가 모두 zip 안에 들어 있으므로 engine zip과
+spec json을 따로 올리지 않는다.
+
+RELEASE_ID 20260908_a017_full_suite_engine_v1_5_1
+STATUS ARTIFACT_VERIFIED
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

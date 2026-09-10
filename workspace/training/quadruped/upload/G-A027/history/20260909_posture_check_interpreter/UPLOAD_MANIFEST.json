@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A027",
+  "note": "A017 후보(track_lin_vel_xy_exp 1.4)와 동결 Pilot-01의 69 case 전량 실측 — 학습 없음, engine 1.5.4/posture_gate_v2. 파일명의 a017은 회차가 아니라 재는 정책 이름이다(G-D175/G-D176).",
+  "published_at_utc": "2026-09-08T11:16:58+00:00",
+  "release_id": "20260908_a017_full_suite_engine_v1_5_4",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A027_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "go2_a017_full_suite.zip",
+      "server_path": "/workspace/go2_a017_full_suite.zip",
+      "sha256": "c190c2910dc225b72cbf2df3376f2cc57f4ce36861d4a4bf859f018a3a9eb5ea"
+    }
+  ]
+}

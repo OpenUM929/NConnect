@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "source": {
+    "type": "USER_TRANSCRIPTION_OF_OFFICIAL_DASHBOARD",
+    "received_date": "2026-09-10",
+    "robot": "H1",
+    "limitations": [
+      "No dashboard screenshot or export is stored with this transcription.",
+      "The evaluated submission policy identifier and submission round were not included in the supplied result."
+    ]
+  },
+  "submission_identity": {
+    "match_status": "UNCONFIRMED",
+    "reason": "The supplied official scores do not identify the submitted policy, checkpoint, file hash, or round.",
+    "candidate_for_conditional_comparison": {
+      "run": "train_260831-06_run05cfg_10000",
+      "checkpoint": "model_9900.pt",
+      "checkpoint_sha256": "8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636"
+    }
+  },
+  "scenarios": {
+    "H1": {"name": "제자리 균형", "received_points": 8.73, "maximum_points": 10.5},
+    "H2": {"name": "전진 속도 추종", "received_points": 11.54, "maximum_points": 14.0},
+    "H3": {"name": "좌우 속도 추종", "received_points": 5.81, "maximum_points": 7.0},
+    "H4": {"name": "회전 복합 추종", "received_points": 5.78, "maximum_points": 7.0},
+    "H5": {"name": "약한 요철", "received_points": 8.29, "maximum_points": 10.5},
+    "H6": {"name": "완만한 경사 ±10°", "received_points": 8.64, "maximum_points": 10.5},
+    "H7": {"name": "밀침 회복", "received_points": 8.66, "maximum_points": 10.5}
+  },
+  "total": {"received_points": 57.45, "maximum_points": 70.0}
+}
