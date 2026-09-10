@@ -27,7 +27,12 @@ GO2 = ROOT / "workspace" / "training" / "quadruped"
 BASELINE_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_default_vs_pilot_v1"
 BASELINE_PREFIX = "go2_default_vs_pilot_v1"
 BASELINE_MODEL_SHA = "99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676"
-BASELINE_ENV_SHA = "a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea"
+# 260908: the previously pinned a39c77dc… matches no env.yaml on disk, so every
+# engine package build failed on "baseline model/env identity mismatch". All six
+# local copies of the Default-01 env.yaml carry the hash below and its six reward
+# weights match go2_tuning_config.DEFAULT_REWARDS. Kept in step with
+# go2_tuning_config.DEFAULT_BASELINE_ENV_SHA.
+BASELINE_ENV_SHA = "4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c"
 OUTPUT = GO2 / "go2_track_lin_vel_120_v1.zip"
 PREFIX = Path("go2_track_lin_vel_120_v1")
 DEFAULT_REWARDS = {

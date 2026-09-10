@@ -80,6 +80,31 @@ class Go2WorkflowContract(unittest.TestCase):
             "failed_scenarios": [],
             "scenarios": {"G1": {"survival_proxy": 0.96, "tracking_proxy": 0.84, "scenario_proxy": 0.81}},
         }
+        # Without a recorded instrument fingerprint the pair may not be compared
+        # at all: absence of evidence about the ruler is not evidence of one ruler.
+        blocked = report.paired(base, pilot)
+        self.assertEqual(blocked["decision"], "INTERNAL_MEASUREMENT_INVALID")
+        # And no number may leak out of the blocked path.  Engine 1.5.1 named the
+        # pair invalid and published pilot_minus_default in the same object.
+        self.assertFalse(blocked["comparison_published"])
+        self.assertIsNone(blocked["pilot_minus_default"])
+        self.assertIsNone(blocked["per_scenario"])
+        self.assertIsNone(blocked["per_seed_delta"])
+        self.assertTrue(blocked["blocking_reasons"])
+        # Each arm keeps its own figures, as diagnostics rather than a comparison.
+        self.assertIsNotNone(blocked["default"]["simulation_fraction"])
+        self.assertIsNotNone(blocked["pilot"]["simulation_fraction"])
+        fingerprint = {
+            "tracking_proxy_std": 0.5,
+            "survival_proxy_sources": ["posture_gate_v2"],
+            "telemetry_schema_versions": ["3"],
+            "posture_gate_params": ['{"height_rel_min_m": 0.18}'],
+            "measurement_contracts": ["posture_gate_v2/both_channels_required/no_v1_fallback"],
+        }
+        walks = {"verdict": "POLICY_LOCOMOTES"}
+        for arm in (base, pilot):
+            arm["instrument"] = dict(fingerprint)
+            arm["locomotion"] = dict(walks)
         self.assertEqual(report.paired(base, pilot)["decision"], "PILOT_COMBINATION_PROMISING_VIDEO_REVIEW_PENDING")
         self.assertEqual(report.paired(pilot, base)["decision"], "RESTART_FROM_DEFAULT_CONFIRMED")
 

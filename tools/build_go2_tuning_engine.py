@@ -43,7 +43,12 @@ def _load_old_builder():
 PILOT_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_pilot_v2_baseline"
 PILOT_PREFIX = "go2_pilot_v2_baseline"
 PILOT_MODEL_SHA = "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
-PILOT_ENV_SHA = "89e7a11749e218081e9d2e9be0a7544e864ea9300472148bc64ccdf83eab77c9"
+# 260908: all three frozen baselines pinned an env.yaml hash that matches no file
+# on disk, so every engine package build died on an identity mismatch. In each
+# case the model SHA matches byte for byte and only env.yaml was re-serialized;
+# the six reward weights in this file were verified against Pilot-01's row in
+# go2_tuning_config.FROZEN_BASELINES before repinning.
+PILOT_ENV_SHA = "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
 TIER1_CASES = {
     "G1": "forward_fast",
     "G2": "diagonal_left",
@@ -80,7 +85,10 @@ def _pilot_baseline_payload() -> dict[str, bytes]:
 # already unpacked and removed) rather than a ZIP, unlike the Pilot-01 loader.
 CHAIN01_RESULT_DIR = ROOT / "workspace" / "_keep" / "go2_track_lin_vel_120_v1"
 CHAIN01_MODEL_SHA = "143871e3f69514a47ea4929c312895cf2da2e95b311aef83209866b3c3e542d4"
-CHAIN01_ENV_SHA = "2ba9a1e11b52792c7ee7a76c9891a98d5f2d7d56c058f1182410f773bac5aa71"
+# 260908: repinned to the on-disk artifact, same reason as PILOT_ENV_SHA above.
+# Chain-01's env.yaml carries track_lin_vel_xy_exp 1.2 with the other five weights
+# at Default values, matching its FROZEN_BASELINES row.
+CHAIN01_ENV_SHA = "903d437e47aaf7c73c9e0a2f1a1835d1fe1432e66a0a2576282d02cc3cd7c2f2"
 
 
 def _chain01_baseline_payload() -> dict[str, bytes]:

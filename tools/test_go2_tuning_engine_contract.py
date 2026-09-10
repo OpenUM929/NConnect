@@ -36,9 +36,29 @@ def _patched_spec_path(tmp_dir: Path, engine_version: str, pilot_env_sha: str) -
     raw = json.loads(SPEC.read_text(encoding="utf-8"))
     raw["engine_version"] = engine_version
     raw["baseline"]["env_sha256"] = pilot_env_sha
+    raw["evaluation"]["gates"].setdefault(
+        "max_scenario_proxy_regression",
+        raw["evaluation"]["gates"]["max_survival_regression"],
+    )
     patched = tmp_dir / SPEC.name
     patched.write_text(json.dumps(raw), encoding="utf-8")
     return patched
+
+
+
+def _fingerprint(source: str = "posture_gate_v2") -> dict:
+    """A complete instrument fingerprint, as build_policy actually emits one.
+
+    A partial fingerprint is now refused outright, so fixtures that only pinned
+    the survival definition no longer stand in for a measured arm.
+    """
+    return {
+        "tracking_proxy_std": 0.5,
+        "survival_proxy_sources": [source],
+        "telemetry_schema_versions": ["3"],
+        "posture_gate_params": ['{"grace_s": 0.5, "height_rel_min_m": 0.18}'],
+        "measurement_contracts": ["posture_gate_v2/both_channels_required/no_v1_fallback"],
+    }
 
 
 class Go2TuningEngineContract(unittest.TestCase):
@@ -60,8 +80,16 @@ class Go2TuningEngineContract(unittest.TestCase):
         # no longer exists locally — G-F143). Patch it to the re-serialized,
         # content-verified value the engine now embeds (go2_tuning_config.PILOT_BASELINE_ENV_SHA).
         raw = json.loads(SPEC.read_text(encoding="utf-8"))
+        # 260908: engine 1.5.0 added max_scenario_proxy_regression, because the
+        # tier-1 kill clause moved from the survival factor to the scenario
+        # product. Historical specs predate the key; patch it in with the same
+        # tolerance rather than editing the SHA-tracked fixture.
         raw["engine_version"] = cls.config.ENGINE_VERSION
         raw["baseline"]["env_sha256"] = cls.config.PILOT_BASELINE_ENV_SHA
+        raw["evaluation"]["gates"].setdefault(
+            "max_scenario_proxy_regression",
+            raw["evaluation"]["gates"]["max_survival_regression"],
+        )
         cls.experiment = cls.config.validate_experiment(raw)
 
     def test_flat_orientation_is_an_active_reward_key_not_a_comment(self) -> None:
@@ -94,6 +122,10 @@ class Go2TuningEngineContract(unittest.TestCase):
         raw = json.loads(RETIRED_SPEC.read_text(encoding="utf-8"))
         raw["engine_version"] = self.config.ENGINE_VERSION
         raw["baseline"]["env_sha256"] = self.config.PILOT_BASELINE_ENV_SHA
+        raw["evaluation"]["gates"].setdefault(
+            "max_scenario_proxy_regression",
+            raw["evaluation"]["gates"]["max_survival_regression"],
+        )
         retired = self.config.validate_experiment(raw)
         self.assertEqual(retired["work_id"], "G-A015")
 
@@ -170,6 +202,8 @@ class Go2TuningEngineContract(unittest.TestCase):
         def policy(points: float, survival: float = 1.0, scenario_proxy: float = 0.8) -> dict:
             return {
                 "simulation_points_70": points,
+                "instrument": _fingerprint(),
+                "locomotion": {"verdict": "POLICY_LOCOMOTES"},
                 "scenarios": {
                     f"G{i}": {
                         "scenario_proxy": scenario_proxy,
@@ -196,11 +230,21 @@ class Go2TuningEngineContract(unittest.TestCase):
             f"total_points_70_delta_below_{threshold}", failed["failure_reasons"]
         )
 
-    def test_survival_regression_still_kills_a_total_positive_candidate(self) -> None:
-        """G-A013 shape: a candidate must not buy points by collapsing survival."""
+    def test_survival_collapse_still_kills_a_total_positive_candidate(self) -> None:
+        """G-A013 shape: a candidate must not buy points by collapsing survival.
+
+        Engine 1.5.0 gates the scenario product rather than the survival factor,
+        so the fixture now moves survival while holding tracking fixed, which is
+        what a real collapse looks like: scenario_proxy is survival * tracking and
+        cannot stay put while one of its factors falls by a third. The 1.4.0
+        fixture pinned the product at 0.8 and dropped survival underneath it, a
+        state the evaluator can never emit.
+        """
         gates = self.experiment["evaluation"]["gates"]
         baseline = {
             "simulation_points_70": 20.0,
+            "instrument": _fingerprint(),
+            "locomotion": {"verdict": "POLICY_LOCOMOTES"},
             "scenarios": {
                 f"G{i}": {
                     "scenario_proxy": 0.8,
@@ -215,12 +259,86 @@ class Go2TuningEngineContract(unittest.TestCase):
         candidate = json.loads(json.dumps(baseline))
         candidate["simulation_points_70"] = 25.0
         candidate["scenarios"]["G4"]["survival_proxy"] = 1.0 - 0.3125
+        candidate["scenarios"]["G4"]["scenario_proxy"] = (1.0 - 0.3125) * 0.8
         decision = self.report.tier1_decision(baseline, candidate, gates)
         self.assertEqual(decision["status"], "INTERNAL_EARLY_KILL_FAIL")
         self.assertIn(
-            f"G4_survival_regressed_over_{gates['max_survival_regression']}",
+            f"G4_scenario_proxy_regressed_over_{gates['max_scenario_proxy_regression']}",
             decision["failure_reasons"],
         )
+        self.assertIn("G4", decision["survival_regressions_observed"])
+
+    def test_survival_dip_offset_by_tracking_no_longer_kills(self) -> None:
+        """G-A017 shape: the product improved, so the run must not be killed.
+
+        G-A017 measured +3.708/70 overall with six of seven scenario products up,
+        and was killed on G4 survival -0.219 while G4's own product rose +0.0159.
+        """
+        gates = self.experiment["evaluation"]["gates"]
+        baseline = {
+            "simulation_points_70": 46.4912409491015,
+            "instrument": _fingerprint(),
+            "locomotion": {"verdict": "POLICY_LOCOMOTES"},
+            "scenarios": {
+                f"G{i}": {
+                    "scenario_proxy": 0.400,
+                    "survival_proxy": 1.0,
+                    "tracking_proxy": 0.400,
+                    "gate": "INTERNAL_SCENARIO_PASS",
+                }
+                for i in range(1, 8)
+            },
+            "seed_fractions": {"101": 0.4, "202": 0.4, "303": 0.4},
+        }
+        candidate = json.loads(json.dumps(baseline))
+        candidate["simulation_points_70"] = 50.19915737233102
+        candidate["scenarios"]["G4"]["survival_proxy"] = 0.78125
+        candidate["scenarios"]["G4"]["tracking_proxy"] = 0.575246
+        candidate["scenarios"]["G4"]["scenario_proxy"] = 0.78125 * 0.575246
+        decision = self.report.tier1_decision(baseline, candidate, gates)
+        self.assertEqual(decision["status"], "INTERNAL_EARLY_KILL_PASS")
+        self.assertEqual(decision["failure_reasons"], [])
+        self.assertIn("G4", decision["survival_regressions_observed"])
+
+    def test_asymmetric_instrument_voids_the_comparison(self) -> None:
+        """Seven of twelve runs measured the two arms with different rulers."""
+        gates = self.experiment["evaluation"]["gates"]
+        baseline = {
+            "simulation_points_70": 20.0,
+            "instrument": _fingerprint("termination_only_v1"),
+            "locomotion": {"verdict": "POLICY_LOCOMOTES"},
+            "scenarios": {
+                "G1": {"scenario_proxy": 0.8, "survival_proxy": 1.0, "tracking_proxy": 0.8}
+            },
+            "seed_fractions": {"101": 0.8},
+        }
+        candidate = json.loads(json.dumps(baseline))
+        candidate["instrument"] = _fingerprint()
+        candidate["simulation_points_70"] = 25.0
+        decision = self.report.tier1_decision(baseline, candidate, gates)
+        self.assertEqual(decision["status"], "INTERNAL_MEASUREMENT_INVALID")
+        self.assertTrue(
+            any(r.startswith("instrument_fingerprint_asymmetric") for r in decision["blocking_reasons"])
+        )
+
+    def test_non_walking_baseline_voids_the_comparison(self) -> None:
+        """Default-01 held 0.023-0.032 m/s and still scored survival 1.0."""
+        gates = self.experiment["evaluation"]["gates"]
+        baseline = {
+            "simulation_points_70": 17.90699218052112,
+            "instrument": _fingerprint("termination_only_v1"),
+            "locomotion": {"verdict": "POLICY_DOES_NOT_LOCOMOTE"},
+            "scenarios": {
+                "G1": {"scenario_proxy": 0.8, "survival_proxy": 1.0, "tracking_proxy": 0.8}
+            },
+            "seed_fractions": {"101": 0.8},
+        }
+        candidate = json.loads(json.dumps(baseline))
+        candidate["locomotion"] = {"verdict": "POLICY_LOCOMOTES"}
+        candidate["simulation_points_70"] = 33.793106
+        decision = self.report.tier1_decision(baseline, candidate, gates)
+        self.assertEqual(decision["status"], "INTERNAL_MEASUREMENT_INVALID")
+        self.assertIn("baseline_does_not_locomote", decision["blocking_reasons"])
 
     def test_pinned_scenario_gate_no_longer_kills_a_net_positive(self) -> None:
         """Regression guard for the measured G-A010 and G-A011 mis-kills."""
@@ -237,11 +355,15 @@ class Go2TuningEngineContract(unittest.TestCase):
         baseline = {
             "simulation_points_70": 17.537120722509602,
             "scenarios": json.loads(json.dumps(base_scenarios)),
+            "instrument": _fingerprint(),
+            "locomotion": {"verdict": "POLICY_LOCOMOTES"},
             "seed_fractions": {"101": 0.8, "202": 0.8, "303": 0.8},
         }
         candidate = {
             "simulation_points_70": 19.794280652672406,
             "scenarios": json.loads(json.dumps(base_scenarios)),
+            "instrument": _fingerprint(),
+            "locomotion": {"verdict": "POLICY_LOCOMOTES"},
             "seed_fractions": {"101": 0.8, "202": 0.8, "303": 0.8},
         }
         # G1 did not move at all, which is exactly what engine 1.1.0 killed G-A010 for.
@@ -249,7 +371,7 @@ class Go2TuningEngineContract(unittest.TestCase):
         decision = self.report.tier1_decision(baseline, candidate, gates)
         self.assertEqual(decision["status"], "INTERNAL_EARLY_KILL_PASS")
         self.assertEqual(decision["failure_reasons"], [])
-        self.assertEqual(decision["schema_version"], 3)
+        self.assertEqual(decision["schema_version"], 5)
 
     def test_runner_is_generic_and_packages_one_result_zip(self) -> None:
         raw = (GO2 / "server_run_go2_tuning_engine_v1.sh").read_bytes()
@@ -339,6 +461,8 @@ class Go2TuningEngineContract(unittest.TestCase):
             )
             return {
                 "simulation_points_70": points,
+                "instrument": _fingerprint(),
+                "locomotion": {"verdict": "POLICY_LOCOMOTES"},
                 "scenarios": scenarios,
                 "seed_fractions": {"101": 0.8, "202": 0.8, "303": 0.8},
             }
@@ -355,7 +479,16 @@ class Go2TuningEngineContract(unittest.TestCase):
         self.assertEqual(decision["status"], "INTERNAL_EARLY_KILL_FAIL")
         self.assertLess(decision["candidate_minus_baseline_points_70"], -30.0)
         self.assertIn("total_points_70_delta_below_1.0", decision["failure_reasons"])
-        self.assertIn("G4_survival_regressed_over_0.1", decision["failure_reasons"])
+        # G-A015 is a genuine collapse, so the product clause catches it on five
+        # of seven scenarios. Engine 1.4.0 caught it on the survival factor; the
+        # point of the 1.5.0 change is that a real collapse still dies while
+        # G-A017 (product up, one factor down) no longer does.
+        self.assertIn("G4_scenario_proxy_regressed_over_0.1", decision["failure_reasons"])
+        self.assertGreaterEqual(
+            sum(1 for r in decision["failure_reasons"] if "scenario_proxy_regressed" in r), 5
+        )
+        # The survival collapse is still recorded, just not as the kill clause.
+        self.assertIn("G4", decision["survival_regressions_observed"])
 
 
 if __name__ == "__main__":
