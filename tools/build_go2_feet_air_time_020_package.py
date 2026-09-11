@@ -139,7 +139,7 @@ def build_payload() -> dict[str, bytes]:
         GO2 / "server_run_go2_feet_air_time_020_v1.sh",
         GO2 / "GO2_FEET_AIR_TIME_020_V2_README.txt",
         GO2 / "config" / "go2_self_eval_registry.json",
-        GO2 / "reports" / "GO2_FEET_AIR_TIME_020_SCREENING_PRD.md",
+        GO2 / "upload" / "plan" / "GO2_FEET_AIR_TIME_020_SCREENING_PRD.md",
     ]
     missing = [path for path in required if not path.is_file()]
     if missing:
@@ -168,7 +168,7 @@ def build_payload() -> dict[str, bytes]:
     ).encode("utf-8")
     payload["go2_self_eval_registry.json"] = (GO2 / "config" / "go2_self_eval_registry.json").read_bytes()
     payload["GO2_FEET_AIR_TIME_020_SCREENING_PRD.md"] = (
-        GO2 / "reports" / "GO2_FEET_AIR_TIME_020_SCREENING_PRD.md"
+        GO2 / "upload" / "plan" / "GO2_FEET_AIR_TIME_020_SCREENING_PRD.md"
     ).read_bytes()
     for name in (
         "go2_fixed_eval_report.py",

@@ -170,7 +170,7 @@ def build_payload() -> dict[str, bytes]:
         GO2 / "package_go2_result.py",
         GO2 / "server_run_go2_track_lin_vel_120_v1.sh",
         GO2 / "GO2_TRACK_LIN_VEL_120_README.txt",
-        GO2 / "reports" / "GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md",
+        GO2 / "upload" / "plan" / "GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md",
         GO2 / "config" / "go2_self_eval_registry.json",
     ]
     missing = [path for path in required if not path.is_file()]
@@ -211,7 +211,7 @@ def build_payload() -> dict[str, bytes]:
     ):
         payload[name] = (GO2 / name).read_bytes()
     payload["GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md"] = (
-        GO2 / "reports" / "GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md"
+        GO2 / "upload" / "plan" / "GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md"
     ).read_bytes()
     manifest = "".join(f"{sha(data)}  {name}\n" for name, data in sorted(payload.items()))
     payload["PACKAGE_SHA256SUMS.txt"] = manifest.encode("utf-8")

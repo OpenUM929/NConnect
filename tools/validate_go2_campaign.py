@@ -27,8 +27,8 @@ REQUIRED_FILES = [
     ROOT / ".codex/agents/go2-evaluation-auditor.md",
     ROOT / "workspace/training/quadruped/reports/GO2_EVALUATION_PROTOCOL.md",
     ROOT / "workspace/training/quadruped/reports/NEW_SESSION_HANDOFF.md",
-    ROOT / "workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md",
-    ROOT / ".omx/plans/go2-default-baseline-experiment-plan.md",
+    ROOT / "workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md",
+    ROOT / "workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md",
 ]
 
 
@@ -66,9 +66,9 @@ def main() -> None:
     schedule = (ROOT / "GO2_CAMPAIGN_SCHEDULE.md").read_text(encoding="utf-8")
     reward_master = (ROOT / "GO2_REWARD_EVIDENCE_MASTER.md").read_text(encoding="utf-8")
     test_prd = (
-        ROOT / "workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md"
+        ROOT / "workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md"
     ).read_text(encoding="utf-8")
-    detailed_plan = (ROOT / ".omx/plans/go2-default-baseline-experiment-plan.md").read_text(
+    detailed_plan = (ROOT / "workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md").read_text(
         encoding="utf-8"
     )
     for label, text in {
