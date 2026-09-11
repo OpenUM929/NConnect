@@ -1,0 +1,8 @@
+scenario	case_id	seed
+G1	forward_nominal	303
+G2	combined_yaw_right	303
+G3	rough_lateral	303
+G4	slope_plus_20	202
+G5	stairs_10_down	202
+G6	push_neg_y	202
+G7	dr_seed_303	303

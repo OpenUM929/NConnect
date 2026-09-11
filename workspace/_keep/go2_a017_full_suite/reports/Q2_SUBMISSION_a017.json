@@ -1,0 +1,78 @@
+{
+  "arm": "a017",
+  "blocking_reasons": [],
+  "candidate_locomotion": {
+    "criterion": "speed_xy_mean < 0.10 m/s and tracking_xy_rmse >= 0.30",
+    "observed_case_count": 69,
+    "stationary_case_count": 3,
+    "stationary_cases": [
+      "G5/stairs_15_down/seed_101",
+      "G5/stairs_15_down/seed_202",
+      "G5/stairs_15_down/seed_303"
+    ],
+    "verdict": "POLICY_LOCOMOTES"
+  },
+  "candidate_points_70": 39.76494865859557,
+  "failure_reasons": [
+    "simulation_proxy_below_minimum",
+    "one_or_more_scenario_stability_gates_failed"
+  ],
+  "gates": {
+    "minimum_points_70": 70.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7
+  },
+  "instrument_candidate": {
+    "measurement_contracts": [
+      "posture_gate_v2/both_channels_required/no_v1_fallback/row_and_env_coverage_0.99/missing_rows_not_upright/fall_verdict_unambiguous/finite_kinematics_required"
+    ],
+    "posture_gate_params": [
+      "{\"grace_s\": 0.5, \"height_rel_min_m\": 0.18, \"hold_s\": 0.5, \"tilt_cos_max\": 0.5}"
+    ],
+    "survival_proxy_sources": [
+      "posture_gate_v2"
+    ],
+    "telemetry_schema_versions": [
+      "6"
+    ],
+    "tracking_proxy_std": 0.5
+  },
+  "instrument_notes": {
+    "candidate": []
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "promotion_published": true,
+  "registry_minimum_weighted_simulation_proxy": 0.7,
+  "registry_weighted_simulation_proxy": null,
+  "required_seeds_complete": true,
+  "scenario_floor_failures": [
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "scenario_floor_shortfalls": [
+    "G3.survival_proxy_min_any_case=0.46875<0.95",
+    "G3.tracking_proxy_min_any_case=0.6281909034071083<0.7",
+    "G4.survival_proxy_min_any_case=0.75<0.95",
+    "G4.tracking_proxy_min_any_case=0.6810248141408209<0.7",
+    "G5.survival_proxy_min_any_case=0.0<0.95",
+    "G5.tracking_proxy_min_any_case=0.12062284612355896<0.7",
+    "G6.survival_proxy_min_any_case=0.90625<0.95",
+    "G7.survival_proxy_min_any_case=0.90625<0.95",
+    "G7.tracking_proxy_min_any_case=0.6572742015694193<0.7"
+  ],
+  "scenario_stability_gate_reading": "min_over_all_cases_of_each_factor",
+  "scenario_stability_gates_ok": false,
+  "scenario_worst_product_factor_failures": [
+    "G3",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "schema_version": 4,
+  "status": "INTERNAL_REPRESENTATIVE_PROMOTION_FAIL",
+  "work_id": "G-A027"
+}

@@ -1,0 +1,119 @@
+{
+  "baseline_locomotion": {
+    "criterion": "speed_xy_mean < 0.10 m/s and tracking_xy_rmse >= 0.30",
+    "observed_case_count": 69,
+    "stationary_case_count": 0,
+    "stationary_cases": [],
+    "verdict": "POLICY_LOCOMOTES"
+  },
+  "baseline_points_70": 33.67131819921993,
+  "blocking_reasons": [],
+  "candidate_locomotion": {
+    "criterion": "speed_xy_mean < 0.10 m/s and tracking_xy_rmse >= 0.30",
+    "observed_case_count": 69,
+    "stationary_case_count": 3,
+    "stationary_cases": [
+      "G5/stairs_15_down/seed_101",
+      "G5/stairs_15_down/seed_202",
+      "G5/stairs_15_down/seed_303"
+    ],
+    "verdict": "POLICY_LOCOMOTES"
+  },
+  "candidate_minus_baseline_points_70": 6.093630459375639,
+  "candidate_points_70": 39.76494865859557,
+  "comparison_published": true,
+  "failure_reasons": [],
+  "gate_migration": {},
+  "gates": {
+    "max_scenario_proxy_regression": 0.1,
+    "max_survival_regression": 0.1,
+    "min_total_points_delta": 1.0,
+    "minimum_points_70": 60.0,
+    "required_survival_proxy": 0.95,
+    "required_tracking_proxy": 0.7
+  },
+  "instrument_baseline": {
+    "measurement_contracts": [
+      "posture_gate_v2/both_channels_required/no_v1_fallback/row_and_env_coverage_0.99/missing_rows_not_upright/fall_verdict_unambiguous/finite_kinematics_required"
+    ],
+    "posture_gate_params": [
+      "{\"grace_s\": 0.5, \"height_rel_min_m\": 0.18, \"hold_s\": 0.5, \"tilt_cos_max\": 0.5}"
+    ],
+    "survival_proxy_sources": [
+      "posture_gate_v2"
+    ],
+    "telemetry_schema_versions": [
+      "6"
+    ],
+    "tracking_proxy_std": 0.5
+  },
+  "instrument_candidate": {
+    "measurement_contracts": [
+      "posture_gate_v2/both_channels_required/no_v1_fallback/row_and_env_coverage_0.99/missing_rows_not_upright/fall_verdict_unambiguous/finite_kinematics_required"
+    ],
+    "posture_gate_params": [
+      "{\"grace_s\": 0.5, \"height_rel_min_m\": 0.18, \"hold_s\": 0.5, \"tilt_cos_max\": 0.5}"
+    ],
+    "survival_proxy_sources": [
+      "posture_gate_v2"
+    ],
+    "telemetry_schema_versions": [
+      "6"
+    ],
+    "tracking_proxy_std": 0.5
+  },
+  "instrument_notes": {
+    "baseline": [],
+    "candidate": []
+  },
+  "official_result": "OFFICIAL_RESULT_UNMEASURED",
+  "run_id": "eval_260908-Go2_a017_full_suite",
+  "scenario_deltas": {
+    "G1": {
+      "proxy": 0.0018508381812490926,
+      "survival": 0.0,
+      "tracking": 0.0018508381812490926
+    },
+    "G2": {
+      "proxy": 0.14006145398413838,
+      "survival": 0.0,
+      "tracking": 0.14006145398413838
+    },
+    "G3": {
+      "proxy": 0.2816240227711549,
+      "survival": 0.375,
+      "tracking": -0.025431601286750483
+    },
+    "G4": {
+      "proxy": -0.018028644813746775,
+      "survival": -0.25,
+      "tracking": 0.15222755872145843
+    },
+    "G5": {
+      "proxy": 0.0,
+      "survival": 0.0,
+      "tracking": 0.026658303440635744
+    },
+    "G6": {
+      "proxy": -0.06444997234619554,
+      "survival": -0.0625,
+      "tracking": -0.004488241647263469
+    },
+    "G7": {
+      "proxy": 0.18589509283008726,
+      "survival": 0.0625,
+      "tracking": 0.16691950644709963
+    }
+  },
+  "scenario_proxy_regression_limit": 0.1,
+  "schema_version": 5,
+  "status": "INTERNAL_EARLY_KILL_PASS",
+  "survival_regression_is_informational_since": "engine 1.5.0",
+  "survival_regressions_observed": {
+    "G4": -0.25
+  },
+  "target_scenario": null,
+  "target_scenario_observation": null,
+  "work_id": "G-A027",
+  "worst_scenario_proxy_delta": -0.06444997234619554
+}
