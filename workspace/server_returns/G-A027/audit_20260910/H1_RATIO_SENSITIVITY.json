@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "label": "H1_RATIO_STRESS_SENSITIVITY",
+  "validated_prediction": false,
+  "used_for_decisions": false,
+  "official_result": "UNMEASURED",
+  "raw_gates_changed": false,
+  "h1_submission_identity": {
+    "submission_identity_match_status": "UNCONFIRMED",
+    "status": "CONDITIONAL_ONLY_IDENTITY_UNCONFIRMED",
+    "reason": "The supplied official scores do not identify the submitted policy, checkpoint, file hash, or round."
+  },
+  "multiplier": 0.8740084014098619,
+  "scenarios": [
+    {
+      "scenario": "G1",
+      "raw_baseline": 9.371300884693877,
+      "raw_candidate": 9.390734685596993,
+      "raw_delta": 0.01943380090311564,
+      "sensitivity_baseline": 8.19059570536212,
+      "sensitivity_candidate": 8.20758101062277,
+      "sensitivity_delta": 0.01698530526064963
+    },
+    {
+      "scenario": "G2",
+      "raw_baseline": 7.896741302600643,
+      "raw_candidate": 9.367386569434096,
+      "raw_delta": 1.4706452668334533,
+      "sensitivity_baseline": 6.901818242233219,
+      "sensitivity_candidate": 8.187174560939305,
+      "sensitivity_delta": 1.2853563187060864
+    },
+    {
+      "scenario": "G3",
+      "raw_baseline": 1.027407800560117,
+      "raw_candidate": 4.970144119356286,
+      "raw_delta": 3.942736318796169,
+      "sensitivity_baseline": 0.8979630493635701,
+      "sensitivity_candidate": 4.343947716535213,
+      "sensitivity_delta": 3.4459846671716434
+    },
+    {
+      "scenario": "G4",
+      "raw_baseline": 5.552371181903307,
+      "raw_candidate": 5.363070411358965,
+      "raw_delta": -0.18930077054434147,
+      "sensitivity_baseline": 4.8528190607294945,
+      "sensitivity_candidate": 4.68736859688038,
+      "sensitivity_delta": -0.16545046384911496
+    },
+    {
+      "scenario": "G5",
+      "raw_baseline": 0.0,
+      "raw_candidate": 0.0,
+      "raw_delta": 0.0,
+      "sensitivity_baseline": 0.0,
+      "sensitivity_candidate": 0.0,
+      "sensitivity_delta": 0.0
+    },
+    {
+      "scenario": "G6",
+      "raw_baseline": 6.551501613839884,
+      "raw_candidate": 6.100351807416515,
+      "raw_delta": -0.451149806423369,
+      "sensitivity_baseline": 5.726067452346327,
+      "sensitivity_candidate": 5.33175873123787,
+      "sensitivity_delta": -0.3943087211084574
+    },
+    {
+      "scenario": "G7",
+      "raw_baseline": 3.271995415622104,
+      "raw_candidate": 4.573261065432714,
+      "raw_delta": 1.30126564981061,
+      "sensitivity_baseline": 2.8597514826282717,
+      "sensitivity_candidate": 3.9970685930288083,
+      "sensitivity_delta": 1.1373171104005366
+    }
+  ],
+  "totals": {
+    "raw_baseline": 33.67131819921993,
+    "raw_candidate": 39.76494865859557,
+    "raw_delta": 6.093630459375637,
+    "sensitivity_baseline": 29.429014992663003,
+    "sensitivity_candidate": 34.75489920924434,
+    "sensitivity_delta": 5.325884216581343
+  },
+  "warning": "H1 single-observation transfer is unvalidated; not a confidence bound or Go2 official prediction."
+}

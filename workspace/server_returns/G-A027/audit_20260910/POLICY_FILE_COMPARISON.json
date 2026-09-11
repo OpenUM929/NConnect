@@ -1,0 +1,34 @@
+[
+  {
+    "arm": "a017",
+    "file": "model_best.pt",
+    "approved": "workspace\\server_returns\\G-A027\\approved\\go2_a017_full_suite\\a017\\exported\\model_best.pt",
+    "returned": "workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\policy\\a017_model_best.pt",
+    "expected": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4",
+    "observed": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4"
+  },
+  {
+    "arm": "a017",
+    "file": "env.yaml",
+    "approved": "workspace\\server_returns\\G-A027\\approved\\go2_a017_full_suite\\a017\\exported\\env.yaml",
+    "returned": "workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\policy\\a017_env.yaml",
+    "expected": "41050c084cd05e7646ce2cb4ac34e06a6870fb7a65b4f767c5714611b9a801ff",
+    "observed": "41050c084cd05e7646ce2cb4ac34e06a6870fb7a65b4f767c5714611b9a801ff"
+  },
+  {
+    "arm": "pilot",
+    "file": "model_best.pt",
+    "approved": "workspace\\server_returns\\G-A027\\approved\\go2_a017_full_suite\\pilot\\exported\\model_best.pt",
+    "returned": "workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\policy\\pilot_model_best.pt",
+    "expected": "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d",
+    "observed": "c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d"
+  },
+  {
+    "arm": "pilot",
+    "file": "env.yaml",
+    "approved": "workspace\\server_returns\\G-A027\\approved\\go2_a017_full_suite\\pilot\\exported\\env.yaml",
+    "returned": "workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\policy\\pilot_env.yaml",
+    "expected": "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d",
+    "observed": "f5550641c82aeb0a98892b8c74d61d6234d527733061fa3476338bf55b26975d"
+  }
+]

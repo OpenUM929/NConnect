@@ -1,0 +1,390 @@
+{
+  "source_root": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite",
+  "videos": [
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G1_forward_fast_seed_101.mp4",
+      "sha256": "0f3524eafa070b08993df67efc752e8e707ea38e0e76d6f763aa6df3c3fe20cb",
+      "bytes": 4520698,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G1_forward_fast_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G1_forward_fast_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G2_diagonal_left_seed_101.mp4",
+      "sha256": "86c1f1628d0cc162ecc4b9231e3e4adc2418c9ae01c3035da63da31c8f18a5d1",
+      "bytes": 3708549,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G2_diagonal_left_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G2_diagonal_left_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G3_rough_forward_seed_101.mp4",
+      "sha256": "6dfcbf6bbd2679cf0cd97faf06ea416798712614eb57ca0e0dfcd6bc45b7cff0",
+      "bytes": 4356641,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G3_rough_forward_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G3_rough_forward_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G4_slope_plus_20_seed_101.mp4",
+      "sha256": "64f07eb5bccc5b914ae73a0d2e6f49deb55ceb77a3d7807ef526f6754fa53c1f",
+      "bytes": 2752407,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G4_slope_plus_20_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G4_slope_plus_20_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G5_stairs_15_up_seed_101.mp4",
+      "sha256": "5b56ffb9e7d739d34c314f16be10b43146b439cff8184e77a66fa8132cc9413a",
+      "bytes": 3004407,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G5_stairs_15_up_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G5_stairs_15_up_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G6_push_pos_x_seed_101.mp4",
+      "sha256": "f10665150ee4b4a01be9e64f8c2079381aaf71f39a8b513d6772b494255f7d61",
+      "bytes": 1896454,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G6_push_pos_x_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G6_push_pos_x_seed_101_contact.jpg"
+    },
+    {
+      "file": "C:\\dev\\Nconnect\\workspace\\server_returns\\G-A027\\received\\go2_a017_full_suite\\evaluation\\a017\\videos\\G7_dr_seed_101_seed_101.mp4",
+      "sha256": "8fe4fc062d768e942334251a7737a4abc9360540f1fc21fe55278bdf8da21192",
+      "bytes": 4207283,
+      "frame_count": 499,
+      "fps": 50.0,
+      "duration_s": 9.98,
+      "width": 1920,
+      "height": 1080,
+      "sampled_frames": [
+        {
+          "fraction": 0.02,
+          "frame": 10,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00010_0.02.jpg"
+        },
+        {
+          "fraction": 0.15,
+          "frame": 75,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00075_0.15.jpg"
+        },
+        {
+          "fraction": 0.3,
+          "frame": 149,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00149_0.30.jpg"
+        },
+        {
+          "fraction": 0.5,
+          "frame": 249,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00249_0.50.jpg"
+        },
+        {
+          "fraction": 0.7,
+          "frame": 349,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00349_0.70.jpg"
+        },
+        {
+          "fraction": 0.85,
+          "frame": 423,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00423_0.85.jpg"
+        },
+        {
+          "fraction": 0.98,
+          "frame": 488,
+          "ok": true,
+          "path": "frames\\G7_dr_seed_101_seed_101\\00488_0.98.jpg"
+        }
+      ],
+      "contact_sheet": "G7_dr_seed_101_seed_101_contact.jpg"
+    }
+  ]
+}

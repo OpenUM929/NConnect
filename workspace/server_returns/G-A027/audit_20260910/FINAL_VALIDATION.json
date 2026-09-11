@@ -1,0 +1,22 @@
+{
+  "completed_date": "2026-09-11",
+  "unit_tests": {
+    "count": 7,
+    "exit_code": 0
+  },
+  "py_compile_exit_code": 0,
+  "git_diff_check_exit_code": 0,
+  "original_h1_report_unchanged": true,
+  "original_h1_report_sha256": "46cc3e9aa9edad457efb414fbebaef1092ba9c4c929adcd5c681d980ddb1a159",
+  "files": {
+    "tools\\build_h1_official_calibration.py": "30d79cfd5d8153ee7ace32047b4e13ae68e254edf5d15a6f9c54c64e711fe71e",
+    "tools\\test_build_h1_official_calibration.py": "21cb8fd01c079a26396e9eebe68cd4ddb710ca9b85fe8fa7f477a71c4217ddc4",
+    "tools\\build_go2_calibration_sensitivity.py": "71095821b11571eb6815444a2d94f76a7461b962b7089f20337a95d475397abf",
+    "tools\\test_go2_calibration_sensitivity.py": "ffe42540f9748e5c72fdbe9f6dac49e3856368df66a248d747e7e0c30a075d74",
+    "H1_OFFICIAL_CALIBRATION_20260910.md": "03d1e55b45d028e6653e917e3740ccadd7f21929a920452698a8926d4887bbf4",
+    "GO2_RESULT_AUDIT_G-A027_20260910.md": "a6c20e451ae9b37bb0ac028c92d07b38f5de58db091bf34b9fb03c2deac36747",
+    "SCORING_CALIBRATION_POLICY_20260910.md": "72dc6c7aade450b613a604be685e985341efdcc6c6166895d23b18d0efe8f9bc"
+  },
+  "go2_new_training": false,
+  "official_prediction_validated": false
+}
