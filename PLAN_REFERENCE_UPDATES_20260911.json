@@ -1,0 +1,18 @@
+[
+  "ARTIFACT_MANAGEMENT.md",
+  "CAMPAIGN_SCHEDULE.md",
+  "GO2_CAMPAIGN_SCHEDULE.md",
+  "GO2_DESIGN_REVIEW_260907.md",
+  "GO2_PROJECT_STATE.md",
+  "GO2_REWARD_EVIDENCE_MASTER.md",
+  "PROJECT_STATE.md",
+  "tools/build_go2_feet_air_time_020_package.py",
+  "tools/build_go2_track_lin_vel_120_package.py",
+  "tools/validate_go2_campaign.py",
+  "workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md",
+  "workspace/training/quadruped/AGENTS.md",
+  "workspace/training/quadruped/reports/NEW_SESSION_HANDOFF.md",
+  "workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md",
+  "workspace/training/quadruped/upload/plan/go2-post-pilot-initial-work-plan.md",
+  "workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md"
+]

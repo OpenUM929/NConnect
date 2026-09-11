@@ -1,0 +1,79 @@
+[
+  {
+    "source": "CAMPAIGN_PLAN.md",
+    "destination": "workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md",
+    "sha256": "e246bffd973a01a1cfa1700a19a5b4b81b3c59827b3f39e8284240e1f6f29a64",
+    "post_reference_sha256": "ac712f309e6b8c931321f578ad16c766a4f6165e056a2dd01a8808ac5d5eaf08",
+    "move_hash_verified": true
+  },
+  {
+    "source": "GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md",
+    "sha256": "8a5dc3a71a1726590965e5890a8c2bff294dca35964a09b4cdc2a367e6e0ac55",
+    "post_reference_sha256": "8a5dc3a71a1726590965e5890a8c2bff294dca35964a09b4cdc2a367e6e0ac55",
+    "move_hash_verified": true
+  },
+  {
+    "source": ".omx/plans/go2-default-baseline-experiment-plan.md",
+    "destination": "workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md",
+    "sha256": "fd5cc4757b4443eb5d6602d08d8ca46ab56d0bbce98ba41af602073c91a12b00",
+    "post_reference_sha256": "42199630e511453408d838da8555a400975a2e683bf7b6b7961a91908b0f6a92",
+    "move_hash_verified": true
+  },
+  {
+    "source": ".omx/plans/go2-post-pilot-initial-work-plan.md",
+    "destination": "workspace/training/quadruped/upload/plan/go2-post-pilot-initial-work-plan.md",
+    "sha256": "73a380678d06bf693862907eb7a0d806228b02490237e99591e9c6440d6c97c0",
+    "post_reference_sha256": "48f36b1b6d5d73ea57a8de8d1861bbffcf42c5c3869f4a8c3f2015a9283cc5d3",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/humanoid/reports/PLANNER_BRIEF.md",
+    "destination": "workspace/training/humanoid/upload/plan/PLANNER_BRIEF.md",
+    "sha256": "70c44561f4348533b23a24c00d8b206418662b3d24def3f2ec64bd34f08d5fd1",
+    "post_reference_sha256": "70c44561f4348533b23a24c00d8b206418662b3d24def3f2ec64bd34f08d5fd1",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md",
+    "sha256": "cb67abc5a4109d82203842b4c941a49b47b37ec2c5610ac647fb2d8e598b34a8",
+    "post_reference_sha256": "6ac935f8c06114d4d810deb8ca64d60d1bdf4f0763d2f783beec57d529d2000f",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md",
+    "sha256": "8e61864f9a65ceb470c3747efaa455516654f6ff019cb99d1c0105e8bda3528b",
+    "post_reference_sha256": "8e61864f9a65ceb470c3747efaa455516654f6ff019cb99d1c0105e8bda3528b",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/GO2_LIN_VEL_Z_M2_SCREENING_PRD.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_LIN_VEL_Z_M2_SCREENING_PRD.md",
+    "sha256": "3d4f5d6cc2ffc8c629b62a217febc3f17e0633c8a6a499df37309bb46c88b4e7",
+    "post_reference_sha256": "3d4f5d6cc2ffc8c629b62a217febc3f17e0633c8a6a499df37309bb46c88b4e7",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md",
+    "sha256": "edc3e16ae95f2f11bcb042201d42a9bf78a9a08ce936fc3e3cc3bc50630ff900",
+    "post_reference_sha256": "edc3e16ae95f2f11bcb042201d42a9bf78a9a08ce936fc3e3cc3bc50630ff900",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_ENGINE_IMPLEMENTATION_PLAN.md",
+    "destination": "workspace/training/quadruped/upload/plan/GO2_TUNING_ENGINE_IMPLEMENTATION_PLAN.md",
+    "sha256": "356ad438d4fe604940e23edd764d7ee8c2f5c3db33bad6c51192f4ee82c027bd",
+    "post_reference_sha256": "356ad438d4fe604940e23edd764d7ee8c2f5c3db33bad6c51192f4ee82c027bd",
+    "move_hash_verified": true
+  },
+  {
+    "source": "workspace/training/quadruped/reports/PLANNER_BRIEF.md",
+    "destination": "workspace/training/quadruped/upload/plan/PLANNER_BRIEF.md",
+    "sha256": "660b3bc5df40718eb34049d3ec9189ffec51ed3fb43f974791faff3a6d3d9018",
+    "post_reference_sha256": "660b3bc5df40718eb34049d3ec9189ffec51ed3fb43f974791faff3a6d3d9018",
+    "move_hash_verified": true
+  }
+]

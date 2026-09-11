@@ -214,8 +214,8 @@ G7의 세 registry case를 1:1로 실행해 정책당 총 69개 telemetry를 만
 - 일정·단계·사용자 결정: `GO2_CAMPAIGN_SCHEDULE.md`
 - reward 상태·근거: `GO2_REWARD_EVIDENCE_MASTER.md`
 - 실행 이력·회수 상태: `ARTIFACT_MANAGEMENT.md`, `reports/experiment_history.csv`
-- 상세 작업 순서: `.omx/plans/go2-default-baseline-experiment-plan.md`
-- 다음 세션 요약: `reports/PLANNER_BRIEF.md`, 필요 시 `reports/NEW_SESSION_HANDOFF.md`
+- 상세 작업 순서: `workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md`
+- 다음 세션 요약: `upload/plan/PLANNER_BRIEF.md`, 필요 시 `reports/NEW_SESSION_HANDOFF.md`
 
 과거 판정은 삭제하지 않는다. 전제가 바뀌면 새 결정 ID와 변경 이유를 남기고 이전 항목을
 `대체됨`으로 연결한다. 실제 artifact가 PRD보다 최신이면 artifact를 우선 판정한 뒤 같은 턴에 PRD를

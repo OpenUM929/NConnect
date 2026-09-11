@@ -18,7 +18,7 @@
 > **문서 역할 분담 — 중복 기재 금지**
 > | 문서 | 담당 | 충돌 시 |
 > |---|---|---|
-> | **`CAMPAIGN_PLAN.md`** (이 문서) | **기획** — 목표·전제·단계별 기대값·수용기준·리스크 | — |
+> | **`workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md`** (이 문서) | **기획** — 목표·전제·단계별 기대값·수용기준·리스크 | — |
 > | `ARTIFACT_MANAGEMENT.md` | 서버 파일 목록·회수·검증·선택 병합·작업 내역 | **artifact 작업 상태는 이 문서가 이긴다** |
 > | `CAMPAIGN_SCHEDULE.md` | 일정·단계표 state·진행 원장 | 상태값은 SCHEDULE이 이긴다 |
 > | `PROJECT_STATE.md` | 사실(F) · 결정(D) 원장 | **사실·결정은 STATE가 이긴다** |
