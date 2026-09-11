@@ -88,7 +88,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - survival·tracking·completion·recovery·영상 부작용만 비교한다.
 - weighted simulation proxy 차이 `0.03`, survival 비열등 `-0.02`, tracking 비열등 `-0.05`를
   내부 의사결정 허용오차로 사전등록한다.
-- 상세 분기는 `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md` §6을 따른다.
+- 상세 분기는 `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md` §6을 따른다.
 
 ## 7. 과학적 표현 규칙
 
@@ -119,7 +119,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 평가: fixed registry, seeds 101/202/303, candidate telemetry 69건, worst-case 영상 7개.
 - 현재 package: `go2_feet_air_time_020_v1.zip`, SHA `36170b858d64ac3fd5d8d61a38d5eeff8e0c8cc986cbda182b85004fb5dd3a3f`, `ARTIFACT_VERIFIED`.
 - 외부 실행·candidate 성능·공식 결과는 아직 `[미측정]` / `OFFICIAL_RESULT_UNMEASURED`다.
-- 상세 사전등록: `workspace/training/quadruped/reports/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`.
+- 상세 사전등록: `workspace/training/quadruped/upload/plan/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`.
 
 ## 10. G-A007 PARTIAL 결과 (인코딩 손상 구간 재구성) — 260901
 
@@ -157,7 +157,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 비용 분기: 7 candidate + 1 Default repaired-G7 조기평가에서 회귀면 자동 종료; 통과 때만 candidate 21-case.
 - package: `go2_track_lin_vel_120_v1.zip`, SHA `8d341d5dbae5aac6c6a4376442f2cdf20264fa2439d3b22c68e64811a81aefa7`, `ARTIFACT_VERIFIED`(업로드 package만).
 - 외부 실행: 완료. candidate `20.62741/70`, repaired baseline `17.53712/70`; G1 delta `-0.0000663`, `VIDEO_UNKNOWN`, `OFFICIAL_RESULT_UNMEASURED`.
-- 상세 PRD: `workspace/training/quadruped/reports/GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md`.
+- 상세 PRD: `workspace/training/quadruped/upload/plan/GO2_TRACK_LIN_VEL_120_SCREENING_PRD.md`.
 
 ## 13. G-A009 결과 — 260902
 
@@ -193,7 +193,7 @@ Default/Pilot 쌍대평가 완료 뒤 현재 다음 reward 값은 **`feet_air_ti
 - 같은 폴더의 spec: `workspace/training/quadruped/G_A010_lin_vel_z_m2.json`, SHA `e59dcb93498740a50b7ea5cf21fa89592c187acadcebd000a92955df7c22f8c9`.
 - engine은 reward 값을 내장하지 않고 JSON을 schema·Default identity·정확히 한 reward 변경으로 검증한 뒤 runtime source를 만든다.
 - 실행 전 상태는 `ARTIFACT_VERIFIED`일 뿐 candidate 성능·영상·내부 gate·공식 결과는 `[미측정]` / `VIDEO_UNKNOWN` / `OFFICIAL_RESULT_UNMEASURED`다.
-- 상세 PRD: `workspace/training/quadruped/reports/GO2_LIN_VEL_Z_M2_SCREENING_PRD.md`.
+- 상세 PRD: `workspace/training/quadruped/upload/plan/GO2_LIN_VEL_Z_M2_SCREENING_PRD.md`.
 
 ## 16. 과학적 근거 감사 — 260905
 
@@ -295,5 +295,5 @@ Default-01의 시나리오별 실점(가중치×(1-proxy))을 다시 계산하�
 - 근거: GO2_RESULT_AUDIT_G-A027_20260910.md; workspace/server_returns/G-A027/audit_20260910/COMPARISON.json 및 H1_RATIO_SENSITIVITY.json.
 
 ## 20. A027 후속 조건부 가설 — 2026-09-11
-- GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md에 T1 ang_vel_xy_l2 -0.05→-0.06 초안 등록. INCONCLUSIVE/미실행. 과도한 몸통 회전이 하강 실패 전에 관찰되는 경우에만 검토하며, 정확한 값의 성능·외부문헌 보증 없음.
+- workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md에 T1 ang_vel_xy_l2 -0.05→-0.06 초안 등록. INCONCLUSIVE/미실행. 과도한 몸통 회전이 하강 실패 전에 관찰되는 경우에만 검토하며, 정확한 값의 성능·외부문헌 보증 없음.
 - 사용자 요청은 Opus 검토 후 Codex 재감사. §19 결과를 변경하지 않고 새 성공·안전 조건은 새 실험에만 적용한다.

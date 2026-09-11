@@ -37,7 +37,7 @@
 3. `PROJECT_STATE.md`의 고정 사실·결정·LATEST NEXT
 4. `H1_REWARD_EVIDENCE_MASTER.md`의 reward·run 과학 판정
 5. `CAMPAIGN_SCHEDULE.md`의 현재 단계·일정
-6. `CAMPAIGN_PLAN.md`의 장기 방향
+6. `workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md`의 장기 방향
 7. 개별 보고서와 과거 계획
 
 파일 SHA256은 전송 무결성 증거다. `policy.pt` 동일성은 비결정적 직렬화 때문에 checkpoint
@@ -64,7 +64,7 @@ iter + `model_best.pt` SHA256과 `torch.jit.load(...).state_dict()` tensor 비�
 | `ARTIFACT_MANAGEMENT.md` | 파일 목록·artifact lifecycle·작업 내역의 단일 진입점 | 모든 서버 작업 전/후 |
 | `PROJECT_STATE.md` | 사실(F)·결정(D)·LATEST NEXT 원장 | 새 사실·결정 즉시 |
 | `CAMPAIGN_SCHEDULE.md` | 현재 단계·등급·게이트·다음 일정 | 상태 전이 시 |
-| `CAMPAIGN_PLAN.md` | 목표·점수축·장기 단계 계획 | 전제·범위 변경 시 |
+| `workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md` | 목표·점수축·장기 단계 계획 | 전제·범위 변경 시 |
 | `H1_REWARD_EVIDENCE_MASTER.md` | reward 9개와 Run별 과학적 지위 | 새 분석 결과 수용 시 |
 | `SERVER_SESSION_RUNBOOK.md` | 서버에서 복사해 실행할 검증된 명령 | 서버 패키지·경로 변경 시 |
 | `REPORT_260831.md` | 현재 사용자용 종합 보고 | 캠페인 판정 변경 시 |
@@ -172,7 +172,7 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 | `A260831-09` | 260831 | 조사 | Go2 pilot·구형 영상 스위트 | `INCONCLUSIVE` | 실행 금지 | 제공 Go2 registry와 구형 runner 매핑 대조 | pilot artifact는 존재하나 구형 runner는 `LEGACY_INVALID_MAPPING`; G1~G7 미측정 | `G-A002` 신규 evaluator로 대체 |
 | `G-A001` | 260901 | 조사 | Go2 운영체계·자체평가 재설계 | `REPORTED` | 없음 | 별도 원장·전용 역할 4종·canonical registry·protocol·handoff·validator 작성 | `GO2_*`, `.codex/agents/go2-*`, `validate_go2_campaign.py` | 새 세션에서 G-A002 evaluator 구현 |
 | `G-A002` | 260901 | 필수(제출요건) | Pilot-01 정확한 G1~G7 평가 package | `PLANNED` | 통합 ZIP 업로드·한 줄 실행·단일 결과 ZIP 다운로드 | telemetry/report/lineage/worst-case video runner와 package builder/test 구현 완료 | package 로컬 검증 완료; 서버 결과는 `[미측정]` | `G-A005` package로 실행 |
-| `G-A003` | 260901 | 조사 | Pilot-01 기반 초기 캠페인 계획 | `REPORTED` | 없음 | frozen artifact·control 유효성 감사, 평가→조건부 control→단일변수 ablation→승급 계획 작성 | `.omx/plans/go2-post-pilot-initial-work-plan.md`, G-F10·G-D08, 일정·reward 원장 동기화 | `G-A002` evaluator/package 구현 |
+| `G-A003` | 260901 | 조사 | Pilot-01 기반 초기 캠페인 계획 | `REPORTED` | 없음 | frozen artifact·control 유효성 감사, 평가→조건부 control→단일변수 ablation→승급 계획 작성 | `workspace/training/quadruped/upload/plan/go2-post-pilot-initial-work-plan.md`, G-F10·G-D08, 일정·reward 원장 동기화 | `G-A002` evaluator/package 구현 |
 | `G-A004` | 260901 | 조사 | Default-01 1,000 iter + Pilot-01 쌍대 G1~G7 평가 | `PLANNED` | 통합 ZIP 업로드·한 줄 실행·단일 결과 ZIP 다운로드 | Default test PRD·상세계획·통합 runner 구현 완료 | Default 결과는 `[미측정]`; `VIDEO_REQUIRED`: 정책별 worst-case G1~G7 7개, seed 101/202/303 중 정량 최악 seed, 500 steps, 결과 ZIP `evaluation/<policy>/videos/` | `G-A005` 실행 → 정책별 69 telemetry·7 영상 회수 |
 | `G-A005` | 260901 | 필수(제출요건) | Go2 Default-vs-Pilot 단일 실행·회수 package | `VERIFIED` | `/workspace/go2_default_vs_pilot_v1.zip` 업로드 후 검증된 한 줄 실행 | deterministic ZIP build, reward-only default staging, embedded Pilot SHA, manifest, runner syntax·contract test | `workspace/training/quadruped/go2_default_vs_pilot_v1.zip`, SHA `a95e09c474e5d2d5d7ed0563ebace26d761360f8fd84e0f6e4ebf493c2422356`; 28 members; ZIP CRC·manifest·CRLF·Git Bash `bash -n` 검증 | 서버 실행 후 `/workspace/_keep/GO2_DEFAULT_VS_PILOT_RESULT.zip`과 SHA 회수 |
 
@@ -184,7 +184,7 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 | 260831 | `A260831-01` | `AGENTS.md` | 서버 snapshot 비덮어쓰기와 중앙 문서 선조회 규칙 | 규칙 중복·마커 확인 |
 | 260831 | `A260831-01` | `SERVER_SESSION_RUNBOOK.md` | Run06 완료 후 필수 bundle·보험 snapshot 회수 명령 | package SHA 일치·shell 명령 정적 검토 |
 | 260831 | `A260831-01` | `PROJECT_STATE.md` | F48~F51, D39~D42, LATEST NEXT 기록 | append-only 확인 |
-| 260831 | `A260831-01` | `CAMPAIGN_PLAN.md`, `CAMPAIGN_SCHEDULE.md`, `REPORT_260831.md` | 현재 단계 2/6 및 Run06 자연 완료·격리 회수 동기화 | 첫 화면 8항목 검사 |
+| 260831 | `A260831-01` | `workspace/training/humanoid/upload/plan/CAMPAIGN_PLAN.md`, `CAMPAIGN_SCHEDULE.md`, `REPORT_260831.md` | 현재 단계 2/6 및 Run06 자연 완료·격리 회수 동기화 | 첫 화면 8항목 검사 |
 | 260831 | `A260831-01` | `.codex/agents/*.md` | 기획·일정·분석·보고 시 중앙 운영 문서와 작업 원장 참조 | 3개 담당 지침 검색 |
 | 260831 | `A260831-03` | `workspace/server_returns/train_260831-06_run05cfg_10000/` | 원본 bundle·snapshot 격리, tar 해제본, manifest·merge plan·수신 기록 작성 | bundle SHA 일치, tar 2종 PASS, 내부 checksum 18/18 PASS |
 | 260831 | `A260831-05` | `workspace/training/humanoid/server_run06_videos.sh` | H1~H7 10종 고정 명령 영상·로그·policy를 CORE/FULL tar로 회수하는 러너 신설 | 8,155 B, CRLF 0, Git Bash `bash -n` PASS |
@@ -202,8 +202,8 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 | 260831 | `A260831-11` | `fixed_eval_report.py`, `server_run06_fixed_eval.sh`, `RUN06_FIXED_EVAL_README.txt`, `tools/test_fixed_eval_contract.py` | H4·H6·H7 부분 평가를 H1~H7 10 case 전체 20초 평가로 확장하고 내부 시뮬 proxy /70 게이트 추가 | unittest 8/8, compile, Git Bash `bash -n`, ZIP 14 members·SHA `e897fa10…05551` |
 | 260831 | `A260831-11` | `AGENTS.md`, 담당 agent 3종, 마스터·일정·상태 원장 | 부분 PASS 점수 제외, 공식 결과 대기 철회, 총 자체예상 70/100 최소·75/100 목표 규칙 | `SELF_ASSESSMENT_INCOMPLETE`, threshold, NEXT 문구 대조 |
 | 260831 | `A260831-11` | `SELF_ASSESSMENT_RUBRIC.md`, 제출 후보 리포트 3개 사본·manifest | 문서 자체감사 27/30 고정, 부분 평가를 성능 승급에서 제외 | report 3개 SHA 동기화, candidate manifest 6/6 PASS |
-| 260901 | `G-A003` | `.omx/plans/go2-post-pilot-initial-work-plan.md`, `GO2_PROJECT_STATE.md`, `GO2_CAMPAIGN_SCHEDULE.md`, `GO2_REWARD_EVIDENCE_MASTER.md`, `ARTIFACT_MANAGEMENT.md` | 1차 튜닝 이후 평가 우선 초기계획, 유효 control 부재, 최소 경로·예산·재평가점 기록 | `validate_go2_campaign.py` PASS, `git diff --check` PASS |
-| 260901 | `G-A004` | `GO2_DEFAULT_BASELINE_TEST_PRD.md`, `.omx/plans/go2-default-baseline-experiment-plan.md`, Go2 상태·일정·reward·handoff, `ARTIFACT_MANAGEMENT.md` | 조건부 control 계획을 Default-01 필수 생성·Pilot 쌍대평가·기본값 one-at-a-time 계보로 정정 | `validate_go2_campaign.py`, 문서 계약 검사, `git diff --check` |
+| 260901 | `G-A003` | `workspace/training/quadruped/upload/plan/go2-post-pilot-initial-work-plan.md`, `GO2_PROJECT_STATE.md`, `GO2_CAMPAIGN_SCHEDULE.md`, `GO2_REWARD_EVIDENCE_MASTER.md`, `ARTIFACT_MANAGEMENT.md` | 1차 튜닝 이후 평가 우선 초기계획, 유효 control 부재, 최소 경로·예산·재평가점 기록 | `validate_go2_campaign.py` PASS, `git diff --check` PASS |
+| 260901 | `G-A004` | `GO2_DEFAULT_BASELINE_TEST_PRD.md`, `workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md`, Go2 상태·일정·reward·handoff, `ARTIFACT_MANAGEMENT.md` | 조건부 control 계획을 Default-01 필수 생성·Pilot 쌍대평가·기본값 one-at-a-time 계보로 정정 | `validate_go2_campaign.py`, 문서 계약 검사, `git diff --check` |
 | 260901 | `G-A004` | Default test PRD·상세계획, Go2 역할 지침 5종, 상태·일정 | PRD를 매 기획 턴 참조·동일 턴 갱신하는 living contract로 승격하고 `PRD_CHANGE`·`LEDGER_SYNC` 게이트 추가 | `validate_go2_campaign.py`, PRD lifecycle 계약 검사, `git diff --check` |
 | 260901 | `G-A005` | Go2 evaluator·lineage·통합 runner·builder·tests·README, `play.py`, `train.py`, `go2_task/env_cfg.py` | Default 1k와 Default/Pilot 69-case·worst-video 평가를 단일 업로드/명령/결과 ZIP 구조로 구현 | Python compile·5 unit tests, Git Bash `bash -n`, CRLF 0, ZIP CRC·safe paths·27-file internal manifest, Pilot SHA, reward-only 4-line diff |
 | 260901 | `G-A005` | Go2 PRD·상태·일정·상세계획·AGENTS·handoff·planner brief | G-D13 사용자 실행 package 자동 제공 계약과 실제 경로·SHA·완료표식·회수 게이트 동기화 | `validate_go2_campaign.py`, `git diff --check` |
@@ -310,7 +310,7 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 
 ### 로컬 검증 증거
 
-- 사전등록 PRD: `workspace/training/quadruped/reports/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`.
+- 사전등록 PRD: `workspace/training/quadruped/upload/plan/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`.
 - package: `workspace/training/quadruped/go2_feet_air_time_020_v1.zip`.
 - package SHA companion: `workspace/training/quadruped/go2_feet_air_time_020_v1.zip.sha256`.
 - 상세 검증: `workspace/training/quadruped/go2_feet_air_time_020_v1.VERIFICATION.md`.
@@ -483,3 +483,21 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 - H1 공식 전사·raw/보정 비교를 workspace/calibration/h1_official_20260910/에 보존. 기존 결과 덮어쓰기 없음.
 - Go2 기존/보정 결과와 원자료를 workspace/server_returns/G-A027/에 격리보존. 영상7개 관찰판정 별도, 하강영상 미확보.
 - 보고서 날짜260910은 감사입력일이며 마감일은260911. GO2_RESULT_AUDIT_G-A027_20260910.md와 H1_OFFICIAL_CALIBRATION_20260910.md 참조.
+
+## 2026-09-11 사용자 결정 — 계획 경로·H1 report 회수
+- 작업 ID: DOC-20260911-PLAN-REPORT. 상태: PLANNED. 로컬 문서 이동·회수 스크립트 보완이며 서버 실행은 하지 않는다.
+- 계획: 기체별 upload/plan으로 계획서·실험 PRD·기획 브리프를 이동하고 참조/빌더 입력을 갱신한다. 회수 snapshot·승인 ZIP·실험 JSON·상태/일정 원장은 이동하지 않는다.
+- H1: training/humanoid/exported/report.html을 _keep/<RUN_ID>/exported/report.html에 보존한다. 누락/이전 실행 report는 성공 회수로 표시하지 않는다. 기존 final 경로는 호환 보존한다.
+- 검증: 이동 전후 SHA256, 링크·빌더 경로, report 복사 정상/누락/stale 테스트, bash -n. 학습·채점 로직은 변경하지 않는다.
+
+### DOC-20260911-PLAN-REPORT 완료 기록
+- 상태: REPORTED (로컬 작업). 서버 실행·배포는 미수행.
+- 이동 11건: H1 2건, Go2 9건. 이동 직후 원본 SHA 일치 확인. 경로 참조 수정 후 해시는 PLAN_MIGRATION_20260911.json의 post_reference_sha256에 별도 보존. 참조 갱신 파일은 PLAN_REFERENCE_UPDATES_20260911.json.
+- 검증: `python -m unittest tools.test_h1_report_recovery -v` 5 tests, exit 0; `python -m unittest tools.test_go2_feet_air_time_020_contract tools.test_go2_track_lin_vel_120_contract -q` 12 tests, exit 0; `python tools/validate_go2_campaign.py` exit 0; `git diff --check` exit 0. H1 test에 LF·bash -n·정상/누락/빈/stale report 검사가 포함된다.
+- 한계: .codex/agents는 호스트 읽기 전용이므로 옛 참조를 직접 수정하지 않았다. 상위 AGENTS의 migration 매핑 우선 규칙으로 경로를 해석한다. 회수 snapshot·승인 upload release는 변경하지 않았다. 기존 패키지 빌더 테스트는 개발용 ZIP을 재생성하므로 새 서버 승인본으로 취급하지 않는다.
+- 학습 배포 원본(train.py/play.py/task/reward), 채점식 및 A027 튜닝 제안값은 변경하지 않았다. H1 회수 변경은 server_run06_long.sh에 적용, 평가 전용 runner에는 현재 exported의 오래된 report를 자동 연결하지 않는다.
+
+### H1-CAL-20260910 — 2026-09-11 제출 안내본 역추적
+- 사용자 요청: 실제 제출하도록 안내했던 파일·기록으로 H1 정책과 report 대응을 확인한다. 기존 작업 ID 재사용, 로컬 읽기·해시 대조만 수행한다.
+- 승인 기대값: PROJECT_STATE.md:1203-1208, UPLOAD_READY/SHA256SUMS.txt 및 RUN06_PROMOTION_SHA256SUMS.txt. 회수 report의 자체 주장만으로 제출본을 정하지 않는다.
+- 역추적 완료: 제출 지시 경로 Run06 UPLOAD_READY 확인, manifest 3/3·회수 model/env 기대 SHA 2/2 일치(exit 0). SUBMISSION_INSTRUCTION_TRACE_20260911.json 보존. 외부 업로드 identity와는 분리. 서버 실행 없음.

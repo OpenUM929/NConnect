@@ -1747,3 +1747,11 @@ grep -nE 'track_lin_vel_xy_exp|track_ang_vel_z_exp|feet_air_time|termination_pen
 
 bundle을 PC로 내려받은 뒤 `C:\dev\Nconnect\workspace\training\humanoid`에 반영하고,
 로컬 해시·가중치·로그 종료코드를 검증한다. 서버 화면만 보고 완료로 기록하지 않는다.
+
+## 2026-09-11 H1 report 회수·계획 위치
+- H1 계획: `workspace/training/humanoid/upload/plan/`; Go2 계획: `workspace/training/quadruped/upload/plan/`.
+- H1 튜닝 회수: `training/humanoid/exported/report.html` → `_keep/<RUN_ID>/exported/report.html`. `server_run06_long.sh`는 기존 `final/report.html`도 유지하며 두 경로를 SHA 목록과 DOWNLOAD tar에 포함한다.
+- `STATUS.txt`의 `REPORT_STATUS=REPORT_ACQUIRED`와 로컬 파일·SHA를 확인한다. 누락·빈 파일·세션 이전 report는 `REPORT_REQUIRED_NOT_ACQUIRED`, 학습이 정상 종료했어도 회수 종료 코드는 3이다. 학습 실패 코드는 보존한다.
+- report 수정시각 검사는 신선도 검사일 뿐 policy tensor 대응의 증명이 아니다. 기존 artifact identity 검증도 수행한다.
+- 기존 평가·영상 전용 runner와 승인 ZIP은 재작성하지 않았다. 과거 정책 평가에 현재 exported/report.html을 자동 연결하지 않는다. 해당 정책 report는 별도로 대응 확인 후 회수한다.
+- 서버 실행은 이번 작업에서 하지 않았다. 새 H1 실행 전 변경된 runner를 포함한 패키지를 검증해야 한다. 기존 Run06 10,000/15,000 실행 허용값은 새 학습 승인이 아니다.

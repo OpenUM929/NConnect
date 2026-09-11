@@ -19,8 +19,8 @@
 4. `GO2_PROJECT_STATE.md` — §10, G-D23~G-D26
 5. `GO2_CAMPAIGN_SCHEDULE.md` — §9
 6. `GO2_REWARD_EVIDENCE_MASTER.md` — §9
-7. `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md` — §16
-8. `workspace/training/quadruped/reports/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`
+7. `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md` — §16
+8. `workspace/training/quadruped/upload/plan/GO2_FEET_AIR_TIME_020_SCREENING_PRD.md`
 9. `workspace/training/quadruped/config/go2_self_eval_registry.json`
 
 ## 2. frozen inputs

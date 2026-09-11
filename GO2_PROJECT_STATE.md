@@ -78,12 +78,12 @@
 
 ## 5. NEXT
 
-테스트 정본은 `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`다. 첫 구현은
+테스트 정본은 `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`다. 첫 구현은
 기존 runner 수정이 아니라 **정확한 G1~G7 evaluator와 Default-01 from-scratch package**다.
 로컬 package 검증은 완료됐다. 실행 정본은 `go2_default_vs_pilot_v1.zip` SHA
 `a95e09c474e5d2d5d7ed0563ebace26d761360f8fd84e0f6e4ebf493c2422356`이며, 다음 행동은 이 ZIP을
 서버에 업로드해 한 줄 runner를 실행하는 것이다. 새 reward 학습은 Default/Pilot 쌍대평가 뒤 결정한다.
-상세 실행계획은 `.omx/plans/go2-default-baseline-experiment-plan.md`를 따른다.
+상세 실행계획은 `workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md`를 따른다.
 
 ## 6. 병렬화 근거 경계 — 260901 정정
 
@@ -566,7 +566,7 @@
 
 | ID | 확정 사실 | 근거 |
 |---|---|---|
-| G-F142 | living PRD `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 v1(Default-01 vs Pilot-01 쌍대 비교) 범위에서 멈춰 있고, Chain-01 계보 전체(G-A009~G-A023, 이 문서 §18~28)는 이 PRD를 갱신하지 않고 진행됐다. `Chain-01`이라는 문자열이 PRD 본문에 0회 등장한다. G-D12("Go2 기획자가 매 기획·실험·판정에서 참조하고 같은 턴에 갱신하는 살아있는 정본으로 운영한다")는 사실상 G-A009 시점부터 지켜지지 않았고, `GO2_PROJECT_STATE.md`가 실질적 living ledger 역할을 대신 수행해 왔다 | `GO2_DEFAULT_BASELINE_TEST_PRD.md` 전문 grep(`Chain-01` 0건), 본 문서 §18-28 |
+| G-F142 | living PRD `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 v1(Default-01 vs Pilot-01 쌍대 비교) 범위에서 멈춰 있고, Chain-01 계보 전체(G-A009~G-A023, 이 문서 §18~28)는 이 PRD를 갱신하지 않고 진행됐다. `Chain-01`이라는 문자열이 PRD 본문에 0회 등장한다. G-D12("Go2 기획자가 매 기획·실험·판정에서 참조하고 같은 턴에 갱신하는 살아있는 정본으로 운영한다")는 사실상 G-A009 시점부터 지켜지지 않았고, `GO2_PROJECT_STATE.md`가 실질적 living ledger 역할을 대신 수행해 왔다 | `GO2_DEFAULT_BASELINE_TEST_PRD.md` 전문 grep(`Chain-01` 0건), 본 문서 §18-28 |
 | G-F143 | G-D93 엔진 재빌드는 **부분 진행 상태**다. `tools/build_go2_tuning_engine.py`는 이미 로컬에서 output을 `go2_tuning_engine_v1_4.zip`으로 바꾸고 `go2_eval_telemetry.py`를 현재 워크스페이스 파일에서 직접 읽도록 돼 있다(수정 전부터 그랬음 — `source_files()`가 항상 라이브 경로를 읽는다). 디스크의 `go2_tuning_engine_v1_4.zip`(19,135,939 B, uncommitted)을 직접 열어 확인한 결과 내부 `go2_eval_telemetry.py`의 SHA(`f8ed1d014478865055d7b10a2e2bf6c238b7c41564b686f66cfd76271169f8c1`)가 현재 워크스페이스 파일과 완전히 일치 — **posture_gate_v2가 이미 임베드돼 있다.** 그러나 `python -m unittest tools/test_go2_tuning_engine_contract.py`는 16개 중 3개 실패하며, 실패 원인은 evaluator가 아니라 **Default-01 소스 zip `workspace/server_returns/go2_default_vs_pilot_v1_full_260901/original/GO2_DEFAULT_VS_PILOT_RESULT.zip`이 로컬에 없는 기존 결손**(주석에 이미 "Default-01 소스 체인이 로컬에 없어"로 기록된 G-F94 계열 문제)이다. `workspace/_keep/go2_default_vs_pilot_v1/training/model_best.pt`가 기대 SHA(`99ceeaa1a3a1ebee972841a771072b711744a1c8dec6e94b318b55f146dc4676`)와 일치하는 압축 해제본으로 존재하지만, 같은 디렉터리의 `env.yaml`은 기대 SHA `4d1d294b63dafeceb223fb48226cbe6a533157bc54f97ce486f644bd1bda262c`가 아니라 `a39c77dc9f45a9ebcff4363e389288ba1e2cf1a38def04a8b05c4337b6fd83ea`를 낸다(내용까지 같은지는 미확인 — 재직렬화로 인한 무해한 바이트 차이일 수도, 실제 config drift일 수도 있다. 추측하지 않는다) | `zipfile` 직접 열람(`go2_tuning_engine_v1_4.zip:source_template/go2_eval_telemetry.py`), `python -m unittest` 출력, `sha256sum` 직접 실행 |
 
 | ID | 결정 | 이유 |
@@ -1627,6 +1627,6 @@ LATEST NEXT: 기존/보정 두 점수를 보고하고 H1 공식 제출 identity 
 
 ## 47. A027 후속 계획 검토 요청 — 2026-09-11
 - 사용자 결정: Codex 계획 → Opus 검토 → Codex 재감사. 실행·학습 승인이 아니다.
-- 계획: GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md (DRAFT_FOR_REVIEW). P1 하강 진단 후에만 조건부 T1 ang_vel_xy_l2 -0.05→-0.06을 검토한다. 값은 제안이며 효과 미측정.
+- 계획: workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md (DRAFT_FOR_REVIEW). P1 하강 진단 후에만 조건부 T1 ang_vel_xy_l2 -0.05→-0.06을 검토한다. 값은 제안이며 효과 미측정.
 - A017/Pilot 기존 정책·점수 유지. 새 paired from-scratch control, 독립 학습 seed, 전체69case 안전 기준을 제안했다. 기존 Q1 소급 변경 없음.
 - NEXT: Opus 독립 검토문 회수 후 Codex 재감사. reward·학습 경로·evaluator 변경 없음.

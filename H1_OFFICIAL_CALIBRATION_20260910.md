@@ -84,3 +84,9 @@ python -m py_compile tools/build_h1_official_calibration.py tools/test_build_h1_
 ## 5. 종료 판정
 
 **공식 제출본이 Run06과 동일하다는 조건에서** raw proxy와 공식 결과는 8.28점 차이가 나고 약점 순위도 다르다. 제출 identity가 미확인이고 H5·H6 자세가 현행 기준에서 미측정이며 공식 표본도 하나뿐이므로 H1 보정계수는 `NON_VALIDATED_SENSITIVITY`, Go2 이전은 `DISABLED`가 올바른 종료 상태다. 다음 공식 표본에서 identity를 고정해 계수를 사전 예측으로 적용한 뒤 오차를 측정해야 비로소 예측 정밀도를 검증할 수 있다.
+
+### 2026-09-11 제출 안내본 역추적 — H1-CAL-20260910
+- [관찰] PROJECT_STATE.md:1207-1208이 사용자에게 제출하도록 지시한 위치는 `workspace/submission_candidates/h1_run06_model9900/UPLOAD_READY/`다. 따라서 **우리 제출 안내본은 Run06 iter9900으로 확인**됐다. 단순히 후보가 불명이라고 표현하지 않는다.
+- [ARTIFACT_VERIFIED] 해당 폴더 policy.pt/env.yaml/TECHNICAL_REPORT.md의 기존 manifest 3/3 및 회수 final/model_best.pt·env.yaml의 승인 기대 SHA 2/2가 일치했다. 검증 명령 종료 코드 0. 원자료: `workspace/calibration/h1_official_20260910/SUBMISSION_INSTRUCTION_TRACE_20260911.json:checks`.
+- [관찰] 대응 학습 bundle report: `workspace/server_returns/train_260831-06_run05cfg_10000/extracted/train_260831-06_run05cfg_10000/final/report.html`, SHA c4c8054106c53227ed1272dc9eecdfb55567dce321c2724cc53cc390f40c190c. `training/humanoid/exported/report.html`은 승급 이전 파일이라는 RUN06_SUBMISSION_NOTICE.txt:7 경고와 구별한다.
+- [경계] 제출 지시본 확인과 외부 업로드 확인은 다르다. 공식57.45의 정책 identity는 외부 증거가 없어 여전히 UNCONFIRMED_EXTERNAL이나, 제출 안내 이력은 Run06을 가리킨다. 기존 raw/보정 점수는 변경하지 않는다. 대시보드 업로드본 또는 제출 완료 당시 파일 식별자로 외부 대응을 닫는다.

@@ -1255,4 +1255,14 @@ H1~H7 10 case를 모두 20초 평가해 `시뮬 proxy /70`을 확정한다. 70�
 NEXT: 공식 제출 identity 대응을 확인하고, 이후 독립 공식 표본에서 기존/보정 오차를 비교한다. 현 단계에서 추가 H1 학습은 실행하지 않는다.
 
 ### 2026-09-11 사용자 결정 — Go2 A027 후속 검토
-- Codex 튜닝 계획을 Opus가 검토하고 Codex가 다시 감사한다. 계획 GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md. H1 캠페인·기존 채점 변경 및 새 학습 승인 아님.
+- Codex 튜닝 계획을 Opus가 검토하고 Codex가 다시 감사한다. 계획 workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md. H1 캠페인·기존 채점 변경 및 새 학습 승인 아님.
+
+## 2026-09-11 사용자 결정 — 계획 저장·결과 회수
+- H1 계획 정본: workspace/training/humanoid/upload/plan/; Go2 계획 정본: workspace/training/quadruped/upload/plan/. 기존 계획도 해당 위치로 이동한다.
+- H1 report.html은 _keep/<튜닝명칭>/exported/에 함께 회수한다. 작업 ID DOC-20260911-PLAN-REPORT, 상세 검증은 ARTIFACT_MANAGEMENT.md 참조.
+
+### 2026-09-11 제출 안내본 역추적 — H1-CAL-20260910
+- [관찰] PROJECT_STATE.md:1207-1208이 사용자에게 제출하도록 지시한 위치는 `workspace/submission_candidates/h1_run06_model9900/UPLOAD_READY/`다. 따라서 **우리 제출 안내본은 Run06 iter9900으로 확인**됐다. 단순히 후보가 불명이라고 표현하지 않는다.
+- [ARTIFACT_VERIFIED] 해당 폴더 policy.pt/env.yaml/TECHNICAL_REPORT.md의 기존 manifest 3/3 및 회수 final/model_best.pt·env.yaml의 승인 기대 SHA 2/2가 일치했다. 검증 명령 종료 코드 0. 원자료: `workspace/calibration/h1_official_20260910/SUBMISSION_INSTRUCTION_TRACE_20260911.json:checks`.
+- [관찰] 대응 학습 bundle report: `workspace/server_returns/train_260831-06_run05cfg_10000/extracted/train_260831-06_run05cfg_10000/final/report.html`, SHA c4c8054106c53227ed1272dc9eecdfb55567dce321c2724cc53cc390f40c190c. `training/humanoid/exported/report.html`은 승급 이전 파일이라는 RUN06_SUBMISSION_NOTICE.txt:7 경고와 구별한다.
+- [경계] 제출 지시본 확인과 외부 업로드 확인은 다르다. 공식57.45의 정책 identity는 외부 증거가 없어 여전히 UNCONFIRMED_EXTERNAL이나, 제출 안내 이력은 Run06을 가리킨다. 기존 raw/보정 점수는 변경하지 않는다. 대시보드 업로드본 또는 제출 완료 당시 파일 식별자로 외부 대응을 닫는다.

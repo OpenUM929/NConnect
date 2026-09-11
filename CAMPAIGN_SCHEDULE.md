@@ -277,4 +277,8 @@ Go2 착수(D11)는 **폐기**한다. 합산 상한 100점을 수용하고 H1 100
 - 근거·정본: SCORING_CALIBRATION_POLICY_20260910.md, H1_OFFICIAL_CALIBRATION_20260910.md, PROJECT_STATE.md:H1-CAL-D1.
 
 ### 2026-09-11 결정 참조 — A027
-- 사용자 지정 순서: Codex 계획→Opus 검토→Codex 재감사. GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md 참조. 서버 일정·학습 착수 미정.
+- 사용자 지정 순서: Codex 계획→Opus 검토→Codex 재감사. workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md 참조. 서버 일정·학습 착수 미정.
+
+## 2026-09-11 사용자 결정 — 계획 저장·결과 회수
+- H1 계획 정본: workspace/training/humanoid/upload/plan/; Go2 계획 정본: workspace/training/quadruped/upload/plan/. 기존 계획도 해당 위치로 이동한다.
+- H1 report.html은 _keep/<튜닝명칭>/exported/에 함께 회수한다. 작업 ID DOC-20260911-PLAN-REPORT, 상세 검증은 ARTIFACT_MANAGEMENT.md 참조.

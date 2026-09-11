@@ -11,9 +11,9 @@ Go2 학습·평가·보고를 수행할 때 적용하는 최소 차이 지침이
   2. `GO2_CAMPAIGN_SCHEDULE.md`
   3. `GO2_REWARD_EVIDENCE_MASTER.md`
   4. `workspace/training/quadruped/config/go2_self_eval_registry.json`
-  5. `workspace/training/quadruped/reports/PLANNER_BRIEF.md`
-  6. `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`
-  7. `.omx/plans/go2-default-baseline-experiment-plan.md`
+  5. `workspace/training/quadruped/upload/plan/PLANNER_BRIEF.md`
+  6. `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`
+  7. `workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md`
   8. `ARTIFACT_MANAGEMENT.md`
 - 현재 보존 비교군은 `train_260831-Go2_5var_1000`, iter 999,
   `model_best.pt sha256=c4d78adf3fbd90311e70d2b165370ddded3d5f913e8f128621fa1be45f89af8d`다.
@@ -23,7 +23,7 @@ Go2 학습·평가·보고를 수행할 때 적용하는 최소 차이 지침이
 
 ### 1-a. Default Baseline PRD는 살아있는 정본
 
-- `reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 단발 계획서가 아니다. Go2 기획자는 매 기획 턴 시작과
+- `upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 단발 계획서가 아니다. Go2 기획자는 매 기획 턴 시작과
   종료에 이 문서를 읽고, 최신 사용자 결정·artifact·구현 확정값·평가 결과·다음 분기를 반영한다.
 - `go2-campaign-manager`는 목표·순서·분기·완료조건, `go2-test-planner`는 통제변수·metric·허용오차·
   산출물·후속 실험을 같은 턴에 갱신한다.

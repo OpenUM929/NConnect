@@ -54,8 +54,8 @@ GPU 시간과 사람 시간을 분리한다. 학습이 돌면 문서·artifact �
 Pilot-01 튜닝 reward이므로 control로 쓰지 않는다. 따라서 Default-01 1,000 iter 생성은 조건부가 아니라
 쌍대 비교의 **필수 기준**이다. 이후 실험은 Default-01 계보에서 one-at-a-time으로 진행한다.
 
-테스트 계약: `workspace/training/quadruped/reports/GO2_DEFAULT_BASELINE_TEST_PRD.md`.
-상세 실행·case·분기 계약: `.omx/plans/go2-default-baseline-experiment-plan.md`.
+테스트 계약: `workspace/training/quadruped/upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`.
+상세 실행·case·분기 계약: `workspace/training/quadruped/upload/plan/go2-default-baseline-experiment-plan.md`.
 
 ## 3. 실행 승인 게이트
 
@@ -87,7 +87,7 @@ Pilot-01 튜닝 reward이므로 control로 쓰지 않는다. 따라서 Default-0
 | 5 | 260901 | Go2 전용 역할 4종 생성 | done | `.codex/agents/go2-*.md` |
 | 6 | 260901 | 새 세션 handoff 작성 | done | `reports/NEW_SESSION_HANDOFF.md` |
 | 7 | 다음 세션 | evaluator 구현·package 테스트 | pending | 로컬 검증 결과 |
-| 8 | 260901 | 1차 튜닝 기반 초기 작업계획 확정 | done | `G-A003`, `.omx/plans/go2-post-pilot-initial-work-plan.md`, G-D08 |
+| 8 | 260901 | 1차 튜닝 기반 초기 작업계획 확정 | done | `G-A003`, `workspace/training/quadruped/upload/plan/go2-post-pilot-initial-work-plan.md`, G-D08 |
 | 9 | 260901 | 기본값 재시작·쌍대평가 PRD 및 상세계획 확정 | done | `G-A004`, `GO2_DEFAULT_BASELINE_TEST_PRD.md`, 새 실행계획, G-D09~G-D11 |
 | 10 | 260901 | PRD 지속 참조·동일 턴 갱신 계약 | done | PRD §10, G-D12, Go2 기획·평가·보고 역할 지침 |
 | 11 | 260901 | 단일 업로드·실행·결과 ZIP package 구현·검증 | done | `go2_default_vs_pilot_v1.zip`, SHA `a95e09c4…2356`, Python tests, Git Bash `bash -n`, ZIP CRC·manifest |
@@ -743,4 +743,4 @@ Chain-01 위에서 같은 다이얼을 다시 시험할 때도 여전히 유효�
 - G-A027 독립 감사와 조건부 다음평가는 GO2_PROJECT_STATE.md:§46, GO2_RESULT_AUDIT_G-A027_20260910.md:§6 참조. 이 과거 일정표를 현재 실행정본으로 재개하지 않는다.
 
 ### 2026-09-11 후속 검토 참조 (CLOSED 유지)
-- GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md: 사용자 요청 Codex 계획→Opus 검토→Codex 재감사. 실행 일정·잔여 GPU 시간 미확정; 본 과거 일정 재개 아님.
+- workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md: 사용자 요청 Codex 계획→Opus 검토→Codex 재감사. 실행 일정·잔여 GPU 시간 미확정; 본 과거 일정 재개 아님.

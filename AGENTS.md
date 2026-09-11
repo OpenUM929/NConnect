@@ -411,3 +411,10 @@ H1 학습·튜닝·평가 답변과 실행계획은 다음 규칙을 의무 적�
 금지는 타인 정책(`.pt`)·보상 설정을 그대로 제출하는 것, 대리 참가, 의도의 허위 기재다.
 **"평가는 값의 출처가 아니라 의도와 결과의 일치를 본다."** 따라서 상류 기본값을 채택할 때도
 왜 그 값을 택했는지 우리 실험 근거로 설명할 수 있어야 한다.
+
+## 계획 저장·H1 리포트 회수 정본 (2026-09-11 사용자 결정)
+- 앞으로 H1 계획서·실험 PRD·기획 브리프는 `workspace/training/humanoid/upload/plan/`, Go2는 `workspace/training/quadruped/upload/plan/`에 저장한다. 루트·`.omx/plans`·`reports`에 새 기체별 계획 정본을 만들지 않는다.
+- 과거 회수 snapshot과 승인 release ZIP은 불변 증거로 보존한다. 계획 이동은 실행 승인이나 학습 착수를 뜻하지 않는다.
+- H1 학습 결과 회수 시 `training/humanoid/exported/report.html`을 `_keep/<튜닝명칭>/exported/report.html`에 넣고 결과 bundle·SHA 목록에 포함한다. `humarnoid`는 경로 오기이며 실제 경로는 `humanoid`다.
+- report 누락 또는 이전 실행의 파일이면 `REPORT_REQUIRED_NOT_ACQUIRED`로 기록한다. 다운로드 완결로 간주하지 않는다. `report.html`은 내부 근거이며 공식 업로드 3종과 구별한다.
+- 이전 경로를 인용하는 읽기 전용 역할 프롬프트·역사 문서는 `PLAN_MIGRATION_20260911.json`의 source→destination으로 해석한다. 이 매핑과 새 저장 경로가 우선하며, 옛 위치에 정본을 다시 만들지 않는다.
