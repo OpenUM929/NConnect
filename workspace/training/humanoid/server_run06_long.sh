@@ -72,14 +72,27 @@ if [[ "${1:-}" == "--inner" ]]; then
   [[ ! -f "$ROOT/reports/experiment_history.csv" ]] || \
     cp -a "$ROOT/reports/experiment_history.csv" "$KEEP/"
   # train.py는 policy.pt를 갱신하지 않는다. 이전 run의 stale policy 혼입을 막기 위해 제외한다.
-  for f in model_best.pt env.yaml report.html; do
+  for f in model_best.pt env.yaml; do
     [[ -f "$ROOT/exported/$f" ]] && cp -a "$ROOT/exported/$f" "$KEEP/final/"
   done
+
+  # BEGIN REPORT_RECOVERY: preserve the current run report, never a stale export.
+  REPORT_STATUS=REPORT_REQUIRED_NOT_ACQUIRED
+  mkdir -p "$KEEP/exported"
+  if [[ -s "$ROOT/exported/report.html" && "$ROOT/exported/report.html" -nt "$MARKER" ]]; then
+    cp -a "$ROOT/exported/report.html" "$KEEP/exported/report.html"
+    cp -a "$ROOT/exported/report.html" "$KEEP/final/report.html"
+    REPORT_STATUS=REPORT_ACQUIRED
+  else
+    echo '[WARN] report.html missing, empty, or older than this training session.'
+  fi
+  # END REPORT_RECOVERY
 
   {
     echo "RUN_ID=$RUN_ID"
     echo "MAX_ITERS=$MAX_ITERS"
     echo "TRAIN_RC=$TRAIN_RC"
+    echo "REPORT_STATUS=$REPORT_STATUS"
     echo "RUN_DIR=${RUN_DIR:-NOT_FOUND}"
     date -Is
   } | tee "$KEEP/STATUS.txt"
@@ -87,7 +100,12 @@ if [[ "${1:-}" == "--inner" ]]; then
     | sort -z | xargs -0 sha256sum >"$KEEP/SHA256SUMS.txt"
   tar -C /workspace/_keep -czf "/workspace/_keep/${RUN_ID}_DOWNLOAD.tar.gz" "$RUN_ID"
   sha256sum "/workspace/_keep/${RUN_ID}_DOWNLOAD.tar.gz" | tee "$KEEP/DOWNLOAD_SHA256.txt"
-  echo "[DONE] DOWNLOAD=/workspace/_keep/${RUN_ID}_DOWNLOAD.tar.gz"
+  if [[ "$REPORT_STATUS" != REPORT_ACQUIRED ]]; then
+    echo "[INCOMPLETE] Recovery bundle saved; report.html still required."
+    (( TRAIN_RC != 0 )) || TRAIN_RC=3
+  else
+    echo "[DONE] DOWNLOAD=/workspace/_keep/${RUN_ID}_DOWNLOAD.tar.gz"
+  fi
   exit "$TRAIN_RC"
 fi
 
@@ -104,6 +122,7 @@ tmux has-session -t "$TMUX_NAME" 2>/dev/null && {
   echo "[BLOCKED] tmux $TMUX_NAME 이미 존재"; exit 2;
 }
 
+[[ ! -e "$KEEP" ]] || { echo "[BLOCKED] RUN_ID already exists: $KEEP"; exit 2; }
 mkdir -p "$KEEP/pre_restore"
 for f in humanoid_rewards.py exported/model_best.pt exported/env.yaml exported/policy.pt; do
   [[ -f "$f" ]] && cp -a "$f" "$KEEP/pre_restore/"
