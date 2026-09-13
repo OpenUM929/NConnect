@@ -27,6 +27,23 @@ DEFAULT_ROOT="$RUNTIME_ROOT/default"
 TIER1_REGISTRY="$RUNTIME_ROOT/tier1_registry.json"
 REP_REGISTRY="$RUNTIME_ROOT/representative_registry.json"
 
+# BEGIN GO2_REPORT_RECOVERY
+recover_training_report() {
+  local source="$CANDIDATE_ROOT/exported/report.html"
+  mkdir -p "$KEEP/exported"
+  if [[ ! -s "$source" || ! -f "$TRAIN_START_MARKER" || ! "$source" -nt "$TRAIN_START_MARKER" ]]; then
+    # Preserve rejected server evidence without presenting it as the current report.
+    [[ ! -f "$source" ]] || cp -a "$source" "$KEEP/exported/report.rejected.html"
+    printf 'REPORT_STATUS=REPORT_REQUIRED_NOT_ACQUIRED\nREASON=missing_empty_or_stale\n' >"$KEEP/exported/REPORT_STATUS.txt"
+    echo '[FAIL] REPORT_REQUIRED_NOT_ACQUIRED: current training report missing/empty/stale'
+    return 4
+  fi
+  cp -a "$source" "$KEEP/exported/report.html" || return 4
+  (cd "$KEEP/exported" && sha256sum report.html >report.html.sha256) || return 4
+  printf 'REPORT_STATUS=REPORT_ACQUIRED\nSOURCE=%s\nIDENTITY=see_training_model_env_and_logs\n' "$source" >"$KEEP/exported/REPORT_STATUS.txt"
+}
+# END GO2_REPORT_RECOVERY
+
 package_result() {
   local label=$1
   mkdir -p "$KEEP"
@@ -98,11 +115,20 @@ cp -a "$TIER1_REGISTRY" "$REP_REGISTRY" "$KEEP/meta/"
 echo "[PHASE 1/4] $WORK_ID single-variable training: $SINGLE_CHANGE_NAME $SINGLE_CHANGE_FROM->$SINGLE_CHANGE_TO seed=$TRAIN_SEED envs=$NUM_ENVS iterations=$MAX_ITERATIONS"
 cd "$CANDIDATE_ROOT"
 if [[ "$RESUME" == 1 && -s "$KEEP/training/model_best.pt" && -s "$KEEP/training/env.yaml" ]] && \
-   grep -qx 'TRAIN_RC=0' "$KEEP/training/TRAIN_STATUS.txt"; then
+  grep -qx 'TRAIN_RC=0' "$KEEP/training/TRAIN_STATUS.txt"; then
+  if [[ ! -s "$KEEP/exported/report.html" ]] ||
+     ! grep -qx 'REPORT_STATUS=REPORT_ACQUIRED' "$KEEP/exported/REPORT_STATUS.txt" ||
+     ! (cd "$KEEP/exported" && sha256sum -c report.html.sha256); then
+    echo 'REPORT_STATUS=REPORT_REQUIRED_NOT_ACQUIRED' >"$KEEP/training/REPORT_RESUME_STATUS.txt"
+    echo '[FAIL] preserved training report missing or checksum mismatch; refusing to retrain/claim complete'
+    exit 4
+  fi
   echo '[SKIP] candidate training artifact already present'
 else
   rm -rf -- logs exported
   mkdir -p exported
+  TRAIN_START_MARKER="$KEEP/training/TRAIN_STARTED.marker"
+  touch "$TRAIN_START_MARKER"
   set +e
   # NO_AUTO_SUBMIT=1 suppressed the operator's automatic training-history upload on
   # every Go2 run, and G-A017 logged the skip.  Rule 14 says the submitted policy
@@ -132,6 +158,12 @@ SINGLE_CHANGE=%s:%s->%s
 EXPERIMENT_SHA256=%s
 ' \
     "$TRAIN_RC" "$TRAIN_SEED" "$NUM_ENVS" "$MAX_ITERATIONS" "$SINGLE_CHANGE_NAME" "$SINGLE_CHANGE_FROM" "$SINGLE_CHANGE_TO" "$EXPERIMENT_SHA256" >"$KEEP/training/TRAIN_STATUS.txt"
+  # Preserve available artifacts before any failure gate invokes PARTIAL packaging.
+  for artifact in model_best.pt env.yaml policy.pt; do
+    [[ ! -s "exported/$artifact" ]] || cp -a "exported/$artifact" "$KEEP/training/"
+  done
+  [[ ! -d logs ]] || cp -a logs "$KEEP/training/"
+  recover_training_report || exit 4
   [[ "$TRAIN_RC" == 0 && -s exported/model_best.pt && -s exported/env.yaml ]] || {
     echo '[FAIL] candidate training or finalize failed'; exit 3;
   }

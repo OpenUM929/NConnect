@@ -1,0 +1,218 @@
+[
+  {
+    "archive": "workspace/training_train_260831-06_run05cfg_10000_snapshot.tar.gz",
+    "report_html_entries": [
+      "training/humanoid/exported/report.html"
+    ]
+  },
+  {
+    "archive": "workspace/train_260831-06_run05cfg_10000_FIXED_EVAL_PARTIAL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_ANG_VEL_XY_M015_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_CHAIN01_ANG_VEL_XY_M005_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_CHAIN01_FEET_AIR_TIME_020_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_CHAIN01_LIN_VEL_Z_M2_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_FLAT_ORIENTATION_M1_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_FLAT_ORIENTATION_M1_V2_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/go2_g_a025_flat_orientation_m1 (2).zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/go2_g_a025_flat_orientation_m1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_PILOT_ACTION_RATE_M008_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_PILOT_ANG_VEL_XY_M015_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_PILOT_FEET_AIR_TIME_035_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_PILOT_TRACK_LIN_VEL_XY_140_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/GO2_TRACK_LIN_VEL_120_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_DOWNLOAD.tar.gz",
+    "report_html_entries": [
+      "train_260831-06_run05cfg_10000/final/report.html"
+    ]
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_FIXED_EVAL_FULL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_FIXED_EVAL_PARTIAL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_INDEPENDENT_EVAL_FULL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_VIDEOS_CORE.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_VIDEOS_FULL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-06_run05cfg_10000_VIDEOS_PARTIAL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/go2_default_vs_pilot_v1_partial_260901/original/go2_default_vs_pilot_v1_buggy.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/go2_feet_air_time_020_v1_partial_260901/original/GO2_FEET_AIR_TIME_020_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/original/training_train_260831-06_run05cfg_10000_snapshot.tar.gz",
+    "report_html_entries": [
+      "training/humanoid/exported/report.html"
+    ]
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/original/train_260831-06_run05cfg_10000_DOWNLOAD.tar.gz",
+    "report_html_entries": [
+      "train_260831-06_run05cfg_10000/final/report.html"
+    ]
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/fixed_eval/original/train_260831-06_run05cfg_10000_FIXED_EVAL_PARTIAL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/videos/original/train_260831-06_run05cfg_10000_VIDEOS_CORE.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/videos/original/train_260831-06_run05cfg_10000_VIDEOS_FULL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/train_260831-06_run05cfg_10000/videos/original/train_260831-06_run05cfg_10000_VIDEOS_PARTIAL.tar.gz",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/server_returns/train_260902-Go2_track_lin_vel_120_1000_g_a009/original/GO2_TRACK_LIN_VEL_120_RESULT.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/humanoid/bootstrap_run05.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/humanoid/run06_fixed_eval_package.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/humanoid/run06_independent_eval_package.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/humanoid/run06_server_package.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_a017_full_suite.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_chain01_baseline.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_default_vs_pilot_v1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_default_vs_pilot_v1_hotfix.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_feet_air_time_020_v1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_feet_air_time_020_v2.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_pilot_v2_baseline.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_terrain_5k_v1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_track_lin_vel_120_v1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_tuning_engine_v1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_tuning_engine_v1_1.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_tuning_engine_v1_2.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_tuning_engine_v1_3.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/training/quadruped/go2_tuning_engine_v1_4.zip",
+    "report_html_entries": []
+  },
+  {
+    "archive": "workspace/_keep/train_260831-Go2_5var_1000/train_260831-Go2_5var_1000_DOWNLOAD.tar.gz",
+    "report_html_entries": []
+  }
+]

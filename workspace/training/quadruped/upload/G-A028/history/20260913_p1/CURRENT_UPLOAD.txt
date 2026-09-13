@@ -1,0 +1,2 @@
+G-A028 P1_DIAGNOSIS — upload only GO2_G_A028_P1.zip
+Not a training release. Read GO2_G_A028_RUN_GUIDE.txt

@@ -413,8 +413,45 @@ H1 학습·튜닝·평가 답변과 실행계획은 다음 규칙을 의무 적�
 왜 그 값을 택했는지 우리 실험 근거로 설명할 수 있어야 한다.
 
 ## 계획 저장·H1 리포트 회수 정본 (2026-09-11 사용자 결정)
+- **2026-09-13 사용자 재확정 — 향후 모든 튜닝 회수 `_keep/<튜닝명칭>/exported/report.html`에 서버가 생성한 해당 학습의 원본을 반드시 포함한다.** 결과 ZIP과 SHA 목록에도 포함하고 학습 로그·model·env와 함께 보존한다. 누락·빈 파일·이전 실행 보고서는 `REPORT_REQUIRED_NOT_ACQUIRED`로 기록하여 회수 완료/서버 종료 가능으로 보고하지 않는다. 평가 재생이 exported를 덮어쓰기 전에 회수한다. 기존 승인 ZIP은 소급 수정하지 않으며 새 패키지의 회수 코드와 테스트로 강제한다. 메인과 모든 서브에이전트에 적용한다.
+- **넘버링 계약(2026-09-13 재강조):** Go2 G-D98·G-D175·G-D178을 따른다. 생성 전 원장과 upload에서 ID 중복을 확인하고 다음 미사용 회차를 등록한다. 사용자 전달 패키지 파일명에는 회차 ID를 포함하며 날짜나 정책명으로 대신하지 않는다. 서버 실행 정본은 `upload/<ID>/current/`, 아직 승인되지 않은 검토 자료는 `upload/<ID>/review/`로 구분한다. 번호 예약은 실행 승인·실행 완료를 뜻하지 않는다.
+- **2026-09-13 경로 정정 — `upload/plan/`은 계획 문서 전용이다.** 튜닝용 업로드 ZIP·검토용 자료 ZIP·SHA·배포 manifest·실행 파일은 각 기체 `upload/` 또는 기존 작업별 release 디렉터리에 둔다. 계획과 관련된 자료라는 이유로 패키지를 `plan/`에 저장하지 않는다. 메인과 모든 서브에이전트는 생성 전에 기존 `upload/README.md`의 파일 체계를 확인하고, 전달 전에 경로를 검사한다. 검토용 ZIP을 실행용 패키지로 표현하지 않는다.
 - 앞으로 H1 계획서·실험 PRD·기획 브리프는 `workspace/training/humanoid/upload/plan/`, Go2는 `workspace/training/quadruped/upload/plan/`에 저장한다. 루트·`.omx/plans`·`reports`에 새 기체별 계획 정본을 만들지 않는다.
 - 과거 회수 snapshot과 승인 release ZIP은 불변 증거로 보존한다. 계획 이동은 실행 승인이나 학습 착수를 뜻하지 않는다.
 - H1 학습 결과 회수 시 `training/humanoid/exported/report.html`을 `_keep/<튜닝명칭>/exported/report.html`에 넣고 결과 bundle·SHA 목록에 포함한다. `humarnoid`는 경로 오기이며 실제 경로는 `humanoid`다.
 - report 누락 또는 이전 실행의 파일이면 `REPORT_REQUIRED_NOT_ACQUIRED`로 기록한다. 다운로드 완결로 간주하지 않는다. `report.html`은 내부 근거이며 공식 업로드 3종과 구별한다.
 - 이전 경로를 인용하는 읽기 전용 역할 프롬프트·역사 문서는 `PLAN_MIGRATION_20260911.json`의 source→destination으로 해석한다. 이 매핑과 새 저장 경로가 우선하며, 옛 위치에 정본을 다시 만들지 않는다.
+
+<!-- GO2:REPORT-FIRST:START -->
+## 학습 report 필독·원인 우선 연구 계약 (2026-09-13 사용자 결정)
+
+H1·Go2 튜닝 기획·평가·보고를 수행하는 메인과 모든 서브에이전트에 적용한다.
+보고서 존재 확인이나 다른 배우의 요약만으로 읽었다고 하지 않는다.
+
+1. **튜닝 후보 선정 전에 해당 정책과 대조군의 학습 `report.html` 본문을 직접 읽는다.**
+   학습 run·checkpoint iter/model SHA·env reward snapshot·학습 로그와 대응을 확인한다.
+   파일명/수정시각/같은 폴더만으로 대응을 확정하지 않는다. export 해시 차이는 tensor 의미 차이로 단정하지 않는다.
+2. `REPORT_READ_STATUS=READ_MATCHED|READ_UNMATCHED|MISSING|NOT_APPLICABLE`를 출력한다.
+   읽은 경로·보고서의 학습시각/iter/보상값·대조한 로그와 정책 식별자·일치/불일치·미확인 근거를 남긴다.
+   `READ_MATCHED`는 대응 확인이지 성능 판정이 아니다.
+3. 학습 HTML, 내부 `SELF_EVAL_REPORT`, 기술 개선 제출문은 서로 다른 자료다.
+   평가 전용 run은 새 학습 HTML이 없을 수 있으나, 튜닝에 쓰는 정책의 원 학습 report 조회를 생략하지 않는다.
+   `NOT_APPLICABLE`은 정책을 생성하지 않은 도구 smoke 등 실제 비해당 사유를 적을 때만 사용한다.
+4. report 누락/오래된 파일/정책 대응 불명은 `REPORT_REQUIRED_NOT_ACQUIRED` 또는
+   `REPORT_POLICY_UNMATCHED`로 기록한다. 먼저 로컬 원 학습 bundle·보존 snapshot·로그를 검색한다.
+   그래도 없으면 회수/복구 방법을 기록한다. 추정 HTML을 원본인 것처럼 만들지 않는다.
+   이 상태는 **새 reward 후보 확정·새 학습 착수**를 막지만 기존 증거 읽기·누락 자료 복구·진단 설계는 허용한다.
+5. 연구 순서는 **학습 report·env·로그 대응 → 내부 시나리오 평가 → 영상/telemetry로 실패 유형 구분
+   → 경쟁 가설 비교 → 근거 있는 단일변수 후보 → 대조 실험·독립 seed**다.
+   HTML의 안정/공격 설명과 일반 경고는 가설 단서일 뿐 인과효과·최적 가중치 근거가 아니다.
+6. 학습낙상률/terrain level/mean reward를 시나리오 survival/tracking 또는 공식 점수로 바꾸지 않는다.
+   보고서 수치의 집계 구간과 지표 출처를 확인하고, 충돌은 원 로그와 evaluator 조건으로 해소한다.
+7. 새 학습 회수에는 같은 run의 `report.html`과 로그·env·checkpoint 대응 자료를 결과 bundle 및 SHA 목록에 포함한다.
+   누락하면 해당 공백을 기록하며 다운로드 완결 또는 튜닝 근거 완결로 보고하지 않는다.
+8. 최신 지침은 역할 문서의 과거 다음 실행·고정 현재단계보다 우선한다. H1/Go2 캠페인은 분리한다.
+   서브에이전트는 권한 범위 내 직접 읽기만 수행하고 공백을 상위에 보고한다. 이 계약은 편집/서버 권한을 추가하지 않는다.
+9. **report 필독은 영상·움직임 로그·원 학습 로그 생략 허가가 아니다.** 자료별로 직접 답할 수 있는
+   질문을 구분한다. 기존 유효 자료는 재사용하고 새로운 의사결정을 가르는 결측만 측정한다.
+   중복 요약 문서는 줄일 수 있지만 원자료·정책 identity·필수 영상 회수는 생략하지 않는다.
+   Go2 대체 가능성 표: `workspace/training/quadruped/upload/plan/GO2_EVIDENCE_NECESSITY_REVIEW_20260913.md`.
+<!-- GO2:REPORT-FIRST:END -->

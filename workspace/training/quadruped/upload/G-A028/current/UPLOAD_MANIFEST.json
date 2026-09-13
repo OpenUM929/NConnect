@@ -1,0 +1,22 @@
+{
+  "experiment_id": "G-A028",
+  "release_id": "20260913_p1",
+  "status": "ARTIFACT_VERIFIED_LOCAL_TESTED",
+  "training": false,
+  "upload_files": [
+    {
+      "name": "GO2_G_A028_P1.zip",
+      "sha256": "0d9843681e7d1b852273a09c0964c94cef47d3ac4a8c153d5d84ee6bc25eaacf",
+      "server_path": "/workspace/GO2_G_A028_P1.zip"
+    }
+  ],
+  "runtime_status": "ISAACLAB_UNMEASURED",
+  "verification": {
+    "tests_passed": 15,
+    "mock_replay_cases": 18,
+    "failure_recovery_tested": true,
+    "zip_manifest_members": 30,
+    "bash_n": "OK",
+    "training": false
+  }
+}

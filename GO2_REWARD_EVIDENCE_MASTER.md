@@ -297,3 +297,63 @@ Default-01의 시나리오별 실점(가중치×(1-proxy))을 다시 계산하�
 ## 20. A027 후속 조건부 가설 — 2026-09-11
 - workspace/training/quadruped/upload/plan/GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md에 T1 ang_vel_xy_l2 -0.05→-0.06 초안 등록. INCONCLUSIVE/미실행. 과도한 몸통 회전이 하강 실패 전에 관찰되는 경우에만 검토하며, 정확한 값의 성능·외부문헌 보증 없음.
 - 사용자 요청은 Opus 검토 후 Codex 재감사. §19 결과를 변경하지 않고 새 성공·안전 조건은 새 실험에만 적용한다.
+
+### 2026-09-13 회수 report 직접 열람 정정
+- 작업 ID GO2-P1-PREP-20260913. A027 회수 경로의 `workspace/_keep/go2_a017_full_suite/evaluation/{a017,pilot}/SELF_EVAL_REPORT.md` 두 파일을 직접 읽었다. A017 39.765/70, Pilot 33.671/70, 양쪽 INTERNAL_GATE_FAIL. 이는 내부 평가 report이며 학습 report.html이 아니다.
+- A017 G5 최저곱 case stairs_10_down@202: survival 0, tracking 0.1614. G3 rough_lateral@303: survival 0.4688, tracking 0.7574. G4 slope_plus_20@202: survival 0.75, tracking 0.6810. 이 값은 각 시나리오 최저곱 case의 인수이며 모든 case의 독립 최저값은 아니다.
+- 로컬 `workspace/training/quadruped/exported/report.html`도 본문 전체를 읽었다. tracking 1.2, 2026-08-31 학습, 최고보상18.02@972, terrain3.94, 마지막10회 학습낙상률13.8%, std0.499. GO2_PROJECT_STATE G-F03과 일치하는 Pilot 계열 보고서이며 tracking1.4인 A017 학습 report로 인용하지 않는다. 이번에 모델 텐서와의 보고서 대응을 재검증한 것은 아니다.
+- A027 회수 디렉터리에서 report.html은 발견하지 못했다. 재귀 탐색한 로컬 workspace의 Go2 report.html은 위 exported 파일뿐이다. 별도 미회수/다른 위치 파일 존재 여부는 미확인.
+- 판단: G5 하강 생존 우선 진단 유지. 학습낙상률13.8%를 G5 생존율로 변환하지 않는다. 보고서의 일반적 흔들림 허용 설명은 ang_vel_xy_l2 -0.06의 효과 또는 하강 원인을 증명하지 못하므로 조건부 가설 INCONCLUSIVE 유지.
+
+## GO2 next tuning preparation - 2026-09-13
+- User requested preparation for the next quadruped tuning. Work ID: GO2-P1-PREP-20260913. Lifecycle: PLANNED. No server execution or new training performed.
+- Plan: workspace/training/quadruped/upload/plan/GO2_A027_NEXT_TUNING_PREP_20260913.md; adjacent JSON fixes 18 diagnostic cases. Existing policies, rewards and approved releases preserved.
+- Evidence: existing CSV stores actual_wz, not wx/wy; run_video does not request simultaneous telemetry. Prior assumption that existing angular channels suffice is withdrawn.
+- Four review findings addressed in the plan. Numeric diagnostic thresholds, separate instrumentation and independent review remain open. HOLD: package unverified, training evidence insufficient. Historical schedule remains CLOSED.
+- Local verification: 5 preparation-contract assertions passed (18 unique cases); git diff --check passed. No runtime/package test claimed.
+
+<!-- GO2:REPORT-FIRST:START -->
+## 2026-09-13 연구 방향 변경 — G-D-REPORT-FIRST-20260913
+- 사용자 결정: 지침과 서브에이전트에 학습 report 필독을 강제하고 연구 방향을 변경한다.
+- 새 순서: report·env·학습로그/정책 대응 → 시나리오 약점 → 실패 유형/경쟁 가설 → 후보 선정.
+- 이전 T1 `ang_vel_xy_l2 -0.05→-0.06`은 **DEFERRED_HYPOTHESIS**로 내린다. 다음 튜닝값/1순위가 아니며 효과 INCONCLUSIVE.
+- G5 하강 생존은 현재 평가상 우선 진단 대상이나 원인은 미확정. 회전 과다, 발걸림/정지, 낮은 자세,
+  학습 성숙도 및 평가/영상 대응 문제를 구분한다. 모두 가설이며 보고서만으로 인과를 판정하지 않는다.
+- Pilot HTML은 직접 읽었으나 이번 작업에서 정책 대응을 완결 검증하지 않았으므로 READ_UNMATCHED.
+  A017 원 학습 HTML은 현재 탐색 범위에서 MISSING / REPORT_REQUIRED_NOT_ACQUIRED.
+  A027 SELF_EVAL_REPORT는 원 학습 HTML을 대체하지 않는다.
+- NEXT: 로컬 원 학습 bundle·snapshot·로그에서 A017/Pilot report 대응을 먼저 회수·검증한다.
+  그 후 필요한 진단을 다시 동결한다. 기존 18case 목록은 제안 범위이며 실행 승인/고정 패키지가 아니다.
+- 서버 실행·reward/배포코드 변경 없음. 새 학습 HOLD — report 대응 및 진단 근거 미완료.
+- 작업 ID GO2-P1-PREP-20260913 유지. 과거 승인 release와 결과는 변경하지 않는다.
+<!-- GO2:REPORT-FIRST:END -->
+
+### 2026-09-13 report의 자료 대체 가능성 확인
+- report 필독은 영상/telemetry 대체가 아니다. Pilot HTML은 학습 요약만 제공하고 G5 실패 trajectory는 없다.
+- 근거 및 자료별 표: workspace/training/quadruped/upload/plan/GO2_EVIDENCE_NECESSITY_REVIEW_20260913.md.
+- 이미 유효한 A027 정량을 중복 실행하지 않는다. 기존18case 제안은 재사용/결측 목록 대조 후 수량을 동결한다.
+- 다음 변수 미확정, -0.06 DEFERRED_HYPOTHESIS 유지. 새 wx/wy 계측도 가설 구분에 필요한 경우에만 검토한다.
+
+### G-A028 — 2026-09-13 실행 준비 선행조건 실측
+- 기존 G-A027 current의 RUN_GUIDE·builder·runner·발행 도구를 직접 확인했다. 다음 실행 정본도 같은 current/history/manifest/guide 체계를 사용한다.
+- workspace 내 upload/history 제외 ZIP·tar.gz 52개 내부 목록까지 검색했다. A017 원 학습 report.html은 발견하지 못했다. A017 결과 ZIP(GO2_PILOT_TRACK_LIN_VEL_XY_140_RESULT.zip)에도 없다. 검색 오류 0건.
+- 증거: workspace/training/quadruped/upload/G-A028/review/REPORT_RECOVERY_SEARCH.json. 기존 Pilot 계열 exported/report.html로 A017 보고서를 대신하지 않는다.
+- 실제 차단: REPORT_REQUIRED_NOT_ACQUIRED 및 다음 단일 변경값 미확정. 실행 패키지 완성·서버 실행을 주장하지 않는다. report 원본은 외부 보관 사본 회수가 필요하며 과거 checkpoint로 당시 학습 HTML을 꾸며 생성하지 않는다.
+- 배포 train.py/play.py/go2_task/quadruped_rewards.py 변경 없음. 학습 미실행. G-A028은 PLANNED 유지.
+
+### G-A028 P1 — 실행 패키지 발행(2026-09-13)
+- current: workspace/training/quadruped/upload/G-A028/current/GO2_G_A028_P1.zip. SHA256 0d9843681e7d1b852273a09c0964c94cef47d3ac4a8c153d5d84ee6bc25eaacf. history/20260913_p1 및 UPLOAD_HISTORY.tsv 보존.
+- 기존 계획 P1의 서버 재생 실행 패키지다. P2 새 튜닝 학습 패키지와 구별한다. 가중치 변경/학습 없음. 18영상·동일 실행 telemetry/summary·로그·model/env를 단일 결과 ZIP으로 회수.
+- 검증:15 tests 성공(모의18case완료·실패부분회수·기존결과보존·report 회수 포함), CRC/내부SHA30개·bash -n·py_compile·diff check 정상. 실제 IsaacLab 실행은 미측정. ARTIFACT_VERIFIED_LOCAL_TESTED, 성능 판정 아님.
+- 공용 학습 engine의 Default baseline hash 문제는 P1에 해당하지 않는다. P1은 승인 A027 ZIP SHA를 직접 검증하고 두 보존 정책과 계측 소스를 그대로 사용한다. 일반 학습 engine의 남은 문제를 해결했다고 주장하지 않는다.
+- 원 학습 report 공백은 유지, 새 학습 HTML은 평가 전용으로 NOT_APPLICABLE. 신규 튜닝의 report 필수회수는 공용 학습 runner에 별도 구현한 상태.
+- 외부 실행 상태 PLANNED. 다음: 사용자 서버 실행·단일결과ZIP/SHA 회수, 로컬 18영상/정량/로그/identity 확인 후 판독. P2 자동 학습 없음.
+
+### G-A028-RESULT-AUDIT-20260913 ? result/report relationship correction
+- Download verified: ZIP SHA 6e4a807b276e566e01aa58e5f12a61f01e74df999809e975220f69722794ed1e; internal SHA192/192, model/env4/4,18 valid telemetry cases.18 videos decoded, each999frames/19.98s; exact step/frame alignment unverified. ARTIFACT_VERIFIED only.
+- Report body read: existing Pilot HTML READ_UNMATCHED; A017 HTML MISSING; A028 new HTML NOT_APPLICABLE(TRAINING=none). No new training occurred.
+- Frozen proxy survivors (3seeds x4env): A017 stairs10=0/12, stairs15=0/12, slope+20=11/12; Pilot2/12,0/12,12/12. No /70 score. SELF_ASSESSMENT_INCOMPLETE.
+- IMPORTANT correction: stairs_down label does not establish actual descent. Sampled video shows approach/stalling inside inverted stairs. Withdraw unconditional descent-fall explanation; descent coverage VIDEO_UNKNOWN.
+- IMPORTANT measurement limit: approved telemetry uses mean scanner ray height, not ground directly under body. Stair boundary bias can contribute to low-height verdict; physical fall interpretation INTERNAL_GATE_INCONCLUSIVE. Applies to same A027 measurement method too; preserve historic numeric outputs, do not promote them to verified physical falls.
+- Report does not replace videos,steps.csv,execution logs or policy/config identity. Current strongest observed problem is stair stalling, not proven excessive roll/pitch. -0.06 remains DEFERRED_HYPOTHESIS; no new training or reward change authorized by these results.
+- Evidence/report: workspace/server_returns/G-A028/audit_20260913/REPORT_RELATIONSHIP_AUDIT.md; case_metrics.json, artifact_verification.json, video_validation.json, contact sheets. Original downloads preserved; ZIP/SHA copied to workspace/server_returns/G-A028/received/. No training merge.

@@ -1,0 +1,196 @@
+{
+  "work_id": "GO2-P1-PREP-20260913",
+  "status": "PREPARATION_ONLY",
+  "training_authorized": false,
+  "package_ready": false,
+  "cases": [
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "a017",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_10_down",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G5",
+      "case_id": "stairs_15_down",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 101,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 202,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    },
+    {
+      "policy": "pilot",
+      "scenario": "G4",
+      "case_id": "slope_plus_20",
+      "seed": 303,
+      "quant_envs": 32,
+      "video_envs": 4,
+      "steps": 1000,
+      "video_seconds": 20
+    }
+  ],
+  "research_direction": "report_log_identity_then_diagnosis_then_candidate",
+  "decision_id": "G-D-REPORT-FIRST-20260913",
+  "candidate_status": "DEFERRED_HYPOTHESIS",
+  "cases_status": "PROPOSED_NOT_FROZEN",
+  "report_gate": {
+    "a017": "MISSING",
+    "pilot": "READ_UNMATCHED"
+  }
+}

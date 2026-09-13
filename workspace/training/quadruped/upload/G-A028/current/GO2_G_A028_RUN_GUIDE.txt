@@ -1,0 +1,14 @@
+GO2 G-A028 P1 — 낙상 진단 실행 (새 학습 없음)
+업로드 파일: C:\dev\NConnect\workspace\training\quadruped\upload\G-A028\current\GO2_G_A028_P1.zip
+서버 위치: /workspace/GO2_G_A028_P1.zip
+한 줄 실행:
+cd /workspace && echo '0d9843681e7d1b852273a09c0964c94cef47d3ac4a8c153d5d84ee6bc25eaacf  GO2_G_A028_P1.zip' | sha256sum -c - && test ! -e /workspace/GO2_G_A028_P1 && unzip -q GO2_G_A028_P1.zip && bash /workspace/GO2_G_A028_P1/server_run_GO2_G_A028.sh
+관찰: tmux attach -t go2_G_A028
+완료 표식: [DONE] GO2_G_A028_P1_RESULT_READY
+결과 회수: /workspace/_keep/GO2_G_A028_RESULT.zip 및 같은 이름의 .sha256
+예상: 18회 재생, 약 15~30분 계획 추정(이 패키지 서버 실측 아님). 첫 case 소요를 보고 재산정.
+중단: tmux에서 Ctrl-C. PARTIAL ZIP 생성 여부 확인 후 회수. 기존 결과가 있으면 재실행을 거부하며 삭제하지 않음.
+필수: 18영상·동일 실행 telemetry·각 로그·model/env·SHA. 로컬 검증 전 서버 종료 가능 판정 없음.
+report: 평가 전용이므로 새 학습 HTML은 생성하지 않음. 기존 A017 HTML 누락은 계속 명시.
+G4/G5 진단만 수행; 기존 A027 69case는 재사용. /70 점수·reward 효과 판정 없음.
+새 학습의 report.html 회수 개선은 별도 공용 학습 runner에 구현되어 있으며 이 재생은 학습하지 않음.
