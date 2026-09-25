@@ -23,7 +23,11 @@ H1·Go2 튜닝 기획·평가·보고를 수행하는 메인과 모든 서브에
 4. report 누락/오래된 파일/정책 대응 불명은 `REPORT_REQUIRED_NOT_ACQUIRED` 또는
    `REPORT_POLICY_UNMATCHED`로 기록한다. 먼저 로컬 원 학습 bundle·보존 snapshot·로그를 검색한다.
    그래도 없으면 회수/복구 방법을 기록한다. 추정 HTML을 원본인 것처럼 만들지 않는다.
-   이 상태는 **새 reward 후보 확정·새 학습 착수**를 막지만 기존 증거 읽기·누락 자료 복구·진단 설계는 허용한다.
+   **[2026-09-14 개정] 휘발 서버에서 이미 사라진 과거 run의 report는 `REPORT_REQUIRED_NOT_ACQUIRED — 복구 불가`로
+   한 번 기록하고, 같은 run의 원 학습 로그 요약값(최고 reward·terrain level·학습 낙상률·action std)과
+   SELF_EVAL을 대체 근거로 삼아 진행한다. 이 상태는 새 reward 후보 확정·새 학습 패키지 발행을 막지 않는다.**
+   막히는 것은 새 run의 회수 완결 판정(§7)뿐이다. 같은 archive를 재검색하거나 원본 제공을 반복 요청하지 않는다.
+   (구판 차단 문구는 `SUPERSEDED` — 루트 「튜닝 요청 산출물 계약」 참조.)
 5. 연구 순서는 **학습 report·env·로그 대응 → 내부 시나리오 평가 → 영상/telemetry로 실패 유형 구분
    → 경쟁 가설 비교 → 근거 있는 단일변수 후보 → 대조 실험·독립 seed**다.
    HTML의 안정/공격 설명과 일반 경고는 가설 단서일 뿐 인과효과·최적 가중치 근거가 아니다.
@@ -55,7 +59,7 @@ UPDATE = """## 2026-09-13 연구 방향 변경 — G-D-REPORT-FIRST-20260913
 """
 
 ROLE_DUTIES = {
-    "go2-campaign-manager": "두 정책의 REPORT_READ_STATUS와 근거 경로를 확인하고 READ_MATCHED 이전 새 튜닝 승인을 보류한다.",
+    "go2-campaign-manager": "두 정책의 REPORT_READ_STATUS와 근거 경로를 확인한다. 과거 run의 복구 불가 누락은 공백으로 기록하고 튜닝 패키지 발행을 보류하지 않는다.",
     "go2-test-planner": "보고서 본문과 원 로그를 직접 대조하고 수치·경고·경쟁 가설·반증조건을 연결한 뒤 단일변수를 선정한다.",
     "go2-evaluation-auditor": "보고서 run/정책 대응과 지표 집계 구간을 독립 확인한다. 학습낙상률을 G5 생존으로 바꾸거나 HTML 없이 읽음으로 보고하면 지적한다.",
     "go2-report-writer": "보고서 본문을 직접 읽고 배포 시작값→최종값·실측·한계를 구분한다. 다른 정책의 HTML을 제출 후보 근거로 인용하지 않는다.",
@@ -84,7 +88,7 @@ def main() -> None:
                          "## 학습 report 필독 (2026-09-13)\n"
                          "상위 AGENTS.md의 「학습 report 필독·원인 우선 연구 계약」을 먼저 읽고 적용한다.\n"
                          "해당 정책과 대조군의 report.html 본문을 직접 읽고 REPORT_READ_STATUS 및 경로·run 대응 근거를 출력한다.\n"
-                         + duty + "\n누락/불일치 시 후보 확정 금지; 근거 조회와 진단 준비는 허용.\n"
+                         + duty + "\n복구 불가한 과거 run의 report 누락은 공백으로 기록하고 원 학습 로그 요약값·SELF_EVAL로 대체해 진행한다(후보 확정·패키지 발행을 막지 않음 — 루트 「튜닝 요청 산출물 계약」).\n"
                          "연구 순서: report·로그 대응 → 평가 → 원인 진단 → 경쟁 가설 → 단일변수.\n"
                          "G-D-REPORT-FIRST-20260913: -0.06은 DEFERRED_HYPOTHESIS이며 다음 실행값이 아니다.\n")
         return

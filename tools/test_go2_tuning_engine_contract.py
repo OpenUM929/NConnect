@@ -7,6 +7,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 from pathlib import Path
 
@@ -62,6 +63,13 @@ def _fingerprint(source: str = "posture_gate_v2") -> dict:
 
 
 class Go2TuningEngineContract(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = tempfile.TemporaryDirectory(dir=ROOT)
+        self.addCleanup(temporary.cleanup)
+        output = patch.object(self.builder, "OUTPUT", Path(temporary.name) / "engine.zip")
+        output.start()
+        self.addCleanup(output.stop)
+
     @classmethod
     def setUpClass(cls) -> None:
         cls.config = load_module("go2_tuning_config", GO2 / "go2_tuning_config.py")

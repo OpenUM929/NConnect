@@ -20,6 +20,7 @@ import csv
 import itertools
 import json
 import math
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -252,6 +253,15 @@ check("posture_measured alone is no longer sufficient", half["posture_measured"]
 print("[8] runner accepts only a summary that carries a real posture number")
 RUNNER = Path(__file__).resolve().parents[1] / "workspace/training/quadruped/server_run_go2_a017_full_suite.sh"
 runner_text = RUNNER.read_text(encoding="utf-8")
+# The field checks moved out of the runner body into the script the runner
+# delegates to, and this file kept grepping the runner -- so it failed on a
+# guard that had got stronger, not weaker.  Follow the delegation instead of
+# naming the file, so extracting the check again does not break this contract.
+_delegate = re.search(r'POSTURE_CHECK="\$PACKAGE_ROOT/([^"]+)"', runner_text)
+if _delegate:
+    _path = RUNNER.parent / _delegate.group(1)
+    check("the delegated posture check ships next to the runner", _path.is_file())
+    runner_text += "\n" + _path.read_text(encoding="utf-8")
 for blocked in (half, blind):
     check("the retired substring test would have passed this summary",
           "posture_gate_v2" in json.dumps(blocked))

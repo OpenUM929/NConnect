@@ -9,6 +9,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 from pathlib import Path
 
@@ -99,8 +100,19 @@ class Go2FeetAirTimeContract(unittest.TestCase):
             self.assertFalse(launcher.app.is_running())
 
     def test_built_package_manifest_and_structure(self) -> None:
-        builder.build()
-        with zipfile.ZipFile(builder.OUTPUT) as archive:
+        # The builder's default is a historical published release, never a test output.
+        published = builder.OUTPUT
+        before = builder.sha(published.read_bytes()) if published.exists() else None
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / published.name
+            with patch.object(builder, "OUTPUT", output):
+                builder.build()
+                self.assert_built_package(output)
+        self.assertEqual(builder.OUTPUT, published)
+        self.assertEqual(builder.sha(published.read_bytes()) if published.exists() else None, before)
+
+    def assert_built_package(self, output: Path) -> None:
+        with zipfile.ZipFile(output) as archive:
             self.assertIsNone(archive.testzip())
             names = archive.namelist()
             self.assertGreater(len(names), 21)

@@ -27,7 +27,8 @@ class Go2ReportRecoveryTests(unittest.TestCase):
                 source.write_bytes(b'' if mode == 'empty' else b'<html>server report</html>')
                 os.utime(source, ((1700000100 if mode == 'stale' else 1700000300),) * 2)
             keep = base / 'keep'
-            command = (f'KEEP="{shell_path(keep)}"; CANDIDATE_ROOT="{shell_path(source.parent.parent)}"; '
+            command = ('export PATH=/usr/bin:$PATH;\n'
+                       f'KEEP="{shell_path(keep)}"; CANDIDATE_ROOT="{shell_path(source.parent.parent)}"; '
                        f'TRAIN_START_MARKER="{shell_path(marker)}";\n' + block + '\nrecover_training_report\n')
             result = subprocess.run([BASH, '-c', command], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0 if mode == 'fresh' else 4, result.stderr)
