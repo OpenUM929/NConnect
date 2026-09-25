@@ -7,7 +7,8 @@
       "Bash(echo \"exit=$?\")",
       "Bash(python \"C:/Users/Park/AppData/Local/Temp/claude/C--dev-NConnect/79066471-7455-4d75-a526-38d9b7b3c27c/scratchpad/tb.py\" 2026-08-28_21-59-39/*.tfevents*)",
       "Bash(git check-ignore *)",
-      "Bash(python tools/build_go2_tuning_engine.py)"
+      "Bash(python tools/build_go2_tuning_engine.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python -B -c ' *)"
     ]
   }
 }
