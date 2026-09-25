@@ -1,0 +1,9 @@
+zone,forecast_partial_margin_delta,target_group,observed_mean_proxy_delta,direction_agrees
+walk,+0.0121,forward_nominal,0.004633,True
+climb,+0.0258,stairs_10_down,0.334320,True
+climb,+0.0258,stairs_15_down,0.149317,True
+sway,-0.0470,rough_lateral,0.295513,False
+push,-0.0386,push_pos_x,0.056403,False
+push,-0.0386,push_neg_x,0.013083,False
+push,-0.0386,push_pos_y,0.036703,False
+push,-0.0386,push_neg_y,-0.010417,True

@@ -1,0 +1,9 @@
+metric,value,note
+total_points_70_baseline,42.52861,G-A033 stored arm; 69 cases
+total_points_70_candidate,44.62454,G-A043 harvest; 69 cases
+total_points_70_delta,2.09593,internal proxy; not an official score
+non_loss_axis_gain_70,6.73286,plan section 9-1 B: every axis except G2
+loss_axis_loss_70,4.63693,plan section 9-1 L: G2 only; sign flipped to positive
+min_total_points_delta,2.53000,preregistered c2
+flat_scenario_weighted_cap_70,0.56700,preregistered c3: 0.054 proxy x weight 0.15 x 70
+required_gain_if_loss_at_cap_70,3.09700,B needed for c2 when L sits exactly on the c3 cap

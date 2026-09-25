@@ -1,0 +1,83 @@
+GO2 G-A032 SERVER RUN GUIDE (staged candidate v2, posture_gate_v2, 학습 1회)
+
+회차 G-A032: A017 + `feet_air_time` 0.2→0.1 단일변수, seed 42, 1,000 iter.
+짝 실험: G-A031 (`feet_air_time` 0.01). 두 회차는 서로 독립이고 순서는 상관없다.
+계획서: workspace/training/quadruped/upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md
+이 판(v2)은 20260915_a017_feet_air_time_010_candidate_suite_v1 (published 2026-09-15, not run)을 대체한다. 달라진 점은 두 가지다. 짧은 1단계로 먼저 판정하고, 영상은 관련 5개만 뽑는다.
+서버 실행은 사용자 결정 사항이다. 이 문서는 실행 절차이지 실행 승인이 아니다.
+
+LOCAL FILE TO UPLOAD (이 회차는 딱 하나)
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A032\current\GO2_G_A032_feet_air_time_010_staged.zip
+   SHA256 c6e93bb5e8d9e5768283bdc8f9210e6c90c1dcb4739d73c6f56c9346399b8bba
+
+SERVER DESTINATION
+/workspace/GO2_G_A032_feet_air_time_010_staged.zip
+
+단계와 시간 (한 GPU에서 두 회차를 동시에 돌리지 않는다. 러너가 거부한다)
+1단계 target(기본): 학습 1,000 iter → 파국 게이트 → 표적 9 case → A017 표지 5 case → 영상 5개 → 결과 ZIP.
+  약 1시간 25분(여유 포함 1시간 40분). 판정 1항은 이 9 case만으로 정해지므로 1단계 FAIL은 이 회차의 최종 판정이다.
+2단계 full(1단계 통과 회차만): 나머지 59 case → 결과 ZIP 다시. 판정 2~4항. 약 55분.
+두 회차 1단계만: 약 2시간 50분. 두 회차 모두 통과하면 2단계 두 번이 더해져 약 4시간 40분.
+접속 직후 잔여 GPU 시간을 실측해 기록한다.
+
+1단계 ONE-LINE RUN (tmux 안에서 시작하고 즉시 리턴)
+cd /workspace && echo 'c6e93bb5e8d9e5768283bdc8f9210e6c90c1dcb4739d73c6f56c9346399b8bba  GO2_G_A032_feet_air_time_010_staged.zip' | sha256sum -c - && unzip -oq GO2_G_A032_feet_air_time_010_staged.zip && PACKAGE_ROOT=/workspace/go2_g_a032 bash /workspace/go2_g_a032/server_run_go2_candidate_staged.sh
+
+짝 실험 1단계를 이어서 (선택)
+두 ZIP을 모두 풀어 둔 뒤, 첫 회차 1단계를 시작하고 아래 줄로 대기열을 건다. 첫 회차의 tmux가 끝나면 다음 회차 1단계가 시작된다.
+tmux new-session -d -s go2_basic_chain "while tmux has-session -t go2_g_a032 2>/dev/null; do sleep 60; done; PACKAGE_ROOT=/workspace/go2_g_a031 bash /workspace/go2_g_a031/server_run_go2_candidate_staged.sh"
+
+1단계 결과를 받은 뒤 (로컬, GPU 0)
+python -B tools/verify_go2_basic_motion_harvest.py G-A032 --harvest workspace/_keep/go2_g_a032_a017_feet_air_time_010 --out workspace/_keep/go2_g_a032_a017_feet_air_time_010/harvest_verification.json
+- FAIL: 이 회차는 끝이다. 2단계를 돌리지 않는다.
+- TARGET_PASS_FULL_STAGE_REQUIRED: 2단계를 돌린다.
+- BASELINE_REMEASURE_REQUIRED: 표지 case가 저장값과 어긋났다. 1단계를 `GO2_RESUME=1 GO2_REMEASURE_BASELINE=1 PACKAGE_ROOT=/workspace/go2_g_a032 bash /workspace/go2_g_a032/server_run_go2_candidate_staged.sh`로 다시 돌린다(A017 10 case, +약 8분). 2단계에서도 같은 변수를 준다.
+- INCONCLUSIVE: 결측만 보완한다. 점수를 읽지 않는다.
+
+2단계 실행 (1단계 결과 폴더가 서버에 남아 있어야 한다)
+GO2_STAGE=full GO2_RESUME=1 PACKAGE_ROOT=/workspace/go2_g_a032 bash /workspace/go2_g_a032/server_run_go2_candidate_staged.sh
+학습·1단계 case·영상은 지문으로 건너뛰고 나머지만 잰다. 결과 ZIP이 다시 만들어진다. 같은 검증기로 다시 판정한다.
+
+MONITOR
+tmux attach -t go2_g_a032
+
+첫 10분에 볼 것
+학습 로그의 reward 표에 `feet_air_time` 가중치 0.1이 찍히는지 본다.
+
+학습 직후에 볼 것
+`[PHASE 2/6]` 뒤 `ENV_REWARDS_OK role=candidate ... feet_air_time=0.1` 줄과 `LOCOMOTION MOVING` 줄.
+정지면 파국 게이트가 평가를 건너뛴다. 이것도 결과다(계획 §6-3).
+
+영상 (관련 5개만, 4 env·500 step. A017 대응 영상은 G-A027 회수본에 이미 있다)
+- G1:forward_fast:101: flat gait: are the feet still lifted, or dragged (H3)
+- G3:rough_forward:101: target: rough-terrain forward walking
+- G4:slope_plus_20:101: target: body height on the 20 deg climb (H1)
+- G5:stairs_15_up:101: side effect: toes catching on steps (H3)
+- G7:dr_seed_101:101: target: walking under domain randomisation
+
+RESUME / RERUN 규칙
+기본 재실행은 이전 결과를 지우지 않고 거부한다. 이어가려면 `GO2_RESUME=1`, 버리려면 `GO2_DISCARD_PREVIOUS=1`.
+
+DONE MARKER (두 단계 공통)
+[DONE] GO2_G_A032_RESULT_READY
+RUNNER_STATUS.txt의 STAGE(target/full)와 DECISION(TARGET_STAGE_COMPLETE/SUITE_COMPLETE)으로 구분한다.
+
+DOWNLOAD TO LOCAL workspace\_keep
+/workspace/_keep/GO2_G_A032_RESULT.zip
+/workspace/_keep/GO2_G_A032_RESULT.zip.sha256
+패키징이 실패할 수 있으니 `_keep/go2_g_a032_a017_feet_air_time_010` 원시 파일도 함께 가져온다.
+
+SERVER SHUTDOWN GATE
+DONE 표시만으로 종료하지 않는다. 결과를 받아 로컬 검증을 통과해야 종료 판단을 보고한다.
+2단계가 남은 회차가 있으면 `_keep/go2_g_a032_a017_feet_air_time_010`을 지우지 않는다.
+
+RESULT INTERPRETATION — 실행 전에 고정 (계획서 §6, 사후 재협상 금지)
+성공은 다음을 모두 충족할 때다.
+- [1단계] 험지 전진·20° 오르막·DR 9 case-seed의 case proxy(생존×추종) 평균이 +0.05 이상 오르고, 세 묶음 중 둘 이상이 오른다.
+- [2단계] 총 proxy가 떨어지지 않는다(Δ ≥ 0/70).
+- [2단계] 평지(G1·G2) 시나리오 proxy 하락 ≤ .02, 평지 case 생존 하락 ≤ 1/32. 나머지 시나리오 가중 손실 ≤ 0.5/70.
+- [2단계] POLICY_LOCOMOTES이고 계단(G5) 밖 시나리오에 새 정지 case가 없다.
+- 영상에서 발을 들고 걷는 정상 네발 보행이 보인다.
+높이·자세 게이트 낙상은 기전 판독용이지 판정 조건이 아니다.
+두 회차의 결과를 합친 방향 판정은 계획서 §6-3 표를 따른다.
+공식 evaluator·공식 점수는 OFFICIAL_RESULT_UNMEASURED다.

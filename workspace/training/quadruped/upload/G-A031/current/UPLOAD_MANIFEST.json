@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A031",
+  "note": "A017 + feet_air_time 0.2->0.01, staged: target stage (training + 9 target cases + 5 videos) then full stage; dose pair with G-A032. Supersedes 20260915_a017_feet_air_time_001_candidate_suite_v1 (published 2026-09-15, not run). exploratory.",
+  "published_at_utc": "2026-09-15T00:00:00+00:00",
+  "release_id": "20260915_a017_feet_air_time_001_candidate_staged_v2",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A031_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A031_feet_air_time_001_staged.zip",
+      "server_path": "/workspace/GO2_G_A031_feet_air_time_001_staged.zip",
+      "sha256": "5f86fe9143834dbf5b13859545275c7e5374d3c659f3e77a6dfd8c2f3a8771b5"
+    }
+  ]
+}

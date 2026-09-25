@@ -1,0 +1,10 @@
+engine=C:\dev\Nconnect\tmpxwuyash4\engine.zip
+sha256=3e31ee66d5083f473381849931302f5dce1d9a70fb432bd7aec0f292497edbd9
+members=66
+engine=C:\dev\Nconnect\tmpqnag5ztd\engine.zip
+sha256=3e31ee66d5083f473381849931302f5dce1d9a70fb432bd7aec0f292497edbd9
+members=66
+----------------------------------------------------------------------
+Ran 32 tests in 8.950s
+
+OK

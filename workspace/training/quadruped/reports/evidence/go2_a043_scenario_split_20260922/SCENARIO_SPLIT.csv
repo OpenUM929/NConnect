@@ -1,0 +1,8 @@
+scenario,weight,baseline_proxy,candidate_proxy,baseline_points_70,candidate_points_70,delta_70,baseline_binding_case,candidate_binding_case
+G1,0.15,0.87853,0.92125,9.22452,9.67313,0.44860,forward_fast:101,forward_fast:303
+G2,0.15,0.87742,0.43581,9.21294,4.57601,-4.63693,combined_yaw_right:303,combined_yaw_right:303
+G3,0.20,0.30195,0.52956,4.22726,7.41379,3.18654,rough_lateral:202,rough_lateral:202
+G4,0.15,0.85883,0.92731,9.01774,9.73673,0.71899,slope_plus_20:202,slope_minus_20:101
+G5,0.15,0.00426,0.15405,0.04473,1.61747,1.57274,stairs_15_down:202,stairs_15_down:101
+G6,0.10,0.81328,0.89668,5.69295,6.27679,0.58384,push_pos_x:101,push_neg_y:303
+G7,0.10,0.72978,0.76152,5.10847,5.33062,0.22215,dr_seed_101:101,dr_seed_101:101

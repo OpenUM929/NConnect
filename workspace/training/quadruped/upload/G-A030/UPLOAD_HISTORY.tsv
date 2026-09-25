@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-14T00:00:00+00:00	G-A030	20260914_a017_flat_orientation_m1_candidate_suite_v1	ARTIFACT_VERIFIED	GO2_G_A030_flat_orientation_m1.zip	e4fbdc0033866612ca9804f9479416d7d4e188bf403b23078cdb6591f35eab05	(none — self-contained)	(none)	A017 + flat_orientation_l2 0.0->-1.0, 1,000 iter training + 69-case candidate suite (candidate suite runner v1, measurement path 나′). exploratory.

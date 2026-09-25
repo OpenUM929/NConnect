@@ -1,0 +1,4 @@
+work_id,run,lin_vel_z_l2,train_seed,role,total_70,climb_10_down_ge2,climb_15_down_ge1,climb_15_down_ge2,falls_stairs_10_down,falls_stairs_15_down,falls_rough_lateral,falls_rough_forward,falls_push_4dir,falls_combined_yaw_right
+G-A033,go2_g_a033_a017_track_lin_vel_xy_150,-2.0,42,frozen baseline,42.52861,43,4,0,34,90,59,4,22,0
+G-A044,go2_g_a044_a033_lin_vel_z_m175,-1.75,42,midpoint,38.89379,62,39,0,65,95,80,3,66,0
+G-A043,go2_g_a043_a033_lin_vel_z_m15,-1.5,42,relaxed end,44.62454,94,88,77,17,49,24,6,10,29

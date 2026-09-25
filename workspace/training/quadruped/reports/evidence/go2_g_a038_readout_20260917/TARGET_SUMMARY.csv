@@ -1,0 +1,9 @@
+item,value
+target_mean_proxy_delta,0.088377
+target_groups_improved,2
+criterion_1_passed,True
+min_target_mean_proxy_delta,0.050000
+min_target_groups_improved,2
+group_mean_delta:rough_lateral,0.356159
+group_mean_delta:push_pos_x,0.049454
+group_mean_delta:stairs_10_climb,-0.140483

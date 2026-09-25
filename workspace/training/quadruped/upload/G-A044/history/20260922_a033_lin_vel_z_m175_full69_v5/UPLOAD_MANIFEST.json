@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A044",
+  "note": "G-A044 G-A033 + lin_vel_z_l2 -2.0->-1.75. One upload: the arm ZIP byte-identical to its builder, the whole 69-case evaluation in one pass (GO2_STAGE=full pinned in run_config.env), no target stage and no server gate, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-22T00:00:00+00:00",
+  "release_id": "20260922_a033_lin_vel_z_m175_full69_v5",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A044_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A044_a033_lin_vel_z_m175_full69_v5.zip",
+      "server_path": "/workspace/GO2_G_A044_a033_lin_vel_z_m175_full69_v5.zip",
+      "sha256": "30505b7629502e76a5591bc69f11c8325204e53252a5373d80066fc407d842cc"
+    }
+  ]
+}

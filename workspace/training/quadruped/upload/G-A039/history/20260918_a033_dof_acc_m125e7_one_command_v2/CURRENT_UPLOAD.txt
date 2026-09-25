@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A039 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A039\current\GO2_G_A039_a033_dof_acc_m125e7_one_command.zip
+   SHA256 0f1fab717682e587c0d6af0fd89263ba1b36bcaac7c6f0aea71ffed6c16b2dcb
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A039_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260918_a033_dof_acc_m125e7_one_command_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 staged_v1 은 실행 불가로 폐기, one_command_v1 은 안내문의 거짓 서술 때문에 대체됐다(../history 에 보존, 둘 다 서버에 올린 적 없음).
+직전 판은 옛 판정 규칙(9 case 평균·이득 추정 waiver — G-A038의 10cm 오르기 붕괴를 통과시킴)으로 대체됐다. 이 판은 fact_rules_v1·사실 근거 추론 사슬을 싣는다. 그 전 판은 러너 결함(G-A033 영상 로그 폴더 미생성)으로 대체됐다(../history 에 보존, 모두 서버에 올린 적 없음).
+권고 상태: 추론 사슬 INFORMATION_RUN — 재계획 §5는 새 규칙으로 재판정 대기.

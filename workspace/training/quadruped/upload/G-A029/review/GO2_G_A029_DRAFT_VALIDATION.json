@@ -1,0 +1,11 @@
+{
+  "status": "LOCAL_DRAFT_CONTRACT_VERIFIED",
+  "tests": 35,
+  "runtime_tested": false,
+  "files": {
+    "workspace\\training\\quadruped\\upload\\G-A029\\review\\GO2_G_A029_ACTION_RATE_M0008_DRAFT.json": "61393dcf0fbc1adfc1bb484d11a4b76a56a8d1f18c750a7db77eb27d210ebda2",
+    "workspace\\training\\quadruped\\upload\\G-A029\\review\\GO2_G_A029_A017_BASELINE_quadruped_rewards.py": "8910e905c2c0830171282aeb07aabbfc683e167672d18f04b5f85a56cbaf009d",
+    "workspace\\training\\quadruped\\upload\\G-A029\\review\\GO2_G_A029_ACTION_RATE_M0008_DRAFT_quadruped_rewards.py": "53e226f88f1ace23d338dfdea029d81cb184d91ddd8b4a0a26493faf4022daed",
+    "workspace\\training\\quadruped\\reports\\GO2_G_A029_WEAKNESS_ANALYSIS_20260914.md": "f3be83925c60abcddb8cedf25e5d1eabf273bf13d6790daaccefe4254b4e3347"
+  }
+}

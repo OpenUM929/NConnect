@@ -1,0 +1,7 @@
+file,url,sha256
+isaaclab_envs_mdp_rewards.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab/isaaclab/envs/mdp/rewards.py,884a24a4470a9e7432de99341f905c932f8a7a58f02d5eb89f703b1288db2a76
+isaaclab_tasks_locomotion_velocity_mdp_rewards.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/rewards.py,29c0d6d71d44fa57d81819a0ee4a710740688d28568b88502705d0338b6856e0
+isaaclab_tasks_locomotion_velocity_env_cfg.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/velocity_env_cfg.py,962c09406c4347b0488020ac0e1d8800740c5bbc3035f4d14af9aeaeb2441b58
+isaaclab_managers_reward_manager.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab/isaaclab/managers/reward_manager.py,5d41d6a376cfb456849d861c3232694ea5662cc38970e2e2c7e5152f156d88d7
+isaaclab_tasks_go2_rough_env_cfg.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/rough_env_cfg.py,cde621c94a6076734adbbc3e7e45dedbcd1812be0343a4bbad901ed0c0bf16a0
+isaaclab_envs_mdp_terminations.py,https://raw.githubusercontent.com/isaac-sim/IsaacLab/v2.3.1/source/isaaclab/isaaclab/envs/mdp/terminations.py,d56d6e3fe9d5a8479e83c3601cc3f59aae62c6e293bc33ff28749e6a84c0552b

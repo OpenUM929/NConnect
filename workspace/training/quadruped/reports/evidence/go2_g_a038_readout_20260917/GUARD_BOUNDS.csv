@@ -1,0 +1,3 @@
+scenario,g_a033_scenario_proxy,g_a033_worst_case,weight,g_a038_measured_cases,g_a038_scenario_proxy_upper_bound,loss_lower_bound,loss_unit,limit,exceeds_limit
+G1,0.878526,forward_fast@101,0.150000,G1:forward_nominal:101=0.875605,0.875605,0.002921,scenario_proxy,0.054000,False
+G5,0.004260,stairs_15_down@202,0.150000,G5:stairs_10_down:101=0.000000;G5:stairs_10_down:202=0.000000;G5:stairs_10_down:303=0.000000,0.000000,0.044731,weighted_70,0.056040,False

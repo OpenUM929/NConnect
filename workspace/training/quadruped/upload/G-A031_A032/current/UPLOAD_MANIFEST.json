@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A031+G-A032",
+  "note": "G-A031 + G-A032 in one upload: both arm ZIPs byte-identical, target stages first, a server gate on criterion 1, full stages only for passing arms, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-15T00:00:00+00:00",
+  "release_id": "20260915_basic_motion_pair_v1",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A031_A032_PAIR_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A031_A032_basic_motion_pair.zip",
+      "server_path": "/workspace/GO2_G_A031_A032_basic_motion_pair.zip",
+      "sha256": "e714d9484c7fe5ea5a326a6d17f0361f74b93048e7929a5eed59f6743a2c7e6c"
+    }
+  ]
+}

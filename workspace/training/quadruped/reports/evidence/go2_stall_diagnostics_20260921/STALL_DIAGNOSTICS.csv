@@ -1,0 +1,13 @@
+arm,case,seed,robots,expected_robots,valid_robots,missing_robots,coverage_complete,direction,valid_seconds,stall_seconds,stall_share,stall_share_median,arrivals,arrival_rate,first_step_time_median_s,censored,reason
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_10_down,101,32,32,32,0,True,climb,621.54,74.08,0.119188,0.065709,29,0.90625,4.92,3,
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_10_down,202,32,32,32,0,True,climb,604.88,167.0,0.276088,0.239733,30,0.9375,4.96,2,
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_10_down,303,32,32,32,0,True,climb,601.04,145.54,0.242147,0.190451,31,0.96875,5.12,1,
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_15_down,101,32,32,32,0,True,climb,608.86,363.86,0.597609,0.611396,1,0.03125,5.56,31,
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_15_down,202,32,32,32,0,True,climb,623.36,381.86,0.612583,0.681725,1,0.03125,7.82,31,
+go2_g_a033_a017_track_lin_vel_xy_150,stairs_15_down,303,32,32,32,0,True,climb,623.36,357.72,0.573858,0.591889,2,0.0625,3.91,30,
+CreatorTemp,stairs_10_down,101,0,32,0,32,False,,,,,,,,,,steps.csv absent
+CreatorTemp,stairs_10_down,202,0,32,0,32,False,,,,,,,,,,steps.csv absent
+CreatorTemp,stairs_10_down,303,0,32,0,32,False,,,,,,,,,,steps.csv absent
+CreatorTemp,stairs_15_down,101,0,32,0,32,False,,,,,,,,,,steps.csv absent
+CreatorTemp,stairs_15_down,202,0,32,0,32,False,,,,,,,,,,steps.csv absent
+CreatorTemp,stairs_15_down,303,0,32,0,32,False,,,,,,,,,,steps.csv absent

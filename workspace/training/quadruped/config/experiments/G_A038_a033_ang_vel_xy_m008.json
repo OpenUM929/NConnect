@@ -1,0 +1,273 @@
+{
+  "schema_version": "a033_reward_1.0",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A038",
+  "run_id": "train_260917-Go2_a033_ang_vel_xy_m008_1000",
+  "experiment_slug": "go2_g_a038_a033_ang_vel_xy_m008",
+  "plan": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+  "decision_ref": "user request 2026-09-17: build the G3/G6 lever package the reward-mechanism forecast points to (ang_vel_xy_l2 -0.05 -> -0.08 on G-A033). Server execution is still not released; this is a local package.",
+  "dial_history_ref": "`ang_vel_xy_l2` | 기각(강화) | -0.05→-0.15 기각(A016). 완화는 미탐색 | G-D77",
+  "change_class": "reward_weight",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "ang_vel_xy_l2",
+    "isaaclab_base": -0.05,
+    "isaaclab_go2_rough": -0.05,
+    "isaaclab_go2_flat": -0.05,
+    "deployed_start": -0.08,
+    "baseline": -0.05,
+    "candidate": -0.08,
+    "direction": "away_from_isaaclab_go2_rough (toward the deployed start value)",
+    "after_change_vs_go2_rough": "two terms differ: feet_air_time (0.2 vs 0.01, inherited from G-A033) and ang_vel_xy_l2 (-0.08 vs -0.05, this run)",
+    "departure_reason": "Isaac Lab formula (envs/mdp/rewards.py ang_vel_xy_l2): sum of squared body roll/pitch rates. On G-A033 evaluation trajectories the robots 0.5-1.0 s before a rough side-step fall have a roll/pitch-rate lower bound far above the survivors (difference -10.7676), and this sign agrees across Pilot-01, A017 and G-A033. The Isaac Lab value is a comparison anchor, not proof of an optimum (MASTER 1-b).",
+    "literature": "R-Sci-4 (Hwangbo 2019): a penalty the objective motion must pay is a stall risk; here the walk margin (GO2_REWARD_MECHANISM_FORECAST.md section 2) is checked to stay in the walking zone",
+    "r6": "reward weight only; curriculum, terrain, DR, commands untouched"
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "ang_vel_xy_l2",
+    "from": -0.05,
+    "to": -0.08
+  },
+  "value_derivation": {
+    "source": "reports/GO2_REWARD_MECHANISM_FORECAST.md sections 2, 3, 5-1 and 6-0; evidence reports/evidence/go2_reward_mechanism_20260917/ (RUN_MARGIN.csv, SITUATIONS.csv, PROBE_SITUATIONS.csv)",
+    "role": "Penalize xy-axis base angular velocity using L2 squared kernel (Isaac Lab v2.3.1): the rate of rolling and pitching, not the tilt itself.",
+    "walk_margin": "G-A033 walk margin +0.1359 -> +0.0728 at -0.08 (WALK); the walking zone ends at weight -0.107243. A016 (-0.15 on Pilot-01) stopped because Pilot-01 sat in the boundary band (+0.0033); on G-A033 -0.15 is also predicted STOP, -0.08 is not.",
+    "situations": "partial margin change vs G-A033: side-step sway +0.3230 (the pre-fall state is penalised more on all 3 policies), push +0.1535 (more on both policies with >= 5 fallen robots), stairs climb -0.0107 (roll/pitch-rate lower bound, so the stairs cost may be larger).",
+    "rule": "a step that keeps the walk margin (+0.0728) above every stopped run (max +0.0155) and close to the walking run A017 (+0.0917); -0.08 is the deployed start value; the runs that carried it all stopped, but every one also had lin_vel_z -3 or track <= 1.2 and sits in the stop zone of the same margin (forecast section 2). No value between -0.05 and -0.08 has been trained",
+    "not_claimed": "The margins are reward arithmetic on measured behaviour (G-A033 trajectories and training logs). They say the reward prefers upright states more strongly; they do not predict how many robots stop falling. No score gain is estimated."
+  },
+  "rejected_alternatives": {
+    "lin_vel_z_l2": "strengthening also raises sway/push margins but lowers walk and stairs margins (forecast 6-0); weakening (G-A037) lowers sway and push",
+    "flat_orientation_l2": "second choice: its side-step sign disagrees across the three policies (forecast 5-1) and it charges every slope and stair constantly",
+    "track_lin_vel_xy_exp": "held at 1.5: rough side-step terminations rose on the grade-A pair 1.4 -> 1.5 (per-seed mean 19.333 of 32 robots on G-A033)",
+    "feet_air_time": "held at 0.2: lowering it cut slope progress (A031, grade A); raising it lowers the walk margin",
+    "dof_acc_l2": "the G5 lever of the forecast; no situation measurement exists for it, so it is a separate information run, not mixed into this one"
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "same training length and seed as G-A033, so the candidate is read at the checkpoint G-A033 was read at (900 of 1000). finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Primary readout is the termination count, not the 70-point total. G-A033 per-seed terminations: rough_lateral 19.333, push_pos_x 2.667, push_neg_x 2.000, stairs_10_down 2.000 (GO2_VARIABLE_INFLUENCE PAIR_METRICS.csv). The rough side-step count moved on every seed at the last single change (A017 -> G-A033).",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated in points. The forecast gives the direction of the reward preference, not the size of the behaviour change.",
+    "seed_noise": "Every training run used seed 42. One run cannot separate the lever from seed luck; a seed replicate of G-A033 is the control this run lacks (R-6 reading pending with the user).",
+    "waiver": {
+      "reason": "Exploratory run without a point-gain estimate, recorded as such. Built on the user request of 2026-09-17; the server run itself is not released.",
+      "recorded_in": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md section 8"
+    }
+  },
+  "preregistered": {
+    "source": "GO2_REWARD_MECHANISM_FORECAST.md section 8 (four zones) on the criteria of GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1, limits measured as in G-A035 section 15-4",
+    "threshold_basis": "Measured, not intended. tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd (max_scenario_weighted_loss_70_by_scenario); flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32. max_scenario_weighted_loss_70 keeps G-A035's uniform 2.04 as the fallback for any scenario not listed. min_total_points_delta is the 2-sigma detection limit 2.53. min_target_mean_proxy_delta 0.05 and min_target_groups_improved 2 are section 6-1's values, unchanged.",
+    "target_groups": {
+      "rough_lateral": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303"
+      ],
+      "push_pos_x": [
+        "G6:push_pos_x:101",
+        "G6:push_pos_x:202",
+        "G6:push_pos_x:303"
+      ],
+      "stairs_10_climb": [
+        "G5:stairs_10_down:101",
+        "G5:stairs_10_down:202",
+        "G5:stairs_10_down:303"
+      ]
+    },
+    "target_group_roles": {
+      "rough_lateral": "the G3 min-case and the sway situation this lever aims at (forecast 5-1)",
+      "push_pos_x": "the push case with the most G-A033 terminations; the push situation this lever aims at",
+      "stairs_10_climb": "the axis this lever may cost (stairs partial margin falls, forecast 6-0). In the target mean a climbing regression pulls criterion 1 down before the full stage"
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    },
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "mechanism_readout": "termination counts of rough_lateral and the four push cases, climbed-step counts of stairs_10_down and stairs_15_down (tools/go2_stairs_behavior.py rules), and the situation table of tools/go2_reward_mechanism.py rebuilt on the candidate. Recorded, not a criterion.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN"
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G3:rough_lateral:101",
+      "G6:push_pos_x:101",
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:101"
+    ],
+    "baseline": [
+      "G3:rough_lateral:101",
+      "G6:push_pos_x:101"
+    ],
+    "reasons": {
+      "G3:rough_lateral:101": "the side-step roll-over this lever aims at. No stored G-A033 video, so the baseline is rendered here.",
+      "G6:push_pos_x:101": "recovery after a forward push. No stored G-A033 video, so the baseline is rendered here.",
+      "G3:rough_forward:101": "rough forward walking: a stronger roll/pitch-rate penalty may slow or stiffen the gait on uneven ground",
+      "G4:slope_plus_20:101": "G-A033 climbs the slope to the end; guard against losing it"
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos (G-A033, same 4 env x 500 step) for rough_forward and slope_plus_20. The 10cm climb has no stored video; it is a target group and is judged from steps.csv"
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (10 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 90
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a038",
+    "keep_dir_name": "go2_g_a038_a033_ang_vel_xy_m008",
+    "result_zip": "GO2_G_A038_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A038_RESULT_READY",
+    "tmux_name": "go2_g_a038",
+    "upload_zip": "GO2_G_A038_a033_ang_vel_xy_m008_staged.zip",
+    "release_id": "20260917_a033_ang_vel_xy_m008_staged_v1",
+    "supersedes": "none"
+  },
+  "why": [
+    "Goal: every axis high while stairs rise. G-A033 loses most on G5 (stairs) and G3 (rough side-step); G6 (push) also loses.",
+    "Role first (Isaac Lab formula): ang_vel_xy_l2 penalises the rate of rolling and pitching.",
+    "Measured on G-A033 trajectories: robots about to fall on a rough side-step or after a push roll and pitch far faster than survivors.",
+    "That direction agrees on Pilot-01, A017 and G-A033 for the side-step, and on A017 and G-A033 for pushes (forecast 5-1).",
+    "Walk margin: -0.08 stays in the walking zone on G-A033. A016 (-0.15) stopped from a Pilot-01 base that sat in the boundary band.",
+    "Cost named in advance: the stairs partial margin falls a little, so the 10cm climb is a target group.",
+    "Levers not moved: track (side-step terminations rose at 1.5), flat_orientation (sign disagrees), lin_vel_z (costs walk/stairs), feet_air, dof_acc.",
+    "Risks pre-registered: stopping (walk zone), 10cm climb, slope, and every scenario loss limit of G-A037."
+  ],
+  "notes": {
+    "comparison_validity": "Same seed 42, 4096 envs, 1000 iterations, evaluator and registry SHA as the stored G-A033 arm, evaluated at the same checkpoint iteration. The only difference is ang_vel_xy_l2.",
+    "not_claimed": "No score gain is promised. One training seed cannot separate the lever from seed luck.",
+    "control_arm": "A G-A033 seed replicate is recommended as the control; it is not in this package because a seed-only run is outside the reward-weight reading of R-6 until the user decides."
+  },
+  "campaign_text": {
+    "analysis": "sections 2, 5-1, 6-0 and 8",
+    "target_summary_en": "(rough side-step, forward push, 10cm climb)",
+    "basis_ko": "§2(걷기 구간)·§5-1(계단·흔들림·밀침)·§6-0(네 구간)·§8(정책)",
+    "levers_ko": "바꾸지 않은 레버: `track_lin_vel_xy_exp`(1.5에서 옆걸음 종료 증가), `flat_orientation_l2`(흔들림 부호 불일치·경사 상시 벌점), `lin_vel_z_l2`(걷기·계단 비용), `feet_air_time`, `dof_acc_l2`(G5 레버, 별도 정보 측정).",
+    "target_summary_ko": "험지 옆걸음·앞 밀침·10cm 오르기 각 3 seed",
+    "target_note_ko": "10cm 오르기가 표적 묶음에 들어 있어, 오르기가 무너지면 1단계 평균이 내려가 2단계 전에 멈춘다.",
+    "readout_ko": "python tools/go2_stairs_behavior.py 와 python tools/go2_reward_mechanism.py   (종료 수·오르기 단수·상황 식 값을 기준선과 같은 규칙으로 판독)",
+    "not_claimed_ko": "학습 seed가 42 하나라, 한 회차로는 레버 효과와 seed 운을 가를 수 없다. 점수 이득 추정은 없다. 보상 식의 선호 방향만 근거다.",
+    "publish_status_ko": "권고 상태: 네 구간 예측(걷기 유지·흔들림·밀침 상승·계단 소폭 하락)에 근거한 탐색 회차. 점수 이득 추정 없음·학습 seed 1개. 서버 실행은 미해제."
+  },
+  "base_data": {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_BASE_DATA.md",
+    "terms": {
+      "ang_vel_xy_l2": {
+        "value": -0.08,
+        "walking_values": [
+          -0.05
+        ],
+        "status": "OUT_OF_RANGE",
+        "role": "Penalize xy-axis base angular velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:83]",
+        "out_of_range_reason": "Walking runs have only carried -0.05. -0.08 is inside the walking zone of the reward-mechanism forecast and is the deployed start value."
+      }
+    },
+    "walk_margin": {
+      "source": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+      "margin": 0.0728,
+      "zone": "WALK",
+      "stop_max": 0.0155,
+      "situations": {
+        "climb": -0.0107,
+        "sway": 0.323,
+        "push": 0.1535
+      },
+      "worse": [
+        "climb"
+      ],
+      "unmeasured_in_situations": [],
+      "reason": "The stairs partial margin falls (roll/pitch-rate lower bound); the 10cm climb is a target group so a regression stops the run at stage 1."
+    }
+  }
+}

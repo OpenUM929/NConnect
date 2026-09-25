@@ -1,0 +1,9 @@
+arm,seed,case,height_key,terrain_start_m,direction,robots,ge1,ge2,full
+A033,101,stairs_10_down,terrain_z,-0.6980790043259687,climb,32,29,16,3
+A033,202,stairs_10_down,terrain_z,-0.6984967605315427,climb,32,30,13,1
+A033,303,stairs_10_down,terrain_z,-0.6985134909497226,climb,32,31,14,1
+A033,SUM,stairs_10_down,,,,96,90,43,5
+A038,101,stairs_10_down,terrain_z,-0.6980790667992862,climb,32,2,0,0
+A038,202,stairs_10_down,terrain_z,-0.6984799889957204,climb,32,1,0,0
+A038,303,stairs_10_down,terrain_z,-0.6985135830659918,climb,32,2,0,0
+A038,SUM,stairs_10_down,,,,96,5,0,0

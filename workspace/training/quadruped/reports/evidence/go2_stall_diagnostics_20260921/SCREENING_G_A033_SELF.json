@@ -1,0 +1,156 @@
+{
+  "verdict": "INTERNAL_GATE_FAIL",
+  "rule": "upload/plan/GO2_FORWARD_STAIRS_POLICY_20260921.md section 4 (screening design criteria; not an official threshold and not a significance level)",
+  "not_claimed": "a PASS is a screening pass only: the full 69 cases, the guard axes, the videos and a symmetric independent-seed pair are still required before any promotion. fact_rules_v1 is judged separately by tools/verify_go2_basic_motion_harvest.py and is not weakened here.",
+  "unreadable": [],
+  "undecided": [],
+  "failed": [
+    "stairs_10_down forward distance median delta > 0",
+    "stairs_15_down forward distance median delta > 0",
+    "at least one climb count strictly up",
+    "stairs_10_down stall share median delta < 0",
+    "stairs_15_down stall share median delta < 0"
+  ],
+  "checks": [
+    {
+      "group": "stairs",
+      "check": "stairs_10_down forward distance median delta > 0",
+      "value": 0.0,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_10_down pooled ge1 >= baseline",
+      "value": "90 vs 90",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_10_down pooled ge2 >= baseline",
+      "value": "43 vs 43",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down forward distance median delta > 0",
+      "value": 0.0,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down pooled ge1 >= baseline",
+      "value": "4 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down pooled ge2 >= baseline",
+      "value": "0 vs 0",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "at least one climb count strictly up",
+      "value": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "stall",
+      "check": "stairs_10_down stall share median delta < 0",
+      "value": 0.0,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "stall",
+      "check": "stairs_15_down stall share median delta < 0",
+      "value": 0.0,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_10_down pooled posture falls <= baseline",
+      "value": "34 vs 34",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_10_down survival median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_15_down pooled posture falls <= baseline",
+      "value": "90 vs 90",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_15_down survival median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward pooled posture falls <= baseline",
+      "value": "4 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward survival median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral pooled posture falls <= baseline",
+      "value": "59 vs 59",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral survival median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward tracking proxy median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral tracking proxy median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    }
+  ],
+  "candidate": "workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate",
+  "baseline": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate"
+}

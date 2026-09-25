@@ -1,0 +1,14 @@
+CURRENT GO2 UPLOAD — G-A037 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A037\current\GO2_G_A037_a033_lin_vel_z_m1_one_command.zip
+   SHA256 1aecf6ce12cd393a26ded20543ea0ec7a7e2f3732330c729ba7ee1532107eaf4
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A037_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260917_a033_lin_vel_z_m1_one_command_v2
+STATUS ARTIFACT_VERIFIED
+직전 판은 러너 결함(G-A033 영상 로그 폴더 미생성, G-A038이 측정을 마친 뒤 여기서 멈춤)으로 대체됐다(../history 에 보존, 서버에 올린 적 없음).
+권고 상태: 이득 추정 없음·학습 seed 1개라 단일 회차로는 판정 불가(분석 §8-4). 서버 실행은 미해제.

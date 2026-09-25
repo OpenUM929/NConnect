@@ -1,0 +1,72 @@
+GO2 G-A039 ONE-COMMAND RUN GUIDE (파일 하나, 명령 하나, 결과 하나)
+
+- G-A039: G-A033 보상 그대로, 학습 -2.5e-07 → -1.25e-07 iter. 보상 가중치 변경 0.
+계획서: workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md §15 · 재계획 upload/plan/GO2_REPLAN_20260916.md P1
+서버 실행은 사용자 결정 사항이다. 이 문서는 실행 절차이지 실행 승인이 아니다.
+
+체크포인트 고정: 후보는 iter 900(1500 iter에서 save_interval이 보장하는 마지막 저장점)로 평가한다.
+기준선 G-A033은 1000 중 iter 900에서 평가됐다. iteration 차이가 이 시험의 변수 자체다.
+학습 중 러너가 그 체크포인트를 복사해 둔다. 복사를 못 하면 평가 전에 멈춘다.
+
+LOCAL FILE TO UPLOAD (이것 하나만)
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A039\current\GO2_G_A039_a033_dof_acc_m125e7_one_command.zip
+   SHA256 c5e8fd3c53e92ac1c168b1ae8237010a509af92becf81dda0419e876f541f76f
+안에 회차 ZIP이 빌더 출력과 바이트 동일하게 들어 있다. 회차 ZIP을 따로 올리지 않는다.
+
+SERVER DESTINATION
+/workspace/GO2_G_A039_a033_dof_acc_m125e7_one_command.zip
+
+ONE-LINE RUN (tmux 안에서 시작하고 즉시 리턴)
+cd /workspace && echo 'c5e8fd3c53e92ac1c168b1ae8237010a509af92becf81dda0419e876f541f76f  GO2_G_A039_a033_dof_acc_m125e7_one_command.zip' | sha256sum -c - && unzip -oq GO2_G_A039_a033_dof_acc_m125e7_one_command.zip && bash /workspace/go2_campaign_g_a039/server_run_go2_campaign.sh
+
+시작 전 러너가 하는 일
+회차 ZIP의 SHA 확인 → /workspace 아래로 풀기 → 회차 preflight(평가기·registry·G-A033 SHA) → 학습·play 프로세스, tmux 세션, 이전 결과가 있으면 거부.
+
+순서와 시간 [추정]
+1. 1단계 약 90분: 학습 1000 iter, 파국 게이트, 표적 9 case, G-A033 표지 5 case, 영상 4+2개.
+2. 서버 게이트가 통과시키면 2단계(나머지 case) 약 55분.
+3. 결과 ZIP 하나로 묶는다.
+1단계에서 끝나면 약 1시간 30분, 통과하면 약 2시간 25분. 접속 직후 잔여 GPU 시간을 실측해 기록한다.
+
+서버 게이트 (go2_target_gate.py) — 2단계를 돌릴지만 정한다
+판정 1항(표적 9 case proxy 평균 +0.05 이상, 세 묶음 중 2개 이상 상승)을 로컬 검증기와 같은 함수로 읽는다.
+- 묶음별 하한(fact_rules_v1): 평균이 한 묶음의 붕괴를 덮지 못한다. 묶음 평균 proxy 변화 ≥ stairs -0.0508 · rough -0.09479 · slope -0.03251
+- 계단 오른 로봇 수 하한(3 seed 합, 기준 workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv): stairs_10_climb_ge1 90-6.671 · stairs_10_climb_ge2 43-13.739 · stairs_15_climb_ge1 4-5.523. 1단계에 세 seed가 모두 있는 묶음은 여기서, 나머지는 로컬 판정에서 본다.
+- TARGET_PASS: 2단계를 돈다.
+- FAIL: 끝이다. 파국 게이트 정지·발산도 FAIL이다. 그래도 학습 로그의 도달 지형 레벨(1차 관측량)은 결과에 남는다.
+- REMEASURE_BASELINE: 표지 case가 저장 G-A033과 어긋났다. 1단계를 G-A033 재측정으로 한 번 더 돌리고 다시 판정한다.
+- UNDECIDED: 결측·계측 불일치다. 2단계를 돌리지 않고 로컬 검증으로 넘긴다.
+
+MONITOR
+tmux attach -t go2_campaign_g_a039
+진행 기록: /workspace/_keep/go2_campaign_g_a039/CAMPAIGN_LOG.txt ([ARM], [GATE], [GATE READ], [RESULT] 줄)
+
+첫 10분에 볼 것
+학습 로그 머리에 max_iterations 1000이 찍히는지, reward 표가 G-A033과 같은지 본다.
+
+재시작 규칙
+중단되면 `GO2_RESUME=1 bash /workspace/go2_campaign_g_a039/server_run_go2_campaign.sh`로 잇는다. 끝난 단계·case·영상은 건너뛴다.
+기본 재실행은 이전 결과를 지우지 않고 거부한다. 버리려면 `GO2_DISCARD_PREVIOUS=1`.
+
+DONE MARKER
+[DONE] GO2_G_A039_CAMPAIGN_RESULT_READY
+
+DOWNLOAD TO LOCAL workspace\_keep (이것 하나)
+/workspace/_keep/GO2_G_A039_CAMPAIGN_RESULT.zip
+/workspace/_keep/GO2_G_A039_CAMPAIGN_RESULT.zip.sha256
+패키징이 실패하면 `_keep/go2_g_a039_a033_dof_acc_m125e7`, `_keep/go2_campaign_g_a039`를 그대로 가져온다.
+
+결과를 받은 뒤 (로컬, GPU 0)
+python -B tools/verify_go2_basic_motion_harvest.py G-A039 --harvest workspace/_keep/go2_g_a039_a033_dof_acc_m125e7 --out workspace/_keep/go2_g_a039_a033_dof_acc_m125e7/harvest_verification.json
+python tools/build_go2_run_reports.py   (도달 지형 레벨은 reports/runs/TERRAIN_AT_PIN.csv)
+게이트 판정과 로컬 판정이 다르면 로컬 판정을 따르고, 차이를 기록한다.
+
+SERVER SHUTDOWN GATE
+DONE 표시만으로 종료하지 않는다. 결과를 받아 로컬 검증을 통과해야 종료 판단을 보고한다.
+
+RESULT INTERPRETATION — 실행 전에 고정 (사후 재협상 금지)
+판정 기준은 fact_rules_v1 (tools/go2_fact_rules.py) on the criteria of GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1; limits measured as in G-A035 section 15-4이다(기준값 불변).
+- 목표 축 G3+G5의 가중 점수 합이 올라야 한다(분석 §8-3b). 보호 축은 G1·G2·G4·G6·G7이다.
+- 계단 오른 로봇 수 하한(1단계 안내의 목록 전부)
+학습을 늘리면 점수가 오른다는 보장은 없다. 보장되는 것은 도달 지형 레벨이 관측된다는 것뿐이다.
+공식 evaluator·공식 점수는 OFFICIAL_RESULT_UNMEASURED다.

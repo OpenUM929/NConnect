@@ -1,0 +1,12 @@
+CURRENT GO2 UPLOAD — G-A032
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A032\current\GO2_G_A032_feet_air_time_010.zip
+   SHA256 d3e60771f4b6b2527c9d395b42712f372682ae0e07eca7effb68384a39ea6e15
+
+이 패키지는 A017 + feet_air_time 0.1을 1,000 iter 학습하고 후보 69 case를 잰다.
+자세한 절차는 같은 폴더의 GO2_G_A032_RUN_GUIDE.txt. 서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260915_a017_feet_air_time_010_candidate_suite_v1
+STATUS ARTIFACT_VERIFIED
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

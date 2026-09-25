@@ -1,0 +1,507 @@
+{
+  "schema_version": "seed_pair_1.0",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A045",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md",
+  "criteria_changes": "reports/GO2_A045_CRITERIA_CHANGES_20260924.md - what this round does and does not change against the G-A044 criteria, with the authority for each line.",
+  "change_class": "training_seed",
+  "promotion": "forbidden_not_a_reward_change",
+  "promotion_reason": "Both arms train at seed 43, so neither is a reward-weight change against the frozen baseline and neither may become a submission candidate whatever it scores. Two things are kept apart here. (1) What is established: no deployed file is edited - the seed is a CLI argument the deployed train.py forwards to Isaac Lab's rsl_rl train.py, and the deployed go2_task/ carries no seed at all (every earlier round passed --seed 42 down the same path). (2) What is NOT established: that technical pass-through makes the round permitted by the rules. R-6 also says participants change weights only, and 'we will not submit it' does not by itself authorise the experiment. So this field is an INTERNAL, conservative ban, not a finding that the rules forbid submitting a seed-43 policy - we have no basis for that claim either. The open reading is recorded as U2-SEED-REPLICATE-20260918 and is best closed by an organiser's answer or an explicit official basis rather than by our own reading alone. Nor do we bound the downside: if the organisers were to judge the server run itself as not permitted, whether the consequence stays inside this round is unverified - the G-A033 artifacts are preserved, but the scope of any sanction is undetermined, and a decision to run does not close the open reading.",
+  "open_decisions": [
+    "U2-SEED-REPLICATE-20260918"
+  ],
+  "collection": {
+    "mode": "full_69_single_stage",
+    "reason": "Same rule as G-A044 (defect C-11: G-A043's decisive loss sat outside its 23-case stage 1). A ruler round has a second reason: there is no winner to select, so a gate that exists to schedule GPU time for winners has nothing to decide. Both arms collect all 69 in one pass.",
+    "pinned_by": "run_config.env GO2_STAGE=full (read before the runner defaults STAGE to target)",
+    "cost": "A043 measured 46 more cases in 15m58s after its target stage, so the extra cases cost roughly a quarter of an hour; the saving stage 1 buys is the ~16 minutes of the full stage, not the ~58 minutes of training."
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "Same training length and evaluation checkpoint as G-A033 and G-A044 (900 of 1000), so the only difference from the stored G-A033 record is the training seed. finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A039, G-A038, G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "preregistered": {
+    "source": "fact_rules_v1 AND post_a043_push4_v1: workspace/training/quadruped/upload/plan/GO2_POST_A043_PLAN_20260922.md sections 5, 6 and 9. Combined locally by tools/verify_go2_basic_motion_harvest.py. There is no server gate in this run.",
+    "threshold_basis": "Measured, not intended, and UNCHANGED from G-A043 on purpose (plan section 9: the judgement thresholds and the final FAIL rule stay where they are). tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd; flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32 - the limit that actually caught G-A043's combined_yaw_right at all three seeds. The group floors and the climbed-robot floors are G-A043's, recomputed from the same stored G-A033 records for the same groups. None of these limits carries training-seed noise: every training in the project used seed 42, so they are lower bounds.  2026-09-24 (G-A045/G-A046): every number above is carried UNCHANGED on purpose. This round does not test a new threshold, it tests the threshold's own ruler - the seed-43 arm with G-A033's reward file is put through exactly the gate G-A044 failed. If an arm whose reward file is byte-identical to the baseline's fails these limits, the limits are reading training path variance, not reward weights. That reading is the product of the round; no limit moves either way afterwards, and no arm here can be promoted (promotion: forbidden).",
+    "target_groups": {
+      "stairs": [
+        "G5:stairs_10_down:101",
+        "G5:stairs_10_down:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303",
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "push": [
+        "G6:push_pos_x:101",
+        "G6:push_pos_x:202",
+        "G6:push_pos_x:303"
+      ]
+    },
+    "target_group_roles": {
+      "stairs": "the target. Three seeds of the 10 cm case, where the direct A017->A033 comparison (900/900) took the climbed-robot count 28 -> 90 (ge1) and 2 -> 43 (ge2) of 96, and where G-A042 took the ge2 count back to 0. If relaxing the vertical penalty does nothing here, the hypothesis that the penalty charges the rise is not supported at this step size.",
+      "rough": "the axis with the largest recoverable deduction (G3 4.22726 of 14.0, survival-1.0 counterfactual 10.71746, reports/GO2_AXIS_BOTTLENECK.md) and the axis this change is predicted to cost through the sway cell. rough_lateral is where a bouncier landing would show first.",
+      "push": "the disturbance guard and the second predicted loss. push_pos_x is G6's binding case and it is bound by survival (reports/GO2_AXIS_BOTTLENECK.md). A body allowed to move vertically for less cost may be thrown further by the same shove."
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "required_records": {
+      "terrain_level_at_pin": "REQUIRED RECORD, NOT A CRITERION: terrain at 700/800/900/999. Curriculum changes may mediate the total effect of the single weight; they do not alone invalidate that comparison. Direct mechanism and generalization remain unresolved; mean terrain is not saturation.",
+      "climb_counts": "REQUIRED RECORD AND PLAN SCREENING CRITERION: 10cm and 15cm pooled ge1 and ge2 each >= baseline; at least one of the four strictly increases. Existing fact_rules_v1 guards also apply. tools/go2_climb_count.py; both heights seed101/202/303.",
+      "stairs_forward_distance": "REQUIRED RECORD AND PLAN SCREENING CRITERION: for each of stairs_10_down and stairs_15_down, median seed delta of projected_progress_m > 0. Baseline and candidate use the same evaluator/registry and iteration900.",
+      "stall_time_share": "REQUIRED RECORD AND PLAN SCREENING CRITERION (plan section 4 item 2). The share of time, before the first termination, in which the commanded-direction projected speed stays under 0.05 m/s for at least one continuous second, with the first 0.5 s and the terminal row excluded; null with a reason when the valid time is zero. Computed by tools/go2_stall_diagnostics.py for both arms with the same rule. The threshold is a design value, not a measured one. Both heights require median seed delta < 0 with simultaneous survival protection.",
+      "first_step_time": "REQUIRED RECORD, NOT A CRITERION (plan section 4 item 3). The first timestamp at which the existing >=1 step climb rule fires, per robot, with non-arrivals recorded as null and censored=true. The mean over arrivals may not be reported as an improvement without the arrival rate beside it.",
+      "fall_channel_split": "REQUIRED RECORD. The candidate rough_lateral and stairs falls must be split into the height channel and the tilt channel the way tools/go2_a038_reread.py split G-A033's (reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv). This dial does not charge attitude at all, so a G3 loss is expected to arrive as a base contact rather than as a tilt.",
+      "push_both_directions": "REQUIRED RECORD AND PLAN SCREENING CRITERION (plan section 5). For push_pos_x and push_neg_x separately: pooled posture falls over the three seeds must not rise above the baseline, and the per-seed median deltas of survival and tracking proxy must be >= 0. This is the guard the situation sheet asks for (push -0.0386) and the reason push_neg_x is measured at three seeds instead of one. tools/go2_screening_gate.py reads it under version post_a042_push_v1.",
+      "push_all_directions": "REQUIRED RECORD AND PLAN SCREENING CRITERION (plan section 6). For push_pos_x, push_neg_x, push_pos_y and push_neg_y SEPARATELY: pooled posture falls over the three seeds must not rise above the baseline, and the per-seed median deltas of survival and tracking proxy must be >= 0. G-A043 guarded only the x directions and left y as a single-seed observation with no verdict; the full collection measures all four at three seeds, so the guard can now be as wide as the situation cell it guards (tools/go2_reward_mechanism.py PUSH_CASES is four directions). tools/go2_screening_gate.py reads it under version post_a043_push4_v1. This strengthens the bar and does not change G-A043's verdict, which was judged under post_a042_push_v1 and reproduces byte for byte.",
+      "g2_combined_yaw_both_directions": "REQUIRED RECORD, NOT A NEW CRITERION (plan section 9-2). combined_yaw_left and combined_yaw_right are measured at all three seeds - which the full collection gives automatically - and filmed on both arms at seed 101. The judgement that catches a loss there is the EXISTING max_flat_case_survival_drop of 0.0625, which already fired on G-A043's three seeds. No new judgement code is written for G2; what changes is that the case can no longer be missed by the collection or absent from the video set."
+    },
+    "mechanism_readout": "Both stair heights: progress and climbed counts and stall reduction are mandatory screening criteria; first arrival/censoring and terrain are diagnostics. Always retain all required data, even for a stationary policy. The result is reported in two lines the plan section 9-3 fixes in advance: the formal verdict, then the failure type (a major performance loss, or only a zero-margin gate).",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "plan_screening": {
+      "version": "post_a043_push4_v1",
+      "source": "workspace/training/quadruped/upload/plan/GO2_POST_A043_PLAN_20260922.md section 6",
+      "entrypoint": "tools/verify_go2_basic_motion_harvest.py",
+      "implementation": "tools/go2_screening_gate.py",
+      "inherits": "post_a042_push_v1 (which inherits forward_stairs_v1) unchanged - the stairs, stall and protection checks are the same code and the same thresholds. post_a043_push4_v1 adds the two G6 y-direction cases to the protection block and nothing else, so a harvest judged under either earlier edition keeps its verdict byte for byte.",
+      "combination": "artifact/fingerprint validity first; fact_rules_v1 AND post_a043_push4_v1; missing data overrides performance as INCONCLUSIVE",
+      "partial_coverage": "Any missing environment, invalid stall denominator or missing push case makes screening INCONCLUSIVE; keep valid observations without promotion."
+    },
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs": -0.02858,
+      "rough": -0.06145,
+      "push": -0.07561
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        }
+      },
+      "omitted": "stairs_15_climb_ge1 is left out on purpose. Its baseline sum is 4 robots over three seeds and its measured max_drop is 5.523, so its floor is -1.523 and no result can violate it. tools/go2_fact_rules.py calls that inoperable and raises it as a violation rather than passing it silently (defect S-2, 2026-09-19). The 15 cm climb is still measured in stage 1 as a required record and judged by the local plan screening, which compares the pooled counts and the per-seed progress directly; it is not a gate here because at this sample size it cannot be one."
+    },
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    }
+  },
+  "stages": {
+    "full": {
+      "default": true,
+      "env": "GO2_STAGE=full, pinned in run_config.env rather than passed on the command line",
+      "cases": "all 69 (23 case ids x evaluation seeds 101/202/303), in one pass",
+      "decides": "nothing on the server, and nothing about promotion anywhere. There is no target gate and no arm gates the other. Every criterion is read locally after recovery by tools/verify_go2_basic_motion_harvest.py and tools/go2_screening_gate.py, and for this round their verdicts are evidence about the ruler, not about a candidate.",
+      "estimate_minutes": 95,
+      "estimate_basis": "measured on G-A044, the same package shape at the same sizes: training 58m21s and 94m from start to the packaged result, for one arm. Two arms run one after the other on one GPU, so about 190 minutes is the plan figure and the session budget in plan section 7 is 240-300 minutes including recovery. A plan figure, not a guarantee; the runner enforces no limit."
+    }
+  },
+  "run_id": "train_260924-Go2_seed43_a033_rewards_1000",
+  "experiment_slug": "go2_g_a045_seed43_a033_rewards",
+  "decision_ref": "2026-09-24 plan workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md sections 3-5, written after G-A044 came back ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL and put a third point on the lin_vel_z_l2 dial. This arm changes no reward at all: it is G-A033's reward file trained again at seed 43, so the difference from the stored G-A033 record is the training path and nothing else.",
+  "dial_history_ref": "| G-A045 | 학습 seed `42→43` (보상 무변경) | G-A033 | — | ✓ | — | **미실행** | 2026-09-24 사양(서버 미해제). 계획 `upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md` §3. **보상 다이얼 회차가 아니다** — G-A033 의 보상 파일 그대로를 학습 seed 43 으로 다시 학습해, 저장된 G-A033(seed 42) 기록과의 차이로 **학습 경로 흔들림**을 한 표본 잰다. 전 회차가 seed 42 하나라 이 양은 측정 0건이었고(`reports/GO2_SEED_SENSITIVITY.md` §0), 그 공백 때문에 같은 다이얼 세 점의 낙상 비단조를 다이얼 탓과 경로 탓으로 가를 수 없다. R-6 안팎 해석은 열린 결정 U2-SEED-REPLICATE-20260918 이며, 보상 변경이 아니므로 **승급 대상이 아니다**(사양 `promotion: forbidden_not_a_reward_change`). |",
+  "pair": {
+    "campaign": "G-A045_A046",
+    "role": "ruler",
+    "counterpart": "G-A046",
+    "reads": "this arm minus the stored G-A033 (seed 42) is one sample of training path variance; the counterpart minus this arm is the dial's effect measured on a second path, symmetric with G-A043 minus G-A033 on the first one."
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "train_seed",
+    "from": 42,
+    "to": 43,
+    "scope": "train.py --seed, the CLI argument the deployed train.py forwards to Isaac Lab's rsl_rl train.py. No file in the package or on the server is edited to change it.",
+    "applied_by": "run_config.env TRAIN_SEED=43, which the arm runner passes as --seed; the rendered candidate and reference reward files are byte-identical, so training/reward_only.diff comes back empty and proves it."
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 43,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "lin_vel_z_l2",
+    "isaaclab_base": -2.0,
+    "isaaclab_go2_rough": -2.0,
+    "isaaclab_go2_flat": -2.0,
+    "deployed_start": -3.0,
+    "baseline": -2.0,
+    "candidate": -2.0,
+    "direction": "unchanged - this arm sits exactly on the Isaac Lab value, like G-A033.",
+    "changed_quantity": "the training seed, which has no external reference value: Isaac Lab's rsl_rl runner takes it from the command line and the deployed go2_task/ never names it.",
+    "r6": "no reward weight moves and no deployed file is edited. Not a reward change, so not promotable; open reading U2-SEED-REPLICATE-20260918."
+  },
+  "value_derivation": {
+    "source": "workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md sections 1-3",
+    "role": "none - no weight is chosen here. The quantity chosen is the seed, and 43 is chosen only because it is not 42 and because the project's own plans (GO2_A027_TUNING_PLAN_FOR_OPUS_20260911.md P3, GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-3) already name 43 as the replication seed. Using the seed they named keeps this round comparable with whatever they planned to compare it with.",
+    "rule": "the ruler arm reproduces the baseline exactly except for the seed; any other difference would make the measured spread mean something else.",
+    "not_claimed": "no score is predicted. A prediction would defeat the purpose: this arm exists to be surprised by."
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G5:stairs_15_down:101",
+      "G5:stairs_10_down:101",
+      "G3:rough_lateral:101",
+      "G2:combined_yaw_right:101",
+      "G6:push_pos_y:101",
+      "G1:forward_nominal:101"
+    ],
+    "baseline": [
+      "G5:stairs_15_down:101",
+      "G5:stairs_10_down:101",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "reasons": {
+      "G5:stairs_15_down:101": "the counter that moved most on this dial (pooled >=1 step 4 -> 39 -> 88 of 96 over -2.0, -1.75, -1.5) and the one this round asks to see repeated on a second training path. Filmed on both arms so a count can be read as a behaviour.",
+      "G5:stairs_10_down:101": "the other stair height, where the climbed count rose monotonically (43 -> 62 -> 94) while posture falls did not (34 -> 65 -> 17). Two counters disagreeing on the same case is the thing this round measures.",
+      "G3:rough_lateral:101": "the fall counter with the widest swing between runs at the same weight family (59 -> 80 -> 24 of 96). If the seed-43 ruler arm lands far from 59, the counter is path-sensitive and the axis limits built on it are looser than they look.",
+      "G2:combined_yaw_right:101": "the case that decided G-A043 (posture falls 0 -> 29 of 96) and the only guard counter that follows the dial monotonically. Filmed on both arms: if it breaks again at seed 43 under -1.5, the loss belongs to the value, not to the path.",
+      "G6:push_pos_y:101": "one of the four push directions whose pooled falls went 22 -> 66 -> 10 across the three points. A shove is the shortest event we film, so the recovery shape is readable rather than inferred from a survival number.",
+      "G1:forward_nominal:101": "the catastrophe case and the flat floor. Both arms must walk before any other number means anything; this is the film that shows it rather than asserting it from a gate."
+    },
+    "baseline_reuse": {
+      "G2:combined_yaw_right:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G2_combined_yaw_right_seed_101.mp4",
+        "sha256": "5c853ac1f36806139223e5130f2fbc452099338b05b0634bb702aa14a405be59",
+        "identity_sha256": "cb32f97129adc4a6dab9d1b5ce5ebf9bdeb63fefe32826d4bfe019b7bf783483",
+        "why": "the stored G-A033 counterpart at these exact settings, rendered by G-A044 and reused by SHA and fingerprint rather than filmed again"
+      },
+      "G6:push_pos_y:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G6_push_pos_y_seed_101.mp4",
+        "sha256": "ebf41c024da5694507f29da53714909551fb9a168b2c4960ea5ac517f0beba3a",
+        "identity_sha256": "6292fa0af7d19be4d54913bad236daf65d5fd9fcfd74e56282e6834bb6b0ddc5",
+        "why": "the stored G-A033 counterpart at these exact settings, rendered by G-A044 and reused by SHA and fingerprint rather than filmed again"
+      }
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos for the cases that already exist there; four are rendered in this arm and two are reused by SHA and fingerprint from workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos (same stored G-A033 policy, same 4 env x 500 step settings)."
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a045",
+    "keep_dir_name": "go2_g_a045_seed43_a033_rewards",
+    "result_zip": "GO2_G_A045_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A045_RESULT_READY",
+    "tmux_name": "go2_g_a045",
+    "upload_zip": "GO2_G_A045_seed43_a033_rewards_full69_v7.zip",
+    "release_id": "20260924_seed43_a033_rewards_full69_v7",
+    "supersedes": "v6 is kept in history unchanged.  Superseded the same day by an independent review of the published bytes, which found two recovery defects that no reading of the normal path would have shown: a resume whose training was half finished deleted the logs, the pinned checkpoint and the training log and retrained from scratch (C-27), and the campaign's completion check looked at RUNNER_RC/STAGE/DECISION only, so an arm whose collection was INCOMPLETE - or whose result ZIP did not exist - was skipped as done (C-28).  Both were reproduced by executing the v7 bytes, both are fixed at the source, and the fixes are held by executed gates.  Published bytes are never edited, so the corrected arm ships as v7.  No reward value, threshold, case list or video list changed.",
+    "baseline_reward_file": "rendered_reference"
+  },
+  "detectability": {
+    "basis": "The readout is a difference against a stored record, not a gain: total_70 against 42.52861 and the fall/climb counters against the G-A033 column of reports/evidence/go2_seed_pair_20260924/DIAL_THREE_POINTS.csv. Both directions are informative and the thresholds that separate them are fixed in plan section 4-1.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "None. An arm with the baseline's reward file has no expected gain; if it had one, the baseline would be mismeasured.",
+    "seed_noise": "Two seeds are not a distribution. This round produces ONE sample of training path variance and one replication attempt, so it can show that the variance is at least some size, or fail to show it is large - it cannot estimate a standard deviation, and the spec does not let a later reader treat 'D_path' as one. Every threshold in preregistered was built from evaluation resampling of seed-42 runs only (reports/GO2_SEED_SENSITIVITY.md section 0: training-seed variation measured 0 times), which is why they are lower bounds.  Two seeds are also not a cause: this pair repeats -2.0 and -1.5, not -1.75, so whatever it shows about training-path spread at those two weights, the mid-value's non-monotonic falls stay unexplained. Reward effect and training path are not exclusive either - a weight changes the trajectory, and its seed sensitivity may itself depend on the weight."
+  },
+  "inference": {
+    "readout": [
+      "reports/GO2_G_A044_READOUT.md",
+      "reports/GO2_G_A043_READOUT.md"
+    ],
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "No reward term changes here, so there is no formula to read. What the arm exercises instead is the one input every earlier round held fixed: the RNG seed that decides initial policy weights, environment resets and the sampling order of the whole 1000-iteration trajectory. Its role is to produce a second draw from the same training distribution.",
+    "rows": [
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/MONOTONICITY.csv",
+        "key": "falls_push_4dir,22,66,10",
+        "value": "66",
+        "selector": {
+          "counter": "falls_push_4dir"
+        },
+        "cells": {
+          "at_m2_0": "22",
+          "at_m1_75": "66",
+          "at_m1_5": "10",
+          "monotone": "False"
+        },
+        "reads": "the pooled posture falls of the four G6 push directions (4 cases x 3 seeds x 32 robots = 384) across the three measured values of one dial: 22 at -2.0, 66 at -1.75, 10 at -1.5. The middle value is three times worse than the weaker penalty AND three times worse than the stronger one. A dial cannot be read off that."
+      },
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/MONOTONICITY.csv",
+        "key": "climb_15_down_ge1,4,39,88",
+        "value": "88",
+        "selector": {
+          "counter": "climb_15_down_ge1"
+        },
+        "cells": {
+          "at_m2_0": "4",
+          "at_m1_75": "39",
+          "at_m1_5": "88",
+          "monotone": "True"
+        },
+        "reads": "the same three runs, counted on the stairs instead: robots reaching at least one 15 cm step go 4 -> 39 -> 88 of 96, in order. So the dial's effect IS orderly where it acts directly, and the disorder above is somewhere else. That gap is the question this round measures rather than argues."
+      },
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/DIAL_THREE_POINTS.csv",
+        "key": "G-A044,go2_g_a044_a033_lin_vel_z_m175,-1.75,42",
+        "value": "65",
+        "selector": {
+          "work_id": "G-A044"
+        },
+        "cells": {
+          "train_seed": "42",
+          "total_70": "38.89379",
+          "climb_10_down_ge2": "62",
+          "falls_stairs_10_down": "65"
+        },
+        "reads": "the midpoint run in one line: it climbed better than the baseline (62 against 43 robots two steps up the 10 cm stairs) and fell nearly twice as often on the same case (65 against 34). Its train_seed cell reads 42, like every other row in this table - that column is the one thing the project has never varied."
+      },
+      {
+        "source": "reports/runs/LEDGER.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150",
+        "value": "42.52861",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate"
+        },
+        "cells": {
+          "lin_vel_z_l2": "-2.0",
+          "iterations": "1000",
+          "total_70": "42.52861",
+          "cases": "69",
+          "locomotion": "POLICY_LOCOMOTES",
+          "replicate_of": ""
+        },
+        "reads": "the frozen baseline this round re-trains at a different seed: 42.52861/70 over 69 cases, walking, at this dial's Isaac Lab value. Its replicate_of cell is empty, and so is every other row's - the ledger has a column for replicates and no replicate to put in it."
+      },
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/SCORE_SPLIT.csv",
+        "key": "G-A044,go2_g_a044_a033_lin_vel_z_m175,38.89379",
+        "value": "-4.62775",
+        "selector": {
+          "arm": "G-A044"
+        },
+        "cells": {
+          "total_70": "38.89379",
+          "baseline_total_70": "42.52861",
+          "delta_70": "-3.63482",
+          "delta_from_survival_70": "-4.62775",
+          "delta_from_tracking_70": "+0.99438",
+          "interaction_70": "-0.00144",
+          "interaction_share_pct": "0.04",
+          "interaction_share_of_magnitude_pct": "0.03",
+          "net_change_share_of_magnitude_pct": "64.64"
+        },
+        "reads": "the midpoint run's total is re-scored twice with the same scorer: swap in the baseline's survival and 4.62775/70 comes back, swap in its tracking and 0.99438 goes the other way. So on these harvests the change travelled through the survival factor - an arithmetic attribution, not a cause. The interaction cell is the residual by construction, so the three parts always sum to delta_70; its size is given against two denominators (0.04% of the net change, 0.03% of the summed magnitudes) because the net-change ratio is unstable when opposite factors cancel - it is not a causal contribution and not an explanation-failure rate. G-A043 is the contrast: 79.89% against 30.75%, with its net change only 38.49% of the summed magnitudes."
+      }
+    ],
+    "contradicting": [
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/MONOTONICITY.csv",
+        "key": "falls_combined_yaw_right,0,0,29",
+        "value": "29",
+        "selector": {
+          "counter": "falls_combined_yaw_right"
+        },
+        "cells": {
+          "at_m2_0": "0",
+          "at_m1_75": "0",
+          "at_m1_5": "29",
+          "monotone": "True"
+        },
+        "reads": "against reading every fall counter as path noise: this guard counter does follow the dial. It stays at 0 for both stronger weights and only breaks at -1.5. If falls were dominated by which training path a run happened to take, this column should be noisy too, and it is not."
+      },
+      {
+        "source": "reports/evidence/go2_seed_pair_20260924/DIAL_THREE_POINTS.csv",
+        "key": "G-A043,go2_g_a043_a033_lin_vel_z_m15,-1.5,42",
+        "value": "17",
+        "selector": {
+          "work_id": "G-A043"
+        },
+        "cells": {
+          "total_70": "44.62454",
+          "falls_stairs_10_down": "17",
+          "falls_rough_lateral": "24",
+          "falls_push_4dir": "10"
+        },
+        "reads": "the weakest penalty is also the steadiest run on its feet: 17 against the baseline's 34 on the 10 cm stairs, 24 against 59 on the rough side-step, 10 against 22 on the pushes. Two of the three points therefore line up with a plain story (relax the vertical penalty, fall less), and only G-A044 sits off it. One off-trend point can be one unlucky training path - which is exactly what an untested ruler cannot tell us - but it can equally be a property of that value. This round does not assume which."
+      }
+    ],
+    "singularity": "Two counters read from the same three runs disagree about what the dial did. The climbed-robot counts are ordered with the weight (43 -> 62 -> 94 and 4 -> 39 -> 88); the posture-fall counts are not (34 -> 65 -> 17, 59 -> 80 -> 24, 22 -> 66 -> 10). WHERE the 70-point total moved is measured rather than argued: re-scoring G-A044 with its own tracking and the baseline's survival returns +4.62775/70, with its own survival and the baseline's tracking -0.99438, and the interaction is the residual by construction (-0.00144; reports/evidence/go2_seed_pair_20260924/SCORE_SPLIT.csv). That is an ARITHMETIC ATTRIBUTION inside a fixed scoring formula - it says the total travelled through the survival factor on these harvests, NOT that the weight change caused the falls. The residual is reported against two denominators because the first is unstable: 0.04% of the net change and 0.03% of the summed magnitudes for G-A044, against 79.89% and 30.75% for G-A043. The net-change ratio is neither a causal contribution nor an explanation-failure rate - when opposite factors cancel, the net change shrinks and the ratio blows up (G-A043's net change is only 38.49% of its summed magnitudes). What the gap between the two denominators does say is that G-A043's factors cancel heavily, which is the same fact as its scenario minimum sitting on different cases in the two arms. What no artifact can currently say is why the middle weight fell more: a weight changes the training trajectory, its seed sensitivity may depend on the weight, and the project has never repeated one reward at a second seed. Same-seed repeats do exist and came back identical (SAME_SEED_REPEAT.csv, terrain_999 0.5545 vs 0.5545 and 0.8163 vs 0.8163), so training here is deterministic at a fixed seed and the single gap is a repeat at a DIFFERENT seed.",
+    "predictions": {
+      "walk": {
+        "direction": "same",
+        "basis": "the reward file is byte-identical to the frozen baseline's, which walks (POLICY_LOCOMOTES in reports/runs/LEDGER.csv). Nothing in the arm pushes the walk margin either way."
+      },
+      "climb": {
+        "direction": "same",
+        "basis": "no weight moves, so the arithmetic predicts no change. The point of the arm is that the counters may move anyway; a difference here is the measurement, not a failure of this prediction."
+      },
+      "sway": {
+        "direction": "same",
+        "basis": "same reason. PROBE_SITUATIONS has no row for a seed change and is not consulted; treating its absence as a prediction would be quoting an empty cell."
+      },
+      "push": {
+        "direction": "same",
+        "basis": "same reason. The four push directions are the counter that swung widest between the three measured runs (22 -> 66 -> 10 of 384), so they are where a path effect would show first if there is one."
+      }
+    },
+    "falsified_if": "Read the pair, not the absolute number alone (plan section 4-2, corrected 2026-09-24). Three questions are separated. BEHAVIOUR LEVEL: does arm B reach at least 50 of 96 robots up two or more 15 cm steps (G-A043 reached 77; G-A033 and G-A044 reached 0), or 10 and below, which says it did not appear. REWARD EFFECT: is (B - A) at the SAME seed positive and in the same direction as (G-A043 - G-A033) at seed 42 - an absolute level says nothing about the dial if A is already high. SIDE EFFECT: is the G2 combined_yaw_right posture-fall increase (B - A) in the same direction as the seed-42 move 0 -> 29 of 96. Only when BEHAVIOUR and REWARD EFFECT both hold is the stair gain called reproduced; anything else is stated as what it is, and the space between is INCONCLUSIVE. The ruler reading is equally pre-registered and equally bounded: |total(A) - 42.52861| >= 2.53 means that AT -2.0 the seed alone moved as far as the promotion margin, which narrows how far a single-seed result generalises - it does NOT retire the promotion rule, does NOT invalidate the recorded INTERNAL_GATE_FAIL verdicts of G-A042/G-A043/G-A044, and does NOT license automatic long training (nothing measured says longer training reduces this spread). Below 1.26443 the only claim is that the seed difference observed at -2.0 was small. No threshold moves after the numbers are seen, and no arm here can be promoted.",
+    "risk_axes": [],
+    "seed_limit": "Two seeds are not a distribution. This round produces ONE sample of training path variance and one replication attempt, so it can show that the variance is at least some size, or fail to show it is large - it cannot estimate a standard deviation, and the spec does not let a later reader treat 'D_path' as one. Every threshold in preregistered was built from evaluation resampling of seed-42 runs only (reports/GO2_SEED_SENSITIVITY.md section 0: training-seed variation measured 0 times), which is why they are lower bounds.  Two seeds are also not a cause: this pair repeats -2.0 and -1.5, not -1.75, so whatever it shows about training-path spread at those two weights, the mid-value's non-monotonic falls stay unexplained. Reward effect and training path are not exclusive either - a weight changes the trajectory, and its seed sensitivity may itself depend on the weight.",
+    "status": "INFORMATION_RUN",
+    "status_reason": "INFORMATION_RUN, and it cannot be anything else: an arm that changes no reward weight has nothing to recommend. It buys one number the project has never had - how far a run moves when only the seed moves - and the spec forbids promotion in writing (promotion: forbidden_not_a_reward_change, open decision U2-SEED-REPLICATE-20260918).",
+    "exploratory": true,
+    "counterevidence_response": "The adverse rows stay in the spec: one guard counter (combined_yaw_right) does follow the dial, and the relaxed end fell less than the baseline everywhere, so 'it is all path noise' is not assumed - it is the hypothesis being tested. The design answers them rather than arguing with them: this arm changes no reward at all, so whatever distance it lands from the stored G-A033 record IS the path term, with nothing to attribute it to. Every threshold is kept where the measured rounds had it, both readings (large and small) are written down in advance with their numbers, and neither can promote anything."
+  },
+  "why": [
+    "The plan's goal in its own words: measure the ruler before trusting another reading from it. Not a candidate, not a value search.",
+    "What is measured, not argued: across the three runs of one dial the climbed-robot counts are ordered (43 -> 62 -> 94; 4 -> 39 -> 88) and the posture-fall counts are not (34 -> 65 -> 17; 59 -> 80 -> 24; 22 -> 66 -> 10). The 70-point total follows the falls.",
+    "Why it cannot be settled by another value: a fourth point on the dial is measured with the same untested ruler. The disagreement above is about the instrument, and only a same-reward second training path reads it.",
+    "Why now: the swings in question (-3.63 and +2.10 of 70) are the same size as the promotion margin (+2.53). Every FAIL the project has recorded sits inside that band.",
+    "Named in advance: if this arm lands on top of the stored G-A033 record, the round says so and dial exploration continues unchanged. A null result here is a real result and the plan section 4-1 table reads it the same way either direction."
+  ],
+  "notes": {
+    "comparison_validity": "Same 4096 envs, 1000 iterations, evaluator SHA, registry SHA, checkpoint iteration 900 and reward file as the stored G-A033 arm. The only difference is TRAIN_SEED. The package proves the reward half of that claim by construction: candidate and reference reward files are rendered from the same table and must come out byte-identical or the build fails.",
+    "not_claimed": "No score is promised or predicted, and nothing here can become a submission candidate (promotion: forbidden_not_a_reward_change).",
+    "sentinel_role": "The five sentinel cases re-measure the STORED G-A033 policy inside this run. They check the ruler's other half - that the evaluator still returns the same numbers for the same policy - so a difference in the candidate cannot be blamed on instrument drift.",
+    "r6": "No deployed file is edited; the seed is a CLI argument (see promotion_reason). The reading is open as U2-SEED-REPLICATE-20260918 and is the user's to close."
+  },
+  "campaign_text": {
+    "target_summary_ko": "69 case 전부를 한 번에 잰다. 이 팔은 **보상을 하나도 바꾸지 않는다** — G-A033의 보상 파일 그대로를 학습 seed 43으로 다시 학습해, 저장된 G-A033(seed 42) 기록과의 차이로 학습 경로 흔들림을 잰다.",
+    "target_note_ko": "판정 문턱은 하나도 바꾸지 않았다. 바뀐 것은 학습 seed 하나이고, 이 팔은 **승급 대상이 아니다**(promotion: forbidden_not_a_reward_change, 열린 결정 U2-SEED-REPLICATE-20260918).",
+    "basis_ko": "계획 §1~§3(세 점의 계수기 불일치)·§4(사전 등록 판독)·§5(R-6 읽기)"
+  },
+  "rejected_alternatives": {
+    "another_dial_value": "a fourth value of lin_vel_z_l2 (for example -1.875) is measured with the same unmeasured ruler, so it inherits the ambiguity this round removes. The plan keeps it available afterwards.",
+    "a_new_reward_term": "dof_acc_l2 and flat_orientation_l2 remain on hold with their own chains; starting one now would add a second unknown to a reading that already has one.",
+    "same_seed_repeat": "re-running seed 42 measures nothing: two same-seed repeats in this project came back identical (reports/GO2_SEED_SENSITIVITY.md section 1), so the training is deterministic at fixed seed.",
+    "three_or_more_seeds": "would estimate a spread rather than sample it, and costs three to five more trainings. The plan takes one sample first because one sample already separates 'smaller than the evaluation spread' from 'as large as the promotion margin'."
+  },
+  "base_data": {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_BASE_DATA.md",
+    "terms": {
+      "lin_vel_z_l2": {
+        "value": -2.0,
+        "walking_values": [
+          -2.0,
+          -1.75,
+          -1.5
+        ],
+        "status": "OBSERVED",
+        "role": "Penalize z-axis base linear velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:76]"
+      }
+    },
+    "note": "This arm holds the dial where the baseline holds it, so the base-data position is OBSERVED by definition. The table's own rule 5 says training seed is 42 everywhere and that differences between runs cannot be separated from seed luck - this round is the measurement that rule asks for."
+  }
+}

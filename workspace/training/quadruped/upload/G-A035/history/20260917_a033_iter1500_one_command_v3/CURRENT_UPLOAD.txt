@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A035 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A035\current\GO2_G_A035_a033_iter1500_one_command.zip
+   SHA256 56049c5b73ef6a3376c503f76c97db4c04efd24e1917557148690ae043fae6d1
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A035_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260917_a033_iter1500_one_command_v3
+STATUS ARTIFACT_VERIFIED
+이전 판 staged_v1 은 실행 불가로 폐기, one_command_v1 은 안내문의 거짓 서술 때문에 대체됐다(../history 에 보존, 둘 다 서버에 올린 적 없음).
+직전 판은 러너 결함(G-A033 영상 로그 폴더 미생성, G-A038이 측정을 마친 뒤 여기서 멈춤)으로 대체됐다(../history 에 보존, 서버에 올린 적 없음).
+권고 상태: 비권고(재계획 §5·§6).

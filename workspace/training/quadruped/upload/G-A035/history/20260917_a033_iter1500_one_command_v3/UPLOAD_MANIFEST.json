@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A035",
+  "note": "G-A035 G-A033 rewards unchanged, max_iterations 1000->1500. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. Supersedes 20260916_a033_iter1500_staged_v3. exploratory.",
+  "published_at_utc": "2026-09-17T00:00:00+00:00",
+  "release_id": "20260917_a033_iter1500_one_command_v3",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A035_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A035_a033_iter1500_one_command.zip",
+      "server_path": "/workspace/GO2_G_A035_a033_iter1500_one_command.zip",
+      "sha256": "56049c5b73ef6a3376c503f76c97db4c04efd24e1917557148690ae043fae6d1"
+    }
+  ]
+}

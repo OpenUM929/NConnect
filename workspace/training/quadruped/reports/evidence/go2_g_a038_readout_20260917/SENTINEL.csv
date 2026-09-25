@@ -1,0 +1,6 @@
+case,survival_now,survival_stored,tracking_now,tracking_stored,ruler_fields_differ,case_faults,agrees
+G3:rough_forward:101,0.968750,0.968750,0.765533,0.765533,,,True
+G4:slope_plus_20:202,1.000000,1.000000,0.858832,0.858832,,,True
+G7:dr_seed_202:202,0.968750,0.968750,0.758918,0.758918,,,True
+G3:rough_lateral:101,0.375000,0.375000,0.810071,0.810071,,,True
+G1:forward_nominal:101,1.000000,1.000000,0.949372,0.949372,,,True

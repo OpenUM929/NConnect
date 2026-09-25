@@ -1,0 +1,25 @@
+GO2 G-A035 — ONE FILE, ONE COMMAND, ONE RESULT
+========================================================
+
+UPLOAD   GO2_G_A035_a033_iter1500_staged.zip
+SHA256   516076b7eb3eb627de77213d3046dc95d242cb494043f3e32926221b53ef9742
+
+RUN
+  cd /workspace && unzip -o GO2_G_A035_a033_iter1500_staged.zip && cd /workspace/go2_g_a035 && \
+    tmux new -s go2_g_a035 -d 'bash server_run_go2_candidate_iter_pinned.sh 2>&1 | tee runner.log'
+
+WATCH
+  tmux attach -t go2_g_a035
+
+DONE WHEN YOU SEE
+  [DONE] GO2_G_A035_RESULT_READY
+
+BRING BACK
+  /workspace/go2_g_a035/GO2_G_A035_RESULT.zip  (and its .sha256)
+
+IF THE TARGET STAGE PASSES, the runner prints TARGET_PASS_FULL_STAGE_REQUIRED.
+Then run the full stage in the same folder:
+  cd /workspace/go2_g_a035 && GO2_STAGE=full GO2_RESUME=1 \
+    tmux new -s go2_g_a035_full -d 'bash server_run_go2_candidate_iter_pinned.sh 2>&1 | tee runner_full.log'
+
+NOTHING ELSE IS NEEDED.  No reward edit, no flag, no second upload.

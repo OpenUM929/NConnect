@@ -1,0 +1,13 @@
+CURRENT GO2 UPLOAD — G-A035 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A035\current\GO2_G_A035_a033_iter1500_one_command.zip
+   SHA256 3b8596036575b387780b5ae8e84a50d5f36b6ad45cd4bfcfe2f7d30015a75195
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A035_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260916_a033_iter1500_one_command_v1
+STATUS ARTIFACT_VERIFIED
+이전 판 20260916_a033_iter1500_staged_v1 은 실행 불가로 폐기됐다(../history 에 보존).

@@ -1,0 +1,96 @@
+{
+  "document_type": "CONDITIONAL_TUNING_HYPOTHESIS",
+  "work_id": "G-A029",
+  "status": "DRAFT_NOT_APPROVED_FOR_TRAINING",
+  "execution_authorized": false,
+  "training_authorized": false,
+  "baseline": {
+    "name": "A017",
+    "checkpoint_file": "model_900.pt",
+    "best_reward_step": 856,
+    "model_sha256": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4",
+    "report_read_status": "MISSING"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.008,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "action_rate_l2",
+    "from": -0.01,
+    "to": -0.008
+  },
+  "value_basis": "Engineering probe: reduce penalty magnitude 20%; not an identified optimum or established cause. Local reward comments describe agility/jitter tradeoff; action/contact telemetry missing.",
+  "training_design": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000,
+    "independent_training_seed_before_promotion": 43,
+    "automatic_long_training": false
+  },
+  "primary_cases": [
+    "G3/rough_forward",
+    "G7/dr_seed_{seed}"
+  ],
+  "evaluation_seeds": [
+    101,
+    202,
+    303
+  ],
+  "regression_scope": "All G1-G7, same evaluator on baseline and candidate; no partial /70",
+  "proposed_gate": {
+    "primary_paired_rmse_relative_improvement_min": 0.05,
+    "primary_progress_regression_allowed": false,
+    "survival_regression_allowed": false,
+    "other_cases_tracking_proxy_regression_max": 0.02,
+    "measurement_ambiguity": "INCONCLUSIVE; never performance promotion"
+  },
+  "required_video": {
+    "policy": "baseline and candidate",
+    "scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7"
+    ],
+    "steps": 1000,
+    "required": true,
+    "manifest_status": "NOT_FROZEN; must select cases before release"
+  },
+  "report_recovery": {
+    "required": true,
+    "destination": "_keep/go2_g_a029_action_rate_m0008/exported/report.html",
+    "before_evaluation": true,
+    "include_in_result_zip_and_sha": true,
+    "missing_empty_stale": "REPORT_REQUIRED_NOT_ACQUIRED"
+  },
+  "release_blockers": [
+    "A017 original training report missing; Pilot report READ_UNMATCHED",
+    "Action suppression vs jitter causal evidence unresolved",
+    "A017 not supported by current frozen-baseline engine; do not substitute Pilot silently",
+    "Video manifest and equivalent posture measurement must be frozen before release"
+  ],
+  "branch": {
+    "improve": "independent training seed and complete paired evaluation before promotion",
+    "regress": "reject this probe; retain A017; do not automatically strengthen another penalty",
+    "inconclusive": "repair only the missing measurement; no automatic long training"
+  }
+}

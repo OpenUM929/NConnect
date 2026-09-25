@@ -1,0 +1,4 @@
+SUPERSEDED 2026-09-16 by 20260916_a033_iter1500_one_command_v2.
+Never uploaded to the server.
+Reason: the README and experiment.json promised a model_900.pt determinism check the runner cannot make, called a between-reward 1.1 terrain spread noise-proof, and stated that 0.15 m stairs were never trained (the log terrain level is a mean). Runner and gate code are byte-identical in v2.
+See upload/plan/GO2_REPLAN_20260916.md section 4.

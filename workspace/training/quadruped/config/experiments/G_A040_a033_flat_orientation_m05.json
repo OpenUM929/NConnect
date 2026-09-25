@@ -1,0 +1,569 @@
+{
+  "schema_version": "a033_reward_1.1",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A040",
+  "run_id": "train_260919-Go2_a033_flat_orientation_m05_1000",
+  "experiment_slug": "go2_g_a040_a033_flat_orientation_m05",
+  "plan": "workspace/training/quadruped/reports/GO2_A038_REREAD_20260919.md",
+  "decision_ref": "2026-09-19 analyst re-read of G-A038 (reports/GO2_A038_REREAD_20260919.md). It keeps the rejection of ang_vel_xy_l2 -0.08 on the climb counter, which never touches the posture gate, and it names the failure physics of G3 for the first time: in rough_lateral the frozen baseline's falls come from the tilt channel alone (9, 8, 13 of 32 robots), while the stair failure is the height channel. This arm aims the one deployed dial that charges the tilt angle itself. Server execution is still not released; this is a local spec.",
+  "dial_history_ref": "| G-A040 | flat_orient `0.0→−0.5` | G-A033 | — | ✓ | — | **미실행** | 2026-09-19 사양(서버 미해제). §1-a 미탐색 4방향 중 `flat_orientation_l2`. 걷는 기준선 유효 측정 0건이라 `OUT_OF_RANGE`이고, A013·A025(`-1.0`)는 정지 기준선 위 비대칭 계측이라 기각 이력이 아니다 |",
+  "change_class": "reward_weight",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "flat_orientation_l2",
+    "isaaclab_base": 0.0,
+    "isaaclab_go2_rough": 0.0,
+    "isaaclab_go2_flat": -2.5,
+    "deployed_start": 0.0,
+    "baseline": 0.0,
+    "candidate": -0.5,
+    "direction": "away_from_isaaclab_go2_rough, toward isaaclab_go2_flat (one fifth of it)",
+    "after_change_vs_go2_rough": "two terms differ: feet_air_time (0.2 against 0.01, inherited from G-A033) and flat_orientation_l2 (-0.5 against 0.0, this run)",
+    "deployed_start_source": "config/go2_external_reference.json deployed_start: the deployed file's own start values are track 1.0, feet_air_time 0.01, lin_vel_z_l2 -3.0, ang_vel_xy_l2 -0.08, action_rate_l2 -0.01; flat_orientation_l2 is not in go2_task/_finalize.py _REP_BASELINE, so its deployed start is the Isaac Lab Go2 rough value 0.0, which is also the value the shipped quadruped_rewards.py carries today. The report baseline of R-4a is therefore 0.0 for this term.",
+    "departure_reason": "Isaac Lab formula (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:90 flat_orientation_l2): the squared xy components of gravity projected into the base frame, that is, the tilt ANGLE of the trunk, not the rate at which it tilts. Isaac Lab turns this penalty on only in the Go2 flat config (-2.5) and leaves it at 0.0 in the rough config; the upstream source does not say why (GO2_TUNING_BASE_DATA.md section 0-1, [모름]). We depart from the rough anchor because our own evaluation shows the trunk tilt angle is the quantity that decides G3: the fall verdict on rough_lateral is reached through the tilt channel alone for 9, 8 and 13 robots of 32 while the height channel reaches it for 0, and 19, 20 and 19 robots end in base contact (reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv and ROUGH_LATERAL_ROLLUP.csv). The deployed participant file marks the same dial as the one that aims at survival.",
+    "literature": "R-Sci-4 (Hwangbo 2019): every penalty except the objective term is multiplied by a curriculum coefficient that starts at 0.3, precisely so a new penalty does not teach the robot to stand still. We cannot apply that coefficient (it is code, outside R-6), so the principle is applied to the magnitude instead: take the smallest probed step, and pre-register the stall shortcut as a risk (stationary_guard_scenarios, max_new_stationary_cases_in_guard 0).",
+    "r6": "reward weight only, and one of the six names the deployed quadruped_rewards.py lists as free to change (item 6, 몸통 수평 유지). Curriculum, terrain, DR, commands, training length and seed are untouched. No open decision is needed: unlike G-A039 this term is inside the deployed list, so go2_task/_finalize.py counts it as a participant change rather than an extra."
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -0.5
+    }
+  },
+  "single_change": {
+    "name": "flat_orientation_l2",
+    "from": 0.0,
+    "to": -0.5,
+    "scope": "deployed_reward_weights_list",
+    "applied_by": "quadruped_rewards.py REWARD_WEIGHTS item 6 (몸통 수평 유지); the value replaces a number in the deployed dict, so the server log prints it with the other five listed names and go2_task/_finalize.py lists it as a participant change."
+  },
+  "value_derivation": {
+    "source": "reports/GO2_A038_REREAD_20260919.md sections 2-1 and 4-3; reports/GO2_AXIS_BOTTLENECK.md; reports/GO2_REWARD_MECHANISM_FORECAST.md sections 5, 5-1 and 8; evidence reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv and reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv and reports/evidence/go2_reward_mechanism_20260917/ (TILT.csv, SITUATIONS.csv, PROBE_SITUATIONS.csv); reports/GO2_TUNING_BASE_DATA.md sections 0-1, 1 and 4",
+    "role": "Penalize non-flat base orientation using L2 squared kernel (Isaac Lab v2.3.1, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:90): the squared xy components of projected gravity, that is the tilt angle of the trunk. It is the only deployed name that charges the angle rather than a velocity, and the posture gate that scores our survival reads that same angle (proj_grav_z).",
+    "walk_margin": "G-A033 walk margin +0.1359 -> +0.1245 at -0.5 (WALK), the smallest walk cost of the three probed magnitudes; the stop zone's top is +0.0155, so the candidate sits about eight times above it. The walking-side number is itself an estimate: the training logs carry no raw value for this term because every walking run weighted it 0, so the forecast substitutes the evaluation tilt value (forecast section 5, marked [추정]).",
+    "situations": "PROBE_SITUATIONS.csv fills all three situation columns for this term, unlike dof_acc_l2: climb +0.0560, sway +0.1548, push +0.1278 at -0.5. The forecast marks climb and sway with a cross-sign dagger, because the sign of those two partial margins disagrees between the three measured policies (SITUATIONS.csv). Only push agrees on all three.",
+    "rule": "-0.5 is the smallest magnitude in the probe grid (-0.5, -1.0, -2.5) and the smallest step that is still inside the band the deployed file writes for this dial (추천 0.0 ~ -2.0). Three independent reasons pick the smallest: (a) R-Sci-4 says a new penalty charged in full from iteration 1 is a stall risk, and we cannot apply the penalty curriculum that paper uses; (b) the only magnitude our own runs ever set is -1.0 (A013, A025) and both policies ended stationary, which is not a valid rejection (asymmetric instrumentation, G-D104) but is the only observation there is, and F5 asks a new size to be distinguishable from it; (c) every walking run weighted this term 0, so there is no observed range a fraction could sit inside and the smallest probed step is the one that risks least.",
+    "not_claimed": "No score gain is estimated. The partial margins are reward arithmetic over measured postures: they say the reward charges a tilted trunk more, not how many robots stop rolling over."
+  },
+  "rejected_alternatives": {
+    "ang_vel_xy_l2": "closed for retry. -0.15 is a valid rejection (A016, A024: terrain_999 0.0, POLICY_DOES_NOT_LOCOMOTE) and -0.08 was run as G-A038, where the 10cm climb collapsed on a counter that never touches the posture gate: robots with at least one step 90 -> 5, with two or more 43 -> 0, against the pre-registered floor 83.329 (reports/GO2_A038_REREAD_20260919.md section 4-1). GO2_NOW.md section 4 rule F5 forbids the retry, and relaxing the same term instead is the direction our own measurement argues against for G3: strengthening is what shrank the tilt-channel falls (9, 8, 13 -> 0, 2, 1).",
+    "track_lin_vel_xy_exp": "held at 1.5: every raise increased rough side-step terminations (31 -> 48 -> 58, GO2_TUNING_BASE_DATA.md section 2) and 1.5 is the Isaac Lab Go2 rough value, so raising also leaves the anchor.",
+    "feet_air_time": "held at 0.2: 0.01 and 0.1 were both rejected at stage 1 (A031, A032) and 0.35 stopped the policy (A015). It is the one deployed name closed in both directions.",
+    "lin_vel_z_l2": "G-A037 is HOLD_CONTRADICTED: -1.0 is outside the observed walking range and its derivation came out reversed in base data S5. Its sway partial margin also points the wrong way for G3 (-0.0940 at -1.0, PROBE_SITUATIONS.csv).",
+    "action_rate_l2": "-0.008 is a valid rejection (A018) and the strengthening direction has no situation columns at all: PROBE_SITUATIONS.csv leaves climb, sway and push empty for it.",
+    "dof_acc_l2": "G-A039 is HOLD_CONTRADICTED and sits outside the deployed list, which makes it invisible to go2_task/_finalize.py and dependent on open decision U1-R6-ENV-REWARD-20260918. A term inside the list needs no such decision, so it goes first.",
+    "max_iterations": "outside R-6 (not a reward weight). Matching the two arms' curriculum level at the pin would need it and is therefore not done here; see notes.curriculum_lag.",
+    "training_seed": "outside R-6. A seed replicate buys interpretation, not score (reports/GO2_SEED_SENSITIVITY.md section 5)."
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "same training length and seed as G-A033, so the candidate is read at the checkpoint G-A033 was read at (900 of 1000). finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A039, G-A038, G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Primary readout is the count that binds G3, not the 70-point total. G-A033 per-seed rough_lateral terminations are 19, 20, 19 of 32 and every one of them is a base contact (reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv envs_terminated and envs_base_contact). The same file decomposes the fall verdict, so the run is read on the tilt channel the lever charges, not on a score alone.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated in points. The partial margins give the direction of the reward preference, not the size of the behaviour change.",
+    "seed_noise": "Every training run used seed 42. One run cannot separate the lever from seed luck; a seed replicate of G-A033 is the control this run lacks, and it is outside R-6."
+  },
+  "preregistered": {
+    "source": "fact_rules_v1 (tools/go2_fact_rules.py) on the criteria of upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1; limits recomputed by tools/go2_fact_rules_spec.py for this spec's target groups",
+    "threshold_basis": "Measured, not intended. tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd; flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32. The group floors and the climbed-robot floors below were recomputed from the G-A033 raw records by tools/go2_fact_rules_spec.py for this spec's target groups: the rough floor is tighter than G-A039's because the group now carries six case-seed pairs instead of three. min_target_mean_proxy_delta 0.05 and min_target_groups_improved 2 are section 6-1's values, unchanged.",
+    "target_groups": {
+      "stairs": [
+        "G5:stairs_15_down:101",
+        "G5:stairs_15_up:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303",
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "slope": [
+        "G4:slope_plus_20:101",
+        "G4:slope_plus_20:202",
+        "G4:slope_plus_20:303"
+      ]
+    },
+    "target_group_roles": {
+      "stairs": "the guard that matters most for this lever: the term charges a tilted trunk on every tread, so a stalled climb is the predicted way to lose. Climbed-robot counts decide, not the G5 score.",
+      "rough": "the target axis. All six G3 case-seed pairs are here so that stage 1 produces a scorable G3 axis: go2_fixed_eval_report.py:106-141 drops an axis entirely when one pair is missing, which is why G-A038 ended with no G3 at all.",
+      "slope": "G-A033 climbs the 20 degree slope to the end (projected progress 8.840 m, GO2_TUNING_BASE_DATA.md section 5-2). A constant tilt charge on a slope is the second predicted way to lose, so the slope group stays in stage 1."
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "required_records": {
+      "terrain_level_at_pin": "REQUIRED RECORD, NOT A CRITERION (2026-09-19 analyst requirement 2). The readout must carry the candidate's terrain curriculum level at iterations 700 / 800 / 900 / 999 beside the baseline's row of reports/runs/TERRAIN_AT_PIN.csv, because G-A038's rough_lateral gain could not be attributed: the two arms sat at 4.4937 and 1.9499 at the same pin. It cannot be a gate: the logged level is a mean over all robots and five sub-terrains and the curriculum resends finished robots to a random row (reports/evidence/go2_curriculum_source_20260918/isaaclab_terrains_terrain_importer.py:314-321), so it cannot judge saturation. Making the two arms' curriculum level equal would mean moving the checkpoint or the training length, which is outside R-6 and is not done here; it is recorded as a residual confound in notes.curriculum_lag.",
+      "fall_channel_split": "REQUIRED RECORD. The candidate's rough_lateral and stairs_10_down falls must be split into the height channel and the tilt channel the way tools/go2_a038_reread.py split G-A033's (reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv). This lever charges the tilt channel only, so a G3 gain that does not show up there did not come from the lever.",
+      "climb_counts": "REQUIRED RECORD and a criterion: tools/go2_climb_count.py on the candidate's stairs_10_down and stairs_15_down records, counted by the same rule as the baseline's workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv."
+    },
+    "mechanism_readout": "terrain curriculum level at 700 / 800 / 900 / 999 from the training log, the target cases' height_rel_p10, the posture-gate falls split by channel, and the climbed-robot counts. Recorded; only the climbed-robot counts are a criterion.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs": -0.0508,
+      "rough": -0.06145,
+      "slope": -0.03251
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        },
+        "stairs_15_climb_ge1": {
+          "entries": [
+            "G5:stairs_15_down:101",
+            "G5:stairs_15_down:202",
+            "G5:stairs_15_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            1,
+            1,
+            2
+          ],
+          "baseline_sum": 4,
+          "max_drop": 5.523
+        }
+      }
+    },
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G3:rough_lateral:101",
+      "G5:stairs_10_down:101",
+      "G4:slope_plus_20:101",
+      "G3:rough_forward:101"
+    ],
+    "baseline": [
+      "G3:rough_lateral:101",
+      "G5:stairs_10_down:101"
+    ],
+    "reasons": {
+      "G3:rough_lateral:101": "the target case. The stored G-A033 videos do not include it, so the baseline is rendered here; the roll-over this lever aims at is the thing a human can actually see.",
+      "G5:stairs_10_down:101": "the step-up that G-A038 lost. No stored G-A033 video, so the baseline is rendered here.",
+      "G4:slope_plus_20:101": "G-A033 climbs the slope to the end; guard against a constant tilt charge turning that into a stall (stored baseline video).",
+      "G3:rough_forward:101": "rough forward walking, the other half of the G3 axis (stored baseline video)."
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos holds slope_plus_20 and rough_forward (G-A033, same 4 env x 500 step). The climbing case and rough_lateral are not stored there, so the baseline is rendered here; the numeric judgement on rough_lateral comes from workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv, not from video."
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (12 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 90,
+      "estimate_basis": "G-A039's split. The three extra rough_forward seeds move from the full stage to the target stage, so the total is unchanged and the split is approximate."
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a040",
+    "keep_dir_name": "go2_g_a040_a033_flat_orientation_m05",
+    "result_zip": "GO2_G_A040_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A040_RESULT_READY",
+    "tmux_name": "go2_g_a040",
+    "upload_zip": "GO2_G_A040_a033_flat_orientation_m05_staged.zip",
+    "release_id": "20260919_a033_flat_orientation_m05_staged_v1",
+    "supersedes": "none"
+  },
+  "why": [
+    "Goal: every axis high while the stairs rise. G-A033's recoverable deduction is largest on G5 (10.45527) and G3 (9.77274), and only G3's is bound by survival (reports/GO2_AXIS_BOTTLENECK.md).",
+    "Role first (Isaac Lab formula, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:90): flat_orientation_l2 charges the squared xy gravity components, that is the trunk's tilt ANGLE.",
+    "The 2026-09-19 re-read names G3's failure physics for the first time: in rough_lateral the fall verdict is reached through the tilt channel alone for 9, 8 and 13 robots of 32 and through the height channel for 0. The stair failure is the opposite (height channel 28, 32, 28; tilt channel 0).",
+    "The tilt angle rises before the roll-over, not after it: pre-termination tilt 0.31123 against 0.05106 for survivors, AUC 0.838 (TILT.csv). The penalty falls on the stage before the fall.",
+    "The deployed participant file marks this dial as the one that aims at survival: '생존율(규정 제8조 \"넘어지지 않고 완주\")을 직접 겨냥하는 다이얼', recommended band 추천 0.0 ~ -2.0.",
+    "It is the only one of the four unexplored directions in GO2_REWARD_EVIDENCE_MASTER.md section 1-a that is inside the deployed list and has all three situation columns filled.",
+    "Unknown named in advance: the climb and sway partial margins change sign between the three measured policies, so this chain is contradicted and the spec is a hold, not a recommendation.",
+    "Risks pre-registered under fact_rules_v1: climbed-robot floors (the reverse guard), per-scenario loss limits, flat guards, stationary guard."
+  ],
+  "notes": {
+    "comparison_validity": "Same seed 42, 4096 envs, 1000 iterations, evaluator and registry SHA as the stored G-A033 arm, evaluated at the same checkpoint iteration. The only difference is flat_orientation_l2.",
+    "not_claimed": "No score gain is promised. One training seed cannot separate the lever from seed luck, and the walking-side margin for this term is an estimate, not a log value.",
+    "deployed_list": "flat_orientation_l2 is item 6 of the six names in the deployed quadruped_rewards.py REWARD_WEIGHTS list, so this arm replaces a number rather than adding a line. go2_task/_finalize.py counts listed names as participant changes, which is exactly what G-A039's contradicting row said it does not do for dof_acc_l2. No open decision is needed for change_class reward_weight.",
+    "curriculum_lag": "Both arms are read at iter 900. reports/runs/TERRAIN_AT_PIN.csv shows a candidate whose curriculum lags is judged harshly there (G-A038 1.9499 against G-A033 4.4937 at the same pin), and the 2026-09-19 re-read could not separate lever from curriculum for exactly that reason. This spec cannot remove the confound, because matching the curriculum level would mean moving the checkpoint or the training length, both outside R-6. It makes the confound visible instead: the terrain level at 700 / 800 / 900 / 999 is a required record (preregistered.required_records).",
+    "residual_question": "If the candidate's terrain level at the pin also drops by half, this run repeats G-A038's ambiguity with a different lever. That is the strongest argument for asking the user about a curriculum-matched control arm, which is outside R-6 and therefore not proposed here."
+  },
+  "campaign_text": {
+    "analysis": "sections 2-1, 3 and 4-3",
+    "target_summary_en": "(rough side-step and rough forward, all six pairs; 15cm and 10cm climb; slope)",
+    "basis_ko": "§2-1(옆걸음 개선)·§3(G3 미측정 위험)·§4-3(조준 축으로서 G3)",
+    "levers_ko": "바꾸지 않은 레버: `track_lin_vel_xy_exp`(1.5에서 올리면 옆걸음 종료 증가, IL rough 값), `feet_air_time`(0.01·0.1 1단계 FAIL, 0.35 정지), `lin_vel_z_l2`(G-A037 보류), `ang_vel_xy_l2`(G-A038에서 10cm 오르기 붕괴 — F5로 재시도 불가), `action_rate_l2`(A018 기각, 상황 칸 전부 빈칸), `dof_acc_l2`(G-A039 보류, 목록 밖).",
+    "target_summary_ko": "험지 2 case 전수(3 seed) · 계단(15cm·10cm) · 경사 묶음",
+    "target_note_ko": "계단 묶음은 표적이자 역방향 관문이다 — 10cm ≥1단 오른 로봇 수 합이 하한(90에서 6.671 이내, 즉 83.329) 밑으로 내려가면 2단계 전에 멈춘다. G3를 올리면서 계단을 버리는 해를 점수는 보지 못한다.",
+    "readout_ko": "python tools/go2_climb_count.py  그리고  python tools/go2_axis_bottleneck.py   (오른 로봇 수를 기준선과 같은 규칙으로 세고, 축을 묶는 인수를 다시 계산한다)",
+    "not_claimed_ko": "학습 seed가 42 하나라, 한 회차로는 레버 효과와 seed 운을 가를 수 없다. 이득 추정은 없다. 계단·흔들림 부분 margin은 세 정책에서 부호가 엇갈린다 — 그래서 이 사양은 권고가 아니라 `HOLD_CONTRADICTED`다.",
+    "publish_note_ko": "보상 가중치 한 항만 바꾼다. 배포 파일 시작값 `0.0`(= Isaac Lab Go2 rough 값)에서 `-0.5`로, 배포 파일이 스스로 적은 권장 대역 `추천 0.0 ~ -2.0` 안이다. Isaac Lab은 이 벌점을 Go2 **평지** 설정에서만 `-2.5`로 켜고 험지 설정에서는 `0.0`으로 둔다 — 그 이유는 원문에 없다. 우리가 이탈하는 근거는 G3 실패가 기울기 채널이라는 2026-09-19 판독의 원자료다. 서버 실행은 미해제."
+  },
+  "base_data": {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_BASE_DATA.md",
+    "terms": {
+      "flat_orientation_l2": {
+        "value": -0.5,
+        "walking_values": [
+          0.0
+        ],
+        "status": "OUT_OF_RANGE",
+        "role": "Penalize non-flat base orientation using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:90]",
+        "out_of_range_reason": "All five walking runs weighted this term 0.0 (GO2_TUNING_BASE_DATA.md section 4), so there is no observed walking range and every non-zero value is OUT_OF_RANGE; a fraction of an observed range cannot be taken. The only non-zero magnitude any training run ever used is -1.0 (A013 and its replicate A025) and both policies ended stationary on a baseline that never walked, which G-D104 records as an invalid measurement rather than a rejection. -0.5 is therefore chosen from the probe grid (-0.5, -1.0, -2.5) as its smallest step, inside the deployed file's own band 추천 0.0 ~ -2.0, and distinguishable from the one observed magnitude as GO2_NOW.md section 4 rule F5 asks."
+      }
+    },
+    "walk_margin": {
+      "source": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+      "margin": 0.1245,
+      "zone": "WALK",
+      "stop_max": 0.0155,
+      "situations": {
+        "climb": 0.056,
+        "sway": 0.1548,
+        "push": 0.1278
+      },
+      "worse": [],
+      "unmeasured_in_situations": [],
+      "reason": "The zone is WALK and no situation partial margin gets worse, so this field is not required; it is written because the climb and sway numbers are cross-sign across the three measured policies (forecast section 5-1) and a reader must not take +0.0560 and +0.1548 as settled directions."
+    }
+  },
+  "inference": {
+    "readout": [
+      "reports/GO2_A038_REREAD_20260919.md",
+      "reports/GO2_G_A038_READOUT.md"
+    ],
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "Isaac Lab v2.3.1 flat_orientation_l2 (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:90) sums the squared xy components of gravity projected into the base frame. It charges the tilt ANGLE of the trunk, one derivative below ang_vel_xy_l2, which charges the tilt RATE. Our posture gate reads the same angle (proj_grav_z), so this is the only deployed weight whose formula and whose scoring gate measure the same quantity. PM clarification: sum(gravity_xy squared) is not the signed-z-plus-height survival gate. For unit gravity it equals 1-gz squared and is also zero upside down. No equivalence or fall-prevention guarantee is claimed.",
+    "rows": [
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv",
+        "key": "A033,101,rough_lateral,32,0,9,5,14",
+        "value": "9",
+        "reads": "A033 seed101 rough_lateral: tilt-only 9/32, height-only 0/32, both 5/32. This is posture-channel classification, not a causal diagnosis or the TILT base-contact population.",
+        "selector": {
+          "arm": "A033",
+          "seed": "101",
+          "case": "rough_lateral"
+        },
+        "cells": {
+          "envs_fall_tilt_only": "9"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv",
+        "key": "A033,101,stairs_10_down,32,3,0,1,4",
+        "value": "0",
+        "reads": "A033 seed101 stairs_10_down: tilt-only 0/32, height-only 3/32, both 1/32. Zero tilt-only does not mean the tilt channel never fires. This describes channel overlap, not proof of a reward effect.",
+        "selector": {
+          "arm": "A033",
+          "seed": "101",
+          "case": "stairs_10_down"
+        },
+        "cells": {
+          "envs_fall_tilt_only": "0"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv",
+        "key": "A033,202,rough_lateral,32,20,20",
+        "value": "20",
+        "reads": "20 of 32 robots terminate and all 20 terminations are base contacts: the trunk reaches the ground. This is the loss the G3 axis score is made of.",
+        "selector": {
+          "arm": "A033",
+          "seed": "202",
+          "case": "rough_lateral"
+        },
+        "cells": {
+          "envs_terminated": "20",
+          "envs_base_contact": "20"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/TILT.csv",
+        "key": "G-A033,rough_lateral,101,32,19,0.09201,0.05106,0.31123,0.838",
+        "value": "0.31123",
+        "reads": "A033 seed101 rough_lateral: base-contact 19 robots have pre-contact (1.0 to 0.5 s before contact) surrogate 1-gz^2 mean 0.31123; non-base-contact 13 robots have whole-episode mean 0.05106; pairwise AUC 0.838. Different windows; not tilt-only 9 statistics. Isaac gx^2+gy^2 equivalence requires unit norm, unverified here. Association does not establish a causal benefit of the weight.",
+        "selector": {
+          "name": "G-A033",
+          "case": "rough_lateral",
+          "seed": "101"
+        },
+        "cells": {
+          "tilt_pre_term": "0.31123"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv",
+        "key": "flat_orientation_l2,-0.5,-0.0114,+0.0560,+0.1548,+0.1278",
+        "value": "+0.1548",
+        "reads": "at -0.5 the sway partial margin rises +0.1548 and the walk margin falls only -0.0114. All three situation columns are filled for this term, unlike action_rate_l2 and dof_acc_l2 whose columns are empty.",
+        "selector": {
+          "term": "flat_orientation_l2",
+          "to": "-0.5"
+        },
+        "cells": {
+          "sway_delta": "+0.1548"
+        }
+      },
+      {
+        "source": "reports/GO2_AXIS_BOTTLENECK.md",
+        "key": "| G3 | `rough_lateral`@202 | 0.375 | 0.80519 | **4.22726** | 14.0 | `survival` | 10.71746 |",
+        "value": "4.22726",
+        "reads": "G3 scores 4.22726 of 14.0 and the binding factor is survival, not tracking; the survival-1.0 counterfactual is 10.71746. G5's counterfactual is only 1.43139, because the rest of G5 is forward distance."
+      },
+      {
+        "source": "reports/runs/BASELINE_MARGIN.csv",
+        "key": "delta_resample_sd,G3,1.01823",
+        "value": "1.01823",
+        "reads": "the measured resampling sd of the G3 weighted score. It sets the guard limit (twice it) and it is the scale the run is read against.",
+        "selector": {
+          "metric": "delta_resample_sd",
+          "scenario": "G3"
+        },
+        "cells": {
+          "value": "1.01823"
+        }
+      },
+      {
+        "source": "reports/runs/SCENARIO_SCORES.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,candidate,posture_gate_v2",
+        "value": "9.77274",
+        "reads": "the ledger row of the frozen baseline: G3's deduction is 9.77274, the second largest after G5's 10.45527 and the largest one that survival can recover.",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate",
+          "instrument": "posture_gate_v2"
+        },
+        "cells": {
+          "G3_deduction": "9.77274"
+        }
+      },
+      {
+        "source": "quadruped_rewards.py",
+        "key": "생존율(규정 제8조 \"넘어지지 않고 완주\")을 직접 겨냥하는 다이얼",
+        "value": "추천 0.0 ~ -2.0",
+        "reads": "the deployed participant file names this dial as the one that aims at the rule-book survival definition and writes its own recommended band. -0.5 is inside it."
+      }
+    ],
+    "contradicting": [
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/SITUATIONS.csv",
+        "key": "Pilot-01,sway,prefall,31,0.798934,0.652121,0.0483834,0.16742,1.7943",
+        "value": "0.16742",
+        "reads": "on Pilot-01 the pre-fall robots' tilt value 0.16742 is LOWER than the upright robots' 0.267954, the reverse of G-A033 and A017. The sign of the sway partial margin is not stable across the three measured policies, so this lever is not the consistent-sign one for G3; ang_vel_xy_l2 and lin_vel_z_l2 are, and both are closed for other reasons.",
+        "selector": {
+          "policy": "Pilot-01",
+          "situation": "sway",
+          "group": "prefall"
+        },
+        "cells": {
+          "flat_orientation_l2": "0.16742"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/SITUATIONS.csv",
+        "key": "Pilot-01,climb,climb,19,0.560179,0.9207,0.0507942,0.09692,0.367423",
+        "value": "0.09692",
+        "reads": "on Pilot-01 the robots that climbed carry a HIGHER tilt value (0.09692) than the ones that stalled (0.0531873), and A017 is the same way. Only on G-A033 do the stalled robots tilt more. On two of three policies this penalty would charge the climbers, which is the stair regression this run risks.",
+        "selector": {
+          "policy": "Pilot-01",
+          "situation": "climb",
+          "group": "climb"
+        },
+        "cells": {
+          "flat_orientation_l2": "0.09692"
+        }
+      },
+      {
+        "source": "reports/GO2_REWARD_MECHANISM_FORECAST.md",
+        "key": "`flat_orientation_l2`는 밀침에서만 부호가 일치하고 흔들림·계단은 엇갈린다",
+        "value": "2순위",
+        "reads": "the forecast's own tuning policy ranks this term second for G3 and G6 precisely because only the push situation agrees across policies, and it names the constant slope charge as the second reason. This spec does not overturn that ranking; it takes the term because the two first-ranked ones are closed."
+      },
+      {
+        "source": "config/go2_external_reference.json",
+        "key": "\"undesired_contacts\": null, \"flat_orientation_l2\": 0.0, \"dof_pos_limits\": 0.0",
+        "value": "-2.5",
+        "reads": "Isaac Lab v2.3.1 sets this weight to 0.0 in the Go2 ROUGH config and to -2.5 only in the FLAT config. Our baseline already equals the rough anchor, so the change departs from the external reference on exactly the terrain the run targets, and the upstream source gives no reason for turning it off there."
+      },
+      {
+        "source": "reports/GO2_TUNING_BASE_DATA.md",
+        "key": "| A013 | 1 | -3 | -0.08 | -0.01 | 0.01 | -1 | 0.030 | 0.094 | — | — | 정지 |",
+        "value": "정지",
+        "reads": "the only runs that ever set this term non-zero, A013 and its replicate A025 at -1.0, both ended stationary (rough forward speed 0.030 m/s). The baseline was Default-01, which never walked, so this is not a valid rejection (G-D104), but it is the only observation of the term in a training run and it points at the stall shortcut."
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/TILT.csv",
+        "key": "G-A033,stairs_15_down,101,32,1,0.13640,0.13914,0.11275,0.387",
+        "value": "0.387",
+        "reads": "on the 15cm climb the terminating robot's pre-termination tilt (0.11275) is LOWER than the survivors' mean (0.13914), AUC 0.387. G5's loss is stalling, not falling, so the target axis G5 gets no support from this lever and only carries its risk.",
+        "selector": {
+          "name": "G-A033",
+          "case": "stairs_15_down",
+          "seed": "101"
+        },
+        "cells": {
+          "pre_term_auc": "0.387"
+        }
+      }
+    ],
+    "singularity": "Two dials read the same physical event one derivative apart. The rate dial (ang_vel_xy_l2) is the only lever our 18 trainings ever moved that shrank the tilt-channel falls of rough_lateral (9, 8, 13 -> 0, 2, 1 in the 2026-09-19 re-read), and it is now closed in the strengthening direction by two rejections (-0.15 at A016, -0.08 at G-A038, where robots climbing at least one 10cm step fell 90 -> 5). The angle dial sits in the same deployed list, is charged by the same posture gate that scores our survival, is the dial the deployed file itself labels as aiming at survival, and has never been measured on a walking baseline. The caution that pairs with it is that the angle is also what a slope and a tread require: the same formula that charges the robot for lying over charges it for leaning up.",
+    "predictions": {
+      "walk": {
+        "direction": "down",
+        "basis": "walk margin +0.1359 -> +0.1245 (PROBE_SITUATIONS.csv walk_delta -0.0114 at -0.5), the smallest walk cost of the three probed magnitudes and about eight times above the stop zone's top +0.0155. The walking-side value is itself an estimate: no training log carries this term's raw value because every walking run weighted it 0 (forecast section 5, [추정])."
+      },
+      "climb": {
+        "direction": "unknown",
+        "basis": "PROBE_SITUATIONS.csv gives +0.0560 at -0.5, but the forecast marks that cell with a cross-sign dagger: SITUATIONS.csv has the climbers tilting MORE than the stalled robots on Pilot-01 and A017 and LESS on G-A033. One of the three signs must be wrong for the other two, so no direction is claimed. This is the axis the climb_guard protects."
+      },
+      "sway": {
+        "direction": "unknown",
+        "basis": "on the baseline itself the pre-termination tilt is 0.31123 against 0.05106 for survivors with AUC 0.838 (TILT.csv), and the partial margin is +0.1548 (PROBE_SITUATIONS.csv). The direction is claimed for this baseline only: Pilot-01 reverses it, which is recorded in contradicting. PM correction 2026-09-19: association in the frozen trajectory is not a prediction of the retrained policy; the cross-policy sign disagreement leaves the retraining direction unknown."
+      },
+      "push": {
+        "direction": "up",
+        "basis": "the only situation whose sign agrees on all three measured policies (SITUATIONS.csv push prefall above upright for Pilot-01, A017 and G-A033); partial margin +0.1278 at -0.5. G6's binding case push_pos_x@101 is also bound by survival (reports/GO2_AXIS_BOTTLENECK.md)."
+      }
+    },
+    "falsified_if": "the rough target group's mean proxy change falls below the pre-registered floor target_group_floor.rough (-0.06145 over all six G3 case-seed pairs), or the rough_lateral fall verdicts reached through the tilt channel alone do not fall below the baseline's 9, 8, 13 of 32 (reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv, recomputed on the candidate by the same rule). Either observation refutes the reading 'the trunk's tilt angle is what the rolling robot fails on, so charging the angle reduces the roll-over'. The reverse guard is separate and also pre-registered: if the 10cm climbed-robot sum falls below climb_guard stairs_10_climb_ge1 (baseline sum 90, max drop 6.671, floor 83.329) the arm stops at stage 1 even if G3 rose, because the score cannot see a solution that trades the stairs away. Read from the climbed-robot counter and the fall-channel split, never from the mean terrain level, which is capped by the curriculum's random resend (reports/evidence/go2_curriculum_source_20260918/isaaclab_terrains_terrain_importer.py:314-321).",
+    "risk_axes": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7"
+    ],
+    "seed_limit": "Every training run used seed 42 and no seed replicate exists, so a result supports or refutes the chain; it does not fix a lever effect (reports/GO2_SEED_SENSITIVITY.md section 5). A second, larger confound is named in notes.curriculum_lag: the two arms' terrain level at the pin is recorded but cannot be equalised inside R-6.",
+    "status": "HOLD_UNSUPPORTED",
+    "status_reason": "2026-09-24: HOLD_UNSUPPORTED — 번호가 실행된 회차들보다 앞선다. 이 사양(2026-09-19)이 쓰인 뒤 G-A041·G-A042·G-A043·G-A044 가 실제로 실행·회수됐고, 그 넷이 이 사양의 전제를 바꿨다: 같은 기준선 위에서 다이얼 셋이 더 측정됐고, 낙상 계수기가 학습 경로에 얼마나 흔들리는지가 열린 질문이 됐다(reports/evidence/go2_seed_pair_20260924/MONOTONICITY.csv). 값(-0.5)을 버리는 것이 아니라 **지금 원장 위에서 사슬을 다시 세워야 한다**는 뜻이고, 그 전에는 실행 상태로 두지 않는다(관문 tools/test_go2_detectability_gate.py::test_10 이 이 어긋남을 잡았다 — 회차 원장이 A038 에서 멈춰 있던 동안에는 보이지 않았다, 결함 C-25). 2026-09-19 PM correction: counterevidence is scientific uncertainty, not a user-approval requirement for an exploratory reward-only experiment. INFORMATION_RUN records a candidate for review, not an executable release. The exact -0.5 value is the smallest existing probe-grid magnitude, not a measured optimum. Existing preregistration must still be validated: the stairs_15 guard has a non-positive floor and axis guard keys require consistency review. No package is issued by this strategy review.",
+    "exploratory": true,
+    "counterevidence_response": "Preserve all six adverse rows. Cross-policy sign disagreement prevents a predicted improvement claim. Test G3 survival and tracking together and retain stair/slope guards. This is an information experiment, not performance promotion."
+  },
+  "open_decisions": []
+}

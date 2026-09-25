@@ -1,0 +1,85 @@
+GO2 G-A041 ONE-COMMAND RUN GUIDE (파일 하나, 명령 하나, 결과 하나)
+
+- G-A041: G-A033 위에서 `ang_vel_xy_l2` -0.05 → -0.04 하나만 바꾼다. 나머지 가중치·seed 42·4096 env·1000 iter는 G-A033과 같다.
+근거: workspace/training/quadruped/reports/GO2_ANG_VEL_RELAX_AUDIT_20260920.md §1-1(계단 정지 동작)·§2-3(이 다이얼 값 이력)·§4-1(오른 로봇 수 기각)
+서버 실행은 사용자 결정 사항이다. 이 문서는 실행 절차이지 실행 승인이 아니다.
+
+값을 고른 방법
+- 원문 역할: Penalize xy-axis base angular velocity using L2 squared kernel (Isaac Lab v2.3.1, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83): the squared roll and pitch RATES of the trunk. It is not the tilt angle (flat_orientation_l2) and it does not read foot height. G-A033 logged term value over weight is 3.020, about 1.74 rad/s rms (GO2_TUNING_BASE_DATA.md section 0-1).
+- 걷기 구간: G-A033 walk margin +0.1359 -> +0.1569 at -0.04 (reports/evidence/go2_reward_mechanism_20260917/PROBES.csv, zone WALK, delta +0.0210). Relaxing a penalty can only raise this margin, so the walking side is the safe side of this arm; the stop zone top is +0.0155. The walk-zone edge weight for this term is -0.107243, on the strengthening side, and is not approached here. The probe grid was extended to -0.04 and -0.03 by tools/go2_reward_mechanism.py on 2026-09-20 exactly as forecast section 8-1 requires for a new value; nothing else in that generator changed.
+- 계단·흔들림·밀침: reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv at -0.04: walk +0.0210, climb +0.0036, sway -0.1077, push -0.0512. All three situation columns are filled for this term. The climb cell is the only one of the four that points the way this arm wants, and it is the smallest of the four. The size of the climb cell may not be used: forecast section 9 recorded that at -0.08 the predicted climb change was -0.0107 while the measured collapse was 90 -> 5 climbed robots. Direction only.
+- 규칙: -0.04 is one step of 0.01 on the untested side, the smallest change this dial can take that still prints differently in the server log. Three reasons pick the smallest step rather than the -0.02 already in the probe grid: (a) the measured sensitivity of this dial is high and one-sided - a 60 percent strengthening (-0.05 -> -0.08) removed 94 percent of the climbing robots, so a 60 percent relaxation is not a small perturbation; (b) the predicted sway loss scales with the step, -0.1077 at -0.04 against -0.3230 at -0.02, and only the smaller one keeps the expected G3 cost inside the pre-registered guard 2.03646/70 under linear scaling of G-A038 measured sway proxy +0.356 (estimate, not measurement); (c) F5 asks a new size to be distinguishable from the rejected ones, and -0.04 is on the opposite side of the baseline from every rejected value. There is no measured optimum for this dial in this direction; the 20 percent is a step size, not a derived value.
+- 주장하지 않는 것: No score gain is estimated. The partial margins are reward arithmetic over measured postures: they say what the reward prefers, not how many robots will climb. The one post-hoc check of this exact dial got the climb size wrong by an order of magnitude and got the sway size nearly right - so the loss channel of this arm is the better calibrated one, and that is a reason for caution, not for confidence.
+바꾸지 않은 레버: `track_lin_vel_xy_exp`(1.5에서 올리면 옆걸음 종료 증가, IL rough 값), `feet_air_time`(0.01·0.1 1단계 FAIL, 0.35 정지), `lin_vel_z_l2`(G-A037 보류), `action_rate_l2`(A018 기각, 상황 칸 전부 빈칸), `dof_acc_l2`(G-A039 보류, 목록 밖), `flat_orientation_l2`(G-A040 — G3를 겨누는 별도 팔).
+
+체크포인트 고정: 후보는 iter 900로 평가한다. 기준선 G-A033도 1000 중 iter 900에서 평가됐다.
+
+LOCAL FILE TO UPLOAD (이것 하나만)
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A041\current\GO2_G_A041_a033_ang_vel_xy_m004_one_command.zip
+   SHA256 c5f4ef693cf5c15025b046d5689570758459102b3e4d4295e962cdaae28d4208
+안에 회차 ZIP이 빌더 출력과 바이트 동일하게 들어 있다. 회차 ZIP을 따로 올리지 않는다.
+
+SERVER DESTINATION
+/workspace/GO2_G_A041_a033_ang_vel_xy_m004_one_command.zip
+
+ONE-LINE RUN (tmux 안에서 시작하고 즉시 리턴)
+cd /workspace && echo 'c5f4ef693cf5c15025b046d5689570758459102b3e4d4295e962cdaae28d4208  GO2_G_A041_a033_ang_vel_xy_m004_one_command.zip' | sha256sum -c - && unzip -oq GO2_G_A041_a033_ang_vel_xy_m004_one_command.zip && bash /workspace/go2_campaign_g_a041/server_run_go2_campaign.sh
+
+시작 전 러너가 하는 일
+회차 ZIP의 SHA 확인 → /workspace 아래로 풀기 → 회차 preflight(평가기·registry·G-A033 SHA) → 학습·play 프로세스, tmux 세션, 이전 결과가 있으면 거부.
+
+순서와 시간 [추정]
+1. 1단계 약 90분: 학습 1000 iter, 파국 게이트, 표적 9 case(10cm 계단 3 seed · 험지 2 case 전수(3 seed) · 밀침 묶음), G-A033 표지 5 case, 영상 4+2개.
+2. 서버 게이트가 통과시키면 2단계(나머지 case) 약 55분.
+3. 결과 ZIP 하나로 묶는다.
+1단계에서 끝나면 약 1시간 30분, 통과하면 약 2시간 25분. 접속 직후 잔여 GPU 시간을 실측해 기록한다.
+
+서버 게이트 (go2_target_gate.py) — 2단계를 돌릴지만 정한다
+판정 1항(표적 9 case proxy 평균 +0.05 이상, 세 묶음 중 2개 이상 상승)을 로컬 검증기와 같은 함수로 읽는다.
+이 팔은 얻는 쪽과 잎는 쪽을 한 단계에서 함께 재다. 계단은 점수가 아니라 오른 로봇 수로 잴다(10cm ≥1단 합이 90에서 6.671 이내, 즉 83.329 미만이면 중단). 험지·밀침은 예측된 손실이라 1단계에 함께 넣었다 — 손실 크기를 추정이 아니라 측정으로 남기기 위해서다.
+- 묶음별 하한(fact_rules_v1): 평균이 한 묶음의 붕괴를 덮지 못한다. 묶음 평균 proxy 변화 ≥ stairs -0.02858 · rough -0.06145 · push -0.07561
+- 계단 오른 로봇 수 하한(3 seed 합, 기준 workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv): stairs_10_climb_ge1 90-6.671 · stairs_10_climb_ge2 43-13.739. 1단계에 세 seed가 모두 있는 묶음은 여기서, 나머지는 로컬 판정에서 본다.
+- TARGET_PASS: 2단계를 돈다.
+- FAIL: 끝이다. 파국 게이트 정지·발산도 FAIL이다.
+- REMEASURE_BASELINE: 표지 case가 저장 G-A033과 어긋났다. 1단계를 G-A033 재측정으로 한 번 더 돌리고 다시 판정한다.
+- UNDECIDED: 결측·계측 불일치다. 2단계를 돌리지 않고 로컬 검증으로 넘긴다.
+
+로컬 판정 (2단계 후) — 다른 축을 지키는 조건
+- 총점 +2.53/70 이상(2σ 검출 한계)
+- 평지 G1·G2: 시나리오 proxy 하락 ≤ 0.054, case 생존 하락 ≤ 0.0625
+- 나머지 축: 시나리오별 가중 손실 ≤ 자기 평가 표집 sd의 2배 (G3 2.03646 · G4 0.99632 · G5 0.05604 · G6 0.86196 · G7 0.40358 /70)
+- 새 정지 case 0, POLICY_LOCOMOTES
+- 목표 축 G3+G5의 가중 점수 합이 올라야 한다(분석 §8-3b). 보호 축은 G1·G2·G4·G6·G7이다.
+- 계단 오른 로봇 수 하한(1단계 안내의 목록 전부)
+
+MONITOR
+tmux attach -t go2_campaign_g_a041
+진행 기록: /workspace/_keep/go2_campaign_g_a041/CAMPAIGN_LOG.txt ([ARM], [GATE], [GATE READ], [RESULT] 줄)
+
+첫 10분에 볼 것
+학습 로그 머리의 reward 표에서 ang_vel_xy_l2가 -0.04이고 나머지가 G-A033과 같은지 본다.
+
+재시작 규칙
+중단되면 `GO2_RESUME=1 bash /workspace/go2_campaign_g_a041/server_run_go2_campaign.sh`로 잇는다. 끝난 단계·case·영상은 건너뛴다.
+기본 재실행은 이전 결과를 지우지 않고 거부한다. 버리려면 `GO2_DISCARD_PREVIOUS=1`.
+
+DONE MARKER
+[DONE] GO2_G_A041_CAMPAIGN_RESULT_READY
+
+DOWNLOAD TO LOCAL workspace\_keep (이것 하나)
+/workspace/_keep/GO2_G_A041_CAMPAIGN_RESULT.zip
+/workspace/_keep/GO2_G_A041_CAMPAIGN_RESULT.zip.sha256
+패키징이 실패하면 `_keep/go2_g_a041_a033_ang_vel_xy_m004`, `_keep/go2_campaign_g_a041`를 그대로 가져온다.
+
+결과를 받은 뒤 (로컬, GPU 0)
+python -B tools/verify_go2_basic_motion_harvest.py G-A041 --harvest workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004 --out workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004/harvest_verification.json
+python tools/go2_climb_count.py  그리고  python tools/go2_axis_bottleneck.py   (오른 로봇 수를 기준선과 같은 규칙으로 세고, 축을 묶는 인수를 다시 계산한다)
+게이트 판정과 로컬 판정이 다르면 로컬 판정을 따르고, 차이를 기록한다.
+
+SERVER SHUTDOWN GATE
+DONE 표시만으로 종료하지 않는다. 결과를 받아 로컬 검증을 통과해야 종료 판단을 보고한다.
+
+RESULT INTERPRETATION — 실행 전에 고정 (사후 재협상 금지)
+판정 기준은 fact_rules_v1 (tools/go2_fact_rules.py) on the criteria of upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1; limits recomputed by tools/go2_fact_rules_spec.py for this spec's target groups이다.
+강화가 나빴다고 완화가 좋다는 결론은 나오지 않는다. 학습 seed가 42 하나라 레버 효과와 seed 운을 가를 수 없고, 이득 추정은 없다. 그래서 이 사양은 권고가 아니라 `INFORMATION_RUN`이다.
+공식 evaluator·공식 점수는 OFFICIAL_RESULT_UNMEASURED다.

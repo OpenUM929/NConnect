@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A037",
+  "note": "G-A037 G-A033 + lin_vel_z_l2 -2.0->-1.0. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-17T00:00:00+00:00",
+  "release_id": "20260917_a033_lin_vel_z_m1_one_command_v2",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A037_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A037_a033_lin_vel_z_m1_one_command.zip",
+      "server_path": "/workspace/GO2_G_A037_a033_lin_vel_z_m1_one_command.zip",
+      "sha256": "1aecf6ce12cd393a26ded20543ea0ec7a7e2f3732330c729ba7ee1532107eaf4"
+    }
+  ]
+}

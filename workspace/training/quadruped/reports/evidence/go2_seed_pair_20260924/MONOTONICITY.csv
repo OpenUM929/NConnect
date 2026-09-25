@@ -1,0 +1,11 @@
+counter,at_m2_0,at_m1_75,at_m1_5,monotone,reads
+total_70,42.5286,38.8938,44.6245,False,가운데 값이 양 끝보다 낮다 — 보간이 성립하지 않는다
+climb_10_down_ge2,43,62,94,True,다이얼을 풀수록 오른 로봇이 는다
+climb_15_down_ge1,4,39,88,True,다이얼을 풀수록 오른 로봇이 는다
+climb_15_down_ge2,0,0,77,True,다이얼을 풀수록 오른 로봇이 는다
+falls_stairs_10_down,34,65,17,False,가운데 값에서만 낙상이 솟는다 — 다이얼 크기로 설명되지 않는다
+falls_stairs_15_down,90,95,49,False,가운데 값에서만 낙상이 솟는다 — 다이얼 크기로 설명되지 않는다
+falls_rough_lateral,59,80,24,False,가운데 값에서만 낙상이 솟는다 — 다이얼 크기로 설명되지 않는다
+falls_rough_forward,4,3,6,False,가운데 값에서만 낙상이 솟는다 — 다이얼 크기로 설명되지 않는다
+falls_push_4dir,22,66,10,False,가운데 값에서만 낙상이 솟는다 — 다이얼 크기로 설명되지 않는다
+falls_combined_yaw_right,0,0,29,True,다이얼 방향과 같은 방향으로 움직인다

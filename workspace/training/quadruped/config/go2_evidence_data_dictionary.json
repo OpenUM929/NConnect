@@ -1,0 +1,395 @@
+{
+  "schema_version": "go2_evidence_semantics_v1",
+  "scope": "Five high-risk legacy aggregate tables; lossless semantic view, not full raw-data recertification",
+  "source_preservation": "Do not overwrite legacy CSVs, raw telemetry, logs or approved ZIPs",
+  "datasets": {
+    "tilt": {
+      "source": "workspace/training/quadruped/reports/evidence/go2_reward_mechanism_20260917/TILT.csv",
+      "keys": [
+        "name",
+        "case",
+        "seed"
+      ],
+      "producer": "tools/go2_reward_mechanism.py::tilt_case",
+      "population": "envs within one policy/case/evaluation seed; base-contact label is not posture fall",
+      "window": "until first terminated/truncated, terminal row excluded",
+      "aggregation": "per-env temporal mean, then equally weighted env means",
+      "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+      "identity_status": "UNKNOWN_FROM_AGGREGATE: resolve checkpoint/model/evaluator through original run manifests before cross-run comparison",
+      "metrics": {
+        "robots": {
+          "canonical_name": "envs_with_preterminal_samples",
+          "unit": "env",
+          "formula": "len(per_robot)",
+          "kind": "DERIVED",
+          "population": "envs within one policy/case/evaluation seed; base-contact label is not posture fall",
+          "window": "until first terminated/truncated, terminal row excluded",
+          "aggregation": "per-env temporal mean, then equally weighted env means",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "terminated": {
+          "canonical_name": "base_contact_env_count",
+          "unit": "env",
+          "formula": "count distinct env with term_base_contact==1 before first done (including terminal row)",
+          "kind": "DERIVED",
+          "population": "envs within one policy/case/evaluation seed; base-contact label is not posture fall",
+          "window": "observed prefix including terminal event",
+          "aggregation": "count distinct env",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "tilt_mean": {
+          "canonical_name": "gravity_z_surrogate_episode_mean",
+          "unit": "dimensionless",
+          "formula": "mean_env(mean_time(1-gz^2))",
+          "kind": "SURROGATE",
+          "population": "envs within one policy/case/evaluation seed; base-contact label is not posture fall",
+          "window": "until first terminated/truncated, terminal row excluded",
+          "aggregation": "per-env temporal mean, then equally weighted env means",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "tilt_survivors": {
+          "canonical_name": "non_base_contact_gravity_z_surrogate_episode_mean",
+          "unit": "dimensionless",
+          "formula": "mean_env(mean_time(1-gz^2))",
+          "kind": "SURROGATE",
+          "population": "envs with samples and no recorded base contact; NOT verified survivors",
+          "window": "whole observed preterminal episode",
+          "aggregation": "per-env temporal mean, then equally weighted env means",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "tilt_pre_term": {
+          "canonical_name": "base_contact_gravity_z_surrogate_prewindow_mean",
+          "unit": "dimensionless",
+          "formula": "mean_env(mean_window(1-gz^2))",
+          "kind": "SURROGATE",
+          "population": "base-contact envs having nonempty prewindow; effective count NOT STORED",
+          "window": "[end-1.0,end-0.5) seconds; retained last 60 nonterminal rows",
+          "aggregation": "unweighted mean of available per-env window means",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "pre_term_auc": {
+          "canonical_name": "base_contact_prewindow_vs_noncontact_episode_pairwise_auc",
+          "unit": "probability",
+          "formula": "sum(I(a>b)+0.5*I(a==b))/(n_prewindow*n_noncontact)",
+          "kind": "DERIVED",
+          "population": "available base-contact prewindow envs x non-base-contact episode envs",
+          "window": "asymmetric: [end-1.0,end-0.5) vs whole episode",
+          "aggregation": "all cross-group pairs; denominator NOT STORED; cannot assume robots-terminated if samples absent",
+          "limitations": "q=1-gz^2 surrogate; equality to gx^2+gy^2 requires unverified unit norm. Terminal event counts and effective window sample counts may differ.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        }
+      }
+    },
+    "situations": {
+      "source": "workspace/training/quadruped/reports/evidence/go2_reward_mechanism_20260917/SITUATIONS.csv",
+      "keys": [
+        "policy",
+        "situation",
+        "group"
+      ],
+      "producer": "tools/go2_reward_mechanism.py::situation_groups,window_values",
+      "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+      "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+      "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+      "limitations": "groups differ in terrain/window; seed identity lost in aggregation. These are selected observational groups, not a controlled causal contrast.",
+      "identity_status": "UNKNOWN_FROM_AGGREGATE: resolve checkpoint/model/evaluator through original run manifests before cross-run comparison",
+      "metrics": {
+        "robots": {
+          "canonical_name": "selected_env_window_count",
+          "unit": "env-window",
+          "formula": "count selected nonempty env windows",
+          "kind": "DERIVED",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "groups differ in terrain/window; seed identity lost in aggregation. These are selected observational groups, not a controlled causal contrast.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "track_lin_vel_xy_exp": {
+          "canonical_name": "tracking_xy_kernel_window_mean",
+          "unit": "dimensionless",
+          "formula": "mean(exp(-error_xy^2/0.5^2))",
+          "kind": "DERIVED",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "groups differ in terrain/window; seed identity lost in aggregation. These are selected observational groups, not a controlled causal contrast.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "track_ang_vel_z_exp": {
+          "canonical_name": "tracking_yaw_kernel_window_mean",
+          "unit": "dimensionless",
+          "formula": "mean(exp(-error_yaw^2/0.5^2))",
+          "kind": "DERIVED",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "groups differ in terrain/window; seed identity lost in aggregation. These are selected observational groups, not a controlled causal contrast.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "lin_vel_z_l2": {
+          "canonical_name": "world_height_difference_velocity_squared_mean",
+          "unit": "m^2/s^2",
+          "formula": "mean(((root_z[t]-root_z[t-1])/0.02)^2)",
+          "kind": "SURROGATE",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "world-frame finite difference, NOT body-frame root_lin_vel_b.z^2; fixed dt assumption; slope/posture affects equivalence",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "ang_vel_xy_l2": {
+          "canonical_name": "inclination_magnitude_difference_rate_squared_mean",
+          "unit": "rad^2/s^2",
+          "formula": "mean(((acos(clamp(-gz[t]))-acos(clamp(-gz[t-1])))/0.02)^2)",
+          "kind": "SURROGATE",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "scalar inclination magnitude derivative, NOT omega_body_x^2+omega_body_y^2; misses rotation of tilt direction at constant magnitude; fixed dt and unit-vector assumptions",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "flat_orientation_l2": {
+          "canonical_name": "gravity_z_surrogate_window_mean",
+          "unit": "dimensionless",
+          "formula": "mean(1-gz^2)",
+          "kind": "SURROGATE",
+          "population": "evaluation seeds 101/202/303 pooled; climb group=10cm >=2 steps; stall group=15cm <1 step; upright label=non-base-contact, not posture verified",
+          "window": "climb: after settle/travel to peak; stall/upright: after settle to end; prefall: [end-1.0,end-0.5)",
+          "aggregation": "per-env selected-window mean then pooled-env mean; NOT equal-seed mean",
+          "limitations": "unit norm unverified; upright and inverted both yield zero; not signed posture survival gate",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        }
+      }
+    },
+    "probes": {
+      "source": "workspace/training/quadruped/reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv",
+      "keys": [
+        "term",
+        "to"
+      ],
+      "producer": "tools/go2_reward_mechanism.py::probe_situations",
+      "population": "frozen G-A033 reference behavioral aggregates; not a newly trained policy",
+      "window": "fixed archived behavior; no post-change rollout",
+      "aggregation": "counterfactual weighted partial-margin difference",
+      "limitations": "candidate behavior is held fixed; incomplete reward channels; not predicted official points or experimentally measured improvement",
+      "identity_status": "UNKNOWN_FROM_AGGREGATE: resolve checkpoint/model/evaluator through original run manifests before cross-run comparison",
+      "metrics": {
+        "walk_delta": {
+          "canonical_name": "fixed_behavior_walk_partial_margin_delta",
+          "unit": "weighted reward-formula units",
+          "formula": "sum(w_new*frozen_group_difference)-sum(w_old*frozen_group_difference)",
+          "kind": "COUNTERFACTUAL",
+          "population": "frozen G-A033 reference behavioral aggregates; not a newly trained policy",
+          "window": "fixed archived behavior; no post-change rollout",
+          "aggregation": "counterfactual weighted partial-margin difference",
+          "limitations": "candidate behavior is held fixed; incomplete reward channels; not predicted official points or experimentally measured improvement; walk uses training/evaluation pooled sources, unlike situation windows",
+          "missing_reason": "UNMEASURED_INPUT_CHANNEL: legacy generator emits blank for unavailable evaluation terms"
+        },
+        "climb_delta": {
+          "canonical_name": "fixed_behavior_climb_partial_margin_delta",
+          "unit": "weighted reward-formula units",
+          "formula": "sum(w_new*frozen_group_difference)-sum(w_old*frozen_group_difference)",
+          "kind": "COUNTERFACTUAL",
+          "population": "frozen G-A033 reference behavioral aggregates; not a newly trained policy",
+          "window": "fixed archived behavior; no post-change rollout",
+          "aggregation": "counterfactual weighted partial-margin difference",
+          "limitations": "candidate behavior is held fixed; incomplete reward channels; not predicted official points or experimentally measured improvement; inherits SITUATIONS coordinate/angle surrogates",
+          "missing_reason": "UNMEASURED_INPUT_CHANNEL: legacy generator emits blank for unavailable evaluation terms"
+        },
+        "sway_delta": {
+          "canonical_name": "fixed_behavior_sway_partial_margin_delta",
+          "unit": "weighted reward-formula units",
+          "formula": "sum(w_new*frozen_group_difference)-sum(w_old*frozen_group_difference)",
+          "kind": "COUNTERFACTUAL",
+          "population": "frozen G-A033 reference behavioral aggregates; not a newly trained policy",
+          "window": "fixed archived behavior; no post-change rollout",
+          "aggregation": "counterfactual weighted partial-margin difference",
+          "limitations": "candidate behavior is held fixed; incomplete reward channels; not predicted official points or experimentally measured improvement; inherits SITUATIONS coordinate/angle surrogates",
+          "missing_reason": "UNMEASURED_INPUT_CHANNEL: legacy generator emits blank for unavailable evaluation terms"
+        },
+        "push_delta": {
+          "canonical_name": "fixed_behavior_push_partial_margin_delta",
+          "unit": "weighted reward-formula units",
+          "formula": "sum(w_new*frozen_group_difference)-sum(w_old*frozen_group_difference)",
+          "kind": "COUNTERFACTUAL",
+          "population": "frozen G-A033 reference behavioral aggregates; not a newly trained policy",
+          "window": "fixed archived behavior; no post-change rollout",
+          "aggregation": "counterfactual weighted partial-margin difference",
+          "limitations": "candidate behavior is held fixed; incomplete reward channels; not predicted official points or experimentally measured improvement; inherits SITUATIONS coordinate/angle surrogates",
+          "missing_reason": "UNMEASURED_INPUT_CHANNEL: legacy generator emits blank for unavailable evaluation terms"
+        }
+      }
+    },
+    "fall_channels": {
+      "source": "workspace/training/quadruped/reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv",
+      "keys": [
+        "arm",
+        "seed",
+        "case"
+      ],
+      "producer": "tools/go2_a038_reread.py::fall_channel_attribution,channel_rollup",
+      "population": "one arm/case/eval seed; per-env channel flags",
+      "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+      "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+      "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+      "identity_status": "UNKNOWN_FROM_AGGREGATE: resolve checkpoint/model/evaluator through original run manifests before cross-run comparison",
+      "metrics": {
+        "n_envs": {
+          "canonical_name": "observed_env_count",
+          "unit": "env",
+          "formula": "count envs",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "envs_fall_height_only": {
+          "canonical_name": "height_only_hold_env_count",
+          "unit": "env",
+          "formula": "count(height_flag and not tilt_flag)",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "envs_fall_tilt_only": {
+          "canonical_name": "tilt_only_hold_env_count",
+          "unit": "env",
+          "formula": "count(tilt_flag and not height_flag)",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "envs_fall_both_channels": {
+          "canonical_name": "both_channel_hold_env_count",
+          "unit": "env",
+          "formula": "count(tilt_flag and height_flag); flags may fire at different times",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "envs_fall_either": {
+          "canonical_name": "union_condition_hold_env_count",
+          "unit": "env",
+          "formula": "count(continuous(tilt_bad OR height_bad)>=0.5s)",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows after 0.5s grace, fixed dt 0.02, continuous bad hold >=0.5s",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "max_terrain_z_span_m": {
+          "canonical_name": "maximum_env_terrain_height_span",
+          "unit": "m",
+          "formula": "max_env(max_time(terrain_z)-min_time(terrain_z))",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows including grace",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "mean_terrain_z_span_m": {
+          "canonical_name": "mean_env_terrain_height_span",
+          "unit": "m",
+          "formula": "mean_env(max_time(terrain_z)-min_time(terrain_z))",
+          "kind": "DERIVED",
+          "population": "one arm/case/eval seed; per-env channel flags",
+          "window": "all available rows including grace",
+          "aggregation": "count per-env flags; channel union timer is separate from each channel timer",
+          "limitations": "either may fire on alternating height/tilt without either individual channel reaching hold duration. Do not assume either=height_only+tilt_only+both. These are posture channels, not base-contact labels.",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        }
+      }
+    },
+    "climb_reward": {
+      "source": "workspace/training/quadruped/reports/evidence/go2_stairs_behavior_20260916/CLIMB_REWARD.csv",
+      "keys": [
+        "run",
+        "arm",
+        "case",
+        "group"
+      ],
+      "producer": "tools/go2_stairs_behavior.py::climb_reward_rows",
+      "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+      "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+      "aggregation": "equal-env mean of window means",
+      "limitations": "uses A033 weights for ALL listed policies; two terms only, not total training reward; body-height-derived steps are not official completion",
+      "identity_status": "UNKNOWN_FROM_AGGREGATE: resolve checkpoint/model/evaluator through original run manifests before cross-run comparison",
+      "metrics": {
+        "robots": {
+          "canonical_name": "selected_env_window_count",
+          "unit": "env-window",
+          "formula": "count included env windows",
+          "kind": "DERIVED",
+          "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+          "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+          "aggregation": "equal-env mean of window means",
+          "limitations": "uses A033 weights for ALL listed policies; two terms only, not total training reward; body-height-derived steps are not official completion",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "seconds_mean": {
+          "canonical_name": "mean_selected_window_duration_s",
+          "unit": "s",
+          "formula": "mean_env(n_window_rows*0.02)",
+          "kind": "DERIVED",
+          "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+          "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+          "aggregation": "equal-env mean of window means",
+          "limitations": "uses A033 weights for ALL listed policies; two terms only, not total training reward; body-height-derived steps are not official completion",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "track_rate": {
+          "canonical_name": "a033_weighted_tracking_xy_window_mean",
+          "unit": "weighted reward-formula units",
+          "formula": "1.5*mean_env(mean_window(exp(-error_xy^2/0.5^2)))",
+          "kind": "COUNTERFACTUAL",
+          "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+          "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+          "aggregation": "equal-env mean of window means",
+          "limitations": "uses A033 weights for ALL listed policies; two terms only, not total training reward; body-height-derived steps are not official completion",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "lin_vel_z_rate": {
+          "canonical_name": "a033_weighted_world_vertical_proxy_window_mean",
+          "unit": "weighted reward-formula units",
+          "formula": "-2*mean_env(mean_window((delta root_z/0.02)^2))",
+          "kind": "SURROGATE",
+          "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+          "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+          "aggregation": "equal-env mean of window means",
+          "limitations": "A033 weights; WORLD-frame finite difference not original BODY-frame velocity reward",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        },
+        "sum_rate": {
+          "canonical_name": "a033_two_term_partial_window_mean",
+          "unit": "weighted reward-formula units",
+          "formula": "track_rate + lin_vel_z_rate before output rounding",
+          "kind": "COUNTERFACTUAL",
+          "population": "pooled seeds101/202/303; selected climb>=2 steps vs stall<1 step; middle excluded",
+          "window": "climb: after 1m travel and settle to peak; stall/walk: after 1s settle to end",
+          "aggregation": "equal-env mean of window means",
+          "limitations": "two terms only; includes world-frame surrogate; sum of rounded inputs can differ from rounded sum",
+          "missing_reason": "NOT_AVAILABLE_IN_LEGACY_AGGREGATE; never interpret as zero"
+        }
+      }
+    }
+  }
+}

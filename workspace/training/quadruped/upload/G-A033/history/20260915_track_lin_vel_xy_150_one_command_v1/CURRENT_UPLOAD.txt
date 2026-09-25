@@ -1,0 +1,13 @@
+CURRENT GO2 UPLOAD — G-A033 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A033\current\GO2_G_A033_track_lin_vel_xy_150_one_command.zip
+   SHA256 4ddb46da3f1f2526c34f0b843f8583d063104598cb29792758de9ec47d311595
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 회차만 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A033_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260915_track_lin_vel_xy_150_one_command_v1
+STATUS ARTIFACT_VERIFIED
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

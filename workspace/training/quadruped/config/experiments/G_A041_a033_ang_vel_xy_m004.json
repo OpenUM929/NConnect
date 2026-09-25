@@ -1,0 +1,594 @@
+{
+  "schema_version": "a033_reward_1.1",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A041",
+  "run_id": "train_260920-Go2_a033_ang_vel_xy_m004_1000",
+  "experiment_slug": "go2_g_a041_a033_ang_vel_xy_m004",
+  "plan": "workspace/training/quadruped/reports/GO2_ANG_VEL_RELAX_AUDIT_20260920.md",
+  "decision_ref": "2026-09-20 PM first proposal: keep G-A033 and relax the trunk angular-rate penalty ang_vel_xy_l2 from -0.05 to -0.04, aimed at G5. The proposal was audited against the ledger before it became a spec (workspace/training/quadruped/reports/GO2_ANG_VEL_RELAX_AUDIT_20260920.md). What the audit found decides the shape of this arm: the relaxation side of this dial has never been observed on a walking baseline. All 18 trainings sit at -0.05 or stronger, the only departures are strengthenings (-0.08 at G-A038, -0.15 at A016 and A024), and they form one monotone series in terrain progress and climbed robots. This arm measures the first point on the untested side. Server execution is not released; local spec.",
+  "dial_history_ref": "| G-A041 | ang_vel_xy `−0.05→−0.04` | G-A033 | — | ✓ | — | **미실행** | 2026-09-20 사양(서버 미해제). §1-a 미탐색 4방향 중 `ang_vel_xy_l2` 완화 방향. 걷는 기준선에서 완화를 돌린 회차가 0건이라 `OUT_OF_RANGE`이고, A016·A024(`-0.15`)와 G-A038(`-0.08`)은 반대 방향(강화)이라 이 값의 기각 이력이 아니다. 감사 `workspace/training/quadruped/reports/GO2_ANG_VEL_RELAX_AUDIT_20260920.md` |",
+  "change_class": "reward_weight",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "ang_vel_xy_l2",
+    "isaaclab_base": -0.05,
+    "isaaclab_go2_rough": -0.05,
+    "isaaclab_go2_flat": -0.05,
+    "deployed_start": -0.08,
+    "baseline": -0.05,
+    "candidate": -0.04,
+    "direction": "away from Isaac Lab, on the weak side. This is the one term Isaac Lab v2.3.1 keeps identical in all three configs it ships - base -0.05, Go2 rough -0.05, Go2 flat -0.05 (config/go2_external_reference.json) - so unlike flat_orientation_l2 there is no second upstream setting to move toward. The deployed file start value -0.08 is on the other side.",
+    "after_change_vs_go2_rough": "two terms differ: feet_air_time (0.2 against 0.01, inherited from G-A033) and ang_vel_xy_l2 (-0.04 against -0.05, this run). Before this run the frozen baseline differs in one term only, so this arm doubles the distance to the anchor and that is a cost, not a neutral fact.",
+    "deployed_start_source": "config/go2_external_reference.json deployed_start: the deployed file starts at track 1.0, feet_air_time 0.01, lin_vel_z_l2 -3.0, ang_vel_xy_l2 -0.08, action_rate_l2 -0.01, flat_orientation_l2 0.0. ang_vel_xy_l2 is in go2_task/_finalize.py _REP_BASELINE, so R-4a reports this change against -0.08 while the Isaac Lab anchor is -0.05.",
+    "departure_reason": "Isaac Lab formula (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83 ang_vel_xy_l2): the sum of the squared roll and pitch rates of the base. It charges the RATE at which the trunk rotates, not the angle it holds. Isaac Lab sets -0.05 in every config it ships and the upstream source does not say why. We depart because our own evaluation measured this dial in the other direction and the effect was large and one-sided: at -0.08 the robots climbing at least one 10 cm step fell from 90 to 5 of 96 and those climbing two or more from 43 to 0 (reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv), while the same harvest improved rough side-stepping. Putting a foot on a tread requires the trunk to pitch and this dial prices exactly that motion. The relaxation side has never been measured. The departure is one step, -0.04, inside the band the deployed file writes for this dial (추천 -0.3 ~ -0.02).",
+    "literature": "R-Sci-4 (Hwangbo 2019) multiplies every penalty except the objective term by a curriculum coefficient starting at 0.3, so that penalties do not teach standing still. Relaxing a penalty moves the same way that coefficient does, which is the low-risk direction for stalling; the risk it creates is the opposite one, a cheaper rotation rate in the two situations where the trunk is already near its limit. That is what the sway and push guards are for.",
+    "r6": "reward weight only, and one of the six names the deployed quadruped_rewards.py lists as free to change (item 4, 좌우/앞뒤 흔들림 억제). Curriculum, terrain, DR, commands, training length and seed are untouched. No open decision is needed: the term is inside the deployed list, so go2_task/_finalize.py counts it as a participant change rather than an extra."
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.04,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "ang_vel_xy_l2",
+    "from": -0.05,
+    "to": -0.04,
+    "scope": "deployed_reward_weights_list",
+    "applied_by": "quadruped_rewards.py REWARD_WEIGHTS item 4 (좌우/앞뒤 흔들림 억제, 추천 -0.3 ~ -0.02); the value replaces a number in the deployed dict, so the server log prints it with the other five listed names and go2_task/_finalize.py lists it as a participant change."
+  },
+  "value_derivation": {
+    "source": "workspace/training/quadruped/reports/GO2_ANG_VEL_RELAX_AUDIT_20260920.md; reports/GO2_A038_REREAD_20260919.md sections 1-1, 2-3 and 4-1; reports/GO2_REWARD_MECHANISM_FORECAST.md sections 6, 6-0, 8 and 9; evidence reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv, reports/evidence/go2_a038_reread_20260919/STAIRS10_ROLLUP.csv, reports/evidence/go2_reward_mechanism_20260917/PROBES.csv and reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv; reports/GO2_TUNING_BASE_DATA.md sections 0-1, 4 and 5; reports/runs/LEDGER.csv and reports/runs/TERRAIN_AT_PIN.csv",
+    "role": "Penalize xy-axis base angular velocity using L2 squared kernel (Isaac Lab v2.3.1, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83): the squared roll and pitch RATES of the trunk. It is not the tilt angle (flat_orientation_l2) and it does not read foot height. G-A033 logged term value over weight is 3.020, about 1.74 rad/s rms (GO2_TUNING_BASE_DATA.md section 0-1).",
+    "walk_margin": "G-A033 walk margin +0.1359 -> +0.1569 at -0.04 (reports/evidence/go2_reward_mechanism_20260917/PROBES.csv, zone WALK, delta +0.0210). Relaxing a penalty can only raise this margin, so the walking side is the safe side of this arm; the stop zone top is +0.0155. The walk-zone edge weight for this term is -0.107243, on the strengthening side, and is not approached here. The probe grid was extended to -0.04 and -0.03 by tools/go2_reward_mechanism.py on 2026-09-20 exactly as forecast section 8-1 requires for a new value; nothing else in that generator changed.",
+    "situations": "reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv at -0.04: walk +0.0210, climb +0.0036, sway -0.1077, push -0.0512. All three situation columns are filled for this term. The climb cell is the only one of the four that points the way this arm wants, and it is the smallest of the four. The size of the climb cell may not be used: forecast section 9 recorded that at -0.08 the predicted climb change was -0.0107 while the measured collapse was 90 -> 5 climbed robots. Direction only.",
+    "rule": "-0.04 is one step of 0.01 on the untested side, the smallest change this dial can take that still prints differently in the server log. Three reasons pick the smallest step rather than the -0.02 already in the probe grid: (a) the measured sensitivity of this dial is high and one-sided - a 60 percent strengthening (-0.05 -> -0.08) removed 94 percent of the climbing robots, so a 60 percent relaxation is not a small perturbation; (b) the predicted sway loss scales with the step, -0.1077 at -0.04 against -0.3230 at -0.02, and only the smaller one keeps the expected G3 cost inside the pre-registered guard 2.03646/70 under linear scaling of G-A038 measured sway proxy +0.356 (estimate, not measurement); (c) F5 asks a new size to be distinguishable from the rejected ones, and -0.04 is on the opposite side of the baseline from every rejected value. There is no measured optimum for this dial in this direction; the 20 percent is a step size, not a derived value.",
+    "not_claimed": "No score gain is estimated. The partial margins are reward arithmetic over measured postures: they say what the reward prefers, not how many robots will climb. The one post-hoc check of this exact dial got the climb size wrong by an order of magnitude and got the sway size nearly right - so the loss channel of this arm is the better calibrated one, and that is a reason for caution, not for confidence."
+  },
+  "rejected_alternatives": {
+    "lin_vel_z_l2": "G-A037 is on hold: -1.0 is outside the observed walking range and its derivation came out reversed in base data S5. Its climb partial margin (+0.0515) is larger than this arm's, but it loses sway and push at the same time (-0.0940, -0.0771) and that trade was never measured; this dial's trade was measured once, at G-A038.",
+    "flat_orientation_l2": "G-A040 aims the tilt ANGLE at G3 and is the better arm for that axis. It is not this arm's alternative but its complement: this arm aims G5. G-A040 also still carries a climb guard whose floor is non-positive (stairs_15_climb_ge1, baseline sum 4, max drop 5.523), which tools/go2_fact_rules.py now reports as inoperable; this spec leaves that group out for that reason.",
+    "track_lin_vel_xy_exp": "held at 1.5: every raise increased rough side-step terminations (31 -> 48 -> 58, GO2_TUNING_BASE_DATA.md section 2) and 1.5 is the Isaac Lab Go2 rough value.",
+    "feet_air_time": "held at 0.2: 0.01 and 0.1 were both rejected at stage 1 (A031, A032) and 0.35 stopped the policy (A015). It is the one deployed name closed in both directions.",
+    "action_rate_l2": "-0.008 is a valid rejection (A018) and PROBE_SITUATIONS.csv leaves climb, sway and push empty for this term, so no situation direction can be read for it.",
+    "dof_acc_l2": "G-A039 is on hold and sits outside the deployed six, which makes it invisible to go2_task/_finalize.py and dependent on open decision U1-R6-ENV-REWARD-20260918. A term inside the list needs no such decision, so it goes first.",
+    "max_iterations": "outside R-6 (not a reward weight). Matching the two arms' curriculum level at the pin would need it and is therefore not done here; see notes.curriculum_lag.",
+    "training_seed": "outside R-6. A seed replicate buys interpretation, not score (reports/GO2_SEED_SENSITIVITY.md section 5)."
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "same training length and seed as G-A033, so the candidate is read at the checkpoint G-A033 was read at (900 of 1000). finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A039, G-A038, G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Primary readout is the climbed-robot count, not the 70-point total. G-A033 climbs 29, 30 and 31 of 32 robots at least one 10 cm step and 16, 13 and 14 climb two or more (reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv); at -0.08 the same counter read 2, 1, 2 and 0, 0, 0. That counter never touches the posture gate - it reads root_z and a 1 m departure from the start - so it is the one instrument in this project that measured this dial moving the stairs.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated in points. The partial margins give the direction of the reward preference, not the size of the behaviour change, and for this dial the one post-hoc check showed the climb size was wrong by about thirteen times.",
+    "seed_noise": "Every training run used seed 42. One run cannot separate the lever from seed luck; a seed replicate of G-A033 is the control this run lacks, and it is outside R-6."
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G5:stairs_10_down:101",
+      "G3:rough_lateral:101",
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:101"
+    ],
+    "baseline": [
+      "G5:stairs_10_down:101",
+      "G3:rough_lateral:101"
+    ],
+    "reasons": {
+      "G5:stairs_10_down:101": "the target case. It is where this dial was measured before, in the other direction, and where the climbed-robot counter reads. No stored G-A033 video, so the baseline is rendered here.",
+      "G3:rough_lateral:101": "the predicted loss. The 2026-09-19 re-read showed G3 ends through the tilt channel and a cheaper rotation rate is the way to make it worse. No stored G-A033 video, so the baseline is rendered here.",
+      "G3:rough_forward:101": "the other half of the G3 axis, and the case whose absence made G-A038 unscorable (stored baseline video).",
+      "G4:slope_plus_20:101": "the baseline climbs the 20 degree slope to the end; a cheaper trunk rotation rate should not turn that into a wobble (stored baseline video)."
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos holds slope_plus_20 and rough_forward for G-A033 at the same 4 env x 500 step setting, so those two are compared against stored files. The climbing case and rough_lateral are not stored there and are rendered for both arms here; the builder allows at most two such pairs and these are the target and the predicted loss. Two cases that matter are therefore measured but not filmed: stairs_15_down, whose climbed-robot guard is inoperable at 4 robots, and push_pos_x, the second predicted loss. Both are read from numbers - the climbed-robot counts and the survival proxy - out of workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv."
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (12 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 90,
+      "estimate_basis": "G-A040 split. The stairs group is three seeds of one case and the push group replaces the slope group, so the case count is the same 12."
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a041",
+    "keep_dir_name": "go2_g_a041_a033_ang_vel_xy_m004",
+    "result_zip": "GO2_G_A041_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A041_RESULT_READY",
+    "tmux_name": "go2_g_a041",
+    "upload_zip": "GO2_G_A041_a033_ang_vel_xy_m004_staged.zip",
+    "release_id": "20260920_a033_ang_vel_xy_m004_staged_v3",
+    "supersedes": "none"
+  },
+  "preregistered": {
+    "source": "fact_rules_v1 (tools/go2_fact_rules.py) on the criteria of upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1; limits recomputed by tools/go2_fact_rules_spec.py for this spec's target groups",
+    "threshold_basis": "Measured, not intended. tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd; flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32. The group floors and the climbed-robot floors below were recomputed from the G-A033 raw records by tools/go2_fact_rules_spec.py for this spec's groups. min_target_mean_proxy_delta 0.05 and min_target_groups_improved 2 are section 6-1 values, unchanged - and this arm is expected to fail that criterion if the forecast signs hold, because two of its three target groups are its predicted losses. That is deliberate: criterion 1 is what stops a trade this project does not want, and the measurement the arm exists for (the climbed-robot counts and the size of the G3 cost) is produced by stage 1 either way.",
+    "target_groups": {
+      "stairs": [
+        "G5:stairs_10_down:101",
+        "G5:stairs_10_down:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303",
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "push": [
+        "G6:push_pos_x:101",
+        "G6:push_pos_x:202",
+        "G6:push_pos_x:303"
+      ]
+    },
+    "target_group_roles": {
+      "stairs": "the target. Three seeds of the one case where this dial was measured before: at -0.08 the climbed-robot count went 90 -> 5 (ge1) and 43 -> 0 (ge2). If relaxing the same dial does nothing here, the chain is refuted and nothing else in the run matters.",
+      "rough": "the predicted loss, and the axis with the largest recoverable deduction (G3 4.22726/14.0, survival-1.0 counterfactual 10.71746, reports/GO2_AXIS_BOTTLENECK.md). All six G3 case-seed pairs are here so that stage 1 produces a scorable G3 axis: go2_fixed_eval_report.py:106-141 drops an axis entirely when one pair is missing, which is why G-A038 ended with no G3 at all.",
+      "push": "the second predicted loss. push_pos_x is G6's binding case and it is bound by survival (reports/GO2_AXIS_BOTTLENECK.md). G-A038 improved it (0.84375 -> 0.96875 survival at seed 101), so the relaxation is expected to give that back; measuring it in stage 1 is what makes the trade readable instead of inferred."
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "required_records": {
+      "terrain_level_at_pin": "REQUIRED RECORD, NOT A CRITERION (2026-09-19 analyst requirement 2). The readout must carry the candidate terrain curriculum level at iterations 700 / 800 / 900 / 999 beside the baseline row of reports/runs/TERRAIN_AT_PIN.csv, because G-A038's rough_lateral gain could not be attributed: the two arms sat at 4.4937 and 1.9499 at the same pin. It cannot be a gate: the logged level is a mean over all robots and five sub-terrains and the curriculum resends finished robots to a random row (reports/evidence/go2_curriculum_source_20260918/isaaclab_terrains_terrain_importer.py:314-321). For this arm the confound has a direction: a relaxed penalty that walks better may reach a HIGHER level than the baseline, which would inflate the stairs reading the same way it deflated G-A038's. A climb gain that comes with a large level gain is not attributed to the lever.",
+      "fall_channel_split": "REQUIRED RECORD. The candidate rough_lateral and stairs_10_down falls must be split into the height channel and the tilt channel the way tools/go2_a038_reread.py split G-A033's (reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv). This dial charges the tilt RATE, so a G3 loss that does not appear in the tilt channel did not come from the lever.",
+      "climb_counts": "REQUIRED RECORD and a criterion: tools/go2_climb_count.py on the candidate stairs_10_down and stairs_15_down records, counted by the same rule as the baseline workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv. This is the primary readout of the arm, not the G5 score.",
+      "stairs_forward_distance": "REQUIRED RECORD. projected_progress_m and the last-200-step mean speed of stairs_10_down and stairs_15_down, beside the baseline values in reports/evidence/go2_a038_reread_20260919/STAIRS10_ROLLUP.csv. G5 is bound by forward distance, not by survival (reports/GO2_AXIS_BOTTLENECK.md), so climbed robots without forward distance is a different result from climbed robots with it, and the two must not be reported as one."
+    },
+    "mechanism_readout": "terrain curriculum level at 700 / 800 / 900 / 999 from the training log, the climbed-robot counts, the stairs forward distance, and the posture-gate falls split by channel. Recorded; only the climbed-robot counts are a criterion.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs": -0.02858,
+      "rough": -0.06145,
+      "push": -0.07561
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        }
+      },
+      "omitted": "stairs_15_climb_ge1 is left out on purpose. Its baseline sum is 4 robots over three seeds and its measured max_drop is 5.523, so its floor is -1.523 and no result can violate it. tools/go2_fact_rules.py calls that inoperable and now raises it as a violation rather than passing it silently (defect S-2, 2026-09-19). The 15 cm climb is still recorded and filmed; it is not pre-registered as a gate, because at this sample size it cannot be one."
+    },
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    }
+  },
+  "why": [
+    "Goal: every axis held while the stairs rise. G-A033 largest deductions are G5 10.45527 and G3 9.77274 (reports/runs/SCENARIO_SCORES.csv), and G5 is bound by forward distance, not by survival (reports/GO2_AXIS_BOTTLENECK.md): the survival-1.0 counterfactual on G5 is only 1.43139/10.5.",
+    "Role first (Isaac Lab formula, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83): ang_vel_xy_l2 charges the squared roll and pitch RATES of the trunk - the speed of the body rotation a robot needs to put a foot on a tread.",
+    "This is the only dial in 18 trainings whose movement was measured against the climbed-robot counter, and the measurement is large: at -0.08 robots climbing at least one 10 cm step went 90 -> 5 of 96 and two or more went 43 -> 0 (reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv). Its relaxation side has never been run.",
+    "The behaviour behind that number is a stall, not a fall: at -0.08 the stairs robots end the episode at 0.016 to 0.023 m/s against a 0.5 m/s command and at a lower trunk height than the baseline (reports/evidence/go2_a038_reread_20260919/STAIRS10_ROLLUP.csv, reports/GO2_A038_REREAD_20260919.md section 1-1). The same direction is what G5 needs reversed.",
+    "Walking is the safe side of this change: relaxing a penalty raises the walk margin, +0.1359 -> +0.1569 (reports/evidence/go2_reward_mechanism_20260917/PROBES.csv), and the stop zone top is +0.0155.",
+    "Named in advance, and this is why the arm is an information run and not a recommendation: the same probe row says sway -0.1077 and push -0.0512, and the one post-hoc check of this dial got the sway size nearly right while getting the climb size wrong by about thirteen times (reports/GO2_REWARD_MECHANISM_FORECAST.md section 9). The loss channel is the better calibrated one.",
+    "The value is a step size, not an optimum: -0.04 is one 0.01 step on the untested side, inside the band the deployed file writes for this dial, and on the opposite side of the baseline from every rejected value, so F5 is satisfied by direction rather than by magnitude.",
+    "Risks pre-registered under fact_rules_v1: the rough and push group floors, the per-scenario loss limits (G3 2.03646, G6 0.86196), the flat guards, the stationary guard, and the climbed-robot floors as the reverse guard."
+  ],
+  "notes": {
+    "comparison_validity": "Same seed 42, 4096 envs, 1000 iterations, evaluator and registry SHA as the stored G-A033 arm, evaluated at the same checkpoint iteration. The only difference is ang_vel_xy_l2.",
+    "not_claimed": "No score gain is promised, and no claim is made that relaxing helps because strengthening hurt. One training seed cannot separate the lever from seed luck.",
+    "deployed_list": "ang_vel_xy_l2 is item 4 of the six names in the deployed quadruped_rewards.py REWARD_WEIGHTS list, so this arm replaces a number rather than adding a line, and go2_task/_finalize.py counts it as a participant change. No open decision is needed for change_class reward_weight.",
+    "deployed_prose_disagrees": "The deployed file annotates this dial with '약하게: 흔들림 허용 (험지 적응 여지)', that is, it expects relaxation to help rough terrain. Our own measurement points the other way: strengthening it is what reduced the rough side-step terminations (19, 20, 19 -> 2, 8, 6 at G-A038, reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv). The deployed prose is guidance for participants, not a measurement, and this spec follows the measurement.",
+    "curriculum_lag": "Both arms are read at iter 900 and reports/runs/TERRAIN_AT_PIN.csv shows how much that can matter (G-A038 1.9499 against G-A033 4.4937). This spec cannot remove the confound, because matching the curriculum level would mean moving the checkpoint or the training length, both outside R-6. It makes it visible instead: the terrain level at 700 / 800 / 900 / 999 is a required record, and for this arm the confound points the other way than it did for G-A038 - a relaxed penalty that walks better may reach a higher level and flatter the stairs reading.",
+    "residual_question": "If the climbed-robot count rises and the terrain level at the pin rises with it, this run cannot say which one did it, exactly as G-A038 could not. The control that would settle it is a curriculum-matched checkpoint, which is outside R-6 and is therefore not proposed here."
+  },
+  "campaign_text": {
+    "analysis": "sections 1-1, 2-3 and 4-1",
+    "target_summary_en": "(10cm climb, three seeds; rough side-step and rough forward, all six pairs; push)",
+    "basis_ko": "§1-1(계단 정지 동작)·§2-3(이 다이얼 값 이력)·§4-1(오른 로봇 수 기각)",
+    "levers_ko": "바꾸지 않은 레버: `track_lin_vel_xy_exp`(1.5에서 올리면 옆걸음 종료 증가, IL rough 값), `feet_air_time`(0.01·0.1 1단계 FAIL, 0.35 정지), `lin_vel_z_l2`(G-A037 보류), `action_rate_l2`(A018 기각, 상황 칸 전부 빈칸), `dof_acc_l2`(G-A039 보류, 목록 밖), `flat_orientation_l2`(G-A040 — G3를 겨누는 별도 팔).",
+    "target_summary_ko": "10cm 계단 3 seed · 험지 2 case 전수(3 seed) · 밀침 묶음",
+    "target_note_ko": "이 팔은 얻는 쪽과 잃는 쪽을 한 단계에서 함께 잰다. 계단은 점수가 아니라 오른 로봇 수로 잰다(10cm ≥1단 합이 90에서 6.671 이내, 즉 83.329 미만이면 중단). 험지·밀침은 예측된 손실이라 1단계에 함께 넣었다 — 손실 크기를 추정이 아니라 측정으로 남기기 위해서다.",
+    "readout_ko": "python tools/go2_climb_count.py  그리고  python tools/go2_axis_bottleneck.py   (오른 로봇 수를 기준선과 같은 규칙으로 세고, 축을 묶는 인수를 다시 계산한다)",
+    "not_claimed_ko": "강화가 나빴다고 완화가 좋다는 결론은 나오지 않는다. 학습 seed가 42 하나라 레버 효과와 seed 운을 가를 수 없고, 이득 추정은 없다. 그래서 이 사양은 권고가 아니라 `INFORMATION_RUN`이다.",
+    "publish_note_ko": "보상 가중치 한 항만 바꾼다. 기준선 `-0.05`에서 `-0.04`로, 배포 파일이 스스로 적은 권장 대역 `추천 -0.3 ~ -0.02` 안이다. 단 `-0.05`는 Isaac Lab v2.3.1이 세 설정(base·Go2 rough·Go2 flat)에서 모두 같게 쓰는 값이라, 이 팔은 외부 기준에서 멀어지는 방향이다(이탈 사유는 사양 `external_reference.departure_reason`). 서버 실행은 미해제."
+  },
+  "base_data": {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_BASE_DATA.md",
+    "terms": {
+      "ang_vel_xy_l2": {
+        "value": -0.04,
+        "walking_values": [
+          -0.05
+        ],
+        "status": "OUT_OF_RANGE",
+        "role": "Penalize xy-axis base angular velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:83]",
+        "out_of_range_reason": "Every walking run weighted this term -0.05 (GO2_TUNING_BASE_DATA.md section 4), so there is no observed walking range and any other value is OUT_OF_RANGE. The values the project has run are -0.05, -0.08 and -0.15, all on the strengthening side; -0.15 is a valid rejection (A016 on a walking baseline: terrain_999 0.0, POLICY_DOES_NOT_LOCOMOTE) and -0.08 was run as G-A038 and rejected on the climbed-robot counter. The only relaxation the project ever ran is A021 (chain01, -0.08 -> -0.05), and both of its arms were stationary policies measured with asymmetric instrumentation, so it is not a measurement of relaxation on a walking policy. -0.04 is therefore the first point on the untested side and is chosen as one 0.01 step, the smallest the dial can move and still be distinguishable in the log."
+      }
+    },
+    "walk_margin": {
+      "source": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+      "margin": 0.1569,
+      "zone": "WALK",
+      "stop_max": 0.0155,
+      "situations": {
+        "climb": 0.0036,
+        "sway": -0.1077,
+        "push": -0.0512
+      },
+      "worse": [
+        "push",
+        "sway"
+      ],
+      "unmeasured_in_situations": [],
+      "reason": "Both worse cells are the price this arm pays on purpose. sway -0.1077 and push -0.0512 are one third of the -0.02 probe row and the mirror of what G-A038 bought on the same two situations (+0.3230 and +0.1535 predicted, +0.356 and +0.049 observed, forecast section 9). Under linear scaling of the measured G-A038 sway proxy the expected G3 cost is about 1.5/70 [estimate], inside the pre-registered per-scenario limit 2.03646, and both groups are measured in stage 1 rather than inferred. The climb cell +0.0036 is the smallest of the four and its size may not be used: for this dial the predicted climb size was wrong by about thirteen times at -0.08."
+    }
+  },
+  "inference": {
+    "readout": [
+      "reports/GO2_A038_REREAD_20260919.md",
+      "reports/GO2_G_A038_READOUT.md"
+    ],
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "Isaac Lab v2.3.1 ang_vel_xy_l2 (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83) sums the squared roll and pitch components of the base angular velocity. It charges the RATE at which the trunk rotates, one derivative above flat_orientation_l2, which charges the ANGLE. Climbing a tread is a trunk pitch performed quickly, so the dial prices the motion the stairs require; it does not read foot height, tread height or forward distance, and our scoring gate reads the angle and the height, not this rate. No equivalence between the dial and the climb is claimed: the link is that one measured change of this dial moved the climbed-robot count more than any other change in 18 trainings.",
+    "rows": [
+      {
+        "source": "reports/runs/LEDGER.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150",
+        "value": "-0.05",
+        "reads": "the frozen baseline row: ang_vel_xy_l2 -0.05, terrain level 4.7087 at iteration 999, POLICY_LOCOMOTES, 69 cases, 42.52861/70. This is the value every walking policy in the project has carried.",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate"
+        },
+        "cells": {
+          "ang_vel_xy_l2": "-0.05",
+          "terrain_999": "4.7087",
+          "locomotion": "POLICY_LOCOMOTES"
+        }
+      },
+      {
+        "source": "reports/runs/LEDGER.csv",
+        "key": "go2_g_a038_a033_ang_vel_xy_m008",
+        "value": "-0.08",
+        "reads": "the one arm that moved this dial off the baseline and still walked: ang_vel_xy_l2 -0.08, terrain level 3.0348 at 999, POLICY_LOCOMOTES, 10 cases measured before the runner stopped. It is a measurement of the dial's direction, not a verdict on the arm, which is INCONCLUSIVE.",
+        "selector": {
+          "run": "go2_g_a038_a033_ang_vel_xy_m008",
+          "arm": "candidate"
+        },
+        "cells": {
+          "ang_vel_xy_l2": "-0.08",
+          "terrain_999": "3.0348",
+          "locomotion": "POLICY_LOCOMOTES"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv",
+        "key": "A033,SUM,stairs_10_down",
+        "value": "90",
+        "reads": "the baseline climbs the 10 cm stairs: 90 of 96 robots take at least one step and 43 take two or more, counted by tools/go2_climb_count.py from root_z alone. The counter never reads the posture gate.",
+        "selector": {
+          "arm": "A033",
+          "seed": "SUM",
+          "case": "stairs_10_down"
+        },
+        "cells": {
+          "ge1": "90",
+          "ge2": "43",
+          "robots": "96"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/CLIMB_COUNT.csv",
+        "key": "A038,SUM,stairs_10_down",
+        "value": "5",
+        "reads": "the same counter on the strengthened arm: 5 of 96 take one step and none take two. This is the largest movement any of the 18 trainings produced on this counter, and it came from this dial. The direction of the relaxation side is what the arm tests; the size is not predicted.",
+        "selector": {
+          "arm": "A038",
+          "seed": "SUM",
+          "case": "stairs_10_down"
+        },
+        "cells": {
+          "ge1": "5",
+          "ge2": "0",
+          "robots": "96"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/STAIRS10_ROLLUP.csv",
+        "key": "A038,101,stairs_10_down",
+        "value": "0.019269576079449097",
+        "reads": "the behaviour behind that count is a stall, not a fall: over the last 200 steps the strengthened arm averages 0.0193 m/s against a 0.5 m/s command and 28 of 32 robots sit below the height gate, while its base contacts are 1 of 32. The baseline's last-200 speed on the same case is 0.1136 m/s. Relaxing the same dial is the change whose direction is opposite to the one that produced this.",
+        "selector": {
+          "arm": "A038",
+          "seed": "101",
+          "case": "stairs_10_down"
+        },
+        "cells": {
+          "mean_speed_xy_last200": "0.019269576079449097",
+          "envs_hr_last200_below_gate": "28"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv",
+        "key": "ang_vel_xy_l2,-0.05,-0.04",
+        "value": "0.1569",
+        "reads": "at -0.04 the predicted walk margin is +0.1569 against the baseline's +0.1359, zone WALK. Relaxing a penalty can only raise this margin; the stop zone's top is +0.0155. The row was generated by tools/go2_reward_mechanism.py on 2026-09-20 when -0.04 and -0.03 were added to the probe grid, as forecast section 8-1 requires for a new value.",
+        "selector": {
+          "term": "ang_vel_xy_l2",
+          "to": "-0.04"
+        },
+        "cells": {
+          "margin": "0.1569",
+          "zone": "WALK"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv",
+        "key": "ang_vel_xy_l2,-0.04,+0.0210,+0.0036,-0.1077,-0.0512",
+        "value": "+0.0036",
+        "reads": "the climb partial margin at -0.04 is +0.0036 and the walk margin +0.0210. Direction only: forecast section 9 recorded that the same cell at -0.08 predicted -0.0107 while the measured collapse was 90 -> 5 climbed robots. The cell is not empty for this term, unlike dof_acc_l2 and action_rate_l2.",
+        "selector": {
+          "term": "ang_vel_xy_l2",
+          "to": "-0.04"
+        },
+        "cells": {
+          "climb_delta": "+0.0036",
+          "walk_delta": "+0.0210"
+        }
+      },
+      {
+        "source": "reports/runs/SCENARIO_SCORES.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,candidate,posture_gate_v2",
+        "value": "10.45527",
+        "reads": "the ledger row of the frozen baseline: G5's deduction is 10.45527, the largest of the seven, and G3's is 9.77274.",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate",
+          "instrument": "posture_gate_v2"
+        },
+        "cells": {
+          "G5_deduction": "10.45527",
+          "G3_deduction": "9.77274"
+        }
+      },
+      {
+        "source": "reports/GO2_AXIS_BOTTLENECK.md",
+        "key": "| G5 | `stairs_15_down`@202 | 0.03125 | 0.13632 | **0.04473** | 10.5 | `survival` | 1.43139 |",
+        "value": "1.43139",
+        "reads": "G5's survival-1.0 counterfactual is 1.43139 of 10.5: posture can return at most that much and the rest of the axis is forward distance. An arm aimed at G5 has to move distance and climbed steps, which is why the climbed-robot count and projected_progress_m are the readout and the G5 score is not."
+      },
+      {
+        "source": "quadruped_rewards.py",
+        "key": "④ 좌우/앞뒤 흔들림 억제 — 몸통 회전 각속도에 벌점",
+        "value": "추천 -0.3 ~ -0.02",
+        "reads": "the deployed participant file lists this dial as item 4 and writes its own recommended band, 추천 -0.3 ~ -0.02. -0.04 is inside that band. The file's prose about what relaxation does is recorded separately in notes.deployed_prose_disagrees, because our measurement disagrees with it."
+      }
+    ],
+    "contradicting": [
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv",
+        "key": "ang_vel_xy_l2,-0.04,+0.0210,+0.0036,-0.1077,-0.0512",
+        "value": "-0.1077",
+        "reads": "the same probe row that supports the climb direction says sway -0.1077 and push -0.0512. The arm buys its target with the two situations G-A038 improved. The response is to measure both in stage 1 and to pre-register their floors, not to argue them away.",
+        "selector": {
+          "term": "ang_vel_xy_l2",
+          "to": "-0.04"
+        },
+        "cells": {
+          "sway_delta": "-0.1077",
+          "push_delta": "-0.0512"
+        }
+      },
+      {
+        "source": "reports/GO2_REWARD_MECHANISM_FORECAST.md",
+        "key": "| G-A038 | `ang_vel_xy_l2` `-0.08` | 걷기 구간 | `0.736` → `0.618` | sway | `+0.3230` | `+0.356` | 같음 |",
+        "value": "+0.356",
+        "reads": "the one post-hoc check of this dial: the sway prediction +0.3230 came out +0.356 measured, nearly right, while the climb prediction was wrong by about thirteen times. The channel this arm loses is the one the model predicts well; the channel it hopes to gain is the one the model predicts badly. That asymmetry is the reason the status is INFORMATION_RUN."
+      },
+      {
+        "source": "reports/runs/LEDGER.csv",
+        "key": "go2_g_a021_chain01_ang_vel_xy_m005",
+        "value": "POLICY_DOES_NOT_LOCOMOTE",
+        "reads": "the only relaxation of this dial the project ever ran: chain01 -0.08 -> -0.05, and the policy stayed stationary. Its baseline was already stationary and instrument_symmetric is False, so it is not a measurement of relaxation on a walking policy - but it is the only relaxation datum there is, and it did not produce walking.",
+        "selector": {
+          "run": "go2_g_a021_chain01_ang_vel_xy_m005",
+          "arm": "candidate"
+        },
+        "cells": {
+          "ang_vel_xy_l2": "-0.05",
+          "locomotion": "POLICY_DOES_NOT_LOCOMOTE",
+          "instrument_symmetric": "False"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv",
+        "key": "A033,202,rough_lateral",
+        "value": "20",
+        "reads": "the axis this arm puts at risk is the one with the most recoverable points: on the baseline 20 of 32 robots terminate in rough_lateral and all 20 are base contacts. G3's survival-1.0 counterfactual is 10.71746/14.0 against G5's 1.43139/10.5, so by recoverable points alone the better arm to run is one aimed at G3 (G-A040), not this one.",
+        "selector": {
+          "arm": "A033",
+          "seed": "202",
+          "case": "rough_lateral"
+        },
+        "cells": {
+          "envs_terminated": "20",
+          "envs_base_contact": "20"
+        }
+      },
+      {
+        "source": "reports/runs/TERRAIN_AT_PIN.csv",
+        "key": "go2_g_a038_a033_ang_vel_xy_m008,900",
+        "value": "1.9499",
+        "reads": "the monotone series this arm reads (-0.05 climbs, -0.08 stalls, -0.15 stops) is confounded: at the same pin the strengthened arm sat at terrain level 1.9499 against the baseline's 4.4937, so part of its stair collapse may be curriculum progress rather than the lever. The inference from that series to the relaxation side inherits the confound, and this run can acquire it in the opposite direction.",
+        "selector": {
+          "run": "go2_g_a038_a033_ang_vel_xy_m008",
+          "iteration": "900"
+        },
+        "cells": {
+          "terrain": "1.9499"
+        }
+      },
+      {
+        "source": "config/go2_external_reference.json",
+        "key": "\"ang_vel_xy_l2\": -0.05",
+        "value": "-0.05",
+        "reads": "Isaac Lab v2.3.1 writes -0.05 for this term in all three configs it ships (base, Go2 rough, Go2 flat). It is the only reward name with no upstream disagreement to lean on, so -0.04 has no external anchor at all and it makes the frozen baseline differ from the rough config in two terms instead of one. G-D-EXTREF-20260915 makes this a recorded cost of the arm."
+      },
+      {
+        "source": "config/experiments/G_A040_a033_flat_orientation_m05.json",
+        "key": "closed for retry",
+        "value": "-0.15 is a valid rejection",
+        "reads": "the project's own previous spec argues against this arm in writing: it reads F5 as closing this term for retry and adds that relaxing it is the direction our measurement argues against for G3. This spec disagrees on the first half only - F5 asks a new size to be distinguishable from the rejected ones and -0.04 is on the other side of the baseline from every rejected value, which is a different direction rather than a smaller step of the same one. On the second half it agrees, which is why G3 is a target group here and not an afterthought."
+      }
+    ],
+    "singularity": "One dial has been measured on the climbed-robot counter and the measurement is one-sided. In 18 trainings every policy that walks carries ang_vel_xy_l2 -0.05 exactly (GO2_TUNING_BASE_DATA.md section 4); the only departures are strengthenings, and they line up: -0.05 climbs 90 of 96 robots and reaches terrain level 4.7087, -0.08 climbs 5 and reaches 3.0348, -0.15 does not walk at all and reaches 0.0. The relaxation side of that line has never been run on a walking baseline - the one relaxation in the ledger (A021) sits on a stationary baseline with asymmetric instrumentation. So the project has a dial whose stair effect is the largest it has ever measured, and it has only ever measured the half of it that hurts. The caution that pairs with this is that the same series also shows the dial buying rough side-stepping and push recovery in that direction, and those are the two situations the relaxation must give back.",
+    "predictions": {
+      "walk": {
+        "direction": "up",
+        "basis": "walk margin +0.1359 -> +0.1569 (reports/evidence/go2_reward_mechanism_20260917/PROBES.csv, PROBE_SITUATIONS.csv walk_delta +0.0210 at -0.04), zone WALK, ten times above the stop zone's top +0.0155. Relaxing a penalty cannot lower this margin."
+      },
+      "climb": {
+        "direction": "up",
+        "basis": "PROBE_SITUATIONS.csv climb_delta +0.0036 at -0.04, direction only - the same cell's size was wrong by about thirteen times at -0.08 (forecast section 9). The measured anchor is the strengthening side: 90 -> 5 climbed robots at -0.08 with the stall behaviour of reports/evidence/go2_a038_reread_20260919/STAIRS10_ROLLUP.csv. Up is the direction this arm tests and the climb_guard is what reads it."
+      },
+      "sway": {
+        "direction": "down",
+        "basis": "PROBE_SITUATIONS.csv sway_delta -0.1077 at -0.04, one third of the -0.02 row. The mirror measurement exists: at -0.08 the predicted +0.3230 came out +0.356 observed, so this is the better calibrated of the four columns and the loss is expected rather than feared. Pre-registered floor rough -0.06145 and per-scenario limit G3 2.03646."
+      },
+      "push": {
+        "direction": "down",
+        "basis": "PROBE_SITUATIONS.csv push_delta -0.0512 at -0.04. At -0.08 push_pos_x@101 survival rose 0.84375 -> 0.96875 (reports/GO2_A038_REREAD_20260919.md section 4-2), so the relaxation is expected to give part of that back. Pre-registered floor push -0.07561 and per-scenario limit G6 0.86196."
+      }
+    },
+    "falsified_if": "the 10 cm climbed-robot sum does not rise above the baseline's 90 (ge1) and 43 (ge2) while the stairs forward distance also fails to rise above the baseline's projected_progress_m (2.126, 2.217, 2.215 m of an expected 10 m, reports/GO2_A038_REREAD_20260919.md section 1-4). Either outcome refutes the reading 'the trunk rotation rate is part of what the stalling robot is being charged for, so making it cheaper lets the climb start'. A rise in climbed robots that comes with a large rise in the terrain level at the pin (reports/runs/TERRAIN_AT_PIN.csv) is not attributed to the lever either - that is the same confound that made G-A038's rough gain unattributable, running the other way. The reverse guards are separate and also pre-registered: the rough and push group floors (-0.06145, -0.07561) and the per-scenario limits (G3 2.03646, G6 0.86196) stop the arm from buying the stairs with the axis that holds more recoverable points. Read from the climbed-robot counter, the forward distance and the fall-channel split, never from the mean terrain level, which is capped by the curriculum's random resend (reports/evidence/go2_curriculum_source_20260918/isaaclab_terrains_terrain_importer.py:314-321).",
+    "risk_axes": [
+      "G3",
+      "G5",
+      "G6"
+    ],
+    "seed_limit": "Every training run used seed 42 and no seed replicate exists, so a result supports or refutes the chain; it does not fix a lever effect (reports/GO2_SEED_SENSITIVITY.md section 5). The second confound is the curriculum level at the pin, named in notes.curriculum_lag; it is recorded and cannot be equalised inside R-6.",
+    "status": "INFORMATION_RUN",
+    "status_reason": "The chain has real counterevidence and it is not resolvable before the run: the four-situation forecast says this arm trades sway and push for climb, and the one post-hoc check of this dial shows the loss side is the better predicted one. What the chain does have is the largest measured stair effect in the project and a direction that has never been run. That makes it an information run: it measures the untested half of a dial whose other half is measured, and its own gates are written so that it cannot be promoted on a stair gain bought with G3. It is not a recommendation over G-A040, which aims the axis with the larger recoverable deduction; if only one arm is run, the recoverable points argue for that one. Server execution is not released and no release is issued by this spec.",
+    "exploratory": true,
+    "counterevidence_response": "Keep all seven adverse rows. Put both predicted losses in stage 1 as target groups with measured floors so the trade is measured, not inferred. Read the stairs on the climbed-robot counter and the forward distance, never on the G5 score, and record the terrain level at the pin so a curriculum gain cannot be reported as a lever gain. No performance promotion is claimed."
+  },
+  "open_decisions": []
+}

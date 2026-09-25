@@ -1,0 +1,27 @@
+fact,value,source,line,quote
+isaaclab_go2_rough_max_iterations,1500,isaaclab_tasks_go2_agents_rsl_rl_ppo_cfg.py,14,max_iterations = 1500
+our_max_iterations,1000,config/experiments/*.json training.max_iterations,0,우리 전 회차 공통
+terrain_num_rows,10,isaaclab_terrains_config_rough.py,15,"num_rows=10,"
+terrain_num_cols,20,isaaclab_terrains_config_rough.py,16,"num_cols=20,"
+stairs_step_height_range_m,0.05-0.23,isaaclab_terrains_config_rough.py,24,"step_height_range=(0.05, 0.23),"
+difficulty_formula,(sub_row + uniform()) / num_rows,isaaclab_terrains_terrain_generator.py,256,difficulty = (sub_row + self.np_rng.uniform()) / self.cfg.num_rows
+mean_level_is_capped_by_random_resend,True,isaaclab_terrains_terrain_importer.py,319,"torch.randint_like(self.terrain_levels[env_ids], self.max_terrain_level),"
+mean_level_saturation_unreadable,True,판독 규칙,0,마지막 레벨에 닿은 로봇을 0~max 무작위 행으로 되돌리므로 평균 레벨로는 포화를 판정할 수 없다
+promotion_rule,distance > terrain size[0] / 2,isaaclab_tasks_locomotion_velocity_mdp_curriculums.py,48,move_up = distance > terrain.cfg.terrain_generator.size[0] / 2
+logged_level_is_a_mean,robots x 5 sub-terrain types,isaaclab_tasks_locomotion_velocity_mdp_curriculums.py,55,return torch.mean(terrain.terrain_levels.float())
+stairs_height_row_0_m,0.0500-0.0680,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 0 의 계단 높이 구간
+stairs_height_row_1_m,0.0680-0.0860,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 1 의 계단 높이 구간
+stairs_height_row_2_m,0.0860-0.1040,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 2 의 계단 높이 구간
+stairs_height_row_3_m,0.1040-0.1220,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 3 의 계단 높이 구간
+stairs_height_row_4_m,0.1220-0.1400,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 4 의 계단 높이 구간
+stairs_height_row_5_m,0.1400-0.1580,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 5 의 계단 높이 구간
+stairs_height_row_6_m,0.1580-0.1760,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 6 의 계단 높이 구간
+stairs_height_row_7_m,0.1760-0.1940,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 7 의 계단 높이 구간
+stairs_height_row_8_m,0.1940-0.2120,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 8 의 계단 높이 구간
+stairs_height_row_9_m,0.2120-0.2300,계산: terrain_generator.py + trimesh/mesh_terrains.py,0,행 9 의 계단 높이 구간
+stairs_10_curriculum_row,2,계산,0,"0.1 m 는 행 2 구간에서 학습된다(0-based, 행 9 이 최고)"
+stairs_15_curriculum_row,5,계산,0,"0.15 m 는 행 5 구간에서 학습된다(0-based, 행 9 이 최고)"
+our_env_num_rows,10,workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/training/env.yaml,0,원문 10 와 같아야 한다
+our_env_num_cols,20,workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/training/env.yaml,0,원문 20 와 같아야 한다
+our_env_step_height_range,0.05-0.23,workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/training/env.yaml,0,"원문 (0.05, 0.23) 와 같아야 한다"
+our_env_max_init_terrain_level,5,workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/training/env.yaml,0,학습 시작 레벨 상한

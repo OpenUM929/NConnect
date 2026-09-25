@@ -1,0 +1,37 @@
+arm,axis,weight,variant,uses_completion_factor,pairs_required,pairs_present,axis_scorable,axis_proxy_min,worst_case,worst_seed,axis_points_of_70,axis_points_counted_by_engine
+A033,G3,0.2,engine_v2,True,6,6,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3,0.2,v1,True,6,6,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3,0.2,official_shape_v1,False,6,6,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3,0.2,official_shape_v2,False,6,6,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3_measured_only,0.2,engine_v2,True,3,3,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3_measured_only,0.2,v1,True,3,3,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3_measured_only,0.2,official_shape_v1,False,3,3,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G3_measured_only,0.2,official_shape_v2,False,3,3,True,0.3019470263804906,rough_lateral,202,4.227258369326869,4.227258369326869
+A033,G5_stairs_10_down_only,0.15,engine_v2,True,3,3,True,0.11769141186543253,stairs_10_down,303,1.2357598245870416,1.2357598245870416
+A033,G5_stairs_10_down_only,0.15,v1,True,3,3,True,0.20076770259397314,stairs_10_down,303,2.108060877236718,2.108060877236718
+A033,G5_stairs_10_down_only,0.15,official_shape_v1,False,3,3,True,0.4145682590396454,stairs_10_down,303,4.352966719916276,4.352966719916276
+A033,G5_stairs_10_down_only,0.15,official_shape_v2,False,3,3,True,0.2430227725404818,stairs_10_down,303,2.5517391116750585,2.5517391116750585
+A038,G3,0.2,engine_v2,True,6,3,False,0.6172755763343365,rough_lateral,202,8.641858068680712,0.0
+A038,G3,0.2,v1,True,6,3,False,0.6172755763343365,rough_lateral,202,8.641858068680712,0.0
+A038,G3,0.2,official_shape_v1,False,6,3,False,0.6172755763343365,rough_lateral,202,8.641858068680712,0.0
+A038,G3,0.2,official_shape_v2,False,6,3,False,0.6172755763343365,rough_lateral,202,8.641858068680712,0.0
+A038,G3_measured_only,0.2,engine_v2,True,3,3,True,0.6172755763343365,rough_lateral,202,8.641858068680712,8.641858068680712
+A038,G3_measured_only,0.2,v1,True,3,3,True,0.6172755763343365,rough_lateral,202,8.641858068680712,8.641858068680712
+A038,G3_measured_only,0.2,official_shape_v1,False,3,3,True,0.6172755763343365,rough_lateral,202,8.641858068680712,8.641858068680712
+A038,G3_measured_only,0.2,official_shape_v2,False,3,3,True,0.6172755763343365,rough_lateral,202,8.641858068680712,8.641858068680712
+A038,G5_stairs_10_down_only,0.15,engine_v2,True,3,3,True,0.0,stairs_10_down,101,0.0,0.0
+A038,G5_stairs_10_down_only,0.15,v1,True,3,3,True,0.14317618565949686,stairs_10_down,303,1.503349949424717,1.503349949424717
+A038,G5_stairs_10_down_only,0.15,official_shape_v1,False,3,3,True,0.43524328216014413,stairs_10_down,101,4.570054462681513,4.570054462681513
+A038,G5_stairs_10_down_only,0.15,official_shape_v2,False,3,3,True,0.0,stairs_10_down,101,0.0,0.0
+A038_minus_A033,G3,0.2,engine_v2,True,6,3,False,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,-4.227258369326869
+A038_minus_A033,G3,0.2,v1,True,6,3,False,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,-4.227258369326869
+A038_minus_A033,G3,0.2,official_shape_v1,False,6,3,False,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,-4.227258369326869
+A038_minus_A033,G3,0.2,official_shape_v2,False,6,3,False,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,-4.227258369326869
+A038_minus_A033,G3_measured_only,0.2,engine_v2,True,3,3,True,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,4.414599699353843
+A038_minus_A033,G3_measured_only,0.2,v1,True,3,3,True,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,4.414599699353843
+A038_minus_A033,G3_measured_only,0.2,official_shape_v1,False,3,3,True,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,4.414599699353843
+A038_minus_A033,G3_measured_only,0.2,official_shape_v2,False,3,3,True,0.3153285499538459,rough_lateral@202 -> rough_lateral@202,,4.414599699353843,4.414599699353843
+A038_minus_A033,G5_stairs_10_down_only,0.15,engine_v2,True,3,3,True,-0.11769141186543253,stairs_10_down@303 -> stairs_10_down@101,,-1.2357598245870416,-1.2357598245870416
+A038_minus_A033,G5_stairs_10_down_only,0.15,v1,True,3,3,True,-0.05759151693447628,stairs_10_down@303 -> stairs_10_down@303,,-0.6047109278120011,-0.6047109278120011
+A038_minus_A033,G5_stairs_10_down_only,0.15,official_shape_v1,False,3,3,True,0.020675023120498737,stairs_10_down@303 -> stairs_10_down@101,,0.21708774276523712,0.21708774276523712
+A038_minus_A033,G5_stairs_10_down_only,0.15,official_shape_v2,False,3,3,True,-0.2430227725404818,stairs_10_down@303 -> stairs_10_down@101,,-2.5517391116750585,-2.5517391116750585

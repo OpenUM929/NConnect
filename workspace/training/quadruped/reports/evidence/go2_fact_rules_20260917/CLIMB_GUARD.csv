@@ -1,0 +1,4 @@
+group,case,metric,count_101,count_202,count_303,baseline_sum,max_drop,floor
+stairs_10_climb_ge1,stairs_10_down,ge1,29,30,31,90,6.671,83.329
+stairs_10_climb_ge2,stairs_10_down,ge2,16,13,14,43,13.739,29.261
+stairs_15_climb_ge1,stairs_15_down,ge1,1,1,2,4,5.523,-1.523

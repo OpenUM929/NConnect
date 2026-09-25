@@ -1,0 +1,12 @@
+GO2 G-A035 ARM PACKAGE — DO NOT RUN THIS ZIP ON ITS OWN
+========================================================
+
+ARM ZIP  GO2_G_A035_a033_iter1500_staged.zip
+SHA256   d4a95d32ccce895e423a1f0a1d2aae039678dc37d306bb81303618b1d689a114
+
+This ZIP is one arm of the campaign package built by
+  python tools/build_go2_training_length_campaign.py G-A035
+The campaign ZIP carries this file byte for byte, runs its target stage, reads the server
+gate, runs the full stage only if the gate passes, and returns one result ZIP.
+
+Upload the campaign ZIP named in upload/G-A035/current/CURRENT_UPLOAD.txt.

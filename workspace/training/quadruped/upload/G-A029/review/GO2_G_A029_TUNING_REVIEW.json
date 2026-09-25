@@ -1,0 +1,29 @@
+{
+  "document_type": "NON_EXECUTABLE_TUNING_REVIEW",
+  "work_id": "G-A029",
+  "status": "REVIEW_ONLY",
+  "execution_authorized": false,
+  "training_authorized": false,
+  "baseline_role": "A017 frozen screening reference; identity pending",
+  "single_change": null,
+  "baseline_identity": null,
+  "training": null,
+  "evaluation": null,
+  "video": {"required_for_future_training": true, "frozen_cases": null},
+  "blockers": [
+    "REPORT_REQUIRED_NOT_ACQUIRED",
+    "SINGLE_CHANGE_NOT_JUSTIFIED",
+    "MEASUREMENT_SEMANTICS_UNRESOLVED",
+    "ENGINE_RELEASE_NOT_VERIFIED"
+  ],
+  "report_recovery": {
+    "required": true,
+    "source": "candidate/exported/report.html",
+    "destination": "/workspace/_keep/<tuning_name>/exported/report.html",
+    "preserve_before_evaluation": true,
+    "include_in_result_zip_and_sha_manifest": true,
+    "reject_missing_empty_stale": true,
+    "semantic_identity_check_after_harvest": true
+  },
+  "plan": "workspace/training/quadruped/upload/plan/GO2_G_A029_DIFFICULTY_SCREENING.md"
+}

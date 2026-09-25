@@ -1,0 +1,3 @@
+arm,case,survival_proxy,tracking_proxy,scenario_proxy,tracking_xy_rmse,speed_xy_mean,height_rel_mean,posture_falls,terminated
+G-A033,G1:forward_nominal:101,1.000000,0.949372,0.949372,0.113968,0.735660,0.357802,0,0
+G-A038,G1:forward_nominal:101,1.000000,0.875605,0.875605,0.182237,0.618202,0.318551,0,0

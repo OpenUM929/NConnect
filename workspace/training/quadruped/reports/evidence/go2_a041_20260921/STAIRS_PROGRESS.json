@@ -1,0 +1,50 @@
+[
+  {
+    "arm": "A033",
+    "seed": 101,
+    "projected_progress_m": 2.1256774824907154,
+    "last_200_speed_xy_mean": 0.11353595851913262,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  },
+  {
+    "arm": "A033",
+    "seed": 202,
+    "projected_progress_m": 2.2166991033824135,
+    "last_200_speed_xy_mean": 0.09255192985629115,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  },
+  {
+    "arm": "A033",
+    "seed": 303,
+    "projected_progress_m": 2.215367752761083,
+    "last_200_speed_xy_mean": 0.09486102640923438,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  },
+  {
+    "arm": "A041",
+    "seed": 101,
+    "projected_progress_m": 1.704003435134362,
+    "last_200_speed_xy_mean": 0.02044910514096616,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  },
+  {
+    "arm": "A041",
+    "seed": 202,
+    "projected_progress_m": 1.5584469707476067,
+    "last_200_speed_xy_mean": 0.03922244775167501,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  },
+  {
+    "arm": "A041",
+    "seed": 303,
+    "projected_progress_m": 1.5157295360560248,
+    "last_200_speed_xy_mean": 0.04112895540043712,
+    "tail_rows": 6400,
+    "population": "all recorded rows, including after termination; not alive-only"
+  }
+]

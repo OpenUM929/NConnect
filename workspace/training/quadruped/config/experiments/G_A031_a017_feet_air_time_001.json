@@ -1,0 +1,187 @@
+{
+  "schema_version": "candidate_suite_1.0",
+  "runner": "server_run_go2_candidate_staged.sh",
+  "work_id": "G-A031",
+  "run_id": "train_260915-Go2_a017_feet_air_time_001_1000",
+  "experiment_slug": "go2_g_a031_a017_feet_air_time_001",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md",
+  "decision_ref": "G-D-BASIC-MOTION-20260915",
+  "dial_history_ref": "`feet_air_time` | 기각(상향 0.35) | 0.2→0.35 기각(A015) | G-D73",
+  "pair": {
+    "role": "isaaclab_anchor",
+    "other_work_id": "G-A032",
+    "other_value": 0.1
+  },
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "feet_air_time",
+    "isaaclab_base": 0.125,
+    "isaaclab_go2_rough": 0.01,
+    "isaaclab_go2_flat": 0.25,
+    "deployed_start": 0.01,
+    "baseline": 0.2,
+    "candidate": 0.01,
+    "direction": "to_isaaclab_go2_rough",
+    "after_change_vs_go2_rough": "only track_lin_vel_xy_exp differs (1.4 vs 1.5)",
+    "literature": "R-Sci-1 Table 2 uses a larger air-time weight (2 dt vs tracking 1 dt): the literature does not support lowering. R-Sci-4: auxiliary terms after the objective (principle only)",
+    "r6": "reward weight only; curriculum, DR, commands untouched"
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "A017",
+    "label": "a017",
+    "model_sha256": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4",
+    "env_sha256": "41050c084cd05e7646ce2cb4ac34e06a6870fb7a65b4f767c5714611b9a801ff",
+    "stored_arm_work_id": "G-A027",
+    "stored_arm": "workspace/_keep/go2_a017_full_suite",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.01,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "feet_air_time",
+    "from": 0.2,
+    "to": 0.01
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A030, not calibrated against replay noise; exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (10 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 85
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G1:forward_fast:101",
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:101",
+      "G5:stairs_15_up:101",
+      "G7:dr_seed_101:101"
+    ],
+    "baseline": [],
+    "reasons": {
+      "G1:forward_fast:101": "flat gait: are the feet still lifted, or dragged (H3)",
+      "G3:rough_forward:101": "target: rough-terrain forward walking",
+      "G4:slope_plus_20:101": "target: body height on the 20 deg climb (H1)",
+      "G5:stairs_15_up:101": "side effect: toes catching on steps (H3)",
+      "G7:dr_seed_101:101": "target: walking under domain randomisation"
+    },
+    "baseline_counterparts": "workspace/_keep/go2_a017_full_suite/evaluation/a017/videos (G-A027, same 4 env x 500 step)"
+  },
+  "why": [
+    "A017 walks well on flat ground (G1/G2 survival 1.0, tracking >= .89) but on rough,",
+    "slope and DR it moves at about half the commanded speed (speed/command .49-.60 rough,",
+    ".53-.57 slope) and loses robots to the height gate, not to tilt (slope 7/8/4, rough 2/1/0).",
+    "feet_air_time 0.2 is A017's only term without single-variable evidence and 20x the",
+    "Isaac Lab Go2 rough value 0.01 (Isaac Lab uses 0.25 only in the flat config).",
+    "Raising it to 0.35 (A015) lowered body height in all 7 cases and collapsed survival.",
+    "This arm tests the Isaac Lab value; G-A032 tests the midpoint 0.1."
+  ],
+  "preregistered": {
+    "source": "GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1",
+    "target_groups": {
+      "rough_forward": [
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "slope_plus_20": [
+        "G4:slope_plus_20:101",
+        "G4:slope_plus_20:202",
+        "G4:slope_plus_20:303"
+      ],
+      "domain_randomization": [
+        "G7:dr_seed_101:101",
+        "G7:dr_seed_202:202",
+        "G7:dr_seed_303:303"
+      ]
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 0.0,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.02,
+    "max_flat_case_survival_drop": 0.03125,
+    "max_scenario_weighted_loss_70": 0.5,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "mechanism_readout": "target-case height_rel_p10 and posture-gate falls; recorded, not a criterion",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN"
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a031",
+    "keep_dir_name": "go2_g_a031_a017_feet_air_time_001",
+    "result_zip": "GO2_G_A031_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A031_RESULT_READY",
+    "tmux_name": "go2_g_a031",
+    "upload_zip": "GO2_G_A031_feet_air_time_001_staged.zip",
+    "release_id": "20260915_a017_feet_air_time_001_candidate_staged_v2",
+    "supersedes": "20260915_a017_feet_air_time_001_candidate_suite_v1 (published 2026-09-15, not run)"
+  }
+}

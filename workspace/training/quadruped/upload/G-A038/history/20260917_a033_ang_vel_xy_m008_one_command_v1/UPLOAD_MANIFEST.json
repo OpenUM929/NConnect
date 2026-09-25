@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A038",
+  "note": "G-A038 G-A033 + ang_vel_xy_l2 -0.05->-0.08. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-17T00:00:00+00:00",
+  "release_id": "20260917_a033_ang_vel_xy_m008_one_command_v1",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A038_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A038_a033_ang_vel_xy_m008_one_command.zip",
+      "server_path": "/workspace/GO2_G_A038_a033_ang_vel_xy_m008_one_command.zip",
+      "sha256": "be425189e558a0db237efc51c27a4ab8c796d129752736d2c51dab3f98a8e350"
+    }
+  ]
+}

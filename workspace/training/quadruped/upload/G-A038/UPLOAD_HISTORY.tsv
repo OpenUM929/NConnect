@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	note
+2026-09-17T00:00:00+00:00	G-A038	20260917_a033_ang_vel_xy_m008_one_command_v1	ARTIFACT_VERIFIED	GO2_G_A038_a033_ang_vel_xy_m008_one_command.zip	be425189e558a0db237efc51c27a4ab8c796d129752736d2c51dab3f98a8e350	G-A038 G-A033 + ang_vel_xy_l2 -0.05->-0.08. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. exploratory.

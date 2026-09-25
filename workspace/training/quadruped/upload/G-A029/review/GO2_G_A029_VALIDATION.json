@@ -1,0 +1,13 @@
+{
+  "work_id": "G-A029",
+  "status": "LOCAL_CONTRACT_VERIFIED_REVIEW_ONLY",
+  "tests": 32,
+  "test_exit_code": 0,
+  "review_rejected_by_execution_validator": "schema_version must be 1.0",
+  "runner_lf": true,
+  "historical_engine_unchanged": true,
+  "server_execution": "NOT_RUN",
+  "policy_performance": "NOT_MEASURED",
+  "report_semantic_identity": "NOT_VERIFIED",
+  "report_recovery_fixture": "fresh ZIP/SHA, missing, empty, stale; bash -n; resume SHA guard structurally checked"
+}

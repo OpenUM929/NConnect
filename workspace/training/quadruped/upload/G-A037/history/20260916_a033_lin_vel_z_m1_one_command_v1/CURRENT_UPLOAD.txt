@@ -1,0 +1,14 @@
+CURRENT GO2 UPLOAD — G-A037 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A037\current\GO2_G_A037_a033_lin_vel_z_m1_one_command.zip
+   SHA256 40efbb6e4b3be2fdc11d92e60bf42df2db466dc69baf38c76bd2955e06d1797e
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A037_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260916_a033_lin_vel_z_m1_one_command_v1
+STATUS ARTIFACT_VERIFIED
+첫 판이다(이전 판 없음).
+권고 상태: 이득 추정 없음·학습 seed 1개라 단일 회차로는 판정 불가(분석 §8-4). 서버 실행은 미해제.

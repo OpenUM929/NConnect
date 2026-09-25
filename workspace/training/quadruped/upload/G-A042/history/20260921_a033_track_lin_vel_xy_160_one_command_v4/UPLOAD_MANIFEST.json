@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A042",
+  "note": "G-A042 G-A033 + track_lin_vel_xy_exp 1.5->1.6. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-21T00:00:00+00:00",
+  "release_id": "20260921_a033_track_lin_vel_xy_160_one_command_v4",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A042_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip",
+      "server_path": "/workspace/GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip",
+      "sha256": "a95d3b6d2164354381e850ed7749d4c97d3a6df6ae02ef5bb4f29ef8dda06133"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A031",
+  "note": "A017 + feet_air_time 0.2->0.01, 1,000 iter training + 69-case candidate suite (candidate suite runner v1, basic-motion dose pair with G-A032). exploratory.",
+  "published_at_utc": "2026-09-15T00:00:00+00:00",
+  "release_id": "20260915_a017_feet_air_time_001_candidate_suite_v1",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A031_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A031_feet_air_time_001.zip",
+      "server_path": "/workspace/GO2_G_A031_feet_air_time_001.zip",
+      "sha256": "d888d497140c0d404c610d27bcdd3d5159fea81c7c785845bbe0f0cb9ebb7bce"
+    }
+  ]
+}

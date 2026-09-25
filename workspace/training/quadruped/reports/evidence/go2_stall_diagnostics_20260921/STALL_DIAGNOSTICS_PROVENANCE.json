@@ -1,0 +1,87 @@
+{
+  "schema_version": "go2_stall_diagnostics_v2",
+  "generator": {
+    "path": "tools/go2_stall_diagnostics.py",
+    "version": "2.0.0"
+  },
+  "specification": {
+    "units": {
+      "projected_speed": "m/s",
+      "valid_seconds": "s",
+      "stall_seconds": "s",
+      "stall_share": "fraction",
+      "first_step_time": "s",
+      "arrival_rate": "fraction"
+    },
+    "coordinate_frame": "body frame",
+    "coordinate_source": "go2_eval_telemetry.py robot.data.root_lin_vel_b[:, :2]",
+    "projection": "actual body-frame xy velocity projected onto command body-frame xy direction",
+    "window": {
+      "initial_grace_s": 0.5,
+      "end": "exclusive of the first terminated/truncated row and all later rows",
+      "stall_threshold_m_s": 0.05,
+      "minimum_contiguous_stall_s": 1.0
+    },
+    "first_step_rule": "first time_s where go2_climb_count gained-step rule reaches >=1",
+    "coverage_rule": "all expected environments must be present and stall-valid; censored arrivals remain valid",
+    "exclusions": [
+      "initial grace window",
+      "terminal row",
+      "rows after first terminal row"
+    ]
+  },
+  "arms": [
+    {
+      "arm": "candidate",
+      "arm_path": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate",
+      "run_id": "train_260915-Go2_a017_track_lin_vel_xy_150_1000",
+      "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+      "checkpoint_iter": 900,
+      "evaluator": "posture_gate_v2",
+      "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+      "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+      "training_seed": 42,
+      "evaluation_seeds": [
+        "101",
+        "202",
+        "303"
+      ],
+      "requested_evaluation_seeds": [
+        "101",
+        "202",
+        "303"
+      ],
+      "sources": {
+        "identity": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate\\identity.json",
+        "runner_status": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\RUNNER_STATUS.txt",
+        "experiment": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\meta\\experiment.json"
+      },
+      "provenance_complete": true,
+      "reason": ""
+    },
+    {
+      "arm": "no_harvest",
+      "arm_path": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest",
+      "run_id": null,
+      "model_sha256": null,
+      "checkpoint_iter": null,
+      "evaluator": null,
+      "evaluator_sha256": null,
+      "registry_sha256": null,
+      "training_seed": null,
+      "evaluation_seeds": null,
+      "requested_evaluation_seeds": [
+        "101",
+        "202",
+        "303"
+      ],
+      "sources": {
+        "identity": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\identity.json",
+        "runner_status": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\RUNNER_STATUS.txt",
+        "experiment": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\meta\\experiment.json"
+      },
+      "provenance_complete": false,
+      "reason": "missing provenance: run_id, model_sha256, checkpoint_iter, evaluator, evaluator_sha256, registry_sha256, training_seed, evaluation_seeds"
+    }
+  ]
+}

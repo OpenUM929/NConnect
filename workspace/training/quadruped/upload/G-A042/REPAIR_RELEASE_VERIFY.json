@@ -1,0 +1,19 @@
+{
+  "status": "ARTIFACT_VERIFIED",
+  "sha256": "a95d3b6d2164354381e850ed7749d4c97d3a6df6ae02ef5bb4f29ef8dda06133",
+  "archives": [
+    {
+      "zip": "GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip!go2_campaign_g_a042/arms/GO2_G_A042_a033_track_lin_vel_xy_160_staged.zip",
+      "members": 33,
+      "manifest_entries": 32,
+      "shell_syntax": 2
+    },
+    {
+      "zip": "GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip",
+      "members": 26,
+      "manifest_entries": 25,
+      "shell_syntax": 2
+    }
+  ],
+  "scope": "Package only; no GPU execution, behavior or official result verified."
+}

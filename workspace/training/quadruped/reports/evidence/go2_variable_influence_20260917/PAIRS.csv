@@ -1,0 +1,21 @@
+work_id,run,term,from,to,baseline,env_diff_lines,env_diff,ckpt_base,ckpt_cand,same_ckpt,base_walking,cand_walking,base_rough_speed,cand_rough_speed,duplicate_of,cache_same,cache_total,cases,seeds,walk_case
+G-A007,go2_feet_air_time_020_v1,feet_air_time,0.01,0.20,Default-01,1,882: weight: 0.01 → weight: 0.2,800,800,True,False,False,0.031,0.030,,0,0,22,101/202/303,rough_forward
+G-A009,go2_track_lin_vel_120_v1,track_lin_vel_xy_exp,1.0,1.2,Default-01,1,827: weight: 1.0 → weight: 1.2,800,900,False,False,False,0.031,0.030,,6,6,6,101,rough_forward
+G-A010,go2_g_a010_lin_vel_z_m2,lin_vel_z_l2,-3.0,-2.0,Default-01,1,837: weight: -3.0 → weight: -2.0,800,900,False,False,False,0.031,0.030,,6,6,6,101,rough_forward
+G-A013,go2_g_a013_flat_orientation_m1,flat_orientation_l2,0.0,-1.0,Default-01,1,887: weight: 0.0 → weight: -1.0,800,900,False,False,False,0.031,0.030,,6,6,6,101,rough_forward
+G-A024,go2_g_a024_ang_vel_xy_m015,ang_vel_xy_l2,-0.08,-0.15,Default-01,1,841: weight: -0.08 → weight: -0.15,800,700,False,False,False,0.031,0.031,,6,6,6,101,rough_forward
+G-A025,go2_g_a025_flat_orientation_m1,flat_orientation_l2,0.0,-1.0,Default-01,1,887: weight: 0.0 → weight: -1.0,800,900,False,False,False,0.031,0.030,G-A013,6,6,6,101,rough_forward
+G-A015,go2_g_a015_pilot_feet_air_time_035,feet_air_time,0.2,0.35,Pilot-01,1,882: weight: 0.2 → weight: 0.35,999,900,False,True,False,0.241,0.109,,6,6,6,101,rough_forward
+G-A016,go2_g_a016_pilot_ang_vel_xy_m015,ang_vel_xy_l2,-0.05,-0.15,Pilot-01,1,841: weight: -0.05 → weight: -0.15,999,999,True,True,False,0.241,0.028,,6,6,6,101,rough_forward
+G-A017,go2_g_a017_pilot_track_lin_vel_xy_140,track_lin_vel_xy_exp,1.2,1.4,Pilot-01,1,827: weight: 1.2 → weight: 1.4,999,900,False,True,True,0.241,0.247,,6,6,6,101,rough_forward
+G-A018,go2_g_a018_pilot_action_rate_m008,action_rate_l2,-0.01,-0.008,Pilot-01,1,853: weight: -0.01 → weight: -0.008,999,900,False,True,False,0.241,0.046,,6,6,6,101,rough_forward
+G-A020,go2_g_a020_chain01_lin_vel_z_m2,lin_vel_z_l2,-3.0,-2.0,chain01,1,837: weight: -3.0 → weight: -2.0,900,999,False,False,False,0.030,0.036,,6,6,6,101,rough_forward
+G-A021,go2_g_a021_chain01_ang_vel_xy_m005,ang_vel_xy_l2,-0.08,-0.05,chain01,1,841: weight: -0.08 → weight: -0.05,900,900,True,False,False,0.030,0.036,,6,6,6,101,rough_forward
+G-A022,go2_g_a022_chain01_feet_air_time_020,feet_air_time,0.01,0.2,chain01,1,882: weight: 0.01 → weight: 0.2,900,999,False,False,False,0.030,0.033,,6,6,6,101,rough_forward
+G-A031,go2_g_a031_a017_feet_air_time_001,feet_air_time,0.2,0.01,A017,1,882: weight: 0.2 → weight: 0.01,900,900,True,True,True,0.247,0.316,,4,4,3,101/202/303,rough_forward
+G-A032,go2_g_a032_a017_feet_air_time_010,feet_air_time,0.2,0.1,A017,1,882: weight: 0.2 → weight: 0.1,900,700,False,True,True,0.247,0.246,,4,4,3,101/202/303,rough_forward
+G-A033,go2_g_a033_a017_track_lin_vel_xy_150,track_lin_vel_xy_exp,1.4,1.5,A017,1,827: weight: 1.4 → weight: 1.5,900,900,True,True,True,0.247,0.360,,4,4,22,101/202/303,rough_forward
+G-A038,go2_g_a038_a033_ang_vel_xy_m008,ang_vel_xy_l2,-0.05,-0.08,G-A033,1,841: weight: -0.05 → weight: -0.08,900,900,True,True,True,0.736,0.619,,4,4,4,101/202/303,forward_nominal
+G-A041,go2_g_a041_a033_ang_vel_xy_m004,ang_vel_xy_l2,-0.05,-0.04,G-A033,1,841: weight: -0.05 → weight: -0.04,900,900,True,True,True,0.360,0.381,,4,4,5,101/202/303,rough_forward
+G-A042,go2_g_a042_a033_track_lin_vel_xy_160,track_lin_vel_xy_exp,1.5,1.6,G-A033,1,827: weight: 1.5 → weight: 1.6,900,900,True,True,True,0.360,0.215,,4,4,11,101/202/303,rough_forward
+G-A043,go2_g_a043_a033_lin_vel_z_m15,lin_vel_z_l2,-2.0,-1.5,G-A033,1,837: weight: -2.0 → weight: -1.5,900,900,True,True,True,0.360,0.419,,4,4,22,101/202/303,rough_forward

@@ -1,0 +1,14 @@
+CURRENT GO2 UPLOAD — G-A039 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A039\current\GO2_G_A039_a033_dof_acc_m125e7_one_command.zip
+   SHA256 b17793f9af9fadce381bd6af5389289e29ccfb201ae85d0b5141aec2fd6b44d6
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A039_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260918_a033_dof_acc_m125e7_one_command_v4
+STATUS ARTIFACT_VERIFIED
+첫 판이다(이전 판 없음).
+권고 상태: 추론 사슬 RECOMMENDED — 보상 가중치 한 항만 바꾼다. 걷기 margin +0.1359→+0.2060 이고 margin 경계대(+0.0033~+0.0155) 밖에서는 반대 행이 없다(경계대 안에서는 A018 이 뒤집힌다). 이 항은 배포 `REWARD_WEIGHTS` 6개 목록 밖이라 후보 파일에 한 줄이 추가되고 `go2_task/env_cfg.py` 가 적용한다(서버 로그 `[OK] dof_acc_l2.weight`). **이것을 R-6 안으로 보는 해석은 아직 사용자 승인 전이다 — 열린 결정 U1-R6-ENV-REWARD-20260918 (`reports/GO2_OPEN_DECISIONS.md`). 배포 `go2_task/_finalize.py:586` 은 목록 밖 항을 판정에서 제외한다.** 서버 실행은 미해제.

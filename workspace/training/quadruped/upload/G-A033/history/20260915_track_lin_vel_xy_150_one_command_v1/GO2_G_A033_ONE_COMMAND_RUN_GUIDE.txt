@@ -1,0 +1,66 @@
+GO2 G-A033 ONE-COMMAND RUN GUIDE (파일 하나, 명령 하나, 결과 하나)
+
+- G-A033: A017 + `track_lin_vel_xy_exp` 1.4→1.5
+계획서: workspace/training/quadruped/upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md (§12)
+서버 실행은 사용자 결정 사항이다. 이 문서는 실행 절차이지 실행 승인이 아니다.
+
+LOCAL FILE TO UPLOAD (이것 하나만)
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A033\current\GO2_G_A033_track_lin_vel_xy_150_one_command.zip
+   SHA256 4ddb46da3f1f2526c34f0b843f8583d063104598cb29792758de9ec47d311595
+안에 회차 ZIP이 빌더 출력과 바이트 동일하게 들어 있다. 회차 ZIP을 따로 올리지 않는다.
+
+SERVER DESTINATION
+/workspace/GO2_G_A033_track_lin_vel_xy_150_one_command.zip
+
+ONE-LINE RUN (tmux 안에서 시작하고 즉시 리턴)
+cd /workspace && echo '4ddb46da3f1f2526c34f0b843f8583d063104598cb29792758de9ec47d311595  GO2_G_A033_track_lin_vel_xy_150_one_command.zip' | sha256sum -c - && unzip -oq GO2_G_A033_track_lin_vel_xy_150_one_command.zip && bash /workspace/go2_campaign_g_a033/server_run_go2_campaign.sh
+
+시작 전 러너가 하는 일
+회차 ZIP의 SHA 확인 → /workspace 아래로 풀기 → 회차별 preflight(평가기·registry·A017 SHA) → 학습·play 프로세스, tmux 세션, 이전 결과가 있으면 거부.
+
+순서와 시간 (한 GPU에서 차례로. 동시에 돌리지 않는다)
+1. G-A033 1단계 → 서버 게이트. 1단계는 학습 1,000 iter, 파국 게이트, 표적 9 case, A017 표지 5 case, 영상 5개(forward_fast, rough_forward, slope_plus_20, stairs_15_up, dr_seed_101)다. 회차당 약 1시간 25분.
+2. 게이트가 통과시킨 회차만 2단계(나머지 59 case)를 돈다. 회차당 약 55분.
+3. 결과 ZIP 하나로 묶는다.
+1단계에서 끝나면 약 1시간 25분, 모두 통과하면 약 2시간 20분이다. 접속 직후 잔여 GPU 시간을 실측해 기록한다.
+
+서버 게이트 (go2_target_gate.py) — 2단계를 돌릴지만 정한다
+판정 1항(험지·오르막·DR 9 case proxy 평균 +0.05 이상, 세 묶음 중 둘 이상 상승)을 로컬 검증기와 같은 함수로 읽는다.
+러너는 판정을 게이트 JSON의 verdict에서 읽는다. G-A031·A032 실행에서 `isaaclab.sh -p`가 종료 코드를 바꿔 FAIL이 UNDECIDED로 기록된 결함을 고친 것이다(계획 §9-2).
+- TARGET_PASS: 그 회차 2단계를 돈다.
+- FAIL: 그 회차는 끝이다. 파국 게이트 정지·발산도 FAIL이다.
+- REMEASURE_BASELINE: 표지 case가 저장 A017과 어긋났다. 그 회차 1단계를 A017 재측정으로 한 번 더 돌리고(+약 20분) 다시 판정한다. 통과하면 2단계도 A017을 재측정한다(+약 45분).
+- UNDECIDED: 결측·계측 불일치다. 2단계를 돌리지 않고 로컬 검증으로 넘긴다.
+게이트 결과는 GPU 일정만 정한다. 최종 판정은 결과를 받은 뒤 로컬 검증기가 한다.
+
+MONITOR
+tmux attach -t go2_campaign_g_a033
+진행 기록: /workspace/_keep/go2_campaign_g_a033/CAMPAIGN_LOG.txt ([ARM], [GATE], [GATE READ], [RESULT] 줄)
+
+첫 10분에 볼 것
+학습 로그의 reward 표에 `track_lin_vel_xy_exp` 가중치 1.5이 찍히는지 본다.
+
+재시작 규칙
+중단되면 `GO2_RESUME=1 bash /workspace/go2_campaign_g_a033/server_run_go2_campaign.sh`로 잇는다. 끝난 단계·case·영상은 건너뛴다.
+기본 재실행은 이전 결과를 지우지 않고 거부한다. 버리려면 `GO2_DISCARD_PREVIOUS=1`.
+
+DONE MARKER
+[DONE] GO2_G_A033_CAMPAIGN_RESULT_READY
+
+DOWNLOAD TO LOCAL workspace\_keep (이것 하나)
+/workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip
+/workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip.sha256
+안에 CAMPAIGN_STATUS.txt(회차별 STATE·GATE·STAGE·DECISION), gate/*.json, arm_results/(회차별 결과 ZIP)가 있다.
+패키징이 실패하면 `_keep/go2_g_a033_a017_track_lin_vel_xy_150`, `_keep/go2_campaign_g_a033`를 그대로 가져온다.
+
+결과를 받은 뒤 (로컬, GPU 0)
+회차별 결과 ZIP을 workspace\_keep에 풀고 검증한다.
+python -B tools/verify_go2_basic_motion_harvest.py G-A033 --harvest workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150 --out workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/harvest_verification.json
+게이트 판정과 로컬 1단계 판정이 다르면 로컬 판정을 따르고, 차이를 기록한다.
+
+SERVER SHUTDOWN GATE
+DONE 표시만으로 종료하지 않는다. 결과를 받아 로컬 검증을 통과해야 종료 판단을 보고한다.
+
+RESULT INTERPRETATION — 실행 전에 고정 (계획서 §6-1·§12-3, 사후 재협상 금지)
+성공 조건은 계획서 §6-1과 같다(기준값 불변). 결과→방향은 §12-3 표를 따른다.
+공식 evaluator·공식 점수는 OFFICIAL_RESULT_UNMEASURED다.

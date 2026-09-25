@@ -1,0 +1,12 @@
+CURRENT GO2 UPLOAD — G-A030
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A030\current\GO2_G_A030_flat_orientation_m1.zip
+   SHA256 e4fbdc0033866612ca9804f9479416d7d4e188bf403b23078cdb6591f35eab05
+
+이 패키지는 A017 + flat_orientation_l2 -1.0을 1,000 iter 학습하고 후보 69 case를 잰다.
+자세한 절차는 같은 폴더의 GO2_G_A030_RUN_GUIDE.txt. 서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260914_a017_flat_orientation_m1_candidate_suite_v1
+STATUS ARTIFACT_VERIFIED
+History is preserved under ../history and in ../UPLOAD_HISTORY.tsv.

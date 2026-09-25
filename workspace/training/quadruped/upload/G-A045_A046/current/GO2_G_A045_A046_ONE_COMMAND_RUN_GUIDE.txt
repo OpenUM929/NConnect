@@ -1,0 +1,110 @@
+GO2 G-A045 + G-A046 실행 안내 — 한 파일 · 한 명령 · 결과 ZIP 하나 (팔 둘)
+
+이 회차는 점수를 올리려는 회차가 **아니다.** 같은 개선·부작용이 **두 번째 학습 seed 에서도
+반복되는지**를 본다 — 원인을 확정하는 회차가 아니다.
+두 팔 모두 학습 seed 43 으로 학습한다 — 이 프로젝트가 회수한 학습은 seed 칸이 전부 42 다 — 21건이 `TRAIN_STATUS.txt` 에 `SEED=42` 를 적고 있고, 기록이 없는 4건은 평가 전용·초기 suite 다. 42 아닌 학습 seed 기록은 0건.
+  G-A045: G-A033 의 보상 파일 **그대로**. 저장된 G-A033(seed 42)과의 차이 = **그 값에서의** seed 차이 한 표본.
+  G-A046: `lin_vel_z_l2 -1.5`(G-A043 과 같은 값). **같은 seed 의 G-A045 과의 차이(B−A)** = 다이얼 효과.
+판독은 **절대 수준과 쌍 차이를 따로** 읽는다 — B 가 50/96 이상이면 그 행동이 나타난 것이고,
+다이얼이 올렸다고 말하려면 **같은 seed 의 B−A** 가 seed 42 의 (A043−A033)과 같은 방향이어야 한다(계획 §4-2).
+이 쌍은 `-1.75` 를 반복하지 않으므로 **A044 의 비단조 원인은 이 회차로 확정되지 않는다.**
+**두 팔 다 승급 대상이 아니다**(promotion: forbidden_not_a_reward_change) — 기준선은 G-A033 그대로다.
+이 금지는 **우리 내부의 보수 규칙**이다. 확인된 것은 배포 파일이 바뀌지 않는다는 사실뿐이고,
+CLI 인자가 전달된다는 것이 규정 허용의 증거는 아니며, 반대로 seed 43 정책이 공식적으로 제출 불가라고
+단정하지도 않는다. R-6 해석은 열린 결정 U2-SEED-REPLICATE-20260918 이고 **사용자 해석보다 운영진 답변·공식 근거로
+닫는 것이 안전하다.** 서버 실행도 사용자 결정이다.
+**손실 상한도 우리가 정할 수 없다** — 서버 실행 자체가 허용되지 않는 행위로 판정될 경우 그 영향이
+이 회차에만 머무는지는 확인되지 않았다. 확실한 것은 G-A033 산출물이 보존된다는 것뿐이고 제재 범위는
+**미확정**이다. 실행 결정만으로 이 해석이 닫히지도 않는다.
+계획서: workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md
+
+1. 업로드 — 이 파일 하나만 올린다
+   GO2_G_A045_A046_seed43_pair_full69_v8.zip
+   SHA256 02c1b36c59e9a5c499b43c46776d69bce7e4d74f63c740ca8719e75d9c3df151
+   서버 경로 /workspace/GO2_G_A045_A046_seed43_pair_full69_v8.zip
+
+2. 실행 — 한 줄
+   unzip -oq /workspace/GO2_G_A045_A046_seed43_pair_full69_v8.zip -d /workspace && bash /workspace/go2_g_a045_a046/server_run_go2_full69_campaign.sh
+
+   끊겼을 때 이어서: GO2_RESUME=1 bash /workspace/go2_g_a045_a046/server_run_go2_full69_campaign.sh
+   **이어서 실행은 미완료 학습을 절대 덮어쓰지 않는다.** 미완료 학습을 만나면 로그·고정
+   checkpoint·학습 로그를 `_keep/<팔>/training/interrupted_*` 로 복사하고
+   `TRAINING_STATE=INTERRUPTED_TRAINING_PRESERVED`(rc 9)로 **멈춘다**. 그 위에 처음부터
+   다시 학습하는 것은 별도 선택이다: `GO2_RESTART_TRAINING=1 GO2_RESUME=1 bash ...`
+   수집이 `FULL_69_COMPLETE` 가 아니거나 결과 ZIP 이 없거나 SHA 가 안 맞는 팔은
+   **건너뛰지 않고 다시 돈다**(결함 C-28).
+   진행 보기:       tmux attach -t go2_seed_pair
+   진행 기록:       /workspace/_keep/go2_seed_pair_a045_a046/CAMPAIGN_LOG.txt
+
+3. 무엇이 도는가 — 1단계도 서버 게이트도 없고, 팔이 팔을 막지도 않는다
+   G-A045 학습 1000 iter -> 파국 게이트 -> 69 case 전부 -> sentinel 5 -> 영상 6+4 -> 팔 결과 ZIP
+   G-A046 같은 순서, 영상 6편(기준선 대응은 G-A045 이 이미 찍었다)
+   -> 두 팔 결과를 묶은 결과 ZIP 하나.
+   영상 case: stairs_15_down, stairs_10_down, rough_lateral, combined_yaw_right, push_pos_y, forward_nominal
+   **팔당 약 95분, 합쳐 약 190분**으로 본다(A044 실측 94분/1팔·학습 58분 21초 기준).
+   **서버 세션은 240~300분으로 잡는다** — 위는 도는 시간이고 회수는 그 뒤에 온다(계획 §7).
+   한 팔이 실패해도 그 팔이 모은 것은 포장되고 다음 팔이 돈다. 고를 승자가 없으므로 게이트가 없다.
+
+4. 완료 표식과 내려받을 것 — 표식은 「회수 준비」이지 「전수 완료」가 아니다
+   [DONE] 표식: [DONE] GO2_SEED_PAIR_RESULT_READY
+   /workspace/_keep/GO2_SEED_PAIR_RESULT.zip
+   /workspace/_keep/GO2_SEED_PAIR_RESULT.zip.sha256
+   **[DONE] 은 결과 ZIP 이 만들어졌다는 뜻뿐이고, 늘 나오는 것도 아니다.** 러너가 도중에 죽으면
+   `on_exit` 가 부분 ZIP 을 만들고 끝난다 — **그 판에는 [DONE] 이 없다.** 표식 하나를 기다리지 말고
+   팔마다 아래 세 상태를 구분한다. 팔의 상태는
+   `_keep/go2_seed_pair_a045_a046/CAMPAIGN_STATUS.txt` 의 `<팔>_STATE`·`<팔>_COLLECTION` 과
+   각 팔의 `_keep/<팔 폴더>/RESULT_STATUS.txt`·`RUNNER_STATUS.txt` 의 `COLLECTION_STATUS` 에 적힌다.
+
+   ① 정상 완료 — COLLECTION_STATUS=FULL_69_COMPLETE
+      **이것은 개수 확인이다.** SHA · 지문 · identity · report 검사를 대신하지 않는다.
+   ② 복구 가능한 수집 누락 — COLLECTION_STATUS=INCOMPLETE_COLLECTION
+      로그에 `[INCOMPLETE COLLECTION]` 두 줄이 함께 찍힌다. 서버가 살아 있을 때만 메울 수 있다.
+   ③ crash · 안전상 평가 불가 — INCOMPLETE_CRASH(표식 없음) 또는 INCOMPLETE_EARLY_STOP
+      **여기서는 69 를 채우지 않는다.** 파국 게이트가 멈춘 판은 정책이 실행되지 않은 판이고,
+      자료를 얻자고 시뮬레이터를 다시 띄우지 않는 것이 러너의 계약이다. 회수 가능한 것
+      (학습 로그 · checkpoint · env.yaml · exported/report.html · 거기까지의 telemetry)을 보존하고
+      결측을 적은 뒤 종료를 판단한다. 이 판은 「성능 실패」가 아니라 「판정 불가」다.
+   ④ 학습이 끊긴 채 재개됨 — TRAINING_STATE=INTERRUPTED_TRAINING_PRESERVED (rc 9)
+      `_keep/<팔>/training/TRAINING_RESUME_STATUS.txt` 와 `interrupted_<시각>/` 이 남는다.
+      **자료는 그대로 있고 GPU 시간도 더 쓰지 않았다.** 그 팔을 지금 상태로 내려받든지,
+      `GO2_RESTART_TRAINING=1` 로 재학습을 **명시적으로** 지시한다. 둘 다 사용자 결정이다.
+   **한 팔이 ③ 이어도 다른 팔의 상태는 따로 읽는다.** 한 팔만 성공하면 그 팔의 자료는 그대로
+   회수하되, 쌍 비교는 성립하지 않는다 — 그 사실을 결측으로 적는다.
+
+5. SERVER SHUTDOWN GATE — SHA 일치만으로 끄지 않는다
+   아래 다섯 줄이 **두 팔 모두** 채워진 뒤에 끈다(루트 AGENTS.md 「학습 종료 후 영상 증거 게이트」).
+   a. 결과 ZIP GO2_SEED_PAIR_RESULT.zip 과 .sha256 로컬 도착 · SHA 일치, 그리고 팔마다
+      `COLLECTION_STATUS` 를 §4 의 세 상태 중 하나로 읽었다.
+   b. 팔마다 원 학습 report.html = REPORT_ACQUIRED, 그리고 같은 학습의 env.yaml · 로그 · checkpoint
+   c. 팔마다 69 case telemetry 전부와 sentinel 5 case
+   d. 영상: G-A045 6+4편 · G-A046 6편의 파일과 지문 도착,
+      SHA 로 재사용하는 저장본 2편의 대조 성공
+   e. 아래 로컬 판독 네 줄을 실제로 실행하고 그 verdict 를 기록했다
+   하나라도 비면 종료 불가다 — 단 §4 ③ 은 예외다. 거기서는 없는 자료를 만들 수 없으므로
+   게이트는 「전부 채웠다」가 아니라 「무엇이 없고 왜 없는지 적었다」로 닫는다.
+
+   로컬 판독 (GPU 0):
+     python -B tools/verify_go2_basic_motion_harvest.py G-A045 \
+         --harvest workspace/_keep/go2_g_a045_seed43_a033_rewards \
+         --out workspace/_keep/go2_g_a045_seed43_a033_rewards/harvest_verification.json
+     python -B tools/go2_screening_gate.py --candidate workspace/_keep/go2_g_a045_seed43_a033_rewards \
+         --rule-version post_a043_push4_v1
+     python -B tools/verify_go2_basic_motion_harvest.py G-A046 \
+         --harvest workspace/_keep/go2_g_a046_seed43_lin_vel_z_m15 \
+         --out workspace/_keep/go2_g_a046_seed43_lin_vel_z_m15/harvest_verification.json
+     python -B tools/go2_screening_gate.py --candidate workspace/_keep/go2_g_a046_seed43_lin_vel_z_m15 \
+         --rule-version post_a043_push4_v1
+   **exit code 만으로 성능도 서버 종료 여부도 판단하지 않는다.** 첫 명령은 성능 FAIL 에도 exit 0 이고
+   (판정을 했다는 뜻), exit 1 은 INCONCLUSIVE·BASELINE_REMEASURE_REQUIRED — 즉 **판정을 못 했다**는
+   뜻이다. 그때 볼 것은 성능이 아니라 `artifact_faults`·`ruler_mismatches` 이고, 그 결손은 서버가
+   살아 있을 때만 메운다. 둘째 명령은 FAIL 과 INCONCLUSIVE 가 같은 exit 1 이므로 이름으로 구분한다.
+   **이 회차에서 screening 판정은 「자」에 대한 증거이지 후보 채택·기각의 근거가 아니다**
+   (기준 문서 reports/GO2_A045_CRITERIA_CHANGES_20260924.md §2-4).
+
+6. 이 패키지가 보장하지 않는 것
+   점수 이득을 약속하지 않는다. seed 두 개는 분포가 아니다 — 이 회차가 주는 것은 **표본 하나**이고,
+   그것으로 분산을 추정했다고 쓰지 않는다.
+   **A044 의 비단조 원인을 확정하지 않는다** — 이 쌍은 `-1.75` 를 반복하지 않는다.
+   **기존 판정을 무효로 만들지 않는다** — A042·A043·A044 의 INTERNAL_GATE_FAIL 은 그 조건의 관측이다.
+   차이가 크게 나와도 승급 규칙을 폐기하거나 자동으로 장기 학습에 들어가지 않는다(계획 §4-1).
+   승급은 두 팔 모두 금지다. 공식 결과는 OFFICIAL_RESULT_UNMEASURED 다.

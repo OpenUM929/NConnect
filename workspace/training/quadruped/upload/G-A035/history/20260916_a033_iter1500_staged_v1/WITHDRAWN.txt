@@ -1,0 +1,15 @@
+WITHDRAWN 2026-09-16 — never uploaded, never run.
+
+This release could not have produced a result:
+1. The guide ran server_run_go2_candidate_iter_pinned.sh directly. Its outer path launches
+   server_run_go2_candidate_staged.sh --inner, which this ZIP does not carry. [STARTED] prints,
+   the tmux session dies at once.
+2. baseline.label was "candidate". The server gate and the local verifier read
+   evaluation/<label>/cases as a remeasured baseline, so the candidate was compared with itself.
+3. evaluation.sentinel_tolerance was absent. The server gate raises KeyError in compare_sentinel,
+   writes no verdict, and the full stage never runs.
+4. tools/verify_go2_basic_motion_harvest.py did not accept G-A035.
+5. The guide said the runner prints TARGET_PASS_FULL_STAGE_REQUIRED. Only the local verifier does.
+
+Superseded by: history/20260916_a033_iter1500_one_command_v1 (campaign, one command).
+Machine gates added: tools/test_go2_training_length_campaign_contract.py

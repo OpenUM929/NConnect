@@ -1,0 +1,92 @@
+GO2 G-A043 ONE-COMMAND RUN GUIDE (파일 하나, 명령 하나, 결과 하나)
+
+- G-A043: G-A033 위에서 `lin_vel_z_l2` -2.0 → -1.5 하나만 바꾼다. 나머지 가중치·seed 42·4096 env·1000 iter는 G-A033과 같다.
+근거: workspace/training/quadruped/upload/plan/GO2_POST_A042_PLAN_20260922.md §2(원문 역할 → 원자료 → 한계 → 값)·§3(경쟁 후보 비교와 선택 이유)
+서버 실행은 사용자 결정 사항이다. 이 문서는 실행 절차이지 실행 승인이 아니다.
+
+값을 고른 방법
+- 원문 역할: Penalize z-axis base linear velocity using an L2 squared kernel (Isaac Lab v2.3.1, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py: torch.square(asset.data.root_lin_vel_b[:, 2])). It is the body frame's vertical speed squared - not foot height, not world-frame altitude, not ground clearance. On a slope the body frame tilts with the robot, so the same climb charges differently there than on flat ground; that distinction is why G4 is carried as a guard axis rather than as a target.
+- 걷기 구간: G-A033 walk margin +0.1359 -> +0.1480 at -1.5 (reports/evidence/go2_reward_mechanism_20260917/PROBES.csv, zone WALK, delta +0.0121, range_status OUT_OF_RANGE). The stop zone's top is +0.0155, so the margin stays about ten times above it and the arithmetic cannot produce a standing policy by itself. A margin is reward arithmetic over measured postures, not a prediction of speed.
+- 계단·흔들림·밀침: reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv at -1.5: walk +0.0121, climb +0.0258, sway -0.0470, push -0.0386. Two cells point up and two point down, which is the opposite shape from G-A042 (all four up) and is why the push and sway guards are strengthened here. The cells are computed from G-A033's own trajectories with behaviour held fixed; they say what the reward prefers, not what the policy will do.
+- 규칙: The plan selects -1.5 as one 25 percent relaxation, half the step of the held G-A037 (-1.0), and explicitly not an optimum: a smaller step is not proven safer, it is only smaller. No walking baseline has ever trained any value of this term except -2.0, so every candidate value on this dial is OUT_OF_RANGE and the run is an information run.
+- 주장하지 않는 것: No score gain is estimated. The climb/stall penalty-share gap is an association measured across different terrains and different robot populations, not a causal experiment, and the same file shows the 15 cm stallers carrying the smallest share of this penalty (-0.021) while climbing least - so 'the penalty is what blocks the climb' is not established and is not claimed.
+바꾸지 않은 레버: `track_lin_vel_xy_exp`(1.6 상향이 10cm 2단 43→0·낙상 34→85 — G-A042), `ang_vel_xy_l2`(강화·완화 둘 다 계단 악화 — G-A038·G-A041), `feet_air_time`(0.01·0.1 1단계 FAIL, 0.35 정지), `action_rate_l2`(A018 기각, 상황 칸 전부 빈칸), `flat_orientation_l2`(G-A040 보류, 반대 행 6건), `dof_acc_l2`(G-A039 보류, 배포 6항 밖 — 열린 결정 U1-R6-ENV-REWARD-20260918), `lin_vel_z_l2 −1.0`(G-A037 보류 — 도출 원리가 기반 데이터 §5 S5와 반대).
+
+체크포인트 고정: 후보는 iter 900로 평가한다. 기준선 G-A033도 1000 중 iter 900에서 평가됐다.
+
+LOCAL FILE TO UPLOAD (이것 하나만)
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A043\current\GO2_G_A043_a033_lin_vel_z_m15_one_command.zip
+   SHA256 90661e80cb4eacac4428d30620e43c7abfa5a5a0832230b48fdfde1babf0b11c
+안에 회차 ZIP이 빌더 출력과 바이트 동일하게 들어 있다. 회차 ZIP을 따로 올리지 않는다.
+
+SERVER DESTINATION
+/workspace/GO2_G_A043_a033_lin_vel_z_m15_one_command.zip
+
+ONE-LINE RUN (tmux 안에서 시작하고 즉시 리턴)
+cd /workspace && echo '90661e80cb4eacac4428d30620e43c7abfa5a5a0832230b48fdfde1babf0b11c  GO2_G_A043_a033_lin_vel_z_m15_one_command.zip' | sha256sum -c - && unzip -oq GO2_G_A043_a033_lin_vel_z_m15_one_command.zip && bash /workspace/go2_campaign_g_a043/server_run_go2_campaign.sh
+
+시작 전 러너가 하는 일
+회차 ZIP의 SHA 확인 → /workspace 아래로 풀기 → 회차 preflight(평가기·registry·G-A033 SHA) → 학습·play 프로세스, tmux 세션, 이전 결과가 있으면 거부.
+
+순서와 시간 [추정]
+1. 1단계 약 100분: 학습 1000 iter, 파국 게이트, 표적 20 case(10cm 계단 3 seed·험지 6 case·밀침(+x) 3 case를 채점하고, 15cm 계단 3 seed·밀침(−x) 3 seed·평지 좌우 2 case를 필수 기록으로 잰다), G-A033 표지 5 case, 영상 6+2개.
+2. 서버 게이트가 통과시키면 2단계(나머지 case) 약 55분.
+3. 결과 ZIP 하나로 묶는다.
+1단계에서 끝나면 약 1시간 40분, 통과하면 약 2시간 35분. 접속 직후 잔여 GPU 시간을 실측해 기록한다.
+
+서버 게이트 (go2_target_gate.py) — 2단계를 돌릴지만 정한다
+판정 1항(표적 12 case proxy 평균 +0.05 이상, 세 묶음 중 2개 이상 상승)을 로컬 검증기와 같은 함수로 읽는다.
+필수 기록은 서버 GPU 배분 점수에서 제외하지만 로컬 계획 판정에서는 필수다. 두 계단 높이 각각 전진거리 증가·등반수 비열등·정체 감소를 요구하고, G6는 ±x **각 방향**의 pooled 낙상 비증가와 생존·추종 seed 중앙값차 ≥0을 요구한다. G-A042와 비교해 밀침 −x가 표지 1 seed에서 3 seed로 올라가고 좌우 밀침(±y) 표지 2개가 2단계로 내려갔다(1단계 상한 21 case). 유효 정책의 정지나 TARGET_FAIL에도 필수 계단·밀침·보호 기록과 영상을 회수한다.
+- 묶음별 하한(fact_rules_v1): 평균이 한 묶음의 붕괴를 덮지 못한다. 묶음 평균 proxy 변화 ≥ stairs -0.02858 · rough -0.06145 · push -0.07561
+- 계단 오른 로봇 수 하한(3 seed 합, 기준 workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv): stairs_10_climb_ge1 90-6.671 · stairs_10_climb_ge2 43-13.739. 1단계에 세 seed가 모두 있는 묶음은 여기서, 나머지는 로컬 판정에서 본다.
+- TARGET_PASS: 2단계를 돈다.
+- FAIL: 필수 평가·영상 수집을 마친 뒤 끝낸다. 유효 정지 정책도 수집한다. 비유한/실행 불능은 실패 근거를 회수하고 중단한다.
+- REMEASURE_BASELINE: 표지 case가 저장 G-A033과 어긋났다. 1단계를 G-A033 재측정으로 한 번 더 돌리고 다시 판정한다.
+- UNDECIDED: 결측·계측 불일치다. 2단계를 돌리지 않고 로컬 검증으로 넘긴다.
+
+로컬 판정 (2단계 후) — 다른 축을 지키는 조건
+- 총점 +2.53/70 이상(2σ 검출 한계)
+- 평지 G1·G2: 시나리오 proxy 하락 ≤ 0.054, case 생존 하락 ≤ 0.0625
+- 나머지 축: 시나리오별 가중 손실 ≤ 자기 평가 표집 sd의 2배 (G3 2.03646 · G4 0.99632 · G5 0.05604 · G6 0.86196 · G7 0.40358 /70)
+- 새 정지 case 0, POLICY_LOCOMOTES
+- 목표 축 G3+G5의 가중 점수 합이 올라야 한다(분석 §8-3b). 보호 축은 G1·G2·G4·G6·G7이다.
+- 계단 오른 로봇 수 하한(1단계 안내의 목록 전부)
+
+MONITOR
+tmux attach -t go2_campaign_g_a043
+진행 기록: /workspace/_keep/go2_campaign_g_a043/CAMPAIGN_LOG.txt ([ARM], [GATE], [GATE READ], [RESULT] 줄)
+
+첫 10분에 볼 것
+학습 로그 머리의 reward 표에서 lin_vel_z_l2가 -1.5이고 나머지가 G-A033과 같은지 본다.
+
+재시작 규칙
+중단되면 `GO2_RESUME=1 bash /workspace/go2_campaign_g_a043/server_run_go2_campaign.sh`로 잇는다. 끝난 단계·case·영상은 건너뛴다.
+기본 재실행은 이전 결과를 지우지 않고 거부한다. 버리려면 `GO2_DISCARD_PREVIOUS=1`.
+
+DONE MARKER
+[DONE] GO2_G_A043_CAMPAIGN_RESULT_READY
+
+DOWNLOAD TO LOCAL workspace\_keep (이것 하나)
+/workspace/_keep/GO2_G_A043_CAMPAIGN_RESULT.zip
+/workspace/_keep/GO2_G_A043_CAMPAIGN_RESULT.zip.sha256
+패키징이 실패하면 `_keep/go2_g_a043_a033_lin_vel_z_m15`, `_keep/go2_campaign_g_a043`를 그대로 가져온다.
+
+결과를 받은 뒤 (로컬, GPU 0)
+python -B tools/verify_go2_basic_motion_harvest.py G-A043 --harvest workspace/_keep/go2_g_a043_a033_lin_vel_z_m15 --out workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/harvest_verification.json
+통합 판독기는 artifact/fact_rules_v1 및 go2_screening_gate.py의 계획 §5(post_a042_push_v1)를 함께 실행하고 통합 verdict를 저장한다.
+python -B tools/go2_stall_diagnostics.py --candidate workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/candidate
+python -B tools/verify_go2_basic_motion_harvest.py G-A043 --keep workspace/_keep/go2_g_a043_a033_lin_vel_z_m15
+게이트 판정과 로컬 판정이 다르면 로컬 판정을 따르고, 차이를 기록한다.
+
+SERVER SHUTDOWN GATE
+DONE 표시만으로 종료하지 않는다. 결과 ZIP·SHA/manifest, 해당 학습 원본 report.html·env·로그·checkpoint, 필수 telemetry 20 case+평지 전진, 후보 영상4개·새 기준선 영상1개 및 SHA로 재사용한 기준선 영상3개의 로컬 도착·무결성을 확인한다. 누락하면 종료 불가이며 성능 FAIL과 회수 완결은 별개다.
+
+RESULT INTERPRETATION — 실행 전에 고정 (사후 재협상 금지)
+판정 기준은 fact_rules_v1 AND post_a042_push_v1: workspace/training/quadruped/upload/plan/GO2_POST_A042_PLAN_20260922.md section 5. Combined locally by tools/verify_go2_basic_motion_harvest.py; the server gate allocates GPU time only.이다.
+−1.5는 OUT_OF_RANGE 정보수집 값이다. 걷는 기준선에서 이 항의 관측값은 −2.0 하나뿐이라 기울기를 잴 수 없고, 같은 방향의 G-A037(−1.0)은 도출 원리의 반대 행 때문에 보류 상태다. 학습 seed 42 하나이며 기전·일반화·공식 점수 개선은 미확정이다.
+공식 evaluator·공식 점수는 OFFICIAL_RESULT_UNMEASURED다.
+
+PLAN SCREENING — 1단계 회수부터 적용
+위 단일 verifier 명령은 artifact/identity → fact_rules_v1 → go2_screening_gate.py(계획 §4)를 통합한다. 10·15cm 각각 전진거리 증가, 등반수 비열등(최소 한 항 증가), 정체 감소, 네 표적의 생존 보호와 험지 추종 보호를 모두 요구한다. 누락/지문 불일치는 INCONCLUSIVE다.
+서버 게이트는 GPU 배분만 한다. screening 성공도 후보 승급이 아니며 전수69case·영상·독립 학습seed 양팔 반복이 남는다.
+예산: 기존 A033/A041 학습 약59/57분, 본 사양 1단계100분·확장55분은 추정이다. 실제 잔여 GPU/TTL은 미측정이다. 회수 여유를 포함한 약3시간 이상 창을 확인하고 시작한다. 재측정 분기는 추가 시간이 필요하므로 해당 러너의 회수/중단 절차를 따른다.

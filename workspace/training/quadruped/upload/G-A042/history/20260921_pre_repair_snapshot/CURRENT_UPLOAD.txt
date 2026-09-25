@@ -1,0 +1,14 @@
+CURRENT GO2 UPLOAD — G-A042 (one command)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A042\current\GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip
+   SHA256 7952cd021438863fccd8f961333b4890db7b35ee87100bee595b4c555bd7ea15
+
+한 파일·한 명령으로 1단계 → 서버 게이트 → 통과 시 2단계 → 결과 ZIP 하나.
+절차는 같은 폴더의 GO2_G_A042_ONE_COMMAND_RUN_GUIDE.txt. 회차 ZIP은 이 파일 안에 이미 들어 있다.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260921_a033_track_lin_vel_xy_160_one_command_v3
+STATUS ARTIFACT_VERIFIED
+이전 판 5개는 ../history 에 보존한다(가장 최근 20260921_a033_track_lin_vel_xy_160_staged_v3), 모두 서버에 올린 적 없다.
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다. 기준선 `1.5`에서 `1.6`으로, 배포 파일이 스스로 적은 권장 대역 `추천 0.5 ~ 2.0` 안이다. 단 `1.5`는 Isaac Lab v2.3.1 Go2 rough·flat이 쓰는 값이라 이 팔은 현재 맞춰져 있는 외부 기준에서 **떨어지는** 방향이다(이탈 사유는 사양 `external_reference.departure_reason`). 서버 실행은 미해제.

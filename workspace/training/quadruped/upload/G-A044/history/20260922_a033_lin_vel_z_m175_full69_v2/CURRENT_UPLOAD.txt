@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A044 (one command, full 69)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A044\current\GO2_G_A044_a033_lin_vel_z_m175_full69.zip
+   SHA256 b3321fb3250e2d156e690775c5c3e4f44b9285d6d40d419fe7a84ee6d28acedc
+
+한 파일·한 명령으로 학습 → 69 case 전수 → sentinel → 영상 → 결과 ZIP 하나.
+1단계 분기와 서버 게이트는 이 회차에 없다(계획 §5).
+절차는 같은 폴더의 GO2_G_A044_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260922_a033_lin_vel_z_m175_full69_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 1개는 ../history 에 보존한다(가장 최근 20260922_a033_lin_vel_z_m175_full69_v1), 모두 서버에 올린 적 없다.
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다. 기준선 `-2.0`에서 `-1.75`로, A043이 실제로 걸었던 `-1.5`와의 중간값이라 이 다이얼에서 처음으로 `BETWEEN_OBSERVED`인 후보다. 단 `-2.0`은 Isaac Lab v2.3.1 base·Go2 rough·Go2 flat이 모두 쓰는 값이라 이 팔은 외부 기준에서 **떨어지는** 방향이고, 같은 방향의 A043은 계단을 크게 올리면서 G2를 잃었다. 그 반대 근거를 지우지 않고 `contradicting`에 싣는다.

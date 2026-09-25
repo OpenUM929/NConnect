@@ -1,0 +1,25 @@
+section,key,value
+tally,defects_total,23
+tally,status_OPEN,16
+tally,status_FIXED,7
+tally,status_ACCEPTED,0
+tally,severity_중대,19
+tally,severity_경미,4
+tally,confidence_확인,13
+tally,confidence_추정,10
+tally,open_중대,13
+
+section,id,gate
+gate,C-1,tools/test_go2_g_a041_campaign_contract.py
+gate,C-5,tools/test_go2_g_a042_campaign_contract.py
+gate,D-0,tools/test_go2_claim_check_contract.py
+gate,S-2,tools/test_go2_fact_rules_contract.py
+gate,S-4,tools/test_go2_stationary_guard_contract.py
+gate,X-1,tools/test_go2_published_release_contract.py
+gate,C-4,tools/test_go2_g_a041_campaign_contract.py · tools/test_go2_g_a042_campaign_contract.py
+
+section,id,decision
+awaiting_user,C-2,사용자 결정이 필요하다. (가) 셋을 각각 다음 판으로 다시 내고 옛 바이트는 history 에 보존한다 — 사양과 발행물이 같은 말을 하게 된다(셋 다 비실행·서버에 올린 적 없음). (나) 사양 변경을 되돌린다. 어긋남을 잡는 관문은 이미 있다(test_6). 고친 뒤에는 tools/test_go2_g_a041_campaign_contract.py 의 KNOWN_DIVERGED 를 줄여야 통과한다 — 래칫이라 조용히 되살아나지 않는다.
+awaiting_user,C-6,"테스트가 발행 경로에 쓰지 않게 한다 — G-A041·G-A042 계약처럼 `build_payload()` 를 발행된 ZIP 의 members 와 대조만 한다(접두사 `go2_feet_air_time_020_v1/` 를 붙여서). 그렇게 고치면 위 2개 차이가 **테스트 실패로 드러나고**, 그 다음은 사용자 결정이다: (가) 그 회차를 다음 판으로 다시 내거나 (나) PRD 변경을 되돌린다 — C-2 와 같은 모양이다. 고치기 전까지는 전체 테스트를 돌린 뒤 `git checkout -- <그 ZIP>` 으로 되돌려야 한다."
+open_decision,U1-R6-ENV-REWARD-20260918,배포 `REWARD_WEIGHTS` 6개 목록 **밖**의 env RewTerm 가중치를 바꾸는 회차가 R-6 안인가?
+open_decision,U2-SEED-REPLICATE-20260918,같은 설정·다른 학습 seed 로 다시 돌리는 재현 회차가 R-6 안인가?

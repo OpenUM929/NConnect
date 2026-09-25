@@ -127,6 +127,7 @@ Default-01 영상 재생성은 `VIDEO_NOT_REQUIRED`다. 동일 checkpoint tensor
 결과 분기는 `승급 후보 / 실패 / INCONCLUSIVE` 세 가지뿐이다. 승급 후보도 training seed 42 한 번이므로 `exploratory`이며, 다음 단계는 독립 학습 seed 재현이지 즉시 장기 학습이 아니다.
 
 ## 9. PARTIAL ?? ??? evaluator v2 ?? ? 260901
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 확인한 정상 기록: `workspace/training/quadruped/go2_feet_air_time_020_v2.VERIFICATION.md`(v2 원인·수정·패키지 SHA·검증, 정상 영문). PARTIAL 결과 수치는 `GO2_REWARD_EVIDENCE_MASTER.md` §10에 있으나 그 절도 손상 구간의 재구성 기록이다(원문 아님).
 
 ### 9-a. ?? ??
 

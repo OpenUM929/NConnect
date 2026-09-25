@@ -219,7 +219,9 @@ G7의 세 registry case를 1:1로 실행해 정책당 총 69개 telemetry를 만
 
 과거 판정은 삭제하지 않는다. 전제가 바뀌면 새 결정 ID와 변경 이유를 남기고 이전 항목을
 `대체됨`으로 연결한다. 실제 artifact가 PRD보다 최신이면 artifact를 우선 판정한 뒤 같은 턴에 PRD를
-수정한다. PRD와 원장이 불일치하면 새 서버 학습·승급은 `HOLD — PRD 동기화 미완료`다.
+수정한다. PRD와 원장이 불일치하면 **같은 턴에 동기화하고 진행한다**. 불일치를 이유로 사용자가 요청한
+튜닝 패키지 발행을 멈추거나 review 자료로 대체하지 않는다(2026-09-14 개정, 루트 `AGENTS.md`
+「튜닝 요청 산출물 계약」). 장기 학습 승급만 동기화 완료를 조건으로 한다.
 
 ## 11. 구현 확정 — 단일 업로드·단일 실행·단일 결과 ZIP (260901)
 
@@ -366,3 +368,25 @@ G-A011에서는 engine SHA를 유지하고 JSON만 새로 검증한다. 현재�
 - 서버 실행·reward/배포코드 변경 없음. 새 학습 HOLD — report 대응 및 진단 근거 미완료.
 - 작업 ID GO2-P1-PREP-20260913 유지. 과거 승인 release와 결과는 변경하지 않는다.
 <!-- GO2:REPORT-FIRST:END -->
+
+### G-A029 ? 2026-09-14 ?? ?? ?? ? ?? ??? ??
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 같은 주제의 확인한 정상 기록: `workspace/training/quadruped/reports/GO2_G_A029_WEAKNESS_ANALYSIS_20260914.md`, `workspace/training/quadruped/upload/G-A029/review/GO2_G_A029_ACTION_RATE_M0008_DRAFT.json`. 손상 줄의 "35 unittest" 검증 결과는 대체 기록 미확보(`review/GO2_G_A029_TEST_OUTPUT.txt`는 32 tests로 다른 회차다).
+- ??? ??: ?? ?? ??? ???? ???? ????? ?? ?? ?? ??. ?????? ?? ??? ?? ???.
+- ?? ???: workspace/training/quadruped/reports/GO2_G_A029_WEAKNESS_ANALYSIS_20260914.md. G3/G7 ?? ??? ?? ???? G1/G2 ???G4/G6 ?? ??, G5 ??? ?? ????. ?? ??? ?? ??? ?????? ?? ???.
+- A017 ??? ??: action_rate_l2 -0.01?-0.008(20% ?? ???, ??/??? ???). ?? Python reward ?? ??? baseline ??, ??? JSON? upload/G-A029/review? ??. ?? ??? ?? ??? ??.
+- REPORT_READ_STATUS: A017 MISSING, Pilot READ_UNMATCHED ??. ?? ??: ?? engine? A017 frozen baseline ???, ?? manifest ? ?? ?? ?? ???. ?? ?? ??/current/history ?? ??.
+- ?? ??: 35 unittest ??(?????Python ??/LF??????report fresh/missing/empty/stale?ZIP/SHA?shell ???engine ??). ?? ??/?? ?? ???. ?? lifecycle PLANNED, ?? ?? ??.
+
+### 2026-09-14 G-A029 §3 종료 — HOLD / 원 보고서 회수
+- NEW-CONTINUATION으로 지정 계획 §3을 종료했다. -0.008은 조건부 실험 가치만 인정하며 후보 확정/학습 승인이 아니다. A017 REPORT_READ_STATUS=MISSING / REPORT_REQUIRED_NOT_ACQUIRED로 실행본 발행 차단.
+- 기존 52archive 재검색 없이 목록 밖 ZIP 6개를 확인했으나 report.html 0개. 상세 경로·직접 코드/로그 근거·한계는 GO2_REWARD_EVIDENCE_MASTER.md의 같은 날짜 §3 판단 종료 행과 기존 인계 계획에 기록했다. 깨진 과거 append는 판정 근거에서 제외한다.
+- NEXT 하나: A017 원 학습 report.html 외부 보관 사본 회수 → run/env/log/model_900 대응 확인 → 기존 계획 §4 패키지 구현·검증. 추가 서버 진단이나 새 검토 ZIP을 만들지 않는다.
+- G-A029 PLANNED, 단계0/6, 서버/학습/실행 ZIP 발행 없음. 역사 일정 CLOSED 유지. 원 자료·승인 release 보존.
+### GO2-REPLAN-A029-20260914 — 감사 후 사용자 요청 재계획
+- 사용자 결정: G-A029 감사에 따라 메인 문제를 진단하고 튜닝 계획을 수립한다. 이번 요청은 계획이며 서버 실행/패키지 발행으로 확대하지 않는다. 역사 일정 CLOSED는 유지한다.
+- G-A029 REJECTED_BY_AUDIT 및 -0.008 NEXT 철회 유지, review 불변. 과거 A017 HTML 누락을 발행 차단으로 복원하지 않는다.
+- 계획 정본: workspace/training/quadruped/upload/plan/GO2_POST_A029_TUNING_PLAN_20260914.md.
+- 직접 근거: A018 양 arm 각7case 모두 schema2/v2; A013/A025 baseline은 schema1/2 혼재, candidate는 schema2라 합산 비대칭. A027 G3 rough_lateral seed101/202/303의 base-contact 종료는 17/14/17개(/32), 첫 종료 전0.5초 q=1-gz² 평균 .688/.628/.660. 기울기는 연관성이지 최초 원인 확정 아님.
+- 계획값: A017 조건 flat_orientation_l2 0→-1.0 단일변수, G3 접촉 종료/생존 표적; G5 정체·경사 회귀 동시 감시. -1은 관측 기반 단위 크기 exploratory 값이지 upstream 최적값/만족 판정 아님.
+- REPORT_READ_STATUS: A017 MISSING(기존 복구 불가 확정 유지), Pilot READ_UNMATCHED(이번 HTML 본문 직접 열람, 정책 대응 미완결).
+- NEXT: 다음 미사용 번호로 위 계획의 current 실행 패키지 구현·검증. 이번에 번호 예약/실행 ZIP/서버 명령은 발행하지 않았다. 학습·성능·공식 결과 새 측정 없음.

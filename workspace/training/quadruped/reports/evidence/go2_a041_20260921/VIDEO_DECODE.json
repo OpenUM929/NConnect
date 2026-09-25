@@ -1,0 +1,38 @@
+[
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate\\videos\\G3_rough_forward_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  },
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate\\videos\\G3_rough_lateral_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  },
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate\\videos\\G4_slope_plus_20_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  },
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate\\videos\\G5_stairs_10_down_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  },
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\g_a033_videos\\videos\\G3_rough_lateral_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  },
+  {
+    "path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\g_a033_videos\\videos\\G5_stairs_10_down_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "decoded_samples": 4
+  }
+]

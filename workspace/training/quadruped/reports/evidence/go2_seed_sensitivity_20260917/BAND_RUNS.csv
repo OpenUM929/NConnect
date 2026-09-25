@@ -1,0 +1,5 @@
+run,margin,margin_loo,zone,zone_loo,walked
+A021,-0.0056,-0.0056,STOP,BAND,False
+Pilot-01,0.0033,-0.0244,BAND,BAND,True
+A015,-0.0087,-0.0087,STOP,BAND,False
+A018,0.0155,0.0155,BAND,BAND,False

@@ -1,0 +1,5 @@
+from,to,change,margin_from,margin_to,margin_delta,terrain_999_from,terrain_999_to,terrain_delta,climb10_ge1_from,climb10_ge1_to,climb10_ge2_from,climb10_ge2_to
+A017,A031,feet_air_time 0.2->0.01,+0.0917,+0.1069,+0.0152,4.2503,4.7864,+0.5361,,,,
+A017,A032,feet_air_time 0.2->0.1,+0.0917,+0.0997,+0.0080,4.2503,4.5819,+0.3316,,,,
+A017,G-A033,track_lin_vel_xy_exp 1.4->1.5,+0.0917,+0.1359,+0.0442,4.2503,4.7087,+0.4584,28,90,2,43
+G-A033,G-A038,ang_vel_xy_l2 -0.05->-0.08,+0.1359,+0.0728,-0.0631,4.7087,3.0348,-1.6739,90,5,43,0

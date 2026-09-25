@@ -1,0 +1,187 @@
+{
+  "schema_version": "candidate_suite_1.0",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A033",
+  "run_id": "train_260915-Go2_a017_track_lin_vel_xy_150_1000",
+  "experiment_slug": "go2_g_a033_a017_track_lin_vel_xy_150",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_FALL_POSTURE_CANDIDATES_20260915.md",
+  "decision_ref": "user decision 2026-09-15 (fall/posture stage, order slope-push-DR then stairs; tuning value 1 chosen on score); plan GO2_FALL_POSTURE_CANDIDATES_20260915.md sections 8 and 10; first registered as G-D-BASIC-MOTION-20260915 plan 12",
+  "dial_history_ref": "`track_lin_vel_xy_exp` | 채택 | 1.2→1.4 채택(A017) | G-D184",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "track_lin_vel_xy_exp",
+    "isaaclab_base": 1.0,
+    "isaaclab_go2_rough": 1.5,
+    "isaaclab_go2_flat": 1.5,
+    "deployed_start": 1.0,
+    "baseline": 1.4,
+    "candidate": 1.5,
+    "direction": "to_isaaclab_go2_rough",
+    "after_change_vs_go2_rough": "only feet_air_time differs (0.2 vs 0.01)",
+    "literature": "R-Sci-1 Table 2 tracking kernel exp(-err^2/0.25) is the kernel of our tracking proxy (form only; its weights are not transferred)",
+    "r6": "reward weight only; curriculum, DR, commands untouched"
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "A017",
+    "label": "a017",
+    "model_sha256": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4",
+    "env_sha256": "41050c084cd05e7646ce2cb4ac34e06a6870fb7a65b4f767c5714611b9a801ff",
+    "stored_arm_work_id": "G-A027",
+    "stored_arm": "workspace/_keep/go2_a017_full_suite",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "track_lin_vel_xy_exp",
+    "from": 1.4,
+    "to": 1.5
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "the candidate is evaluated at the checkpoint of the iteration A017 was evaluated at (900, the iter key inside A017 model_best.pt); finalize reward pick kept as training/model_best_by_reward.pt. G-A032 was evaluated at iter 700 vs 900.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A030, not calibrated against replay noise; exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (10 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 85
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G1:forward_fast:101",
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:101",
+      "G5:stairs_15_up:101",
+      "G7:dr_seed_101:101"
+    ],
+    "baseline": [],
+    "reasons": {
+      "G1:forward_fast:101": "flat gait at the fastest command: does the stronger speed push keep a normal gait",
+      "G3:rough_forward:101": "target: rough-terrain forward walking",
+      "G4:slope_plus_20:101": "target: speed and body height on the 20 deg climb (T2)",
+      "G5:stairs_15_up:101": "side effect: stairs under a stronger speed push. This case starts on the top platform and walks down first (plan 9); 1.2->1.4 cut 10cm 2-step ascents 10-11 -> 3-5",
+      "G7:dr_seed_101:101": "target: walking under domain randomisation"
+    },
+    "baseline_counterparts": "workspace/_keep/go2_a017_full_suite/evaluation/a017/videos (G-A027, same 4 env x 500 step)"
+  },
+  "why": [
+    "A017 walks well on flat ground (G1/G2 survival 1.0, tracking >= .89). Off flat ground it is slow:",
+    "rough_forward and DR at .25-.30 m/s for a .5 m/s command (plan 8-1).",
+    "G7 is not lost to the randomisation: DR tracking equals rough_forward tracking on the same terrain,",
+    "and heavier robots are not slower (mass-speed r +.05..+.36). It is lost to walking speed on rough ground.",
+    "The only lever that raised rough_forward and DR on all three evaluation seeds is track 1.2 -> 1.4",
+    "(rough_forward +.084/+.106/+.136, dr +.103/+.190/+.055; 69-case total +6.09/70, G-D184).",
+    "feet_air_time 0.01 (G-A031, same iter 900) moved them both ways; G-A032 (0.1) was evaluated at iter 700.",
+    "1.5 is the Isaac Lab v2.3.1 Go2 rough value and the guidebook lecture 14 example.",
+    "Risks pre-registered from the same direction: slope crouch-stalls 0 -> 4-8, a lateral push case with",
+    "3 terminations, 10cm two-step stair ascents 10-11 -> 3-5. Step +7%, less than half of 1.2 -> 1.4."
+  ],
+  "preregistered": {
+    "source": "GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1 (unchanged for G-A033, plan 12-2)",
+    "target_groups": {
+      "rough_forward": [
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "slope_plus_20": [
+        "G4:slope_plus_20:101",
+        "G4:slope_plus_20:202",
+        "G4:slope_plus_20:303"
+      ],
+      "domain_randomization": [
+        "G7:dr_seed_101:101",
+        "G7:dr_seed_202:202",
+        "G7:dr_seed_303:303"
+      ]
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 0.0,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.02,
+    "max_flat_case_survival_drop": 0.03125,
+    "max_scenario_weighted_loss_70": 0.5,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "mechanism_readout": "target-case height_rel_p10 and posture-gate falls; recorded, not a criterion",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN"
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a033",
+    "keep_dir_name": "go2_g_a033_a017_track_lin_vel_xy_150",
+    "result_zip": "GO2_G_A033_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A033_RESULT_READY",
+    "tmux_name": "go2_g_a033",
+    "upload_zip": "GO2_G_A033_track_lin_vel_xy_150_iter900_staged.zip",
+    "release_id": "20260915_a017_track_lin_vel_xy_150_iter900_staged_v2",
+    "supersedes": "20260915_a017_track_lin_vel_xy_150_candidate_staged_v1 (never run; evaluated finalize reward pick)"
+  }
+}

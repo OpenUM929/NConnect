@@ -1,0 +1,33 @@
+{
+  "work_id": "G-A042-REPAIR-20260921",
+  "status": "ARTIFACT_VERIFIED",
+  "server_executed": false,
+  "release": "20260921_a033_track_lin_vel_xy_160_one_command_v4",
+  "sha256": "a95d3b6d2164354381e850ed7749d4c97d3a6df6ae02ef5bb4f29ef8dda06133",
+  "verification": {
+    "focused": {
+      "tests": 53,
+      "result": "OK",
+      "seconds": 23.685
+    },
+    "campaign": {
+      "tests": 26,
+      "initial_pass": 25,
+      "initial_fail": 1,
+      "reason": "Stale expected prose measurement of the same dial; corrected to explicit A017->A033 (900/900), matching audit requirement.",
+      "targeted_rerun": {
+        "tests": 1,
+        "result": "OK"
+      }
+    },
+    "test_output_isolation": {
+      "tests": 6,
+      "result": "OK",
+      "seconds": 63.824
+    },
+    "package": "REPAIR_RELEASE_VERIFY.json",
+    "static_checks": "AST syntax and git diff --check; LF/bash -n on packaged shell/config; deployed train/play/task working tree clean"
+  },
+  "known_unrelated_failure": "test_go2_detectability_gate.py: G_A040 value_derivation.source ambiguous FALL_CHANNEL_ROLLUP.csv (2 matches). A042 subtests passed. Prior unrelated spec not changed.",
+  "remaining": "GPU execution and performance unmeasured. No independent full code audit or official score claimed."
+}

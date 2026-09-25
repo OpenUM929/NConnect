@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A039",
+  "note": "G-A039 G-A033 + dof_acc_l2 -2.5e-07->-1.25e-07. One upload: the arm ZIP byte-identical to its builder, target stage, a server gate read from its JSON, full stage only on a pass, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-18T00:00:00+00:00",
+  "release_id": "20260918_a033_dof_acc_m125e7_one_command_v4",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A039_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A039_a033_dof_acc_m125e7_one_command.zip",
+      "server_path": "/workspace/GO2_G_A039_a033_dof_acc_m125e7_one_command.zip",
+      "sha256": "b17793f9af9fadce381bd6af5389289e29ccfb201ae85d0b5141aec2fd6b44d6"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+term,g_a033_value,walk_zone_edge,edge_over_value,side
+track_lin_vel_xy_exp,1.5,1.22752,0.818,reward: edge below value
+lin_vel_z_l2,-2.0,-6.98491,3.492,penalty: edge stronger than value
+ang_vel_xy_l2,-0.05,-0.107243,2.145,penalty: edge stronger than value
+action_rate_l2,-0.01,-0.0297831,2.978,penalty: edge stronger than value
+dof_acc_l2,-2.5e-07,-4.64717e-07,1.859,penalty: edge stronger than value
+dof_torques_l2,-0.0002,-0.000648745,3.244,penalty: edge stronger than value
+feet_air_time,0.2,1.70517,8.526,reward: edge above value

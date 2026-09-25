@@ -1,0 +1,110 @@
+{
+  "schema_version": "candidate_suite_1.0",
+  "runner": "server_run_go2_candidate_suite.sh",
+  "work_id": "G-A030",
+  "run_id": "train_260914-Go2_a017_flat_orientation_m1_1000",
+  "experiment_slug": "go2_g_a030_a017_flat_orientation_m1",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_G_A030_TUNING_PLAN_20260914.md",
+  "decision_ref": "G-D-A030-GO-20260914",
+  "dial_history_ref": "`flat_orientation_l2` | 미탐색 | 없음 | G-D104",
+  "status": "exploratory",
+  "baseline": {
+    "name": "A017",
+    "label": "a017",
+    "model_sha256": "0563deffae52552cdf0343d16b95baaa2bdcc924eca4c53e24f58a0c53d295a4",
+    "env_sha256": "41050c084cd05e7646ce2cb4ac34e06a6870fb7a65b4f767c5714611b9a801ff",
+    "stored_arm_work_id": "G-A027",
+    "stored_arm": "workspace/_keep/go2_a017_full_suite",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.4,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": -1.0
+    }
+  },
+  "single_change": {
+    "name": "flat_orientation_l2",
+    "from": 0.0,
+    "to": -1.0
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [101, 202, 303],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_lateral:101",
+      "G3:rough_lateral:202",
+      "G3:rough_lateral:303",
+      "G4:slope_plus_20:202",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "first use, not calibrated against replay noise; exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G1:forward_fast:101",
+      "G2:diagonal_left:101",
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:101",
+      "G5:stairs_15_up:101",
+      "G6:push_pos_x:101",
+      "G7:dr_seed_101:101",
+      "G3:rough_lateral:101",
+      "G3:rough_lateral:202",
+      "G3:rough_lateral:303",
+      "G4:slope_plus_20:202",
+      "G5:stairs_15_down:101"
+    ],
+    "baseline": [
+      "G3:rough_lateral:101",
+      "G3:rough_lateral:303"
+    ]
+  },
+  "preregistered": {
+    "source": "GO2_G_A030_TUNING_PLAN_20260914.md section 6-1",
+    "target_case": "rough_lateral",
+    "min_target_survival_delta_each_seed": 0.1,
+    "min_total_points_delta": 1.0,
+    "max_case_survival_drop": 0.03125,
+    "max_case_tracking_drop": 0.02,
+    "watch_case": "slope_plus_20",
+    "max_watch_posture_fall_increase_each_seed": 1,
+    "max_stationary_cases": "baseline_count",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN"
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a030",
+    "keep_dir_name": "go2_g_a030_a017_flat_orientation_m1",
+    "result_zip": "GO2_G_A030_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A030_RESULT_READY",
+    "tmux_name": "go2_g_a030"
+  }
+}

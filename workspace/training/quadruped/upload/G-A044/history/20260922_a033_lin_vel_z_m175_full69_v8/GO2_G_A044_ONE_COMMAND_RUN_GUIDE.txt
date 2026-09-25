@@ -1,0 +1,79 @@
+GO2 G-A044 실행 안내 — 한 파일 · 한 명령 · 결과 ZIP 하나
+============================================================
+
+바꾸는 것은 보상 가중치 한 항이다: lin_vel_z_l2 -2.0 -> -1.75.
+기준선 G-A033의 나머지 가중치·학습 seed 42·4096 env·1000 iter·평가 iter 900는 그대로다.
+추론 사슬 상태 INFORMATION_RUN. 서버 실행은 사용자 결정이다.
+
+1. 업로드 — 이 파일 하나만 올린다
+   GO2_G_A044_a033_lin_vel_z_m175_full69_v8.zip
+   SHA256 5e93b80a6a036a50093e0b48b29299def74512ff545a8c9e52a06a78300e348f
+   서버 경로 /workspace/GO2_G_A044_a033_lin_vel_z_m175_full69_v8.zip
+
+2. 실행 — 한 줄
+   unzip -oq /workspace/GO2_G_A044_a033_lin_vel_z_m175_full69_v8.zip -d /workspace && bash /workspace/go2_g_a044/server_run_go2_candidate_iter_pinned.sh
+
+   끊겼을 때 이어서: GO2_RESUME=1 bash /workspace/go2_g_a044/server_run_go2_candidate_iter_pinned.sh
+   진행 보기:       tmux attach -t go2_g_a044
+
+3. 무엇이 도는가 — 1단계도 서버 게이트도 없다
+   학습 1000 iter -> 파국 게이트(학습 손실 유한 · 후보가 G1:forward_nominal:101에서 움직이는가)
+   -> **69 case 전부**(평가 seed 101/202/303 x 32 env) -> 기준선 sentinel 5 case
+   -> 영상 14개(후보 10 · 기준선 신규 4, 나머지 6개는 저장본을 SHA로 재사용)
+   -> 결과 ZIP 하나.
+   110분 안팎으로 본다. 근거는 A043 campaign 로그 실측이다 — 학습+23 case+sentinel+영상 8 이
+   73분 49초, 남은 46 case 가 15분 58초였다. 이 회차는 그 46 case 를 첫 판에 합치고 영상을 14편 찍는다.
+   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).
+   **서버 세션은 120~150분으로 잡는다.** 위 110분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기
+   · 영상 14편 · telemetry · report 확인)는 그 뒤에 온다 — 계획 §7 의 세션 계획치다.
+   실행 시간으로 TTL 을 잡으면 회수 도중에 시간이 끊기고, 그때 잃는 것은 영상과 report 다.
+
+   정책이 서 있어도(파국 게이트 STATIONARY) 필수 수집과 영상은 그대로 회수한다
+   (run_config.env `COLLECT_REQUIRED_ON_STATIONARY=1`). 성능이 나쁘다는 이유로 자료를 버리지 않는다.
+
+4. 완료 표식과 내려받을 것 — 표식은 「회수 준비」이지 「전수 완료」가 아니다
+   [DONE] 표식: [DONE] GO2_G_A044_RESULT_READY
+   /workspace/_keep/GO2_G_A044_RESULT.zip
+   /workspace/_keep/GO2_G_A044_RESULT.zip.sha256
+   **[DONE] 은 결과 ZIP 이 만들어졌다는 뜻뿐이다.** 파국 게이트가 아무것도 재지 못하고 멈춘 실행도
+   같은 표식을 찍는다. 무엇이 실제로 수집됐는지는 따로 적힌다 —
+   `_keep/go2_g_a044_a033_lin_vel_z_m175/RESULT_STATUS.txt` 와 `RUNNER_STATUS.txt` 의 `COLLECTION_STATUS`.
+     COLLECTION_STATUS=FULL_69_COMPLETE  69 case · sentinel · 영상까지 계획대로 다 있다
+     그 밖의 값(INCOMPLETE_EARLY_STOP · INCOMPLETE_COLLECTION · INCOMPLETE_CRASH)은 **결손이 있다**는 뜻이고,
+     그때 로그에 `[INCOMPLETE COLLECTION]` 두 줄이 함께 찍힌다. 결손은 서버가 살아 있을 때만 메운다.
+   원 학습 report 는 평가 재생 전에 _keep/go2_g_a044_a033_lin_vel_z_m175/exported/report.html 로 보존된다.
+   REPORT_STATUS 가 REPORT_ACQUIRED 가 아니면 회수 완결이 아니다.
+
+5. SERVER SHUTDOWN GATE — SHA 일치만으로 끄지 않는다
+   SHA 는 파일이 깨지지 않았다는 증거일 뿐 회수 완결이 아니다. 아래 다섯 줄이 모두 채워진 뒤에 끈다
+   (루트 AGENTS.md 「학습 종료 후 영상 증거 게이트」 §5·§7).
+   a. 결과 ZIP GO2_G_A044_RESULT.zip 과 .sha256 로컬 도착 · SHA 일치,
+      그리고 `RESULT_STATUS.txt` 의 `COLLECTION_STATUS=FULL_69_COMPLETE`
+      (다른 값이면 무엇이 빠졌는지 먼저 보고, 서버를 켠 채로 메운다)
+   b. 원 학습 report.html = REPORT_ACQUIRED ( _keep/go2_g_a044_a033_lin_vel_z_m175/exported/REPORT_STATUS.txt )
+      그리고 같은 학습의 env.yaml · 로그 · checkpoint
+   c. 69 case telemetry 전부와 기준선 sentinel 5 case
+   d. 영상 14편(후보 10 · 기준선 신규 4)의 파일과 지문 도착,
+      SHA 로 재사용하는 저장본 6편의 대조 성공
+   e. 아래 로컬 판독 두 줄을 실제로 실행하고 그 verdict 를 기록했다
+   하나라도 비면 종료 불가다. 성능 FAIL 과 회수 완결은 별개다 — 실패한 정책의 자료도 똑같이 회수한다.
+
+   로컬 판독 (GPU 0):
+     python -B tools/verify_go2_basic_motion_harvest.py G-A044 \
+         --harvest workspace/_keep/go2_g_a044_a033_lin_vel_z_m175 \
+         --out workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/harvest_verification.json
+     python -B tools/go2_screening_gate.py --candidate workspace/_keep/go2_g_a044_a033_lin_vel_z_m175 \
+         --rule-version post_a043_push4_v1
+   **exit code 만으로 성능도 서버 종료 여부도 판단하지 않는다.** 출력 VERDICT 와 결측·identity 오류를
+   읽고, 서버에서 더 회수하거나 재측정할 것이 없는지 확인한 뒤에 끈다.
+   첫 명령은 **성능 FAIL 에도 exit 0** 을 낸다 — 판정을 했다는 뜻이다
+   (`verify_go2_basic_motion_harvest.PASS_VERDICTS`). exit 1 은 INCONCLUSIVE 나
+   BASELINE_REMEASURE_REQUIRED, 즉 **판정을 못 했다**는 뜻이고 그때 볼 것은 성능이 아니라
+   `artifact_faults`·`ruler_mismatches` — 무엇이 없어서 못 했는지다. 그 결손은 서버가 살아 있을 때만 메운다.
+   둘째 명령은 INTERNAL_GATE_PASS 에만 exit 0 이고 FAIL 과 INCONCLUSIVE 가 같은 exit 1 이다.
+   둘은 다른 상태다 — SCREENING 줄의 이름으로 구분하고, INCONCLUSIVE 면 missing 목록을 회수 대상으로 본다.
+   서버 게이트는 이 회차에 없다 — 판정은 처음부터 끝까지 로컬 검증기가 한다.
+
+6. 이 패키지가 보장하지 않는 것
+   점수 이득을 약속하지 않는다. 학습 seed 는 42 하나뿐이라 한 회차로는 레버 효과와 seed 운을 가를 수 없다.
+   공식 결과는 OFFICIAL_RESULT_UNMEASURED 다.

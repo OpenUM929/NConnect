@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD - G-A034 (A017 uphill stall witness, no training)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A034\current\GO2_G_A034_slope_inspect.zip
+   SHA256 fa4772d66ac1ccbac14f298bbb566e6016c08c0a4abc18fa31660e303908dbc8
+
+RUN (server, one line)
+cd /workspace && echo 'fa4772d66ac1ccbac14f298bbb566e6016c08c0a4abc18fa31660e303908dbc8  GO2_G_A034_slope_inspect.zip' | sha256sum -c - && unzip -oq GO2_G_A034_slope_inspect.zip && bash /workspace/go2_slope_inspect/server_run_go2_slope_inspect.sh
+
+RESULT
+/workspace/_keep/GO2_SLOPE_INSPECT_RESULT.zip and .sha256

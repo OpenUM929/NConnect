@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	note
+2026-09-15T00:00:00+00:00	G-A031+G-A032	20260915_basic_motion_pair_v1	ARTIFACT_VERIFIED	GO2_G_A031_A032_basic_motion_pair.zip	e714d9484c7fe5ea5a326a6d17f0361f74b93048e7929a5eed59f6743a2c7e6c	G-A031 + G-A032 in one upload: both arm ZIPs byte-identical, target stages first, a server gate on criterion 1, full stages only for passing arms, one result ZIP. exploratory.

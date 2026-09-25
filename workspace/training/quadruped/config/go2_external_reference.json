@@ -1,0 +1,65 @@
+{
+  "schema": "go2_external_reference_1.0",
+  "decision": "G-D-EXTREF-20260915",
+  "fetched": "2026-09-15",
+  "rule": "GO2_REWARD_EVIDENCE_MASTER.md §1-b. 외부 기준은 대조 의무이지 최적값의 증거가 아니다.",
+  "isaaclab": {
+    "version": "v2.3.1",
+    "version_basis": "서버 Isaac Lab 버전 기록(GO2_PROJECT_STATE.md G-F35, upstream v2.3.1). A017 env.yaml의 프레임워크 항 값이 go2_rough와 같다(tools/test_go2_canonical_consistency.py test_11).",
+    "main_branch_check": "2026-09-15 main 브랜치(rough_env_cfg bed2bf93ab4f8185fb33c8f6dff215cb2aaaf1da, velocity_env_cfg 3c1753bed3743e7904cc0df338e991fab539ae9c)도 reward 값이 같다.",
+    "sources": {
+      "R-IL-1 go2_rough": "https://github.com/isaac-sim/IsaacLab/blob/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/rough_env_cfg.py",
+      "R-IL-2 go2_flat": "https://github.com/isaac-sim/IsaacLab/blob/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/flat_env_cfg.py",
+      "R-IL-3 base": "https://github.com/isaac-sim/IsaacLab/blob/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/velocity_env_cfg.py",
+      "R-IL-4 runner": "https://github.com/isaac-sim/IsaacLab/blob/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/agents/rsl_rl_ppo_cfg.py",
+      "R-IL-5 curriculum": "https://github.com/isaac-sim/IsaacLab/blob/v2.3.1/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/curriculums.py"
+    },
+    "rewards": {
+      "base": {
+        "track_lin_vel_xy_exp": 1.0, "track_ang_vel_z_exp": 0.5, "lin_vel_z_l2": -2.0, "ang_vel_xy_l2": -0.05,
+        "dof_torques_l2": -1.0e-5, "dof_acc_l2": -2.5e-7, "action_rate_l2": -0.01, "feet_air_time": 0.125,
+        "undesired_contacts": -1.0, "flat_orientation_l2": 0.0, "dof_pos_limits": 0.0
+      },
+      "go2_rough": {
+        "track_lin_vel_xy_exp": 1.5, "track_ang_vel_z_exp": 0.75, "lin_vel_z_l2": -2.0, "ang_vel_xy_l2": -0.05,
+        "dof_torques_l2": -0.0002, "dof_acc_l2": -2.5e-7, "action_rate_l2": -0.01, "feet_air_time": 0.01,
+        "undesired_contacts": null, "flat_orientation_l2": 0.0, "dof_pos_limits": 0.0
+      },
+      "go2_flat": {
+        "track_lin_vel_xy_exp": 1.5, "track_ang_vel_z_exp": 0.75, "lin_vel_z_l2": -2.0, "ang_vel_xy_l2": -0.05,
+        "dof_torques_l2": -0.0002, "dof_acc_l2": -2.5e-7, "action_rate_l2": -0.01, "feet_air_time": 0.25,
+        "undesired_contacts": null, "flat_orientation_l2": -2.5, "dof_pos_limits": 0.0
+      }
+    },
+    "runner": {"go2_rough_max_iterations": 1500, "go2_flat_max_iterations": 300, "num_steps_per_env": 24, "save_interval": 50},
+    "training_events_go2_rough": {"push_robot": null, "add_base_mass_kg": [-1.0, 3.0], "base_com": null},
+    "terrain_curriculum": {
+      "function": "terrain_levels_vel",
+      "move_up": "distance > terrain_generator.size[0] / 2",
+      "move_down": "distance < |command_xy| * max_episode_length_s * 0.5 (and not move_up)"
+    },
+    "commands_base": {"lin_vel_x": [-1.0, 1.0], "lin_vel_y": [-1.0, 1.0], "ang_vel_z": [-1.0, 1.0]}
+  },
+  "deployed_start": {
+    "source": "workspace/training/quadruped/go2_task/_finalize.py _REP_BASELINE (배포 reward 파일 첫 학습 시작값). 목록에 없는 항은 Isaac Lab Go2 rough 값(quadruped_rewards.py:35-36).",
+    "rewards": {"track_lin_vel_xy_exp": 1.0, "feet_air_time": 0.01, "lin_vel_z_l2": -3.0, "ang_vel_xy_l2": -0.08, "action_rate_l2": -0.01},
+    "iterations_guidance": "quadruped_rewards.py:113-119: 기준 관찰 3000 iter, 제출본 5000~15000 iter"
+  },
+  "literature": [
+    {"id": "R-Sci-1", "citation": "Rudin, Hoeller, Reist, Hutter. Learning to Walk in Minutes Using Massively Parallel Deep RL. CoRL 2021 (PMLR 2022). arXiv:2109.11978",
+     "principle": "게임식 지형 커리큘럼: 지형 경계를 넘으면 상승, 목표 거리 절반 미만이면 하강. 보상항 형태(exp 추종, L2 벌점, 체공시간 0.5 s).",
+     "r6": "커리큘럼은 이미 켜져 있다(R-IL-5 구현). 형태 근거로만 쓴다. 가중치 숫자는 dt·로봇이 달라 이식하지 않는다."},
+    {"id": "R-Sci-2", "citation": "Lee, Hwangbo, Wellhausen, Koltun, Hutter. Learning Quadrupedal Locomotion over Challenging Terrain. Science Robotics 2020. arXiv:2010.11251",
+     "principle": "지형 커리큘럼과 도메인 랜덤화가 강인성의 주 동력이다.",
+     "r6": "적용 불가(DR·이벤트는 go2_task). 기대치 조정 근거로만 쓴다."},
+    {"id": "R-Sci-3", "citation": "Miki et al. Learning Robust Perceptive Locomotion for Quadrupedal Robots in the Wild. Science Robotics 2022. arXiv:2201.08117",
+     "principle": "지형 인지(attention encoder)로 계단·경사 실패를 줄인다.",
+     "r6": "적용 불가(신경망 구조). 문제 진단 근거로만 쓴다."},
+    {"id": "R-Sci-4", "citation": "Hwangbo et al. Learning agile and dynamic motor skills for legged robots. Science Robotics 2019. arXiv:1901.08652",
+     "principle": "목표 항을 뺀 모든 벌점에 커리큘럼 계수 k_c(0.3에서 시작, k_c <- k_c^0.997)를 곱한다. 'the robot first learns how to achieve the objective and then how to respect various constraints'. 시작값은 제자리 서기를 피하도록 골랐다.",
+     "r6": "벌점 커리큘럼은 코드라 적용 불가. 원리만 적용: 새 벌점을 학습 첫 iter부터 전량 거는 후보는 정지 편법 위험을 사전등록한다. 이어 학습 방식은 train.py 인자 지원 미확인."},
+    {"id": "R-Sci-5", "citation": "Margolis, Yang, Paigwar, Chen, Agrawal. Rapid Locomotion via Reinforcement Learning. RSS 2022. arXiv:2205.02824",
+     "principle": "넓은 속도 명령 범위를 처음부터 균일하게 뽑으면 학습이 실패한다. 좁은 범위에서 시작해 넓힌다.",
+     "r6": "적용 불가(명령 범위는 go2_task). 쉬운 조건 먼저라는 원리만 참고한다."}
+  ]
+}

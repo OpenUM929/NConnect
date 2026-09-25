@@ -111,6 +111,7 @@ SHA companion: `/workspace/_keep/GO2_FEET_AIR_TIME_020_RESULT.zip.sha256`
 PARTIAL ZIP은 복구 artifact이며 평가 완료가 아니다. 실패 시 같은 서버에서 `GO2_RESUME=1`을 사용할 수 있지만, 먼저 PARTIAL 원인과 보존 checkpoint를 확인한다.
 
 ## 8. ?? handoff ? G-A008 root fix
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 확인한 정상 기록: `workspace/training/quadruped/go2_feet_air_time_020_v2.VERIFICATION.md`(v2 원인·수정·패키지 SHA·검증, 정상 영문). 인계 지시(다음 행동) 문구는 대체 기록 미확보.
 
 ### ?? ??
 

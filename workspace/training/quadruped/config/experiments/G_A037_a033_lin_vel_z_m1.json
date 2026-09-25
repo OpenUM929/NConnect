@@ -1,0 +1,417 @@
+{
+  "schema_version": "a033_reward_1.0",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A037",
+  "run_id": "train_260916-Go2_a033_lin_vel_z_m1_1000",
+  "experiment_slug": "go2_g_a037_a033_lin_vel_z_m1",
+  "plan": "workspace/training/quadruped/reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md",
+  "decision_ref": "user request 2026-09-16: derive tuning values from the two behaviour analyses (stairs climb section 8, rough side-step section 9) and build the package. Server execution is still not released; this is a local package.",
+  "dial_history_ref": "`lin_vel_z_l2` | 미탐색 | 없음 | G-D116",
+  "change_class": "reward_weight",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "lin_vel_z_l2",
+    "isaaclab_base": -2.0,
+    "isaaclab_go2_rough": -2.0,
+    "isaaclab_go2_flat": -2.0,
+    "deployed_start": -3.0,
+    "baseline": -2.0,
+    "candidate": -1.0,
+    "direction": "away_from_isaaclab_go2_rough",
+    "after_change_vs_go2_rough": "two terms differ: feet_air_time (0.2 vs 0.01, inherited from G-A033) and lin_vel_z_l2 (-1.0 vs -2.0, this run)",
+    "departure_reason": "Measured on G-A033's own evaluation trajectories (analysis 8-2, CLIMB_REWARD.csv): on a 10cm climb the vertical-velocity penalty takes 34% of the tracking gain over stalling. It scales with step height squared, so at 15cm it is estimated at 76%. The Isaac Lab value is a comparison anchor, not proof of an optimum (MASTER 1-b).",
+    "literature": "R-Sci-4 (Hwangbo 2019): penalties that the objective motion must pay are the stall-exploit risk; R-Sci-1 Table 2 carries -v_z^2 as a form only (weights not transferred)",
+    "r6": "reward weight only; curriculum, terrain, DR, commands untouched"
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -1.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "lin_vel_z_l2",
+    "from": -2.0,
+    "to": -1.0
+  },
+  "value_derivation": {
+    "source": "reports/evidence/go2_stairs_behavior_20260916/CLIMB_REWARD.csv (G-A033 rows), analysis section 8-2",
+    "measured_10cm_share": "(0.124-0.021)/(0.985-0.679) = 34% of the climb's tracking gain is paid back as lin_vel_z_l2",
+    "estimated_15cm_share": "vz scales with step height at the same forward speed, so the penalty scales with (15/10)^2 = 2.25: 0.103*2.25/0.306 = 76%",
+    "rule": "choose the weight that brings the 15cm share back to the share G-A033 already climbs 10cm stairs with: 76% * (w/2) ~= 34%  ->  w ~= 0.9, rounded to 1.0 (share 38%)",
+    "not_claimed": "The share is a reward-arithmetic quantity on two measurable terms. It does not predict how many robots will climb. ang_vel_xy, joint penalties and termination risk are not in the measurement."
+  },
+  "rejected_alternatives": {
+    "ang_vel_xy_l2": "not relaxed: it penalises roll as well as pitch, and the G3 min-case rough_lateral ends in sideways roll-over (analysis section 9, LATERAL_BEHAVIOR.csv tilt cos -0.973)",
+    "track_lin_vel_xy_exp": "held: rough_lateral terminations rose at both track steps, 31 -> 48 -> 58 (analysis 9-1)",
+    "feet_air_time": "held at 0.2: lowering it cut slope progress on the A017 base (A031), raising it collapsed Pilot (A015) (analysis 8-1b)",
+    "penalty_strengthening": "no strengthened penalty on a walking base has walked (analysis 8-1b)"
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "same training length and seed as G-A033, so the candidate is read at the checkpoint G-A033 was read at (900 of 1000). finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Headroom, not an estimate: G5 loses 10.46/70 and G3 loses 9.77/70 on G-A033 (SCENARIO_SCORES.csv). Headroom is a necessary condition only.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated. lin_vel_z_l2 has never been moved on a walking base (MASTER 1-a G-D116), so there is no point to extrapolate from.",
+    "seed_noise": "Every training run used seed 42. A single change moved 10cm two-step climbs 19 -> 2 -> 43 of 96, and whether that was the lever or the seed cannot be told. One run cannot separate an effect smaller than that spread.",
+    "superseded_by": "inference (2026-09-17): the point-gain waiver rule was replaced by the fact-based inference chain"
+  },
+  "campaign_text": {
+    "target_note_ko": "험지 옆걸음·계단 묶음마다 하한이 있어(fact_rules_v1), 한 묶음이 무너지면 평균과 상관없이 2단계 전에 멈춘다. 10cm·15cm 오르기는 오른 로봇 수로도 판정한다.",
+    "not_claimed_ko": "학습 seed가 42 하나라, 한 회차의 결과는 가설의 지지·반박이지 레버 효과 확정이 아니다. 점수 이득 수치는 적지 않는다(사실 근거 추론 사슬, MASTER §5-3).",
+    "publish_status_ko": "권고 상태: 추론 사슬 HOLD_CONTRADICTED — 도출 원리가 기반 데이터 S5와 반대라 업로드 보류. 서버 실행은 미해제."
+  },
+  "inference": {
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "Isaac Lab v2.3.1 lin_vel_z_l2: square of the base z velocity in the body frame (isaaclab_envs_mdp_rewards.py:76). No sign: bouncing, dropping and stepping up are penalised alike (GO2_TUNING_BASE_DATA.md section 0-1).",
+    "rows": [
+      {
+        "source": "reports/evidence/go2_stairs_behavior_20260916/CLIMB_REWARD.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,candidate,stairs_10_down,climb,43",
+        "value": "0.985,-0.124,0.861",
+        "reads": "G-A033 robots that climbed 10cm: tracking rate 0.985, vertical penalty rate -0.124",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate",
+          "case": "stairs_10_down",
+          "group": "climb"
+        },
+        "cells": {
+          "track_rate": "0.985",
+          "lin_vel_z_rate": "-0.124",
+          "sum_rate": "0.861"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_stairs_behavior_20260916/CLIMB_REWARD.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,candidate,stairs_15_down,stall,92",
+        "value": "0.679,-0.021,0.658",
+        "reads": "robots stalled before the 15cm stairs pay -0.021: climbing costs more vertical penalty than stalling",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "arm": "candidate",
+          "case": "stairs_15_down",
+          "group": "stall"
+        },
+        "cells": {
+          "track_rate": "0.679",
+          "lin_vel_z_rate": "-0.021",
+          "sum_rate": "0.658"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_reward_mechanism_20260917/PROBE_SITUATIONS.csv",
+        "key": "lin_vel_z_l2,-1.0",
+        "value": "+0.0242,+0.0515,-0.0940,-0.0771",
+        "reads": "at -1.0: walk +0.0242, climb +0.0515, sway -0.0940, push -0.0771 (partial margins; direction only)",
+        "selector": {
+          "term": "lin_vel_z_l2",
+          "to": "-1.0"
+        },
+        "cells": {
+          "walk_delta": "+0.0242",
+          "climb_delta": "+0.0515",
+          "sway_delta": "-0.0940",
+          "push_delta": "-0.0771"
+        }
+      },
+      {
+        "source": "reports/GO2_TUNING_BASE_DATA.md",
+        "key": "| `lin_vel_z_l2` | -3, -2 | -2 |",
+        "value": "-3, -2 | -2",
+        "reads": "walking runs only ever carried -2; -1.0 is outside every observed walking value"
+      }
+    ],
+    "contradicting": [
+      {
+        "source": "reports/GO2_TUNING_BASE_DATA.md",
+        "key": "S5 오르기 수직 벌점 몫 대 15cm 오르기",
+        "value": "'몫이 작을수록 15cm를 더 오른다'가 성립하는가: `False`",
+        "reads": "across Pilot-01, A017 and G-A033 a smaller vertical-penalty share did not go with more 15cm climbing, the opposite of this candidate's derivation"
+      },
+      {
+        "source": "reports/evidence/go2_seed_sensitivity_20260917/ONE_CHANGE_DRIFT.csv",
+        "key": "G-A033,G-A038,ang_vel_xy_l2 -0.05->-0.08",
+        "value": "90,5,43,0",
+        "reads": "the last trade-term change moved the 10cm climb far beyond its forecast size (90 -> 5 robots climbing a step); the partial-margin size cannot be trusted for this term either",
+        "selector": {
+          "from": "G-A033",
+          "to": "G-A038",
+          "change": "ang_vel_xy_l2 -0.05->-0.08"
+        },
+        "cells": {
+          "climb10_ge1_from": "90",
+          "climb10_ge1_to": "5",
+          "climb10_ge2_from": "43",
+          "climb10_ge2_to": "0"
+        }
+      }
+    ],
+    "singularity": "lin_vel_z_l2 and ang_vel_xy_l2 are the two trade terms: the climbing state carries larger values, the pre-fall state on a side-step or push carries larger values too (FORECAST 5-1, SEED_SENSITIVITY 4). Weakening one moves the balance toward climbing and away from sway and push.",
+    "predictions": {
+      "walk": {
+        "direction": "up",
+        "basis": "walk margin +0.0242 (PROBES.csv), stays in the walking zone"
+      },
+      "climb": {
+        "direction": "up",
+        "basis": "partial margin +0.0515; size unknown after G-A038"
+      },
+      "sway": {
+        "direction": "down",
+        "basis": "partial margin -0.0940, sign agrees on 3 policies"
+      },
+      "push": {
+        "direction": "down",
+        "basis": "partial margin -0.0771, sign agrees on 2 policies"
+      }
+    },
+    "falsified_if": "15cm climbed-at-least-one-step stays at or below G-A033's 4 (3 seeds) and 10cm two-step climbing does not rise above 43: weakening the vertical penalty does not free the climb.",
+    "risk_axes": [
+      "G3",
+      "G5",
+      "G6"
+    ],
+    "seed_limit": "Every training run used seed 42 and no seed replicate exists, so a result supports or refutes the chain; it does not fix a lever effect (reports/GO2_SEED_SENSITIVITY.md section 5).",
+    "status": "HOLD_CONTRADICTED",
+    "status_reason": "The derivation (a smaller vertical-penalty share climbs more) runs opposite to S5, and -1.0 is outside the observed walking values. Upload stays on hold (GO2_NOW.md)."
+  },
+  "preregistered": {
+    "source": "analysis section 8-3b (all axes kept while stairs rise) on the criteria of GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 6-1, limits measured as in G-A035 section 15-4",
+    "threshold_basis": "Measured, not intended. tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd (max_scenario_weighted_loss_70_by_scenario); flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32. max_scenario_weighted_loss_70 keeps G-A035's uniform 2.04 as the fallback for any scenario not listed. min_total_points_delta is the 2-sigma detection limit 2.53. min_target_mean_proxy_delta 0.05 and min_target_groups_improved 2 are section 6-1's values, unchanged.",
+    "target_groups": {
+      "stairs_15_climb": [
+        "G5:stairs_15_down:101",
+        "G5:stairs_15_down:202",
+        "G5:stairs_15_down:303"
+      ],
+      "stairs_10_climb": [
+        "G5:stairs_10_down:101",
+        "G5:stairs_10_down:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough_lateral": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303"
+      ]
+    },
+    "target_group_roles": {
+      "stairs_15_climb": "the G5 min-case: stairs_15_down is the 15cm CLIMB (pyramid_stairs_inv, analysis 2-1)",
+      "stairs_10_climb": "the 10cm climb, where G-A033 already climbs; the lever should move it first",
+      "rough_lateral": "the G3 min-case and the axis this lever must not break (analysis 9-3). In the target mean, a roll-over regression pulls criterion 1 down at the target stage, before the full stage spends GPU time"
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    },
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "mechanism_readout": "stairs_15_down / stairs_10_down climbed-step counts from workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv (tools/go2_stairs_behavior.py rules) and rough_lateral roll-over terminations and mass AUC (LATERAL_BEHAVIOR.csv rules). Recorded, not a criterion.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs_15_climb": -0.00999,
+      "stairs_10_climb": -0.02858,
+      "rough_lateral": -0.11366
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        },
+        "stairs_15_climb_ge1": {
+          "entries": [
+            "G5:stairs_15_down:101",
+            "G5:stairs_15_down:202",
+            "G5:stairs_15_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            1,
+            1,
+            2
+          ],
+          "baseline_sum": 4,
+          "max_drop": 5.523
+        }
+      }
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G5:stairs_15_down:101",
+      "G3:rough_lateral:101",
+      "G4:slope_plus_20:101",
+      "G1:forward_fast:101"
+    ],
+    "baseline": [
+      "G5:stairs_15_down:101",
+      "G3:rough_lateral:101"
+    ],
+    "reasons": {
+      "G5:stairs_15_down:101": "the 15cm climb: does the robot step onto the first riser instead of stopping level in front of it (analysis 2-3). No stored G-A033 video, so the baseline is rendered here.",
+      "G3:rough_lateral:101": "the roll-over: a looser vertical penalty must not add sideways flips. No stored G-A033 video, so the baseline is rendered here.",
+      "G4:slope_plus_20:101": "G-A033 climbs the slope to the end; guard against losing it",
+      "G1:forward_fast:101": "flat gait at the fastest command: a looser vertical penalty may add body bounce"
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos (G-A033, same 4 env x 500 step) for slope_plus_20 and forward_fast; the other two are rendered in this run"
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (10 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 90
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a037",
+    "keep_dir_name": "go2_g_a037_a033_lin_vel_z_m1",
+    "result_zip": "GO2_G_A037_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A037_RESULT_READY",
+    "tmux_name": "go2_g_a037",
+    "upload_zip": "GO2_G_A037_a033_lin_vel_z_m1_staged.zip",
+    "release_id": "20260918_a033_lin_vel_z_m1_staged_v4",
+    "supersedes": "20260917_a033_lin_vel_z_m1_staged_v2 (never run; judged by the old rule -- a 9-case target mean that passed G-A038's 10cm-climb collapse -- and carried a point-gain waiver; replaced by fact_rules_v1 and the fact-based inference chain, G-D-FACT-RULES-20260917). Earlier: 20260916_a033_lin_vel_z_m1_staged_v1 (never run; its runner's run_video wrote the baseline video log into a directory nothing created, the defect that stopped G-A038 after all its measurements)"
+  },
+  "why": [
+    "Goal: climb stairs while every other axis stays high (analysis 8-3b). G-A033 loses 10.46/70 on G5 and 9.77/70 on G3.",
+    "G5: no policy has climbed two 15cm steps. Robots walk to the first riser and stop level (analysis 2-3).",
+    "Stopping keeps about 47% of the flat-walking reward rate (CLIMB_REWARD.csv).",
+    "On a 10cm climb G-A033 pays back 34% of the tracking gain as lin_vel_z_l2; at 15cm this is estimated at 76%.",
+    "Walking itself started only when lin_vel_z and ang_vel_xy were relaxed together to the Isaac Lab values (analysis 8-1b).",
+    "G3: rough_lateral ends in sideways roll-over, and ang_vel_xy is the roll-rate penalty, so it stays at -0.05 (analysis 9).",
+    "track stays at 1.5: roll-over terminations rose 31 -> 48 -> 58 over the two track steps.",
+    "An earlier note (MASTER line on slope stalls) excluded lin_vel_z by comparing its whole-episode size with the stall loss.",
+    "This run uses a different quantity: the share of the climb's own tracking gain, measured per robot.",
+    "Risks pre-registered: body bounce on flat ground (G1/G2 guards), push recovery (G6 limit 0.86196/70), roll-over on rough side-steps (G3 limit and target group)."
+  ],
+  "notes": {
+    "comparison_validity": "Same seed 42, 4096 envs, 1000 iterations, evaluator and registry SHA as the stored G-A033 arm, evaluated at the same checkpoint iteration. The only difference is lin_vel_z_l2.",
+    "not_claimed": "No score gain is promised. One training seed cannot separate the lever from seed luck."
+  }
+}

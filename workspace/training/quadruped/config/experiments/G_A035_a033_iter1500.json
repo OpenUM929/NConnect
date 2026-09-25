@@ -1,0 +1,352 @@
+{
+  "schema_version": "training_length_1.0",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A035",
+  "run_id": "train_260916-Go2_a033_iter1500",
+  "experiment_slug": "go2_g_a035_a033_iter1500",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_BASIC_MOTION_TUNING_PLAN_20260915.md",
+  "decision_ref": "user decision 2026-09-16: promote G-A033 to the frozen baseline (G-D-BASELINE-A033-20260916) and run its exact config at the Isaac Lab training length. Plan sections 13-6 and 15.",
+  "dial_history_ref": "G-A035 | 학습 길이 1000→1500 (reward 무변경) | G-A033",
+  "change_class": "training_length",
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 Go2 rough runner (MASTER 1-b table B, R-IL-1)",
+    "term": "max_iterations",
+    "isaaclab_go2_rough": 1500,
+    "isaaclab_go2_flat": 300,
+    "deployed_start": 1000,
+    "baseline": 1000,
+    "candidate": 1500,
+    "direction": "to_isaaclab_go2_rough",
+    "rewards_after_change_vs_go2_rough": "unchanged: only feet_air_time differs (0.2 vs 0.01)",
+    "literature": "R-Sci-1 (Rudin 2021) game-inspired terrain curriculum: terrain level rises only while the policy clears its current level. Our four runs were still rising at the last recorded iteration.",
+    "r6": "no reward weight changes at all. Training length sits outside R-6, so this run needs the user decision above; curriculum, DR, commands, network untouched."
+  },
+  "status": "hold",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "max_iterations",
+    "from": 1000,
+    "to": 1500
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1500
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 1450,
+    "checkpoint_rule": "max_iterations 1500 runs learning iterations 0..1499 and save_interval is 50, so 1450 is the last guaranteed regular checkpoint. The baseline G-A033 was likewise evaluated at 900 of 1000. Both arms are read at a near-final checkpoint of their own run; the training length is the variable, so the iterations deliberately differ. finalize's reward pick is preserved as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A033 and G-A030. Absent from the v1 spec: the server gate reads it first in compare_sentinel, so v1 would have raised KeyError, written no verdict, and never run the full stage. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Headroom, not an estimate (plan 15-1, recomputed from the stored G-A033 cases): G5 loses 10.46/70 (stairs_15_down, tracking-bound) and G3 loses 9.77/70 (rough_lateral, survival-bound). Headroom above the 2.53/70 limit is a necessary condition only (plan 13-3). No estimate of the gain from 1000 -> 1500 iterations exists: Go2 iteration-versus-score data is 0 runs, and every run used training seed 42, so seed-to-seed spread is unmeasured.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated. The earlier anchor +2.76 (A017 -> G-A033) was withdrawn 2026-09-16: it is a reward change, not a training-length change, and its gain came from G4 alone. See replan section 7 H5.",
+    "superseded_by": "inference (2026-09-17): the point-gain waiver rule was replaced by the fact-based inference chain"
+  },
+  "inference": {
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "Isaac Lab v2.3.1 UnitreeGo2RoughPPORunnerCfg trains 1500 iterations; the terrain curriculum promotes a robot that walks off its tile and demotes one that covers less than half (reports/evidence/go2_curriculum_source_20260918/isaaclab_tasks_locomotion_velocity_mdp_curriculums.py). Not a reward weight.",
+    "rows": [
+      {
+        "source": "upload/plan/GO2_REPLAN_20260916.md",
+        "key": "| `max_iterations` | 1500 | 1000 |",
+        "value": "우리 러너(배포 기본 5000)",
+        "reads": "Isaac Lab rough trains 1500, our runner 1000, the deployed default is 5000"
+      },
+      {
+        "source": "reports/runs/TERRAIN_AT_PIN.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,900",
+        "value": "4.4937",
+        "reads": "G-A033 mean terrain level at iter 900 (the evaluated checkpoint)",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "iteration": "900"
+        },
+        "cells": {
+          "terrain": "4.4937"
+        }
+      },
+      {
+        "source": "reports/runs/TERRAIN_AT_PIN.csv",
+        "key": "go2_g_a033_a017_track_lin_vel_xy_150,999",
+        "value": "4.7087",
+        "reads": "still rising at iter 999: the curriculum had not levelled off when training stopped",
+        "selector": {
+          "run": "go2_g_a033_a017_track_lin_vel_xy_150",
+          "iteration": "999"
+        },
+        "cells": {
+          "terrain": "4.7087"
+        }
+      }
+    ],
+    "contradicting": [],
+    "singularity": "No run reached a curriculum plateau in 1000 iterations, and the level is a mean over all robots and five terrains, so how far the stairs column went is not in the log (REPLAN S4).",
+    "predictions": {
+      "walk": {
+        "direction": "same",
+        "basis": "reward weights unchanged, so the walk margin is G-A033's"
+      },
+      "climb": {
+        "direction": "unknown",
+        "basis": "length-versus-behaviour data: 0 runs (REPLAN S6)"
+      },
+      "sway": {
+        "direction": "unknown",
+        "basis": "length-versus-behaviour data: 0 runs (REPLAN S6)"
+      },
+      "push": {
+        "direction": "unknown",
+        "basis": "length-versus-behaviour data: 0 runs (REPLAN S6)"
+      }
+    },
+    "falsified_if": "terrain level at the evaluated iteration 1450 is not above G-A033's 4.7087 at iter 999: the 'curriculum unfinished at 1000' reading is refuted.",
+    "risk_axes": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7"
+    ],
+    "seed_limit": "Every training run used seed 42 and no seed replicate exists, so a result supports or refutes the chain; it does not fix a lever effect (reports/GO2_SEED_SENSITIVITY.md section 5).",
+    "status": "HOLD_UNSUPPORTED",
+    "status_reason": "2026-09-20 validator audit: not an executable candidate. training_length is outside the reward-weight change classes and ID 035 precedes executed A038. Preserve the historical proposal and published ZIP; INFORMATION_RUN must not bypass these checks."
+  },
+  "preregistered": {
+    "source": "GO2_BASIC_MOTION_TUNING_PLAN_20260915.md section 15-4 (limits, measured) on the criteria of section 6-1",
+    "threshold_basis": "Measured, not intended (plan 13-3 5항). tools/go2_eval_resolution.py resampled the recovered runs and gave per-scenario weighted-score standard deviations of G3 1.018, G4 0.498, G6 0.431, G2 0.282, G7 0.202, G5 0.028, G1 0.000 (/70) and a total-difference sd of 1.264/70. max_scenario_weighted_loss_70 is 2×1.018 = 2.04 (twice the worst scenario's sd), max_flat_scenario_proxy_drop is 2×0.282/10.5 = 0.054, max_flat_case_survival_drop is 2 robots of 32, and min_total_points_delta is the 2σ detection limit 2.53. The previous 0.5/70 limit was half the noise it was meant to bound and is not reused (plan 12-6, 12-7).",
+    "target_groups": {
+      "stairs": [
+        "G5:stairs_15_down:101",
+        "G5:stairs_15_up:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough": [
+        "G3:rough_lateral:101",
+        "G3:rough_forward:202",
+        "G3:rough_lateral:303"
+      ],
+      "slope": [
+        "G4:slope_plus_20:101",
+        "G4:slope_plus_20:202",
+        "G4:slope_plus_20:303"
+      ]
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "mechanism_readout": "terrain curriculum level at iterations 700 / 900 / 1000 / 1200 / 1450 from the training log, and target-case height_rel_p10 and posture-gate falls. Recorded, not a criterion. The level is a mean over all robots and sub-terrain types, so it cannot attribute a G5 change to the stair columns.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs": -0.0508,
+      "rough": -0.09479,
+      "slope": -0.03251
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        },
+        "stairs_15_climb_ge1": {
+          "entries": [
+            "G5:stairs_15_down:101",
+            "G5:stairs_15_down:202",
+            "G5:stairs_15_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            1,
+            1,
+            2
+          ],
+          "baseline_sum": 4,
+          "max_drop": 5.523
+        }
+      }
+    },
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    }
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G5:stairs_15_down:101",
+      "G5:stairs_15_up:101",
+      "G3:rough_lateral:101",
+      "G4:slope_plus_20:101",
+      "G1:forward_fast:101"
+    ],
+    "baseline": [
+      "G5:stairs_15_down:101",
+      "G3:rough_lateral:101"
+    ],
+    "reasons": {
+      "G5:stairs_15_down:101": "THE min-case of G5 and of the whole score. Stored G-A033 seed 202: posture-gate survival .03 (31 of 32 counted as fallen), tracking .14, mean speed 0.10 m/s. Whether those are real falls or stalls counted as falls is not settled (GO2_NOW section 4); the video is for a human to read. No stored counterpart exists, so the baseline video is rendered in this run.",
+      "G5:stairs_15_up:101": "the ascent counterpart at the same step height; a stored G-A033 video exists for a direct A/B",
+      "G3:rough_lateral:101": "the min-case of G3, survival .38-.41. Side-stepping falls are the second largest hole. No stored counterpart, so the baseline video is rendered here.",
+      "G4:slope_plus_20:101": "G-A033 already reaches survival 1.00 here; the video guards against losing it",
+      "G1:forward_fast:101": "R-Sci-4 stationary-exploit guard on flat ground at the fastest command"
+    },
+    "baseline_counterparts": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos (G-A033, same 4 env x 500 step) for stairs_15_up, slope_plus_20 and forward_fast; the other two are rendered in this run"
+  },
+  "stages": {
+    "target": {
+      "default": true,
+      "cases": "catastrophe_case + preregistered.target_groups (10 cases)",
+      "decides": "criterion 1 only; a target-stage failure is final for this arm",
+      "estimate_minutes": 115
+    },
+    "full": {
+      "env": "GO2_STAGE=full GO2_RESUME=1",
+      "cases": "the remaining cases of the 69",
+      "decides": "criteria 2-4",
+      "estimate_minutes": 55,
+      "only_after": "TARGET_PASS_FULL_STAGE_REQUIRED"
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a035",
+    "keep_dir_name": "go2_g_a035_a033_iter1500",
+    "result_zip": "GO2_G_A035_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A035_RESULT_READY",
+    "tmux_name": "go2_g_a035",
+    "upload_zip": "GO2_G_A035_a033_iter1500_staged.zip",
+    "release_id": "20260918_a033_iter1500_staged_v6",
+    "supersedes": "20260917_a033_iter1500_staged_v4 (never run; judged by the old rule -- a 9-case target mean that passed G-A038's 10cm-climb collapse -- and carried a point-gain waiver; replaced by fact_rules_v1 and the fact-based inference chain, G-D-FACT-RULES-20260917). Earlier: 20260916_a033_iter1500_staged_v3 (never run; its runner's run_video wrote the baseline video log into a directory nothing created, the defect that stopped G-A038 after all its measurements). staged_v1 (never run) could not start: the runner launched server_run_go2_candidate_staged.sh, absent from the ZIP; and baseline.label candidate made the gate and the verifier compare the candidate with itself"
+  },
+  "why": [
+    "The frozen baseline G-A033 scores 42.53/70. Its remaining loss is 27.47, and 20.2 of that is two cases:",
+    "G5 stairs_15_down (10.46) and G3 rough_lateral (9.77).",
+    "G5 is a stall, not a tracking limit: every evaluated policy stops level in front of the first 15cm riser",
+    "(stairs analysis section 5; the earlier tracking-bound reading was a score-factor diagnosis and is withdrawn).",
+    "G3 is survival-bound, and the only dial with a measured effect (track) moved it the wrong way:",
+    "1.4 -> 1.5 cost rough_lateral survival .47 -> .38.",
+    "Isaac Lab trains go2_rough for 1500 iterations; we train 1000. The training log's terrain level",
+    "(the mean over all robots, 3.43 / 4.49 at iter 900 for A017 / G-A033) was still rising at 999.",
+    "That mean does NOT give the highest stair trained: robots start at levels 0-5 and level 5",
+    "already has 0.14-0.158 m steps. Whether the stair columns reached 0.15 m is unknown.",
+    "This run changes no reward. It observes the G-A033 configuration trained to the Isaac Lab length.",
+    "It does not show why a score changes. Inference-chain status INFORMATION_RUN; replan section 5 awaits re-judgement under G-D-FACT-RULES-20260917."
+  ],
+  "notes": {
+    "comparison_validity": "Same reward file, same seed 42, same 4096 envs, same evaluator and registry SHA as the stored G-A033 arm. The only difference is training length and therefore the evaluated checkpoint (1450 of 1500 vs 900 of 1000). Unlike G-A032, the checkpoint difference here is the variable under test, not an accident.",
+    "replicate_check": "Iterations 0..899 of this run repeat G-A033 exactly (same code, same seed, same env count). The runner does NOT keep model_900.pt (it keeps iter 1450 and finalize's pick), so no determinism check is available from this run. Training-seed noise is unmeasured: every run used seed 42.",
+    "not_claimed": "More training is not guaranteed to raise the score. What is guaranteed to be observed is the reached terrain level and where it stops."
+  }
+}
