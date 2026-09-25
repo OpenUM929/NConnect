@@ -1,10 +1,47 @@
 # Go2 예선 캠페인 일정·진행 원장
 
+## G-A045 · G-A046 — 학습 seed 43 대칭 쌍 (2026-09-24 발행, 미실행)
+
+A044 회수로 `lin_vel_z_l2` 는 걷는 기준선 위에서 세 점이 측정됐는데, **계수기가 서로 다른 말을 한다** — 계단에 오른 로봇 수는 단조로 늘고(10cm ≥2단 `43→62→94`/96, 15cm ≥1단 `4→39→88`/96) 자세 낙상 수는 가운데 값에서만 솟는다(계단10cm `34→65→17`, 험지 옆걸음 `59→80→24`, 밀침 4방향 `22→66→10`/384). 총점 비단조(`42.53→38.89→44.62`)는 낙상 쪽을 따라간 결과다. 이것이 다이얼의 성질인지 학습 경로 갈라짐인지는 **학습 seed 대조군이 0건**이라 가를 수 없고, 회차 간 총점 차이(`−3.63`·`+2.10`)는 승급 문턱(`+2.53`)과 같은 자리에 있다. 그래서 이 회차는 값을 찾지 않고 **자를 잰다**: G-A045 는 G-A033 의 보상 파일 그대로를 학습 seed 43 으로 다시 학습하고(보상 diff 0줄), G-A046 은 같은 seed 위에서 `lin_vel_z_l2 −1.5`(G-A043 과 같은 값)를 걸어 대칭 쌍을 만든다. **판정 문턱·평가 조건·screening 판은 하나도 바꾸지 않았다** — 자를 재는 회차가 자를 바꾸면 읽을 수 없다. **두 팔 다 승급 대상이 아니다**(`promotion: forbidden_not_a_reward_change`): 학습 seed 는 보상 가중치가 아니다. R-6 해석은 열린 결정 **U2-SEED-REPLICATE-20260918** 이고 사용자 결정 대기다 — 사용자가 「실행도 하지 말라」로 닫으면 이 패키지는 폐기한다.
+v4 사유: **독립 검토가 사전등록한 「읽는 법」 의 오류 넷을 잡았다**(결함 C-26). ① 계단 재현을 B 의 절대값만으로 판정한 것(A 가 70 인데 B 가 50 이면 오히려 나빠진 것이다) — 이제 행동 수준(절대값)과 보상 효과(**같은 seed 의 B−A**)를 따로 읽는다. ② 작은 seed 차이를 「A044 의 비단조는 다이얼 탓」의 근거로 쓴 것 — 이 쌍은 `−1.75` 를 반복하지 않으므로 그 원인은 **미확정**이고, 보상 효과와 학습 경로는 배타적이지도 않다. ③ 큰 차이에서 승급 규칙 폐기·장기 학습 전환을 적은 것 — 한 표본은 그 결론을 지지하지 않고 기존 `INTERNAL_GATE_FAIL` 관측을 무효로 만들지도 않는다. ④ R-6 을 닫힌 것처럼 적은 것 — CLI 인자 전달은 규정 허용의 증거가 아니고, 반대로 공식 제출 불가도 단정하지 않는다(우리 금지는 내부 보수 규칙이며 열린 결정 U2 는 운영진 답변·공식 근거로 닫는 것이 안전하다). **판정 문턱·평가 조건·러너·수집 계약은 하나도 바뀌지 않았다** — 바뀐 것은 읽는 법이다. 같은 판에서 총점이 어디로 갔는지를 산문 대신 같은 채점기의 반사실로 쟀다(`tools/go2_score_decomposition.py` → `SCORE_SPLIT.csv`: A044 는 생존 `−4.62775` · 추종 `+0.99438` · 교차항 `−0.00144`). 관문 `ReviewCorrectionsTest` 7 검사가 네 정정을 고정한다.
+세션 계획치는 **240~300분**이다(팔당 약 95분 × 2 + 회수; A044 실측 94분/1팔 기준). 잔여 팀 예산은 `[미측정]`.
+발행 `upload/G-A045_A046/current/GO2_G_A045_A046_seed43_pair_full69_v8.zip` SHA `02c1b36c59e9a5c499b43c46776d69bce7e4d74f63c740ca8719e75d9c3df151`. **로컬 검증 완료는 성능 판정이 아니다.** 서버 실행·GPU 소비 **0**, 잔여 예산 변동 없음 — 실행은 사용자가 한다.
+
+## 2026-09-24 G-A044 회수 판독 (등급: 조사)
+- 완료: 원본 보존·회수 무결성 검증·내부 정량 판독. ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL, A033 유지. VIDEO_UNKNOWN, 공식 결과 미측정. 학습58분21초·수집까지 약94분; 접속/회수 과금과 잔여 팀예산 미측정(0시간으로 기록하지 않음).
+- 다음 조사 권고: A033/-1.5 독립 학습seed43 대칭 비교, 2회 full69, 추정 세션240~300분. 새 실행 승인/패키지는 없음. 분석 `workspace/training/quadruped/upload/plan/GO2_POST_A044_POLICY_ANALYSIS_20260924.md`; 아래 미실행 행은 역사 기록이다.
+
 > **⚠️ CLOSED (260906).** 이 문서는 G-A010 최초 사전등록(260902) 시점까지의 계획이다.
 > 이후 실측(G-A010 posture_gate_v2 재측정 FAIL, G-A024 FAIL, G-A025 등록 등, 260905~)은
 > 이 문서를 갱신하지 않고 진행됐다 — G-D94로 PRD를 닫은 것과 같은 사유(living 정본 중복
 > 방지). **Go2의 유일한 living 정본은 `GO2_PROJECT_STATE.md`다.** 이 문서는 초기 계획의
 > 이력 참고용으로만 보존한다.
+
+## G-A044-PACKAGE-20260922 — 계획의 실행 패키지 발행(등급: 조사)
+`GO2-POST-A043-PLAN-20260922` 계획을 번호 있는 실행 패키지로 냈다. A033 위 `lin_vel_z_l2 −2.0→−1.75` 단일변수, 학습 1000iter/평가 900, `INFORMATION_RUN`. **1단계 분기도 서버 게이트도 없다** — 69 case 전수를 한 번에 수집하고(계획 §5, 결함 C-11), 밀침 보호를 네 방향으로 넓혔다(screening 판 `post_a043_push4_v1`, 계획 §6). **판정 문턱은 하나도 바꾸지 않았다**(총점 `+2.53`·평지 proxy 하락 `0.054`·평지 case 생존 하락 `0.0625`·시나리오별 손실 한도·묶음 하한·계단 오른 로봇 수 하한 모두 A043 값 그대로). 영상 후보 10 + 기준선 신규 4(나머지 6은 SHA 재사용). 발행 `upload/G-A044/current/GO2_G_A044_a033_lin_vel_z_m175_full69_v9.zip` SHA `2e12a5667f9ef93015dfcc7247bd10f5b83fcc07473c1ec29f4bca6d18f77ce6`(v9; v3·v2·v1은 history 보존·미업로드 — v2·v3은 산문만 고친 판, **v4는 러너를 고친 판**: v3 러너는 tmux 안에서 패키지에 없는 조상 파일 이름으로 재진입해 아무것도 돌지 않았을 것이다(결함 C-14), 회수 명령의 `--keep`은 실존하지 않는 선택지였고(C-15), 종료 절이 SHA 한 줄로 읽혔다(C-16)). v5는 올릴 ZIP 이름에 판 번호를 넣은 판(C-18), v6은 계획서 대조로 드러난 기록 공백 셋을 메운 판, v7은 안내문의 exit code 설명을 고친 판, **v8은 ZIP 안 사양의 `--keep`(C-21)과 중단된 수집이 전수 완료처럼 보이던 상태 표시(C-22)를 고친 판이다**(C-20 — 종료 게이트에서 `exit 1 = 성능 미충족`은 틀렸고, 회수 결손을 성능 실패로 읽게 만들었다). v9 사유: **안내문이 실패 경로를 잘못 적고 있었다**(결함 C-24, 사용자 검토 3회차). ① `[DONE]` 은 늘 나오지 않는다 — 러너의 `on_exit` crash 경로는 부분 ZIP 과 `COLLECTION_STATUS=INCOMPLETE_CRASH` 만 남기고 표식 없이 끝나므로, 표식을 기다리는 사용자는 오지 않을 줄을 기다리며 휘발 서버의 예산을 태운다. ② 「불완전하면 메운 뒤 종료」는 복구 가능한 누락에만 맞다 — 파국 게이트가 멈춘 판은 정책이 실행되지 않은 판이고 69 를 채우는 것이 오히려 러너의 계약(STOP_UNSAFE)과 충돌한다. 안내문 §4 를 세 상태(정상 완료 / 복구 가능한 누락 / crash·안전상 평가 불가)로 나누고 §5-a 와 종료 문장이 그 구분을 따르게 했으며, `FULL_69_COMPLETE` 가 개수 확인일 뿐 SHA·지문·identity·report 검사를 대신하지 않는다고 적었다. 관문 test_22 가 발행된 러너의 crash 경로를 실행해 표식 부재를 보인다. **러너 바이트는 v8 과 같다** — v9 페이로드 차이는 `experiment.json` 의 판 이름 두 줄과 그 해시 줄뿐이고, 안내문이 바뀌었다. 같은 판에서 결함 C-23(옛 `pinned = staged + 핀 블록` 동치 관문이 C-14 이후 빨간 채로 남아 다음 회귀를 가리고 있었다)을 **관문만 고쳐** 닫았다 — 러너를 건드리지 않았고 v8 ZIP 은 같은 SHA 로 재빌드된다. 기준 변경 근거 `workspace/training/quadruped/reports/GO2_G_A044_CRITERIA_CHANGES_20260922.md`. 이 회차 준비 중 결함 C-12(회수 회차가 기반 데이터 표 밖 — A043 반영으로 `−1.75`가 `BETWEEN_OBSERVED`가 됨)·C-13(빌더 영상 지문이 밀침/DR 상수, fail-closed)을 원천 수정했다. **로컬 검증 완료는 성능 판정이 아니다.** 2026-09-23 사용자가 v9 로 **실행을 승인**했고(C-17·C-2 는 별도 유지보수로 분리), 이 줄을 쓴 시점의 서버 실행·GPU 소비는 여전히 **0**, 잔여 예산 변동 없음 — 실행은 사용자가 한다.
+
+## GO2-POST-A043-PLAN-20260922
+- User requested the next plan, not package execution. Saved: `workspace/training/quadruped/upload/plan/GO2_POST_A043_PLAN_20260922.md`.
+- Planned candidate: A033 lin_vel_z_l2 -2.0 -> -1.75 only; seed42/1000iter/eval900; full69 required, G2 bilateral protection, G6 all-direction reporting/protection. Unmeasured exploratory interpolation; A033 retained.
+- No new ID reserved, package issued, server execution, or GPU usage. This plan supersedes the historical next-action to run A043, not its immutable artifacts or failed verdict.
+
+## G-A043-READOUT-20260922
+2026-09-22 G-A043 RECOVERY VERIFIED: ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL; A033 retained. Full69, sentinel5, new videos8, reused4 and original report acquired. Internal proxy 42.528610 -> 44.624542/70 (+2.095932 < required2.53); G2 weighted loss4.636928; stairs improve but protection fails. Server shutdown permitted. Readout: workspace/training/quadruped/reports/GO2_G_A043_READOUT.md; verification: workspace/server_returns/G-A043_LOCAL_VERIFY.json. This supersedes A043 unexecuted status only.
+- Classification: investigation; training 58m19s, campaign budget remaining UNMEASURED. No new server run authorized or performed by this review. Raw harvest retained without canonical merge.
+
+## G-A043-PACKAGE-20260922 — 계획의 실행 패키지 발행(등급: 조사)
+`G-PLAN-POST-A042-20260922` 계획을 번호 있는 실행 패키지로 냈다. A033 위 `lin_vel_z_l2 −2.0→−1.5` 단일변수, 학습 1000iter/평가 900, `INFORMATION_RUN`. 1단계 22 case(채점 12 + 필수기록 10), screening 판 `post_a042_push_v1`이 G6 ±x 각 방향을 보호하고 ±y는 단일 seed 관측이다. 영상 후보 6 + 기준선 신규 2(나머지 4는 SHA 대응 재사용). 발행 `upload/G-A043/current/` SHA `68480a13f96bf7032462ce852238fcbbaaeb726e66638a9d7502cbc154dcda45`(v3; v2 `69f20613…1891c`·v1 `90661e80…f0b11c`는 history 보존·미업로드). 1단계는 파국 1 + 채점 12 + 기록 10 = **23 case**다. 기준 변경 8건 근거 `workspace/training/quadruped/reports/GO2_G_A043_CRITERIA_CHANGES_20260922.md` — v1의 ±y 제외 근거는 `PUSH_CASES` 네 방향과 충돌해 철회(표지 복원), 1단계 상한 21→69의 1/3(23, 파국 포함 집계), 결함 C-8·C-10 원천 수정. 로컬 검증 **32/32 통과**(v3 바이트)이며 밀침 악화를 옛 판은 통과시키고 새 판은 잡는 것까지 확인했다. **로컬 검증 완료는 성능 판정이 아니다.** 서버 실행·GPU 소비 **0**, 잔여 예산 변동 없음. 사용자 승인 대기 항목: ±y를 단일 seed 관측으로 두는 것과 1단계 상한 변경(둘 다 메인 루프 판단).
+
+## G-PLAN-POST-A042-20260922 — 계획 단계
+사용자의 다음 계획·근거 요청을 기록. A033 위 lin_vel_z -2→-1.5 단일변수 pilot1회(조사/개선), 학습1000iter/평가900. 첫 세션100~120분은 A042 학습59분2초 기반 평가·회수 포함 계획치이며 잔여 예산이나 TTL 보장이 아님. 성공 후 전수/독립seed 대칭쌍은 별도 재평가. 서버는 패키지 로컬검증 전 새로 켜지 않는다. 계획 `workspace/training/quadruped/upload/plan/GO2_POST_A042_PLAN_20260922.md`; 발행/실행 없음.
+
+## G-A042-LOCAL-REVIEW-20260921 — 최신 진행
+등급 개선/조사. A042 v4 학습1000iter·평가900 회수 분석 완료: ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL, A033 유지. 학습59분2초(원 report), campaign 결과21:33:51; 접속 총비용은 미측정으로 이 시간만으로 잔여 예산을 단정하지 않는다. 표적 필수 자료 회수 검증 완료, 서버 종료 가능. 전체평가/장기승급은 수행하지 않음. 다음 새 실행은 자동 상향하지 않는다. 상세 `workspace/training/quadruped/reports/GO2_G_A042_READOUT.md`.
+
+## G-D-FORWARD-STAIRS-20260921 — 사용자 공동 목표 계획
+험지 전진 보존과 계단 정체 감소를 공동 목표로 설정. A033 유지; track 1.5→1.6은 OUT_OF_RANGE 정보 실험 계획이며 성능 채택이 아님. 옆걸음·밀침 악화 반대 근거를 보존하고 FAIL과 무관한 10/15cm 필수 회수를 요구. 패키지 미발행·서버 미실행. 계획: `workspace/training/quadruped/upload/plan/GO2_FORWARD_STAIRS_POLICY_20260921.md`.
+
+> 2026-09-21 G-A041 회수 판독 반영: 산출물은 검증됐고(ARTIFACT_VERIFIED) 판정은 **INTERNAL_GATE_FAIL**이다(artifact/stage faults `0`, sentinel `5`/`5`). 10cm 오르기 ≥1단 `90`→`34`/96 · ≥2단 `43`→`8`/96, 자세 포함 낙상 `34`→`93`/96. **G-A033 유지**, 후보는 승급하지 않는다. `ang_vel_xy_l2` 완화가 계단을 돕는다는 이번 방향 예측은 반박됐다 — 모든 seed·가중치 구간의 일반법칙이나 직접 기전은 확정하지 않는다. 15cm 계단 기록이 회수되지 않아 회수 완결은 **PARTIAL**이고 공식 `/70` 점수는 미측정이다. 상세 `workspace/training/quadruped/reports/GO2_G_A041_READOUT.md`와 `GO2_G_A041_LOCAL_VERIFY.json`. 새 서버 실행은 없다. (이 줄은 2026-09-21 한글이 깨진 채 저장돼 판독문 원문에서 다시 썼다.)
 
 ## 0. 현재 흐름
 
@@ -146,6 +183,7 @@ Pilot-01 튜닝 reward이므로 control로 쓰지 않는다. 따라서 Default-0
 - 승급 시에도 즉시 장기 학습하지 않고 독립 학습 seed를 먼저 수행한다.
 
 ## 10. G-A008 evaluator ?? ?? ? 260901
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 확인한 정상 기록: `workspace/training/quadruped/go2_feet_air_time_020_v2.VERIFICATION.md`(v2 원인·수정·패키지 SHA·검증, 정상 영문), `GO2_OPUS_REAUDIT_INDEPENDENT_260907.md:296`(G-A008 요약 1행). 단계 1~5 일정 상태는 대체 기록 미확보.
 
 | ?? | ?? | ?? | ?? | ?? ?? |
 |---:|---|---|---|---|
@@ -800,3 +838,67 @@ Chain-01 위에서 같은 다이얼을 다시 시험할 때도 여전히 유효�
 - IMPORTANT measurement limit: approved telemetry uses mean scanner ray height, not ground directly under body. Stair boundary bias can contribute to low-height verdict; physical fall interpretation INTERNAL_GATE_INCONCLUSIVE. Applies to same A027 measurement method too; preserve historic numeric outputs, do not promote them to verified physical falls.
 - Report does not replace videos,steps.csv,execution logs or policy/config identity. Current strongest observed problem is stair stalling, not proven excessive roll/pitch. -0.06 remains DEFERRED_HYPOTHESIS; no new training or reward change authorized by these results.
 - Evidence/report: workspace/server_returns/G-A028/audit_20260913/REPORT_RELATIONSHIP_AUDIT.md; case_metrics.json, artifact_verification.json, video_validation.json, contact sheets. Original downloads preserved; ZIP/SHA copied to workspace/server_returns/G-A028/received/. No training merge.
+
+### 2026-09-14 사용자 요청 참조 (CLOSED 유지)
+난이도 기반 튜닝 파일 준비·report 회수 검증 요청은 GO2_PROJECT_STATE.md의 G-A029에 기록했다. 이 역사 일정은 재개하지 않으며 새 서버 일정/학습은 확정하지 않았다.
+
+### 2026-09-14 G-A029 ??? ?? ??(CLOSED ??)
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 관련 정상 기록: 바로 위 「2026-09-14 사용자 요청 참조 (CLOSED 유지)」 절, `GO2_PROJECT_STATE.md` 「G-A029 — 2026-09-14 난이도 기반 튜닝 파일·회수 계약 점검」 절. 내용이 같은지는 확인할 수 없다.
+?? ?? ???? ?? ??? ??? ??? GO2_PROJECT_STATE.md G-A029? ??. ?? ??/?? ?? ??.
+# 2026-09-14 사용자 결정 참조 — CLOSED 유지
+새 세션용 조건부 실행 계획을 G-A029에 기록했다. 계획 정본: `workspace/training/quadruped/upload/plan/GO2_G_A029_NEW_SESSION_EXECUTION_PLAN.md`. 새 서버 일정이나 학습 승인은 아니다.
+
+### 2026-09-14 G-A029 §3 종료 — HOLD / 원 보고서 회수
+- NEW-CONTINUATION으로 지정 계획 §3을 종료했다. -0.008은 조건부 실험 가치만 인정하며 후보 확정/학습 승인이 아니다. A017 REPORT_READ_STATUS=MISSING / REPORT_REQUIRED_NOT_ACQUIRED로 실행본 발행 차단.
+- 기존 52archive 재검색 없이 목록 밖 ZIP 6개를 확인했으나 report.html 0개. 상세 경로·직접 코드/로그 근거·한계는 GO2_REWARD_EVIDENCE_MASTER.md의 같은 날짜 §3 판단 종료 행과 기존 인계 계획에 기록했다. 깨진 과거 append는 판정 근거에서 제외한다.
+- NEXT 하나: A017 원 학습 report.html 외부 보관 사본 회수 → run/env/log/model_900 대응 확인 → 기존 계획 §4 패키지 구현·검증. 추가 서버 진단이나 새 검토 ZIP을 만들지 않는다.
+- G-A029 PLANNED, 단계0/6, 서버/학습/실행 ZIP 발행 없음. 역사 일정 CLOSED 유지. 원 자료·승인 release 보존.
+### GO2-REPLAN-A029-20260914 — 감사 후 사용자 요청 재계획
+- 사용자 결정: G-A029 감사에 따라 메인 문제를 진단하고 튜닝 계획을 수립한다. 이번 요청은 계획이며 서버 실행/패키지 발행으로 확대하지 않는다. 역사 일정 CLOSED는 유지한다.
+- G-A029 REJECTED_BY_AUDIT 및 -0.008 NEXT 철회 유지, review 불변. 과거 A017 HTML 누락을 발행 차단으로 복원하지 않는다.
+- 계획 정본: workspace/training/quadruped/upload/plan/GO2_POST_A029_TUNING_PLAN_20260914.md.
+- 직접 근거: A018 양 arm 각7case 모두 schema2/v2; A013/A025 baseline은 schema1/2 혼재, candidate는 schema2라 합산 비대칭. A027 G3 rough_lateral seed101/202/303의 base-contact 종료는 17/14/17개(/32), 첫 종료 전0.5초 q=1-gz² 평균 .688/.628/.660. 기울기는 연관성이지 최초 원인 확정 아님.
+- 계획값: A017 조건 flat_orientation_l2 0→-1.0 단일변수, G3 접촉 종료/생존 표적; G5 정체·경사 회귀 동시 감시. -1은 관측 기반 단위 크기 exploratory 값이지 upstream 최적값/만족 판정 아님.
+- REPORT_READ_STATUS: A017 MISSING(기존 복구 불가 확정 유지), Pilot READ_UNMATCHED(이번 HTML 본문 직접 열람, 정책 대응 미완결).
+- NEXT: 다음 미사용 번호로 위 계획의 current 실행 패키지 구현·검증. 이번에 번호 예약/실행 ZIP/서버 명령은 발행하지 않았다. 학습·성능·공식 결과 새 측정 없음.
+
+## PM-REPAIR-STRATEGY-20260919
+
+User requested local judgment-validator fixes and evidence-based tuning strategy review. No server execution, new package, reward change or artifact merge. Baseline remains G-A033; last training is G-A038 (2026-09-17). G-A040 is INFORMATION_RUN, not a release or performance promotion. Results and limitations: `workspace/training/quadruped/upload/plan/GO2_PM_REPAIR_STRATEGY_20260919.md`. Existing archives unchanged. VIDEO_NOT_REQUIRED for this tool-only change; no fresh video observation claimed.
+
+
+## G-D-EVIDENCE-MANAGER-20260920
+- 사용자 결정: 결론의 불변성이 아니라 사실적 기반과 학습 문서의 근거를 통한 추론을 원한다. 증거 관리자 페르소나와 인계 역할을 추가한다.
+- 구현: go2-evidence-manager(읽기 전용 실험 기록 사서), 공통 계약 workspace/training/quadruped/GO2_EVIDENCE_HANDOFF.md. 기존 역할 앞에 증거 카드를 인계하며 원자료·원문 직접 확인을 대체하지 않는다.
+- 경계: 값 선택·성능 승인·서버 실행 권한 없음. 새 증거뿐 아니라 추론 오류 발견으로도 결정을 바꿀 수 있다. 학습·튜닝 패키지 발행·기존 사양 수정은 이번 작업 범위 밖이다.
+- 일정: 로컬 역할 연결과 계약 검사. 서버 시간 소비 없음. 기존 검증기 의미 결함은 별도 미해결이며 역할 추가로 해결됐다고 간주하지 않는다.
+
+
+## G-D-EVIDENCE-RESPONSIBILITY-20260920 — PM 실증 후 기존 역할 강화
+- 사용자 결정: PM이 근거 검증 책임자 페르소나로 먼저 원인 재현·수정을 수행하고, 검증된 절차를 서브에이전트로 만든다. 결론 불변이 아니라 사실·학습 문서 기반 추론이 목적이다.
+- 수정: CSV selector/cells의 유일 행·정확한 열/값 결합; RECOMMENDED/INFORMATION_RUN 공통 검사; 역할 회귀 테스트의 공유 사양 파일을 실행별 임시 디렉터리로 격리.
+- 반례: 최초 6 tests에서 11 failure로 누락 검출 입증. 수정 후 관련 57 tests 성공. 정상 대조군과 잘못된 사양 동시 실행도 검사했다. 자연어 의미·인과를 자동으로 증명한 것은 아니다.
+- 미실행 G-A035는 training_length와 이미 실행된 A038보다 앞 번호라는 실제 부적격 사유로 HOLD_UNSUPPORTED. 기존 발행 ZIP/학습/보상값/원자료는 변경하지 않음. A040은 정보 후보로 유지하되 tilt-only와 전체 채널, TILT 집단·시간창·unit-norm 한계를 명시했다. 실행 승인/성능 승급은 아님.
+- 역할: 새 중복 에이전트 대신 기존 `.codex/agents/go2-evidence-manager.md`와 `.claude/agents/go2-evidence-manager.md`를 근거 검증 책임자로 강화. 공통 절차는 `workspace/training/quadruped/GO2_EVIDENCE_HANDOFF.md`. native analyst에 명시적으로 전달하는 문서 역할이며 자동 등록이 아니다.
+- 독립 검토: audit_reaudit가 사용량 제한(도구 안내 재개 14:46, 시간대 미제공)으로 중단. 대체 모델·대체 감사자 호출 없이 PM 검증만 완료. 수정판 독립 감사와 역할의 새 블라인드 실동작 검증은 미완료이며 완료로 주장하지 않는다.
+- 일정/예산: 로컬 수정·검증만, 신규 GPU 사용 없음. 계획 정본 `workspace/training/quadruped/upload/plan/GO2_ROLE_VALIDATION_REPAIR_20260919.md`.
+
+
+## G-D-DATA-SEMANTICS-20260920 — 데이터 생성 경계 표준화
+- 사용자 재확정: 현재 목적은 에이전트/검증기 확대가 아니라 원천 데이터가 왜 해석·오해를 유발했는지 추적하고 데이터 명세·표준으로 고치는 것이다.
+- 원인 확인: 집계 생성기의 legacy 이름에 base-contact/전체종료 혼동, world/body 좌표계 혼동, scalar tilt derivative/원 각속도 혼동, 비대칭 창·seed pool·유효 분모 소실, 고정행동 산술/실측개선 혼동이 있었다. 단순 숫자 손상으로 단정하지 않음.
+- 산출: workspace/training/quadruped/GO2_DATA_STANDARD.md, config/go2_evidence_data_dictionary.json, tools/go2_standardize_evidence.py, reports/evidence/go2_standardized_v1/standardized.json (기체 루트 기준 경로). 5개 표 129행 의미 명세/원문 숫자 보존. 원 CSV·원 telemetry·학습 코드·정책·승인 ZIP 불변.
+- 적용: 기체 AGENTS와 GO2_EVIDENCE_HANDOFF가 표준을 참조. 강좌 원리→정확한 Isaac 식→실제 채널 차이→관측→경쟁가설→반증으로 정책 판단한다. 수식만으로 계단/흔들림 개선을 확정하지 않는다.
+- 미완료 범위: 전체 캠페인 이관, raw 전체 재계산, 집계에서 누락된 유효 분모/정책 지문 전수 복구, 기존 산문 전체 정정. UNKNOWN을 추정으로 채우지 않음.
+- 서버/GPU: 사용 없음. 로컬 표준화 작업이며 새 튜닝 패키지·학습 요청이 아니다.
+# G-D-HANDOFF-MONITOR-20260920 — 운영 절차 반영
+
+G-D-REWARD-KNOWLEDGE-20260920 사용자 결정: 습득/미습득 정보 분류를 다음 후보 비교부터 적용한다. 등급: 개선(실험 의사결정 품질). 정본은 GO2_REWARD_EVIDENCE_MASTER.md의 같은 ID 절. 새 패키지·서버 실행·일정·예산 변경 없음.
+
+사용자 승인: 증거 관리자 반복 확인을 이후 Go2 역할 인계에 적용. INPUT_REVIEW → 역할 작업 → OUTPUT_REVIEW 및 PM_REVIEW. 자료·주장·범위가 바뀌지 않은 경우 기존 검토 재사용, 변경된 주장만 재검사. 등급: 개선(근거 전달 품질). 서버 일정·예산·학습 회차 변경 없음. 공통 정본: `workspace/training/quadruped/GO2_EVIDENCE_HANDOFF.md`.
+
+## G-A042-REPAIR-20260921 — 사용자 계획대로 수정 발행
+- STAY. A042 v4 패키지 발행: `workspace/training/quadruped/upload/G-A042/current/GO2_G_A042_a033_track_lin_vel_xy_160_one_command.zip`, SHA256 `a95d3b6d2164354381e850ed7749d4c97d3a6df6ae02ef5bb4f29ef8dda06133`.
+- 계획 §4를 fact_rules_v1과 통합 판정하고 필수15cm/보호 case의 존재·지문·정합을 검증한다. 유효 정지 정책도 필수 수집 후 종료하며 비유한/실행불능은 안전 회수한다. 개체별 정체/도달/검열·유효분모와 provenance 보존. 서버 미실행·성능 미측정, 기준선 A033 유지.
+- 과거 A042 원 ZIP SHA `7952cd02…ea15` 및 current 전체는 `history/20260921_pre_repair_snapshot`에 바이트 그대로 보존. 다른 회차 release 변경 없음.
+- 최소 정보 경로 새 학습1회, seed42/1000iter/평가900, track1.5→1.6만 변경. 1단계 약100분/확장55분은 추정, 잔여 GPU·TTL 미측정. 로컬 회수 검사 전 서버 종료 승인하지 않는다.

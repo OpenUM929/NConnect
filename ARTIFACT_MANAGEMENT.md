@@ -1,5 +1,101 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A045-A046-PACKAGE-20260924 — 학습 seed 43 대칭 쌍(자를 재는 회차) 제작
+- 상태: PLANNED → RUNNING(로컬 제작·검증) → **발행 v2**. 서버 실행·회수·병합은 **없다** — 실행은 사용자가 한다.
+- A044 회수로 `lin_vel_z_l2` 는 걷는 기준선 위에서 세 점이 측정됐는데, **계수기가 서로 다른 말을 한다** — 계단에 오른 로봇 수는 단조로 늘고(10cm ≥2단 `43→62→94`/96, 15cm ≥1단 `4→39→88`/96) 자세 낙상 수는 가운데 값에서만 솟는다(계단10cm `34→65→17`, 험지 옆걸음 `59→80→24`, 밀침 4방향 `22→66→10`/384). 총점 비단조(`42.53→38.89→44.62`)는 낙상 쪽을 따라간 결과다. 이것이 다이얼의 성질인지 학습 경로 갈라짐인지는 **학습 seed 대조군이 0건**이라 가를 수 없고, 회차 간 총점 차이(`−3.63`·`+2.10`)는 승급 문턱(`+2.53`)과 같은 자리에 있다. 그래서 이 회차는 값을 찾지 않고 **자를 잰다**: G-A045 는 G-A033 의 보상 파일 그대로를 학습 seed 43 으로 다시 학습하고(보상 diff 0줄), G-A046 은 같은 seed 위에서 `lin_vel_z_l2 −1.5`(G-A043 과 같은 값)를 걸어 대칭 쌍을 만든다. **판정 문턱·평가 조건·screening 판은 하나도 바꾸지 않았다** — 자를 재는 회차가 자를 바꾸면 읽을 수 없다. **두 팔 다 승급 대상이 아니다**(`promotion: forbidden_not_a_reward_change`): 학습 seed 는 보상 가중치가 아니다. R-6 해석은 열린 결정 **U2-SEED-REPLICATE-20260918** 이고 사용자 결정 대기다 — 사용자가 「실행도 하지 말라」로 닫으면 이 패키지는 폐기한다.
+- 계획 `workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md`, 기준 변경 `workspace/training/quadruped/reports/GO2_A045_CRITERIA_CHANGES_20260924.md`, 사양 `config/experiments/G_A045_seed43_a033_rewards.json`·`G_A046_seed43_lin_vel_z_m15.json`, 발행 도구 `tools/build_go2_seed_pair_package.py`.
+- 발행: `upload/G-A045_A046/current/GO2_G_A045_A046_seed43_pair_full69_v8.zip` SHA256 `02c1b36c59e9a5c499b43c46776d69bce7e4d74f63c740ca8719e75d9c3df151` (release `20260924_seed43_pair_full69_v8`). v1 은 같은 날 만든 **로컬 초안**이고 발행된 적이 없다 — 러너 머리말에 열린 결정 번호를 적기 전 바이트다. history 의 바이트는 고치지 않으므로 덮어쓰지 않고 다음 판으로 냈다. 팔 ZIP 둘은 `GO2_G_A045_seed43_a033_rewards_full69_v7.zip` `a6a20361…` · `GO2_G_A046_seed43_lin_vel_z_m15_full69_v7.zip` `4be46723…` 다 — 사양의 「학습 18회」를 원장에서 다시 센 수로 고치면서 팔 바이트도 바뀌어 v2 로 냈다. 쌍 ZIP 안 `arms/` 에 들어 있고 따로 올리지 않는다.
+- 러너 `workspace/training/quadruped/server_run_go2_full69_campaign.sh`(신규): 기존 campaign 러너에서 **게이트만 뺀** 판이고 공유 헬퍼 11개는 바이트가 같다. 팔마다 전수 69 로 직행하고, 팔이 팔을 막지 않으며, 재진입은 이름이 아니라 `$SELF` 경로로 한다(결함 C-14 의 교훈). 기존 campaign 발행 경로는 한 글자도 건드리지 않았다.
+- v4 사유: **독립 검토가 사전등록한 「읽는 법」 의 오류 넷을 잡았다**(결함 C-26). ① 계단 재현을 B 의 절대값만으로 판정한 것(A 가 70 인데 B 가 50 이면 오히려 나빠진 것이다) — 이제 행동 수준(절대값)과 보상 효과(**같은 seed 의 B−A**)를 따로 읽는다. ② 작은 seed 차이를 「A044 의 비단조는 다이얼 탓」의 근거로 쓴 것 — 이 쌍은 `−1.75` 를 반복하지 않으므로 그 원인은 **미확정**이고, 보상 효과와 학습 경로는 배타적이지도 않다. ③ 큰 차이에서 승급 규칙 폐기·장기 학습 전환을 적은 것 — 한 표본은 그 결론을 지지하지 않고 기존 `INTERNAL_GATE_FAIL` 관측을 무효로 만들지도 않는다. ④ R-6 을 닫힌 것처럼 적은 것 — CLI 인자 전달은 규정 허용의 증거가 아니고, 반대로 공식 제출 불가도 단정하지 않는다(우리 금지는 내부 보수 규칙이며 열린 결정 U2 는 운영진 답변·공식 근거로 닫는 것이 안전하다). **판정 문턱·평가 조건·러너·수집 계약은 하나도 바뀌지 않았다** — 바뀐 것은 읽는 법이다. 같은 판에서 총점이 어디로 갔는지를 산문 대신 같은 채점기의 반사실로 쟀다(`tools/go2_score_decomposition.py` → `SCORE_SPLIT.csv`: A044 는 생존 `−4.62775` · 추종 `+0.99438` · 교차항 `−0.00144`). 관문 `ReviewCorrectionsTest` 7 검사가 네 정정을 고정한다.
+- v5 사유: **검토 3차** — 점수 분해를 「기여 분해」로 고쳐 적었다. 세 항의 합이 총점 차이와 같은 것은 교차항을 잔차로 두기 때문이라 **검증이 아니라 정의**이고, 읽을 것은 교차항의 크기다(A044 `0.04%` 대 A043 `79.89%` — 후자는 두 인수로 나누는 것 자체가 약하다는 뜻이다). 어느 쪽이든 **「보상 변경이 낙상을 일으켰다」는 인과는 나오지 않는다.** 값·문턱·러너·수집 계약은 그대로이고 사양 산문과 안내문만 바뀐다. 관문 `ReviewCorrectionsTest::test_32` 가 고정한다.
+- v6 사유: **검토 4차** — 잔차 비율의 **분모**를 갈라 적었다. `|교차항|/|순변화|` 는 큰 반대 몫들이 상쇄되면 튀므로 **인과적 기여율도 설명 실패율도 아니다**. 크기합을 분모로 한 값을 함께 싣는다(A044 `0.04%`/`0.03%`, A043 `79.89%`/`30.75%`, A043 순변화는 크기합의 `38.49%`). 두 수가 벌어지는 것 자체가 「상쇄가 심하다」는 신호다. 값·문턱·러너·수집 계약 불변.
+- v7 사유: **검토 5차** — ① 「최악이라도 GPU 시간만 잃는다」로 **손실 상한을 긋지 않는다**. G-A033 산출물이 보존된다는 사실과 팀 제출 자격에 영향이 없다는 판단은 별개이고, 서버 실행 자체가 허용되지 않는 행위로 판정될 경우 **제재 범위는 미확정**이다(위반 확정도 아니다 — 허용도 손실 상한도 확정할 수 없다는 뜻). **사용자의 실행 결정만으로 U2 가 닫히지도 않는다.** ② A043 기각을 G2 하나로 좁히지 않는다 — 총점 `+2.09593`이 `+2.53`에 미달(기준 2)했고 비열등 4건(G2 proxy `−0.44161`, `combined_yaw_right` 3 seed 생존)과 screening 3건(`rough_forward`·`push_pos_x`·`push_neg_x`)이 함께 있었다. **유망한 신호와 채택 자격은 분리해 읽는다.** 관문 `test_33`·`test_34` 가 고정한다.
+- 로컬 검증: 관문 `tools/test_go2_g_a045_package_contract.py` **31검사 통과**(러너 이름 붙인 차이·공유 헬퍼 바이트 동일·재진입 실행·문턱 불변·승급 금지·영상 짝·ZIP manifest·재빌드 결정성·안내문의 실패 경로 진술). 네 관문은 **반대 방향으로도 확인했다** — 이름 없는 러너 편집, 문턱 한 개 이동, 승급 금지 삭제, 자 팔에 보상 변경을 심으면 각각 떨어진다.
+- **느린 관문은 옵트인이다(2026-09-24).** `tools/test_go2_g_a044_package_contract.py` 는 회수물이 생긴 뒤 69 case 의 `steps.csv` 를 통째로 읽게 되어 한 번에 **38분**이 걸렸다 — 그렇게 느린 관문은 일상 스윕에서 돌지 않고, 돌지 않는 관문은 없는 것과 같다. 이제 전수 판독 8 검사는 `GO2_SLOW_TESTS=1` 에서만 돌고(기본은 이유를 말하며 건너뜀), 돌 때는 스스로 시간을 재 예산(`GO2_SLOW_BUDGET_S`, 기본 3000초)을 넘기면 **실패**한다. 같은 수확물을 두 번 읽던 자리는 캐시로 묶었다. **범위를 갈라 적는다**: 같은 범위(34 검사 전부 실행)는 `2288초 → 857초`(중복 읽기 캐시와 배선 검사의 I/O 제거), 기본 경로는 `92초`이며 그때는 **34 중 8 건너뜀**이다 — `38분 → 92초` 는 범위가 다른 두 수를 나란히 놓은 것이라 쓰지 않는다. **회차를 발행하기 전에는 `GO2_SLOW_TESTS=1` 로 한 번 돌린다**(실측 857초) — 건너뛴 관문이 조용히 사라지지 않는지는 `SlowGateIsWiredTest` 가 지킨다.
+- **실행 규칙 두 가지를 실측으로 확인했다(2026-09-24).** ① `timeout N cmd | tail` 은 timeout 의 종료 코드를 **가린다**(실측: 파이프 있으면 exit 0, 없으면 124) — 그래서 파이프를 쓸 때는 `set -o pipefail` 을 먼저 켜거나 파일로 받고 `$?` 를 본다. ② `timeout` 은 이 환경에서 손자 프로세스까지 정리했다(1회 실측: 자식을 띄운 python 을 5초에 끊고 2초 뒤 잔존 python 0개). 다만 **테스트 안의 경과시간 검사는 멈춘 작업을 끊지 못한다** — 그것은 끝난 뒤에야 실패를 알리는 사후 신호이고, 실제로 끊는 것은 바깥 `timeout` 과 `subprocess.run(timeout=...)` 이다.
+- **로컬 검증 완료는 성능 판정이 아니다.** 서버 실행·GPU 소비 **0**, 잔여 예산 변동 없음.
+
+## G-A044-LOCAL-REVIEW-20260924 — 결과 보존·검증·다음 튜닝 분석
+- 상태: PLANNED → RUNNING → RECEIVED → VERIFIED. SHA `10824d2d3025769d101faf150248feccce169eed4a738b3b6439d0b68d5c20c0`; CRC·내부548 SHA·해제본549파일 일치. canonical 병합은 하지 않아 MERGED로 표시하지 않는다.
+- 원본은 덮어쓰지 않고 보존하며 `workspace/server_returns/G-A044/`에 검증 기록을 격리한다. 서버 실행 사실은 회수 로그로 확인하며 신규 서버 실행은 하지 않는다.
+- 회수 완결: report 원본·학습로그/env·평가900 checkpoint·69case·sentinel5·신규 영상14(전편499프레임 디코딩/지문 일치)·재사용6 SHA/지문 확인. 서버 종료 가능, 추가 필수 회수 없음. VIDEO_UNKNOWN(행동 전체 관찰 미완료), OFFICIAL_RESULT_UNMEASURED.
+- 내부 정량 INTERNAL_GATE_FAIL: 42.528610→38.893793/70(-3.634817), A033 유지. 판독문 `workspace/training/quadruped/reports/GO2_G_A044_READOUT.md`, 다음 정책 분석 `workspace/training/quadruped/upload/plan/GO2_POST_A044_POLICY_ANALYSIS_20260924.md`. 분석/보고 기록은 별도 보존하며 원본 lifecycle의 병합을 가장하지 않는다.
+
+## G-A044-PACKAGE-20260922 — A033 위 `lin_vel_z_l2 −2.0→−1.75` 전수 수집 패키지 제작
+- 상태: PLANNED → RUNNING(로컬 제작·검증) → **발행 v9 · 사용자 실행 승인(2026-09-23)**. 회수·병합은 아직 **없다** — 서버 실행은 사용자가 하고, 이 줄은 승인 기록이다.
+- **2026-09-23 사용자 결정 (G-D-A044-RUN-20260923): v9 로 진행한다.** 사용자가 ZIP SHA·CRC·내부 manifest 32/32 일치, v8→v9 변경이 사양의 발행 식별자와 manifest 뿐(러너·보상·판정 코드 불변), C-23 관문 4개와 C-24 관문 1개 5/5 성공을 직접 확인했다. **C-17 과 C-2 는 이번 실행 전에 고치지 않고 별도 유지보수로 둔다.** 서버 실행은 사용자가 한다 — 이 줄은 승인 기록이지 실행 기록이 아니다. 실행 뒤의 회수 완결 판정은 안내문 §5 의 다섯 줄과 §4 의 세 상태로 내린다.
+- 계획 근거: `workspace/training/quadruped/upload/plan/GO2_POST_A043_PLAN_20260922.md` §1~§6·§9. 사양 `workspace/training/quadruped/config/experiments/G_A044_a033_lin_vel_z_m175.json`.
+- 발행: `upload/G-A044/current/GO2_G_A044_a033_lin_vel_z_m175_full69_v9.zip` SHA256 `2e12a5667f9ef93015dfcc7247bd10f5b83fcc07473c1ec29f4bca6d18f77ce6`(release `20260922_a033_lin_vel_z_m175_full69_v9`). 대체된 v2 `b3321fb3…acedc`·v1 `f588d9cd…06c09`은 history 보존, 둘 다 서버에 올린 적 없음. v2 사유: v1 안내문이 소요 시간 근거를 영어 원문 그대로 실어 읽히지 않았다. v3 사유: 관문 `test_go2_detectability_gate::test_14`가 사양 산문의 맨 이름 `FORECAST_CHECK.csv`(저장소에 같은 이름 2개)를 잡아 네 자리를 전체 경로로 고쳤다. v4 사유: **v3 는 서버에서 아무것도 돌지 않았을 것이다** — 팔 러너가 tmux 안에서 자기 자신을 다시 부를 때 패키지에 없는 조상 파일 이름(`server_run_go2_candidate_staged.sh`)을 글자로 박고 있었다(결함 C-14). 같은 판에서 회수 명령의 `--keep`(실존하지 않는 선택지, C-15)과 SHA 한 줄로 읽히던 종료 절(C-16)도 고쳤다. **v4 는 산문만 바뀐 판이 아니다 — 러너 바이트가 바뀌었다.** 값·문턱·수집 계약은 여전히 불변이고, 이미 발행된 회차의 바이트도 불변이다(G-A042·G-A043 을 실행된 러너 `6fd78eeb8eac5342` 로 고정했다). v2·v3 은 산문만 바뀐 판이다. campaign 껍데기를 쓰지 않는다 — **1단계 분기도 서버 게이트도 없는 회차**라 회차 ZIP 자체가 실행 단위다. v5 사유: **올릴 ZIP 이름에 판 번호를 넣었다**(결함 C-18, 사용자 지적). 판은 `release_id` 에만 있었고 이름에는 없어 history 에 같은 이름의 ZIP 이 넷 쌓였는데 그중 v3 는 올리면 아무것도 돌지 않는 판이다 — 어느 것인지 가리는 근거가 사람의 SHA 손대조뿐이었다. 이제 사양 검증이 `upload_zip` 끝과 `release_id` 의 `_v<N>` 이 같은지 보고 다르면 빌드를 거부한다(관문 `test_16`). **v5 페이로드는 v4 와 두 줄만 다르다** — `experiment.json` 의 이름·판. 러너·보상·설정 바이트는 v4 와 동일하다. v6 사유: **계획서 `GO2_POST_A043_PLAN_20260922.md` 대조에서 나온 기록 공백 셋**을 메웠다 — ① 안내문이 서버 실행 시간 110분만 적고 계획 §7 의 세션 계획치 120~150분(회수 포함)을 옮기지 않았다 ② 사양이 G-A043 을 63번 인용하면서 그 정책의 model/env SHA 를 고정하지 않았다(`comparison_arm`, 값은 회수 산출물 `G-A043_LOCAL_VERIFY.json` 에서 읽었다) ③ 계획 §9-1 의 c3 상한 `0.567/70` 이 서술로만 있었다. **판정 문턱 19개는 여전히 A043 과 숫자 단위로 동일하고(차이 0), 러너·보상·run_config 바이트는 v5 와 같다** — v6 페이로드 차이는 `experiment.json` 과 그 해시 줄뿐이다. v7 사유: **안내문 §5 의 exit code 설명이 틀렸다**(결함 C-20, 사용자 검토). `두 명령의 exit 1 은 성능 기준 미충족` 은 두 번 틀렸다 — 첫 판독기는 성능 FAIL 에 exit **0** 을 내고(FAIL 이 `PASS_VERDICTS` 안에 있다), 그 명령의 exit 1 은 INCONCLUSIVE·BASELINE_REMEASURE_REQUIRED 곧 **판정 불가**다. 둘째 판독기는 FAIL 과 INCONCLUSIVE 를 같은 exit 1 에 담는다. 이 줄이 **서버 종료 게이트**에 있었으므로 대가는 회수 결손을 성능 실패로 읽고 서버를 끄는 것 — 그때 잃는 것이 영상과 report 다. 관문 `test_20` 은 두 판독기를 빈 수확물로 **실행**해 exit 1 이 성능이 아님을 보이고, 판독기 소스에서 비통과 판정 이름을 읽어 안내문이 그것을 담는지 본다. **값·문턱·러너 바이트는 v6 과 같다** — 페이로드 차이는 안내문과 `experiment.json`·해시 줄뿐이다. v8 사유: **사용자 검토 2회차가 둘을 더 잡았다.** ① ZIP 안의 사양이 아직 `--keep` 을 적고 있었다(결함 C-21 — C-15 를 안내문에서만 고쳤고, 사양은 패키지에 실려 서버로 간다). ② 수집이 중단된 실행이 전수 완료와 똑같이 보였다(결함 C-22 — `finish` 가 조기 종료 경로에서도 `RESULT_STATE=FULL` 과 같은 `[DONE]` 표식을 냈다). 러너가 이제 개수를 세어 `COLLECTION_STATUS` 를 따로 적고 결손이면 `[INCOMPLETE COLLECTION]` 을 찍으며, 종료 게이트가 `COLLECTION_STATUS=FULL_69_COMPLETE` 를 요구한다. **v8 은 러너 바이트가 바뀐 판이다** — 값·문턱·수집 계약은 그대로다. 관문 test_14(안내문+사양 양쪽 명령 실행)·test_21(finish 실행). v9 사유: **안내문이 실패 경로를 잘못 적고 있었다**(결함 C-24, 사용자 검토 3회차). ① `[DONE]` 은 늘 나오지 않는다 — 러너의 `on_exit` crash 경로는 부분 ZIP 과 `COLLECTION_STATUS=INCOMPLETE_CRASH` 만 남기고 표식 없이 끝나므로, 표식을 기다리는 사용자는 오지 않을 줄을 기다리며 휘발 서버의 예산을 태운다. ② 「불완전하면 메운 뒤 종료」는 복구 가능한 누락에만 맞다 — 파국 게이트가 멈춘 판은 정책이 실행되지 않은 판이고 69 를 채우는 것이 오히려 러너의 계약(STOP_UNSAFE)과 충돌한다. 안내문 §4 를 세 상태(정상 완료 / 복구 가능한 누락 / crash·안전상 평가 불가)로 나누고 §5-a 와 종료 문장이 그 구분을 따르게 했으며, `FULL_69_COMPLETE` 가 개수 확인일 뿐 SHA·지문·identity·report 검사를 대신하지 않는다고 적었다. 관문 test_22 가 발행된 러너의 crash 경로를 실행해 표식 부재를 보인다. **러너 바이트는 v8 과 같다** — v9 페이로드 차이는 `experiment.json` 의 판 이름 두 줄과 그 해시 줄뿐이고, 안내문이 바뀌었다. 같은 판에서 결함 C-23(옛 `pinned = staged + 핀 블록` 동치 관문이 C-14 이후 빨간 채로 남아 다음 회귀를 가리고 있었다)을 **관문만 고쳐** 닫았다 — 러너를 건드리지 않았고 v8 ZIP 은 같은 SHA 로 재빌드된다. 발행 도구 `tools/build_go2_full_collection_release.py`.
+- 수집 계약: `run_config.env`가 `GO2_STAGE=full`을 고정한다(러너가 그 파일을 source 한 **뒤** STAGE를 정하므로 명령줄 선택이 아니라 패키지 계약이다). 학습 → 파국 게이트 → **69 case 전수**(평가 seed 101/202/303 × 32env) → sentinel 5 → 영상 → 결과 ZIP 하나. 근거는 결함 C-11(A043의 결정적 손실이 1단계 23 case 밖이었다).
+- 영상 사전 판정: **필수.** 후보 10개(`combined_yaw_left`·`combined_yaw_right`·`rough_forward`·`rough_lateral`·`stairs_10_down`·`stairs_15_down`·`push_pos_x`·`push_neg_x`·`push_pos_y`·`push_neg_y`, 모두 seed 101, 4env×500step) + 기준선 신규 4개(G2 양방향·G6 ±y — 이 네 case의 G-A033 영상이 없다). 기준선 나머지 6개는 SHA·지문 대응 확인된 기존 영상 재사용(`go2_g_a041_*` 2 · `go2_g_a042_*` 1 · `go2_g_a033_*` 1 · `go2_g_a043_*` 2). 밀침 영상 재사용은 결함 C-13(빌더 지문이 `PUSH_X`/`PUSH_Y`를 상수로 박아 둠)을 고친 뒤에 가능했다.
+- 회수 필수 목록(실행 시): 학습 bundle·iter900 checkpoint·`_keep/go2_g_a044_a033_lin_vel_z_m175/exported/report.html` 원본·**69 case 전부**의 telemetry·sentinel 5·영상 14개(후보10+기준선4)·SHA 목록. 누락은 `REPORT_REQUIRED_NOT_ACQUIRED` / `VIDEO_REQUIRED_NOT_ACQUIRED`로 기록하며 회수 완결로 보고하지 않는다.
+- 기준 변경 근거는 별도 문서: `workspace/training/quadruped/reports/GO2_G_A044_CRITERIA_CHANGES_20260922.md`. **판정 문턱은 하나도 바꾸지 않았다** — 넓힌 것은 수집(전수)과 보호(밀침 네 방향, screening 판 `post_a043_push4_v1`)뿐이다. 결함 C-12·C-13은 원천 수정(대장 `reports/GO2_DEFECT_LEDGER.md`).
+- **서버 실행은 사용자 결정 사항이다.** 로컬 검증 완료는 산출물 무결성이며 성능·통과 판정이 아니다.
+
+## G-A043-LOCAL-REVIEW-20260922 — 다운로드 검토
+- 상태: PLANNED → RUNNING → RECEIVED → VERIFIED. 원자료는 workspace/_keep에 보존하며 기존 정본 병합·덮어쓰기 없음.
+- 결과 ZIP SHA256: `9a5e7d2858702c1a766421cf221c8b3233e3b98043c914bb65b345366c68c8c6`. 외부 SHA·CRC·안전경로·내부 SHA 530항목·압축 해제본 531파일 대조 불일치 0. campaign ZIP도 외부 SHA·CRC·내부 SHA 5항목 일치. generic tar 검증기는 ZIP 비지원이므로 ZIP 전용 대조로 확인.
+- 필수 회수: 원 학습 report·env·로그·iter900 checkpoint, 후보69 telemetry, sentinel5, 신규 영상 후보6+기준선2, 재사용 기준선4 SHA 일치. 서버 종료 가능; 추가 필수 회수 없음. 성능 판독은 진행 중이며 무결성 검증을 성능 판정으로 쓰지 않는다.
+
+- Review complete: INTERNAL_GATE_FAIL; A033 retained. See reports/GO2_G_A043_READOUT.md and workspace/server_returns/G-A043_LOCAL_VERIFY.json. No MERGED transition: raw files retained in inbox without canonical merge. Analysis and user reporting completed.
+
+## G-A043-PACKAGE-20260922 — A033 위 `lin_vel_z_l2 −2.0→−1.5` 실행 패키지 제작
+- 상태: PLANNED → RUNNING(로컬 제작·검증). 서버 실행·회수·병합은 **없다.** 새 학습도 없다.
+- 발행: `upload/G-A043/current/GO2_G_A043_a033_lin_vel_z_m15_one_command.zip` SHA256 `68480a13f96bf7032462ce852238fcbbaaeb726e66638a9d7502cbc154dcda45`(release `20260922_a033_lin_vel_z_m15_one_command_v3`). 대체된 v2 `69f20613…1891c`·v1 `90661e80…f0b11c`는 history 보존, 둘 다 서버에 올린 적 없음. v3 사유: 2차 검토가 사양 산문 두 곳(±y "짝 비교 불가" 오기, 상한 집계 범위)을 잡았다.
+- 영상 사전 판정: **필수.** 후보 6개(`stairs_10_down`·`stairs_15_down`·`rough_forward`·`rough_lateral`·`push_pos_x`·`push_neg_x`, 모두 seed 101, 4env×500step) + 기준선 신규 2개(`push_pos_x`·`push_neg_x` — 이 두 case의 G-A033 영상이 없다). 기준선 나머지 4개는 SHA·지문 대응 확인된 기존 영상 재사용(`go2_g_a041_*` 2개, `go2_g_a042_*` 1개, `go2_g_a033_*` 1개). 근거: reward 변경 run이고 후보 채택/폐기 판단에 쓰므로 §2에 따라 필수.
+- 회수 필수 목록(실행 시): 학습 bundle·iter900 checkpoint·`_keep/go2_g_a043_a033_lin_vel_z_m15/exported/report.html` 원본·1단계 22 case telemetry(계단 15cm 3seed·밀침 −x 3seed·±y 2 포함)·sentinel 5·영상 8개(후보6+기준선2)·SHA 목록. 누락은 `REPORT_REQUIRED_NOT_ACQUIRED` / `VIDEO_REQUIRED_NOT_ACQUIRED`로 기록하며 회수 완결로 보고하지 않는다.
+- 기준 변경 8건의 근거는 별도 문서: `workspace/training/quadruped/reports/GO2_G_A043_CRITERIA_CHANGES_20260922.md`. v1의 ±y 제외 근거는 `tools/go2_reward_mechanism.py` `PUSH_CASES`(네 방향)와 충돌해 철회했고, 표지를 복원해 1단계 22 case로 확대했다. 결함 C-8·C-10은 원천 수정(대장 `reports/GO2_DEFECT_LEDGER.md`).
+- 로컬 검증 완료: 사양 `validate_spec` 통과, 재빌드 일치, 계약 테스트 `tools/test_go2_g_a043_campaign_contract.py` **32/32 통과**(v3 발행 바이트 기준 — `PackageTest` 21 · `GateAndVerifierTest` 6 · `PlanReadersTest` 5). 원장·관문 재확인 53/53(`test_go2_canonical_consistency`·`detectability_gate`·`tuning_base_data`·`defect_ledger`). 남은 기존 실패는 결함 C-2(G-A035·A037·A039 발행 ZIP 재빌드 불일치)뿐이고 G-A043과 무관하다. **로컬 검증 완료는 성능·통과 판정이 아니다.**
+
+## G-A042-LOCAL-REVIEW-20260921 — 다운로드 분석
+- 상태: PLANNED → RUNNING → RECEIVED. 사용자 회수 `workspace/_keep/GO2_G_A042_RESULT.zip` 및 campaign ZIP·SHA와 풀린 run을 읽기 전용 검사한다. 기존 정본 병합·덮어쓰기는 하지 않는다.
+- 필수: 해당 학습 report·로그·env·iter900 checkpoint, 사전등록 표적 telemetry(10/15cm 포함), 후보4·기준선1 신규 영상 및 재사용 영상 대응. SHA·필수 목록 확인 전 서버 종료 판정 보류.
+- 분석: A033 대비 계단 진행·정체·낙상·험지 추종, fact_rules와 계획 screening을 분리 확인. 파일 존재는 VIDEO_OBSERVED가 아니다.
+- RECEIVED → VERIFIED. 결과 ZIP SHA `7c6b3439f3f5cbe6d19b95f62208f6d1fac36d5c4780f775a72f66b09e856c89`, 외부 SHA/CRC/안전경로/内部232 SHA 항목/풀린 파일 대응 불일치0. 로컬 판독 artifact/stage/identity faults0. generic tar 검사기는 ZIP 비지원이며 ZIP 검사로 대체했다.
+- 후보21 telemetry·sentinel5·후보4/A0331 신규 영상(각499frame,9.98s) 및 원 학습 report 회수 확인. 영상 후보4종 표본 직접 관찰; 전수 연속행동 미확인. 사전등록 재사용 기준선과 sentinel5/5 일치. **서버 종료 가능**, 필수 추가 회수 없음. 전체69case는 TARGET_FAIL로 미실행(회수 누락 아님).
+- 분석·보고 완료, 기존 정본 병합은 비해당이므로 MERGED로 기록하지 않는다. INTERNAL_GATE_FAIL, A033 유지. 보고 `workspace/training/quadruped/reports/GO2_G_A042_READOUT.md`; 원 자료는 변경하지 않음.
+
+## G-A042-REPAIR-20260921 — 계획·감사에 따른 실행 패키지 수정
+- 상태: PLANNED → RUNNING. 사용자 지정 제작 계획·감사·재개 지점에 따른 로컬 수정/검증/재발행. 서버 실행·새 학습·회수·병합 없음.
+- 기존 A042 current 전체를 SHA 대조하여 history에 보존한 뒤 새 release ID로 발행한다. 기존 회수 자료와 다른 회차 release는 변경하지 않는다.
+- 회귀검사: required case 삭제, wrong/missing identity, 통합 fact_rules+계획 screening, stationary/TARGET_FAIL 필수 수집, env별 진단·coverage, 테스트 출력 격리.
+- 새 실행의 영상 필수: rough_forward/rough_lateral/stairs_10_down/stairs_15_down seed101 양팔. 기준선 3개는 기존 사양 SHA·identity로 재사용, 15cm만 신규. 두 높이 포함 12 표적+초기 보호 기록은 성능 실패와 무관하게 수집한다.
+- 원 학습 report는 평가 전에 `_keep/go2_g_a042_a033_track_lin_vel_xy_160/exported/report.html`에 보존하고 결과 ZIP/SHA에 포함. 로컬 도구 변경 자체는 VIDEO_NOT_REQUIRED. 서버 결과/행동/공식 점수는 미측정.
+- REPORT_READ_STATUS=READ_MATCHED(학습 run 대응, 평가 성능 판정 아님): A033/A041의 `_keep/<run>/exported/report.html` 본문을 직접 읽고 TRAIN_STATUS/CHECKPOINT_PIN과 대조. A033 09-15 21:29~22:27, 1000iter, report-best700·최고19.28@651·track1.5; 평가900 model `ccd60e19…6044`. A041 09-21 10:02~10:59, 1000iter, report-best700·최고19.79@681·ang_vel_xy−0.04; 평가900 `f4c0b929…c8e8`. HTML의 학습 평균/일반 설명을 행동·기전 증거로 승격하지 않는다. A042 report는 아직 생성되지 않음.
+- C-6 테스트 출력 격리: feet_air_time builder 시험은 TemporaryDirectory에서만 생성하며 기존 발행 파일 SHA 불변을 검사(6 tests 성공). 수정 릴리스 외 과거 ZIP을 재생성하지 않음.
+- 로컬 수정 완료·보고: A042 v4 `current/` SHA `a95d3b6d2164354381e850ed7749d4c97d3a6df6ae02ef5bb4f29ef8dda06133`, ARTIFACT_VERIFIED. 집중53개 성공; A04226개 중25개 성공+기존 문구 기대1개 수정 후 단독 재검사 성공. `upload/G-A042/REPAIR_VALIDATION.json`에 실패·재검사·비관련 A040 경로검사 실패를 구분 보존. 서버 실행/회수/병합 상태를 완료로 올린 것이 아니다.
+
+## G-A042-PACKAGE-REVIEW-20260921 — 실행 전 패키지 감사
+- 상태: PLANNED → RUNNING. 발행 ZIP·사양·러너·계획 §4 판독기를 읽기 전용 대조한다. 서버 실행·결과 회수·병합 없음.
+- 발행 ZIP을 재작성하는 전체 테스트는 실행하지 않는다. 한정 테스트와 합성 반례만 임시 경로에서 수행한다.
+- 영상: VIDEO_NOT_REQUIRED — 이번은 새 정책 행동 평가가 아닌 실행 패키지 계약 감사다.
+- 로컬 감사 완료: ZIP CRC/외부·내부 SHA 일치, 전용26검사26/26 OK. 계획 판정 미연결·지문 검사 누락·정지 early-stop 수집 누락 등으로 서버 실행 미해제 유지. 보고서 `workspace/training/quadruped/reports/GO2_G_A042_PACKAGE_AUDIT_20260921.md`. 다운로드 lifecycle의 RECEIVED/MERGED는 이번 작업 비해당; 과거 발행물 변경 없음.
+
+## G-A041-LOCAL-REVIEW-20260921 — 다운로드 검토
+- 상태: PLANNED → RUNNING → RECEIVED. 사용자 제공 `workspace/_keep/GO2_G_A041_RESULT.zip` 및 campaign ZIP, SHA, 풀린 폴더를 검사한다. 외부 실행은 회수 로그로 확인하며 기존 정본에 덮어쓰기/병합하지 않는다.
+- 목적: A041 단일변수·iter900 대응, 원 학습 report, 표적 telemetry·영상 회수 및 예측/실측 대조. 서버 종료 여부는 필수 목록 검증 후 결정한다.
+- 영상: 필수; 사양의 후보 4개·기준선 2개 신규 영상과 기존 재사용 영상 대응을 확인한다. 영상 파일 존재와 행동 관찰은 구분한다.
+
+## G-DATA-STANDARD-20260920 — 데이터 의미 명세 및 표준 뷰
+- 상태: PLANNED → RUNNING. 기존 집계표 다섯 종의 생성 정의 감사와 표준화. 신규 서버 작업/학습/회수/병합 없음.
+- 입력: TILT.csv, SITUATIONS.csv, PROBE_SITUATIONS.csv, FALL_CHANNEL_ROLLUP.csv, CLIMB_REWARD.csv 및 해당 생성 코드, 보관 Isaac 원문, 강좌 14·15 HTML.
+- 출력: config/go2_evidence_data_dictionary.json, GO2_DATA_STANDARD.md, 로컬 표준 뷰 reports/evidence/go2_standardized_v1/standardized.json. 기존 CSV는 불변.
+- 영상: VIDEO_NOT_REQUIRED — 행동 성능이 아닌 데이터 정의와 변환 무손실성 검사. 실제 정책 개선 판정 없음.
+- 로컬 결과: 5개 표 129행 표준 뷰 생성, 원본 셀/명세/고유키/유한수/누락·대리식 분류 회귀 검증. 신규 회수·병합 단계는 비해당. 전체 raw 재계산/정책 성능 개선 검증이 아님. 자세한 완료 범위는 GO2_DATA_STANDARD.md §5.
+
+## G-AUDIT-EVIDENCE-LIVE-20260920 — 역할 인계 동작 감사
+- 상태: PLANNED. 사용자 요청: 증거 관리자 추가 산출물을 실제로 동작시키고 결과 감사.
+- 범위: 기존 A033 보존 자료의 모집단·수식 출처를 읽기 전용 재확인하고 증거 관리자 → 분석가 → 기획자 → 독립 감사자 → PM 인계를 시험한다. 새 학습·다운로드·병합·정책 변경 없음.
+- 검증: 역할 계약/정본 일치 및 추론·역할 회귀 테스트. 테스트 성공과 사실적 추론의 타당성을 별도로 보고한다.
+- 영상: VIDEO_NOT_REQUIRED — 새 정책/행동 평가가 아닌 기존 수치의 출처·모집단 인계 감사. 기존 영상의 행동을 새로 판정하지 않는다.
+- 기록: 이 작업 행과 에이전트 응답; 새 성능 원장이나 실행 패키지 생성 없음.
+- 진행: PLANNED → RUNNING. 기존 로컬 자료 재독해 작업 완료; 신규 회수·병합이 없어 RECEIVED/VERIFIED/MERGED를 새로 주장하지 않는다.
+- 로컬 검증: `python -B -m unittest tools.test_go2_evidence_role_contract tools.test_go2_canonical_consistency -q` 19/19, `python -B -m unittest tools.test_go2_inference_integrity_contract tools.test_go2_role_situation_exam_contract tools.test_go2_role_regression_contract -q` 17/17 성공(총 36, 서로 다른 테스트). 독립 감사의 evidence+detectability 19검사는 이 수에 합산하지 않음.
+- 실제 인계: evidence_live(증거 관리자) → data_reaudit(분석가) → plan_reaudit(기획자) → audit_reaudit(독립 감사) → PM. READ_ONLY로 A033 rough_lateral의 FALL_CHANNEL_ROLLUP tilt-only 9/8/13과 TILT seed101 base-contact19 대 non-base-contact13의 .31123/.05106/AUC .838을 분리했다. 원자료: `workspace/training/quadruped/reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv`, `workspace/training/quadruped/reports/evidence/go2_reward_mechanism_20260917/TILT.csv`. 독립 감사가 per-env로 세 seed의 tilt-only가 base-contact 집합에 포함됨을 확인했으나 정의상 일반 관계는 아님.
+- 수식 한계: Isaac 보관 원문 gx²+gy²와 계측 1-gz²의 동치는 unit-norm 가정 필요. 이번 감사에서는 norm 미확인. 종료 전 창과 전체 episode 평균의 비대칭도 유지. report best700과 평가 iter900 구분. 연관 근거이지 reward 효과나 -0.5 최적값 근거가 아님.
+- 감사 결함 재현: `_check_rows`는 `run,score,other / A,1.5,9.8`에서 A의 score를9.8로 잘못 설명해도 수용. INFORMATION_RUN은 RECOMMENDED 전용 R6/번호/readout/원장 등 검사를 우회. 역할 계약 테스트는 링크·필드 존재만 검사. 이 턴은 실행·감사이며 결함 수정을 수행하지 않음.
+- PM 결과: 제한된 실제 인계의 사실 분리 확인. 자동 검증의 충분성은 기각. 가장 쉬운 점수 상승/특정 가중치 우월성은 미확정. 서버 실행·학습·패키지 발행 없음. 보고 완료, 다음 수정 대상은 열 단위 근거 연결과 실행 후보 공통 검증이다.
+
 > **역할:** 서버 작업의 계획, 파일 목록, 다운로드, 검증, 선택 병합, 작업 이력을 한곳에서 추적한다.  
 > **대상:** 메인 팀장, 스케줄러, 기획자, 분석가, 보고서 작성자, 서버 실행 사용자.  
 > **갱신 방식:** 작업 시작 전에 행을 만들고, 증거가 생길 때 같은 행의 상태만 전진시킨다. 과거 행은 삭제하지 않는다.  
@@ -338,6 +434,7 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 | 260901 | `G-A007` | Go2 PRD·상태·일정·reward master·planner brief·AGENTS | 단계 3 현재 위치, 사전 gate, package 경로·실행·회수·종료 조건 동기화 | `validate_go2_campaign.py`, `git diff --check` |
 
 ## 13. Go2 evaluator graceful-shutdown hotfix ? `G-A008` (260901)
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 확인한 정상 기록: `workspace/training/quadruped/go2_feet_air_time_020_v2.VERIFICATION.md`(v2 원인·수정·패키지 SHA·검증, 정상 영문), `GO2_OPUS_REAUDIT_INDEPENDENT_260907.md:296`(G-A008 요약 1행). 이 절의 표·파일 변경 원장 문구는 대체 기록 미확보.
 
 | ?? ID | ?? | ?? | ?? | ??? ?? | ?? ?? | ?????? | NEXT |
 |---|---|---|---|---|---|---|---|
@@ -589,4 +686,145 @@ num_envs / video_length / 명령 고정값 / 예상 파일 수 / 서버 경로 /
 - File lifecycle RECEIVED ? VERIFIED. MERGED not performed (no training merge); separate analysis/report work completed. Future action: resolve scenario/height semantic gaps before selecting a reward; no server action requested.
 
 ### GO2-ALL-SCENARIO-PRIORITY-20260913 ? PLANNED ? RUNNING
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 대체 기록 미확보(저장소에서 `GO2-ALL-SCENARIO-PRIORITY-20260913`의 정상 기록을 찾지 못했다).
 - ??? ??: ?? ??? ????? ?? G1~G7? ?? ??? ????? ?? ????? ????? ??. ?? A027/A028 ?? ??? ??? ????? ????? ??? ???? ???. ?? ??? ?? ??? ????.
+
+### G-A029 — 2026-09-14 난이도 기반 튜닝 파일·회수 계약 점검
+- 작업 상태 PLANNED. 원장 및 upload에서 G-A029/G_A029 중복 없음 확인 후 예약.
+- 사용자 요청: 난이도 기반 튜닝 정책에 맞는 파일 준비, 서버 원본 report.html 회수와 파일 양식 검증.
+- 범위: 로컬 검토 spec·계획·회수 테스트. 새 reward 후보 확정/서버 실행/학습/기존 release 변경 없음.
+- REPORT_REQUIRED_NOT_ACQUIRED(A017) 및 다음 단일변수 근거 미확정으로 current 실행본 발행 금지. review 자료만 생성.
+- 영상: 이번 로컬 테스트는 정책 미생성으로 VIDEO_NOT_REQUIRED. 향후 실제 튜닝 영상은 필수이며 대상 case/seed/수량은 실행 전 동결.
+
+### G-A029 — 2026-09-14 로컬 검토 파일 및 회수 검증 결과
+- 사용자 요청을 난이도 기반 검토 정책으로 기록: 낙상 완치 대신 기대 이득·비용·원인 확실성을 함께 비교. G3 또는 특정 reward의 실행 우선순위 확정은 아님.
+- 계획: workspace/training/quadruped/upload/plan/GO2_G_A029_DIFFICULTY_SCREENING.md.
+- 검토 파일: workspace/training/quadruped/upload/G-A029/review/GO2_G_A029_TUNING_REVIEW.zip (+SHA). 실행 JSON과 구별되는 NON_EXECUTABLE_TUNING_REVIEW, execution/training=false, single_change=null. current 미발행.
+- 회수·지침·엔진 계약 총32 tests 성공. 정상 report의 ZIP/SHA 포함, missing/empty/stale 거부, bash -n/LF 확인. 회수 후 본문과 정책 의미 대응은 별도 필요.
+- 발견/수정: 러너 CRLF를 LF로 정규화하고 .gitattributes로 고정. Windows shell fixture PATH 고정. 엔진 계약 테스트가 기존 ZIP을 덮어쓰던 부작용을 임시폴더 빌드로 차단.
+- 이번 테스트가 변경한 기존 엔진 ZIP/SHA 두 파일만 초기 clean 상태 및 HEAD=index 확인 후 원 바이트 복원. 후속 테스트에서 두 파일 불변 확인. 승인 upload/current/history 변경 없음.
+- 증거: review/GO2_G_A029_VALIDATION.json 및 GO2_G_A029_TEST_OUTPUT.txt. ZIP CRC/내부SHA 확인. 실제 서버/성능 미측정.
+- A017 원 학습 report MISSING 및 변경값 미확정 유지. 로컬 파일 준비 완료이나 학습 작업 상태 PLANNED, 실행본 생성은 HOLD. 이전 engine baseline 실패 기록은 이번 로컬19개 계약 테스트 성공으로 현 상태 정정하며 A017 실행 spec 검증 완료를 뜻하지 않음.
+
+### G-A029 ? ?? ?? ?? ? ?? ??? ?? ?? (2026-09-14)
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 관련 정상 기록: 같은 파일 위 「G-A029 — 2026-09-14 난이도 기반 튜닝 파일·회수 계약 점검」 절. 두 절의 내용이 같은지는 확인할 수 없다.
+- ?? ?? ID ??. ?? ???? ??? reward ?? ??/?? ??. ?? lifecycle PLANNED ??. ? ?? report ???? ? ?? ??/?? ??/?? current ?? ??. ?? artifact ? ?? release ??.
+
+### G-A029 ? 2026-09-14 ?? ?? ?? ? ?? ??? ??
+> **CORRUPTED — 인코딩 손상, 근거 사용 금지(2026-09-14 표시, G-P-A029-REVISION-20260914).** 원문을 복원·삭제하지 않는다. 같은 주제의 확인한 정상 기록: `workspace/training/quadruped/reports/GO2_G_A029_WEAKNESS_ANALYSIS_20260914.md`, `workspace/training/quadruped/upload/G-A029/review/GO2_G_A029_ACTION_RATE_M0008_DRAFT.json`. 손상 줄의 "35 unittest" 검증 결과는 대체 기록 미확보(`review/GO2_G_A029_TEST_OUTPUT.txt`는 32 tests로 다른 회차다).
+- ??? ??: ?? ?? ??? ???? ???? ????? ?? ?? ?? ??. ?????? ?? ??? ?? ???.
+- ?? ???: workspace/training/quadruped/reports/GO2_G_A029_WEAKNESS_ANALYSIS_20260914.md. G3/G7 ?? ??? ?? ???? G1/G2 ???G4/G6 ?? ??, G5 ??? ?? ????. ?? ??? ?? ??? ?????? ?? ???.
+- A017 ??? ??: action_rate_l2 -0.01?-0.008(20% ?? ???, ??/??? ???). ?? Python reward ?? ??? baseline ??, ??? JSON? upload/G-A029/review? ??. ?? ??? ?? ??? ??.
+- REPORT_READ_STATUS: A017 MISSING, Pilot READ_UNMATCHED ??. ?? ??: ?? engine? A017 frozen baseline ???, ?? manifest ? ?? ?? ?? ???. ?? ?? ??/current/history ?? ??.
+- ?? ??: 35 unittest ??(?????Python ??/LF??????report fresh/missing/empty/stale?ZIP/SHA?shell ???engine ??). ?? ??/?? ?? ???. ?? lifecycle PLANNED, ?? ?? ??.
+
+### G-A029 — 2026-09-14 continuation resume audit
+- NEW-CONTINUATION; existing work ID retained, lifecycle PLANNED. Scope: plan section 3 only; inspect newly available report copies, no repeat of 52-archive scan, no server/training/release mutation. Local read-only checks require no new video (VIDEO_NOT_REQUIRED: no policy generated).
+
+### 2026-09-14 G-A029 §3 종료 — HOLD / 원 보고서 회수
+- NEW-CONTINUATION으로 지정 계획 §3을 종료했다. -0.008은 조건부 실험 가치만 인정하며 후보 확정/학습 승인이 아니다. A017 REPORT_READ_STATUS=MISSING / REPORT_REQUIRED_NOT_ACQUIRED로 실행본 발행 차단.
+- 기존 52archive 재검색 없이 목록 밖 ZIP 6개를 확인했으나 report.html 0개. 상세 경로·직접 코드/로그 근거·한계는 GO2_REWARD_EVIDENCE_MASTER.md의 같은 날짜 §3 판단 종료 행과 기존 인계 계획에 기록했다. 깨진 과거 append는 판정 근거에서 제외한다.
+- NEXT 하나: A017 원 학습 report.html 외부 보관 사본 회수 → run/env/log/model_900 대응 확인 → 기존 계획 §4 패키지 구현·검증. 추가 서버 진단이나 새 검토 ZIP을 만들지 않는다.
+- G-A029 PLANNED, 단계0/6, 서버/학습/실행 ZIP 발행 없음. 역사 일정 CLOSED 유지. 원 자료·승인 release 보존.
+### GO2-REPLAN-A029-20260914 — PLANNED
+- 사용자 요청: G-A029 감사에 따른 문제 진단과 튜닝 계획. 로컬 원자료 읽기 및 계획/원장 동기화만 수행; 서버 실행·패키지 발행 요청으로 확대하지 않는다. G-A029 REJECTED_BY_AUDIT와 review 보존.
+- VIDEO_NOT_REQUIRED: 이번 작업은 정책을 생성하지 않는 로컬 기획. 미래 후보 평가 영상은 필수. 외부 실행 [미측정].
+
+### GO2-REPLAN-A029-20260914 — 감사 후 사용자 요청 재계획
+- 사용자 결정: G-A029 감사에 따라 메인 문제를 진단하고 튜닝 계획을 수립한다. 이번 요청은 계획이며 서버 실행/패키지 발행으로 확대하지 않는다. 역사 일정 CLOSED는 유지한다.
+- G-A029 REJECTED_BY_AUDIT 및 -0.008 NEXT 철회 유지, review 불변. 과거 A017 HTML 누락을 발행 차단으로 복원하지 않는다.
+- 계획 정본: workspace/training/quadruped/upload/plan/GO2_POST_A029_TUNING_PLAN_20260914.md.
+- 직접 근거: A018 양 arm 각7case 모두 schema2/v2; A013/A025 baseline은 schema1/2 혼재, candidate는 schema2라 합산 비대칭. A027 G3 rough_lateral seed101/202/303의 base-contact 종료는 17/14/17개(/32), 첫 종료 전0.5초 q=1-gz² 평균 .688/.628/.660. 기울기는 연관성이지 최초 원인 확정 아님.
+- 계획값: A017 조건 flat_orientation_l2 0→-1.0 단일변수, G3 접촉 종료/생존 표적; G5 정체·경사 회귀 동시 감시. -1은 관측 기반 단위 크기 exploratory 값이지 upstream 최적값/만족 판정 아님.
+- REPORT_READ_STATUS: A017 MISSING(기존 복구 불가 확정 유지), Pilot READ_UNMATCHED(이번 HTML 본문 직접 열람, 정책 대응 미완결).
+- NEXT: 다음 미사용 번호로 위 계획의 current 실행 패키지 구현·검증. 이번에 번호 예약/실행 ZIP/서버 명령은 발행하지 않았다. 학습·성능·공식 결과 새 측정 없음.
+- 작업 완료: 로컬 분석·계획 REPORTED. 외부 artifact lifecycle은 실행/수신/병합이 없어 진행시키지 않는다. 원 artifact 변경 없음.
+
+### G-A030 — 2026-09-14 실행 패키지 발행 (ARTIFACT_VERIFIED, 서버 미실행)
+- 근거: 사용자 결정 `G-D-A030-GO-20260914`(`GO2_PROJECT_STATE.md`). A017 + `flat_orientation_l2 0.0→-1.0`, 측정 경로 (나′).
+  - C 보류는 로컬 패키지 범위에서만 풀렸다. 서버 실행은 사용자 결정 대기다.
+- 업로드 1개: `workspace/training/quadruped/upload/G-A030/current/GO2_G_A030_flat_orientation_m1.zip`.
+  - SHA256 `e4fbdc0033866612ca9804f9479416d7d4e188bf403b23078cdb6591f35eab05`.
+  - 서버 위치: `/workspace/GO2_G_A030_flat_orientation_m1.zip`.
+  - 한 줄 실행·완료 표식·재측정 명령·종료 게이트는 같은 폴더의 `GO2_G_A030_RUN_GUIDE.txt`에 있다.
+- 결과: `/workspace/_keep/GO2_G_A030_RESULT.zip`과 `.sha256` → 로컬 `workspace/_keep/`. 압축을 풀면 `workspace/_keep/go2_g_a030_a017_flat_orientation_m1/`이다.
+- 필수 회수물:
+  - `exported/report.html`(REPORT_ACQUIRED, 평가 전 보존)
+  - 학습 model/env/로그/tfevents, `ENV_REWARD_CHECK.txt`
+  - 후보 69 case telemetry
+  - A017 표지 5건(재측정 시 69건)
+  - 영상 14개(후보 12, A017 2)
+  - RUNNER_STATUS, SHA256SUMS
+- 서버 종료 게이트: 결과 ZIP·SHA를 받고 로컬 검증이 끝나기 전에는 종료 가능이라고 하지 않는다.
+- 회수 검증(GPU 0, 수치 판독 전): `python -B tools/verify_go2_g_a030_harvest.py --harvest workspace/_keep/go2_g_a030_a017_flat_orientation_m1 --out workspace/_keep/go2_g_a030_a017_flat_orientation_m1/harvest_verification.json`
+  - INCONCLUSIVE면 점수를 읽지 않는다.
+  - BASELINE_REMEASURE_REQUIRED면 `GO2_RESUME=1 GO2_REMEASURE_BASELINE=1`로 A017 69건을 같은 evaluator에서 다시 잰다.
+- 영상: VIDEO_REQUIRED. 사람 판독 전에는 VIDEO_UNKNOWN이다.
+- 로컬 검증 증거:
+  - `tools/test_go2_g_a030_package_contract.py` 24/24, 기존 Go2 테스트 46개와 A017 full-suite 계약, `GO2_CAMPAIGN_CONTRACT_OK`.
+  - ZIP 재빌드 동일 SHA, current=history 바이트 동일, SHA sidecar 일치.
+  - 회수 검증기 합성 smoke 5종 기대 판정 일치.
+  - 러너 preflight 모의 실행이 tmux 기동까지 통과했다. 변조 evaluator와 잘못된 플래그는 거부했다.
+
+### G-A031 + G-A032 쌍 — 2026-09-15 서버 실행·회수 (RECEIVED, 로컬 검증 FAIL·FAIL)
+- 업로드: `upload/G-A031_A032/current/GO2_G_A031_A032_basic_motion_pair.zip` `e714d948…7e6c` (계획 §9-1).
+- 서버 실행: 13:46~15:59, 두 회차 1단계만.
+- 회수: `workspace/_keep/GO2_BASIC_MOTION_PAIR_RESULT.zip` `5ad3f8fd7dd6430bfe68697cb39ec29c410f2aa60b1afb49ae14e4b295050c60`.
+  - 안의 `arm_results/`: G-A031 `bd154bc6…0ad9`, G-A032 `a9e9db07…7dd0`.
+  - 로컬 `_keep`에 풀린 폴더: `go2_basic_motion_pair_a031_a032/`, `go2_g_a031_a017_feet_air_time_001/`, `go2_g_a032_a017_feet_air_time_010/`.
+- 검증: SHA·CRC·내부 SHA256SUMS 일치. `tools/verify_go2_basic_motion_harvest.py` 두 회차 FAIL(1_target_basic_motion), 결함 0.
+- 서버 종료: 로컬 검증 뒤 종료 가능 보고(2026-09-15).
+- 알려진 결함: 쌍 러너가 게이트 FAIL을 UNDECIDED로 기록했다(`isaaclab.sh -p` 종료 코드 변환). 결과 동일. 후속 러너에서 수정(아래 G-A033).
+
+### G-A033 — 2026-09-15 한 파일 패키지 발행 (ARTIFACT_VERIFIED, 서버 미실행)
+- 근거: 계획 §6-3 규칙(`feet_air_time` 쌍 실패 → 0.2 유지, `track` 1.4→1.5), 계획 §12.
+- 업로드 1개: `workspace/training/quadruped/upload/G-A033/current/GO2_G_A033_track_lin_vel_xy_150_one_command.zip`.
+  - SHA256 `4ddb46da3f1f2526c34f0b843f8583d063104598cb29792758de9ec47d311595`.
+  - 서버 위치: `/workspace/GO2_G_A033_track_lin_vel_xy_150_one_command.zip`.
+  - 한 줄 실행·완료 표식·재시작 규칙은 같은 폴더의 `GO2_G_A033_ONE_COMMAND_RUN_GUIDE.txt`에 있다.
+- 안의 회차 ZIP: `GO2_G_A033_track_lin_vel_xy_150_staged.zip` `0e873d6532f1c6bd98cb726a6de9e92ab5eb413e75cc5feb3e93e6a97ddac7a2`(history에만 있음, 따로 올리지 않는다).
+- 결과: `/workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip`과 `.sha256` → 로컬 `workspace/_keep/`.
+- 회수 검증: `python -B tools/verify_go2_basic_motion_harvest.py G-A033 --harvest workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150`.
+- 서버 종료 게이트: 결과 ZIP·SHA를 받고 로컬 검증이 끝나기 전에는 종료 가능이라고 하지 않는다.
+
+### 2026-09-15 G-A034 A017 오르막 정지 로봇 영상 확인 패키지 (학습 없음)
+- 업로드: `workspace/training/quadruped/upload/G-A034/current/GO2_G_A034_slope_inspect.zip` SHA256 `fa4772d66ac1ccbac14f298bbb566e6016c08c0a4abc18fa31660e303908dbc8` (6.4 MB)
+- 내용: G-A027 패키지의 A017 정책·play.py·evaluator를 바이트 그대로 재사용(model SHA `0563deff…95a4`) + `server_run_go2_slope_inspect.sh` + `go2_slope_stuck_check.py`
+- 목적: slope_plus_20 seed 101에서 저장 기록상 넘어진 로봇 4·18·20·22·24·27·31 중 22·24·4와 대조군 0을 카메라로 따라가 원인(제자리걸음·미끄러짐·웅크림·막힘·뒤로 밀림)을 눈으로 확인
+- 결과: `/workspace/_keep/GO2_SLOPE_INSPECT_RESULT.zip` (영상 4개, 재측정 기록, STUCK_CHECK.txt의 재현 판정 REPRODUCED/NOT_REPRODUCED)
+- 검증: runner bash 문법 통과, 재현 판정 스크립트는 저장 데이터에서 MATCH, 잘못된 기준 목록에서는 NOT_REPRODUCED. 이 Isaac Lab 버전의 viewer에 env_index가 있음은 저장된 env.yaml에서 확인. GPU 실행 0회, 실행 시간은 미측정
+
+### 2026-09-15 G-A033 v2 발행 — `track` 1.4→1.5, iter 900 고정 평가 (서버 미실행)
+- 업로드: `workspace/training/quadruped/upload/G-A033/current/GO2_G_A033_track_lin_vel_xy_150_iter900_one_command.zip` SHA256 `88be31980a05bac6e1cd2ba72be4cd4e5594119641f7b557a732665a6a85ae41` (6.2 MB)
+- 한 줄: `cd /workspace && echo '88be31980a05bac6e1cd2ba72be4cd4e5594119641f7b557a732665a6a85ae41  GO2_G_A033_track_lin_vel_xy_150_iter900_one_command.zip' | sha256sum -c - && unzip -oq GO2_G_A033_track_lin_vel_xy_150_iter900_one_command.zip && bash /workspace/go2_campaign_g_a033/server_run_go2_campaign.sh`
+- 완료 표식 `[DONE] GO2_G_A033_CAMPAIGN_RESULT_READY`, 결과 `/workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip` + `.sha256`
+- v1(`GO2_G_A033_track_lin_vel_xy_150_one_command.zip` `4ddb46da…1595`)은 미실행으로 history에 보존. 서버 종료 판단은 결과 수신 후 로컬 검증을 통과한 뒤.
+- 회수 확인 항목 추가: `training/CHECKPOINT_PIN.txt`(EVAL_CHECKPOINT_ITER=900), `training/model_best.pt`(평가한 iter 900), `training/model_best_by_reward.pt`(finalize 선택)
+
+### 2026-09-15 G-A033 v2 서버 결과 회수 (서버 종료 가능)
+- 결과: `workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip` SHA256 `b136e708eaccd8b985c3334d52f352061c349eebf2f50bcfabe021651f944154`, 회차 `workspace/_keep/GO2_G_A033_RESULT.zip` SHA256 `57019d2513caa118213cca9941e7ac2d69b8690357b86cf8575b83ab3ea9a10c`
+- 풀린 폴더: `workspace/_keep/go2_campaign_g_a033/`, `workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/` (ZIP과 파일 단위 동일)
+- 로컬 검증: `python -B tools/verify_go2_basic_motion_harvest.py G-A033 --harvest workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150 --out .../reports/LOCAL_VERIFY_G_A033.json` → FAIL, artifact 결함 0, ruler 불일치 0, 핀 900 확인
+- 서버에 남길 것 없음: 모델(900·700)·영상 5·로그가 ZIP 안에 있다
+
+## PM-REPAIR-STRATEGY-20260919
+
+User requested local judgment-validator fixes and evidence-based tuning strategy review. No server execution, new package, reward change or artifact merge. Baseline remains G-A033; last training is G-A038 (2026-09-17). G-A040 is INFORMATION_RUN, not a release or performance promotion. Results and limitations: `workspace/training/quadruped/upload/plan/GO2_PM_REPAIR_STRATEGY_20260919.md`. Existing archives unchanged. VIDEO_NOT_REQUIRED for this tool-only change; no fresh video observation claimed.
+
+### G-DATA-STANDARD-20260920 로컬 후속 검증
+- 위 명세 누락 시험과 생성기 수정 완료: 관련 51 tests 성공, 5개 표 129행 재생성. 원자료/legacy CSV/배포 학습 코드 변경 없음. 원 집계 생성기 이관과 raw 재계산은 미완료. 회수/병합 작업 아님.
+
+## G-HANDOFF-MONITOR-20260920 — 전달 감시자 대조 시험
+- 로컬 시험 완료. 신규 회수·병합·학습 없음. 원자료와 배포 코드는 변경하지 않음.
+- 실제 analyst에 증거 관리자 역할을 부여: 오류 5개(T1/T3/T5/T6/T7)를 모두 기각하고 제한적 정상 주장 3개(T2/T4/T8)를 수용. verifier가 원 CSV와 생성 코드를 별도 확인하여 8개 판정에 동의.
+- 독립 감사는 추가 오류 M1(both_channels가 동시 발생을 증명), M2(자동 검사 성공이 의미 정확성과 전 인계 자동 감시를 증명)도 기각. M1/M2는 실제 관리자 발언이 아니라 PM이 주입한 시험 주장임.
+- 자동 검사: 초기 5개 모듈 51 tests 성공. 메모리 내 formula/kind/population 허위 변조 3개는 normalize가 모두 수용. 구조 검사의 의미 검증 한계를 재현.
+- 감사 중 PM의 PowerShell→Python 기록 경로에서 이 항목의 한글이 물음표로 손상된 것을 encoding 검사로 발견. apply_patch로 해당 신규 항목만 복원하고 재검증. 감사자가 사용한 50-test 조합은 초기 51-test 조합과 다름.
+- 판정: 이번 사례의 의미 검토 INTERNAL_GATE_PASS. 자동 전 인계 차단, 일반 오류 검출률, 원자료 전체 재계산은 미검증. 이번 시험은 PM이 명시적으로 전달한 1회 대조 시험이며 기획자·분석가 전체 연쇄 실행은 아님.
+- VIDEO_NOT_REQUIRED / REPORT_READ_STATUS=NOT_APPLICABLE — 정책 행동·튜닝값 선정이 아닌 데이터 인계 의미 검사.
+- 최종 재검증: data_standard + inference_integrity + detectability + canonical_consistency + evidence_role + role_regression 6개 모듈 58 tests, 9.523초, 종료 코드 0. 인코딩 손상 복원 후 결과이며 초기 감사 실패를 은폐하거나 동일 실행으로 합산하지 않음.
+# G-HANDOFF-MONITOR-20260920 운영 반영
+
+- 사용자 요청으로 공통 인계 계약과 기체 지침에 INPUT_REVIEW/OUTPUT_REVIEW/PM_REVIEW 및 버전별 검토 기록, 재사용·재검사·UNKNOWN 처리와 감사 독립성 반영.
+- 신규 계약 테스트 실패를 먼저 확인한 뒤 명세 수정. 기존 역할 파일은 공통 계약 참조를 유지하며 보호된 역할 디렉터리를 수정하지 않음. 자동 런타임 훅은 추가하지 않음.
+- 원자료·배포 학습 코드·역사 ZIP 변경 없음. 영상/학습 report 비해당인 운영 절차 변경.
