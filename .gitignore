@@ -10,3 +10,33 @@ Thumbs.db
 # Tool runtime (session state, ephemeral)
 .omx/
 .omo/
+.omc/
+
+# Local-only large evidence archives (>100MB, exceed GitHub file limit)
+# Kept on disk, never pushed. 2026-09-29.
+workspace/_keep/GO2_A017_FULL_SUITE_RESULT.zip
+workspace/_keep/GO2_DEFAULT_VS_PILOT_RESULT.zip
+workspace/server_returns/go2_default_vs_pilot_v1_full_260901/original/GO2_DEFAULT_VS_PILOT_RESULT.zip
+workspace/_keep/GO2_G_A044_RESULT.zip
+workspace/_keep/GO2_G_A048_RESULT.zip
+workspace/_keep/GO2_G_A055_RESULT.zip
+workspace/_keep/GO2_G_A049_RESULT.zip
+workspace/_keep/GO2_G_A050_RESULT.zip
+workspace/_keep/GO2_G_A047_RESULT.zip
+workspace/_keep/go2_campaign_g_a043/arm_results/GO2_G_A043_RESULT.zip
+workspace/_keep/GO2_G_A043_RESULT.zip
+workspace/_keep/GO2_G_A043_CAMPAIGN_RESULT.zip
+workspace/_keep/go2_campaign_g_a033/arm_results/GO2_G_A033_RESULT.zip
+workspace/_keep/GO2_G_A033_RESULT.zip
+workspace/_keep/GO2_G_A033_CAMPAIGN_RESULT.zip
+workspace/_keep/GO2_PILOT_V2_BASELINE_RESULT.zip
+workspace/_keep/GO2_FEET_AIR_TIME_020_RESULT.zip
+workspace/server_returns/go2_feet_air_time_020_v1_full_260901/original/GO2_FEET_AIR_TIME_020_RESULT.zip
+workspace/_keep/GO2_BASIC_MOTION_PAIR_RESULT.zip
+workspace/_keep/go2_campaign_g_a042/arm_results/GO2_G_A042_RESULT.zip
+workspace/_keep/GO2_G_A042_RESULT.zip
+workspace/_keep/GO2_G_A042_CAMPAIGN_RESULT.zip
+workspace/_keep/go2_campaign_g_a041/arm_results/GO2_G_A041_RESULT.zip
+workspace/_keep/GO2_G_A041_RESULT.zip
+workspace/_keep/GO2_G_A041_CAMPAIGN_RESULT.zip
+workspace/training/quadruped/go2_reeval.zip

@@ -8,7 +8,13 @@
       "Bash(python \"C:/Users/Park/AppData/Local/Temp/claude/C--dev-NConnect/79066471-7455-4d75-a526-38d9b7b3c27c/scratchpad/tb.py\" 2026-08-28_21-59-39/*.tfevents*)",
       "Bash(git check-ignore *)",
       "Bash(python tools/build_go2_tuning_engine.py)",
-      "Bash(PYTHONIOENCODING=utf-8 python -B -c ' *)"
+      "Bash(PYTHONIOENCODING=utf-8 python -B -c ' *)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; python -B tools/go2_a043_forecast_check.py --check; python -B tools/go2_a043_forecast_check.py --work G-A047; Get-Content workspace/training/quadruped/reports/evidence/go2_g_a047_readout_20260926/FORECAST_CHECK.csv; Get-Content workspace/training/quadruped/reports/evidence/go2_g_a047_readout_20260926/FLAT_NOMINAL.csv)",
+      "PowerShell(python C:\\\\Users\\\\ADMINI~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--dev-Nconnect\\\\f9fc9293-f32a-4df1-9702-03eae16b228f\\\\scratchpad\\\\a047_sum.py)",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; python -B tools/go2_a043_forecast_check.py --work G-A047; Get-Content workspace/training/quadruped/reports/evidence/go2_g_a047_readout_20260926/FALL_CHANNEL_ROLLUP.csv)",
+      "Bash(git stash *)",
+      "Bash(cd *)",
+      "Bash(PYTHONIOENCODING=utf-8 timeout 300 python -B -m unittest test_go2_run_ledger_freshness)"
     ]
   }
 }

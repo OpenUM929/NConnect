@@ -1,5 +1,184 @@
 # Go2 예선 프로젝트 상태 원장
 
+## G-A055-PREREG-20260928 — A043 보상 위 ang_vel_xy_l2 −0.05→−0.08 사전등록 (번호 예약, 미발행)
+- **정정 (2026-09-28, Codex 결정): 패키지 제작 지시를 철회한다.**
+- 현재 상태: "실패 양상에 대응한 강화 가설과 판정 설계는 있다. 원인에 근거한 실행값 선정은 완료되지 않았다."
+- 사전등록과 번호 예약은 보존한다. 다만 사용자 원칙을 충족한 실행안으로 표현하지 않는다.
+- 사용자 원칙 2단계에서 원인을 설명하지 못했다. A043이 왜 기울어지기 시작하는지, 왜 회복하지 못하는지를 현재 분석으로는 설명하지 못한다. 이 한계를 적었다고 해서 2단계를 충족한 것은 아니다.
+- 패키지 제작, 새 서버 진단, 같은 자료 재계산은 없다.
+- 아래 줄은 정정 전 기록이다.
+- 결정 (2026-09-28, Codex 선정, 사용자 중계): A043 설정에서 `ang_vel_xy_l2`만 −0.05 → −0.08로 바꾸는 단일변수 exploratory 시험이다.
+- 번호: G-A054는 쓰지 않았다. 기각된 feet_air_time 안의 이름으로 문서에 남아 있기 때문이다. G-A055를 예약한다.
+- 평가 우선순위는 사용자 결정을 따른다. 1순위는 복합 우회전·험지·밀침이고, 2순위는 계단(보호 항목)이다.
+- 가설 판정은 A043 대비로 한다.
+  - 험지 옆걸음 낙상: SUPPORTED ≤ 12, NOT_SUPPORTED ≥ 24. SUPPORTED는 case 점수와 속도 조건을 함께 만족해야 한다.
+  - 우회전: 처음 측정한다. 감소 ≤ 14 / 악화 ≥ 30으로 기록 판정한다.
+  - 밀침: 네 방향을 따로 기록 판정한다.
+- 채택 판정은 A033 대비 `fact_rules_v1`과 `g3_guard_margin_v1`을 문턱 변경 없이 적용한다.
+- 원인 미설명 상태의 시험이므로 원인 분석 완료로 기록하지 않는다. 인접값을 자동으로 반복하지 않는다.
+- 사전등록 문서: `workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md`
+- 사양 JSON, 패키지, 서버 실행은 아직 없다. 서버 실행 승인도 아니다.
+- **사전등록 확정 (2026-09-28).** Codex 수정 지시 4건을 반영했다.
+  - 우회전 29대 판정 누락
+  - 험지 판정 적용 순서
+  - 계단 보호 규칙 충돌
+  - 인과 표현과 수식 부호
+- 판정 경계 12·13·23·24와 14·15·28·29·30을 포함해 0~96 전 구간을 기계적으로 점검했다. 누락과 중복은 0건이다.
+
+## G-D-STAIRS-STATE-20260928 — 철회: "A043 중심으로 검토" 지시도 철회, 세 정책의 현재 상태만 구분
+- 결정 (2026-09-28, Codex, 사용자 중계): 아래 G-D-STAIRS-A043-FOCUS의 "A043 중심으로 검토하라"는 **철회한다.** 이유: 우회전 과정 분석과 보상 연결의 한계는 이미 확인했다. 다시 검토시키면 같은 일을 반복하게 된다.
+- 현재 상태 구분:
+  - **A043:** 확보한 계단 이득이 가장 크다(15cm ≥2단 77/96). 우회전 문제의 해결책은 아직 없다.
+  - **A048:** 종합 측정값이 가장 좋다(50.16/70). 계단 보호를 충족하지 못했다.
+  - **A033:** 기존 대조군이다. 앞으로 돌아가야 할 성능 목표가 아니다.
+- 우회전 재검토, 새 분석, 새 조합값, 패키지, 서버 실행은 없다. 과거 판정과 발행물은 보존한다.
+
+## G-D-STAIRS-A043-FOCUS-20260928 — 정정: 계단 정책의 중심은 A043의 계단 이득 (검토 지시 철회 — 위 G-D-STAIRS-STATE)
+- 결정 (2026-09-28, Codex 정정, 사용자 중계): **아래 G-D-STAIRS-HOLD의 "A033 유지가 계단 정책의 결론"을 취소한다.**
+- 계단 정책 검토의 중심은 A043(`lin_vel_z_l2` −1.5)의 계단 이득이다. 15cm ≥2단 77/96, 10cm ≥2단 94/96이다.
+- 해결할 문제는 A033으로 돌아가는 것이 아니다. **이미 얻은 A043의 계단 이득을 잃지 않으면서, 채택을 막는 손실을 해결하는 것이다.** 채택을 막는 손실은 복합 우회전 낙상 29/96, G2 가중 −4.64/70이다.
+- 새 정책을 판단할 때는 A048의 종합 성능(50.16/70)과 다른 행동의 이득(험지 옆걸음, 밀침)도 함께 비교한다.
+- A033은 과거 판정과의 연속성을 위한 대조군으로 남긴다.
+- 이 결정은 A043을 즉시 채택한다는 뜻이 아니다. A043 위에서 새 조합값을 고른다는 뜻도 아니다. 우회전 손실이 남아 있고, 그 기전은 미확정이다(`workspace/training/quadruped/upload/plan/GO2_A043_YAW_RIGHT_AND_NEXT_20260926.md` §1~§3).
+- 유지: G5 미해결·목표 유지, 기각 후보 재제안 없음, 새 패키지·서버 실행 없음, 과거 판정·발행물 보존.
+
+## G-D-STAIRS-HOLD-20260928 — 계단 정책: 현 기준선 유지·계단용 신규 가중치 변경 비추진 (일부 취소 — 위 G-D-STAIRS-A043-FOCUS)
+- 결정 (2026-09-28, Codex 결정, 사용자 중계): **계단 정책은 "현 기준선 유지·계단용 신규 가중치 변경 비추진"이다.** 현재 근거로는 새 값을 고르는 것보다 바꾸지 않는 것이 결정이다. 이 결정의 책임을 사용자에게 다시 넘기지 않는다.
+- 기준선: G-A033 유지.
+- 보존 정책:
+  - A043(`lin_vel_z_l2` −1.5)은 계단 이득(15cm ≥2단 77/96)이 있는 미채택 비교 정책이다. 복합 우회전 손실의 기전은 미확정이다.
+  - A048(−1.25)은 보호 기준 미충족 정책이다. 내부 proxy는 50.16/70이지만 15cm 보호 3건에 걸렸다.
+- G5는 해결된 것으로 표시하지 않는다. 목표에서도 제외하지 않는다.
+- 하지 않는 것:
+  - 기존 분석 재실행
+  - 기각 후보 재제안: feet_air_time 상향(사용자 기각), lin_vel_z 완화 쪽(탐색 종료)
+  - −2.0보다 강한 lin_vel_z(미시험) 자동 추천
+  - 새 패키지·서버 진단
+- 다른 축으로의 전환은 이 결정에 포함하지 않는다.
+- 과거 판정과 발행물은 보존한다.
+- 근거: `workspace/training/quadruped/reports/GO2_LECTURE_REWARD_REFERENCE.md` §7(특히 §7-6-b), `workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md`.
+
+## G-A052-DIAG-REPLAY-20260928 — A048 진단 재생 발행
+- 결과(2026-09-28): 회수 VERIFIED·채널 완결, 재현 네 쌍 저장 채널 차이 없음. 실패 47건 rotation_first 0 · unknown 0. 접촉 표지는 생존 대조에도 흔함(험지 18/24, 10cm 16/24). 판독 `workspace/training/quadruped/reports/GO2_G_A052_DIAG_READOUT_20260928.md`.
+- 결정 G-D-A052-READOUT-20260928 (Codex): A051 재개 비권고, feet_air_time 0.25 새 1순위 아님. 회전 벌점·체공 보상은 비교군으로 남고 둘 사이 우선순위·방향은 미식별, action_rate 후순위. 추가 서버 실행·진단 자동 반복 없음. 근거 `workspace/server_returns/G-A052_CODEX_VERIFY_20260928/DIAGNOSTIC_ANALYSIS.md`.
+- 결정 G-D-A052-TORQUE-20260928 (Codex): 새 후보 '토크 벌점 완화 1순위'를 철회. 메인 루프 검토에서 토크 비용이 자세 높이와 함께 커지는 것을 확인했고, Codex 비교는 높이를 맞추지 않았다. 토크 강화는 추천하지 않고, 가속도 완화는 비교 후보로 두되 자동 승격하지 않는다(FORECAST §8-6). U1은 두 쪽 모두 허용으로 해석하며, 사용자 최종 결정은 미기록. 근거 `workspace/training/quadruped/reports/GO2_G_A052_DIAG_READOUT_20260928.md` §5.
+- 결정 G-D-A052-COSTS-20260928 (Codex, 메인 루프 원자료 재현): 가속도·명령 변화 비용은 실패 로봇마다 시점이 다르다. env23 회복 구간의 가속도 비용이 하강 구간보다 작다. 가속도 완화는 비교 후보로만 두고 강화도 선택하지 않는다. '비용 큰 항부터 완화' 방식은 폐기하고, 후보는 바꿀 실패 양상과 보존할 이득을 특정해 정당화한다. 패키지 지시는 없다. 근거는 판독 §5.
+- 결정 G-D-A052-TARGET-20260928 (Codex): 다음 후보 비교의 표적은 env2·4형(실패 전부터 큰 관절 가속도, 마지막에 명령 변화 증가)이다. 빈도나 원인이 확정된 것은 아니다. 비교 방향은 dof_acc_l2 강화와 action_rate_l2 강화 두 가지다. 보존할 것은 env23형 지지·높이 회복, 옆걸음 추종, 계단 다리 재배치다. 정지나 감속으로 비용만 줄어든 결과는 개선으로 치지 않는다. 가중치와 실행 후보는 미확정이며, 선택은 Codex가 한다.
+- 결정 G-D-U1-APPROVED-20260928 (사용자, 2026-09-28): 배포 목록 밖 기존 env 보상 항의 가중치 변경을 허용한다(`quadruped_rewards.py`에 줄 추가, 열린 결정 U1-R6-ENV-REWARD-20260918 → APPROVED). 조건: 배포 report.html은 dof_acc_l2 변경을 표시하지 않으므로 제출 리포트에 전→후 값을 직접 적고 env.yaml을 대조 근거로 둔다.
+- 결정 G-D-A053-DOFACC-20260928 (Codex 후보 선택): A048 보상 위 `dof_acc_l2 −2.5e−7 → −3.0e−7`(벌점 20% 강화, exploratory). 표적 env2·4형, 보존 env23형 회복·옆걸음 추종·계단 재배치, 2배는 걷기 margin 경계 근접으로 제외. 사전등록·보호 판정·실행 조건은 메인 루프.
+- G-A053 발행(2026-09-28): `GO2_G_A053_a048_dof_acc_m3e7_full69_v1.zip` SHA `52d99463217cb001a156d3658b24a7b99ae1ee03f6c9e4fb2d2f1eda414f89ea`. 계획 `workspace/training/quadruped/upload/plan/GO2_G_A053_PLAN_20260928.md`, 사양 `config/experiments/G_A053_a048_dof_acc_m3e7.json`, 계약 16/16. 서버 실행은 사용자 결정이다.
+- 결정 G-D-A053-RECOVERY-READ-20260928 (Codex, 결과 전 합의·같은 날 뒤에 기록, 기록 시 결과 미도착 확인): 새 '회복 PASS' 문턱 없음. 험지 옆걸음 A048·후보 각각 96대, 일대일 대응 해석 금지, 첫 episode만 쓴다. 명확한 악화면 채택하지 않는다. 혼재·판독 불가면 보호 확인 미완료다. 악화 미확인은 그 표현 그대로 쓴다. 평가 관절 가속도는 [미측정]이다. 계획 §7-1.
+- 결정 G-D-CAUSE-FIRST-POLICY-20260928 (Codex 정책, 사용자 승인 미기록): 사용자 원칙 '실패 근본 원인 → 강좌 보상 예측'을 후보 선정 절차로 고정했다. 문서 `workspace/training/quadruped/upload/plan/GO2_CAUSE_FIRST_TUNING_POLICY_20260928.md`.
+  - 원인은 관측·가설·지지로 구분한다. 강좌 원문·배포 설명·상류 수식·내부 모델을 분리한다. 강좌 밖 확장은 먼저 보고한다.
+  - 비교표 첫 두 행은 원인 확인 여부와 강좌 예측 출처다. margin은 제약으로만 쓴다.
+  - G-A053은 Codex 실행 권고 철회를 유지한다(ZIP·판정 보존, 사용자 처분 미정).
+  - 다음 업무는 A052에서 명령 급변이 불안정의 선행 동작인지 회복 반응인지 가르는 로컬 분석 하나다. 경위는 `workspace/training/quadruped/reports/GO2_G_A053_PRINCIPLE_REVIEW_20260928.md`.
+- 결정 G-D-STAIRS-CAUSE-READ-20260928 (Codex): 계단 15cm 실패의 과정 설명 "모서리에서 몸통 상승과 뒷다리 이동이 충분하지 않아 가라앉는다"는 수용했다. "발 걸림은 주원인이 아니다"는 수용하지 않았다. 앞발 조건 충족 17/31은 지지 확보가 아니므로, 지지 확보 실패인지 상승 실패인지는 미확정이다. 예측은 설명별로 대응시킨다(상승 억제 → lin_vel_z_l2 완화, 지지 불안정 → 배포 ③ 강한 억제, 회전 억제 → ang_vel_xy_l2 완화). 문서 `workspace/training/quadruped/reports/GO2_STAIRS_CAUSE_TO_LECTURE_20260928.md` §8, 도구 `tools/go2_a052_stairs_foot_on_step.py`(시간 원점 0.02초 정정).
+- 결정 G-D-STAIRS-EDGE-COMPARE-20260928 (Codex): 명령 급변 분석보다 A041·A043·A048 모서리 동작 비교를 먼저 한다. 질문은 세 가지다. 접촉 이후 상승이 시작됐는가, 어느 방향으로 회전하며 가라앉았는가, 성공과 어디서 갈라졌는가. pitch·높이로 원인(벌점 대 힘)을 판별했다고 하지 않는다. 새 보상값 선정·lin_vel_z 재개·계단 학습 승인은 아니다.
+- 결과(2026-09-28, 메인 루프 판독, 판단 전): `workspace/training/quadruped/reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md`. pitch 부호 확인 통과(상관 0.556, 24/24). A048 15cm 실패는 두 무리다. 앞발 표지 17대는 표지 유지·앞 들림 0.248인데 1초 상승 0.067 m, 뒷발 6/17, 붕괴 전 1초 절대 하강·앞 숙임이 집단 중앙값으로 보이지 않음(설명 2에 가까움, 개별 로봇 전부의 설명 아님). 표지 없는 14대는 붕괴 전 앞 숙임 14/14(설명 1에 가까움). 10cm 표지 실패 5대는 접촉 순간 전진 꺾임 → 앞 들림 지연 → 상승 작음 → 마지막 앞 숙임(설명 3에 가까움). A041 10cm는 0단 62/96, 모서리 기울기 크기가 다른 정책보다 크지 않다. 벌점 대 힘은 가리지 않았다. 사전 합의대로 분석을 멈추고 Codex 판단을 기다린다. 도구 `tools/go2_a052_stairs_edge_process.py`·`tools/go2_stairs_process_a041.py`.
+- 결정 G-D-STAIRS-EDGE-READ-20260928 (Codex): 15cm 앞발 표지 17대는 "무너짐"보다 "지형 상승을 몸통이 따라가지 못해 상대 높이 기준에 걸리는 과정"에 가깝다. 물리적 낙상인지는 미확정이고, 내부 판정은 보존하되 물리적 낙상과 동일시하지 않는다. 표지 없는 14대는 표지 미확보와 앞 숙임이 함께 나타나는 과정이다. 10cm 5대는 접촉 뒤 전진·상승이 원활하지 않다가 앞이 숙여지며 내려가는 과정이다. 집단 시간 구간을 한 로봇의 인과 사슬로 잇지 않는다. 강좌 예측은 셋 다 우선 후보로 올리지 않는다. lin_vel_z_l2 완화는 상승 부족만 관측됐고, 흔들림 억제가 상승을 막았다는 연결이 없으며, 비단조와 A043 손실이 있다. ang_vel_xy_l2 완화는 앞 들림 부재 설명이 약해졌고 A041 악화가 있다(각속도 억제 반증은 아님). feet_air_time은 걸림과 착지 위치를 구분하지 못한다. feet_air_time·action_rate로 대신 옮겨 가지 않는다. 미설명은 "왜 몸통 상승과 후지 진행이 연결되지 않는가"이며 보상 억제로 채우지 않는다. 분석 범위를 종료한다.
+- 결과(2026-09-28, Codex 지시 영상 대조 1회): 원인 구분 불가. A048 15cm 영상은 4대 별도 실행("Number of environments: 4")이라 A052 진단 32대와 대응이 없어 별도 사례다. 기존 판독(`GO2_STAIRS_PROCESS_A043_A048_A050_20260927.md` §7)도 앞발이 모서리에 막혔는지 "불명"이라 지지 미형성과 형성 후 상승 실패를 가르지 못했다. 재판독하지 않는다. "현재 확보 자료로 원인 구분 불가"다. 강좌 예측 단계로 넘어가지 않고, 새 서버 실행도 요청하지 않는다. 판독 `workspace/training/quadruped/reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md` §8.
+- 결과(2026-09-28, Codex 범위 접촉력 크기 검토, 판단 전): force_z는 월드 z 순간값이다(0.005초 갱신 중 행마다 마지막 1회). 평지 합은 중앙값 153 N이다. 15cm 표지 17대는 표지 뒤 0.0~0.8초 네 발 합 0.92~1.09 W0, 앞 0.51~0.65, 뒤 0.37~0.51로 10cm 생존 p10~p90 안이다. 붕괴 전 1초 합 0.87~1.13으로 유지되고, 뒷발만 마지막 0.3초에 0.25~0.33으로 줄며 작은 하강과 같은 칸이다. 집단 수준에서 "힘은 유지, 상승은 이어지지 않음"에 가깝다. 단 윗면 지지인지 측면 접촉인지는 구분하지 못한다. 15cm 표지 없는 14대와 10cm 5대는 힘 감소·미끄럼·하강이 마지막 0.1~0.3초에 섞여 구분되지 않는다. 판독 `workspace/training/quadruped/reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md` §9, 도구 `tools/go2_a052_stairs_contact_force.py`.
+- 결과(2026-09-28, 뒷발 늦음 단서 대조·발별 시각): Codex 수치(처음 0.4초 뒷발 상승속도 10cm 실패 0.153 대 생존 0.314, 15cm 0.316)를 재현했다. 그러나 그 0.4초 안에 뒷발이 모서리 근처에 있던 로봇은 10cm 생존 7/24(도착 중앙값 0.48초)라서, 이 값은 등반 시작이 아니라 주로 평지 보행 위상을 비교한 것이다. 10cm 실패 3대는 뒷발이 오히려 일찍 도착했다(0.34초). 발별 시각 도구의 "단 높이까지 듦" 정의는 평지 발 들기 최고점(중앙값 0.14 m)이 이미 넘어서 늦음을 가르지 못한다(사전 고정, 변경 안 함). 15cm 실패 뒷발 38/62는 T 전에 모서리 근처에 오지 않았다. 늦게 시작인지 막힘인지는 미구분이다. 발 높이 오프셋은 0.07 m가 아니라 0.023 m로, 두 문서를 원천에서 정정했다. 판독 `workspace/training/quadruped/reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md` §10, 도구 `tools/go2_a052_stairs_foot_timing.py`.
+- 결과(2026-09-28, Codex 결정 발 연속 궤적·모서리 대조, 판단 전): 지형 원문 기하로 로봇마다 타일 중심을 맞췄다(불일치 중앙값 1.5%, 모서리 불확실성 u 중앙값 0.068 m, 10cm 생존 3대 맞춤 불량 제외 줄 병기). 15cm 실패 앞발 62개 중 단 높이 이상으로 든 29개는 26개가 단 위에 이르렀다. 실패에만 있는 유형은 "모서리 구간에 와서 T까지 단 높이로 들지 않음" 20개(낮은 모서리 하중 17)다. 그중 10개는 10cm 생존 p90 상승 소요 0.52초보다 오래 기다렸다. 15cm 뒷발 never 28개는 모서리 구간에 약 2초 머물렀다. 관측은 "막힘"보다 "상승 부재·늦음"에 가깝다. 반증 여지(시간 짧은 발 절반, in_band 9개 구분 불가, 10cm 기준의 높이 차이)와 이유(보상·힘·학습)는 미확정이다. 판독 `workspace/training/quadruped/reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md` §11, 도구 `tools/go2_a052_stairs_edge_trajectory.py`.
+- 결과(2026-09-28, Codex 요청 A015 반례 대조, 판단 전): A015 report.html은 MISSING(REPORT_REQUIRED_NOT_ACQUIRED — 복구 불가)이라 학습 로그 요약으로 대체했다. 0.35에서 발 높이·체공은 미측정이다(steps.csv에 발 채널 없음, 항 값은 체공과 걸음 수를 가르지 못함, 영상 1편 미판독). 6/7 case에서 몸 낮춤이 있었다(상대 높이 0.30~0.33→0.13~0.23, 수평 유지). 평지는 속도를 유지해 낮게 달렸고, 비평지는 절반 감속했다. 낙상 대부분은 높이 기준이고, 15cm 내려가기는 31/32 몸통 종료다. 오르기 case는 평가하지 않았다. 기준 Pilot-01(track 1.2, lin_vel_z −2)과 A048(1.5, −1.25)은 다르다. 발 높이 상승 예측을 확인도 반증도 하지 않는다. 문서 `workspace/training/quadruped/reports/GO2_A015_FEET_AIR_TIME_COUNTER_CHECK_20260928.md`.
+- 결정 G-D-A052-DIAG-20260928 (2026-09-28, Codex): 세 case 진단 재생 준비. A048 하나, 발 접촉을 이분법으로 쓰지 않음, 낮은 자세 env 23 포함, 같은 재생 성공 대조, 자동 변수 선택 없음. A051 재개 아님.
+- 발행 `workspace/training/quadruped/upload/G-A052/current/GO2_G_A052_a048_diag_replay_v2.zip` SHA `828c18cd21bed8b4ce9683480cdf88fb5aa8dc2e1d72871fb549580718cbde62`(v1 `09973af1a5b9…` 실행 전 대체 — 결측을 0 지지로 읽던 판독기, 완결을 보장하지 않던 검증기 종료코드, 접촉 버퍼 갱신 미기록). 학습·보상 변경 없음. 계획 `workspace/training/quadruped/upload/plan/GO2_G_A052_DIAG_REPLAY_PLAN_20260928.md`. 서버 실행은 사용자 결정.
+- 1단계 보고서 표현 정정(같은 날 Codex 검토): yaw는 "우선할 근거 없음"까지, 낮은 자세 원인 미분리·3 cm는 중앙값 여유. 0.72초는 코드상 18°→60°(−0.95 교차 기준)가 맞아 유지하고 26°→60° 값(0.48초)을 병기 — Codex가 같은 날 지적을 철회.
+
+## GO2-FAILURE-DATA-20260928 — 험지 옆걸음 낙상 직전 사건표
+- 사실(2026-09-28, 로컬 기록만): A048 험지 옆걸음 낙상 16 = 시작 직후 전복 4 + 중·후반 느린 전복 7(18°→60° 중앙값 0.72초, A033 0.24초) + 기울기 없는 낮은 자세 가라앉음 5. 전복 11/11에서 기울기 표지가 yaw 표지보다 먼저 경계를 넘었다(마지막 통과 기준, yaw 기여 배제 아님). A048 옆걸음 몸 높이 중앙값 0.242는 10개 arm 중 유일하게 낮다(나머지 0.325~0.366, 원인은 보상 효과·학습 경로 특성 미분리). roll·pitch 각속도·발 접촉·action·보상 항은 평가 기록에 없다. 결과 `workspace/training/quadruped/reports/GO2_FAILURE_DATA_FINDINGS_20260928.md`.
+- 결정 없음 — 후보 방향·진단 재생 여부는 Codex 판단 대기. 유지: A051 철회, lin_vel_z 단독 탐색 종료, 학습 길이 보류.
+
+## GO2-STAIRS-VIDEO-20260928 — 계단 영상 판독과 비실행 결정
+- 결정 G-D-NO-NEW-REWARD-20260928 (2026-09-28, Codex): 계단 영상 4편 판독(A043·A048 10/15cm, seed 101) 결과 세 후보 모두 우선 근거 없음 → 이번 분석으로 새 보상값을 선택하지 않는다. track 완화도 우선 후보 아님. 튜닝 불가 결론이 아니다. 유지: A051 철회, lin_vel_z 단독 탐색 종료, 학습 길이 보류. 근거 `workspace/training/quadruped/reports/GO2_STAIRS_PROCESS_A043_A048_A050_20260927.md` §7, 계획 `workspace/training/quadruped/upload/plan/GO2_STAIRS_REWARD_BASICS_CODEX_PLAN_20260928.md` §8.
+
+## G-A051-PACKAGE-20260927 — A048 보상 위 ang_vel_xy −0.06 발행
+- **G-A051 발행(2026-09-27, 서버 미실행)**: A048 보상 위 `ang_vel_xy_l2 −0.05→−0.06`(Codex 후보 선택 G-D-A051-ANGVEL-20260927, 계획 `workspace/training/quadruped/upload/plan/GO2_G_A051_PLAN_20260927.md`). 채택은 A033 대비(문턱 불변), 효과는 A048 대비. ZIP `workspace/training/quadruped/upload/G-A051/current/GO2_G_A051_a048_ang_vel_xy_m006_full69_v3.zip` SHA `21b666ae1d9a…`. 서버 실행은 사용자 결정. 선택 확신 낮음 — 지지 관측 A038은 다른 보상 기준·지형 레벨 지연이 섞인 결과다.
+- 결정 G-D-A051-ANGVEL-20260927 (2026-09-27, Codex 후보 선택·사용자 중계): A048 설정에서 `ang_vel_xy_l2 −0.05→−0.06` 한 팔. 조건 여섯(A048 보상 기준 새 학습 seed42·1000·eval900 / 효과 후보−A048·채택 후보−A033 분리 / A033 기준 충족이어도 A048보다 나쁘면 진보 아님 / 생존·추종·실제 이동 함께 공개 / 계단 두 높이·밀침 네 방향·복합 회전 보호 유지 / 보호 실패·A048 대비 개선 미확보면 기각, 자동 탐색 없음).
+
+## GO2-STAIRS-PROCESS-20260927 — 계단 실패 과정 비교 (외부 검토가 정한 다음 작업 하나)
+- **계단 실패 과정 비교 완료(2026-09-27, `workspace/training/quadruped/reports/GO2_STAIRS_PROCESS_A043_A048_A050_20260927.md`)**: 실패는 첫 단 모서리(2.1~2.6초)에서 몸통이 절대 높이로 6~10cm 가라앉으며 시작되고, 낮은 자세와 정체가 거의 동시에 온다. 접근 높이만으로는 설명되지 않는다. 성공 로봇은 모서리에서 몸을 들어 올리고(최대 약 0.4~0.55 m/s) 더 기울인다. 발 위치는 미측정. 두 팔 실행 권고 철회(사용자 결정은 기록 보존). 변수 선택은 이 결과로 다시 한다. 도구 `tools/go2_stairs_process.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_stairs_process_20260927/`.
+- 사용자 결정(2026-09-27, 재확인): Codex가 제안한 A048 설정 학습 길이 비교(1000→1500)는 **보류 유지**. 새 보상값도 선택하지 않음(근거 부족, Codex 판단 동의). 다음 실험은 미정.
+- 2026-09-27 기록 업무: A049 정본 판독문 `workspace/training/quadruped/reports/GO2_G_A049_READOUT.md`(결과와 실행 전 선택 논리 분리), 리포트용 확인 사실표 `workspace/training/quadruped/reports/GO2_REPORT_FACT_SHEET_20260927.md`(튜닝 진전 아님), 후보 우선순위 근거 비교 `workspace/training/quadruped/upload/plan/GO2_NEXT_REWARD_LEVER_20260927.md` §10(선택 없음, 패키지 없음). 결함 C-37(G-A050 사양 추론 행 value 미결합) FIXED — 발행 빌더가 인용 관문을 발행 전에 돌린다. 후속: 기반 데이터 표(WEIGHT_OUTCOME 등)에 A049·A050 미수록 — C-34 관문과 결함 대장 재현 C-12·C-25·C-29·C-34·C-35가 옛 기대값으로 실패 중.
+- 2026-09-27 외부 검토 반영: ① §10 정정 — `ang_vel_xy` 완화의 ①은 기울기 **크기** 관측이고 벌점은 **각속도**라 연결 미확인. A·B·F를 같은 수준("실패 관측 있음, 레버 연결 미확인")으로 적고 "A041보다 작은 폭"·"전복을 늘릴 방향" 단정을 뺐다. A 완화는 다음 후보로 승인되지 않았다. 네 칸 미충족은 영구 정지 조건이 아니다. 우선순위는 Codex가 정한다. ② C-37 보강 — 면제를 실행된 사양 SHA `bfa1c12f…`·회수 사본·등록 value에 묶었다(test_20: 같은 G-A050 이름에서 value 변조·사양 변조 거부). ③ 기반 데이터 표에 A049·A050 수록(`tools/go2_stairs_behavior.py` RUNS, `EXECUTED_SPECS`). 이 수록으로 -1.0이 관측이 되어, 그 사실에 기댄 검사 셋을 당시 사실과 현재 관측으로 나눠 고쳤다(기반 데이터 test_4·test_6, 계단 test_11 — A048 누락도 함께). 계단 계약 test_3·5·6·7은 이번 수정 전부터 옛 기대값으로 실패하던 것이며(A043·A044·A047·A048 행만으로도 기대값과 다르다 — 추정, 수정 전 상태로 재실행하지는 않았다) 이번 판단을 막지 않는다(미정리로 남김).
+
+## G-A050-READOUT-20260927 — 결과와 다음 변수 분석
+- **G-A050 실행·회수(2026-09-27): ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL**, 총점 `47.25453/70`(A033 +4.73, **A048 −2.90**, 여섯 축 A048보다 낮고 G5는 같음). 실패: fact_rules 기준 1·3(10cm ≥1단 52 < 83.329), g3_guard_margin_v1 보호 4건(10cm 낙상 87 vs 34, 15cm 96 vs 90, 험지 전진 8 vs 4, 험지 옆걸음 추종 −0.0226). 가설: 험지 옆걸음 19/96 SUPPORTED, 우회전 ABSENT. 사전등록대로 lin_vel_z 단독 탐색 종료. 근거 `workspace/server_returns/G-A050_REVIEW_20260927/`(Codex 검토, 메인 루프 재계산 일치). 다음 변수 분석 `workspace/training/quadruped/upload/plan/GO2_NEXT_REWARD_LEVER_20260927.md` — 초판 권고 `feet_air_time 0.2→0.25`는 외부 검토로 비교 후보로 내림(체공시간 식은 발 높이가 아님, A048 험지 잔여 낙상 16 = 빠른 전복 10·기울기 1·낮은 자세 5). 현재 우선 권고 없음(§8).
+- 사용자 결정 대기: ① 기준 정책(A048 설정 위 vs A033 위) ② 학습 길이 질문(15cm = 커리큘럼 level ≈5.6, iter900 평균 level 4.5~5.0)을 별도 회차로 둘지.
+- 사용자 결정 G-D-FAT-BOTH-20260927: `feet_air_time 0.2→0.25`를 A048 설정 위와 A033 설정 위 **두 팔 모두** 시험한다(각각 저장 A048·A033과 한 줄 차이, 채택은 A033 대비). 학습 길이 질문은 지금 하지 않는다. 계획 `workspace/training/quadruped/upload/plan/GO2_NEXT_REWARD_LEVER_20260927.md` §7.
+
+## G-D-G3-FIRST-20260927 — 사용자 결정: 다음 표적은 험지(G3), 계단은 보호만
+- 근거(채점식 재계산, 축=case·seed 최솟값): A048 기준 평지 4축(G1·G2·G4·G6) 남은 여유 합 약2.7/70로 포화에 가깝다. 남은 점수는 G5 10.5·G3 5.0·G7 1.65. G5는 15cm 오르기 case(`stairs_15_down`)가 묶고 생존과 전진이 함께 필요하다 — A048 생존1.0 반사실 상한 1.65, 네 정책 최고 A043 1.62. G3는 험지 옆걸음 seed202 생존이 묶고 A033/A043/A048/A049 = 0.375/0.656/0.75/0.406로 움직였다. 증거 `workspace/training/quadruped/reports/evidence/go2_axis_bottleneck_four_arms_20260927/AXIS_BOTTLENECK_FOUR_ARMS.csv`(합계가 공개 총점 42.52861/44.62454/50.15655/46.20292와 일치).
+- 결정: 다음 후보의 표적은 G3. 채택 규칙은 **계단 개선 묶음을 빼고 계단은 보호 검사로만 남기는 판**을 실행 전 사전등록한다(선례 G-A047 `g3_guard_push4_v1`, 보호는 `post_a048_guard_margin_v1`의 허용 손실 유지; 총점·비열등·보호 14검사 유지). 새 판 이름·코드·관문 테스트는 후보 사양과 함께 만든다.
+- 이 판은 향후 사양 전용이다. A048·A049를 이 판으로 다시 판정하지 않는다(결과 뒤 완화 금지).
+- G-A050(`-1.375`, 계단 공동충족) 사양 `config/experiments/G_A050_a033_lin_vel_z_m1375.json`은 **미발행 상태로 철회**한다. 파일은 기록으로 두고 발행하지 않는다. 번호 재사용 여부는 다음 발행 직전 확인한다.
+- G3 후보 값은 미정. 값부터 고르지 않고 험지 옆걸음 낙상 원자료로 후보 비교표를 먼저 만든다(AGENTS 실제 목표 우선 계약). 서버 실행·커밋 없음.
+- **2026-09-27 G-A050 발행 v2**: `workspace/training/quadruped/upload/G-A050/current/GO2_G_A050_a033_lin_vel_z_m1375_full69_v2.zip` SHA256 `5f825566d02098c9f6719087bbecb03b01a645fe9f746a3e6e7fc71d1e0dfe0f`. 채택 `fact_rules_v1`+`g3_guard_margin_v1`. A048 대비 변화량은 필수 공개, 새 판 PASS만으로 진보를 보고하지 않음. 서버 실행은 사용자 결정.
+
+## G-D-GOAL-FIRST-20260927 — 사용자 지시: 실제 목표 우선 / G-A050 제작
+- 지침·정책 재결정 뒤 사용자 패키지 제작 요청. G-A050 예약(로컬 제작 중, 서버 미실행): A033 위 lin_vel_z_l2 -2.0→-1.375, seed42/1000iter/eval900. 계단 개선과 총점·보호 공동충족 탐색이며 최적값/중간 성능 예측이 아니다. 계획 `workspace/training/quadruped/upload/plan/GO2_GOAL_FIRST_POLICY_RESET_20260927.md`.
+- A049 회수 ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL, A033 유지. 근거 `workspace/server_returns/G-A049_REVIEW_20260927/`. 아래 A049 미실행은 과거 발행 상태다.
+- 과거 U2 허용 시 seed43 짝의 A049/A050은 미래 계획 번호였으며 실제 사양·발행이 없었다. 이미 사용된 번호를 재사용하지 않고 U2 실험 발행 시 다음 미사용 번호를 다시 확인한다. U2는 이번 seed42 실험의 선행조건이 아니다.
+- 서버 실행·커밋·push 없음. 비용 약95분/회수 포함120~150분, 잔여 예산 미측정. 필수 회수·영상·기존 판정 기준은 유지한다.
+
+## G-A049-PACKAGE-20260927 — `lin_vel_z_l2` `−2.0→−1.0` 분기 B 탐색 회차 발행 (미실행)
+- 사용자 결정 G-D-BRANCH-B-20260927(U2 미응답·불허 상태의 진행 결정). 계획 `workspace/training/quadruped/upload/plan/GO2_NEXT_CANDIDATE_20260927.md` §2. U2 허용을 대신하지 않는다.
+- 실행 정본 `workspace/training/quadruped/upload/G-A049/current/GO2_G_A049_a033_lin_vel_z_m1_full69_v1.zip` SHA `c7df9b6f6bdb0e73a557d45f248305accc7b37a0f2b5c1356a22f644e0bf0863`. 사양 `config/experiments/G_A049_a033_lin_vel_z_m1.json`, 관문 `tools/test_go2_g_a049_package_contract.py`(12검사 통과).
+- 채택: `fact_rules_v1`(G-A048 문턱 그대로) + 계획 screening `post_a048_guard_margin_v1`(2026-09-26 사전등록, 보호 14검사). 가설(별개): 험지 옆걸음 낙상 `41`/`59`, 복합 우회전 낙상 seed 수 `2`/`0`, 15cm ≥2단은 기록만(`RECORDED_NOT_JUDGED`).
+- 선택 근거: A043·A048이 만든 직접 관측(G3·G6 이득). G-A037의 벌점 몫 도출(S5와 반대)로 고른 값이 아니다. 개선 예측값이 아니다.
+- 예상 95분, 서버 세션 120~150분. 다른 패키지와 같은 세션에서 돌리지 않는다. 서버 실행·GPU 소비 0.
+
+## G-D-BRANCH-B-20260927 — 사용자 결정: U2 미응답·불허 상태에서 분기 B 진행
+- 사용자 선택(2026-09-27): "미응답·불허 → 분기 B 진행". 다음 패키지는 **G-A049 = `lin_vel_z_l2 −2.0→−1.0` @ 학습 seed 42**(INFORMATION_RUN, 가설 = G3·G6 이득 유지, 15cm 기록만)로 발행한다. 계획 `workspace/training/quadruped/upload/plan/GO2_NEXT_CANDIDATE_20260927.md` §2.
+- 이 결정은 U2의 공식 허용을 대신하지 않는다. U2 허용이 나중에 확인되면 분기 A(seed 43 짝)를 그때의 미사용 번호로 따로 발행한다. 두 패키지를 같은 서버 세션에서 돌리지 않는다.
+
+## GO2-NEXT-CANDIDATE-20260927 — 다음 후보 확정(발행 전), U2 답 대기
+- 분기 A(U2 허용, 권고): 학습 seed 43 짝. G-A049 = G-A033 보상, G-A050 = `lin_vel_z_l2 −2.0→−1.25`. 재현 판독(총점 차 `+2.53`/`0`, 옆걸음 낙상 ±9대, 우회전 seed `2`/`0`)과 채택(`fact_rules_v1` + `post_a048_guard_margin_v1`)을 사전등록한다. 약 190분, 세션 3.5~4시간.
+- 분기 B(U2 불허 또는 미응답 상태에서 사용자가 진행 결정): G-A049 = `lin_vel_z_l2 −1.0` @ seed 42, INFORMATION_RUN, 가설은 G3·G6 이득 유지(15cm는 기록만). 약 95분. 사용자 실행 결정은 U2 허용을 대신하지 않는다.
+- 2026-09-27 외부 검토 반영: 판독을 세 비교로 나눴다(A050−A049 재현, A050−A033 채택, A049−A033 경로 흔들림). 옆걸음 ±9대는 가설 전용 운영 기준으로 명시했다. 우회전은 두 팔의 낙상과 차이를 기록한다.
+- 관측 고정 검사 4개를 원자료 유도로 바꿨다. base data 13/13, 기전 7/7 통과. 발행 시점 근거는 부분집합 검사로 보존했다.
+- 문서 `workspace/training/quadruped/upload/plan/GO2_NEXT_CANDIDATE_20260927.md`. 패키지 미발행, 서버 실행 0.
+
+## GO2-GUARD-DESIGN-20260926 — 보호 설계 비교(현재 + 대안 둘), 사용자 결정 대기
+- 정의(계산 전 고정): 놓치면 안 되는 악화 = 보호 case 하나에서 seed마다 낙상 +3대 또는 추종 −0.02. 허용 손실 = 그 절반 내림(+1대/seed, −0.01). G-A048에는 어느 설계도 적용하지 않았고 판정은 보존된다.
+- 결과(저장 G-A033 조건부 재표집): current 거짓 실패 `0.9975`·놓침 평균 `0.012` / margin `0.7415`·`0.054`(최악 `0.314`) / resample 1% `0.1045`·`0.245`(최악 `0.91`). 대안 둘 다 두 오류를 함께 낮추지 못한다. 막는 것은 잡음이 큰 세 case(10cm 오르기, 험지 옆걸음, 험지 전진 추종)다. 밀침은 margin으로 충분하다.
+- 15cm는 기준선이 바닥(`90`/96)이라 상대 보호가 거의 작동하지 않는다. 절대 부족(G5)은 별개로 남는다.
+- **사용자 선택(2026-09-26): ①.** 계산 결과 margin_split 거짓 실패 `0.548`, 자기 정의 악화 놓침 평균 `0.033`(최악 `0.218`). 선택 당시 보지 못한 수치라 사전등록은 재확인 뒤에 한다. 재확인에서 사용자가 중복 검사 제거 재계산을 골랐고, 결과는 14검사 거짓 실패 `0.519`·놓침 평균 `0.035`(최악 `0.218`)다. 중복 제거 효과는 작았다(§7). **사용자 선택으로 14검사판을 `post_a048_guard_margin_v1`로 사전등록했다**(`tools/go2_screening_gate.py`, 관문 `tools/test_go2_guard_margin_rule_contract.py`). 향후 사양 전용이며, 기존 판과 G-A048 판정은 그대로다(§8).
+- **결정 요청:** ① margin + 잡음 큰 세 case의 악화·허용 손실 따로 정의(권고) ② 세 case 평가 로봇 수 증가 ③ current 유지(FAIL은 참고 신호). 문서 `workspace/training/quadruped/reports/GO2_GUARD_DESIGN_COMPARISON_20260926.md`, 도구 `tools/go2_guard_design_compare.py`.
+
+## GO2-D2-D3-20260926 — 보호 검사 재표집 민감도 · G-A048 영상 판독
+- **D2:** screening `post_a043_push4_v1` 보호 22검사(개선 9검사 제외)를 저장된 G-A033 arm의 로봇 궤적 재표집(case·seed별 32대, 2,000회)으로 셌다. 보호 검사 하나 이상 실패 `0.9985`, 회당 실패 수 중앙값 `8`/22. 검사별 `0.09~0.49`. **저장 표본에 조건부인 재표집 민감도이며 서버 재실행 오판율이 아니다.** 문턱·G-A048 판정 불변. 도구 `tools/go2_guard_resampling.py`(원 시행 재계산이 screening 값과 일치할 때만 실행).
+- **D3:** G-A048 영상 10편 프레임 판독(전체 VIDEO_UNKNOWN). 15cm 오르기는 3초부터 첫 단 앞에서 앞다리가 접힌 자세로 머묾. 밀침 네 방향은 표본 프레임에서 네 로봇 모두 서 있음. 판단 보류 세 구간(우회전 4.3~5.7초, 좌회전 약 9.5초, 10cm 5.7~9.9초)은 사용자 확인 요청.
+- 진행 순서(외부 검토 권고): 메인 루프 D2·D3 완료 → 사용자 D4(제출 이력·마감·잔여 예산)·U2 문의 → 그 결과로 D1 결정. 문서 `workspace/training/quadruped/reports/GO2_D2_D3_GUARD_RESAMPLING_AND_A048_VIDEO_20260926.md`.
+
+## G-D-ROLE-CODEX-READONLY-20260926 — 판독·원장 작성 역할 분리 (사용자 전달 합의)
+- **Claude 메인 루프:** 정본 판독·정책 문서·원장을 쓴다.
+- **Codex:** 기본은 읽기 전용 검토다. 수정은 명시적으로 맡긴 파일·범위만 한다. 별도 검토 파일이 필요하면 정본과 **다른 경로**를 쓴다.
+- 계기: 2026-09-26 G-A048 판독 경로 `workspace/training/quadruped/reports/GO2_G_A048_READOUT.md`를 양쪽이 같은 시각대에 썼다. 메인 루프 판본(미추적)이 덮였고, 고유 분석은 `workspace/training/quadruped/reports/GO2_G_A048_ANALYSIS_SUPPLEMENT.md`로 복원했다. NOW·MASTER에 생긴 중복 항목은 병합했다.
+- 용어 정정: 외부 검토의 `STAY`는 **세션 유지 표시**다. 새 서버 작업 금지나 판단 요청(D1~D4) 순서 승인의 뜻이 아니다. U2(학습 seed 반복 결정)는 seed 변경 실험에만 적용된다. D1~D4 순서는 미결이다.
+
+## G-A048-READOUT-20260926 — 회수·판독 완료, G-A033 유지 · 튜닝 정책 평가 작성
+- **회수:** `workspace/_keep/GO2_G_A048_RESULT.zip` SHA `89698d3f806e0dd321610148bb36cc6f425e2a3c5752d59ca2e6692bab307389`, FULL_69_COMPLETE, sentinel 5 일치, 영상 10+재사용 10, report `REPORT_ACQUIRED`/READ_MATCHED. 검증기를 로컬에서 다시 돌려 회수물 안 판정과 같음을 확인했다. **서버 종료 가능.**
+- **채택 판정:** ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL(screening `post_a043_push4_v1`, stairs_15_down 세 검사). 내부 proxy `42.52861→50.15656/70`(`+7.628`), fact_rules 정량 충족·영상 대기. **기준선 G-A033 유지, 문턱 불변.**
+- **가설 판정:** 15cm ≥2단 `24` INSUFFICIENT · 험지 옆걸음 낙상 `16` SUPPORTED · 복합 우회전 비용 ABSENT.
+- **정책 평가(`workspace/training/quadruped/upload/plan/GO2_TUNING_POLICY_ASSESSMENT_20260926.md`):** 측정·통제는 맞게 가고 있고 `lin_vel_z` 완화라는 유망한 방향도 찾았다. 그러나 G-A033 이후 7회차 채택 0회다. [추정] 원인은 학습 경로 흔들림 미측정(네 점 비단조)과 여유 0 보호 검사의 누적(31검사)이다. 판단 요청 D1 U2 허용·재현 대상 수정안(A033@43 + −1.25@43), D2 보호 검사 거짓 실패율 로컬 측정, D3 영상 판독, D4 Go2 제출 이력 확인. **전부 사용자 결정 대기.**
+- 판독 `workspace/training/quadruped/reports/GO2_G_A048_READOUT.md`(외부 검토 판본), 보충 `workspace/training/quadruped/reports/GO2_G_A048_ANALYSIS_SUPPLEMENT.md`. 새 도구 `tools/go2_lin_vel_z_dial_points.py`, `tools/go2_a043_forecast_check.py --work G-A048`. 정본 표 `reports/runs/`·`STAIRS_CLIMB.csv` 등록은 다음 사양을 만들 때 한다. 서버 실행·GPU 추가 소비 0, 새 패키지 없음, 커밋 없음.
+
+## G-A048-PACKAGE-20260926 — `lin_vel_z_l2` `−2.0→−1.25` 탐색 회차 발행 (미실행)
+- **결정 근거:** 계획 `workspace/training/quadruped/upload/plan/GO2_A043_YAW_RIGHT_AND_NEXT_20260926.md` §4의 U2 미해결 분기. 외부 검토(Codex) 4회를 거쳐 닫혔고, 검토 마감 문장은 "U2 미해결·불허: 문서대로 `lin_vel_z_l2 −1.25` 탐색 패키지 제작. 개선 예상값이 아니라 관측 범위를 확장하는 실험으로 유지."이다. 열린 결정 U2-SEED-REPLICATE-20260918은 여전히 **사용자 결정 대기**다.
+- **무엇을 재는가:** 걷는 관측값 `−2.0`·`−1.75`·`−1.5` 밖으로 한 간격(`0.25`, 운영상 선택)을 넓혀, 계단·험지 이득과 복합 우회전 비용이 이 다이얼을 따라 함께 움직이는지 본다. 개선 예측값·최적값 추정이 아니다(추론 사슬 `INFORMATION_RUN`, exploratory).
+- **판정 둘을 따로 읽는다.** 가설(판독기 `tools/go2_dial_hypothesis.py`, 문턱은 사양 `preregistered.hypothesis`에만 있다): 계단 15cm ≥2단 세 seed 합 `50` 이상 지지·`10` 이하 미지지, 험지 옆걸음 자세 낙상 `41` 이하 지지·`59` 이상 미지지(`41`은 이 탐색용 운영 기준이며 통계·공식 기준이 아니다), 복합 우회전 낙상이 두 seed 이상이면 비용 있음·0 seed면 없음, 그 사이는 불충분. 채택: `fact_rules_v1` + `post_a043_push4_v1`, **G-A044 문턱 그대로**. 혼합 결과는 지표별로 기록하고 일괄 INCONCLUSIVE로 합치지 않으며 자동 재실험하지 않는다.
+- **판독 순서와 한계(2026-09-26 외부 검토):** 채택 검증기(`tools/verify_go2_basic_motion_harvest.py --out .../harvest_verification.json`)를 먼저 돌리고 그 artifact·identity 결과를 본 뒤 가설 판독을 해석한다. 가설 판독기는 무결성 검증기가 아니므로, 같은 회차의 `ARTIFACT_VERIFIED` 기록이 없거나 결함이 있으면 판정 이름 대신 `NOT_READ_UNVERIFIED_HARVEST`를 내고, 로봇 32대가 다 기록되지 않은 case는 그 지표를 `MISSING`으로 둔다(관문 `test_5b`). 영상(seed 101·4대)은 정량(3 seed·32대)과 표본이 달라 낙상을 못 보여 줄 수 있고, 그것으로 정량을 부정하지 않는다.
+- 판독기 자체 확인: 저장 수확물에서 G-A033 `0`·`59`·`0` seed, G-A044 `0`·`80`·`0` seed, G-A043 `77`·`24`·`3` seed를 재현했다(`workspace/training/quadruped/reports/evidence/go2_lin_vel_z_hypothesis_20260926/STORED_ARMS.csv`).
+- 실행 정본 `workspace/training/quadruped/upload/G-A048/current/GO2_G_A048_a033_lin_vel_z_m125_full69_v1.zip` SHA `bbbfbb258f4101a01e65f51dd6092df7866ff81a39cc9809c8f602efc659f3bc`. 사양 `config/experiments/G_A048_a033_lin_vel_z_m125.json`, 관문 `tools/test_go2_g_a048_package_contract.py`(11검사 통과).
+- **v10(G-A045·G-A046)은 건드리지 않았다.** U2가 허용되면 v10은 그때의 미사용 번호(현재 기준 G-A049·G-A050)로 재발행하며, 두 패키지를 같은 서버 세션에서 돌리지 않는다. 서버 실행·GPU 소비 0.
+
+## G-A047-READOUT-20260926 — 최신 회수 근거
+- `flat_orientation_l2` `0.0→−0.5`(G-A033 위, 학습 seed 42, 평가 iter 900): **ARTIFACT_VERIFIED / INTERNAL_GATE_FAIL, G-A033 유지.** 내부 proxy `42.528610→35.641072/70`(`−6.887538`). G4 `−3.50`·G7 `−2.55/70` 한도 초과, 10cm 등반 하한 위반, 보호 전용 screening `g3_guard_push4_v1` 실패.
+- **가설(G3 표적) 미지지:** 험지 옆걸음 자세 낙상 `59→60`/96, 기울기 단독 낙상 `9·8·13→11·14·16`/32. 평지 밖 전반 감속(험지 전진 `0.366→0.192`, 경사 오르막 `0.433→0.272` m/s), 평지 전진은 그대로(`0.736→0.730`). 10cm 낙상 `34→1`이지만 ≥1단 등반 `90→3`/96 — 낙상 감소는 오르기 능력이 아니다. 실패 기전은 미확정(단일 seed).
+- 69 case·sentinel 5·영상 8+재사용 8 회수, report READ_MATCHED(원 학습 report는 `model_400`, 평가는 iter 900), VIDEO_UNKNOWN. 판독 `workspace/training/quadruped/reports/GO2_G_A047_READOUT.md`, 원 검증 `workspace/server_returns/G-A047_REVIEW_20260926/`, 대조표 `workspace/training/quadruped/reports/evidence/go2_g_a047_readout_20260926/`. 이 결과로 튜닝 정책을 고쳤다(`reports/GO2_REWARD_MECHANISM_FORECAST.md` §8, 비교 `upload/plan/GO2_POST_A047_POLICY_20260926.md`).
+
 ## G-D-A045-SEED-PAIR-20260924 — 다음 회차는 값이 아니라 자다 (메인 루프 판단)
 
 - **결정:** 다음 회차는 새 다이얼 값이 아니라 **학습 seed 43 대칭 쌍**이다. 회차 번호 **G-A045**(자) · **G-A046**(재현)을 등록했다(원장·`upload/` 중복 확인 결과 미사용). 추론 사슬 `INFORMATION_RUN`.

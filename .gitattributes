@@ -1,1 +1,6 @@
 workspace/training/quadruped/server_run_go2_tuning_engine_v1.sh text eol=lf
+# 2026-09-25: core.autocrlf=true 인 Windows 에서 stash·checkout 이 셸과 사양을 CRLF 로 다시 써
+# 바이트 대조(발행 불변 관문·EXECUTED_SPECS SHA)가 깨졌다.  바이트 계약이 있는 경로만 LF 로 고정한다.
+# 발행 ZIP·회수 증거는 대상이 아니며, 기존 파일을 일괄 재정규화하지 않는다.
+*.sh text eol=lf
+workspace/training/quadruped/config/experiments/*.json text eol=lf
