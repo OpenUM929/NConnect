@@ -1013,3 +1013,10 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 - 검증 출력: `workspace/server_returns/G-A048_REVIEW_20260926/`. 채택 판정과 사전등록 가설 판정은 분리한다. 서버 종료 판단은 회수 검증 이후 한다.
 - RECEIVED → VERIFIED. 결과 ZIP SHA `89698d3f806e0dd321610148bb36cc6f425e2a3c5752d59ca2e6692bab307389`, CRC·537파일 대응·결과 SHA536件 일치. provenance32件는 원 발행 ZIP과 대조 일치. full69·sentinel5·원 report·후보영상10/재사용10 회수. 필수 추가 회수 없음, 서버 종료 가능.
 - 분석·보고 완료, NO_CANONICAL_MERGE로 MERGED 상태를 부여하지 않음. 내부proxy50.15656/70이나 screening15cm3항 실패: INTERNAL_GATE_FAIL/A033 유지. `reports/GO2_G_A048_READOUT.md` 참조. 영상은3종 표본 프레임 관찰, 전체 VIDEO_UNKNOWN.
+
+## G-A057 — A048 보상 단일변수 일괄 탐색 v1 (2026-09-29, 상태 PLANNED)
+- 발행: `workspace/training/quadruped/upload/G-A057/current/GO2_G_A057_a048_single_var_sweep_v1.zip` SHA256 `c225879e4e2730fa768b32aef4b3e374b14baae83a002ffacdaa92010e9e3484`, 안내 `GO2_G_A057_RUN_GUIDE.txt`. 새 학습 12개(순서 SWEEP_PLAN.json 그대로), 재사용 6, 기준 공유 5. seed 43·A043+0.01 행 없음.
+- 사전등록: `workspace/training/quadruped/config/experiments/G_A057_preregistration.json`(ZIP 안 `go2_g_a057/PREREGISTRATION.json`), 판독 `tools/go2_g_a057_prereg_readout.py`. 채택·승급 대상 아님.
+- 영상 판정: 필수 — 실행마다 러너가 후보 영상 10편을 찍어 결과 ZIP에 넣는다. report.html 은 러너가 결과 ZIP·SHA 에 포함한다.
+- 상태 단어: 완료 DONE/SKIP_DONE · 실행 안전 중단 SAFETY_STOP_NONFINITE/SKIP_SAFETY_STOPPED/ABORT_* · 실행 실패 RUN_ERROR/COLLECTION_FAILED. 평가 결과로 멈추지 않는다.
+- 검증: tools/test_go2_g_a057_sweep_contract.py 16 · test_go2_g_a057_prereg_contract.py 9 · test_go2_g_a057_sweep_compare_contract.py 8 통과. 서버 실행 승인은 별개(미승인).

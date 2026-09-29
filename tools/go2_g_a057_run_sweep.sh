@@ -71,7 +71,8 @@ verified_done() {  # keep result_zip
 }
 
 runner_decision() {  # keep
-  sed -n 's/^DECISION=//p' "$1/RUNNER_STATUS.txt" 2>/dev/null | tail -1
+  # A failed arm may not have written the file; never let a missing file end the sweep (set -e + pipefail).
+  { sed -n 's/^DECISION=//p' "$1/RUNNER_STATUS.txt" 2>/dev/null || true; } | tail -1
 }
 
 safety_stopped() {  # keep result_zip — a finished non-finite-training stop, packaged and checksummed
@@ -198,7 +199,7 @@ while read -r key keep_name zip_name; do
     bash "$runner" --inner </dev/null >"$STATUS_DIR/logs/${key}_$(date +%Y%m%d-%H%M%S).log" 2>&1
   rc=$?
   set -e
-  collection=$(sed -n 's/^COLLECTION_STATUS=//p' "$keep/RESULT_STATUS.txt" 2>/dev/null | tail -1)
+  collection=$({ sed -n 's/^COLLECTION_STATUS=//p' "$keep/RESULT_STATUS.txt" 2>/dev/null || true; } | tail -1)
   collection=${collection:--}
   if [[ "$rc" == 0 ]] && verified_done "$keep" "$result"; then
     log_status "$key" DONE "$rc" "$collection" "$resume" "$started" "$(date -Is)" "-"

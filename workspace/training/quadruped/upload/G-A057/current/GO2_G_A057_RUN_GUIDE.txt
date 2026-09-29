@@ -1,0 +1,69 @@
+GO2 G-A057 보상 단일변수 일괄 탐색 — 다른 PC 실행·재개 안내
+================================================================
+
+목적: A048 보상에서 한 항씩 바꾼 학습 12개를 순서대로 돌려 변수별 반응 데이터를 모은다.
+      개선을 전제하지 않는다. 승자 값을 합치거나 다음 값을 추가하지 않는다. 채택·공식 제출 판정 대상이 아니다.
+      재사용·기준 공유 행은 돌지 않는다(근거: go2_g_a057/SWEEP_PLAN.md).
+
+0. 필요한 환경 (공식 서버와 같게 — 다르면 결과 차이를 보상 효과로만 읽지 않는다)
+   - Linux(Ubuntu), bash·tmux·sha256sum·unzip, NVIDIA GPU + nvidia-smi.
+   - Isaac Lab v2.3.x(Isaac Sim 5.1)이 /workspace/IsaacLab 에 있거나, 다른 위치면 ISAACLAB_SH=<경로>/isaaclab.sh 로 알려 준다.
+   - /workspace 가 쓰기 가능해야 한다(러너가 /workspace/_keep 에 결과를 쓴다).
+   - 서버 기준 GPU는 RTX 5080 16 GB, 4096 env 다. VRAM 이 작으면 학습이 메모리 부족으로 실패할 수 있고,
+     로봇 수를 줄이면 서버 결과와 비교할 수 없으므로 이 패키지는 4096 env 고정이다.
+   - 디스크: 실행 하나당 수 GB. 남은 공간이 20 GB 미만이면 멈춘다(GO2_SWEEP_MIN_FREE_GB 로 조정).
+
+1. 올리기
+   GO2_G_A057_a048_single_var_sweep_v1.zip  SHA256 c225879e4e2730fa768b32aef4b3e374b14baae83a002ffacdaa92010e9e3484
+   /workspace/GO2_G_A057_a048_single_var_sweep_v1.zip 에 둔다.
+
+2. 실행 — 한 줄
+   unzip -oq /workspace/GO2_G_A057_a048_single_var_sweep_v1.zip -d /workspace && bash /workspace/go2_g_a057/run_sweep.sh
+
+   목록만 보기:   bash /workspace/go2_g_a057/run_sweep.sh --list
+   진행 보기:     tmux attach -t go2_g_a057
+   상태 표:       /workspace/_keep/go2_g_a057_sweep/SWEEP_STATUS.tsv
+   재개:          같은 명령을 다시 친다. 검증된 완료 실행은 건너뛰고, 부분 결과는 GO2_RESUME=1 로 이어 간다.
+
+3. 무엇이 도는가 (실행 12개, 순서대로)
+  track_lin_vel_xy_exp_p1p2          track_lin_vel_xy_exp 1.2
+  track_lin_vel_xy_exp_p1p4          track_lin_vel_xy_exp 1.4
+  track_lin_vel_xy_exp_p1p6          track_lin_vel_xy_exp 1.6
+  ang_vel_xy_l2_m0p04                ang_vel_xy_l2 -0.04
+  ang_vel_xy_l2_m0p08                ang_vel_xy_l2 -0.08
+  feet_air_time_p0p01                feet_air_time 0.01
+  feet_air_time_p0p1                 feet_air_time 0.1
+  feet_air_time_p0p35                feet_air_time 0.35
+  action_rate_l2_m0p008              action_rate_l2 -0.008
+  action_rate_l2_m0p012              action_rate_l2 -0.012
+  flat_orientation_l2_m0p25          flat_orientation_l2 -0.25
+  flat_orientation_l2_m0p5           flat_orientation_l2 -0.5
+   실행마다: 학습 1000 iter -> iter 900 고정 -> 69 case(평가 seed 101/202/303 x 32 env) -> G-A033 sentinel 5 case
+   -> 영상 10편 -> 결과 ZIP. 러너는 G-A055 v2 의 것을 바이트 그대로 쓴다.
+   예상: 서버 GPU 기준 한 실행 약 95분 -> 약 19시간 0분. 다른 GPU에서는 달라진다(보장 아님).
+
+4. 실패와 중단 — 실행 상태와 평가 판정은 다르다
+   - 이 러너는 평가 결과가 나쁘다는 이유로 멈추거나 건너뛰지 않는다. 걷지 않는 정책도 69 case 를 끝까지 잰다.
+     평가 후 후보 제외는 판독 단계(tools/go2_g_a057_prereg_readout.py, go2_g_a057/PREREGISTRATION.json)에서만 한다.
+   - 상태 표의 단어:
+       완료           DONE / SKIP_DONE (FULL_69_COMPLETE)
+       실행 안전 중단 SAFETY_STOP_NONFINITE(학습 loss 비유한 — 평가하지 않음) / SKIP_SAFETY_STOPPED, 그리고 아래 ABORT_*
+       실행 실패      RUN_ERROR(러너 오류) / COLLECTION_FAILED(수집 미완 — 다시 치면 이어 간다) / RUN_ERROR_MATERIALIZE / BLOCKED_EXISTING_RESULT
+   - 한 실행이 실패하면 로그와 종료코드를 상태 표에 남기고 다음 실행으로 간다.
+   - 전체를 멈추는 경우: 디스크 부족(20), 다른 학습/재생 프로세스(21), Isaac Lab·GPU 없음(22),
+     학습 시작 전 실패(23, 공통 환경 문제), 두 실행 연속 학습 실패(24), 패키지 체크섬 불일치(25).
+   - 학습 도중 끊긴 실행은 러너가 보존하고 멈춘다(INTERRUPTED_TRAINING_PRESERVED, 종료코드 9). 그 실행을 처음부터
+     다시 하려면 보존본을 내려받은 뒤 해당 폴더를 옮기고 다시 실행한다. 이 러너는 기존 결과를 지우지 않는다.
+   - 결과 ZIP 만 있고 폴더가 없으면 덮어쓰지 않고 BLOCKED 로 적는다.
+
+5. 가져올 것 (각 실행)
+   /workspace/_keep/go2_g_a057_<key>/            (폴더 전체: 학습 로그·report.html·env.yaml·checkpoint·평가 CSV·영상)
+   /workspace/_keep/GO2_G_A057_<KEY>_RESULT.zip + .sha256
+   /workspace/_keep/go2_g_a057_sweep/            (상태 표·환경 기록·실행 로그)
+   로컬 C:\dev\Nconnect\workspace\_keep\ 에 같은 이름으로 둔 뒤
+   python -B tools/go2_g_a057_sweep_compare.py 로 비교표·그래프를 만든다
+   (출력 workspace/training/quadruped/reports/evidence/go2_g_a057_sweep_compare/).
+
+6. 규정
+   공식 서버가 아닌 PC의 학습은 탐색용이다. 제출 정책은 서버 학습 이력과 대조되므로 서버에서 다시 학습한다.
+   배포 학습 코드는 수정하지 않았다(보상 가중치만 다르다).

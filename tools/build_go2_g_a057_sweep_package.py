@@ -38,6 +38,8 @@ PREFIX = "go2_g_a057/"
 RELEASE = "GO2_G_A057_a048_single_var_sweep_v1"
 UPLOAD = GO2 / "upload/G-A057/current"
 LAUNCHER = ROOT / "tools/go2_g_a057_run_sweep.sh"
+PREREG_JSON = GO2 / "config/experiments/G_A057_preregistration.json"
+PREREG_MD = GO2 / "reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.md"
 RUNNER = "server_run_go2_candidate_iter_pinned.sh"
 OVERLAY = ("candidate/quadruped_rewards.py", "reference/baseline_quadruped_rewards.py",
            "reference/reward_base_quadruped_rewards.py", "expected_rewards.json", "run_config.env",
@@ -93,7 +95,7 @@ def run_config(template: str, key: str, row: dict, base6: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def arm_files(src: dict[str, bytes], row: dict, base6: dict, sentinel6: dict) -> dict[str, bytes]:
+def arm_files(src: dict[str, bytes], row: dict, base6: dict, sentinel6: dict, prereg_sha: str) -> dict[str, bytes]:
     key, name, value = row["key"], row["variable"], float(row["value"])
     cand6 = dict(base6)
     cand6[name] = value
@@ -120,6 +122,8 @@ def arm_files(src: dict[str, bytes], row: dict, base6: dict, sentinel6: dict) ->
                        "sentinel": "G-A033 stored arm, 5 cases (runner default)"},
         "runner": f"{RUNNER} from upload/G-A055/current (v2) bytes unchanged, --inner, GO2_STAGE=full",
         "plan_row": row,
+        "preregistration": {"path": "go2_g_a057/PREREGISTRATION.json", "sha256": prereg_sha, "row": key,
+                            "reader": "tools/go2_g_a057_prereg_readout.py"},
     }
     readme = (f"G-A057 sweep arm {key}\n"
               f"A048 보상에서 {name} 한 항만 {base6[name]:g} -> {value:g}. 학습 seed 42, 4096 env, 1000 iter, 평가 iter 900, 69 case.\n"
@@ -180,7 +184,13 @@ def guide(new_rows: list[dict], zip_sha: str | None) -> str:
    -> 영상 10편 -> 결과 ZIP. 러너는 G-A055 v2 의 것을 바이트 그대로 쓴다.
    예상: 서버 GPU 기준 한 실행 약 95분 -> 약 {n * 95 // 60}시간 {n * 95 % 60}분. 다른 GPU에서는 달라진다(보장 아님).
 
-4. 실패와 중단
+4. 실패와 중단 — 실행 상태와 평가 판정은 다르다
+   - 이 러너는 평가 결과가 나쁘다는 이유로 멈추거나 건너뛰지 않는다. 걷지 않는 정책도 69 case 를 끝까지 잰다.
+     평가 후 후보 제외는 판독 단계(tools/go2_g_a057_prereg_readout.py, go2_g_a057/PREREGISTRATION.json)에서만 한다.
+   - 상태 표의 단어:
+       완료           DONE / SKIP_DONE (FULL_69_COMPLETE)
+       실행 안전 중단 SAFETY_STOP_NONFINITE(학습 loss 비유한 — 평가하지 않음) / SKIP_SAFETY_STOPPED, 그리고 아래 ABORT_*
+       실행 실패      RUN_ERROR(러너 오류) / COLLECTION_FAILED(수집 미완 — 다시 치면 이어 간다) / RUN_ERROR_MATERIALIZE / BLOCKED_EXISTING_RESULT
    - 한 실행이 실패하면 로그와 종료코드를 상태 표에 남기고 다음 실행으로 간다.
    - 전체를 멈추는 경우: 디스크 부족(20), 다른 학습/재생 프로세스(21), Isaac Lab·GPU 없음(22),
      학습 시작 전 실패(23, 공통 환경 문제), 두 실행 연속 학습 실패(24), 패키지 체크섬 불일치(25).
@@ -215,8 +225,14 @@ def build() -> tuple[bytes, dict]:
     for k, v in shared.items():
         files["shared/" + k] = v
     order = []
+    prereg = PREREG_JSON.read_bytes().replace(b"\r\n", b"\n")
+    pre = json.loads(prereg)
+    if sorted(pre["rows"]) != sorted(r["key"] for r in new_rows):
+        raise ValueError("PREREGISTRATION rows differ from the NEW_TRAIN rows")
+    files["PREREGISTRATION.json"] = prereg
+    files["PREREGISTRATION.md"] = PREREG_MD.read_bytes().replace(b"\r\n", b"\n")
     for row in new_rows:
-        arm = arm_files(src, row, base6, sentinel6)
+        arm = arm_files(src, row, base6, sentinel6, sha(prereg))
         tree = {**shared, **arm}
         arm["PACKAGE_SHA256SUMS.txt"] = sums(tree)
         for k, v in arm.items():
