@@ -69,6 +69,21 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def reports_bytes() -> dict[str, str]:
+    """`reports/` 아래 파일 전부의 SHA.  판독 명령 배선 검사 전후에 대조한다(결함 C-36)."""
+    base = ROOT / "workspace/training/quadruped/reports"
+    return {str(p.relative_to(base)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(base.rglob("*")) if p.is_file()}
+
+
+def isolated(argv: list[str], tmp: str) -> list[str]:
+    """출력 인자를 받는 판독기에는 임시 `--out` 을 준다.  배선만 재는 검사가 저장소 증거를 쓰면 안 된다."""
+    script = next(arg for arg in argv if arg.endswith(".py"))
+    if "--out" in argv or '"--out"' not in (ROOT / script).read_text(encoding="utf-8"):
+        return argv
+    return [*argv, "--out", str(Path(tmp) / "out")]
+
+
 class PackageTest(unittest.TestCase):
     def test_1_build_is_deterministic(self) -> None:
         self.assertEqual(reward.build_zip(SPEC), reward.build_zip(SPEC))
@@ -114,19 +129,44 @@ class PackageTest(unittest.TestCase):
         self.assertGreaterEqual(len(SPEC["collection"]["reason"]), 40)
         self.assertIn("C-11", SPEC["collection"]["reason"])
 
-    def test_5_the_value_is_between_two_measured_points_and_says_so(self) -> None:
-        self.assertEqual(base_data.spec_problems(SPEC), [])
-        self.assertEqual(base_data.walking_values(TERM), [-2.0, -1.5],
-                         "A043 이 기반 데이터에 들어와야 -1.75 가 관측 사이 값이 된다")
+    # 2026-09-25 (결함 C-29 와 같은 모양, C-34 가 드러냄): A044 자신이 기반 데이터 표에 들어오자 발행
+    # 당시의 사실(-1.75 는 두 관측 사이)이 현재 표로는 거짓이 됐다.  당시 근거와 현재 관측을 따로 묻는다.
+    # 당시 회차 목록은 A043 계약의 18회차 + A043(C-12 로 2026-09-22 추가) — 현재 목록에서 유도하지 않는다.
+    ROUNDS_AT_PUBLICATION = ("Default-01", "feet_air_time_020_v1", "A010", "A013", "A024", "track_120_v1",
+                             "chain01", "A020", "A021", "A022", "Pilot-01", "A015", "A016", "A018", "A017",
+                             "A031", "A032", "G-A033", "A043")
+
+    def test_5_the_value_was_between_two_measured_points_when_published(self) -> None:
+        pinned, source = base_data.EXECUTED_SPECS[SPEC["work_id"]]
+        executed = (ROOT / source).read_bytes()
+        self.assertEqual(hashlib.sha256(executed).hexdigest(), pinned)
+        self.assertEqual(executed, base_data.spec_bytes(SPEC), "the spec file is not the executed spec")
         declared = SPEC["base_data"]["terms"][TERM]
+        self.assertEqual(declared["walking_values"], [-2.0, -1.5])
         self.assertEqual(declared["status"], "BETWEEN_OBSERVED")
         self.assertNotIn("out_of_range_reason", declared)
+        rows = {r["name"]: r for r in base_data.weights()}
+        then = sorted({float(rows[n][TERM]) for n in self.ROUNDS_AT_PUBLICATION if base_data.walking(rows[n])})
+        self.assertEqual(then, declared["walking_values"],
+                         "the declared snapshot does not recompute from the rounds that existed then")
+        self.assertTrue(min(then) < float(PROBE_TO) < max(then))
         probes = {(r["term"], r["to"]): r for r in _read_csv(
             GO2 / "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv")}
         row = probes[(TERM, PROBE_TO)]
-        self.assertEqual((row["zone"], row["range_status"]), ("WALK", "BETWEEN_OBSERVED"))
+        self.assertEqual(row["zone"], "WALK")
         self.assertGreater(float(row["margin"]), float(row["margin_from"]))
         self.assertIn(row["margin"], SPEC["value_derivation"]["walk_margin"])
+
+    def test_5b_the_value_is_observed_now(self) -> None:
+        """A044 는 내부 관문에서 탈락했지만(INTERNAL_GATE_FAIL) 회수됐고 걸었다 — 관측이다."""
+        # 2026-09-26: 뒤 회차가 관측을 더한다(G-A048 -1.25).  이 검사가 묻는 것은 "이 값이 이제 관측이다" 이지
+        # 관측 목록 전체가 아니다 — 목록은 늘어날 수 있고, 세 값이 빠지면 안 된다.
+        self.assertLessEqual({-2.0, -1.75, -1.5}, set(base_data.walking_values(TERM)))
+        self.assertEqual(base_data.range_status(TERM, float(PROBE_TO)), "OBSERVED")
+        probes = {(r["term"], r["to"]): r for r in _read_csv(
+            GO2 / "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv")}
+        self.assertEqual(probes[(TERM, PROBE_TO)]["range_status"], "OBSERVED")
+        self.assertEqual(base_data.spec_problems(SPEC), [])
 
     def test_6_the_forecast_is_carried_as_a_limit_not_as_support(self) -> None:
         """A043 이 네 상황 중 둘을 방향까지 틀렸다 — 그 사실이 사양 안에 있어야 한다."""
@@ -293,17 +333,21 @@ class PackageTest(unittest.TestCase):
         # 수십 분이 걸렸고(관문 전체가 38분), 그렇게 느린 관문은 아무도 돌리지 않는다.  그래서 경로만
         # **없는 폴더**로 바꿔 배선을 잰다 — 수확물 전체 판독은 VerifierOnAFullHarvestTest 의 몫이다.
         # 시간 상한도 함께 건다: 다시 느려지면 여기서 떨어져 알게 된다.
+        before = reports_bytes()
         with tempfile.TemporaryDirectory() as tmp:
             missing = str(Path(tmp) / "no_harvest")
             for command in commands + inside:
                 with self.subTest(command=command):
-                    argv = [missing if part.startswith("workspace/_keep/") else part
-                            for part in command.split()[1:]]
+                    argv = isolated([missing if part.startswith("workspace/_keep/") else part
+                                     for part in command.split()[1:]], tmp)
                     done = subprocess.run([sys.executable, *argv], cwd=str(ROOT), env=env,
-                                          capture_output=True, text=True, timeout=180)
+                                          capture_output=True, text=True, encoding="utf-8",
+                                          timeout=180)
                     self.assertNotEqual(done.returncode, 2, command + "\n" + done.stderr)
                     for bad in ("unrecognized arguments", "the following arguments are required"):
                         self.assertNotIn(bad, done.stderr, command)
+        # 2026-09-25 (결함 C-36): 이 검사가 A041 정체 판독 증거를 임시 폴더 행으로 덮은 채 커밋됐다.
+        self.assertEqual(reports_bytes(), before, "a wiring check wrote into tracked evidence")
 
     def test_15_the_guide_does_not_let_sha_alone_close_the_server(self) -> None:
         """Defect C-16.  루트 AGENTS.md 「학습 종료 후 영상 증거 게이트」 §5·§7 은 종료 보고에

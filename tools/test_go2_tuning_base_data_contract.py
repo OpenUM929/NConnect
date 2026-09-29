@@ -18,6 +18,56 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 import go2_tuning_base_data as base  # noqa: E402
+import go2_stairs_behavior as stairs  # noqa: E402
+
+KEEP = ROOT / "workspace/_keep"
+
+
+def _raw_walking_rows() -> list[dict[str, str]]:
+    """원자료에서 다시 유도한 걷는 회차 — 표(WEIGHT_OUTCOME.csv)를 거치지 않는다.
+
+    가중치는 각 회차의 env.yaml, 걷기 여부는 rough_forward 세 seed summary.json 의 speed_xy_mean 평균이
+    `base.WALK_SPEED` 이상인가로 정한다(표와 같은 정의, 다른 경로).  값 표기는 표와 같이 `:g` 다.
+    """
+    out = []
+    for name, env, run, arm in stairs.WEIGHT_RUNS:
+        weights = stairs.reward_weights(KEEP / env)
+        speeds = []
+        for seed in stairs.SEEDS:
+            summary = KEEP / run / "evaluation" / arm / "cases" / f"seed_{seed}" / "rough_forward" / "summary.json"
+            if summary.is_file():
+                speeds.append(float(json.loads(summary.read_text(encoding="utf-8"))["speed_xy_mean"]))
+        if speeds and sum(speeds) / len(speeds) >= base.WALK_SPEED:
+            out.append({"name": name, **{t: f"{weights[t]:g}" for t in stairs.WEIGHT_TERMS}})
+    return out
+
+
+def _published_unexecuted(spec: dict) -> bool:
+    """발행 ZIP 이 있고(upload/<ID>/current 또는 history) 실행 사양으로 고정되지 않은 사양."""
+    # 짝 패키지는 폴더 이름이 두 회차를 함께 쓴다(예: `G-A045_A046`).
+    number = str(spec.get("work_id")).split("-")[-1]          # "A046"
+    folders = [f for f in (base.QUAD / "upload").iterdir()
+               if f.is_dir() and f.name.startswith("G-") and number in f.name.replace("G-", "").split("_")]
+    published = any((f / sub).is_dir() and any((f / sub).rglob("*.zip"))
+                    for f in folders for sub in ("current", "history"))
+    return published and not base.is_executed_spec(spec)
+
+
+def _observation_growth_only(spec: dict) -> list[str]:
+    """스냅샷과 지금 계산의 차이가 '발행 뒤 관측이 늘어난 것' 뿐인가.  아니면 어긋난 칸을 돌려준다."""
+    # `spec_problems` 의 기준을 그대로 쓴다: 스냅샷의 걷는 관측값만 지금 값으로 바꾼 사본이 문제 0 이어야 하고,
+    # 바꾼 칸은 옛 관측값을 모두 포함해야 한다(관측이 줄었다면 성장만이 아니다).
+    faults = []
+    patched = copy.deepcopy(spec)
+    expected = base.expected_base_data(spec).get("terms", {})
+    for term, row in patched.get("base_data", {}).get("terms", {}).items():
+        now = expected.get(term, {}).get("walking_values")
+        if now is None or "walking_values" not in row:
+            continue
+        if not set(row["walking_values"]) <= set(now):
+            faults.append(f"{term}.walking_values shrank")
+        row["walking_values"] = now
+    return faults + base.spec_problems(patched)
 
 
 class TuningBaseDataContractTest(unittest.TestCase):
@@ -46,11 +96,21 @@ class TuningBaseDataContractTest(unittest.TestCase):
             if spec["work_id"] in base.PRE_RULE_SPECS:
                 continue
             with self.subTest(path.name):
-                self.assertEqual(base.spec_problems(spec), [])
+                problems = base.spec_problems(spec)
+                if problems and _published_unexecuted(spec):
+                    # 2026-09-26: 발행 시점의 스냅샷은 보존한다.  발행 뒤 다른 회차가 관측을 더한 것만 허용한다
+                    # — 사양의 걷는 관측값이 지금 관측값의 부분집합이고, 값·상태·역할은 그대로여야 한다.
+                    # 이 사양을 실행하려면 새 번호로 재발행하며, 그때 스냅샷을 다시 만든다.
+                    self.assertEqual(_observation_growth_only(spec), [], path.name)
+                    continue
+                self.assertEqual(problems, [])
 
     def test_4_the_spec_check_bites(self) -> None:
         spec = json.loads((base.EXPERIMENTS / "G_A037_a033_lin_vel_z_m1.json").read_text(encoding="utf-8"))
         self.assertEqual(base.spec_problems(spec), ["base_data 없음"])
+        # 2026-09-27: A049 가 -1.0 에서 걸어 표에 들어왔으므로 G-A037 의 -1.0 은 이제 관측이다.  관문이 관측 밖 값을
+        # 무는지는 여전히 관측 밖인 -0.5 로 본다(당시 사실 "-1.0 은 관측 밖" 은 test_6 의 문서 행이 기록한다).
+        spec["rewards"]["candidate"]["lin_vel_z_l2"] = -0.5
         good = copy.deepcopy(spec)
         good["base_data"] = base.expected_base_data(spec)
         self.assertEqual(good["base_data"]["terms"]["lin_vel_z_l2"]["status"], "OUT_OF_RANGE")
@@ -122,6 +182,28 @@ class TuningBaseDataContractTest(unittest.TestCase):
         rules = (base.QUAD / "AGENTS.md").read_text(encoding="utf-8")
         self.assertIn("§0-1", rules)
 
+    def test_3b_every_harvested_round_is_in_the_table(self) -> None:
+        """2026-09-25 (결함 C-34): 사양 대조만으로는 표와 사양이 **함께** 낡은 것을 못 잡는다 — v9 가
+        그랬다.  전수 회수된 회차는 성패와 무관하게 표에 있어야 하고, 빠질 수 있는 것은 칸이 실제로
+        빈 회차뿐이다."""
+        import go2_stairs_behavior as stairs
+        self.assertEqual(stairs.weight_table_gaps(), [])
+        names = {name for name, *_rest in stairs.WEIGHT_RUNS}
+        self.assertIn("A044", names, "G-A044 failed its gate but was recovered and walked — it is data")
+        for run in stairs.PARTIAL_WEIGHT_RUNS:
+            cases = stairs.KEEP / run / "evaluation" / "candidate" / "cases"
+            with self.subTest(partial=run):
+                self.assertFalse(all((cases / f"seed_{s}" / c / "summary.json").is_file()
+                                     for s in stairs.SEEDS for c in stairs.TABLE_CASES),
+                                 "a complete round is hidden behind the partial list")
+        # 관문이 무는지: A044 를 목록에서 빼면 잡혀야 한다.
+        original = stairs.WEIGHT_RUNS
+        try:
+            stairs.WEIGHT_RUNS = tuple(r for r in original if r[0] != "A044")
+            self.assertEqual(stairs.weight_table_gaps(), ["go2_g_a044_a033_lin_vel_z_m175"])
+        finally:
+            stairs.WEIGHT_RUNS = original
+
     def test_4b_the_published_snapshot_exemption_is_narrow(self) -> None:
         """실행된 사양의 `base_data` 는 발행 시점 스냅샷이다 — 그러나 예외는 관측 위치 하나뿐이다."""
         spec = json.loads((base.EXPERIMENTS / "G_A043_a033_lin_vel_z_m15.json").read_text(encoding="utf-8"))
@@ -143,14 +225,33 @@ class TuningBaseDataContractTest(unittest.TestCase):
         작동한다.  기대값을 새 관측으로 옮기되, 반례가 실제로 하나라는 것과 기준 쌍이 여전히
         G-A033 의 것이라는 것을 함께 검사한다.
         """
+        # 2026-09-25 (결함 C-34): A044(`-1.75`)가 표에 들어오며 두 번째 반례가 됐다.  같은 방식으로
+        # 기대값을 새 관측으로 옮긴다 — 반례는 정확히 둘이고 기준 쌍은 여전히 G-A033 의 것이다.
+        # 2026-09-26 (G-A048): 기대값을 손으로 옮기는 대신 원자료(각 회차 env.yaml 가중치와 rough_forward
+        # summary.json 속도)에서 다시 유도해 표와 대조한다.  회차가 더해져도 이 검사를 고칠 필요가 없고,
+        # 표가 원자료와 어긋나면 잡힌다.  기준 쌍이 G-A033 의 것이라는 사실만 고정한다.
         s = base.singularities()
-        self.assertEqual(s["pair"], {("-2", "-0.05"), ("-1.5", "-0.05")})
+        raw = _raw_walking_rows()
+        self.assertEqual(s["pair"], {(r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) for r in raw})
         self.assertEqual(s["reference_pair"], ("-2", "-0.05"))
-        self.assertEqual([r["name"] for r in s["walk_other_pair"]], ["A043"])
+        self.assertEqual(sorted(r["name"] for r in s["walk_other_pair"]),
+                         sorted(r["name"] for r in raw
+                                if (r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) != s["reference_pair"]))
         self.assertIn("S1 걷기 조건 — 반례가 나왔다", base.DOC.read_text(encoding="utf-8"))
-        self.assertEqual(sorted(r["name"] for r in s["walk"]),
-                         ["A017", "A031", "A032", "A043", "G-A033", "Pilot-01"])
-        self.assertEqual(sorted(r["name"] for r in s["same_pair_stalled"]), ["A015", "A018"])
+        self.assertEqual(sorted(r["name"] for r in s["walk"]), sorted(r["name"] for r in raw))
+        # 발행 당시 걷는 회차 일곱은 여전히 걷는 회차다(과거 근거 보존).
+        self.assertLessEqual({"A017", "A031", "A032", "A043", "A044", "G-A033", "Pilot-01"},
+                             {r["name"] for r in s["walk"]})
+        # 2026-09-26 (G-A047): "걷지 않음" 을 정지와 저속 구간으로 나눴다(`base.motion`, 경계 0.1 은 계단 표 관문의
+        # 이동 기준).  A015(0.110)는 이동 기준 위라 저속 구간으로 재분류되고(원 속도·과거 판정은 문서에 그대로),
+        # A047(0.191)이 저속 구간으로 들어온다.  이름은 관측 범위이지 변화 판정이 아니다.
+        # 걷는 회차 목록은 그대로다 — 걷기 경계 0.2 는 옮기지 않았다.
+        self.assertEqual(sorted(r["name"] for r in s["same_pair_stalled"]), ["A018"])
+        self.assertEqual(sorted(r["name"] for r in s["same_pair_slowed"]), ["A015", "A047"])
+        doc = base.DOC.read_text(encoding="utf-8")
+        self.assertIn("저속 구간", doc)
+        self.assertIn("A015(험지 `0.110`)", doc)
+        self.assertIn("과거 판정(G-D73 기각)은 그대로다", doc)
         self.assertEqual({"A010", "A020", "A021"} - {r["name"] for r in s["one_only"]}, set())
         self.assertEqual([r["name"] for r in s["track_line"]], ["Pilot-01", "A017", "G-A033"])
         self.assertFalse(s["climb15_monotone_in_track"])
@@ -234,9 +335,23 @@ class TuningBaseDataContractTest(unittest.TestCase):
 
     def test_6_g_a037_is_recorded_as_out_of_range(self) -> None:
         doc = base.DOC.read_text(encoding="utf-8")
-        # A043 회수 뒤 이 다이얼의 걷는 관측값은 둘이다.  -1.0 은 여전히 그 구간 밖이다.
-        self.assertIn("| G-A037 | `lin_vel_z_l2` | `-1.0` | `-2.0`, `-1.5` | `OUT_OF_RANGE` |", doc)
-        self.assertIn("| G-A043 | `lin_vel_z_l2` | `-1.5` | `-2.0`, `-1.5` | `OBSERVED` |", doc)
+        # 2026-09-26 (G-A048): 걷는 관측값 목록과 위치를 원자료에서 유도한다(관측 수를 손으로 적지 않는다).
+        # -1.0 은 원자료 관측 범위 밖이어야 하고, -1.5 는 관측이어야 한다 — 이 두 사실이 검사의 뜻이다.
+        seen = sorted({float(r["lin_vel_z_l2"]) for r in _raw_walking_rows()})
+        listed = ", ".join(f"`{v}`" for v in seen)
+
+        def status(value: float) -> str:
+            if value in seen:
+                return "OBSERVED"
+            return "BETWEEN_OBSERVED" if seen[0] < value < seen[-1] else "OUT_OF_RANGE"
+
+        # 2026-09-27: A049(-1.0) 회수 뒤 -1.0 은 관측이다.  "G-A037 은 발행 당시 관측 밖이었다" 는 사실은 사양이
+        # 아니라 이 이름의 검사 역사에 있고, 지금 문서 행은 현재 관측으로 계산한다.  관측 밖 예시는 -0.5 로 둔다.
+        self.assertEqual(status(-1.0), "OBSERVED")
+        self.assertEqual(status(-0.5), "OUT_OF_RANGE")
+        self.assertEqual(status(-1.5), "OBSERVED")
+        self.assertIn(f"| G-A037 | `lin_vel_z_l2` | `-1.0` | {listed} | `{status(-1.0)}` |", doc)
+        self.assertIn(f"| G-A043 | `lin_vel_z_l2` | `-1.5` | {listed} | `{status(-1.5)}` |", doc)
         self.assertIn("업로드 보류", (ROOT / "GO2_NOW.md").read_text(encoding="utf-8"))
 
 

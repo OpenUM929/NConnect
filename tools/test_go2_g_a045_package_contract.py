@@ -71,6 +71,21 @@ def arm_file(spec: dict, name: str) -> bytes:
         return archive.read(f"{prefix}/{name}")
 
 
+def reports_bytes() -> dict[str, str]:
+    """`reports/` 아래 파일 전부의 SHA.  판독 명령 배선 검사 전후에 대조한다(결함 C-36)."""
+    base = ROOT / "workspace/training/quadruped/reports"
+    return {str(p.relative_to(base)): hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in sorted(base.rglob("*")) if p.is_file()}
+
+
+def isolated(argv: list[str], tmp: str) -> list[str]:
+    """출력 인자를 받는 판독기에는 임시 `--out` 을 준다.  배선만 재는 검사가 저장소 증거를 쓰면 안 된다."""
+    script = next(arg for arg in argv if arg.endswith(".py"))
+    if "--out" in argv or '"--out"' not in (ROOT / script).read_text(encoding="utf-8"):
+        return argv
+    return [*argv, "--out", str(Path(tmp) / "out")]
+
+
 class PairRunnerTest(unittest.TestCase):
     """새 러너가 gated campaign 러너와 어디서 갈라지는지, 이름 붙인 만큼만."""
 
@@ -235,6 +250,32 @@ class SpecTest(unittest.TestCase):
                 self.assertEqual(row["identity_sha256"], length.video_fingerprint(RULER, entry))
                 self.assertEqual(sha((ROOT / row["path"]).read_bytes()), row["sha256"])
 
+    def test_38_base_data_is_the_generators_output_in_the_spec_and_in_the_zip(self) -> None:
+        """2026-09-25 (결함 C-34): v8 의 A046 사전등록은 -1.75(G-A044, 병합되지 않은 탈락 회차)를
+        걷기 관측으로 인용하고 walk_margin 을 비워 두었는데, 이 계약이 `spec_problems` 를 부르지
+        않아 조용히 지나갔다.  옛 A043 계약이 하던 대조를 되살리고, 사양 파일만이 아니라 **팔 ZIP 에
+        실려 나가는 experiment.json** 에도 건다 — 작업트리만 고치고 발행물은 옛것인 상태를 막는다."""
+        import go2_tuning_base_data as base_data
+        for spec in SPECS:
+            with self.subTest(arm=spec["work_id"]):
+                self.assertEqual(base_data.spec_problems(spec), [])
+                shipped = json.loads(arm_file(spec, "experiment.json").decode("utf-8"))
+                self.assertEqual(shipped.get("base_data"), spec.get("base_data"))
+                self.assertEqual(base_data.spec_problems(shipped), [])
+        # 2026-09-25 v10 정정: v9 는 여기서 -1.75 의 **부재**를 단정했다 — 정책 기각을 관측 부재로 읽은
+        # 오류였다.  G-A044 는 승급·병합되지 않았지만 전수 회수됐고 걸었다(rough_forward 0.379).
+        terms = REPLICATION["base_data"]["terms"]["lin_vel_z_l2"]
+        self.assertIn(-1.75, terms["walking_values"],
+                      "a rejected policy is still an observation — G-A044 walked at -1.75")
+        import go2_stairs_behavior as stairs
+        self.assertEqual(stairs.weight_table_gaps(), [],
+                         "a harvested round is missing from the base-data table (C-12, C-34)")
+        # 2026-09-25 (claim_check 맹점 증가 감사): NOW 가 v10 설명에 이 목록을 손으로 적는다.  소수
+        # 1~2자리라 claim_check 가 보지 못하므로, 발행 사양의 값과 글자 그대로 같은지 여기서 건다.
+        now = (ROOT / "GO2_NOW.md").read_text(encoding="utf-8")
+        self.assertIn(f"`{terms['walking_values']}`", now,
+                      "GO2_NOW.md quotes a lin_vel_z walking list the shipped A046 spec does not hold")
+
 
 class PackageTest(unittest.TestCase):
     def test_13_the_pair_zip_holds_exactly_what_it_should(self) -> None:
@@ -365,21 +406,24 @@ class GuideTest(unittest.TestCase):
                 commands.append(buffer)
                 buffer = ""
         self.assertEqual(len(commands), 2 * len(SPECS), commands)
+        before = reports_bytes()
         with tempfile.TemporaryDirectory() as tmp:
             missing = Path(tmp) / "no_harvest"
             for command in commands:
                 with self.subTest(command=command[:70]):
                     argv = command.split()
                     self.assertTrue((ROOT / argv[2]).is_file(), argv[2])
-                    swapped = [str(missing) if arg.startswith("workspace/_keep/") else arg
-                               for arg in argv[1:]]
+                    swapped = isolated([str(missing) if arg.startswith("workspace/_keep/") else arg
+                                        for arg in argv[1:]], tmp)
                     done = subprocess.run([sys.executable, *swapped], capture_output=True,
-                                          text=True, cwd=ROOT, timeout=300,
+                                          text=True, encoding="utf-8", cwd=ROOT, timeout=300,
                                           env=dict(os.environ, PYTHONIOENCODING="utf-8"))
                     self.assertNotEqual(done.returncode, 2,
                                         "명령이 인자에서 죽는다:\n" + done.stderr[-400:])
                     self.assertRegex(done.stdout, r"(VERDICT|SCREENING)\s+[A-Z_]+",
                                      done.stdout[-300:] + done.stderr[-300:])
+        # 2026-09-25 (결함 C-36): 배선 검사는 저장소 증거를 쓰지 않는다.
+        self.assertEqual(reports_bytes(), before, "a wiring check wrote into tracked evidence")
         self.assertIn("--rule-version post_a043_push4_v1", self.guide)
         for spec in SPECS:
             self.assertIn(f"verify_go2_basic_motion_harvest.py {spec['work_id']}", self.guide)

@@ -151,9 +151,17 @@ class StairsBehaviorContractTest(unittest.TestCase):
         rows = {r["name"]: r for r in read("WEIGHT_OUTCOME.csv")}
         self.assertEqual(len(rows), len(stairs.WEIGHT_RUNS))
         moving = {n for n, r in rows.items() if float(r["rough_forward_speed"]) >= 0.1}
-        self.assertEqual(moving, {"Pilot-01", "A015", "A017", "A031", "A032", "G-A033"})
+        # 2026-09-25: A043(-1.5)·A044(-1.75)가 반례로 들어왔고, 문서 §8-1b 특이점 1 을 날짜 붙여
+        # 정정했다.  단정은 정정된 문장을 따른다 — `lin_vel_z` 는 "-2 와 같다" 가 아니라 "-2 보다 세지 않다".
+        # 2026-09-26: A047(flat -0.5)은 느려졌지만 움직였다(험지 0.191) — 두 값을 가진 걷기 조합의 행이다.
+        # 2026-09-27: A048(-1.25, 2026-09-26 수록 때 이 집합을 고치지 않았다)·A049(-1.0)·A050(-1.375)도 움직였다.
+        # 셋 다 lin_vel_z 완화·ang_vel_xy -0.05 라 아래 "둘 다" 규칙과 맞는다.
+        self.assertEqual(moving, {"Pilot-01", "A015", "A017", "A031", "A032", "G-A033", "A043", "A044", "A047",
+                                  "A048", "A049", "A050"})
+        self.assertIn("2026-09-25 정정", REPORT.read_text(encoding="utf-8"))
+        self.assertIn("2026-09-26 추가", REPORT.read_text(encoding="utf-8"))
         for name, row in rows.items():
-            both = float(row["lin_vel_z_l2"]) == -2 and float(row["ang_vel_xy_l2"]) == -0.05
+            both = float(row["lin_vel_z_l2"]) >= -2 and float(row["ang_vel_xy_l2"]) == -0.05
             with self.subTest(name=name):
                 if name in moving:
                     self.assertTrue(both)

@@ -64,7 +64,9 @@ class InferenceIntegrityTest(unittest.TestCase):
     def test_information_run_cannot_skip_common_checks(self):
         methods = (
             "test_10_a_recommendation_is_newer_than_every_executed_run",
-            "test_11_only_a_reward_weight_change_can_be_recommended",
+            # 2026-09-24 scope fix moved the INFORMATION_RUN side of test_11 into test_11b (promotion must be
+            # forbidden in writing); test_11 itself now binds RECOMMENDED only.  Probe the check that applies.
+            "test_11b_a_non_reward_run_must_forbid_promotion_in_writing",
             "test_15_a_recommendation_that_leans_on_an_open_decision_must_name_it",
             "test_16_a_recommendation_stands_on_an_analyst_readout",
             "test_12_a_recommendation_cites_the_run_ledger",
@@ -72,8 +74,9 @@ class InferenceIntegrityTest(unittest.TestCase):
         spec = {"work_id": "G-A001", "change_class": "training_length",
                 "inference": {"status": "INFORMATION_RUN", "rows": []}}
         for method in methods:
-            # The open-decision test needs a class with a known decision hook.
-            candidate = {**spec, "change_class": "env_reward_weight"} if "test_15" in method else spec
+            # The open-decision test needs a class with a known decision hook.  2026-09-28: U1 (env_reward_weight)
+            # was approved by the user (G-D-U1-APPROVED-20260928) and no longer hooks; U2 (training_seed) is still open.
+            candidate = {**spec, "change_class": "training_seed"} if "test_15" in method else spec
             case = gate.InferenceChainGateTest(method)
             with patch.object(gate, "_new_specs", return_value=[(Path("probe.json"), candidate)]):
                 result = unittest.TestResult()

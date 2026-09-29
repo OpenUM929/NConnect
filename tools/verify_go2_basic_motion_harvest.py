@@ -141,7 +141,9 @@ def apply_plan_screening(report: dict[str, Any], keep: Path, baseline_arm: Path,
         keep, baseline_arm,
         expected_candidate_identity=candidate_identity,
         expected_baseline_identity=baseline_identity,
-        cases=screening.cases_for(plan_screening_version(spec)))
+        cases=screening.cases_for(plan_screening_version(spec)),
+        improvement=screening.improvement_required(plan_screening_version(spec)),
+        margin=screening.guard_margin(plan_screening_version(spec)))
     report["plan_screening"] = plan_report
     report["combined_verdict"] = combined_verdict(
         artifact_faults=report.get("artifact_faults", []), fact_verdict=report["verdict"],

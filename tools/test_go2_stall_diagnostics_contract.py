@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -144,6 +146,47 @@ class StallDiagnosticsContract(unittest.TestCase):
             self.assertEqual(sidecar["schema_version"], stall.SCHEMA_VERSION)
             self.assertEqual(sidecar["specification"]["coordinate_frame"], "body frame")
             self.assertEqual(sidecar["specification"]["window"]["initial_grace_s"], 0.5)
+
+
+class RecoveredEvidenceContract(unittest.TestCase):
+    """결함 C-36.  A041 날짜 폴더는 테스트 부작용에 덮였다가 원 회수물에서 재생성됐다.  복구 기록이
+    회수물 식별자 · 입력 SHA · 재생성 명령 · 복구 전후 SHA 를 잇고, 그 명령이 **지금도 같은 바이트**를
+    내는지 본다.  회수물이 없는 PC 에서는 재생성 대조만 건너뛴다(기록·현재 파일 대조는 항상 한다)."""
+
+    ROOT = Path(__file__).resolve().parents[1]
+    DATED = ROOT / "workspace/training/quadruped/reports/evidence/go2_stall_diagnostics_20260921"
+
+    def setUp(self) -> None:
+        self.record = json.loads((self.DATED / "RECOVERY_20260925.json").read_text(encoding="utf-8"))
+
+    @staticmethod
+    def sha(path: Path) -> str:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    def test_record_names_the_current_bytes(self) -> None:
+        for name, digest in self.record["after_sha256"].items():
+            self.assertEqual(self.sha(self.DATED / name), digest, name)
+        self.assertNotEqual(self.record["before_sha256"], self.record["after_sha256"])
+        provenance = json.loads((self.DATED / "STALL_DIAGNOSTICS_PROVENANCE.json").read_text(encoding="utf-8"))
+        self.assertEqual(provenance["arms"][1]["model_sha256"], self.record["source_harvest"]["model_sha256"])
+        self.assertIn(f"--out {self.DATED.relative_to(self.ROOT).as_posix()}", self.record["command"])
+
+    def test_the_recorded_command_still_makes_the_same_bytes(self) -> None:
+        source = self.record["source_harvest"]
+        harvest = self.ROOT / source["dir"]
+        if not harvest.is_dir():
+            self.skipTest("A041 회수물이 이 PC 에 없다 — 재생성 대조 불가")
+        self.assertEqual(self.sha(self.ROOT / source["result_zip"]), source["result_zip_sha256"])
+        for rel, digest in source["inputs"].items():
+            self.assertEqual(self.sha(harvest / rel), digest, rel)
+        with tempfile.TemporaryDirectory() as tmp:
+            argv = self.record["command"].split()[1:]
+            argv[argv.index("--out") + 1] = tmp
+            done = subprocess.run([sys.executable, *argv], cwd=self.ROOT, capture_output=True,
+                                  text=True, encoding="utf-8", timeout=300)
+            self.assertEqual(done.returncode, 0, done.stderr[-400:])
+            for name, digest in self.record["after_sha256"].items():
+                self.assertEqual(self.sha(Path(tmp) / name), digest, name)
 
 
 if __name__ == "__main__":

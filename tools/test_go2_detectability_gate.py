@@ -65,9 +65,58 @@ GRANDFATHERED = {
 PUBLISHED_SNAPSHOT = {
     ("G-A037", "reports/GO2_TUNING_BASE_DATA.md"):
         "A043 회수로 이 다이얼의 걷는 관측값이 `-3, -2 | -2` 에서 `-2.0`·`-1.5` 둘로 바뀌었다",
-    ("G-A043", "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv"):
-        "같은 회수로 `-1.5` 의 range_status 가 OUT_OF_RANGE 에서 OBSERVED 가 됐다",
 }
+# 2026-09-25 (결함 C-34 검토): 위 면제는 그 자료의 인용 **전체**를 건너뛴다.  CSV 인용은 더 좁게 한다 —
+# ① 사양 바이트가 서버가 실행한 바이트와 같고(`go2_tuning_base_data.EXECUTED_SPECS` 의 SHA),
+# ② 선택자가 현재 CSV 의 정확히 한 행에 맞고, ③ 여기 **이름 붙인 칸만** 적힌 옛값 → 새값으로 움직였고
+# 나머지 인용 칸은 전부 현재 값과 같아야 한다.  다른 칸이 움직이면 면제되지 않는다.
+SNAPSHOT_DRIFT = {
+    ("G-A043", "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv"):
+        # A043 자기 회수(2026-09-22)로 -1.5 가 관측이 됐다.
+        {"range_status": ("OUT_OF_RANGE", "OBSERVED")},
+    ("G-A044", "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv"):
+        # A044 가 기반 데이터 표에 들어와(2026-09-25, C-34) -1.75 가 관측이 됐다.
+        {"range_status": ("BETWEEN_OBSERVED", "OBSERVED")},
+    ("G-A048", "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv"):
+        # A048 자기 회수(2026-09-26)로 -1.25 가 관측이 됐다.
+        {"range_status": ("OUT_OF_RANGE", "OBSERVED")},
+    ("G-A049", "reports/evidence/go2_reward_mechanism_20260917/PROBES.csv"):
+        # A049 가 기반 데이터 표에 들어와(2026-09-27, 외부 검토) -1.0 이 관측이 됐다.
+        {"range_status": ("OUT_OF_RANGE", "OBSERVED")},
+}
+
+
+# 2026-09-27 (결함 C-37).  G-A050 v2 사양의 CSV 인용 세 행은 `value` 에 CSV 칸에 없는 반올림 값(7.41·4.59·4.58)을
+# 적었다 — key·선택자·칸 인용은 원자료와 맞지만 value 가 칸에 묶이지 않고 글자 그대로도 없다(4.59·4.58).  이 사양은 발행·실행됐고 ZIP 은 불변이라
+# 고쳐 통과시키지 않는다.  **그 세 행의 value 검사(글자 그대로·칸 묶임)만** 면제하고 발행본이 실제로 있는지 확인한다.  새 사양은 여기
+# 들어갈 수 없다 — 재발은 발행 빌더(`build_go2_full_collection_release.validate`)가 발행 전에 막는다.
+UNBOUND_VALUE_EXECUTED = {
+    ("G-A050", "reports/evidence/go2_axis_bottleneck_four_arms_20260927/AXIS_BOTTLENECK_FOUR_ARMS.csv"):
+        {"G-A043,-1.5,G3": "7.41", "G-A049,-1.0,G3": "4.59", "G-A043,-1.5,G2": "4.58"},
+}
+# 2026-09-27 (C-37 보강, Codex 검토): 이름·출처·행 키와 "history 에 ZIP 이 있다"만으로는 같은 G-A050 이름으로
+# 값을 다시 바꿔도 면제된다.  그래서 면제를 **서버가 실행한 사양 바이트**에 묶는다 — 사양 전체 SHA 가 아래 값이고,
+# 회수 사본(`_keep/.../meta/experiment.json`)도 같은 SHA 이며, 행의 value 가 위에 적힌 값과 정확히 같아야 한다.
+C37_EXECUTED_SPEC = {
+    "G-A050": ("bfa1c12ffafc9a601df192b0aec97a6bf7daab04512c6171946318ae4c54dd4d",
+               "workspace/_keep/go2_g_a050_a033_lin_vel_z_m1375/meta/experiment.json"),
+}
+
+
+def _c37_exempt(work_id, source: str, row: dict, spec: dict | None) -> bool:
+    """C-37 면제 조건 — 셋 모두: 행 key·value 가 등록값과 같고, 사양 바이트가 실행된 SHA 이고, 회수 사본도 그 SHA 다."""
+    pinned_rows = UNBOUND_VALUE_EXECUTED.get((work_id, source))
+    pinned_spec = C37_EXECUTED_SPEC.get(str(work_id))
+    if not pinned_rows or not pinned_spec or spec is None:
+        return False
+    if pinned_rows.get(str(row.get("key"))) != str(row.get("value")):
+        return False
+    import hashlib
+    import go2_tuning_base_data as base_data
+    if hashlib.sha256(base_data.spec_bytes(spec)).hexdigest() != pinned_spec[0]:
+        return False
+    kept = ROOT / pinned_spec[1]
+    return kept.is_file() and hashlib.sha256(kept.read_bytes()).hexdigest() == pinned_spec[0]
 
 
 def _published(work_id: str) -> bool:
@@ -110,10 +159,27 @@ def _new_specs() -> list[tuple[Path, dict]]:
     return [(p, s) for p, s in _specs() if s.get("work_id") not in GRANDFATHERED]
 
 
-def _check_rows(test: unittest.TestCase, name: str, rows: list, work_id: str | None = None) -> None:
+def _check_rows(test: unittest.TestCase, name: str, rows: list, work_id: str | None = None,
+                spec: dict | None = None) -> None:
     for row in rows:
         test.assertIsInstance(row, dict, f"{name}: 행은 객체다")
         source = str(row.get("source", ""))
+        drift = SNAPSHOT_DRIFT.get((work_id, source))
+        if drift is not None:
+            import go2_tuning_base_data as base_data
+            test.assertTrue(spec is not None and base_data.is_executed_spec(spec),
+                            f"{name}: 실행된 사양 바이트가 아닌데 셀 drift 면제를 쓴다")
+            records = list(csv.DictReader(io.StringIO((QUAD / source).read_text(encoding="utf-8"))))
+            matches = [r for r in records if all(r[k] == v for k, v in row["selector"].items())]
+            test.assertEqual(len(matches), 1, f"{name}: {source} selector must match exactly one row")
+            for column, cited in row["cells"].items():
+                if column in drift:
+                    test.assertEqual((cited, matches[0][column]), drift[column],
+                                     f"{name}: {source} {column} 가 등록된 옛값→새값이 아니다")
+                else:
+                    test.assertEqual(matches[0][column], cited, f"{name}: {source} {column} 도 움직였다")
+            test.assertTrue(str(row.get("reads", "")).strip())
+            continue
         if (work_id, source) in PUBLISHED_SNAPSHOT:
             # 발행된 사양이 인용한 자료가 그 뒤 갱신됐다 — 사양은 고칠 수 없다(아래 상수 설명).
             test.assertTrue(_published(work_id),
@@ -123,8 +189,11 @@ def _check_rows(test: unittest.TestCase, name: str, rows: list, work_id: str | N
         path = QUAD / source
         test.assertTrue(path.is_file(), f"{name}: 원자료 {source} 가 없다")
         text = path.read_text(encoding="utf-8")
+        c37 = _c37_exempt(work_id, source, row, spec)
         for key in ("key", "value"):
             test.assertTrue(str(row.get(key, "")).strip(), f"{name}: {source} 행에 {key} 가 없다")
+            if key == "value" and c37:
+                continue            # C-37: 반올림 값 — 아래에서 발행본 존재만 확인하고 칸 대조는 그대로 한다
             test.assertIn(str(row[key]), text, f"{name}: {source} 에 {row[key]!r} 가 글자 그대로 없다")
         if path.suffix.lower() == ".csv":
             # A literal somewhere in the same record is not a column attribution.
@@ -150,8 +219,11 @@ def _check_rows(test: unittest.TestCase, name: str, rows: list, work_id: str | N
                 test.assertEqual(matches[0][column], expected,
                                  f"{name}: {source} wrong value for column {column}")
             quoted = next(csv.reader([str(row["value"])]))
-            test.assertTrue(all(value in row["cells"].values() for value in quoted),
-                            f"{name}: legacy value is not bound to cited cells")
+            if c37:
+                test.assertTrue(_published(str(work_id)), f"{name}: 발행본이 없는데 C-37 면제를 쓴다")
+            else:
+                test.assertTrue(all(value in row["cells"].values() for value in quoted),
+                                f"{name}: legacy value is not bound to cited cells")
         test.assertTrue(str(row.get("reads", "")).strip(), f"{name}: {source} 행을 어떻게 읽었는지(reads) 없다")
 
 
@@ -186,8 +258,8 @@ class InferenceChainGateTest(unittest.TestCase):
             block = spec["inference"]
             with self.subTest(spec=path.name):
                 self.assertGreaterEqual(len(block["rows"]), 2, f"{path.name}: 지지 행은 둘 이상")
-                _check_rows(self, path.name, block["rows"], spec.get("work_id"))
-                _check_rows(self, path.name, block["contradicting"], spec.get("work_id"))
+                _check_rows(self, path.name, block["rows"], spec.get("work_id"), spec)
+                _check_rows(self, path.name, block["contradicting"], spec.get("work_id"), spec)
 
     def test_3_counterevidence_requires_an_exploratory_response(self) -> None:
         for path, spec in _new_specs():
@@ -510,6 +582,41 @@ class InferenceChainGateTest(unittest.TestCase):
                 self.assertTrue([s for s in sources if s.startswith("reports/runs/")],
                                 f"{path.name}: reports/runs/ 원장 자산을 인용한 행이 없다")
 
+
+    def test_19_the_c37_exemption_does_not_travel_to_a_new_spec(self) -> None:
+        """C-37 면제는 발행된 G-A050 의 그 세 행에만 붙는다.  같은 행을 다른 회차 이름으로 들고 오면 막힌다."""
+        spec = json.loads((SPECS / "G_A050_a033_lin_vel_z_m1375.json").read_text(encoding="utf-8"))
+        rows = [r for r in spec["inference"]["rows"] + spec["inference"]["contradicting"]
+                if (spec["work_id"], r["source"]) in UNBOUND_VALUE_EXECUTED
+                and r["key"] in UNBOUND_VALUE_EXECUTED[(spec["work_id"], r["source"])]]
+        self.assertEqual(len(rows), 3)
+        _check_rows(self, "G-A050", rows, "G-A050", spec)            # 발행본이 있으므로 면제된다
+        for row in rows:
+            with self.subTest(key=row["key"]), self.assertRaises(AssertionError):
+                _check_rows(self, "new", [row], "G-A999", spec)
+
+
+    def test_20_the_c37_exemption_rejects_a_tampered_g_a050(self) -> None:
+        """G-A050 이름을 그대로 둔 채 면제 행의 value 를 바꾸거나 사양의 다른 바이트를 바꾸면 면제가 풀려 막힌다."""
+        import copy
+        spec = json.loads((SPECS / "G_A050_a033_lin_vel_z_m1375.json").read_text(encoding="utf-8"))
+        source = "reports/evidence/go2_axis_bottleneck_four_arms_20260927/AXIS_BOTTLENECK_FOUR_ARMS.csv"
+        keys = UNBOUND_VALUE_EXECUTED[("G-A050", source)]
+        # ① 같은 사양·같은 행에서 value 만 다른 반올림 값으로 바꾼다
+        for row in spec["inference"]["rows"] + spec["inference"]["contradicting"]:
+            if row["source"] == source and row["key"] in keys:
+                forged = dict(row, value="9.99")
+                with self.subTest(key=row["key"], case="value"), self.assertRaises(AssertionError):
+                    _check_rows(self, "G-A050", [forged], "G-A050", spec)
+        # ② 면제 행은 그대로 두고 사양의 다른 곳을 바꾼다 — 실행된 바이트가 아니므로 면제되지 않는다
+        tampered = copy.deepcopy(spec)
+        tampered["inference"]["singularity"] = str(tampered["inference"]["singularity"]) + " "
+        rows = [r for r in tampered["inference"]["rows"] + tampered["inference"]["contradicting"]
+                if r["source"] == source and r["key"] in keys]
+        self.assertEqual(len(rows), 3)
+        for row in rows:
+            with self.subTest(key=row["key"], case="spec_bytes"), self.assertRaises(AssertionError):
+                _check_rows(self, "G-A050", [row], "G-A050", tampered)
 
 if __name__ == "__main__":
     unittest.main()

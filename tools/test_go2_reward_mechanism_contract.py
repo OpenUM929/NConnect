@@ -74,8 +74,14 @@ class RewardMechanismContractTest(unittest.TestCase):
         values = mech.read("TERM_VALUES.csv")
         rows = mech.read("RUN_MARGIN.csv")
         f = mech.findings(values, rows, mech.read("PROBES.csv"), [])
-        self.assertEqual(f["wrong"], [], "경계대 밖에서 margin과 실제 걷기가 어긋났다 — 보고서 §2·정책을 고쳐라")
-        self.assertEqual(f["wrong_loo"], [])
+        # 2026-09-26 (G-A047): 처음으로 어긋난 회차가 생겼다.  A047 은 모형 항(`MARGIN_TERMS`) 밖의
+        # `flat_orientation_l2` 만 바꿔 margin 이 G-A033 과 같게(걷기 구간) 계산됐는데, 실제 험지 속도는 걷기
+        # 경계 아래(저속 구간)였다.  보고서 §2 가 이 이름을 적고 정책 §8-2 가 "걷기 구간은 지지 근거가 아니다" 로
+        # 고쳐졌다.  기대값을 관측으로 옮기되, 어긋난 회차가 그 하나뿐이고 멈춘 것이 아니라 저속 구간이라는 것을 함께 본다.
+        self.assertEqual([r["name"] for r in f["wrong"]], ["A047"], "경계대 밖에서 margin과 실제 걷기가 어긋났다 — 보고서 §2·정책을 고쳐라")
+        self.assertEqual([r["name"] for r in f["wrong_loo"]], ["A047"])
+        self.assertEqual(base.motion(f["wrong"][0]), "저속 구간")
+        self.assertIn("A047(예측 걷기 구간, 실제 저속 구간)", mech.DOC.read_text(encoding="utf-8"))
         self.assertEqual({r["name"] for r in f["band_rows"]}, {"Pilot-01", "A018"})
         self.assertEqual(len(rows), len(base.weights()))
         top = max(rows, key=lambda r: float(r["margin"]))
@@ -83,10 +89,32 @@ class RewardMechanismContractTest(unittest.TestCase):
         # (`lin_vel_z_l2 -1.5`)이 표에 들어오면서 최대가 옮겨갔다 — 벌점 한 항을 덜어냈으니 산수상
         # 당연하고, 그런데도 A043 은 G2 를 잃었다.  즉 **margin 최대는 좋은 정책이라는 뜻이 아니다**.
         # 기대값을 관측으로 옮기고, 원래 지키려던 것(기준선이 걷는 회차 중 상위)만 남긴다.
-        self.assertEqual(top["name"], "A043")
+        # 2026-09-26 (G-A048): 회차 이름을 손으로 적는 대신 가중치 표에서 유도한다.  지키는 사실은 같다 —
+        # margin 최대는 기준선에서 `lin_vel_z_l2` 벌점 하나만 가장 많이 덜어낸 회차다(산수의 결과).
+        import go2_stairs_behavior as stairs
+        ref_row = next(w for w in base.weights() if w["name"] == mech.BASELINE)
+        relaxed_only = [w for w in base.weights()
+                        if [t for t in stairs.WEIGHT_TERMS if w[t] != ref_row[t]] == ["lin_vel_z_l2"]
+                        and float(w["lin_vel_z_l2"]) > float(ref_row["lin_vel_z_l2"])]
+        self.assertEqual(top["name"], max(relaxed_only, key=lambda w: float(w["lin_vel_z_l2"]))["name"])
         walking = sorted((float(r["margin"]), r["name"]) for r in rows
                          if base.walking(next(w for w in base.weights() if w["name"] == r["name"])))
-        self.assertEqual([name for _m, name in walking][-2:], [mech.BASELINE, "A043"])
+        # 2026-09-25 (결함 C-34): A044(-1.75)가 표에 들어와 기준선은 걷는 회차 중 3위가 됐다.  "상위 2"
+        # 라는 순위 대신, 순위가 옮겨간 **이유**를 단정한다 — 기준선을 넘는 걷는 회차는 기준선에서
+        # `lin_vel_z_l2` 벌점 하나만 덜어낸 회차뿐이다(산수상의 이득이지 좋은 정책의 표지가 아니다).
+        baseline_margin = float(self.rows[mech.BASELINE]["margin"])
+        above = [name for m, name in walking if m > baseline_margin]
+        # 걷는 회차 가운데 lin_vel_z_l2 만 덜어낸 회차 전부가 기준선 위에 있고, 그 밖의 회차는 없다.
+        self.assertEqual(sorted(above), sorted(w["name"] for w in relaxed_only if base.walking(w)))
+        self.assertLessEqual({"A043", "A044"}, set(above))     # 발행 당시 관측(과거 근거 보존)
+        ref = next(w for w in base.weights() if w["name"] == mech.BASELINE)
+        for name in above:
+            row = next(w for w in base.weights() if w["name"] == name)
+            with self.subTest(above=name):
+                import go2_stairs_behavior as stairs
+                self.assertEqual([t for t in stairs.WEIGHT_TERMS if row[t] != ref[t]], ["lin_vel_z_l2"])
+                self.assertGreater(float(row["lin_vel_z_l2"]), float(ref["lin_vel_z_l2"]))
+        self.assertEqual([name for _m, name in walking][-(len(above) + 1)], mech.BASELINE)
         for name in ("A016", "A024", "Default-01", "chain01", *mech.STOPPED_CHILDREN):
             self.assertEqual(self.rows[name]["zone"], "STOP", name)
         # 원문 식: 걷기로 늘어나는 보상은 track 하나뿐이다.
@@ -152,7 +180,7 @@ class RewardMechanismContractTest(unittest.TestCase):
         self.assertIn("단독 레버로 다시 쓰지 않는다", doc)
         # 2026-09-22: A043 도 회수 뒤 §9 로 대조했다(계획 §7).  회수된 회차가 대조 없이 지나가면
         # 예측력 검사가 사라지므로, 이 목록은 늘어나는 것이 정상이고 계수에는 여전히 들어가지 않는다.
-        self.assertEqual([w for w, *_ in mech.HELD_OUT], ["G-A038", "G-A043"])
+        self.assertEqual([w for w, *_ in mech.HELD_OUT], ["G-A038", "G-A043", "G-A047"])
         for work in ("G-A038", "G-A043"):
             self.assertNotIn(work, mech.train_runs(), "held-out runs must not enter the coefficients")
         self.assertIn("네 상황 중 둘이 방향까지 틀렸다", doc)

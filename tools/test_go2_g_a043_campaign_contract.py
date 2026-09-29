@@ -134,18 +134,52 @@ class PackageTest(unittest.TestCase):
         shipped = {k: v for k, v in PAYLOAD.items() if not k.startswith("arms/")}
         self.assertEqual(build.unreachable_scripts(shipped, ARM, SPEC["runner"]), [])
 
-    def test_6_the_value_is_outside_the_observed_range_and_says_so(self) -> None:
-        self.assertEqual(base_data.spec_problems(SPEC), [])
-        self.assertEqual(base_data.walking_values(TERM), [-2.0],
-                         "every walking run carries -2.0, so the slope of this dial is unmeasured")
+    # 2026-09-25 (결함 C-29): 이 검사는 **발행 당시**의 사실(-1.5 는 관측 밖)을 현재 표로 물어서, A043
+    # 자신이 걸어 표에 실리는 순간 스스로 빨개졌다.  당시 근거와 현재 관측을 **따로** 묻는다 — 현재 표를
+    # 과거 상태로 되돌리지 않는다.  당시 근거는 두 가지로 고정한다: ① 서버가 실행하고 돌려보낸 사양
+    # 바이트(`base_data.EXECUTED_SPECS` 의 SHA), ② 그 사양이 발행될 때 표에 있던 회차 목록.  ②는 표
+    # 생성기가 G-A033 에서 멈춰 있던 목록이다(`go2_stairs_behavior.WEIGHT_RUNS` 의 C-12 주석 — A043 행은
+    # 2026-09-22 회수 뒤에 들어왔다).  현재 목록에서 유도하지 않고 이름으로 적는다.
+    ROUNDS_AT_PUBLICATION = ("Default-01", "feet_air_time_020_v1", "A010", "A013", "A024", "track_120_v1",
+                             "chain01", "A020", "A021", "A022", "Pilot-01", "A015", "A016", "A018", "A017",
+                             "A031", "A032", "G-A033")
+
+    def test_6_the_value_was_outside_the_observed_range_when_published(self) -> None:
+        """당시: 발행·실행된 사양과 당시 회차 목록 둘 다 -1.5 를 관측 밖으로 둔다."""
+        pinned, source = base_data.EXECUTED_SPECS[SPEC["work_id"]]
+        executed = (ROOT / source).read_bytes()
+        self.assertEqual(hashlib.sha256(executed).hexdigest(), pinned)
+        self.assertEqual(executed, base_data.spec_bytes(SPEC), "the spec file is not the executed spec")
         declared = SPEC["base_data"]["terms"][TERM]
+        self.assertEqual(declared["walking_values"], [-2.0])
         self.assertEqual(declared["status"], "OUT_OF_RANGE")
         self.assertGreaterEqual(len(declared["out_of_range_reason"]), 20)
+        rows = {r["name"]: r for r in base_data.weights()}
+        self.assertLessEqual(set(self.ROUNDS_AT_PUBLICATION), set(rows))
+        then = sorted({float(rows[n][TERM]) for n in self.ROUNDS_AT_PUBLICATION if base_data.walking(rows[n])})
+        self.assertEqual(then, declared["walking_values"],
+                         "the declared snapshot does not recompute from the rounds that existed then")
+        self.assertNotIn(float(PROBE_TO), then)
         probes = {(r["term"], r["to"]): r for r in mech.read("PROBES.csv")}
         row = probes[(TERM, PROBE_TO)]
-        self.assertEqual((row["zone"], row["range_status"]), ("WALK", "OUT_OF_RANGE"))
+        self.assertEqual(row["zone"], "WALK")
         self.assertGreater(float(row["margin"]), float(row["margin_from"]))
         self.assertIn(row["margin"], SPEC["value_derivation"]["walk_margin"])
+
+    def test_6b_the_value_is_observed_now(self) -> None:
+        """지금: A043(-1.5)과 A044(-1.75)가 회수돼 걸었으므로 둘 다 관측이다.  test_6 과 동시에 성립한다."""
+        # 2026-09-26: 뒤 회차가 관측을 더한다(G-A048 -1.25).  이 검사가 묻는 것은 "이 값이 이제 관측이다" 이지
+        # 관측 목록 전체가 아니다 — 목록은 늘어날 수 있고, 세 값이 빠지면 안 된다.
+        self.assertLessEqual({-2.0, -1.75, -1.5}, set(base_data.walking_values(TERM)))
+        self.assertEqual(base_data.range_status(TERM, float(PROBE_TO)), "OBSERVED")
+        probes = {(r["term"], r["to"]): r for r in mech.read("PROBES.csv")}
+        self.assertEqual(probes[(TERM, PROBE_TO)]["range_status"], "OBSERVED")
+        # 실행 사양 예외는 바이트가 같을 때만 — 한 칸이라도 바꾸면 최신 검사를 그대로 받는다.
+        self.assertEqual(base_data.spec_problems(SPEC), [])
+        touched = copy.deepcopy(SPEC)
+        touched["notes"] = str(touched.get("notes")) + " "
+        self.assertFalse(base_data.is_executed_spec(touched))
+        self.assertNotEqual(base_data.spec_problems(touched), [])
 
     def test_7_the_forecast_predicts_a_loss_and_the_spec_carries_it(self) -> None:
         """G-A042 의 네 칸은 전부 양수였다.  이 팔은 두 칸이 음수다 — 예측된 손실을 숨기지 않는다."""
