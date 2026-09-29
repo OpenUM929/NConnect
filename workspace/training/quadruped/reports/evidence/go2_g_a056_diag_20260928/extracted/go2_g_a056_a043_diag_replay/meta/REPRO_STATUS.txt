@@ -1,0 +1,6 @@
+PLAIN_VS_DIAG_rough_lateral=IDENTICAL
+PLAIN_VS_DIAG_combined_yaw_right=IDENTICAL
+PLAIN_VS_VIDEO_rough_lateral_env5=IDENTICAL
+PLAIN_VS_VIDEO_rough_lateral_env11=IDENTICAL
+PLAIN_VS_VIDEO_combined_yaw_right_env3=IDENTICAL
+PLAIN_VS_VIDEO_combined_yaw_right_env16=IDENTICAL

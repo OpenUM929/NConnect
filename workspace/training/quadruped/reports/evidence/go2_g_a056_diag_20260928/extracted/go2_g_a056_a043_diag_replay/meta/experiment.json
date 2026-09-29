@@ -1,0 +1,90 @@
+{
+ "work_id": "G-A056",
+ "kind": "diagnostic_replay_no_training",
+ "edition": "v2",
+ "plan": "workspace/training/quadruped/upload/plan/GO2_G_A056_A043_DIAG_REPLAY_PLAN_20260928.md",
+ "request": "Codex 2026-09-28 제작·검증 지시 (A043 진단 재생)",
+ "policy": {
+  "source_run": "G-A043",
+  "checkpoint": "iter 900",
+  "model_sha256": "4d9236818f998bdb87efaea4acfa1e4c861b0d87947229e88f9175495066bd6b",
+  "env_sha256": "9af8f18a084f3008d6a6a3563a3c56091d9eb8236d42db6abbb06c0fe926a06d"
+ },
+ "reward_change": null,
+ "training": null,
+ "evaluator": {
+  "schema": 6,
+  "sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+  "diag_module_sha256": "f3a966cc51853d1e855d25c0a1127ec625b07ddaeceabc1800ce3bb59adb4eb4",
+  "diag_wrapper_sha256": "8e48b506b4475508d756747cee0878d6f73d2bc4c0d9c8a30643b4b6688675ed",
+  "camera_probe_sha256": "676f9814fa73853e90df87f9b088d30d987add7f0f130281d92d7433aa1a2cd4",
+  "camera_wrapper_sha256": "7589808ef13cc5bc06f8f9c9f6ecdfa703930e94e95330ac4068ee3b22fd07bc"
+ },
+ "runs": [
+  {
+   "label": "plain",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "plain",
+   "case": "combined_yaw_right",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "combined_yaw_right",
+   "seed": 202
+  }
+ ],
+ "videos": [
+  {
+   "case": "rough_lateral",
+   "seed": 202,
+   "env_index": 5,
+   "video_steps": 1000
+  },
+  {
+   "case": "rough_lateral",
+   "seed": 202,
+   "env_index": 11,
+   "video_steps": 1000
+  },
+  {
+   "case": "combined_yaw_right",
+   "seed": 202,
+   "env_index": 3,
+   "video_steps": 1000
+  },
+  {
+   "case": "combined_yaw_right",
+   "seed": 202,
+   "env_index": 16,
+   "video_steps": 1000
+  }
+ ],
+ "interpretation_limits": [
+  "identical steps.csv means no difference in stored channels at stored precision, not proof of no interference",
+  "computed/applied torque rows are the last physics substep of each step; clipping in earlier substeps is not recorded",
+  "contact_time > 0 marks contact, not load support; world foot velocity is not contact-point slip",
+  "a camera probe on target shows the recording camera's pose followed the env; with 8 robots per rough tile other robots can appear in frame",
+  "an earlier action change is not evidence that the policy caused the lateral acceleration",
+  "survivors of the same replay are a comparison group, not a causal control (terrain and gait phase are not matched)"
+ ],
+ "readers": [
+  "tools/verify_go2_a043_diag_replay_harvest.py",
+  "tools/go2_a043_diag_readout.py"
+ ],
+ "decides": "nothing automatically; per-event axis A/B values and timings returned to Codex",
+ "supersedes": {
+  "edition": "v1",
+  "sha256": "7d4d6fe7a61cffd42b5fd02967cee7fd8c4a92553e0a40a519146d112bae8398",
+  "never_run": true,
+  "why": "local contract test: when one joint tensor was missing at attach, v1 also replaced the joint names with placeholders; v2 reads names separately so the header keeps real names"
+ }
+}

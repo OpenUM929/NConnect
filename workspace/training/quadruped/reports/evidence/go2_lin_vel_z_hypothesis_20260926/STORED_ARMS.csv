@@ -1,0 +1,13 @@
+arm,change,indicator,per_seed,value,verdict
+G-A033,lin_vel_z_l2 -2.0,stairs_15_ge2,0/0/0,0,NOT_SUPPORTED
+G-A033,lin_vel_z_l2 -2.0,rough_lateral_posture_falls,20/20/19,59,NOT_SUPPORTED
+G-A033,lin_vel_z_l2 -2.0,yaw_right_posture_cost,0/0/0,0,ABSENT
+G-A044,lin_vel_z_l2 -1.75,stairs_15_ge2,0/0/0,0,NOT_SUPPORTED
+G-A044,lin_vel_z_l2 -1.75,rough_lateral_posture_falls,25/27/28,80,NOT_SUPPORTED
+G-A044,lin_vel_z_l2 -1.75,yaw_right_posture_cost,0/0/0,0,ABSENT
+G-A043,lin_vel_z_l2 -1.5,stairs_15_ge2,25/23/29,77,SUPPORTED
+G-A043,lin_vel_z_l2 -1.5,rough_lateral_posture_falls,8/11/5,24,SUPPORTED
+G-A043,lin_vel_z_l2 -1.5,yaw_right_posture_cost,9/9/11,3,PRESENT
+G-A047,flat_orientation_l2 -0.5,stairs_15_ge2,0/0/0,0,NOT_SUPPORTED
+G-A047,flat_orientation_l2 -0.5,rough_lateral_posture_falls,17/20/23,60,NOT_SUPPORTED
+G-A047,flat_orientation_l2 -0.5,yaw_right_posture_cost,0/0/0,0,ABSENT

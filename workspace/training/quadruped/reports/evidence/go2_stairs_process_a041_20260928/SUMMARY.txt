@@ -1,0 +1,20 @@
+G-A041 stairs_10_down n=96
+  outcome ge2=8 ge1=26 none=62  fell=93
+  order(not ge2): low_first 46, low_only 1, stall_first 12, stall_only 4, together 25
+  edge ge2: edge_root_rise_m -0.0654 (n=8)  edge_max_vz_up 0.3960 (n=8)  edge_max_tilt 0.0548 (n=8)
+  edge none: edge_root_rise_m -0.0781 (n=62)  edge_max_vz_up 0.3656 (n=62)  edge_max_tilt 0.0500 (n=62)
+G-A033 (existing) stairs_10_down n=96
+  outcome ge2=43 ge1=47 none=6  fell=34
+  order(not ge2): low_first 10, low_only 3, neither 12, stall_first 7, stall_only 21
+  edge ge2: edge_root_rise_m 0.0083 (n=43)  edge_max_vz_up 0.4468 (n=43)  edge_max_tilt 0.0513 (n=43)
+  edge none: edge_root_rise_m 0.0054 (n=6)  edge_max_vz_up 0.3662 (n=6)  edge_max_tilt 0.0573 (n=6)
+G-A043 (existing) stairs_10_down n=96
+  outcome ge2=94 ge1=2 none=0  fell=17
+  order(not ge2): low_first 2
+  edge ge2: edge_root_rise_m 0.0752 (n=94)  edge_max_vz_up 0.5224 (n=94)  edge_max_tilt 0.0558 (n=94)
+  edge none: edge_root_rise_m - (n=0)  edge_max_vz_up - (n=0)  edge_max_tilt - (n=0)
+G-A048 (existing) stairs_10_down n=96
+  outcome ge2=90 ge1=1 none=5  fell=30
+  order(not ge2): low_first 3, together 3
+  edge ge2: edge_root_rise_m 0.1467 (n=90)  edge_max_vz_up 0.3866 (n=90)  edge_max_tilt 0.0452 (n=90)
+  edge none: edge_root_rise_m -0.0837 (n=5)  edge_max_vz_up 0.1204 (n=5)  edge_max_tilt 0.0427 (n=5)

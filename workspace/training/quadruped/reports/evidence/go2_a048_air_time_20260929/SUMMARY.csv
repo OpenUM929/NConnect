@@ -1,0 +1,10 @@
+case,group,steps,air_median_s,air_p90_s,share_below_0.5,term_mean,lift_median_m
+stairs15_up,all,836,0.14,0.3,0.994,-0.347,0.0741
+stairs15_up,fell,663,0.15,0.32,0.992,-0.34,0.0776
+stairs15_up,survived,173,0.095,0.24,1.0,-0.375,0.0396
+stairs10_up,all,3000,0.17,0.37,0.997,-0.308,0.0834
+stairs10_up,fell,187,0.15,0.335,1.0,-0.332,0.0761
+stairs10_up,survived,2813,0.175,0.37,0.996,-0.307,0.0839
+rough_lateral,all,2678,0.095,0.31,0.975,-0.36,0.0092
+rough_lateral,fell,338,0.095,0.26,0.997,-0.375,0.011
+rough_lateral,survived,2340,0.095,0.315,0.971,-0.358,0.009

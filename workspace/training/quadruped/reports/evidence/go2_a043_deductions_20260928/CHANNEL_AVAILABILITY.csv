@@ -1,0 +1,20 @@
+group,channel,columns_looked_for,status
+identity,sim time / step / env id / reset·termination,time_s step env_id terminated truncated term_base_contact term_time_out,STORED
+body,"body-frame linear velocity x,y",actual_vx actual_vy,STORED
+body,body-frame yaw rate (track_ang_vel_z_exp input),actual_wz,STORED
+body,body-frame vertical velocity (lin_vel_z_l2 input),actual_vz,NOT_STORED
+body,body-frame roll/pitch rate (ang_vel_xy_l2 input),actual_wx actual_wy,NOT_STORED
+body,projected gravity z,proj_grav_z,STORED
+body,"projected gravity x,y (flat_orientation_l2 input)",proj_grav_x proj_grav_y,NOT_STORED
+body,world position,root_x root_y root_z,STORED
+body,world orientation quaternion,root_qw,NOT_STORED
+terrain,terrain height under base (height scanner mean),terrain_z height_rel,STORED
+terrain,terrain type / level / origin per env,terrain_level,NOT_STORED
+feet,foot world position / velocity,foot_fl_x,NOT_STORED
+feet,foot contact force / state,contact_fl,NOT_STORED
+feet,air time / first contact (feet_air_time input),air_time_fl,NOT_STORED
+action,policy action / previous action (action_rate_l2 input),action_0,NOT_STORED
+action,joint position / velocity / torque / limit hit,q_0,NOT_STORED
+reward,per-term reward value (raw / weighted),rew_track_lin_vel_xy_exp,NOT_STORED
+command,velocity command,cmd_vx cmd_vy cmd_wz,STORED
+outcome,tracking error / speed,error_xy error_yaw speed_xy,STORED

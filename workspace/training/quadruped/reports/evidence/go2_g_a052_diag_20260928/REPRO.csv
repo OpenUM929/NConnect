@@ -1,0 +1,5 @@
+pair,status,rows_a,rows_b,first_diff_step,envs_diverged,envs_diverged_first_step
+plain_vs_stored,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+diag_vs_plain,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+diag_vs_stored_stairs10,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+diag_vs_stored_stairs15,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}

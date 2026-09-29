@@ -1,0 +1,109 @@
+{
+ "tool": "tools/go2_failure_events.py",
+ "plan": "workspace/training/quadruped/upload/plan/GO2_FAILURE_DATA_REQUEST_CODEX_20260928.md",
+ "case": "rough_lateral",
+ "eval_seeds": [
+  101,
+  202,
+  303
+ ],
+ "posture_gate": {
+  "grace_s": 0.5,
+  "hold_s": 0.5,
+  "tilt_cos": 0.5,
+  "height_rel_min_m": 0.18
+ },
+ "analysis_marks_not_thresholds": {
+  "window_s": 1.0,
+  "wz_mark_rad_s": 0.6,
+  "early_s": 2.0,
+  "grav_cross": -0.95,
+  "pretip_level": -0.9
+ },
+ "steps_csv_header": [
+  "step",
+  "time_s",
+  "env_id",
+  "cmd_vx",
+  "cmd_vy",
+  "cmd_wz",
+  "actual_vx",
+  "actual_vy",
+  "actual_wz",
+  "error_xy",
+  "error_yaw",
+  "speed_xy",
+  "root_x",
+  "root_y",
+  "root_z",
+  "proj_grav_z",
+  "terrain_z",
+  "height_rel",
+  "upright",
+  "terminated",
+  "truncated",
+  "term_time_out",
+  "term_base_contact"
+ ],
+ "sources": [
+  {
+   "arm": "G-A048",
+   "seed": 101,
+   "path": "workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/evaluation/candidate/cases/seed_101/rough_lateral/steps.csv",
+   "sha256": "94013365a5c914f51d594b57d87a398ff10894deb7c44330d168e5ad17e2be6d"
+  },
+  {
+   "arm": "G-A048",
+   "seed": 202,
+   "path": "workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/evaluation/candidate/cases/seed_202/rough_lateral/steps.csv",
+   "sha256": "9b590e0f4a023d6007dfbf973dfdf980974b7ba806a21211ae687e82289d5e25"
+  },
+  {
+   "arm": "G-A048",
+   "seed": 303,
+   "path": "workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/evaluation/candidate/cases/seed_303/rough_lateral/steps.csv",
+   "sha256": "e3f7dac379b27640910689dcd4e9664daf4fd9b3955b265effdeb5636b14ab66"
+  },
+  {
+   "arm": "G-A033",
+   "seed": 101,
+   "path": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_101/rough_lateral/steps.csv",
+   "sha256": "d2725fbe420ffd294609fe90b84aa80b7ff3e5fa0269a969bf60264d1722a58b"
+  },
+  {
+   "arm": "G-A033",
+   "seed": 202,
+   "path": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_202/rough_lateral/steps.csv",
+   "sha256": "70f02bd27084fe7aaa411843d18138fae95911d09d3efef03cbb599476eb8645"
+  },
+  {
+   "arm": "G-A033",
+   "seed": 303,
+   "path": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_303/rough_lateral/steps.csv",
+   "sha256": "020bf2a75fe5402834475f34871dd454671d9b270cd135dd1732fd83bb494a8d"
+  },
+  {
+   "arm": "G-A038",
+   "seed": 101,
+   "path": "workspace/_keep/go2_g_a038_a033_ang_vel_xy_m008/evaluation/candidate/cases/seed_101/rough_lateral/steps.csv",
+   "sha256": "542bd87d8c911b1a7af54077e3b149631fd19b7859cf5d949bf33e5af5411daa"
+  },
+  {
+   "arm": "G-A038",
+   "seed": 202,
+   "path": "workspace/_keep/go2_g_a038_a033_ang_vel_xy_m008/evaluation/candidate/cases/seed_202/rough_lateral/steps.csv",
+   "sha256": "53d4ba13e37316a41ba31cd50391f7325dbf95d23f3afb28d0f64c7ef9ded791"
+  },
+  {
+   "arm": "G-A038",
+   "seed": 303,
+   "path": "workspace/_keep/go2_g_a038_a033_ang_vel_xy_m008/evaluation/candidate/cases/seed_303/rough_lateral/steps.csv",
+   "sha256": "42e744ddcdcfbf7c5d3dade014aaad2ca2d80e911ff9960baf4ace50821af49b"
+  }
+ ],
+ "reused_not_recomputed": [
+  "workspace/training/quadruped/reports/evidence/go2_stairs_process_20260927/ENV_TIMELINE.csv",
+  "workspace/training/quadruped/reports/GO2_STAIRS_PROCESS_A043_A048_A050_20260927.md",
+  "workspace/training/quadruped/reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv"
+ ]
+}

@@ -87,3 +87,7 @@ go2_g_a044_a033_lin_vel_z_m175,700,4.2693,4.2367
 go2_g_a044_a033_lin_vel_z_m175,800,4.6104,4.6033
 go2_g_a044_a033_lin_vel_z_m175,900,4.7298,4.7314
 go2_g_a044_a033_lin_vel_z_m175,999,4.9246,4.9150
+go2_g_a047_a033_flat_orientation_m05,700,4.0553,4.0362
+go2_g_a047_a033_flat_orientation_m05,800,4.1219,4.1300
+go2_g_a047_a033_flat_orientation_m05,900,4.2567,4.2506
+go2_g_a047_a033_flat_orientation_m05,999,4.4407,4.4401

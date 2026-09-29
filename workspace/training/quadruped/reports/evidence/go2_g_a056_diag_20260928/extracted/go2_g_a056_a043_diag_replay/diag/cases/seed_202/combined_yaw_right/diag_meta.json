@@ -1,0 +1,351 @@
+{
+ "action_dim": 12,
+ "completed": true,
+ "contact_sensor": {
+  "foot_names": [
+   "FL_foot",
+   "FR_foot",
+   "RL_foot",
+   "RR_foot"
+  ],
+  "force_threshold": 1.0,
+  "history_length": 3,
+  "read": "sensor._data (no lazy update); freshness per row in contact_fresh / contact_age_s",
+  "track_air_time": true,
+  "update_period": 0.005
+ },
+ "fields": [
+  "step",
+  "env_id",
+  "lin_vel_b_x",
+  "lin_vel_b_y",
+  "lin_vel_b_z",
+  "ang_vel_b_x",
+  "ang_vel_b_y",
+  "ang_vel_b_z",
+  "grav_b_x",
+  "grav_b_y",
+  "grav_b_z",
+  "quat_w",
+  "quat_x",
+  "quat_y",
+  "quat_z",
+  "root_z",
+  "FL_pos_x",
+  "FL_pos_y",
+  "FL_pos_z",
+  "FL_vel_x",
+  "FL_vel_y",
+  "FL_vel_z",
+  "FL_force_z",
+  "FL_force_norm",
+  "FL_force_hist_max",
+  "FL_contact_time",
+  "FL_air_time",
+  "FL_last_air_time",
+  "FL_first_contact",
+  "FL_terrain_z_near_derived",
+  "FL_terrain_zmax015_derived",
+  "FL_ray_dist_derived",
+  "FR_pos_x",
+  "FR_pos_y",
+  "FR_pos_z",
+  "FR_vel_x",
+  "FR_vel_y",
+  "FR_vel_z",
+  "FR_force_z",
+  "FR_force_norm",
+  "FR_force_hist_max",
+  "FR_contact_time",
+  "FR_air_time",
+  "FR_last_air_time",
+  "FR_first_contact",
+  "FR_terrain_z_near_derived",
+  "FR_terrain_zmax015_derived",
+  "FR_ray_dist_derived",
+  "RL_pos_x",
+  "RL_pos_y",
+  "RL_pos_z",
+  "RL_vel_x",
+  "RL_vel_y",
+  "RL_vel_z",
+  "RL_force_z",
+  "RL_force_norm",
+  "RL_force_hist_max",
+  "RL_contact_time",
+  "RL_air_time",
+  "RL_last_air_time",
+  "RL_first_contact",
+  "RL_terrain_z_near_derived",
+  "RL_terrain_zmax015_derived",
+  "RL_ray_dist_derived",
+  "RR_pos_x",
+  "RR_pos_y",
+  "RR_pos_z",
+  "RR_vel_x",
+  "RR_vel_y",
+  "RR_vel_z",
+  "RR_force_z",
+  "RR_force_norm",
+  "RR_force_hist_max",
+  "RR_contact_time",
+  "RR_air_time",
+  "RR_last_air_time",
+  "RR_first_contact",
+  "RR_terrain_z_near_derived",
+  "RR_terrain_zmax015_derived",
+  "RR_ray_dist_derived",
+  "base_force_hist_max",
+  "contact_fresh",
+  "contact_age_s",
+  "action_0",
+  "action_1",
+  "action_2",
+  "action_3",
+  "action_4",
+  "action_5",
+  "action_6",
+  "action_7",
+  "action_8",
+  "action_9",
+  "action_10",
+  "action_11",
+  "prev_action_0",
+  "prev_action_1",
+  "prev_action_2",
+  "prev_action_3",
+  "prev_action_4",
+  "prev_action_5",
+  "prev_action_6",
+  "prev_action_7",
+  "prev_action_8",
+  "prev_action_9",
+  "prev_action_10",
+  "prev_action_11",
+  "rew_track_lin_vel_xy_exp",
+  "rew_track_ang_vel_z_exp",
+  "rew_lin_vel_z_l2",
+  "rew_ang_vel_xy_l2",
+  "rew_dof_torques_l2",
+  "rew_dof_acc_l2",
+  "rew_action_rate_l2",
+  "rew_feet_air_time",
+  "rew_flat_orientation_l2",
+  "rew_dof_pos_limits",
+  "jpos_FL_hip_joint",
+  "jpos_FR_hip_joint",
+  "jpos_RL_hip_joint",
+  "jpos_RR_hip_joint",
+  "jpos_FL_thigh_joint",
+  "jpos_FR_thigh_joint",
+  "jpos_RL_thigh_joint",
+  "jpos_RR_thigh_joint",
+  "jpos_FL_calf_joint",
+  "jpos_FR_calf_joint",
+  "jpos_RL_calf_joint",
+  "jpos_RR_calf_joint",
+  "jvel_FL_hip_joint",
+  "jvel_FR_hip_joint",
+  "jvel_RL_hip_joint",
+  "jvel_RR_hip_joint",
+  "jvel_FL_thigh_joint",
+  "jvel_FR_thigh_joint",
+  "jvel_RL_thigh_joint",
+  "jvel_RR_thigh_joint",
+  "jvel_FL_calf_joint",
+  "jvel_FR_calf_joint",
+  "jvel_RL_calf_joint",
+  "jvel_RR_calf_joint",
+  "jtau_cmd_FL_hip_joint",
+  "jtau_cmd_FR_hip_joint",
+  "jtau_cmd_RL_hip_joint",
+  "jtau_cmd_RR_hip_joint",
+  "jtau_cmd_FL_thigh_joint",
+  "jtau_cmd_FR_thigh_joint",
+  "jtau_cmd_RL_thigh_joint",
+  "jtau_cmd_RR_thigh_joint",
+  "jtau_cmd_FL_calf_joint",
+  "jtau_cmd_FR_calf_joint",
+  "jtau_cmd_RL_calf_joint",
+  "jtau_cmd_RR_calf_joint",
+  "jtau_app_FL_hip_joint",
+  "jtau_app_FR_hip_joint",
+  "jtau_app_RL_hip_joint",
+  "jtau_app_RR_hip_joint",
+  "jtau_app_FL_thigh_joint",
+  "jtau_app_FR_thigh_joint",
+  "jtau_app_RL_thigh_joint",
+  "jtau_app_RR_thigh_joint",
+  "jtau_app_FL_calf_joint",
+  "jtau_app_FR_calf_joint",
+  "jtau_app_RL_calf_joint",
+  "jtau_app_RR_calf_joint"
+ ],
+ "foot_names_robot": [
+  "FL_foot",
+  "FR_foot",
+  "RL_foot",
+  "RR_foot"
+ ],
+ "joints": {
+  "actuators": {
+   "base_legs": {
+    "class": "DCMotor",
+    "damping": 0.5,
+    "effort_limit": 23.5,
+    "saturation_effort": 23.5,
+    "stiffness": 25.0,
+    "velocity_limit": 30.0
+   }
+  },
+  "joint_effort_limits_env0": [
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0,
+   1000000000.0
+  ],
+  "joint_pos_limits_env0": [
+   [
+    -1.0471998453140259,
+    1.0471998453140259
+   ],
+   [
+    -1.0471998453140259,
+    1.0471998453140259
+   ],
+   [
+    -1.0471998453140259,
+    1.0471998453140259
+   ],
+   [
+    -1.0471998453140259,
+    1.0471998453140259
+   ],
+   [
+    -1.5707999467849731,
+    3.4906997680664062
+   ],
+   [
+    -1.5707999467849731,
+    3.4906997680664062
+   ],
+   [
+    -0.5235999226570129,
+    4.537899494171143
+   ],
+   [
+    -0.5235999226570129,
+    4.537899494171143
+   ],
+   [
+    -2.7227001190185547,
+    -0.8377599120140076
+   ],
+   [
+    -2.7227001190185547,
+    -0.8377599120140076
+   ],
+   [
+    -2.7227001190185547,
+    -0.8377599120140076
+   ],
+   [
+    -2.7227001190185547,
+    -0.8377599120140076
+   ]
+  ],
+  "names": [
+   "FL_hip_joint",
+   "FR_hip_joint",
+   "RL_hip_joint",
+   "RR_hip_joint",
+   "FL_thigh_joint",
+   "FR_thigh_joint",
+   "RL_thigh_joint",
+   "RR_thigh_joint",
+   "FL_calf_joint",
+   "FR_calf_joint",
+   "RL_calf_joint",
+   "RR_calf_joint"
+  ],
+  "row_timing": "computed/applied torque of the last physics substep of the step",
+  "soft_joint_pos_limits_env0": [
+   [
+    -0.9424798488616943,
+    0.9424798488616943
+   ],
+   [
+    -0.9424798488616943,
+    0.9424798488616943
+   ],
+   [
+    -0.9424798488616943,
+    0.9424798488616943
+   ],
+   [
+    -0.9424798488616943,
+    0.9424798488616943
+   ],
+   [
+    -1.3177247047424316,
+    3.2376246452331543
+   ],
+   [
+    -1.3177247047424316,
+    3.2376246452331543
+   ],
+   [
+    -0.2705249786376953,
+    4.284824371337891
+   ],
+   [
+    -0.2705249786376953,
+    4.284824371337891
+   ],
+   [
+    -2.628453016281128,
+    -0.9320070147514343
+   ],
+   [
+    -2.628453016281128,
+    -0.9320070147514343
+   ],
+   [
+    -2.628453016281128,
+    -0.9320070147514343
+   ],
+   [
+    -2.628453016281128,
+    -0.9320070147514343
+   ]
+  ]
+ },
+ "num_envs": 32,
+ "read_only": true,
+ "reward_unit": "weighted value per second (RewardManager._step_reward)",
+ "reward_weights": {
+  "action_rate_l2": -0.01,
+  "ang_vel_xy_l2": -0.05,
+  "dof_acc_l2": -2.5e-07,
+  "dof_pos_limits": 0.0,
+  "dof_torques_l2": -0.0002,
+  "feet_air_time": 0.2,
+  "flat_orientation_l2": 0.0,
+  "lin_vel_z_l2": -1.5,
+  "track_ang_vel_z_exp": 0.75,
+  "track_lin_vel_xy_exp": 1.5
+ },
+ "schema": "go2_eval_diag_v2",
+ "step_dt": 0.02,
+ "steps": 1000,
+ "timing_note": "robot and sensor channels of an env that terminated on this step are the post-reset state; reward values are the pre-reset step (Isaac Lab ManagerBasedRLEnv.step order); computed/applied torque are the last physics substep of the step only",
+ "unavailable": {}
+}

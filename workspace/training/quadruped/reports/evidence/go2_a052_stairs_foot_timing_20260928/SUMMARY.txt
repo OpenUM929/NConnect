@@ -1,0 +1,20 @@
+stairs_10_down FAIL front feet n=16: no_near 0, near_no_lift 0, edge_before_top 7, lift_no_top 3, top 6
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.52, n=16
+  feet that reached the edge region before T: 16/16; T - near_t median 0.96 s
+stairs_10_down FAIL rear feet n=16: no_near 8, near_no_lift 1, edge_before_top 0, lift_no_top 2, top 5
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.34, n=7
+  feet that reached the edge region before T: 8/16; T - near_t median 1.04 s
+stairs_10_down SURV front feet n=48: no_near 0, near_no_lift 0, edge_before_top 9, lift_no_top 0, top 39
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.02, n=48
+stairs_10_down SURV rear feet n=48: no_near 0, near_no_lift 0, edge_before_top 4, lift_no_top 0, top 44
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.08, n=48
+stairs_15_down FAIL front feet n=62: no_near 0, near_no_lift 9, edge_before_top 13, lift_no_top 16, top 24
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.50, n=53
+  feet that reached the edge region before T: 62/62; T - near_t median 0.65 s
+stairs_15_down FAIL rear feet n=62: no_near 38, near_no_lift 4, edge_before_top 4, lift_no_top 3, top 13
+  lift_delay_s (near -> step height): median 0.00 s, p10 0.00, p90 0.32, n=20
+  feet that reached the edge region before T: 24/62; T - near_t median 1.25 s
+stairs_15_down SURV front feet n=2: no_near 0, near_no_lift 0, edge_before_top 0, lift_no_top 0, top 2
+  lift_delay_s (near -> step height): median 0.01 s, p10 0.00, p90 0.02, n=2
+stairs_15_down SURV rear feet n=2: no_near 0, near_no_lift 0, edge_before_top 0, lift_no_top 0, top 2
+  lift_delay_s (near -> step height): median 0.04 s, p10 0.00, p90 0.08, n=2

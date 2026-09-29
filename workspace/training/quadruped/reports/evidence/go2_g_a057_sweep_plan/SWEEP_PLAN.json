@@ -1,0 +1,435 @@
+{
+ "work_id": "G-A057",
+ "base_arm": "go2_g_a048_a033_lin_vel_z_m125",
+ "base_label": "A048",
+ "base_env_rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "track_ang_vel_z_exp": 0.75,
+  "lin_vel_z_l2": -1.25,
+  "ang_vel_xy_l2": -0.05,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "action_rate_l2": -0.01,
+  "feet_air_time": 0.2,
+  "undesired_contacts": null,
+  "flat_orientation_l2": 0.0,
+  "dof_pos_limits": 0.0
+ },
+ "conditions": {
+  "TRAIN_SEED": "42",
+  "NUM_ENVS": "4096",
+  "MAX_ITERATIONS": "1000",
+  "EVAL_CHECKPOINT_ITER": "900"
+ },
+ "package_hashes": {
+  "train.py": "4f1d04f826420a1fc6303f2e9ea078285f3da33deb2ccbb3b6ab8977e8b562db",
+  "play.py": "7ea8e255416181fe1b152870c9838d3a863658e24c64a25931d05c769eab52ca",
+  "go2_task/__init__.py": "79f33a7dee52d88993b34a4c2d38071b603090f673867f2cb21eabb8b74be638",
+  "go2_task/_finalize.py": "38b8701db0e134957c921b0fba24c3a6697c9f384361e1f7d16d6d742808128d",
+  "go2_task/agent_cfg.py": "dfc27f9919300ceb2a7d9141a4c0536ee589c3fec396b75b670b613ed934fbc3",
+  "go2_task/env_cfg.py": "1ba37939bf5f4e90b3c3e3efb09225dd39be97875bd6d6a5f602a3523d09546b",
+  "evaluator": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+  "registry": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+ },
+ "grid": {
+  "track_lin_vel_xy_exp": [
+   1.2,
+   1.4,
+   1.5,
+   1.6
+  ],
+  "lin_vel_z_l2": [
+   -2.0,
+   -1.75,
+   -1.5,
+   -1.375,
+   -1.25,
+   -1.0
+  ],
+  "ang_vel_xy_l2": [
+   -0.04,
+   -0.05,
+   -0.08
+  ],
+  "feet_air_time": [
+   0.01,
+   0.1,
+   0.2,
+   0.35
+  ],
+  "action_rate_l2": [
+   -0.008,
+   -0.01,
+   -0.012
+  ],
+  "flat_orientation_l2": [
+   0.0,
+   -0.25,
+   -0.5
+  ]
+ },
+ "searched_arms": [
+  "go2_g_a031_a017_feet_air_time_001",
+  "go2_g_a032_a017_feet_air_time_010",
+  "go2_g_a033_a017_track_lin_vel_xy_150",
+  "go2_g_a038_a033_ang_vel_xy_m008",
+  "go2_g_a041_a033_ang_vel_xy_m004",
+  "go2_g_a042_a033_track_lin_vel_xy_160",
+  "go2_g_a043_a033_lin_vel_z_m15",
+  "go2_g_a044_a033_lin_vel_z_m175",
+  "go2_g_a047_a033_flat_orientation_m05",
+  "go2_g_a048_a033_lin_vel_z_m125",
+  "go2_g_a049_a033_lin_vel_z_m1",
+  "go2_g_a050_a033_lin_vel_z_m1375",
+  "go2_g_a055_a043_ang_vel_xy_m008"
+ ],
+ "runs": [
+  {
+   "variable": "track_lin_vel_xy_exp",
+   "value": 1.2,
+   "key": "track_lin_vel_xy_exp_p1p2",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.2,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "track_lin_vel_xy_exp",
+   "value": 1.4,
+   "key": "track_lin_vel_xy_exp_p1p4",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.4,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "track_lin_vel_xy_exp",
+   "value": 1.5,
+   "key": "track_lin_vel_xy_exp_p1p5",
+   "is_base": true,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a048_a033_lin_vel_z_m125",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "track_lin_vel_xy_exp",
+   "value": 1.6,
+   "key": "track_lin_vel_xy_exp_p1p6",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.6,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -2.0,
+   "key": "lin_vel_z_l2_m2",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -2.0,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a033_a017_track_lin_vel_xy_150",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -1.75,
+   "key": "lin_vel_z_l2_m1p75",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.75,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a044_a033_lin_vel_z_m175",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -1.5,
+   "key": "lin_vel_z_l2_m1p5",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.5,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a043_a033_lin_vel_z_m15",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -1.375,
+   "key": "lin_vel_z_l2_m1p375",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.375,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a050_a033_lin_vel_z_m1375",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -1.25,
+   "key": "lin_vel_z_l2_m1p25",
+   "status": "BASE_SHARED",
+   "evidence": "A048 기준값 — 첫 변수 행의 A048 결과를 공유, 반복 실행 안 함"
+  },
+  {
+   "variable": "lin_vel_z_l2",
+   "value": -1.0,
+   "key": "lin_vel_z_l2_m1",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.0,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "REUSE",
+   "arm": "go2_g_a049_a033_lin_vel_z_m1",
+   "evidence": "보상 전체·학습 조건·학습 코드·평가기·registry·69 case 일치",
+   "other_matches": []
+  },
+  {
+   "variable": "ang_vel_xy_l2",
+   "value": -0.04,
+   "key": "ang_vel_xy_l2_m0p04",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.04,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "ang_vel_xy_l2",
+   "value": -0.05,
+   "key": "ang_vel_xy_l2_m0p05",
+   "status": "BASE_SHARED",
+   "evidence": "A048 기준값 — 첫 변수 행의 A048 결과를 공유, 반복 실행 안 함"
+  },
+  {
+   "variable": "ang_vel_xy_l2",
+   "value": -0.08,
+   "key": "ang_vel_xy_l2_m0p08",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.08,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "feet_air_time",
+   "value": 0.01,
+   "key": "feet_air_time_p0p01",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.01,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "feet_air_time",
+   "value": 0.1,
+   "key": "feet_air_time_p0p1",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.1,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "feet_air_time",
+   "value": 0.2,
+   "key": "feet_air_time_p0p2",
+   "status": "BASE_SHARED",
+   "evidence": "A048 기준값 — 첫 변수 행의 A048 결과를 공유, 반복 실행 안 함"
+  },
+  {
+   "variable": "feet_air_time",
+   "value": 0.35,
+   "key": "feet_air_time_p0p35",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.35,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "action_rate_l2",
+   "value": -0.008,
+   "key": "action_rate_l2_m0p008",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.008,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "action_rate_l2",
+   "value": -0.01,
+   "key": "action_rate_l2_m0p01",
+   "status": "BASE_SHARED",
+   "evidence": "A048 기준값 — 첫 변수 행의 A048 결과를 공유, 반복 실행 안 함"
+  },
+  {
+   "variable": "action_rate_l2",
+   "value": -0.012,
+   "key": "action_rate_l2_m0p012",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.012,
+    "flat_orientation_l2": 0.0
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "flat_orientation_l2",
+   "value": 0.0,
+   "key": "flat_orientation_l2_p0",
+   "status": "BASE_SHARED",
+   "evidence": "A048 기준값 — 첫 변수 행의 A048 결과를 공유, 반복 실행 안 함"
+  },
+  {
+   "variable": "flat_orientation_l2",
+   "value": -0.25,
+   "key": "flat_orientation_l2_m0p25",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": -0.25
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  },
+  {
+   "variable": "flat_orientation_l2",
+   "value": -0.5,
+   "key": "flat_orientation_l2_m0p5",
+   "is_base": false,
+   "rewards": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": -0.5
+   },
+   "status": "NEW_TRAIN",
+   "arm": null,
+   "evidence": "보상 전체·학습 조건·학습 코드가 대응하는 완료 회차 없음"
+  }
+ ]
+}

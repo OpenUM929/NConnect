@@ -1,0 +1,41 @@
+{
+  "question": "how often the post_a043_push4_v1 guard block fails when a candidate is a whole-robot resample of the stored G-A033 arm, compared against the stored G-A033 arm",
+  "reported_as": "resampling sensitivity conditional on the stored G-A033 sample; NOT a server re-run false-failure rate; thresholds unchanged",
+  "rule_version": "post_a043_push4_v1",
+  "guard_checks": 22,
+  "improvement_checks_excluded": 9,
+  "unit": "whole robot trajectory, resampled with replacement within each case x evaluation seed",
+  "dependence_preserved": "between metrics of the same robot within one case x seed only; case x seed cells are drawn independently",
+  "scope": "candidates drawn from the same empirical distribution as G-A033; says nothing about the failure rate of a genuinely improved candidate",
+  "draws": 2000,
+  "rng_seed": 20260926,
+  "recount_validated_against_screening": [
+    "G-A033 stored arm",
+    "G-A048 candidate arm"
+  ],
+  "any_guard_fail_rate": 0.9985,
+  "guard_fail_count_distribution": {
+    "0": 3,
+    "1": 11,
+    "2": 42,
+    "3": 81,
+    "4": 128,
+    "5": 175,
+    "6": 219,
+    "7": 259,
+    "8": 270,
+    "9": 244,
+    "10": 206,
+    "11": 141,
+    "12": 107,
+    "13": 56,
+    "14": 29,
+    "15": 19,
+    "16": 9,
+    "17": 1
+  },
+  "a048_guard_failures": [
+    "stairs_15_down pooled posture falls <= baseline",
+    "stairs_15_down survival median delta >= 0"
+  ]
+}

@@ -1,0 +1,5 @@
+arm,family,n,envs,yaw_first_n,tilt_before_yaw_n,tilt_18_to_60deg_s_median,bad_to_termination_s_median,pre_anchor_t_median,pre_along_v_mean_median,pre_error_xy_mean_median,pre_abs_wz_max_median,pretip_abs_wz_max_median,pretip_grav_z_start_median,pre_height_rel_start_median,episode_min_height_rel_median,survivor_pre_abs_wz_max_median,survivor_pre_along_v_mean_median,survivor_pre_height_rel_start_median
+G-A043,tilt_early,5,96,1,4,0.14,0.62,1.14,0.351,0.2548,1.9971,1.2409,-0.997,0.3578,0.1227,0.3891,0.141,0.3438
+G-A043,tilt_mid_late,19,96,6,13,0.14,0.54,10.34,0.3459,0.1991,1.9683,1.3071,-0.9918,0.3675,0.1296,0.3891,0.141,0.3438
+G-A043,height_first,0,96,0,0,,,,,,,,,,,0.3891,0.141,0.3438
+G-A043,survive,72,96,0,0,,,7.26,0.141,0.2011,0.3891,,,0.3438,0.2337,0.3891,0.141,0.3438

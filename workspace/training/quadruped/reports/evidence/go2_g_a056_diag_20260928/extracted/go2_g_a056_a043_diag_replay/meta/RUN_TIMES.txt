@@ -1,0 +1,10 @@
+RUNNER_START=2026-09-29T09:59:53+09:00
+plain 202 rough_lateral rc=0 wall_s=28
+diag 202 rough_lateral rc=0 wall_s=33
+plain 202 combined_yaw_right rc=0 wall_s=21
+diag 202 combined_yaw_right rc=0 wall_s=29
+video 202 rough_lateral env5 rc=0 wall_s=120
+video 202 rough_lateral env11 rc=0 wall_s=66
+video 202 combined_yaw_right env3 rc=0 wall_s=64
+video 202 combined_yaw_right env16 rc=0 wall_s=63
+RUNNER_END=2026-09-29T10:06:57+09:00

@@ -1,0 +1,78 @@
+10cm survivors n=24 rows=1224
+corr(front-rear foot height, -grav_b_x) in W = 0.556 (required > 0)
+robots with median(-grav_b_x) in W > flat [1,2) s: 24/24 (required >= 20)
+PASS=True -> pitch_up = -grav_b_x read as 'nose up positive' only if PASS
+
+stairs_10_down FAIL n=8 with_front_mark=5
+  W_len_s: median 1.0000  min 0.2400  max 1.0000
+  front_hold: median 1.0000  min 0.7690  max 1.0000
+  front_both_hold: median 0.0000  min 0.0000  max 0.3920
+  rise_max_m: median 0.0478  min 0.0000  max 0.2003
+  rise_end_m: median 0.0061  min -0.0410  max 0.2003
+  fwd_mps: median 0.4247  min -0.0051  max 0.5537
+  pitch_up_start: median -0.0751  min -0.2113  max 0.0068
+  pitch_up_max: median 0.2134  min -0.1264  max 0.3470
+  pitch_up_end: median 0.1254  min -0.1264  max 0.3012
+  roll_abs_max: median 0.0794  min 0.0754  max 0.1704
+  rear_on within window: 2/5
+  C_dz_m: median -0.0486  min -0.1065  max -0.0044
+  C_dpitch_up: median -0.2054  min -0.3199  max -0.0470
+  C_pitch_abs_T: median 0.1688  min 0.0064  max 0.3500
+  C_roll_abs_T: median 0.0759  min 0.0046  max 0.2979
+  C_front_hold: median 0.3040  min 0.0000  max 0.9800
+  pitch dominant at T (|gx|>|gy|): 5/8
+  front_hold below 10cm-survivor p10 (0.7900): 1/5
+  rise_max_m below 10cm-survivor p10 (0.0513): 3/5
+  fwd_mps below 10cm-survivor p10 (0.3394): 2/5
+stairs_10_down SURV n=24 with_front_mark=24
+  W_len_s: median 1.0000  min 1.0000  max 1.0000
+  front_hold: median 1.0000  min 0.5880  max 1.0000
+  front_both_hold: median 0.3040  min 0.0000  max 0.4310
+  rise_max_m: median 0.0970  min 0.0462  max 0.2244
+  rise_end_m: median 0.0893  min 0.0245  max 0.2221
+  fwd_mps: median 0.5459  min 0.1251  max 0.6112
+  pitch_up_start: median -0.0474  min -0.2205  max 0.0443
+  pitch_up_max: median 0.2120  min 0.0776  max 0.3813
+  pitch_up_end: median 0.1847  min 0.0310  max 0.3347
+  roll_abs_max: median 0.1215  min 0.0538  max 0.2489
+  rear_on within window: 17/24
+stairs_15_down FAIL n=31 with_front_mark=17
+  W_len_s: median 1.0000  min 0.0000  max 1.0000
+  front_hold: median 1.0000  min 0.1570  max 1.0000
+  front_both_hold: median 0.1570  min 0.0000  max 0.5880
+  rise_max_m: median 0.0670  min 0.0000  max 0.2075
+  rise_end_m: median 0.0591  min -0.0713  max 0.1913
+  fwd_mps: median 0.4658  min -0.0037  max 0.5628
+  pitch_up_start: median -0.0483  min -0.1457  max 0.0429
+  pitch_up_max: median 0.2478  min -0.1276  max 0.3825
+  pitch_up_end: median 0.2041  min -0.1464  max 0.3159
+  roll_abs_max: median 0.1388  min 0.0600  max 0.1961
+  rear_on within window: 6/17
+  C_dz_m: median -0.0036  min -0.0360  max 0.1266
+  C_dpitch_up: median -0.0989  min -0.2420  max 0.2004
+  C_pitch_abs_T: median 0.1464  min 0.0138  max 0.3510
+  C_roll_abs_T: median 0.0834  min 0.0024  max 0.2178
+  C_front_hold: median 0.0390  min 0.0000  max 1.0000
+  pitch dominant at T (|gx|>|gy|): 29/31
+  front_hold below 10cm-survivor p10 (0.7900): 3/17
+  rise_max_m below 10cm-survivor p10 (0.0513): 6/17
+  fwd_mps below 10cm-survivor p10 (0.3394): 5/17
+stairs_15_down SURV n=1 with_front_mark=1
+  W_len_s: median 1.0000  min 1.0000  max 1.0000
+  front_hold: median 1.0000  min 1.0000  max 1.0000
+  front_both_hold: median 0.2750  min 0.2750  max 0.2750
+  rise_max_m: median 0.1550  min 0.1550  max 0.1550
+  rise_end_m: median 0.1550  min 0.1550  max 0.1550
+  fwd_mps: median 0.5335  min 0.5335  max 0.5335
+  pitch_up_start: median -0.0371  min -0.0371  max -0.0371
+  pitch_up_max: median 0.3107  min 0.3107  max 0.3107
+  pitch_up_end: median 0.1697  min 0.1697  max 0.1697
+  roll_abs_max: median 0.1565  min 0.1565  max 0.1565
+  rear_on within window: 1/1
+
+10cm aligned bins: first bin where fail median is outside survivor [p10,p90]
+  front: 1.4
+  rear_cum: None
+  dz: -0.2
+  pitch_up: 0.2
+  vx: 0.0

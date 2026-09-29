@@ -1,0 +1,798 @@
+{
+  "schema_version": "a033_reward_1.1",
+  "runner": "server_run_go2_candidate_iter_pinned.sh",
+  "work_id": "G-A055",
+  "run_id": "train_260929-Go2_a043_ang_vel_xy_m008_1000",
+  "experiment_slug": "go2_g_a055_a043_ang_vel_xy_m008",
+  "plan": "workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md",
+  "decision_ref": "2026-09-28 Codex candidate selection relayed by the user (G-A055 preregistration, workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md): on G-A043's rewards strengthen ang_vel_xy_l2 -0.05 -> -0.08, judged per first-priority case (combined right turn, rough, push) with the stairs as second-priority protection. 2026-09-29 Codex: prepare this package as CONDITIONAL / EXECUTION NOT APPROVED, not linked to the G-A056 diagnostic replay; after G-A056 is recovered Codex decides run or not-run in the order observation -> explainable cause -> lecture prediction -> counterexamples. Building it is not a re-selection and does not satisfy the user's principle step 2. Selection responsibility stays with Codex.",
+  "dial_history_ref": "| G-A055 | ang_vel_xy `−0.05→−0.08` (A043 보상 위) | G-A033(채택) · G-A043(보상 기준) | — | ✓ | — | **미실행** | 2026-09-29 조건부 준비(실행 미승인). 사전등록 `upload/plan/GO2_G_A055_PLAN_20260928.md`(Codex 후보 선택, 사용자 중계). G-A056 진단 판독 뒤 Codex가 실행 여부를 정한다. |",
+  "criteria_changes": "workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md section 3 - fact_rules_v1 and g3_guard_margin_v1 are carried from G-A051 with every threshold unchanged and still measured against the stored G-A033 arm; the A043-relative case readouts of section 4 are separate and gate nothing.",
+  "change_class": "reward_weight",
+  "collection": {
+    "mode": "full_69_single_stage",
+    "reason": "Same contract as G-A051, G-A050 and G-A048: all 69 cases in one pass. G-A043's decisive loss (combined_yaw_right, all three seeds) sat outside the old 23-case stage 1, and this run's first question is exactly that case, the rough side-step and the four push directions.",
+    "pinned_by": "run_config.env GO2_STAGE=full (read before the runner defaults STAGE to target)",
+    "cost": "G-A049 and G-A048 ran the same contract (training + 69 cases + sentinel + 10 candidate videos) in one session; G-A044 measured about 94 minutes with training 58m21s. Candidate videos only; every baseline counterpart is reused by SHA."
+  },
+  "external_reference": {
+    "anchor": "Isaac Lab v2.3.1 UnitreeGo2RoughEnvCfg (MASTER 1-b, R-IL-1)",
+    "term": "ang_vel_xy_l2",
+    "isaaclab_base": -0.05,
+    "isaaclab_go2_rough": -0.05,
+    "isaaclab_go2_flat": -0.05,
+    "deployed_start": -0.08,
+    "baseline": -0.05,
+    "candidate": -0.08,
+    "direction": "stronger than the Isaac Lab value -0.05 (which G-A033 and G-A043 carry) by 60 percent of the penalty; equal to the deployed participant file's start value -0.08.",
+    "after_change_vs_go2_rough": "three terms differ after the change: feet_air_time (0.2 against 0.01, inherited from G-A033), lin_vel_z_l2 (-1.5 against -2.0, inherited from G-A043) and ang_vel_xy_l2 (-0.08 against -0.05, this run).",
+    "deployed_start_source": "config/go2_external_reference.json deployed_start: the deployed participant file's first training value is -0.08; Isaac Lab Go2 rough uses -0.05.",
+    "departure_reason": "The role is a body-frame roll/pitch angular-velocity penalty (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83). The lecture's line 'do not tilt the body' and the deployed comment 'strong: less wobble' give the strengthening direction; G-A038 measured -0.08 on G-A033 and rough side-step posture falls went 59 -> 18.",
+    "literature": "No literature value is claimed for -0.08. It is the deployed start value and the lecture example value, and the one strengthening point measured on a walking reference policy (G-A038).",
+    "r6": "reward weight only, and item 4 of the six names the deployed quadruped_rewards.py lists as free to change. Curriculum, terrain, DR, commands and code are untouched."
+  },
+  "status": "exploratory",
+  "baseline": {
+    "name": "G-A033",
+    "label": "g_a033",
+    "stored_label": "candidate",
+    "model_sha256": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+    "env_sha256": "ac43a435fe3213cf0d0bac16cc6fbdd835aeea6b4ca12fe784ed3239dbf2d375",
+    "stored_arm_work_id": "G-A033",
+    "stored_arm": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150",
+    "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+    "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6"
+  },
+  "comparison_arm": {
+    "name": "G-A043",
+    "role": "REWARD BASE and effect reference, not an adoption baseline: the candidate is G-A043's rewards with one weight changed, so every effect is read as candidate - G-A043 (preregistered.reward_base_comparison and tools/go2_g_a055_readout.py). Every adoption verdict is against the stored G-A033 arm.",
+    "single_change": "lin_vel_z_l2 -2.0 -> -1.5",
+    "checkpoint_iter": 900,
+    "model_sha256": "4d9236818f998bdb87efaea4acfa1e4c861b0d87947229e88f9175495066bd6b",
+    "env_sha256": "9af8f18a084f3008d6a6a3563a3c56091d9eb8236d42db6abbb06c0fe926a06d",
+    "identity_source": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/RUNNER_STATUS.txt (CANDIDATE_MODEL_SHA / CANDIDATE_ENV_SHA), read from the recovered artifact",
+    "stored_arm": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15",
+    "verdict": "ARTIFACT_VERIFIED / FAIL (fact_rules FAIL, plan screening INTERNAL_GATE_FAIL) - a reward base, not an adoption baseline. Highest G5 of the stored arms (1.62, 15 cm ge2 77 of 96); loses G2 4.99 and G3 1.56 to G-A048."
+  },
+  "rewards": {
+    "baseline": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -2.0,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "candidate": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -1.5,
+      "ang_vel_xy_l2": -0.08,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    }
+  },
+  "single_change": {
+    "name": "ang_vel_xy_l2",
+    "from": -0.05,
+    "to": -0.08,
+    "scope": "deployed REWARD_WEIGHTS value, applied on G-A043's rewards (reward_base)",
+    "applied_by": "tools/build_go2_a033_reward_package.py renders the candidate reward file from the deployed template with G-A043's rewards and this value; the ZIP's reward-base reference copy (G-A043) differs from it in this line only."
+  },
+  "value_derivation": {
+    "source": "workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md sections 1-2; reports/GO2_ANG_VEL_XY_A043_REVIEW_20260928.md; reports/GO2_A043_DEDUCTIONS_20260928.md; reports/GO2_LECTURE_REWARD_REFERENCE.md",
+    "role": "Penalize xy-axis base angular velocity using L2 squared kernel (Isaac Lab v2.3.1, reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83): -w * (omega_x^2 + omega_y^2) in the body frame. It charges roll/pitch rate, not tilt and not a fall.",
+    "walk_margin": "G-A043 rewards -> candidate rewards: walk margin +0.0849 for the candidate (go2_reward_mechanism.spec_margin, zone WALK, about 5.5 times the stop zone's top +0.0155).",
+    "situations": "spec_margin situations for the candidate rewards: climb +0.015, sway +0.276, push +0.115. The sheet's cells got directions wrong on this baseline before (G-A047, G-A048); they are recorded, not used as predictions.",
+    "rule": "-0.08 is chosen because it is the strengthening value actually measured on a walking reference policy (G-A038 on G-A033); being the deployed start value and the lecture example is supporting only. It is not claimed to be the only possible value or an optimum, and no data says -0.08 beats -0.06 or -0.10 on G-A043.",
+    "not_claimed": "No score gain is estimated. Why G-A043 starts to tilt and why it does not recover is not explained (principle step 2 unmet); the G-A056 diagnostic replay is the open work on that question. G-A038's rough gain came with a terrain-level difference at iteration 900 (G-A033 4.4937, G-A038 1.9499), so its mechanism is not separated."
+  },
+  "rejected_alternatives": {
+    "ang_vel_xy_l2_relax": "-0.04 (G-A041) on G-A033: 10 cm posture falls 34 -> 93 of 96, and relaxing runs against the rough gain seen when strengthening.",
+    "track_lin_vel_xy_exp": "held at 1.5: G-A042 raised it to 1.6 and the 10 cm two-or-more count went 43 -> 0 of 96.",
+    "lin_vel_z_l2": "held at G-A043's -1.5: the single-term search on the relaxing side closed after six measured points (reports/GO2_REWARD_TRIAL_REFERENCE.md).",
+    "feet_air_time": "held at 0.2: 0.25 (proposed as G-A054) was rejected; its formula rewards air time at touchdown, not foot height, and 0.35 stopped the policy (A015).",
+    "action_rate_l2": "no observation ties the rough falls or the stairs failure to action rate, and no strengthening result exists.",
+    "flat_orientation_l2": "-0.5 (G-A047) lost the climb (10 cm ge1 90 -> 3) and left rough side-step falls at 60/96.",
+    "dof_acc_l2": "G-A053 (-3.0e-7 on G-A048) was published but its execution recommendation was withdrawn (reports/GO2_G_A053_PRINCIPLE_REVIEW_20260928.md).",
+    "max_iterations": "training-length comparison is on hold by user decision; not used as a reason for this choice.",
+    "training_seed": "outside R-6 until U2 is answered; not used as a reason for this choice.",
+    "ang_vel_xy_l2_m006_on_a048": "G-A051 (-0.06 on G-A048) was never run; its execution recommendation was withdrawn."
+  },
+  "training": {
+    "from_scratch": true,
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 1000
+  },
+  "evaluation": {
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69,
+    "num_envs": 32,
+    "steps": 1000,
+    "checkpoint_iter": 900,
+    "checkpoint_rule": "same training length and seed as G-A033, so the candidate is read at the checkpoint G-A033 was read at (900 of 1000). finalize's reward pick is kept as training/model_best_by_reward.pt and is not evaluated.",
+    "catastrophe_case": "G1:forward_nominal:101",
+    "sentinel_cases": [
+      "G3:rough_forward:101",
+      "G4:slope_plus_20:202",
+      "G7:dr_seed_202:202",
+      "G3:rough_lateral:101",
+      "G1:forward_nominal:101"
+    ],
+    "sentinel_tolerance": {
+      "survival_abs": 0.0625,
+      "tracking_proxy_abs": 0.03,
+      "note": "same as G-A039, G-A038, G-A035, G-A033 and G-A030. Evaluation replay measured delta 0.0000 (A017 sentinel, 6 days apart), so exceeding it means remeasure the baseline, not a verdict on the candidate"
+    }
+  },
+  "detectability": {
+    "basis": "Primary readouts are the adoption verdict against G-A033 and the per-case effect verdicts against G-A043 (rough side-step, combined right turn, four push directions; tools/go2_g_a055_readout.py), not the 70-point total alone.",
+    "expected_weighted_gain_70": null,
+    "expected_gain_basis": "Not estimated in points. The only prior on this dial is G-A038 on another reward base, with a terrain-level difference at iteration 900 that the reward change itself may have caused; the combined right turn was never measured under this change.",
+    "seed_noise": "Every training run used seed 42. One run cannot separate the value's effect from a different training path; the seed replicate waits on U2."
+  },
+  "videos": {
+    "num_envs": 4,
+    "steps": 500,
+    "candidate": [
+      "G2:combined_yaw_left:101",
+      "G2:combined_yaw_right:101",
+      "G3:rough_forward:101",
+      "G3:rough_lateral:101",
+      "G5:stairs_10_down:101",
+      "G5:stairs_15_down:101",
+      "G6:push_pos_x:101",
+      "G6:push_neg_x:101",
+      "G6:push_pos_y:101",
+      "G6:push_neg_y:101"
+    ],
+    "baseline": [],
+    "reasons": {
+      "G2:combined_yaw_left:101": "the mirror of the case that broke G-A043. Filmed so a recurrence is not read from one direction alone.",
+      "G2:combined_yaw_right:101": "first-priority case: G-A043 lost 29 of 96 here (9 / 9 / 11); G-A048 lost none. Filmed on the candidate.",
+      "G3:rough_forward:101": "the rough axis the arm must hold. Stored G-A033 video, reused by SHA.",
+      "G3:rough_lateral:101": "first-priority case: rough side-step posture falls G-A043 24 (8 / 11 / 5), G-A033 59, G-A038 18. Baseline reused by SHA.",
+      "G5:stairs_10_down:101": "second-priority protection: G-A038 fell 96 of 96 here and G-A041 (the relaxing direction) 93 of 96. Baseline reused by SHA.",
+      "G5:stairs_15_down:101": "stairs protection case (15 cm climb): posture falls 90 at baseline, limit 93 under g3_guard_margin_v1. Baseline reused by SHA.",
+      "G6:push_pos_x:101": "the push direction the fact_rules group scores. Baseline reused by SHA.",
+      "G6:push_neg_x:101": "push protection block direction. Baseline reused by SHA.",
+      "G6:push_pos_y:101": "push protection block direction. Baseline reused by SHA from the G-A044 run.",
+      "G6:push_neg_y:101": "push protection block direction. Baseline reused by SHA from the G-A044 run."
+    },
+    "baseline_reuse": {
+      "G2:combined_yaw_left:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G2_combined_yaw_left_seed_101.mp4",
+        "sha256": "f6d20c3d2fcc1b75c4beb0ec00f6a1c6c4f582eced9261fbcce349c2246a9883",
+        "identity_sha256": "0f5c3014bf64f6eae0a8d66434dcc452af6b2b240f8aa48abfb972e17392a18d",
+        "rendered_by": "G-A044 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G2:combined_yaw_right:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G2_combined_yaw_right_seed_101.mp4",
+        "sha256": "5c853ac1f36806139223e5130f2fbc452099338b05b0634bb702aa14a405be59",
+        "identity_sha256": "cb32f97129adc4a6dab9d1b5ce5ebf9bdeb63fefe32826d4bfe019b7bf783483",
+        "rendered_by": "G-A044 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G3:rough_forward:101": {
+        "path": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/videos/G3_rough_forward_seed_101.mp4",
+        "sha256": "8f130c0a18c232d2fc746cbd522bff47c865284ef98a578b9fb9f46510d5aaf9",
+        "identity_sha256": "eb2b284fde9afa3e82913e45afeda26b59624231929394227f2dbf260d52fc86",
+        "rendered_by": "G-A033 run",
+        "fingerprint_recomputes": true
+      },
+      "G3:rough_lateral:101": {
+        "path": "workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004/evaluation/g_a033_videos/videos/G3_rough_lateral_seed_101.mp4",
+        "sha256": "25454a6104fec5ef89ccff844e7e10923ebdb57b7c64a1d90551d0f3fe260ec6",
+        "identity_sha256": "716b32a9a9ff3cb95c381a7994d57fc08ba80b20c8026cf97eff99ea6d2ae201",
+        "rendered_by": "G-A041 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G5:stairs_10_down:101": {
+        "path": "workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004/evaluation/g_a033_videos/videos/G5_stairs_10_down_seed_101.mp4",
+        "sha256": "29511a02fb7182ec7390c756a15115faa6328ec20fd6a372a2be83223fab2ba8",
+        "identity_sha256": "70b894efab5237dd34c0c81c2d320199db5aaa7745355af9dee587c443b80ab7",
+        "rendered_by": "G-A041 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G5:stairs_15_down:101": {
+        "path": "workspace/_keep/go2_g_a042_a033_track_lin_vel_xy_160/evaluation/g_a033_videos/videos/G5_stairs_15_down_seed_101.mp4",
+        "sha256": "85620db20351959eb0a4433aff382a14a05caa5cbdfea6081825750dbb5304af",
+        "identity_sha256": "47f71c061f5bda1e9b6f36b5257163895dc300be57fd93da84764e908d012188",
+        "rendered_by": "G-A042 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G6:push_pos_x:101": {
+        "path": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/g_a033_videos/videos/G6_push_pos_x_seed_101.mp4",
+        "sha256": "f928739dd4cefe63312d8aecd110433536bebcd28cebe78a67e67d49686875e9",
+        "identity_sha256": "ca9d1d0ba644cde10c2b4266a4aaa20f8815d10679f36bf3383cd823dc9e8e29",
+        "rendered_by": "G-A043 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G6:push_neg_x:101": {
+        "path": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/g_a033_videos/videos/G6_push_neg_x_seed_101.mp4",
+        "sha256": "41bf32b5ea2dfb560557fb4be2db9615a127b31a7650521e2a23b588b711f418",
+        "identity_sha256": "56cdebf87c497be0763e03249f0c4026f65d70277edbad0396996455a5422822",
+        "rendered_by": "G-A043 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G6:push_pos_y:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G6_push_pos_y_seed_101.mp4",
+        "sha256": "ebf41c024da5694507f29da53714909551fb9a168b2c4960ea5ac517f0beba3a",
+        "identity_sha256": "6292fa0af7d19be4d54913bad236daf65d5fd9fcfd74e56282e6834bb6b0ddc5",
+        "rendered_by": "G-A044 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      },
+      "G6:push_neg_y:101": {
+        "path": "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/evaluation/g_a033_videos/videos/G6_push_neg_y_seed_101.mp4",
+        "sha256": "bac9b2eac0275691617e9e5aa98b3e2e17e38827e44ada461191ece92e16a70b",
+        "identity_sha256": "93f25a6213daaaa812926f693d37fbd451cff7373bc2063b26aa2cdb86e84702",
+        "rendered_by": "G-A044 run (frozen G-A033 model)",
+        "fingerprint_recomputes": true
+      }
+    },
+    "baseline_counterparts": "Ten cases are filmed on the candidate and none is rendered for the baseline: every counterpart already exists at the same 4 env x 500 step setting from the frozen G-A033 model and is reused by SHA, with its identity fingerprint recomputed from this spec's baseline SHAs. Both G2 combined-turn directions and both G6 y-direction pushes come from the G-A044 run; the other six are the ones G-A044 itself reused."
+  },
+  "stages": {
+    "full": {
+      "default": true,
+      "env": "GO2_STAGE=full, pinned in run_config.env rather than passed on the command line",
+      "cases": "all 69 (23 case ids x evaluation seeds 101/202/303), in one pass",
+      "decides": "nothing on the server. There is no target gate in this run; adoption is decided locally by tools/verify_go2_basic_motion_harvest.py and tools/go2_screening_gate.py, and the hypothesis readout by tools/go2_dial_hypothesis.py, after recovery.",
+      "estimate_minutes": 95,
+      "estimate_basis": "measured on G-A044, which ran the same contract (training + 69 cases + sentinel + videos) in about 94 minutes with training 58m21s; G-A048 ran the same contract with 10 candidate videos. About 95 minutes is the plan figure; the plan's session budget of 120-150 minutes carries the margin. It is a plan figure, not a guarantee, and the runner enforces no limit."
+    }
+  },
+  "output": {
+    "package_root": "/workspace/go2_g_a055",
+    "keep_dir_name": "go2_g_a055_a043_ang_vel_xy_m008",
+    "result_zip": "GO2_G_A055_RESULT.zip",
+    "done_marker": "[DONE] GO2_G_A055_RESULT_READY",
+    "tmux_name": "go2_g_a055",
+    "upload_zip": "GO2_G_A055_a043_ang_vel_xy_m008_full69_v2.zip",
+    "release_id": "20260929_a043_ang_vel_xy_m008_full69_v2",
+    "supersedes": "20260929_a043_ang_vel_xy_m008_full69_v1 (sha256 592fc332f90fe644d2b9e82c336370e7574ad3a3e1df3fa597794716357713aa, never uploaded or run): its run guide did not state the conditional / not-approved status and did not list the case reader tools/go2_g_a055_readout.py; the package contract test caught it before any use.",
+    "baseline_reward_file": "rendered_reference"
+  },
+  "preregistered": {
+    "source": "fact_rules_v1 with every G-A051 threshold unchanged AND the plan screening edition g3_guard_margin_v1 (tools/go2_screening_gate.py, workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md section 3), both against the stored G-A033 arm.",
+    "threshold_basis": "Measured, not intended, and UNCHANGED from G-A050 (and G-A049, G-A048, G-A044, G-A043) on purpose for fact_rules_v1 - no adoption threshold moves after any result; the plan screening edition is g3_guard_margin_v1, preregistered before G-A050 (user decision G-D-G3-FIRST-20260927) and carried unchanged. tools/go2_eval_resolution.py (reports/runs/BASELINE_MARGIN.csv delta_resample_sd) gave per-scenario weighted-score standard deviations of G3 1.01823, G4 0.49816, G6 0.43098, G2 0.28229, G7 0.20179, G5 0.02802, G1 0.00000 (/70) and a total-difference sd of 1.26443/70. Each non-flat scenario may lose at most twice its own sd; flat G1/G2 use max_flat_scenario_proxy_drop 2x0.28229/10.5 = 0.054 and max_flat_case_survival_drop 2 robots of 32 - the limit that actually caught G-A043's combined_yaw_right at all three seeds. The group floors and the climbed-robot floors are G-A043's, recomputed from the same stored G-A033 records for the same groups. None of these limits carries training-seed noise: every training in the project used seed 42, so they are lower bounds.",
+    "target_groups": {
+      "stairs": [
+        "G5:stairs_10_down:101",
+        "G5:stairs_10_down:202",
+        "G5:stairs_10_down:303"
+      ],
+      "rough": [
+        "G3:rough_lateral:101",
+        "G3:rough_lateral:202",
+        "G3:rough_lateral:303",
+        "G3:rough_forward:101",
+        "G3:rough_forward:202",
+        "G3:rough_forward:303"
+      ],
+      "push": [
+        "G6:push_pos_x:101",
+        "G6:push_pos_x:202",
+        "G6:push_pos_x:303"
+      ]
+    },
+    "target_group_roles": {
+      "stairs": "a scored group of fact_rules_v1, carried unchanged. Second priority for this run (user decision): G-A043 has the highest stairs score of the stored arms and G-A038 paid for the rough gain here (10 cm posture falls 96 of 96); G-A041, the relaxing direction, also collapsed (93 of 96), so a stairs loss is not read as a direction effect of this term.",
+      "rough": "first priority. G-A043's G3 is 7.41 of 14.0, bound by rough_lateral seed 202 survival 0.656; 24 rough side-step posture falls (8 / 11 / 5).",
+      "push": "first priority, judged per direction against G-A043 by tools/go2_g_a055_readout.py (G-A043 pooled falls +x 2, -x 4, +y 0, -y 4)."
+    },
+    "min_target_mean_proxy_delta": 0.05,
+    "min_target_groups_improved": 2,
+    "min_total_points_delta": 2.53,
+    "flat_scenarios": [
+      "G1",
+      "G2"
+    ],
+    "max_flat_scenario_proxy_drop": 0.054,
+    "max_flat_case_survival_drop": 0.0625,
+    "max_scenario_weighted_loss_70": 2.04,
+    "stationary_guard_scenarios": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "max_new_stationary_cases_in_guard": 0,
+    "required_records": {
+      "terrain_level_at_pin": "REQUIRED RECORD, NOT A CRITERION: terrain at 700/800/900/999, reported beside G-A043's (5.0146 at 900) and G-A038's (1.9499 at 900). The reward change may itself change curriculum progress, so a difference here is part of the result, not a confound to remove.",
+      "climb_counts": "REQUIRED RECORD, NOT A PLAN SCREENING CRITERION UNDER g3_guard_margin_v1 (the stairs are protected by posture falls and tracking only; this was a criterion in earlier editions): 10cm and 15cm pooled ge1 and ge2 each >= baseline; at least one of the four strictly increases. Existing fact_rules_v1 guards also apply. tools/go2_climb_count.py; both heights seed101/202/303.",
+      "stairs_forward_distance": "REQUIRED RECORD, NOT A PLAN SCREENING CRITERION UNDER g3_guard_margin_v1 (the stairs are protected by posture falls and tracking only; this was a criterion in earlier editions): for each of stairs_10_down and stairs_15_down, median seed delta of projected_progress_m > 0. Baseline and candidate use the same evaluator/registry and iteration900.",
+      "stall_time_share": "REQUIRED RECORD, NOT A PLAN SCREENING CRITERION UNDER g3_guard_margin_v1 (the stairs are protected by posture falls and tracking only; this was a criterion in earlier editions) (plan section 4 item 2). The share of time, before the first termination, in which the commanded-direction projected speed stays under 0.05 m/s for at least one continuous second, with the first 0.5 s and the terminal row excluded; null with a reason when the valid time is zero. Computed by tools/go2_stall_diagnostics.py for both arms with the same rule. The threshold is a design value, not a measured one. Both heights require median seed delta < 0 with simultaneous survival protection.",
+      "first_step_time": "REQUIRED RECORD, NOT A CRITERION (plan section 4 item 3). The first timestamp at which the existing >=1 step climb rule fires, per robot, with non-arrivals recorded as null and censored=true. The mean over arrivals may not be reported as an improvement without the arrival rate beside it.",
+      "fall_channel_split": "REQUIRED RECORD. The candidate rough_lateral and stairs falls are split by tools/go2_next_lever_evidence.py; fall_channel is read on the first episode only (defect C-39) and is not used as evidence of first-episode low-posture failure until C-39 is closed.",
+      "push_both_directions": "REQUIRED RECORD AND PLAN SCREENING PROTECTION under g3_guard_margin_v1 (the four-direction rule in push_all_directions covers push_pos_x and push_neg_x). Earlier editions judged these two directions with zero allowed loss and survival-median checks (post_a042_push_v1); this run does not.",
+      "push_all_directions": "REQUIRED RECORD AND PLAN SCREENING PROTECTION under g3_guard_margin_v1. For push_pos_x, push_neg_x, push_pos_y and push_neg_y SEPARATELY: pooled posture falls over the three seeds <= baseline + 3, and the per-seed median tracking delta >= -0.01 (1e-9 tolerance). There is no survival-median check. The allowed losses are post_a048_guard_margin_v1's, unchanged. Earlier verdicts keep their own editions (zero allowed loss under post_a043_push4_v1) and reproduce byte for byte.",
+      "g2_combined_yaw_both_directions": "REQUIRED RECORD AND FIRST-PRIORITY READOUT: combined_yaw_left and combined_yaw_right at all three seeds (the full collection gives them), filmed on the candidate at seed 101. combined_yaw_right is classified against G-A043 (29 falls, case score min 0.4358) by tools/go2_g_a055_readout.py.",
+      "reward_base_deltas": "REQUIRED RECORD: tools/go2_reward_base_comparison.py prints candidate, G-A043 and the difference for the total, every axis, and posture falls, survival, tracking RMSE, speed and progress on the disclosed cases; the report also shows G-A048 beside them."
+    },
+    "mechanism_readout": "Four readouts, reported separately and never merged (workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md sections 3-4). ADOPTION: fact_rules_v1 plus g3_guard_margin_v1 against the stored G-A033; its passing is a quantitative candidate, not an adoption PASS until video and self-assessment are read. HYPOTHESIS: tools/go2_dial_hypothesis.py (rough side-step posture falls, A043-relative). CASE READOUT: tools/go2_g_a055_readout.py (rough with condition C, combined right turn with condition S, push per direction, rough forward and stairs disclosed). EFFECT: tools/go2_reward_base_comparison.py against G-A043.",
+    "video": "human reading; the verifier reports VIDEO_UNKNOWN",
+    "plan_screening": {
+      "version": "g3_guard_margin_v1",
+      "source": "workspace/training/quadruped/upload/plan/GO2_G_A051_PLAN_20260927.md section 3 (edition carried unchanged from G-A050)",
+      "entrypoint": "tools/verify_go2_basic_motion_harvest.py",
+      "implementation": "tools/go2_screening_gate.py",
+      "inherits": "post_a048_guard_margin_v1's protection block unchanged (fourteen checks, same allowed losses, tolerance 1e-9, no survival-median checks). The stairs-improvement and stall blocks are dropped as in g3_guard_push4_v1, because this run targets G3 and only protects the stairs. Earlier editions keep their code path, so every stored verdict is reproduced byte for byte.",
+      "combination": "artifact/fingerprint validity first; fact_rules_v1 AND g3_guard_margin_v1; missing data overrides performance as INCONCLUSIVE",
+      "partial_coverage": "Any missing environment or missing protection case makes screening INCONCLUSIVE; keep valid observations without promotion.",
+      "known_properties": "the protection block is post_a048_guard_margin_v1's, so conditional on the stored G-A033 sample: 0.519 false-failure rate for a candidate from the same empirical distribution, 0.035 mean miss rate over the defined harms. Not a server re-run error rate. The edition was chosen after G-A048 was observed."
+    },
+    "rule_version": "fact_rules_v1",
+    "rule_source": "reports/GO2_STAIRS_BEHAVIOR_ANALYSIS_20260916.md 8-3b (target G3 G5, guard G1 G2 G4 G6 G7) and 8-4 (stairs measured by climbed robots); gap found by reports/GO2_G_A038_READOUT.md section 4",
+    "target_axes": [
+      "G3",
+      "G5"
+    ],
+    "guard_axes": [
+      "G1",
+      "G2",
+      "G4",
+      "G6",
+      "G7"
+    ],
+    "target_group_floor": {
+      "stairs": -0.02858,
+      "rough": -0.06145,
+      "push": -0.07561
+    },
+    "climb_guard": {
+      "counter": "tools/go2_climb_count.py (the rule of tools/go2_stairs_behavior.py STAIRS_CLIMB.csv)",
+      "baseline": "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate/cases/seed_*/*/steps.csv",
+      "groups": {
+        "stairs_10_climb_ge1": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge1",
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "max_drop": 6.671
+        },
+        "stairs_10_climb_ge2": {
+          "entries": [
+            "G5:stairs_10_down:101",
+            "G5:stairs_10_down:202",
+            "G5:stairs_10_down:303"
+          ],
+          "metric": "ge2",
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "max_drop": 13.739
+        }
+      },
+      "omitted": "stairs_15_climb_ge1 is left out on purpose. Its baseline sum is 4 robots over three seeds and its measured max_drop is 5.523, so its floor is -1.523 and no result can violate it. tools/go2_fact_rules.py calls that inoperable and raises it as a violation rather than passing it silently (defect S-2, 2026-09-19). The 15 cm climb is still measured in stage 1 as a required record and judged by the local plan screening, which compares the pooled counts and the per-seed progress directly; it is not a gate here because at this sample size it cannot be one."
+    },
+    "max_scenario_weighted_loss_70_by_scenario": {
+      "G3": 2.03646,
+      "G4": 0.99632,
+      "G5": 0.05604,
+      "G6": 0.86196,
+      "G7": 0.40358
+    },
+    "hypothesis": {
+      "statement": "On G-A043's rewards, ang_vel_xy_l2 -0.08 lowers rough side-step posture falls from G-A043's 24 to 12 or fewer (the improvement direction G-A038 showed on G-A033 appears on G-A043). The combined right turn and the four push directions are measured under this change for the first time and are classified, not predicted.",
+      "reader": "tools/go2_dial_hypothesis.py",
+      "separate_from_adoption": true,
+      "source": "workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md section 4",
+      "indicators": {
+        "rough_lateral_posture_falls": {
+          "metric": "posture_falls_pooled",
+          "case": "rough_lateral",
+          "seeds": [
+            101,
+            202,
+            303
+          ],
+          "robots": 96,
+          "supported_if_at_most": 12,
+          "not_supported_if_at_least": 24,
+          "basis": "G-A043 fell 24 of 96 (8 / 11 / 5). 12 is half of 24, the same operational rule as G-A051 (half of the base); not a statistical or official criterion. 13-23 is INSUFFICIENT ('reduced, below target'). Condition C (case score and speed) is read by tools/go2_g_a055_readout.py, not here."
+        }
+      },
+      "edge_rule": "Avoiding falsification is not support. 13 to 23 rough side-step falls is INSUFFICIENT and is reported as 'reduced, below the target of 12', not as 'no improvement'. A fall reduction counts as an improvement only with condition C (tools/go2_g_a055_readout.py).",
+      "decisions": [
+        "rough SUPPORTED with C and combined right turn TARGET_LEVEL: go to candidate review (videos, protection deltas, self-assessment); adoption follows section 3; no automatic long training.",
+        "rough SUPPORTED with C, right turn not at target level: report 'the rough improvement direction was observed on G-A043; the right-turn target was not met' with the actual counts; the right turn stays a separate cause question.",
+        "rough INSUFFICIENT or NOT_SUPPORTED: the value's hypothesis is not supported on G-A043; no automatic neighbouring value (-0.07, -0.09).",
+        "mixed results: no automatic neighbouring value; report per-case verdicts and choose separately.",
+        "missing data or unverified harvest: no performance conclusion."
+      ],
+      "recorded": {
+        "stairs_10_ge2": {
+          "metric": "climb_ge2_pooled",
+          "case": "stairs_10_down",
+          "seeds": [
+            101,
+            202,
+            303
+          ],
+          "step_height_m": 0.1,
+          "robots": 96,
+          "basis": "recorded, not judged: G-A043 94 of 96, G-A038 0."
+        },
+        "stairs_15_ge2": {
+          "metric": "climb_ge2_pooled",
+          "case": "stairs_15_down",
+          "seeds": [
+            101,
+            202,
+            303
+          ],
+          "step_height_m": 0.15,
+          "robots": 96,
+          "basis": "recorded, not judged: G-A043 77 of 96."
+        },
+        "combined_yaw_right_posture_falls": {
+          "metric": "posture_falls_pooled",
+          "case": "combined_yaw_right",
+          "seeds": [
+            101,
+            202,
+            303
+          ],
+          "robots": 96,
+          "basis": "recorded here; classified against G-A043 29 by tools/go2_g_a055_readout.py."
+        }
+      }
+    },
+    "reward_base_comparison": {
+      "reader": "tools/go2_reward_base_comparison.py",
+      "base_name": "G-A043",
+      "base_arm": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15",
+      "base_total_70": 44.62454,
+      "disclosed_cases": [
+        "rough_lateral",
+        "rough_forward",
+        "stairs_10_down",
+        "stairs_15_down",
+        "combined_yaw_left",
+        "combined_yaw_right",
+        "push_pos_x",
+        "push_neg_x",
+        "push_pos_y",
+        "push_neg_y"
+      ],
+      "verdicts": "REVIEW_CANDIDATE (all four requirements; a quantitative review candidate, not final progress) / NOT_REVIEW_CANDIDATE (lists the failed ones) / INCONCLUSIVE (unverified harvest or missing data)",
+      "review_requires": {
+        "adoption": "QUANT_SUCCESS_VIDEO_REVIEW_PENDING",
+        "hypothesis": {
+          "rough_lateral_posture_falls": "SUPPORTED"
+        },
+        "min_total_delta_70": 0.0,
+        "min_speed": {
+          "rough_lateral_speed_below": 0.158,
+          "basis": "Condition C's speed floor: G-A043's lowest seed (0.1642 / 0.1664 / 0.1580 m/s). The candidate's three-seed mean is compared with G-A043's lowest seed, so it is an operational floor, not a like-for-like statistic. Meeting it does NOT show the policy did not slow down."
+        }
+      },
+      "not_judged": "A043-relative losses on the protected cases have no preregistered limit in this reader; the first-priority cases are classified by tools/go2_g_a055_readout.py and the stairs are disclosed there. A person judges the rest at review; no limit is set after seeing results."
+    },
+    "g_a055_case_readout": {
+      "reader": "tools/go2_g_a055_readout.py",
+      "source": "workspace/training/quadruped/upload/plan/GO2_G_A055_PLAN_20260928.md section 4",
+      "case_score": "survival x tracking per case and seed, tools/go2_axis_bottleneck.case_row (stairs: min(tracking, completion); combined turns: min(xy, yaw); push: post-push tracking or upright recovery); the minimum over three seeds is compared.",
+      "rough_lateral": {
+        "base_falls": 24,
+        "supported_at_most": 12,
+        "not_supported_at_least": 24,
+        "condition_c": {
+          "case_score_min_above": 0.5296,
+          "speed_mean_at_least": 0.158
+        }
+      },
+      "combined_yaw_right": {
+        "base_falls": 29,
+        "target_at_most": 14,
+        "condition_s": {
+          "case_score_min_above": 0.4358
+        }
+      },
+      "push": {
+        "base_falls": {
+          "push_pos_x": 2,
+          "push_neg_x": 4,
+          "push_pos_y": 0,
+          "push_neg_y": 4
+        },
+        "base_case_score_min": {
+          "push_pos_x": 0.9329,
+          "push_neg_x": 0.8983,
+          "push_pos_y": 0.9645,
+          "push_neg_y": 0.8967
+        },
+        "score_margin": 0.02
+      },
+      "disclosed": [
+        "rough_forward",
+        "stairs_10_down",
+        "stairs_15_down"
+      ]
+    }
+  },
+  "why": [
+    "Purpose: cut G-A043's first-priority losses (combined right turn 29 falls, rough side-step 24, push 10) while keeping its stairs lead (G5 1.62, 15 cm ge2 77). Not a promise of a higher score.",
+    "Support: the lecture's 'do not tilt the body' and the deployed 'strong: less wobble'; G-A038 (-0.08 on G-A033) cut rough side-step falls 59 -> 18.",
+    "Against: G-A038 slowed rough side-stepping and collapsed the 10 cm climb (96 of 96); G-A041 (-0.04) also collapsed it (93 of 96), so the stairs cost is not direction-specific. Why G-A043 starts to tilt is not explained; in some rough events a lateral-velocity change was observed before the tilt increase (reports/GO2_A043_TILT_ONSET_20260928.md).",
+    "Status: conditional preparation, execution not approved (Codex 2026-09-29). Not linked to G-A056."
+  ],
+  "notes": {
+    "comparison_validity": "Same seed 42, 4096 envs, 1000 iterations, evaluator and registry SHA as the stored G-A033 and G-A043 arms, evaluated at the same checkpoint iteration 900. Against G-A043 the only difference is ang_vel_xy_l2; against G-A033 it is lin_vel_z_l2 and ang_vel_xy_l2.",
+    "not_claimed": "No score gain is promised and no improvement is predicted. One training seed cannot separate the value's effect from a different training path.",
+    "deployed_list": "ang_vel_xy_l2 is item 4 of the six names in the deployed quadruped_rewards.py REWARD_WEIGHTS list, so this arm replaces a number.",
+    "deployed_prose_disagrees": "The deployed file's comments describe the strong side as steadier and the weak side as room for rough-terrain adaptation; neither is an observation on this evaluator.",
+    "knowledge_doc_policy": "MASTER section 1-a gets a pending G-A055 row only if and when the run is approved; past rows are not rewritten.",
+    "curriculum_lag": "REQUIRED RECORD, NOT A CRITERION: terrain at 700/800/900/999. At iteration 900 G-A033 4.49, G-A043 5.01, G-A038 1.95.",
+    "residual_question": "Whether G-A038's rough gain on G-A033 carries over to G-A043's rewards, what the change does to the combined right turn and push, and what it costs on the stairs, at one seed.",
+    "relation_to_v10": "The frozen v10 seed pair (G-A045/G-A046) is not touched. A training-seed replicate needs U2 and a fresh unused number.",
+    "reward_base": "The builder reads G-A043's rewards from the source file G-A043 trained with and checks that they differ from G-A033's in lin_vel_z_l2 only.",
+    "execution_status": "CONDITIONAL / EXECUTION NOT APPROVED (Codex 2026-09-29). The G-A056 runner does not call this package; the user runs it only after Codex decides to run it from the G-A056 readout."
+  },
+  "campaign_text": {
+    "analysis": "plan sections 1-4",
+    "target_summary_en": "(all 69 cases in one pass: adoption against G-A033 unchanged; first-priority cases rough side-step, combined right turn and four push directions are read against G-A043; stairs are protected)",
+    "basis_ko": "§1~§4(Codex 후보 선택, 사용자 중계, G-A055 사전등록). 2026-09-29 조건부 준비, 실행 미승인",
+    "levers_ko": "바꾸지 않은 레버: `lin_vel_z_l2`(A048 값 −1.25 유지, 단독 탐색 종료), `ang_vel_xy_l2` 완화(A041 계단 악화), `feet_air_time`(체공시간 식이라 연결 간접), `action_rate_l2`(관측 없음), `flat_orientation_l2`(A047 오르기 상실), 학습 길이(사용자 보류)·학습 seed(U2 대기)는 선택 근거로 쓰지 않음",
+    "target_summary_ko": "69 case 전부를 한 번에 잰다. 채택은 A033 대비(문턱 불변)다. 1순위 case(험지 옆걸음·복합 우회전·밀침 네 방향)는 A043 대비로 따로 읽고, 계단은 보호 항목이다",
+    "target_note_ko": "1단계 분기와 서버 게이트가 없다(G-A051과 같은 계약). `fact_rules_v1`·`g3_guard_margin_v1` 문턱은 하나도 바꾸지 않았고 A033 대비로 판정한다. 보상 기준은 A043이다 — A043 보상에서 `ang_vel_xy_l2` 한 줄만 바꾼다. **조건부 준비·실행 미승인**: G-A056 판독 뒤 Codex가 실행 여부를 정한다",
+    "readout_ko": "판독은 넷을 따로 실행한다.\npython -B tools/verify_go2_basic_motion_harvest.py G-A055 --harvest workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008 --rule-version g3_guard_margin_v1\npython -B tools/go2_dial_hypothesis.py G-A055 --harvest workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008\npython -B tools/go2_reward_base_comparison.py G-A055 --harvest workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008\npython -B tools/go2_g_a055_readout.py --harvest workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008",
+    "not_claimed_ko": "−0.08은 걷는 기준 정책에서 실제로 시험한 강화값이라 고른 것이지 최적값·안전값이 아니다. A038의 개선이 A043 위에서도 남는다는 보장이 없고, A038 결과에는 지형 레벨 지연이 섞여 있다. A043이 왜 기울기 시작하는지는 설명되지 않았다. 학습 seed 42 하나다",
+    "publish_note_ko": "보상 가중치 한 항만 바꾼다 — A043 보상 위에서 `ang_vel_xy_l2` `-0.05`→`-0.08`(벌점 60% 강화). A033 대비로는 `lin_vel_z_l2 -1.5`와 이 항, 두 줄이 다르다. 채택은 A033 대비, 효과는 A043 대비다. 조건부 준비·실행 미승인"
+  },
+  "base_data": {
+    "source": "workspace/training/quadruped/reports/GO2_TUNING_BASE_DATA.md",
+    "terms": {
+      "ang_vel_xy_l2": {
+        "value": -0.08,
+        "walking_values": [
+          -0.05
+        ],
+        "status": "OUT_OF_RANGE",
+        "role": "Penalize xy-axis base angular velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:83]",
+        "out_of_range_reason": "Only -0.05 is a walking value in the base table: G-A038 (-0.08) and G-A041 (-0.04) measured partial rows. -0.08 is the one strengthening point measured on a walking reference; it is exploratory on G-A043, not an interpolation."
+      },
+      "lin_vel_z_l2": {
+        "value": -1.5,
+        "walking_values": [
+          -2.0,
+          -1.75,
+          -1.5,
+          -1.375,
+          -1.25,
+          -1.0
+        ],
+        "status": "OBSERVED",
+        "role": "Penalize z-axis base linear velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:76]"
+      }
+    },
+    "walk_margin": {
+      "source": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+      "margin": 0.0849,
+      "zone": "WALK",
+      "stop_max": 0.0155,
+      "situations": {
+        "climb": 0.015,
+        "sway": 0.276,
+        "push": 0.115
+      },
+      "worse": [],
+      "unmeasured_in_situations": []
+    }
+  },
+  "inference": {
+    "readout": [
+      "reports/GO2_G_A038_READOUT.md",
+      "reports/GO2_G_A043_READOUT.md"
+    ],
+    "rule": "fact-based inference chain (2026-09-17 user instruction; MASTER section 5, AGENTS 4-9); a point-gain estimate is not required",
+    "role": "Isaac Lab v2.3.1 ang_vel_xy_l2 (reports/evidence/go2_reward_term_roles_20260917/isaaclab_envs_mdp_rewards.py:83) pays -w * (omega_x^2 + omega_y^2) of the body-frame angular velocity. It charges roll/pitch rate, not tilt and not a fall; the link to rollovers is G-A038's observation, not the formula.",
+    "rows": [
+      {
+        "source": "reports/runs/LEDGER.csv",
+        "key": "go2_g_a038_a033_ang_vel_xy_m008",
+        "value": "-0.08",
+        "reads": "the run the support comes from: G-A038 trained ang_vel_xy_l2 -0.08 on G-A033's other weights, measured with the same instrument (posture_gate_v2) and walked (POLICY_LOCOMOTES).",
+        "selector": {
+          "run": "go2_g_a038_a033_ang_vel_xy_m008",
+          "arm": "candidate"
+        },
+        "cells": {
+          "ang_vel_xy_l2": "-0.08",
+          "lin_vel_z_l2": "-2.0",
+          "instrument": "posture_gate_v2",
+          "locomotion": "POLICY_LOCOMOTES"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/FALL_CHANNELS.csv",
+        "key": "G-A038,ang_vel_xy_l2 -0.08,rough_lateral,202",
+        "value": "8",
+        "reads": "G-A038 (-0.08 on G-A033) rough side-step falls per seed 4 / 8 / 6 = 18 against G-A033's 20 / 20 / 19 = 59.",
+        "selector": {
+          "arm": "G-A038",
+          "case": "rough_lateral",
+          "seed": "202"
+        },
+        "cells": {
+          "fallen_total": "8",
+          "gate_falls_pessimistic": "8"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/FALL_CHANNELS.csv",
+        "key": "G-A033,baseline,rough_lateral,202",
+        "value": "20",
+        "reads": "the G-A033 counterpart of the row above.",
+        "selector": {
+          "arm": "G-A033",
+          "case": "rough_lateral",
+          "seed": "202"
+        },
+        "cells": {
+          "fallen_total": "20",
+          "gate_falls_pessimistic": "20"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/FALL_CHANNELS.csv",
+        "key": "G-A043,lin_vel_z_l2 -1.5,rough_lateral,202",
+        "value": "11",
+        "reads": "the reward base: G-A043 rough side-step falls 8 / 11 / 5 = 24 of 96, the count this change targets.",
+        "selector": {
+          "arm": "G-A043",
+          "case": "rough_lateral",
+          "seed": "202"
+        },
+        "cells": {
+          "fallen_total": "11",
+          "gate_falls_pessimistic": "11"
+        }
+      }
+    ],
+    "contradicting": [
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv",
+        "key": "G-A038,ang_vel_xy_l2 -0.08,stairs_10_down,202",
+        "value": "32",
+        "reads": "the same G-A038 run collapsed the 10 cm climb: 32 posture falls of 32 at every seed, survival 0.",
+        "selector": {
+          "arm": "G-A038",
+          "case": "stairs_10_down",
+          "seed": "202"
+        },
+        "cells": {
+          "posture_fall_env_count_pessimistic": "32",
+          "survival_proxy": "0.0"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv",
+        "key": "G-A041,ang_vel_xy_l2 -0.04,stairs_10_down,202",
+        "value": "32",
+        "reads": "the relaxing direction also collapsed the 10 cm climb (30 / 32 / 31), so the stairs cost is not read as a direction effect of this term.",
+        "selector": {
+          "arm": "G-A041",
+          "case": "stairs_10_down",
+          "seed": "202"
+        },
+        "cells": {
+          "posture_fall_env_count_pessimistic": "32",
+          "survival_proxy": "0.0"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv",
+        "key": "G-A038,ang_vel_xy_l2 -0.08,rough_lateral,303",
+        "value": "0.14859208757795203",
+        "reads": "and slowed rough side-stepping: 0.162 / 0.159 / 0.149 m/s against G-A033's 0.200 / 0.195 / 0.190.",
+        "selector": {
+          "arm": "G-A038",
+          "case": "rough_lateral",
+          "seed": "303"
+        },
+        "cells": {
+          "speed_xy_mean": "0.14859208757795203"
+        }
+      },
+      {
+        "source": "reports/runs/TERRAIN_AT_PIN.csv",
+        "key": "go2_g_a038_a033_ang_vel_xy_m008,900",
+        "value": "1.9499",
+        "reads": "terrain level at iteration 900 was G-A033 4.4937 against G-A038 1.9499 (reports/GO2_G_A038_READOUT.md), the reward change may itself have caused that difference, so the direct mechanism of both G-A038 results is not separated.",
+        "selector": {
+          "run": "go2_g_a038_a033_ang_vel_xy_m008",
+          "iteration": "900"
+        },
+        "cells": {
+          "terrain": "1.9499"
+        }
+      },
+      {
+        "source": "reports/evidence/go2_a043_tilt_onset_20260928/SUMMARY.csv",
+        "key": "A043,rough_lateral,fall_pre1s",
+        "value": "0.2703",
+        "reads": "in the second before tilt onset G-A043's falling robots side-step at 0.270 m/s against 0.138 for survivors at the same time, with an uncommanded yaw of 0.127; in some events the lateral-velocity change came before the tilt increase. This term charges roll/pitch rate; how it acts on that lateral-velocity change is not known.",
+        "selector": {
+          "arm": "A043",
+          "case": "rough_lateral",
+          "group": "fall_pre1s"
+        },
+        "cells": {
+          "vy": "0.2703",
+          "wz": "0.1268"
+        }
+      }
+    ],
+    "singularity": "One strengthening point on another reward base cut rough side-step falls to a third while collapsing the 10 cm climb, with a terrain-level difference at iteration 900 (G-A033 4.4937, G-A038 1.9499); the relaxing direction also collapsed the climb. On G-A043 the combined right turn loses 29 of 96 and was never measured under this change.",
+    "predictions": {
+      "walk": {
+        "direction": "same",
+        "basis": "spec_margin for the candidate rewards stays in the WALK zone (base_data.walk_margin). No walking change is claimed."
+      },
+      "climb": {
+        "direction": "unknown",
+        "basis": "G-A038 collapsed the 10 cm climb at this value on G-A033, with a terrain-level difference; G-A041 collapsed it in the other direction. Not predicted."
+      },
+      "sway": {
+        "direction": "down",
+        "basis": "the hypothesis: rough side-step falls below G-A043's 24 (supported at 12 or fewer with condition C). Exploratory, from G-A038 only."
+      },
+      "push": {
+        "direction": "unknown",
+        "basis": "G-A043 lost 10 robots over four directions; judged per direction, no direction claimed."
+      }
+    },
+    "falsified_if": "Hypothesis (tools/go2_dial_hypothesis.py): not supported if rough side-step posture falls are 24 or more of 96; 13-23 is INSUFFICIENT ('reduced, below target'). Case readout (tools/go2_g_a055_readout.py) classifies the right turn and push without a hypothesis.",
+    "risk_axes": [
+      "G2",
+      "G3",
+      "G5",
+      "G6"
+    ],
+    "seed_limit": "Every training run used seed 42 and no seed replicate exists, so a result supports or refutes the exploratory hypothesis at this value on this path; it does not generalize.",
+    "status": "INFORMATION_RUN",
+    "status_reason": "INFORMATION_RUN: the only prior is G-A038 on another reward base with its own cost and a terrain-level difference; the right turn, which carries G-A043's largest loss, was never measured under this change.",
+    "exploratory": true,
+    "counterevidence_response": "The adverse rows set the readout, not the value: the stairs are second-priority protection with G-A033 limits unchanged and A043-relative losses disclosed; the slower side-stepping becomes condition C; the unexplained lateral-velocity change keeps the run conditional on the G-A056 readout."
+  },
+  "open_decisions": [],
+  "reward_base": {
+    "name": "G-A043",
+    "rewards": {
+      "track_lin_vel_xy_exp": 1.5,
+      "feet_air_time": 0.2,
+      "lin_vel_z_l2": -1.5,
+      "ang_vel_xy_l2": -0.05,
+      "action_rate_l2": -0.01,
+      "flat_orientation_l2": 0.0
+    },
+    "trained_source": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/training/source/quadruped_rewards.py",
+    "change": {
+      "name": "lin_vel_z_l2",
+      "from": -2.0,
+      "to": -1.5
+    },
+    "why": "Codex selected G-A043's reward setting as the base because it holds the highest stairs score of the stored arms (G5 1.62) and asked for one change on it aimed at its first-priority losses. G-A043's own adoption failed; it is a reward base, not an adoption baseline."
+  }
+}

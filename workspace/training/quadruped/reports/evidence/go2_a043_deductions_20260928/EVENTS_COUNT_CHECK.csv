@@ -1,0 +1,4 @@
+arm,seed,height_only,tilt_only,both,union_only,terminated_only,fallen_total,fall_channels_csv_match
+G-A043,101,0,3,3,0,2,8,True
+G-A043,202,0,2,2,1,6,11,True
+G-A043,303,0,1,2,0,2,5,True

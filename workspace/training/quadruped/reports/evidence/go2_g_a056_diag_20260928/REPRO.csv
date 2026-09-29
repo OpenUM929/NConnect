@@ -1,0 +1,9 @@
+pair,status,rows_a,rows_b,first_diff_step,envs_diverged,envs_diverged_first_step
+plain_vs_stored:rough_lateral,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+diag_vs_plain:rough_lateral,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+plain_vs_stored:combined_yaw_right,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+diag_vs_plain:combined_yaw_right,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+video_vs_plain:rough_lateral_env5,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+video_vs_plain:rough_lateral_env11,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+video_vs_plain:combined_yaw_right_env3,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}
+video_vs_plain:combined_yaw_right_env16,NO_DIFFERENCE_IN_STORED_CHANNELS,32000,32000,,0,{}

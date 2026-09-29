@@ -1,0 +1,52 @@
+[
+ {
+  "R_omega_xy_p95": 1.2038764968982492,
+  "S_stance_speed_p95": 0.5496179261723547,
+  "D_low_support_run_p95_s": 0.16,
+  "survivors": 21,
+  "rows_total": 20475,
+  "rows_omega": 20475,
+  "rows_contact_valid": 20475,
+  "rows_stance": 67989,
+  "low_support_runs": 111,
+  "case": "rough_lateral",
+  "eval_seed": 202,
+  "feet": [
+   "FL",
+   "FR",
+   "RL",
+   "RR"
+  ],
+  "action_delta_p95": 2.0038827399112606,
+  "first_episode_only": true,
+  "unavailable": {},
+  "envs": 32,
+  "fallen": 11,
+  "plain_vs_stored": "NO_DIFFERENCE_IN_STORED_CHANNELS"
+ },
+ {
+  "R_omega_xy_p95": 1.151894151588591,
+  "S_stance_speed_p95": 0.3191113544826633,
+  "D_low_support_run_p95_s": 0.08,
+  "survivors": 23,
+  "rows_total": 22425,
+  "rows_omega": 22425,
+  "rows_contact_valid": 22425,
+  "rows_stance": 61212,
+  "low_support_runs": 706,
+  "case": "combined_yaw_right",
+  "eval_seed": 202,
+  "feet": [
+   "FL",
+   "FR",
+   "RL",
+   "RR"
+  ],
+  "action_delta_p95": 2.2448207399602844,
+  "first_episode_only": true,
+  "unavailable": {},
+  "envs": 32,
+  "fallen": 9,
+  "plain_vs_stored": "NO_DIFFERENCE_IN_STORED_CHANNELS"
+ }
+]

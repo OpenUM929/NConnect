@@ -1,0 +1,31 @@
+{
+  "defect": "C-36",
+  "recovered_on": "2026-09-25",
+  "why": "커밋된 판독이 A041 대신 테스트 임시 폴더 행(CreatorTemp, 관측 0)을 담고 있었다. 로컬 판독 출력 결함 — 서버 학습·수집 경로와는 별개.",
+  "source_harvest": {
+    "dir": "workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004",
+    "result_zip": "workspace/_keep/GO2_G_A041_RESULT.zip",
+    "result_zip_sha256": "19a565a19eda14ed2f0f0435341d2302f4ab9ef878084e016cb78ef7b375e3d2",
+    "run_id": null,
+    "model_sha256": "f4c0b929d6daed1c834da1760638faa2b28aaac605f4aa898369a3e1df63c8e8",
+    "identity_sha256": "d21c19591c187afa0217ed9f370c54ea54388a28c2d3b6a862794b64ea2353c4",
+    "inputs": {
+      "evaluation/candidate/cases/seed_101/stairs_10_down/steps.csv": "5214ac2dd1d9f07af7e5f7b6317827fe660be0f6717a77d32af5f78cc31fe440",
+      "evaluation/candidate/cases/seed_202/stairs_10_down/steps.csv": "158b6057f8202afbb729e9f1fb12b4158ec930d0fcfaa8887c86cf90c572455f",
+      "evaluation/candidate/cases/seed_303/stairs_10_down/steps.csv": "5e60263db48bcc9edde85ae05e9180fe90b5f93e15e9478d025bac66ad67e313"
+    }
+  },
+  "command": "python -B tools/go2_stall_diagnostics.py --candidate workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004/evaluation/candidate --out workspace/training/quadruped/reports/evidence/go2_stall_diagnostics_20260921",
+  "generator_sha256": "b8a6e21536719b0177299c9e7e5b4f8ec32aac5cc5180d00b17dc062e214c7c9",
+  "before_sha256": {
+    "STALL_DIAGNOSTICS.csv": "71e8eee226069d9a7fad048cbcbe68b98d1485403a07e50678b9112df4240965",
+    "STALL_DIAGNOSTICS_ENV.csv": "3652c97862c33a4efada84da499662934ccf38e158321e2a6b54a76901d339f3",
+    "STALL_DIAGNOSTICS_PROVENANCE.json": "17251ac78c49387065e2e5600ce8837ad51e9848c364d6828cfc3b9641e8b713"
+  },
+  "after_sha256": {
+    "STALL_DIAGNOSTICS.csv": "9e5349580168e7aeb444a4ea0696bdb822489a3c8501520e405df81a46fca635",
+    "STALL_DIAGNOSTICS_ENV.csv": "bea30c0db4829a9b312cd3946eff784470e9093a00fb80b777dd6ed0b6ff91f4",
+    "STALL_DIAGNOSTICS_PROVENANCE.json": "4a891bf494d29e661d997c04d6cfe8d0b6047d88b26175d25b0f519d1ac0bf12"
+  },
+  "note": "2026-09-26: 판독기가 provenance JSON 을 플랫폼 줄바꿈(CRLF)으로 쓰던 것을 LF 로 고정한 뒤 다시 만들었다. CSV 두 파일은 바이트 그대로이고 provenance 만 CRLF -> LF 로 바뀌었다(내용 동일)."
+}

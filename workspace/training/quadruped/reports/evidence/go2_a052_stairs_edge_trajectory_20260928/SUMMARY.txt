@@ -1,0 +1,51 @@
+center fit: mismatch rate R0=1.2 median 0.0152 (max 0.4422); R0=1.5 median 0.0152
+edge uncertainty u: median 0.068 m, max 0.080 m
+
+stairs_10_down FAIL front feet n=16: early 5, in_band 2, late 6, never 2, passed_low 0, no_entry 1
+  early: top_after_entry 3/5, low_contact_any 4/5, band_dwell median 0.68 s, low_contact median 0.50 s
+  in_band: top_after_entry 2/2, low_contact_any 0/2, band_dwell median 0.33 s, low_contact median 0.02 s
+  late: top_after_entry 2/6, low_contact_any 6/6, band_dwell median 0.49 s, low_contact median 0.20 s
+  never: top_after_entry 0/2, low_contact_any 2/2, band_dwell median 0.67 s, low_contact median 0.32 s
+stairs_10_down FAIL rear feet n=16: early 2, in_band 3, late 3, never 3, passed_low 0, no_entry 5
+  early: top_after_entry 1/2, low_contact_any 0/2, band_dwell median 0.17 s, low_contact median 0.07 s
+  in_band: top_after_entry 2/3, low_contact_any 1/3, band_dwell median 0.84 s, low_contact median 0.26 s
+  late: top_after_entry 2/3, low_contact_any 3/3, band_dwell median 0.16 s, low_contact median 0.02 s
+  never: top_after_entry 0/3, low_contact_any 2/3, band_dwell median 0.12 s, low_contact median 0.04 s
+stairs_10_down SURV front feet n=48: early 24, in_band 11, late 13, never 0, passed_low 0, no_entry 0
+  early: top_after_entry 24/24, low_contact_any 17/24, band_dwell median 0.56 s, low_contact median 0.30 s
+  in_band: top_after_entry 11/11, low_contact_any 1/11, band_dwell median 0.10 s, low_contact median 0.00 s
+  late: top_after_entry 13/13, low_contact_any 13/13, band_dwell median 0.52 s, low_contact median 0.32 s
+stairs_10_down SURV rear feet n=48: early 28, in_band 12, late 8, never 0, passed_low 0, no_entry 0
+  early: top_after_entry 28/28, low_contact_any 15/28, band_dwell median 0.42 s, low_contact median 0.04 s
+  in_band: top_after_entry 12/12, low_contact_any 0/12, band_dwell median 0.10 s, low_contact median 0.00 s
+  late: top_after_entry 8/8, low_contact_any 8/8, band_dwell median 0.85 s, low_contact median 0.40 s
+stairs_15_down FAIL front feet n=62: early 7, in_band 9, late 13, never 20, passed_low 0, no_entry 13
+  early: top_after_entry 6/7, low_contact_any 5/7, band_dwell median 0.60 s, low_contact median 0.02 s
+  in_band: top_after_entry 8/9, low_contact_any 1/9, band_dwell median 0.08 s, low_contact median 0.00 s
+  late: top_after_entry 12/13, low_contact_any 13/13, band_dwell median 0.62 s, low_contact median 0.30 s
+  never: top_after_entry 0/20, low_contact_any 17/20, band_dwell median 0.56 s, low_contact median 0.38 s
+stairs_15_down FAIL rear feet n=62: early 5, in_band 3, late 10, never 28, passed_low 0, no_entry 16
+  early: top_after_entry 2/5, low_contact_any 3/5, band_dwell median 0.68 s, low_contact median 0.26 s
+  in_band: top_after_entry 2/3, low_contact_any 1/3, band_dwell median 0.62 s, low_contact median 0.20 s
+  late: top_after_entry 10/10, low_contact_any 10/10, band_dwell median 0.80 s, low_contact median 0.32 s
+  never: top_after_entry 0/28, low_contact_any 12/28, band_dwell median 1.97 s, low_contact median 0.99 s
+stairs_15_down SURV front feet n=2: early 1, in_band 0, late 1, never 0, passed_low 0, no_entry 0
+  early: top_after_entry 1/1, low_contact_any 0/1, band_dwell median 0.06 s, low_contact median 0.00 s
+  late: top_after_entry 1/1, low_contact_any 1/1, band_dwell median 0.52 s, low_contact median 0.34 s
+stairs_15_down SURV rear feet n=2: early 1, in_band 1, late 0, never 0, passed_low 0, no_entry 0
+  early: top_after_entry 1/1, low_contact_any 0/1, band_dwell median 0.06 s, low_contact median 0.00 s
+  in_band: top_after_entry 1/1, low_contact_any 0/1, band_dwell median 0.18 s, low_contact median 0.00 s
+
+post-hoc sensitivity: robots with center-fit mismatch > 0.30 excluded: [('stairs_10_down', 9), ('stairs_10_down', 17), ('stairs_10_down', 18)]
+  stairs_10_down SURV front n=42: early 22, in_band 9, late 11, never 0, passed_low 0, no_entry 0; top_after_entry 42/42
+  stairs_10_down SURV rear n=42: early 24, in_band 12, late 6, never 0, passed_low 0, no_entry 0; top_after_entry 42/42
+
+time scale (descriptive): survivors' rise delay (rise_t - entry_t) vs time a 'never' foot had (T - entry_t)
+  stairs_10_down SURV front rise delay: median 0.00 s, p90 0.52, max 1.30, n=42
+  stairs_10_down FAIL front never: time before T median 0.65 s, min 0.56, max 0.74, n=2
+  stairs_10_down SURV rear rise delay: median 0.00 s, p90 0.30, max 2.62, n=42
+  stairs_10_down FAIL rear never: time before T median 0.10 s, min 0.02, max 2.62, n=3
+  stairs_15_down SURV front rise delay: median 0.24 s, p90 0.48, max 0.48, n=2
+  stairs_15_down FAIL front never: time before T median 0.54 s, min 0.06, max 2.98, n=20
+  stairs_15_down SURV rear rise delay: median 0.01 s, p90 0.02, max 0.02, n=2
+  stairs_15_down FAIL rear never: time before T median 1.95 s, min 0.12, max 3.62, n=28

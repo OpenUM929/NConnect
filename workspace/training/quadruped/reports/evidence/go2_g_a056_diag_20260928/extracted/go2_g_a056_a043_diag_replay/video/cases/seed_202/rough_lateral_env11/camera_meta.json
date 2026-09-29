@@ -1,0 +1,43 @@
+{
+ "asset_name": "robot",
+ "cam_prim_path": "/OmniverseKit_Persp",
+ "cfg_env_index_at_attach": 11,
+ "completed": true,
+ "default_cam_eye": [
+  -4.0,
+  -4.0,
+  4.0
+ ],
+ "expected_env_index": 11,
+ "fields": [
+  "step",
+  "cfg_env_index",
+  "origin_type",
+  "viewer_origin_x",
+  "viewer_origin_y",
+  "viewer_origin_z",
+  "prim_x",
+  "prim_y",
+  "prim_z",
+  "target_root_x",
+  "target_root_y",
+  "target_root_z",
+  "implied_origin_x",
+  "implied_origin_y",
+  "implied_origin_z",
+  "target_dist_xy",
+  "nearest_env",
+  "nearest_dist_xy",
+  "other_near_dist_xy"
+ ],
+ "num_envs": 32,
+ "origin_type_at_attach": "asset_root",
+ "read_only": true,
+ "resolution": [
+  1920,
+  1080
+ ],
+ "schema": "go2_eval_camera_probe_v1",
+ "steps": 1000,
+ "unavailable": {}
+}

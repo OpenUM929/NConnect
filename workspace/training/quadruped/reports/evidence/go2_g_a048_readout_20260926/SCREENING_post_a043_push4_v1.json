@@ -1,0 +1,249 @@
+{
+  "verdict": "INTERNAL_GATE_FAIL",
+  "cases": [
+    "stairs_10_down",
+    "stairs_15_down",
+    "rough_forward",
+    "rough_lateral",
+    "push_pos_x",
+    "push_neg_x",
+    "push_pos_y",
+    "push_neg_y"
+  ],
+  "rule": "upload/plan/GO2_FORWARD_STAIRS_POLICY_20260921.md section 4 (screening design criteria; not an official threshold and not a significance level); extended by upload/plan/GO2_POST_A042_PLAN_20260922.md section 5, which adds both G6 x-direction push cases to the protection block (post_a042_push_v1); extended again by upload/plan/GO2_POST_A043_PLAN_20260922.md section 6, which adds the two G6 y-direction push cases (post_a043_push4_v1)",
+  "not_claimed": "a PASS is a screening pass only: the full 69 cases, the guard axes, the videos and a symmetric independent-seed pair are still required before any promotion. fact_rules_v1 is judged separately by tools/verify_go2_basic_motion_harvest.py and is not weakened here.",
+  "unreadable": [],
+  "undecided": [],
+  "failed": [
+    "stairs_15_down stall share median delta < 0",
+    "stairs_15_down pooled posture falls <= baseline",
+    "stairs_15_down survival median delta >= 0"
+  ],
+  "checks": [
+    {
+      "group": "stairs",
+      "check": "stairs_10_down forward distance median delta > 0",
+      "value": 7.580088121734736,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_10_down pooled ge1 >= baseline",
+      "value": "91 vs 90",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_10_down pooled ge2 >= baseline",
+      "value": "90 vs 43",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down forward distance median delta > 0",
+      "value": 0.21138742258066556,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down pooled ge1 >= baseline",
+      "value": "45 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "stairs_15_down pooled ge2 >= baseline",
+      "value": "24 vs 0",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stairs",
+      "check": "at least one climb count strictly up",
+      "value": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stall",
+      "check": "stairs_10_down stall share median delta < 0",
+      "value": -0.139081,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "stall",
+      "check": "stairs_15_down stall share median delta < 0",
+      "value": 0.06768000000000007,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_10_down pooled posture falls <= baseline",
+      "value": "30 vs 34",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_10_down survival median delta >= 0",
+      "value": 0.09375,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_15_down pooled posture falls <= baseline",
+      "value": "93 vs 90",
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "stairs_15_down survival median delta >= 0",
+      "value": -0.03125,
+      "ok": false,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward pooled posture falls <= baseline",
+      "value": "3 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward survival median delta >= 0",
+      "value": 0.0,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral pooled posture falls <= baseline",
+      "value": "16 vs 59",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral survival median delta >= 0",
+      "value": 0.46875,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_x pooled posture falls <= baseline",
+      "value": "0 vs 8",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_x survival median delta >= 0",
+      "value": 0.0625,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_x pooled posture falls <= baseline",
+      "value": "0 vs 6",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_x survival median delta >= 0",
+      "value": 0.09375,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_y pooled posture falls <= baseline",
+      "value": "0 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_y survival median delta >= 0",
+      "value": 0.03125,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_y pooled posture falls <= baseline",
+      "value": "1 vs 4",
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_y survival median delta >= 0",
+      "value": 0.03125,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_forward tracking proxy median delta >= 0",
+      "value": 0.1689315681606154,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "rough_lateral tracking proxy median delta >= 0",
+      "value": 0.05262468472234738,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_x tracking proxy median delta >= 0",
+      "value": 0.007587415252864327,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_x tracking proxy median delta >= 0",
+      "value": 0.010519518175460152,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_pos_y tracking proxy median delta >= 0",
+      "value": 0.005440015548868082,
+      "ok": true,
+      "note": ""
+    },
+    {
+      "group": "guard",
+      "check": "push_neg_y tracking proxy median delta >= 0",
+      "value": 0.00548568148663664,
+      "ok": true,
+      "note": ""
+    }
+  ],
+  "identity_faults": [],
+  "candidate": "workspace\\_keep\\go2_g_a048_a033_lin_vel_z_m125\\evaluation\\candidate",
+  "baseline": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate"
+}

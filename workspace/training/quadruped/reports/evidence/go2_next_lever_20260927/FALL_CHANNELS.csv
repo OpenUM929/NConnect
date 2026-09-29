@@ -1,0 +1,85 @@
+arm,change,case,seed,height_only,tilt_only,both,union_only,terminated_only,fallen_total,terminated_base_contact,envs,gate_falls_pessimistic
+G-A033,baseline,rough_lateral,101,0,9,5,0,6,20,19,32,20
+G-A033,baseline,rough_lateral,202,0,8,7,0,5,20,20,32,20
+G-A033,baseline,rough_lateral,303,0,13,3,0,3,19,19,32,19
+G-A033,baseline,stairs_10_down,101,3,0,1,0,0,4,1,32,4
+G-A033,baseline,stairs_10_down,202,12,0,2,0,1,15,2,32,15
+G-A033,baseline,stairs_10_down,303,12,1,1,0,1,15,3,32,15
+G-A033,baseline,stairs_15_down,101,28,0,0,0,0,28,1,32,28
+G-A033,baseline,stairs_15_down,202,31,0,0,0,0,31,0,32,31
+G-A033,baseline,stairs_15_down,303,30,0,1,0,0,31,0,32,31
+G-A044,lin_vel_z_l2 -1.75,rough_lateral,101,0,7,1,0,17,25,25,32,25
+G-A044,lin_vel_z_l2 -1.75,rough_lateral,202,0,10,6,0,11,27,27,32,27
+G-A044,lin_vel_z_l2 -1.75,rough_lateral,303,0,7,3,0,18,28,28,32,28
+G-A044,lin_vel_z_l2 -1.75,stairs_10_down,101,23,0,0,0,0,23,0,32,23
+G-A044,lin_vel_z_l2 -1.75,stairs_10_down,202,25,0,0,0,0,25,0,32,25
+G-A044,lin_vel_z_l2 -1.75,stairs_10_down,303,17,0,0,0,0,17,0,32,17
+G-A044,lin_vel_z_l2 -1.75,stairs_15_down,101,31,0,0,0,0,31,17,32,31
+G-A044,lin_vel_z_l2 -1.75,stairs_15_down,202,32,0,0,0,0,32,19,32,32
+G-A044,lin_vel_z_l2 -1.75,stairs_15_down,303,32,0,0,0,0,32,18,32,32
+G-A043,lin_vel_z_l2 -1.5,rough_lateral,101,0,3,3,0,2,8,8,32,8
+G-A043,lin_vel_z_l2 -1.5,rough_lateral,202,0,2,2,1,6,11,10,32,11
+G-A043,lin_vel_z_l2 -1.5,rough_lateral,303,0,1,2,0,2,5,5,32,5
+G-A043,lin_vel_z_l2 -1.5,stairs_10_down,101,1,3,0,0,0,4,0,32,4
+G-A043,lin_vel_z_l2 -1.5,stairs_10_down,202,5,0,1,0,0,6,0,32,6
+G-A043,lin_vel_z_l2 -1.5,stairs_10_down,303,1,5,1,0,0,7,0,32,7
+G-A043,lin_vel_z_l2 -1.5,stairs_15_down,101,10,0,1,0,6,17,7,32,17
+G-A043,lin_vel_z_l2 -1.5,stairs_15_down,202,16,0,0,0,0,16,6,32,16
+G-A043,lin_vel_z_l2 -1.5,stairs_15_down,303,11,0,1,0,4,16,6,32,16
+G-A050,lin_vel_z_l2 -1.375,rough_lateral,101,0,2,1,0,2,5,4,32,5
+G-A050,lin_vel_z_l2 -1.375,rough_lateral,202,0,2,4,0,1,7,6,32,7
+G-A050,lin_vel_z_l2 -1.375,rough_lateral,303,0,3,2,0,2,7,7,32,7
+G-A050,lin_vel_z_l2 -1.375,stairs_10_down,101,30,0,0,0,0,30,0,32,30
+G-A050,lin_vel_z_l2 -1.375,stairs_10_down,202,31,0,0,0,0,31,0,32,31
+G-A050,lin_vel_z_l2 -1.375,stairs_10_down,303,26,0,0,0,0,26,0,32,26
+G-A050,lin_vel_z_l2 -1.375,stairs_15_down,101,32,0,0,0,0,32,1,32,32
+G-A050,lin_vel_z_l2 -1.375,stairs_15_down,202,32,0,0,0,0,32,0,32,32
+G-A050,lin_vel_z_l2 -1.375,stairs_15_down,303,32,0,0,0,0,32,1,32,32
+G-A048,lin_vel_z_l2 -1.25,rough_lateral,101,3,0,0,0,2,5,2,32,5
+G-A048,lin_vel_z_l2 -1.25,rough_lateral,202,1,1,0,0,6,8,7,32,8
+G-A048,lin_vel_z_l2 -1.25,rough_lateral,303,1,0,0,0,2,3,2,32,3
+G-A048,lin_vel_z_l2 -1.25,stairs_10_down,101,8,0,0,0,0,8,0,32,8
+G-A048,lin_vel_z_l2 -1.25,stairs_10_down,202,9,1,0,0,0,10,1,32,10
+G-A048,lin_vel_z_l2 -1.25,stairs_10_down,303,11,0,0,0,1,12,2,32,12
+G-A048,lin_vel_z_l2 -1.25,stairs_15_down,101,31,0,0,0,0,31,6,32,31
+G-A048,lin_vel_z_l2 -1.25,stairs_15_down,202,32,0,0,0,0,32,5,32,32
+G-A048,lin_vel_z_l2 -1.25,stairs_15_down,303,29,0,0,0,1,30,7,32,30
+G-A049,lin_vel_z_l2 -1.0,rough_lateral,101,0,2,6,0,6,14,9,32,14
+G-A049,lin_vel_z_l2 -1.0,rough_lateral,202,0,1,6,0,12,19,17,32,19
+G-A049,lin_vel_z_l2 -1.0,rough_lateral,303,0,1,9,0,3,13,6,32,13
+G-A049,lin_vel_z_l2 -1.0,stairs_10_down,101,15,0,0,0,0,15,2,32,15
+G-A049,lin_vel_z_l2 -1.0,stairs_10_down,202,8,0,0,0,0,8,0,32,8
+G-A049,lin_vel_z_l2 -1.0,stairs_10_down,303,9,0,0,0,0,9,0,32,9
+G-A049,lin_vel_z_l2 -1.0,stairs_15_down,101,32,0,0,0,0,32,5,32,32
+G-A049,lin_vel_z_l2 -1.0,stairs_15_down,202,31,0,1,0,0,32,4,32,32
+G-A049,lin_vel_z_l2 -1.0,stairs_15_down,303,31,0,1,0,0,32,8,32,32
+G-A038,ang_vel_xy_l2 -0.08,rough_lateral,101,1,0,2,0,1,4,2,32,4
+G-A038,ang_vel_xy_l2 -0.08,rough_lateral,202,0,2,0,0,6,8,8,32,8
+G-A038,ang_vel_xy_l2 -0.08,rough_lateral,303,0,1,3,0,2,6,6,32,6
+G-A038,ang_vel_xy_l2 -0.08,stairs_10_down,101,28,0,4,0,0,32,1,32,32
+G-A038,ang_vel_xy_l2 -0.08,stairs_10_down,202,32,0,0,0,0,32,0,32,32
+G-A038,ang_vel_xy_l2 -0.08,stairs_10_down,303,28,0,4,0,0,32,0,32,32
+G-A041,ang_vel_xy_l2 -0.04,rough_lateral,101,1,3,1,0,13,18,17,32,18
+G-A041,ang_vel_xy_l2 -0.04,rough_lateral,202,3,1,8,0,6,18,17,32,18
+G-A041,ang_vel_xy_l2 -0.04,rough_lateral,303,1,0,7,0,8,16,13,32,16
+G-A041,ang_vel_xy_l2 -0.04,stairs_10_down,101,30,0,0,0,0,30,2,32,30
+G-A041,ang_vel_xy_l2 -0.04,stairs_10_down,202,32,0,0,0,0,32,1,32,32
+G-A041,ang_vel_xy_l2 -0.04,stairs_10_down,303,29,0,2,0,0,31,4,32,31
+G-A042,track_lin_vel_xy_exp 1.6,rough_lateral,101,0,12,2,0,3,17,15,32,17
+G-A042,track_lin_vel_xy_exp 1.6,rough_lateral,202,0,10,7,0,2,19,17,32,19
+G-A042,track_lin_vel_xy_exp 1.6,rough_lateral,303,1,7,5,0,4,17,14,32,17
+G-A042,track_lin_vel_xy_exp 1.6,stairs_10_down,101,26,0,0,0,0,26,1,32,26
+G-A042,track_lin_vel_xy_exp 1.6,stairs_10_down,202,30,0,0,0,0,30,4,32,30
+G-A042,track_lin_vel_xy_exp 1.6,stairs_10_down,303,29,0,0,0,0,29,3,32,29
+G-A042,track_lin_vel_xy_exp 1.6,stairs_15_down,101,32,0,0,0,0,32,4,32,32
+G-A042,track_lin_vel_xy_exp 1.6,stairs_15_down,202,31,0,0,0,0,31,2,32,31
+G-A042,track_lin_vel_xy_exp 1.6,stairs_15_down,303,31,0,0,0,0,31,1,32,31
+G-A047,flat_orientation_l2 -0.5,rough_lateral,101,0,11,2,0,4,17,17,32,17
+G-A047,flat_orientation_l2 -0.5,rough_lateral,202,0,14,0,0,6,20,20,32,20
+G-A047,flat_orientation_l2 -0.5,rough_lateral,303,0,16,0,0,7,23,23,32,23
+G-A047,flat_orientation_l2 -0.5,stairs_10_down,101,0,0,0,0,0,0,0,32,0
+G-A047,flat_orientation_l2 -0.5,stairs_10_down,202,1,0,0,0,0,1,0,32,1
+G-A047,flat_orientation_l2 -0.5,stairs_10_down,303,0,0,0,0,0,0,0,32,0
+G-A047,flat_orientation_l2 -0.5,stairs_15_down,101,2,0,1,0,0,3,1,32,3
+G-A047,flat_orientation_l2 -0.5,stairs_15_down,202,2,0,0,0,0,2,0,32,2
+G-A047,flat_orientation_l2 -0.5,stairs_15_down,303,3,0,0,0,0,3,0,32,3

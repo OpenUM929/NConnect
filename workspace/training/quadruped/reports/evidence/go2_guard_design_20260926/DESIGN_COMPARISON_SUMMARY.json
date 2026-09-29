@@ -1,0 +1,74 @@
+{
+  "definitions_fixed_before_computing": {
+    "must_not_miss_harm": "one guard case: +3 posture falls per evaluation seed (pooled +9/96, survival -3/32), or tracking proxy -0.02 per seed",
+    "allowed_loss": "half of the harm, rounded down: pooled falls +3, survival median -0.03125, tracking median -0.01"
+  },
+  "designs": {
+    "current": "zero margin (post_a043_push4_v1 guard block)",
+    "margin": "allowed-loss margin on the same 22 checks",
+    "margin_split": "margin, with separate harm/allowed loss for stairs_10_down and rough_lateral falls/survival (+5/seed harm, +2/seed allowed) and rough_forward tracking (-0.04 harm, -0.02 allowed); user choice 2026-09-26, fixed before computing",
+    "margin_split_dedup": "margin_split with the eight survival checks removed (they re-count the same robot falls); 14 checks; same values; user choice 2026-09-26",
+    "resample": "one-sided 1% per-check cut from a separate calibration resample"
+  },
+  "not_applied_to": "G-A048 (its verdict INTERNAL_GATE_FAIL is preserved; no design here is evaluated on it)",
+  "draws": 2000,
+  "harm_draws_per_scenario": 500,
+  "rng_seeds": {
+    "calibration": 20260927,
+    "null": 20260928,
+    "harm": 20260929
+  },
+  "null_any_guard_fail": {
+    "current": 0.9975,
+    "margin": 0.7415,
+    "margin_split": 0.548,
+    "margin_split_dedup": 0.519,
+    "resample": 0.1045
+  },
+  "harm_case_miss_mean_common_harm": {
+    "current": 0.0117,
+    "margin": 0.0544,
+    "margin_split": 0.0897,
+    "margin_split_dedup": 0.0943,
+    "resample": 0.2454
+  },
+  "harm_case_miss_worst_common_harm": {
+    "current": [
+      0.12,
+      "rough_forward/tracking"
+    ],
+    "margin": [
+      0.314,
+      "rough_forward/tracking"
+    ],
+    "margin_split": [
+      0.512,
+      "rough_forward/tracking"
+    ],
+    "margin_split_dedup": [
+      0.512,
+      "rough_forward/tracking"
+    ],
+    "resample": [
+      0.91,
+      "rough_forward/tracking"
+    ]
+  },
+  "own_harm": {
+    "margin_split": {
+      "miss_mean": 0.0334,
+      "miss_worst": [
+        0.218,
+        "stairs_15_down/falls"
+      ]
+    },
+    "margin_split_dedup": {
+      "miss_mean": 0.035,
+      "miss_worst": [
+        0.218,
+        "stairs_15_down/falls"
+      ]
+    }
+  },
+  "reported_as": "resampling sensitivity conditional on the stored G-A033 sample; harms are added to case values, not simulated; not a server re-run error rate"
+}

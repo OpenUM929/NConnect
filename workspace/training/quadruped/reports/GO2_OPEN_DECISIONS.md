@@ -7,10 +7,10 @@
 
 `WIDENS` 는 우리 권한을 **넓히는** 해석이다. 이쪽은 엄격히 본다 — 규칙 밖을 막는 대신 규칙을 넓혀 통과시키는 것이 보존 사례 C02 의 모양이기 때문이다.
 
-## U1-R6-ENV-REWARD-20260918  ·  OPEN  ·  WIDENS
+## U1-R6-ENV-REWARD-20260918  ·  APPROVED  ·  WIDENS
 
 - **질문**: 배포 `REWARD_WEIGHTS` 6개 목록 **밖**의 env RewTerm 가중치를 바꾸는 회차가 R-6 안인가?
-- **우리가 임시로 택한 해석**: R-6 안으로 판단하고 `change_class: env_reward_weight` 를 신설했으며, 관문 상수 `R6_CHANGE_CLASSES` 에 그 값을 추가해 추천을 통과시켰다.
+- **우리가 임시로 택한 해석**: R-6 안으로 판단하고 `change_class: env_reward_weight` 를 신설했으며, 관문 상수 `R6_CHANGE_CLASSES` 에 그 값을 추가해 추천을 통과시켰다. **2026-09-28 사용자 승인 G-D-U1-APPROVED-20260928**: 목록 밖 기존 env 보상 항의 가중치를 quadruped_rewards.py 에 줄로 추가해 바꾸는 것을 허용한다. 근거는 배포 파일 머리말 '줄 추가/삭제 자유'·'여기 없는 보상은 기본값', 강좌14 '표에 없는 보상 항목도 많아요'(주의이지 금지 아님), R-6 '값(가중치)뿐', 선례 G-D65. 조건: 배포 report.html 은 이 변경을 표시하지 않으므로(아래 '왜 중요한가') 제출 리포트에 전→후 값을 직접 적고 env.yaml 을 대조 근거로 둔다.
 - **이 해석이 허용하는 `change_class`**: `env_reward_weight`
 - **이 해석이 사용자 결정임을 적어 둔 원문**: `workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md` — "R-6 해석은 사용자 결정이다"
 - **이 해석에 기대는 산출물**:

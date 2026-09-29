@@ -1,0 +1,44 @@
+{
+ "zip": "ZIP_SHA_VERIFIED",
+ "artifact": "ARTIFACT_VERIFIED",
+ "problems": [],
+ "channels": "DIAG_CHANNELS_COMPLETE",
+ "channel_problems": [],
+ "video": {
+  "rough_lateral_env5": "VIDEO_ENV_MATCHED",
+  "rough_lateral_env11": "VIDEO_ENV_MATCHED",
+  "combined_yaw_right_env3": "VIDEO_ENV_MATCHED",
+  "combined_yaw_right_env16": "VIDEO_ENV_MATCHED"
+ },
+ "shutdown": "OK",
+ "collection": "COMPLETE",
+ "exception_evidence": {
+  "diag_csv": {
+   "rough_lateral": true,
+   "combined_yaw_right": true
+  },
+  "identity_json": true,
+  "launcher_snapshot": true,
+  "logs": [
+   "diag_seed_202_combined_yaw_right.log",
+   "diag_seed_202_rough_lateral.log",
+   "plain_seed_202_combined_yaw_right.log",
+   "plain_seed_202_rough_lateral.log",
+   "video_seed_202_combined_yaw_right_env16.log",
+   "video_seed_202_combined_yaw_right_env3.log",
+   "video_seed_202_rough_lateral_env11.log",
+   "video_seed_202_rough_lateral_env5.log"
+  ]
+ },
+ "repro": {
+  "plain_vs_stored:rough_lateral": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "diag_vs_plain:rough_lateral": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "plain_vs_stored:combined_yaw_right": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "diag_vs_plain:combined_yaw_right": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "video_vs_plain:rough_lateral_env5": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "video_vs_plain:rough_lateral_env11": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "video_vs_plain:combined_yaw_right_env3": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "video_vs_plain:combined_yaw_right_env16": "NO_DIFFERENCE_IN_STORED_CHANNELS"
+ },
+ "repro_meaning": "no difference in stored channels at stored precision; not a proof of no interference"
+}

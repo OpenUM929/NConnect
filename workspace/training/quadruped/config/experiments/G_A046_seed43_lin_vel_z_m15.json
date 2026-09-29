@@ -285,9 +285,9 @@
     "result_zip": "GO2_G_A046_RESULT.zip",
     "done_marker": "[DONE] GO2_G_A046_RESULT_READY",
     "tmux_name": "go2_g_a046",
-    "upload_zip": "GO2_G_A046_seed43_lin_vel_z_m15_full69_v7.zip",
-    "release_id": "20260924_seed43_lin_vel_z_m15_full69_v7",
-    "supersedes": "v6 is kept in history unchanged.  Superseded the same day by an independent review of the published bytes, which found two recovery defects that no reading of the normal path would have shown: a resume whose training was half finished deleted the logs, the pinned checkpoint and the training log and retrained from scratch (C-27), and the campaign's completion check looked at RUNNER_RC/STAGE/DECISION only, so an arm whose collection was INCOMPLETE - or whose result ZIP did not exist - was skipped as done (C-28).  Both were reproduced by executing the v7 bytes, both are fixed at the source, and the fixes are held by executed gates.  Published bytes are never edited, so the corrected arm ships as v7.  No reward value, threshold, case list or video list changed.",
+    "upload_zip": "GO2_G_A046_seed43_lin_vel_z_m15_full69_v9.zip",
+    "release_id": "20260924_seed43_lin_vel_z_m15_full69_v9",
+    "supersedes": "v8 is kept in history unchanged.  Re-issued 2026-09-25 with pair v10 (defect C-34 corrected): base_data again lists -1.75 (G-A044), which v8 had wrongly removed; the base-data table now includes G-A044.  No reward value, threshold, case list, video list or runner changed.  Earlier: v7 is kept in history unchanged.  Superseded 2026-09-25 by defect C-34: the v7 pre-registration cited -1.75 (G-A044, which failed its internal gate and was never merged) as observed walking evidence and carried no walk_margin.  base_data is now generated, not hand-written, and the arm contract checks it.  No reward value, threshold, case list, video list or runner changed.  Earlier: v6 is kept in history unchanged.  Superseded the same day by an independent review of the published bytes, which found two recovery defects that no reading of the normal path would have shown: a resume whose training was half finished deleted the logs, the pinned checkpoint and the training log and retrained from scratch (C-27), and the campaign's completion check looked at RUNNER_RC/STAGE/DECISION only, so an arm whose collection was INCOMPLETE - or whose result ZIP did not exist - was skipped as done (C-28).  Both were reproduced by executing the v7 bytes, both are fixed at the source, and the fixes are held by executed gates.  Published bytes are never edited, so the corrected arm ships as v7.  No reward value, threshold, case list or video list changed.",
     "baseline_reward_file": "rendered_reference"
   },
   "detectability": {
@@ -489,6 +489,23 @@
         "role": "Penalize z-axis base linear velocity using L2 squared kernel. [isaaclab_envs_mdp_rewards.py:76]"
       }
     },
-    "note": "-1.5 walked on the first training path (G-A043), so its position in the table is OBSERVED rather than OUT_OF_RANGE. The table's rule 5 (one training seed everywhere) is the limit this round attacks."
+    "walk_margin": {
+      "source": "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
+      "margin": 0.148,
+      "zone": "WALK",
+      "stop_max": 0.0155,
+      "situations": {
+        "climb": 0.0258,
+        "sway": -0.047,
+        "push": -0.0386
+      },
+      "worse": [
+        "push",
+        "sway"
+      ],
+      "unmeasured_in_situations": [],
+      "reason": "Two of the four situation cells are negative at -1.5 (sway -0.0470, push -0.0386) while climb is +0.0258. This arm does not bet on that disagreement, it re-measures it: -1.5 is copied from G-A043 on a second training path (seed 43) and promotion is forbidden whatever it scores. The losing axes are read, not guarded away: all 69 cases are collected on both arms, the unchanged G-A043 thresholds apply, and G6 push_pos_y and G2 combined_yaw_right are filmed on both arms."
+    },
+    "note": "-1.5 walked on the first training path (G-A043), so its position in the table is OBSERVED rather than OUT_OF_RANGE. The table's rule 5 (one training seed everywhere) is the limit this round attacks.  2026-09-25 (defect C-34, corrected): v7 left walk_margin empty and no gate compared base_data with the generator. v8 of this arm (pair v9) then removed -1.75 to match a base-data table that had stopped at G-A043 - that read a rejected policy as a missing observation. G-A044 (-1.75) failed its internal gate and was not merged (reports/GO2_G_A044_READOUT.md), but it was recovered with all 69 cases and walks (rough_forward 0.379 m/s), so it is a walking observation. The table now lists it, and this block is the generator output."
   }
 }

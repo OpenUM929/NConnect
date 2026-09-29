@@ -1,0 +1,13 @@
+key,case,eval_seed,term,events,survivors,fail_median,survivor_median_of_medians,fail_more_costly
+rough_lateral|rew_dof_torques_l2,rough_lateral,202,rew_dof_torques_l2,7,24,-0.12942,-0.07956,7
+rough_lateral|rew_dof_acc_l2,rough_lateral,202,rew_dof_acc_l2,7,24,-0.06129,-0.03365,5
+rough_lateral|rew_action_rate_l2,rough_lateral,202,rew_action_rate_l2,7,24,-0.03280,-0.01367,6
+rough_lateral|rew_ang_vel_xy_l2,rough_lateral,202,rew_ang_vel_xy_l2,7,24,-0.05439,-0.01419,6
+stairs_10_down|rew_dof_torques_l2,stairs_10_down,101,rew_dof_torques_l2,8,24,-0.08870,-0.07987,7
+stairs_10_down|rew_dof_acc_l2,stairs_10_down,101,rew_dof_acc_l2,8,24,-0.09452,-0.07805,5
+stairs_10_down|rew_action_rate_l2,stairs_10_down,101,rew_action_rate_l2,8,24,-0.03020,-0.02535,4
+stairs_10_down|rew_ang_vel_xy_l2,stairs_10_down,101,rew_ang_vel_xy_l2,8,24,-0.04143,-0.02706,7
+stairs_15_down|rew_dof_torques_l2,stairs_15_down,101,rew_dof_torques_l2,31,1,-0.08580,-0.07586,24
+stairs_15_down|rew_dof_acc_l2,stairs_15_down,101,rew_dof_acc_l2,31,1,-0.12456,-0.14622,14
+stairs_15_down|rew_action_rate_l2,stairs_15_down,101,rew_action_rate_l2,31,1,-0.02569,-0.03084,14
+stairs_15_down|rew_ang_vel_xy_l2,stairs_15_down,101,rew_ang_vel_xy_l2,31,1,-0.03380,-0.05319,11

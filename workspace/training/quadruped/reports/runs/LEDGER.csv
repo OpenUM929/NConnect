@@ -49,9 +49,11 @@ seq,occurred,run,kind,track_lin_vel_xy_exp,feet_air_time,lin_vel_z_l2,ang_vel_xy
 26,2026-09-22_12-22-54,go2_g_a043_a033_lin_vel_z_m15,train,1.5,0.2,-2.0,-0.05,-0.01,0.0,,,,,,g_a033_sentinel,0,,5,posture_gate_v2,True,POLICY_LOCOMOTES,,NOT_REGISTERED
 27,2026-09-23_22-55-29,go2_g_a044_a033_lin_vel_z_m175,train,1.5,0.2,-1.75,-0.05,-0.01,0.0,1000,4.9246,1.0068,853.93,0.1712,candidate,38.89379,,69,posture_gate_v2,True,POLICY_LOCOMOTES,,NOT_REGISTERED
 27,2026-09-23_22-55-29,go2_g_a044_a033_lin_vel_z_m175,train,1.5,0.2,-2.0,-0.05,-0.01,0.0,,,,,,g_a033_sentinel,0,,5,posture_gate_v2,True,POLICY_LOCOMOTES,,NOT_REGISTERED
-28,,go2_basic_motion_pair_a031_a032,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
-29,,go2_campaign_g_a033,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
-30,,go2_campaign_g_a038,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
-31,,go2_campaign_g_a041,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
-32,,go2_campaign_g_a042,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
-33,,go2_campaign_g_a043,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+28,2026-09-26_10-56-13,go2_g_a047_a033_flat_orientation_m05,train,1.5,0.2,-2.0,-0.05,-0.01,-0.5,1000,4.4407,0.9431,912.36,0.2264,candidate,35.64107,,69,posture_gate_v2,True,POLICY_LOCOMOTES,,NOT_REGISTERED
+28,2026-09-26_10-56-13,go2_g_a047_a033_flat_orientation_m05,train,1.5,0.2,-2.0,-0.05,-0.01,0.0,,,,,,g_a033_sentinel,0,,5,posture_gate_v2,True,POLICY_LOCOMOTES,,NOT_REGISTERED
+29,,go2_basic_motion_pair_a031_a032,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+30,,go2_campaign_g_a033,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+31,,go2_campaign_g_a038,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+32,,go2_campaign_g_a041,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+33,,go2_campaign_g_a042,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED
+34,,go2_campaign_g_a043,eval,,,,,,,,,,,,—,,,,,,,,NOT_REGISTERED

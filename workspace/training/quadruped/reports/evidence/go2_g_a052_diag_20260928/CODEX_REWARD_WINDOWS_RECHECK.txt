@@ -1,0 +1,18 @@
+windows 460 fail_mean mismatches 0
+cols sample ['step', 'env_id', 'lin_vel_b_x', 'lin_vel_b_y', 'lin_vel_b_z', 'ang_vel_b_x']
+rough_lateral rew_dof_torques_l2 7 -0.12942 -0.07956 fail more costly 7/7
+rough_lateral rew_dof_acc_l2 7 -0.06129 -0.03365 fail more costly 5/7
+stairs_10_down rew_dof_torques_l2 8 -0.0887 -0.07987 fail more costly 7/8
+stairs_10_down rew_dof_acc_l2 8 -0.09452 -0.07805 fail more costly 5/8
+stairs_15_down rew_dof_torques_l2 31 -0.0858 -0.07586 fail more costly 24/31
+stairs_15_down rew_dof_acc_l2 31 -0.12456 -0.14622 fail more costly 14/31
+env23 rew_track_lin_vel_xy_exp 1.18978078 1.27408872 0.96838436 8 16.9 17.88
+env23 rew_track_ang_vel_z_exp 0.6104894799999999 0.6832364500000001 0.53281714 6 16.9 17.88
+env23 rew_lin_vel_z_l2 -0.0174768697342 -0.0058335318093613005 -0.017116789594258 0 16.9 17.88
+env23 rew_ang_vel_xy_l2 -0.006405573844 -0.013190956705 -0.0234892324 23 16.9 17.88
+env23 rew_dof_torques_l2 -0.147682494 -0.085637071 -0.14997905 2 16.9 17.88
+env23 rew_dof_acc_l2 -0.0068468318 -0.03411619801 -0.1368136134 24 16.9 17.88
+env23 rew_action_rate_l2 -0.0101502798 -0.013024362 -0.018269805 22 16.9 17.88
+env23 rew_feet_air_time -0.013140476000000002 -0.014050327000000001 -0.025000835399999997 14 16.9 17.88
+env23 rew_flat_orientation_l2 0.0 0.0 0.0 0 16.9 17.88
+env23 rew_dof_pos_limits 0.0 0.0 0.0 0 16.9 17.88

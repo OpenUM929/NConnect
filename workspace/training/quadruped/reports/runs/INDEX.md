@@ -32,11 +32,12 @@
 | 25 | `2026-09-21_20-21-46` | [go2_g_a042_a033_track_lin_vel_xy_160](25_go2_g_a042_a033_track_lin_vel_xy_160.md) | 1000 iter | 4.45430 | 21 | `posture_gate_v2` | 대칭 |
 | 26 | `2026-09-22_12-22-54` | [go2_g_a043_a033_lin_vel_z_m15](26_go2_g_a043_a033_lin_vel_z_m15.md) | 1000 iter | 44.62454 | 69 | `posture_gate_v2` | 대칭 |
 | 27 | `2026-09-23_22-55-29` | [go2_g_a044_a033_lin_vel_z_m175](27_go2_g_a044_a033_lin_vel_z_m175.md) | 1000 iter | 38.89379 | 69 | `posture_gate_v2` | 대칭 |
-| 28 | `—` | [go2_basic_motion_pair_a031_a032](28_go2_basic_motion_pair_a031_a032.md) | 평가 전용 | — | — | — | — |
-| 29 | `—` | [go2_campaign_g_a033](29_go2_campaign_g_a033.md) | 평가 전용 | — | — | — | — |
-| 30 | `—` | [go2_campaign_g_a038](30_go2_campaign_g_a038.md) | 평가 전용 | — | — | — | — |
-| 31 | `—` | [go2_campaign_g_a041](31_go2_campaign_g_a041.md) | 평가 전용 | — | — | — | — |
-| 32 | `—` | [go2_campaign_g_a042](32_go2_campaign_g_a042.md) | 평가 전용 | — | — | — | — |
-| 33 | `—` | [go2_campaign_g_a043](33_go2_campaign_g_a043.md) | 평가 전용 | — | — | — | — |
+| 28 | `2026-09-26_10-56-13` | [go2_g_a047_a033_flat_orientation_m05](28_go2_g_a047_a033_flat_orientation_m05.md) | 1000 iter | 35.64107 | 69 | `posture_gate_v2` | 대칭 |
+| 29 | `—` | [go2_basic_motion_pair_a031_a032](29_go2_basic_motion_pair_a031_a032.md) | 평가 전용 | — | — | — | — |
+| 30 | `—` | [go2_campaign_g_a033](30_go2_campaign_g_a033.md) | 평가 전용 | — | — | — | — |
+| 31 | `—` | [go2_campaign_g_a038](31_go2_campaign_g_a038.md) | 평가 전용 | — | — | — | — |
+| 32 | `—` | [go2_campaign_g_a041](32_go2_campaign_g_a041.md) | 평가 전용 | — | — | — | — |
+| 33 | `—` | [go2_campaign_g_a042](33_go2_campaign_g_a042.md) | 평가 전용 | — | — | — | — |
+| 34 | `—` | [go2_campaign_g_a043](34_go2_campaign_g_a043.md) | 평가 전용 | — | — | — | — |
 
 기계 판독본은 `LEDGER.csv`(회차 × arm 한 행). 생성: `python tools/build_go2_run_reports.py`

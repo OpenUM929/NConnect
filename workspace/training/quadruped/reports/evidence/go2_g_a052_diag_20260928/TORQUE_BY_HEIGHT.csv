@@ -1,0 +1,8 @@
+key,height_rel_bin_m,steps,torque_cost_median
+rough_lateral|0.18,0.18,230,-0.12630
+rough_lateral|0.20,0.20,1285,-0.11608
+rough_lateral|0.22,0.22,5731,-0.10001
+rough_lateral|0.24,0.24,7576,-0.07749
+rough_lateral|0.26,0.26,5470,-0.06661
+rough_lateral|0.28,0.28,1806,-0.06114
+rough_lateral|0.30,0.30,526,-0.05714

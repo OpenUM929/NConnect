@@ -1,0 +1,73 @@
+{
+ "tool": "tools/go2_failure_events.py",
+ "plan": "workspace/training/quadruped/upload/plan/GO2_FAILURE_DATA_REQUEST_CODEX_20260928.md",
+ "case": "rough_lateral",
+ "eval_seeds": [
+  101,
+  202,
+  303
+ ],
+ "posture_gate": {
+  "grace_s": 0.5,
+  "hold_s": 0.5,
+  "tilt_cos": 0.5,
+  "height_rel_min_m": 0.18
+ },
+ "analysis_marks_not_thresholds": {
+  "window_s": 1.0,
+  "wz_mark_rad_s": 0.6,
+  "early_s": 2.0,
+  "grav_cross": -0.95,
+  "pretip_level": -0.9
+ },
+ "steps_csv_header": [
+  "step",
+  "time_s",
+  "env_id",
+  "cmd_vx",
+  "cmd_vy",
+  "cmd_wz",
+  "actual_vx",
+  "actual_vy",
+  "actual_wz",
+  "error_xy",
+  "error_yaw",
+  "speed_xy",
+  "root_x",
+  "root_y",
+  "root_z",
+  "proj_grav_z",
+  "terrain_z",
+  "height_rel",
+  "upright",
+  "terminated",
+  "truncated",
+  "term_time_out",
+  "term_base_contact"
+ ],
+ "sources": [
+  {
+   "arm": "G-A043",
+   "seed": 101,
+   "path": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/candidate/cases/seed_101/rough_lateral/steps.csv",
+   "sha256": "31b1287531fca60917634c6ecffe62e7f5674eb3a69eb718a68ee6cb536cc458"
+  },
+  {
+   "arm": "G-A043",
+   "seed": 202,
+   "path": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/candidate/cases/seed_202/rough_lateral/steps.csv",
+   "sha256": "637118ad61affecf6d824a92833a55ff626c14367ef615ad795d0082f233c099"
+  },
+  {
+   "arm": "G-A043",
+   "seed": 303,
+   "path": "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/evaluation/candidate/cases/seed_303/rough_lateral/steps.csv",
+   "sha256": "af43bb9f3fecb51fc10034ad9d7684af04d972e6a76086d93fc814f6a7ad7bb3"
+  }
+ ],
+ "reused_not_recomputed": [
+  "workspace/training/quadruped/reports/evidence/go2_stairs_process_20260927/ENV_TIMELINE.csv",
+  "workspace/training/quadruped/reports/GO2_STAIRS_PROCESS_A043_A048_A050_20260927.md",
+  "workspace/training/quadruped/reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv"
+ ]
+}

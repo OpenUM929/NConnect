@@ -1,0 +1,23 @@
+check,baseline_value,resample_fail_rate,a048_observed_ok
+stairs_10_down pooled posture falls <= baseline,34,0.4230,True
+stairs_10_down survival median delta >= 0,0.87500/0.53125/0.53125,0.3520,True
+stairs_15_down pooled posture falls <= baseline,90,0.4385,False
+stairs_15_down survival median delta >= 0,0.12500/0.03125/0.03125,0.3325,False
+rough_forward pooled posture falls <= baseline,4,0.3575,True
+rough_forward survival median delta >= 0,0.96875/1.00000/0.90625,0.0935,True
+rough_lateral pooled posture falls <= baseline,59,0.4570,True
+rough_lateral survival median delta >= 0,0.37500/0.37500/0.40625,0.3865,True
+push_pos_x pooled posture falls <= baseline,8,0.4085,True
+push_pos_x survival median delta >= 0,0.84375/0.96875/0.93750,0.2465,True
+push_neg_x pooled posture falls <= baseline,6,0.4060,True
+push_neg_x survival median delta >= 0,0.90625/1.00000/0.90625,0.1325,True
+push_pos_y pooled posture falls <= baseline,4,0.3705,True
+push_pos_y survival median delta >= 0,0.96875/0.93750/0.96875,0.1935,True
+push_neg_y pooled posture falls <= baseline,4,0.3675,True
+push_neg_y survival median delta >= 0,0.93750/0.93750/1.00000,0.1015,True
+rough_forward tracking proxy median delta >= 0,0.76553/0.81834/0.77160,0.4685,True
+rough_lateral tracking proxy median delta >= 0,0.81007/0.80519/0.81279,0.4940,True
+push_pos_x tracking proxy median delta >= 0,0.96389/0.97058/0.96725,0.4395,True
+push_neg_x tracking proxy median delta >= 0,0.96644/0.97141/0.96285,0.4710,True
+push_pos_y tracking proxy median delta >= 0,0.97113/0.96494/0.97253,0.4555,True
+push_neg_y tracking proxy median delta >= 0,0.96845/0.96849/0.97227,0.4460,True

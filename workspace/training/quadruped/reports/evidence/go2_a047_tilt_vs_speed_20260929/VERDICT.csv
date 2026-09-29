@@ -1,0 +1,11 @@
+case,seeds_tilt_higher_survive,seeds_error_higher_survive,seeds_error_higher_matched_tilt,seeds_tilt_higher_early,seeds_error_higher_early,seeds_speed_lower_early,falls_a033,falls_a047,verdict
+combined_yaw_right,0,3,3,0,3,3,0,0,POSTURE_KEPT_LOSS
+rough_lateral,0,3,3,0,3,3,59,60,POSTURE_KEPT_LOSS
+push_pos_x,0,3,3,0,3,0,8,8,POSTURE_KEPT_LOSS
+push_neg_x,0,3,3,0,3,0,6,8,POSTURE_KEPT_LOSS
+push_pos_y,0,3,3,0,3,0,4,3,POSTURE_KEPT_LOSS
+push_neg_y,0,3,3,0,3,0,4,7,POSTURE_KEPT_LOSS
+rough_forward,0,3,3,0,3,3,4,5,POSTURE_KEPT_LOSS
+slope_plus_20,2,3,3,0,3,2,0,2,POSTURE_KEPT_LOSS
+slope_minus_20,0,2,3,0,3,2,0,0,POSTURE_KEPT_LOSS
+dr,0,3,3,0,3,3,1,13,POSTURE_KEPT_LOSS

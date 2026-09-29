@@ -1,0 +1,23 @@
+check,current_fail_rate,margin_fail_rate,margin_split_fail_rate,margin_split_dedup_fail_rate,resample_fail_rate,resample_cut
+stairs_10_down pooled posture falls <= baseline,0.4535,0.2195,0.0715,0.0715,0.0130,10.00000
+stairs_10_down survival median delta >= 0,0.3495,0.1725,0.0710,0.0000,0.0065,-0.12500
+stairs_15_down pooled posture falls <= baseline,0.4515,0.0630,0.0630,0.0630,0.0020,5.00000
+stairs_15_down survival median delta >= 0,0.3435,0.0000,0.0000,0.0000,0.0000,-0.03125
+rough_forward pooled posture falls <= baseline,0.3780,0.0480,0.0480,0.0480,0.0075,5.00000
+rough_forward survival median delta >= 0,0.0955,0.0175,0.0175,0.0000,0.0010,-0.06250
+rough_lateral pooled posture falls <= baseline,0.4440,0.2260,0.0820,0.0820,0.0075,11.00000
+rough_lateral survival median delta >= 0,0.3785,0.2030,0.0785,0.0000,0.0040,-0.12500
+push_pos_x pooled posture falls <= baseline,0.4135,0.1000,0.1000,0.1000,0.0045,7.00000
+push_pos_x survival median delta >= 0,0.2550,0.0500,0.0500,0.0000,0.0060,-0.06250
+push_neg_x pooled posture falls <= baseline,0.3670,0.0645,0.0645,0.0645,0.0070,6.00000
+push_neg_x survival median delta >= 0,0.1135,0.0260,0.0260,0.0000,0.0065,-0.06250
+push_pos_y pooled posture falls <= baseline,0.3805,0.0445,0.0445,0.0445,0.0065,5.00000
+push_pos_y survival median delta >= 0,0.2025,0.0260,0.0260,0.0000,0.0025,-0.06250
+push_neg_y pooled posture falls <= baseline,0.3645,0.0490,0.0490,0.0490,0.0060,5.00000
+push_neg_y survival median delta >= 0,0.1130,0.0210,0.0210,0.0000,0.0020,-0.06250
+rough_forward tracking proxy median delta >= 0,0.4730,0.2830,0.1350,0.1350,0.0100,-0.04392
+rough_lateral tracking proxy median delta >= 0,0.4865,0.0545,0.0545,0.0545,0.0110,-0.01438
+push_pos_x tracking proxy median delta >= 0,0.4475,0.0000,0.0000,0.0000,0.0100,-0.00563
+push_neg_x tracking proxy median delta >= 0,0.4525,0.0000,0.0000,0.0000,0.0100,-0.00469
+push_pos_y tracking proxy median delta >= 0,0.4410,0.0000,0.0000,0.0000,0.0105,-0.00398
+push_neg_y tracking proxy median delta >= 0,0.4510,0.0000,0.0000,0.0000,0.0125,-0.00396

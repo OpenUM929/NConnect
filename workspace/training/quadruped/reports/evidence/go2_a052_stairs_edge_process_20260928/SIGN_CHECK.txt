@@ -1,0 +1,4 @@
+10cm survivors n=24 rows=1224
+corr(front-rear foot height, -grav_b_x) in W = 0.556 (required > 0)
+robots with median(-grav_b_x) in W > flat [1,2) s: 24/24 (required >= 20)
+PASS=True -> pitch_up = -grav_b_x read as 'nose up positive' only if PASS

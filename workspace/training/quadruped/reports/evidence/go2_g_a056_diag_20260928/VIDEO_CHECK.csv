@@ -1,0 +1,5 @@
+case,env_index,runner_status,frames,camera_unavailable,camera_expected_env,camera_rows,camera_rows_evaluated,camera_rows_on_target,camera_on_target_frac,other_robot_within_030m_frac,camera,steps_vs_plain,video,reason
+rough_lateral,5,rough_lateral env5 rc=0 file=present,999,{},5,1000,989,989,1.0,0.0,CAMERA_ON_TARGET,NO_DIFFERENCE_IN_STORED_CHANNELS,VIDEO_ENV_MATCHED,filmed robot is the same env of the diag replay
+rough_lateral,11,rough_lateral env11 rc=0 file=present,999,{},11,1000,989,989,1.0,0.0,CAMERA_ON_TARGET,NO_DIFFERENCE_IN_STORED_CHANNELS,VIDEO_ENV_MATCHED,filmed robot is the same env of the diag replay
+combined_yaw_right,3,combined_yaw_right env3 rc=0 file=present,999,{},3,1000,990,990,1.0,0.2788,CAMERA_ON_TARGET,NO_DIFFERENCE_IN_STORED_CHANNELS,VIDEO_ENV_MATCHED,filmed robot is the same env of the diag replay
+combined_yaw_right,16,combined_yaw_right env16 rc=0 file=present,999,{},16,1000,990,990,1.0,0.0,CAMERA_ON_TARGET,NO_DIFFERENCE_IN_STORED_CHANNELS,VIDEO_ENV_MATCHED,filmed robot is the same env of the diag replay

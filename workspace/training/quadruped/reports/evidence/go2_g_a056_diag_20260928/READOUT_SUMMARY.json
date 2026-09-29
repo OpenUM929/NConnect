@@ -1,0 +1,29 @@
+{
+ "events": 20,
+ "counts": {
+  "rough_lateral:order:contact_first": 9,
+  "rough_lateral:order_b:contact_first": 6,
+  "rough_lateral:order_b:contact_only": 1,
+  "rough_lateral:order_b:unknown": 3,
+  "rough_lateral:order:contact_only": 1,
+  "rough_lateral:order:rotation_first": 1,
+  "rough_lateral:order_b:simultaneous": 1,
+  "combined_yaw_right:order:contact_first": 7,
+  "combined_yaw_right:order_b:contact_first": 5,
+  "combined_yaw_right:order:rotation_only": 1,
+  "combined_yaw_right:order_b:lateral_only": 2,
+  "combined_yaw_right:order:not_observed": 1,
+  "combined_yaw_right:order_b:lateral_first": 1,
+  "combined_yaw_right:order_b:unknown": 1
+ },
+ "plain_vs_stored": {
+  "rough_lateral": "NO_DIFFERENCE_IN_STORED_CHANNELS",
+  "combined_yaw_right": "NO_DIFFERENCE_IN_STORED_CHANNELS"
+ },
+ "limits": [
+  "time order is not causation",
+  "t_act before t_vy is not a finding that the policy caused the acceleration",
+  "survivors are a comparison group, not a causal control",
+  "torque clip is recorded for the last physics substep of each step only"
+ ]
+}

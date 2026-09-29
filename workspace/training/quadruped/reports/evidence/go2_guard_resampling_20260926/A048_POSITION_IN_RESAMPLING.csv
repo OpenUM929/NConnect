@@ -1,0 +1,23 @@
+check,a048_value,resample_p05,resample_median,resample_p95,share_at_least_as_bad_as_a048
+stairs_10_down pooled posture falls <= baseline,-4.00000,-8.00000,0.00000,7.00000,0.8430
+stairs_10_down survival median delta >= 0,0.09375,-0.09375,0.00000,0.09375,0.9855
+stairs_15_down pooled posture falls <= baseline,3.00000,-4.00000,0.00000,4.00000,0.1415
+stairs_15_down survival median delta >= 0,-0.03125,-0.03125,0.00000,0.03125,0.3325
+rough_forward pooled posture falls <= baseline,-1.00000,-3.00000,0.00000,3.00000,0.7810
+rough_forward survival median delta >= 0,0.00000,-0.03125,0.00000,0.03125,0.8635
+rough_lateral pooled posture falls <= baseline,-43.00000,-8.00000,0.00000,8.00000,1.0000
+rough_lateral survival median delta >= 0,0.46875,-0.09375,0.00000,0.09375,1.0000
+push_pos_x pooled posture falls <= baseline,-8.00000,-4.00000,0.00000,5.00000,1.0000
+push_pos_x survival median delta >= 0,0.06250,-0.06250,0.00000,0.03125,1.0000
+push_neg_x pooled posture falls <= baseline,-6.00000,-3.00000,0.00000,4.00000,1.0000
+push_neg_x survival median delta >= 0,0.09375,-0.03125,0.00000,0.03125,1.0000
+push_pos_y pooled posture falls <= baseline,-4.00000,-3.00000,0.00000,3.00000,1.0000
+push_pos_y survival median delta >= 0,0.03125,-0.03125,0.00000,0.03125,1.0000
+push_neg_y pooled posture falls <= baseline,-3.00000,-3.00000,0.00000,4.00000,0.9830
+push_neg_y survival median delta >= 0,0.03125,-0.03125,0.00000,0.03125,0.9830
+rough_forward tracking proxy median delta >= 0,0.16893,-0.02991,0.00122,0.03126,1.0000
+rough_lateral tracking proxy median delta >= 0,0.05262,-0.01009,0.00009,0.00995,1.0000
+push_pos_x tracking proxy median delta >= 0,0.00759,-0.00382,0.00031,0.00342,1.0000
+push_neg_x tracking proxy median delta >= 0,0.01052,-0.00303,0.00010,0.00294,1.0000
+push_pos_y tracking proxy median delta >= 0,0.00544,-0.00273,0.00017,0.00225,1.0000
+push_neg_y tracking proxy median delta >= 0,0.00549,-0.00244,0.00017,0.00255,1.0000

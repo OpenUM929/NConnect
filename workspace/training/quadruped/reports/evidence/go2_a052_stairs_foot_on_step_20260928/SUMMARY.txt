@@ -1,0 +1,10 @@
+stairs_10_down FAIL n=8 front_on_strict=5 front_on_loose=7 front_loose_not_strict=2 front_both_strict=2 rear_on_strict=3 median_max_front_z=0.226
+  front strict time (longer foot, s): median 1.06, min 0.20, max 9.10
+  T - first front strict: median 1.34 s, min 0.24, max 10.94
+stairs_10_down SURV n=24 front_on_strict=24 front_on_loose=24 front_loose_not_strict=0 front_both_strict=24 rear_on_strict=24 median_max_front_z=0.879
+  front strict time (longer foot, s): median 13.61, min 12.32, max 15.08
+stairs_15_down FAIL n=31 front_on_strict=17 front_on_loose=26 front_loose_not_strict=9 front_both_strict=10 rear_on_strict=9 median_max_front_z=0.209
+  front strict time (longer foot, s): median 1.06, min 0.02, max 6.98
+  T - first front strict: median 1.44 s, min 0.00, max 7.64
+stairs_15_down SURV n=1 front_on_strict=1 front_on_loose=1 front_loose_not_strict=0 front_both_strict=1 rear_on_strict=1 median_max_front_z=1.311
+  front strict time (longer foot, s): median 14.24, min 14.24, max 14.24

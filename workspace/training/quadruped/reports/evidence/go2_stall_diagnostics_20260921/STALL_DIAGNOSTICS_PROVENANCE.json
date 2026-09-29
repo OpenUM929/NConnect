@@ -60,28 +60,32 @@
       "reason": ""
     },
     {
-      "arm": "no_harvest",
-      "arm_path": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest",
-      "run_id": null,
-      "model_sha256": null,
-      "checkpoint_iter": null,
-      "evaluator": null,
-      "evaluator_sha256": null,
-      "registry_sha256": null,
-      "training_seed": null,
-      "evaluation_seeds": null,
+      "arm": "candidate",
+      "arm_path": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate",
+      "run_id": "train_260920-Go2_a033_ang_vel_xy_m004_1000",
+      "model_sha256": "f4c0b929d6daed1c834da1760638faa2b28aaac605f4aa898369a3e1df63c8e8",
+      "checkpoint_iter": 900,
+      "evaluator": "posture_gate_v2",
+      "evaluator_sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+      "registry_sha256": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+      "training_seed": 42,
+      "evaluation_seeds": [
+        "101",
+        "202",
+        "303"
+      ],
       "requested_evaluation_seeds": [
         "101",
         "202",
         "303"
       ],
       "sources": {
-        "identity": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\identity.json",
-        "runner_status": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\RUNNER_STATUS.txt",
-        "experiment": "C:\\Users\\Public\\Documents\\ESTsoft\\CreatorTemp\\tmpk60l491h\\no_harvest\\meta\\experiment.json"
+        "identity": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\evaluation\\candidate\\identity.json",
+        "runner_status": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\RUNNER_STATUS.txt",
+        "experiment": "workspace\\_keep\\go2_g_a041_a033_ang_vel_xy_m004\\meta\\experiment.json"
       },
-      "provenance_complete": false,
-      "reason": "missing provenance: run_id, model_sha256, checkpoint_iter, evaluator, evaluator_sha256, registry_sha256, training_seed, evaluation_seeds"
+      "provenance_complete": true,
+      "reason": ""
     }
   ]
 }
