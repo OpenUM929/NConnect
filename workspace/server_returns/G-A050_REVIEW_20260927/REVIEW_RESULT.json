@@ -1,0 +1,17 @@
+{
+  "work_id": "G-A050-REVIEW-20260927",
+  "artifact": "ARTIFACT_VERIFIED",
+  "adoption": "INTERNAL_GATE_FAIL",
+  "shutdown": "RECOVERY_COMPLETE",
+  "missing_required_files": [],
+  "video_behavior": "VIDEO_UNKNOWN",
+  "video_files": 10,
+  "video_reuse_sha_matched": 10,
+  "video_decode": "first/middle/last frames readable in all 10; 499 frames each",
+  "zip_sha256": "ba6d6c3f06ac29e8df70b9b4c93d913dcdcf04ab1dd4e92c38035b39485163b1",
+  "zip_crc_ok": true,
+  "zip_manifest_verified": 536,
+  "report": "READ_MATCHED; original best600 report vs pinned evaluation900 explicitly distinguished",
+  "canonical_files_modified": false,
+  "policy": "Do not promote or automatically retry another midpoint; A033 retained; A048 historical verdict unchanged"
+}

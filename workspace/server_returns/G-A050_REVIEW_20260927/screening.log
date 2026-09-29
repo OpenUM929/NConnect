@@ -1,0 +1,15 @@
+SCREENING INTERNAL_GATE_FAIL
+  FAIL guard    stairs_10_down pooled posture falls <= baseline + 6  87 vs 34
+  FAIL guard    stairs_15_down pooled posture falls <= baseline + 3  96 vs 90
+  FAIL guard    rough_forward pooled posture falls <= baseline + 3   8 vs 4
+  ok   guard    rough_lateral pooled posture falls <= baseline + 6   19 vs 59
+  ok   guard    push_pos_x pooled posture falls <= baseline + 3      3 vs 8
+  ok   guard    push_neg_x pooled posture falls <= baseline + 3      1 vs 6
+  ok   guard    push_pos_y pooled posture falls <= baseline + 3      3 vs 4
+  ok   guard    push_neg_y pooled posture falls <= baseline + 3      4 vs 4
+  ok   guard    rough_forward tracking proxy median delta >= -0.02   0.05693942923100481
+  FAIL guard    rough_lateral tracking proxy median delta >= -0.01   -0.02258799602404926
+  ok   guard    push_pos_x tracking proxy median delta >= -0.01      -0.003928465272196036
+  ok   guard    push_neg_x tracking proxy median delta >= -0.01      -5.4485859153241556e-05
+  ok   guard    push_pos_y tracking proxy median delta >= -0.01      -0.003416416395645938
+  ok   guard    push_neg_y tracking proxy median delta >= -0.01      -0.007391168733221876

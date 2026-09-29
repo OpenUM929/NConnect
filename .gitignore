@@ -40,3 +40,29 @@ workspace/_keep/go2_campaign_g_a041/arm_results/GO2_G_A041_RESULT.zip
 workspace/_keep/GO2_G_A041_RESULT.zip
 workspace/_keep/GO2_G_A041_CAMPAIGN_RESULT.zip
 workspace/training/quadruped/go2_reeval.zip
+
+# Local-only extracted evidence (100MB~700MB per dir, exceed GitHub push limits)
+# Kept on disk, never pushed. 2026-09-29.
+workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/
+workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/
+workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008/
+workspace/_keep/go2_g_a049_a033_lin_vel_z_m1/
+workspace/_keep/go2_g_a050_a033_lin_vel_z_m1375/
+workspace/_keep/go2_g_a047_a033_flat_orientation_m05/
+workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/
+workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/
+workspace/_keep/go2_campaign_g_a043/
+workspace/_keep/go2_campaign_g_a033/
+workspace/_keep/go2_g_a042_a033_track_lin_vel_xy_160/
+workspace/_keep/go2_g_a041_a033_ang_vel_xy_m004/
+workspace/_keep/go2_g_a038_a033_ang_vel_xy_m008/
+workspace/_keep/go2_g_a032_a017_feet_air_time_010/
+workspace/_keep/go2_g_a031_a017_feet_air_time_001/
+workspace/_keep/go2_basic_motion_pair_a031_a032/
+workspace/_keep/go2_g_a056_a043_diag_replay/
+workspace/_keep/go2_campaign_g_a042/
+workspace/_keep/go2_campaign_g_a041/
+
+# Ephemeral runner temp files
+workspace/tmp*/
+workspace/runner_inspect_temp.txt

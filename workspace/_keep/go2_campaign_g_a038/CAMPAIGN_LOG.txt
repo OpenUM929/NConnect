@@ -1,0 +1,7 @@
+[2026-09-17T14:11:44+09:00] [START] campaign G-A038 (20260917_a033_ang_vel_xy_m008_one_command_v1) resume=0
+[2026-09-17T14:11:44+09:00] [PHASE 1/3] target stage and gate, arm by arm: G-A038
+[2026-09-17T14:11:44+09:00] [ARM] G-A038 stage=target resume=0 remeasure_baseline=0
+[2026-09-17T15:20:33+09:00] [ARM FAILED] G-A038 target stage; the other arms go on
+[2026-09-17T15:20:33+09:00] [PHASE 2/3] full stage for each arm the gate passed
+[2026-09-17T15:20:33+09:00] [PHASE 3/3] one-file campaign result
+[2026-09-17T15:20:33+09:00] [RESULT] G-A038 state=TARGET_RUNNER_FAILED gate=NOT_READ

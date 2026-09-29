@@ -1,0 +1,105 @@
+{
+  "reuse_count": 6,
+  "new_videos": [
+    {
+      "arm": "candidate",
+      "case": "G2:combined_yaw_left:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G2:combined_yaw_right:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G3:rough_forward:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G3:rough_lateral:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G5:stairs_10_down:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G5:stairs_15_down:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G6:push_pos_x:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G6:push_neg_x:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G6:push_pos_y:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "candidate",
+      "case": "G6:push_neg_y:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "baseline",
+      "case": "G2:combined_yaw_left:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "baseline",
+      "case": "G2:combined_yaw_right:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "baseline",
+      "case": "G6:push_pos_y:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    },
+    {
+      "arm": "baseline",
+      "case": "G6:push_neg_y:101",
+      "frames": 499,
+      "expected_frames": 499,
+      "fingerprint_ok": true
+    }
+  ],
+  "faults": [],
+  "behavior": "VIDEO_UNKNOWN"
+}

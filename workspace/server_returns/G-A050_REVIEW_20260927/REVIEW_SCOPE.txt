@@ -1,0 +1,2 @@
+Work ID G-A050-REVIEW-20260927
+Read-only source/artifact review; isolated review outputs only. No canonical merge or ledger edits.

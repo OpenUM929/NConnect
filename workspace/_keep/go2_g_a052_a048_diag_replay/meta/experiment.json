@@ -1,0 +1,60 @@
+{
+ "work_id": "G-A052",
+ "kind": "diagnostic_replay_no_training",
+ "edition": "v2",
+ "plan": "workspace/training/quadruped/upload/plan/GO2_G_A052_DIAG_REPLAY_PLAN_20260928.md",
+ "request": "workspace/training/quadruped/upload/plan/GO2_FAILURE_DATA_REQUEST_CODEX_20260928.md",
+ "policy": {
+  "source_run": "G-A048",
+  "checkpoint": "iter 900",
+  "model_sha256": "984e614933f3aae037df260cbf7ee72e7549337435a602ce116d6fc39e7f5ad7",
+  "env_sha256": "a19077a984f829f23f1ca87405b9b4fa94ae6c618fedf95ea6bb640992f33a35"
+ },
+ "reward_change": null,
+ "training": null,
+ "evaluator": {
+  "schema": 6,
+  "sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+  "diag_module_sha256": "3ff552f5f4265b5681b788f85784d548a7b53a4a35882cd35b2ad4021197696e",
+  "diag_wrapper_sha256": "675446e00bff18bc6451f884e41754ac83f107043e6ef848abb8f1ea795bf6b6"
+ },
+ "runs": [
+  {
+   "label": "plain",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "stairs_10_down",
+   "seed": 101
+  },
+  {
+   "label": "diag",
+   "case": "stairs_15_down",
+   "seed": 101
+  }
+ ],
+ "video": "NOT_RECORDED — this diagnosis is limited to numeric channels; the recorder follows one env of a separate 4-env run, which is not the same condition as this 32-env rollout and cannot be tied to its env_id. Contact geometry (where a foot touched a step edge) stays undetermined.",
+ "supersedes": {
+  "edition": "v1",
+  "sha256": "09973af1a5b9e63d6f6679bc6a50eddc0071ead696174bd42f942a4f29c8465f",
+  "never_run": true,
+  "why": "Codex review 2026-09-28: readout read missing contact as zero support; harvest verifier exit 0 did not guarantee required files, key completeness or channels; contact buffer freshness was not recorded"
+ },
+ "interpretation_limits": [
+  "reading sensor._data avoids a lazy update but does not prove the buffer is current; contact_fresh records it per row",
+  "high_terrain_near_stopped_stance_foot_derived is a combination of nearby higher terrain and a stopped stance foot, not evidence of a step-edge collision",
+  "identical steps.csv between plain and diag runs means no difference in stored channels at stored precision, not proof of no interference with every internal state"
+ ],
+ "readers": [
+  "tools/verify_go2_diag_replay_harvest.py",
+  "tools/go2_diag_replay_readout.py"
+ ],
+ "decides": "nothing automatically; per-event order (rotation_first/contact_first/simultaneous/rotation_only/contact_only/not_observed/unknown) returned to Codex"
+}

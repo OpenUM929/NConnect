@@ -1,0 +1,150 @@
+{
+  "A048": {
+    "rough_lateral": {
+      "per_seed": [
+        5,
+        8,
+        3
+      ],
+      "total": 16
+    },
+    "rough_forward": {
+      "per_seed": [
+        2,
+        0,
+        1
+      ],
+      "total": 3
+    },
+    "combined_yaw_right": {
+      "per_seed": [
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    "stairs_10_down": {
+      "per_seed": [
+        8,
+        10,
+        12
+      ],
+      "total": 30
+    },
+    "stairs_15_down": {
+      "per_seed": [
+        31,
+        32,
+        30
+      ],
+      "total": 93
+    },
+    "push_pos_x": {
+      "per_seed": [
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    "push_neg_x": {
+      "per_seed": [
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    "push_pos_y": {
+      "per_seed": [
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    "push_neg_y": {
+      "per_seed": [
+        1,
+        0,
+        0
+      ],
+      "total": 1
+    }
+  },
+  "A050": {
+    "rough_lateral": {
+      "per_seed": [
+        5,
+        7,
+        7
+      ],
+      "total": 19
+    },
+    "rough_forward": {
+      "per_seed": [
+        5,
+        1,
+        2
+      ],
+      "total": 8
+    },
+    "combined_yaw_right": {
+      "per_seed": [
+        0,
+        0,
+        0
+      ],
+      "total": 0
+    },
+    "stairs_10_down": {
+      "per_seed": [
+        30,
+        31,
+        26
+      ],
+      "total": 87
+    },
+    "stairs_15_down": {
+      "per_seed": [
+        32,
+        32,
+        32
+      ],
+      "total": 96
+    },
+    "push_pos_x": {
+      "per_seed": [
+        2,
+        0,
+        1
+      ],
+      "total": 3
+    },
+    "push_neg_x": {
+      "per_seed": [
+        0,
+        0,
+        1
+      ],
+      "total": 1
+    },
+    "push_pos_y": {
+      "per_seed": [
+        1,
+        0,
+        2
+      ],
+      "total": 3
+    },
+    "push_neg_y": {
+      "per_seed": [
+        1,
+        3,
+        0
+      ],
+      "total": 4
+    }
+  }
+}

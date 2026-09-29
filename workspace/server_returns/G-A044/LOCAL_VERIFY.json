@@ -1,0 +1,778 @@
+{
+  "arms": {
+    "candidate": {
+      "faults": [],
+      "invalid_cases": [],
+      "measurement": "INTERNAL_MEASUREMENT_OK"
+    },
+    "g_a033": {
+      "faults": [],
+      "invalid_cases": [],
+      "measurement": "INTERNAL_MEASUREMENT_OK"
+    }
+  },
+  "artifact_faults": [],
+  "baseline_arm": "STORED_G-A033",
+  "combined_verdict": {
+    "artifact": "ARTIFACT_VERIFIED",
+    "fact_rules": "FAIL",
+    "plan_screening": "INTERNAL_GATE_FAIL",
+    "verdict": "FAIL"
+  },
+  "facts": {
+    "candidate_env_rewards": {
+      "action_rate_l2": -0.01,
+      "ang_vel_xy_l2": -0.05,
+      "feet_air_time": 0.2,
+      "flat_orientation_l2": 0.0,
+      "lin_vel_z_l2": -1.75,
+      "track_lin_vel_xy_exp": 1.5
+    },
+    "candidate_env_sha256": "a5aac74577bcf69dd33a76488fe26e298e13bc569652692a84c6f67ddcdee6a2",
+    "candidate_model_sha256": "1ccd7f7c156af70cb709a7740c619ffdaacdba99c436f680be0cb42f549d1cda",
+    "checkpoint_pin": {
+      "EVAL_CHECKPOINT_ITER": "900",
+      "EVAL_CHECKPOINT_SHA": "1ccd7f7c156af70cb709a7740c619ffdaacdba99c436f680be0cb42f549d1cda",
+      "REWARD_BEST_MODEL_ITER": "800",
+      "REWARD_BEST_MODEL_SHA": "ad5f677741f434782a40cd3862f1de9c99dee57831dcfc1d92ccede2f9a99dba",
+      "RULE": "the candidate is evaluated at the baseline checkpoint iteration; training/model_best.pt is that checkpoint, training/model_best_by_reward.pt is the finalize pick"
+    },
+    "runner_status": {
+      "BASELINE_ARM": "REUSED_STORED_WITH_SENTINEL",
+      "BASELINE_MODEL_SHA": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+      "BASELINE_NAME": "G-A033",
+      "CANDIDATE_ENV_SHA": "a5aac74577bcf69dd33a76488fe26e298e13bc569652692a84c6f67ddcdee6a2",
+      "CANDIDATE_EVAL_ITER": "900",
+      "CANDIDATE_MODEL_SHA": "1ccd7f7c156af70cb709a7740c619ffdaacdba99c436f680be0cb42f549d1cda",
+      "COLLECTION_EXPECTED": "candidate:69 baseline:0 sentinel:5 videos:10 baseline_videos:4",
+      "COLLECTION_STATUS": "FULL_69_COMPLETE",
+      "COMPLETED_AT": "2026-09-24T00:29:23+09:00",
+      "DECISION": "SUITE_COMPLETE",
+      "EVALUATOR": "posture_gate_v2",
+      "EVALUATOR_SHA": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+      "OFFICIAL_RESULT": "OFFICIAL_RESULT_UNMEASURED",
+      "REGISTRY_SHA": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+      "REPORT_STATUS": "REPORT_ACQUIRED",
+      "REWARD_BEST_MODEL_ITER": "800",
+      "RUNNER_RC": "0",
+      "RUN_ID": "train_260922-Go2_a033_lin_vel_z_m175_1000",
+      "SINGLE_CHANGE": "lin_vel_z_l2:-2.0->-1.75",
+      "STAGE": "full",
+      "TELEMETRY_BASELINE": "0",
+      "TELEMETRY_BASELINE_SENTINEL": "5",
+      "TELEMETRY_CANDIDATE": "69",
+      "TELEMETRY_SCHEMA": "6",
+      "TRAIN_SEED": "42",
+      "VIDEOS_BASELINE": "4",
+      "VIDEOS_CANDIDATE": "10",
+      "VIDEO_STATUS": "VIDEO_UNKNOWN",
+      "WORK_ID": "G-A044"
+    }
+  },
+  "harvest": "workspace\\_keep\\go2_g_a044_a033_lin_vel_z_m175",
+  "judgement": {
+    "climb_guard": {
+      "deferred_to_full_stage": [],
+      "groups": [
+        {
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "counts": [
+            27,
+            29,
+            31
+          ],
+          "floor": 83.329,
+          "group": "stairs_10_climb_ge1",
+          "inoperable": false,
+          "metric": "ge1",
+          "ok": true,
+          "total": 87
+        },
+        {
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "counts": [
+            21,
+            19,
+            22
+          ],
+          "floor": 29.261,
+          "group": "stairs_10_climb_ge2",
+          "inoperable": false,
+          "metric": "ge2",
+          "ok": true,
+          "total": 62
+        }
+      ],
+      "inoperable_guards": [],
+      "violations": []
+    },
+    "criteria": {
+      "1_target_basic_motion": false,
+      "2_total_points_delta": false,
+      "3_non_inferiority": false,
+      "4_locomotion": true,
+      "5_video": "VIDEO_UNKNOWN",
+      "6_target_axes_rise": false
+    },
+    "expected_weighted_gain": "미추정",
+    "failed": [
+      "1_target_basic_motion",
+      "2_total_points_delta",
+      "3_non_inferiority",
+      "6_target_axes_rise"
+    ],
+    "group_floor_violations": [
+      "stairs mean proxy -0.05280 < floor -0.02858",
+      "rough mean proxy -0.06578 < floor -0.06145"
+    ],
+    "locomotion": {
+      "baseline_stationary": [
+        "G5/stairs_15_down/seed_101",
+        "G5/stairs_15_down/seed_202"
+      ],
+      "candidate_stationary": [],
+      "candidate_verdict": "POLICY_LOCOMOTES",
+      "new_stationary_in_guard": []
+    },
+    "mechanism": {
+      "height_p10_mean_baseline": 0.27446683625725504,
+      "height_p10_mean_candidate": 0.2618399336801281,
+      "note": "H1 (a higher stance) is read here; it is not a success criterion",
+      "posture_falls_baseline": 105,
+      "posture_falls_candidate": 162,
+      "speed_mean_baseline": 0.1998643275207688,
+      "speed_mean_candidate": 0.21238718173766655
+    },
+    "non_inferiority_violations": [
+      "G3 weighted loss 2.822/70 > 2.03646",
+      "G6 weighted loss 1.168/70 > 0.86196",
+      "G2/left/seed_101 survival -0.12500"
+    ],
+    "points_70": {
+      "baseline": 42.528610096105055,
+      "candidate": 38.893792774728304,
+      "delta": -3.634817321376751
+    },
+    "scenarios": {
+      "G1": {
+        "delta": 0.042435683649555744,
+        "limit_70": null,
+        "weighted_loss_70": 0.0
+      },
+      "G2": {
+        "delta": -0.039306633950433545,
+        "limit_70": null,
+        "weighted_loss_70": 0.4127196564795522
+      },
+      "G3": {
+        "delta": -0.2015532559989504,
+        "limit_70": 2.03646,
+        "weighted_loss_70": 2.821745583985306
+      },
+      "G4": {
+        "delta": 0.050891975704989045,
+        "limit_70": 0.99632,
+        "weighted_loss_70": 0.0
+      },
+      "G5": {
+        "delta": -0.004260083369260425,
+        "limit_70": 0.05604,
+        "weighted_loss_70": 0.04473087537723446
+      },
+      "G6": {
+        "delta": -0.16691056104212076,
+        "limit_70": 0.86196,
+        "weighted_loss_70": 1.1683739272948452
+      },
+      "G7": {
+        "delta": -0.023883957351790164,
+        "limit_70": 0.40358,
+        "weighted_loss_70": 0.16718770146253115
+      }
+    },
+    "status": "exploratory",
+    "target_axes": {
+      "by_axis_70": {
+        "G3": -2.821745583985306,
+        "G5": -0.04473087537723446
+      },
+      "delta_70": -2.8664764593625405,
+      "rises": false
+    },
+    "target_groups": [
+      {
+        "group": "stairs",
+        "improved": false,
+        "mean_delta": -0.052802440220324515,
+        "rows": [
+          {
+            "case": "G5:stairs_10_down:101",
+            "delta": -0.11739895725205464,
+            "height_p10_baseline": 0.1983773658141733,
+            "height_p10_candidate": 0.14052636339702707,
+            "posture_falls_baseline": 4,
+            "posture_falls_candidate": 23,
+            "proxy_baseline": 0.1859967797179376,
+            "proxy_candidate": 0.06859782246588296,
+            "speed_baseline": 0.19906291658396527,
+            "speed_candidate": 0.22642277681137948,
+            "survival_baseline": 0.875,
+            "survival_candidate": 0.28125,
+            "terminated_baseline": 1,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.21256774824907154,
+            "tracking_candidate": 0.24390336876758387
+          },
+          {
+            "case": "G5:stairs_10_down:202",
+            "delta": -0.057082795879053135,
+            "height_p10_baseline": 0.1584582057866183,
+            "height_p10_candidate": 0.15088029914998757,
+            "posture_falls_baseline": 15,
+            "posture_falls_candidate": 25,
+            "proxy_baseline": 0.11776213986719072,
+            "proxy_candidate": 0.06067934398813759,
+            "speed_baseline": 0.18023850488225107,
+            "speed_candidate": 0.21557302057546623,
+            "survival_baseline": 0.53125,
+            "survival_candidate": 0.21875,
+            "terminated_baseline": 2,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.22166991033824135,
+            "tracking_candidate": 0.2773912868029147
+          },
+          {
+            "case": "G5:stairs_10_down:303",
+            "delta": 0.016074432470134237,
+            "height_p10_baseline": 0.13155887327729698,
+            "height_p10_candidate": 0.16672327827642308,
+            "posture_falls_baseline": 15,
+            "posture_falls_candidate": 17,
+            "proxy_baseline": 0.11769141186543253,
+            "proxy_candidate": 0.13376584433556676,
+            "speed_baseline": 0.1923569073363181,
+            "speed_candidate": 0.23266451336971744,
+            "survival_baseline": 0.53125,
+            "survival_candidate": 0.46875,
+            "terminated_baseline": 3,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.2215367752761083,
+            "tracking_candidate": 0.2853671345825424
+          }
+        ]
+      },
+      {
+        "group": "rough",
+        "improved": false,
+        "mean_delta": -0.06578148923717038,
+        "rows": [
+          {
+            "case": "G3:rough_lateral:101",
+            "delta": -0.1260777228653603,
+            "height_p10_baseline": 0.26778634012064195,
+            "height_p10_candidate": 0.2764508832584728,
+            "posture_falls_baseline": 20,
+            "posture_falls_candidate": 25,
+            "proxy_baseline": 0.3037764612831412,
+            "proxy_candidate": 0.1776987384177809,
+            "speed_baseline": 0.1995558523603209,
+            "speed_candidate": 0.18500370416685658,
+            "survival_baseline": 0.375,
+            "survival_candidate": 0.21875,
+            "terminated_baseline": 19,
+            "terminated_candidate": 25,
+            "tracking_baseline": 0.8100705634217098,
+            "tracking_candidate": 0.8123370899098555
+          },
+          {
+            "case": "G3:rough_lateral:202",
+            "delta": -0.1771429136141518,
+            "height_p10_baseline": 0.26724979424859113,
+            "height_p10_candidate": 0.2524119425903667,
+            "posture_falls_baseline": 20,
+            "posture_falls_candidate": 27,
+            "proxy_baseline": 0.3019470263804906,
+            "proxy_candidate": 0.1248041127663388,
+            "speed_baseline": 0.19520810897684968,
+            "speed_candidate": 0.19435792501709825,
+            "survival_baseline": 0.375,
+            "survival_candidate": 0.15625,
+            "terminated_baseline": 20,
+            "terminated_candidate": 27,
+            "tracking_baseline": 0.8051920703479749,
+            "tracking_candidate": 0.7987463217045684
+          },
+          {
+            "case": "G3:rough_lateral:303",
+            "delta": -0.22980252900596132,
+            "height_p10_baseline": 0.2911078944244487,
+            "height_p10_candidate": 0.24044762256948704,
+            "posture_falls_baseline": 19,
+            "posture_falls_candidate": 28,
+            "proxy_baseline": 0.3301962993875015,
+            "proxy_candidate": 0.10039377038154017,
+            "speed_baseline": 0.1899747123870208,
+            "speed_candidate": 0.19384852287113435,
+            "survival_baseline": 0.40625,
+            "survival_candidate": 0.125,
+            "terminated_baseline": 19,
+            "terminated_candidate": 28,
+            "tracking_baseline": 0.8127908908000037,
+            "tracking_candidate": 0.8031501630523213
+          },
+          {
+            "case": "G3:rough_forward:101",
+            "delta": -0.03220262130533913,
+            "height_p10_baseline": 0.27799654150391645,
+            "height_p10_candidate": 0.25995103353485066,
+            "posture_falls_baseline": 1,
+            "posture_falls_candidate": 3,
+            "proxy_baseline": 0.741610066800187,
+            "proxy_candidate": 0.7094074454948479,
+            "speed_baseline": 0.35939594654877677,
+            "speed_candidate": 0.3642866009168791,
+            "survival_baseline": 0.96875,
+            "survival_candidate": 0.90625,
+            "terminated_baseline": 0,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.7655329721808383,
+            "tracking_candidate": 0.7827944226150046
+          },
+          {
+            "case": "G3:rough_forward:202",
+            "delta": 0.0586284058908767,
+            "height_p10_baseline": 0.29138348893048294,
+            "height_p10_candidate": 0.2861454582469349,
+            "posture_falls_baseline": 0,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.8183393478900558,
+            "proxy_candidate": 0.8769677537809325,
+            "speed_baseline": 0.3824723040756911,
+            "speed_candidate": 0.4058697921718899,
+            "survival_baseline": 1.0,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 0,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.8183393478900558,
+            "tracking_candidate": 0.8769677537809325
+          },
+          {
+            "case": "G3:rough_forward:303",
+            "delta": 0.11190844547691359,
+            "height_p10_baseline": 0.294234228962883,
+            "height_p10_candidate": 0.290327780865093,
+            "posture_falls_baseline": 3,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.6992595532327971,
+            "proxy_candidate": 0.8111679987097107,
+            "speed_baseline": 0.35739520903347166,
+            "speed_candidate": 0.3683673977967247,
+            "survival_baseline": 0.90625,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 3,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.7715967483948106,
+            "tracking_candidate": 0.8111679987097107
+          }
+        ]
+      },
+      {
+        "group": "push",
+        "improved": false,
+        "mean_delta": -0.07383599261776923,
+        "rows": [
+          {
+            "case": "G6:push_pos_x:101",
+            "delta": 0.024502354773108914,
+            "height_p10_baseline": 0.37004462665415067,
+            "height_p10_candidate": 0.36961567401885986,
+            "posture_falls_baseline": 5,
+            "posture_falls_candidate": 4,
+            "proxy_baseline": 0.8132783132128829,
+            "proxy_candidate": 0.8377806679859918,
+            "speed_baseline": 0.04861949469709407,
+            "speed_candidate": 0.05166422537796731,
+            "survival_baseline": 0.84375,
+            "survival_candidate": 0.875,
+            "terminated_baseline": 5,
+            "terminated_candidate": 3,
+            "tracking_baseline": 0.9638854082523056,
+            "tracking_candidate": 0.9574636205554192
+          },
+          {
+            "case": "G6:push_pos_x:202",
+            "delta": -0.10747391427293351,
+            "height_p10_baseline": 0.3735910290702779,
+            "height_p10_candidate": 0.35546182151784234,
+            "posture_falls_baseline": 1,
+            "posture_falls_candidate": 4,
+            "proxy_baseline": 0.940247844511308,
+            "proxy_candidate": 0.8327739302383745,
+            "speed_baseline": 0.04648939883399484,
+            "speed_candidate": 0.055141193544027335,
+            "survival_baseline": 0.96875,
+            "survival_candidate": 0.875,
+            "terminated_baseline": 1,
+            "terminated_candidate": 4,
+            "tracking_baseline": 0.9705784201407051,
+            "tracking_candidate": 0.9517416345581423
+          },
+          {
+            "case": "G6:push_pos_x:303",
+            "delta": -0.13853641835348307,
+            "height_p10_baseline": 0.37181364629357894,
+            "height_p10_candidate": 0.35313704673619195,
+            "posture_falls_baseline": 2,
+            "posture_falls_candidate": 6,
+            "proxy_baseline": 0.9068006707895246,
+            "proxy_candidate": 0.7682642524360416,
+            "speed_baseline": 0.04760257453347122,
+            "speed_candidate": 0.05544650823285768,
+            "survival_baseline": 0.9375,
+            "survival_candidate": 0.8125,
+            "terminated_baseline": 2,
+            "terminated_candidate": 6,
+            "tracking_baseline": 0.9672540488421596,
+            "tracking_candidate": 0.945556002998205
+          }
+        ]
+      }
+    ],
+    "target_groups_improved": 0,
+    "target_mean_proxy_delta": -0.06455035282810863,
+    "verdict": "FAIL"
+  },
+  "plan_screening": {
+    "baseline": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate",
+    "candidate": "workspace\\_keep\\go2_g_a044_a033_lin_vel_z_m175\\evaluation\\candidate",
+    "cases": [
+      "stairs_10_down",
+      "stairs_15_down",
+      "rough_forward",
+      "rough_lateral",
+      "push_pos_x",
+      "push_neg_x",
+      "push_pos_y",
+      "push_neg_y"
+    ],
+    "checks": [
+      {
+        "check": "stairs_10_down forward distance median delta > 0",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": 0.5572137646467334
+      },
+      {
+        "check": "stairs_10_down pooled ge1 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": false,
+        "value": "87 vs 90"
+      },
+      {
+        "check": "stairs_10_down pooled ge2 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "62 vs 43"
+      },
+      {
+        "check": "stairs_15_down forward distance median delta > 0",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": 0.17687106350291404
+      },
+      {
+        "check": "stairs_15_down pooled ge1 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "39 vs 4"
+      },
+      {
+        "check": "stairs_15_down pooled ge2 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "0 vs 0"
+      },
+      {
+        "check": "at least one climb count strictly up",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": [
+          false,
+          true,
+          true,
+          false
+        ]
+      },
+      {
+        "check": "stairs_10_down stall share median delta < 0",
+        "group": "stall",
+        "note": "",
+        "ok": false,
+        "value": 0.06182300000000002
+      },
+      {
+        "check": "stairs_15_down stall share median delta < 0",
+        "group": "stall",
+        "note": "",
+        "ok": true,
+        "value": -0.23630699999999993
+      },
+      {
+        "check": "stairs_10_down pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "65 vs 34"
+      },
+      {
+        "check": "stairs_10_down survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.3125
+      },
+      {
+        "check": "stairs_15_down pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "95 vs 90"
+      },
+      {
+        "check": "stairs_15_down survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.03125
+      },
+      {
+        "check": "rough_forward pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "3 vs 4"
+      },
+      {
+        "check": "rough_forward survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.0
+      },
+      {
+        "check": "rough_lateral pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "80 vs 59"
+      },
+      {
+        "check": "rough_lateral survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.21875
+      },
+      {
+        "check": "push_pos_x pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "14 vs 8"
+      },
+      {
+        "check": "push_pos_x survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.09375
+      },
+      {
+        "check": "push_neg_x pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "15 vs 6"
+      },
+      {
+        "check": "push_neg_x survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.125
+      },
+      {
+        "check": "push_pos_y pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "21 vs 4"
+      },
+      {
+        "check": "push_pos_y survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.125
+      },
+      {
+        "check": "push_neg_y pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "16 vs 4"
+      },
+      {
+        "check": "push_neg_y survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.125
+      },
+      {
+        "check": "rough_forward tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.03957125031490005
+      },
+      {
+        "check": "rough_lateral tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.006445748643406524
+      },
+      {
+        "check": "push_pos_x tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.018836785582562743
+      },
+      {
+        "check": "push_neg_x tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.01347140840481853
+      },
+      {
+        "check": "push_pos_y tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.021625922470664305
+      },
+      {
+        "check": "push_neg_y tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.013652719346912368
+      }
+    ],
+    "failed": [
+      "stairs_10_down pooled ge1 >= baseline",
+      "stairs_10_down stall share median delta < 0",
+      "stairs_10_down pooled posture falls <= baseline",
+      "stairs_10_down survival median delta >= 0",
+      "stairs_15_down pooled posture falls <= baseline",
+      "stairs_15_down survival median delta >= 0",
+      "rough_lateral pooled posture falls <= baseline",
+      "rough_lateral survival median delta >= 0",
+      "push_pos_x pooled posture falls <= baseline",
+      "push_pos_x survival median delta >= 0",
+      "push_neg_x pooled posture falls <= baseline",
+      "push_neg_x survival median delta >= 0",
+      "push_pos_y pooled posture falls <= baseline",
+      "push_pos_y survival median delta >= 0",
+      "push_neg_y pooled posture falls <= baseline",
+      "push_neg_y survival median delta >= 0",
+      "rough_lateral tracking proxy median delta >= 0",
+      "push_pos_x tracking proxy median delta >= 0",
+      "push_neg_x tracking proxy median delta >= 0",
+      "push_pos_y tracking proxy median delta >= 0",
+      "push_neg_y tracking proxy median delta >= 0"
+    ],
+    "identity_faults": [],
+    "not_claimed": "a PASS is a screening pass only: the full 69 cases, the guard axes, the videos and a symmetric independent-seed pair are still required before any promotion. fact_rules_v1 is judged separately by tools/verify_go2_basic_motion_harvest.py and is not weakened here.",
+    "rule": "upload/plan/GO2_FORWARD_STAIRS_POLICY_20260921.md section 4 (screening design criteria; not an official threshold and not a significance level); extended by upload/plan/GO2_POST_A042_PLAN_20260922.md section 5, which adds both G6 x-direction push cases to the protection block (post_a042_push_v1); extended again by upload/plan/GO2_POST_A043_PLAN_20260922.md section 6, which adds the two G6 y-direction push cases (post_a043_push4_v1)",
+    "undecided": [],
+    "unreadable": [],
+    "verdict": "INTERNAL_GATE_FAIL"
+  },
+  "ruler_mismatches": [],
+  "schema_version": 2,
+  "sentinel": {
+    "agrees": true,
+    "faults": [],
+    "rows": [
+      {
+        "agrees": true,
+        "case": "G3:rough_forward:101",
+        "ruler_fields_differ": [],
+        "survival_now": 0.96875,
+        "survival_stored": 0.96875,
+        "tracking_now": 0.7655329721808383,
+        "tracking_stored": 0.7655329721808383
+      },
+      {
+        "agrees": true,
+        "case": "G4:slope_plus_20:202",
+        "ruler_fields_differ": [],
+        "survival_now": 1.0,
+        "survival_stored": 1.0,
+        "tracking_now": 0.8588323165505137,
+        "tracking_stored": 0.8588323165505137
+      },
+      {
+        "agrees": true,
+        "case": "G7:dr_seed_202:202",
+        "ruler_fields_differ": [],
+        "survival_now": 0.96875,
+        "survival_stored": 0.96875,
+        "tracking_now": 0.7589179781744299,
+        "tracking_stored": 0.7589179781744299
+      },
+      {
+        "agrees": true,
+        "case": "G3:rough_lateral:101",
+        "ruler_fields_differ": [],
+        "survival_now": 0.375,
+        "survival_stored": 0.375,
+        "tracking_now": 0.8100705634217098,
+        "tracking_stored": 0.8100705634217098
+      },
+      {
+        "agrees": true,
+        "case": "G1:forward_nominal:101",
+        "ruler_fields_differ": [],
+        "survival_now": 1.0,
+        "survival_stored": 1.0,
+        "tracking_now": 0.9493719565386185,
+        "tracking_stored": 0.9493719565386185
+      }
+    ]
+  },
+  "stage": "full",
+  "verdict": "FAIL",
+  "work_id": "G-A044"
+}

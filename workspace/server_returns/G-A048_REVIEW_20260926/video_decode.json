@@ -1,0 +1,62 @@
+[
+  {
+    "file": "G2_combined_yaw_left_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G2_combined_yaw_right_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G3_rough_forward_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G3_rough_lateral_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G5_stairs_10_down_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G5_stairs_15_down_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G6_push_neg_x_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G6_push_neg_y_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G6_push_pos_x_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  },
+  {
+    "file": "G6_push_pos_y_seed_101.mp4",
+    "frames": 499,
+    "fps": 50.0,
+    "readable": true
+  }
+]

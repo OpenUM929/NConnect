@@ -1,0 +1,10 @@
+{
+  "classification": "POST_HOC_DESCRIPTIVE_NOT_CAUSAL",
+  "input": "A052 raw diag.csv.gz and steps.csv; source hashes in DIAGNOSTIC_SUPPLEMENT.json",
+  "units": "weighted reward per second; heights world/scanner-relative metres; vy body m/s",
+  "window": "preregistered T, preceding 1 second clipped to t>=0.5; exclude T; early empty env25 omitted",
+  "control": "same case/eval-seed survivors, each averaged in same clock-time window; NOT terrain or gait-phase matched",
+  "population": "46 failure windows; repeated controls not independent; 15cm one survivor; one trained A048 policy",
+  "interpretation": "cost is not torque saturation or evidence that reducing weight improves behavior; zero-weight terms conceal raw values",
+  "rows": 460
+}

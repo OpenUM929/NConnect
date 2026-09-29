@@ -1,0 +1,196 @@
+case,item,status,detail
+rough_lateral,group:body,RECORDED,
+rough_lateral,group:feet,RECORDED,
+rough_lateral,group:contact,RECORDED,
+rough_lateral,group:terrain,RECORDED,
+rough_lateral,group:action,RECORDED,
+rough_lateral,group:reward,RECORDED,
+rough_lateral,column:ang_vel_b_x,COMPLETE,bad_rows=0 first=
+rough_lateral,column:ang_vel_b_y,COMPLETE,bad_rows=0 first=
+rough_lateral,column:contact_fresh,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FL_contact_time,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FL_vel_x,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FL_vel_y,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FL_pos_z,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FR_contact_time,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FR_vel_x,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FR_vel_y,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FR_pos_z,COMPLETE,bad_rows=0 first=
+rough_lateral,column:FR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RL_contact_time,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RL_vel_x,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RL_vel_y,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RL_pos_z,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RR_contact_time,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RR_vel_x,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RR_vel_y,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RR_pos_z,COMPLETE,bad_rows=0 first=
+rough_lateral,column:RR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_0,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_1,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_3,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_4,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_5,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_6,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_7,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_8,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_9,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_10,COMPLETE,bad_rows=0 first=
+rough_lateral,column:action_11,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_0,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_1,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_3,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_4,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_5,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_6,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_7,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_8,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_9,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_10,COMPLETE,bad_rows=0 first=
+rough_lateral,column:prev_action_11,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_track_lin_vel_xy_exp,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_track_ang_vel_z_exp,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_lin_vel_z_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_ang_vel_xy_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_dof_torques_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_dof_acc_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_action_rate_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_feet_air_time,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_flat_orientation_l2,COMPLETE,bad_rows=0 first=
+rough_lateral,column:rew_dof_pos_limits,COMPLETE,bad_rows=0 first=
+rough_lateral,keys,32000/32000,duplicate=0 missing=0 unexpected=0
+rough_lateral,contact_fresh,ALL_NON_RESET_ROWS,stale_non_reset_rows=0 reset_rows=33
+stairs_10_down,group:body,RECORDED,
+stairs_10_down,group:feet,RECORDED,
+stairs_10_down,group:contact,RECORDED,
+stairs_10_down,group:terrain,RECORDED,
+stairs_10_down,group:action,RECORDED,
+stairs_10_down,group:reward,RECORDED,
+stairs_10_down,column:ang_vel_b_x,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:ang_vel_b_y,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:contact_fresh,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FL_contact_time,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FL_vel_x,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FL_vel_y,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FL_pos_z,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FR_contact_time,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FR_vel_x,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FR_vel_y,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FR_pos_z,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:FR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RL_contact_time,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RL_vel_x,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RL_vel_y,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RL_pos_z,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RR_contact_time,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RR_vel_x,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RR_vel_y,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RR_pos_z,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:RR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_0,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_1,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_3,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_4,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_5,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_6,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_7,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_8,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_9,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_10,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:action_11,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_0,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_1,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_3,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_4,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_5,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_6,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_7,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_8,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_9,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_10,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:prev_action_11,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_track_lin_vel_xy_exp,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_track_ang_vel_z_exp,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_lin_vel_z_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_ang_vel_xy_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_dof_torques_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_dof_acc_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_action_rate_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_feet_air_time,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_flat_orientation_l2,COMPLETE,bad_rows=0 first=
+stairs_10_down,column:rew_dof_pos_limits,COMPLETE,bad_rows=0 first=
+stairs_10_down,keys,32000/32000,duplicate=0 missing=0 unexpected=0
+stairs_10_down,contact_fresh,ALL_NON_RESET_ROWS,stale_non_reset_rows=0 reset_rows=32
+stairs_15_down,group:body,RECORDED,
+stairs_15_down,group:feet,RECORDED,
+stairs_15_down,group:contact,RECORDED,
+stairs_15_down,group:terrain,RECORDED,
+stairs_15_down,group:action,RECORDED,
+stairs_15_down,group:reward,RECORDED,
+stairs_15_down,column:ang_vel_b_x,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:ang_vel_b_y,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:contact_fresh,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FL_contact_time,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FL_vel_x,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FL_vel_y,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FL_pos_z,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FR_contact_time,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FR_vel_x,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FR_vel_y,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FR_pos_z,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:FR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RL_contact_time,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RL_vel_x,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RL_vel_y,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RL_pos_z,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RL_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RR_contact_time,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RR_vel_x,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RR_vel_y,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RR_pos_z,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:RR_terrain_zmax015_derived,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_0,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_1,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_3,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_4,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_5,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_6,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_7,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_8,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_9,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_10,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:action_11,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_0,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_1,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_3,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_4,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_5,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_6,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_7,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_8,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_9,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_10,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:prev_action_11,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_track_lin_vel_xy_exp,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_track_ang_vel_z_exp,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_lin_vel_z_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_ang_vel_xy_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_dof_torques_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_dof_acc_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_action_rate_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_feet_air_time,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_flat_orientation_l2,COMPLETE,bad_rows=0 first=
+stairs_15_down,column:rew_dof_pos_limits,COMPLETE,bad_rows=0 first=
+stairs_15_down,keys,32000/32000,duplicate=0 missing=0 unexpected=0
+stairs_15_down,contact_fresh,ALL_NON_RESET_ROWS,stale_non_reset_rows=0 reset_rows=32

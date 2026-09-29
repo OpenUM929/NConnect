@@ -1,0 +1,53 @@
+{
+    "version": "1.0",
+    "file_records": [
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/h1.usd",
+            "source_hash": "3d011b979cb328db1794901e4d6450b36f9052d6",
+            "target_url": "./h1.usd",
+            "target_hash": "b8e84cbbd25e596fa7d8e06b9d5bb0fbeb65f780"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/base.usda",
+            "source_hash": "068e74ae11e104a54586ef6f2b2dd1f0ebf09370",
+            "target_url": "./payloads/base.usda",
+            "target_hash": "71e450b8b8ebfb6d95995a0fc3eeef821f6a8b29"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/h1_hand_left.usd",
+            "source_hash": "1c31b6fe48e86b4a2685d99b913ce3fbc00ca8e0",
+            "target_url": "./payloads/h1_hand_left.usd",
+            "target_hash": "8c48afd5aabe39830976384c6f3e556a216baf43"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/h1_hand_right.usd",
+            "source_hash": "660d5192eb22f6598cab404320dd6ff8abb08ae5",
+            "target_url": "./payloads/h1_hand_right.usd",
+            "target_hash": "847222549d48dc12ef2d7fd5fb148aecb63c0763"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/physics.usda",
+            "source_hash": "33c190314f4b1357415ac4884f6a1d7cd387d695",
+            "target_url": "./payloads/physics.usda",
+            "target_hash": "488c4faa08926720932ae2a09a92a787ac8163dc"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/physics_45.usda",
+            "source_hash": "f6868fd37ce96dbaf23f0ed648b1f3ad438eca8b",
+            "target_url": "./payloads/physics_45.usda",
+            "target_hash": "336f98562e92e7fbc7f70f2fe33ace568b15774e"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/physics_minimal.usda",
+            "source_hash": "2b59b048ae18d17c43871198c1d9e9734f36ae5f",
+            "target_url": "./payloads/physics_minimal.usda",
+            "target_hash": "f0cf3e612ec103863d481c11f8d0d1225387a241"
+        },
+        {
+            "source_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/Unitree/H1/payloads/geometries.usd",
+            "source_hash": "7194e06526a2f48781927e83f3b7a1b65cbb8cec",
+            "target_url": "./payloads/geometries.usd",
+            "target_hash": "851ee29be83257386b1996c9eefaad19790a90f9"
+        }
+    ]
+}

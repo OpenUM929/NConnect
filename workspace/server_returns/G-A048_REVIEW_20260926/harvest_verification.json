@@ -1,0 +1,748 @@
+{
+  "arms": {
+    "candidate": {
+      "faults": [],
+      "invalid_cases": [],
+      "measurement": "INTERNAL_MEASUREMENT_OK"
+    },
+    "g_a033": {
+      "faults": [],
+      "invalid_cases": [],
+      "measurement": "INTERNAL_MEASUREMENT_OK"
+    }
+  },
+  "artifact_faults": [],
+  "baseline_arm": "STORED_G-A033",
+  "combined_verdict": {
+    "artifact": "ARTIFACT_VERIFIED",
+    "fact_rules": "QUANT_SUCCESS_VIDEO_REVIEW_PENDING",
+    "plan_screening": "INTERNAL_GATE_FAIL",
+    "verdict": "FAIL"
+  },
+  "facts": {
+    "candidate_env_rewards": {
+      "action_rate_l2": -0.01,
+      "ang_vel_xy_l2": -0.05,
+      "feet_air_time": 0.2,
+      "flat_orientation_l2": 0.0,
+      "lin_vel_z_l2": -1.25,
+      "track_lin_vel_xy_exp": 1.5
+    },
+    "candidate_env_sha256": "a19077a984f829f23f1ca87405b9b4fa94ae6c618fedf95ea6bb640992f33a35",
+    "candidate_model_sha256": "984e614933f3aae037df260cbf7ee72e7549337435a602ce116d6fc39e7f5ad7",
+    "checkpoint_pin": {
+      "EVAL_CHECKPOINT_ITER": "900",
+      "EVAL_CHECKPOINT_SHA": "984e614933f3aae037df260cbf7ee72e7549337435a602ce116d6fc39e7f5ad7",
+      "REWARD_BEST_MODEL_ITER": "800",
+      "REWARD_BEST_MODEL_SHA": "f226c03209aac6513c8455e16eaf2a54a13edd501b4afc20915d6ccccb71ae2d",
+      "RULE": "the candidate is evaluated at the baseline checkpoint iteration; training/model_best.pt is that checkpoint, training/model_best_by_reward.pt is the finalize pick"
+    },
+    "runner_status": {
+      "BASELINE_ARM": "REUSED_STORED_WITH_SENTINEL",
+      "BASELINE_MODEL_SHA": "ccd60e192bf4ec900a269cc264d7739a4962a4ce07a0c3607568346778646044",
+      "BASELINE_NAME": "G-A033",
+      "CANDIDATE_ENV_SHA": "a19077a984f829f23f1ca87405b9b4fa94ae6c618fedf95ea6bb640992f33a35",
+      "CANDIDATE_EVAL_ITER": "900",
+      "CANDIDATE_MODEL_SHA": "984e614933f3aae037df260cbf7ee72e7549337435a602ce116d6fc39e7f5ad7",
+      "COLLECTION_EXPECTED": "candidate:69 baseline:0 sentinel:5 videos:10 baseline_videos:0",
+      "COLLECTION_STATUS": "FULL_69_COMPLETE",
+      "COMPLETED_AT": "2026-09-26T19:22:55+09:00",
+      "DECISION": "SUITE_COMPLETE",
+      "EVALUATOR": "posture_gate_v2",
+      "EVALUATOR_SHA": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+      "OFFICIAL_RESULT": "OFFICIAL_RESULT_UNMEASURED",
+      "REGISTRY_SHA": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+      "REPORT_STATUS": "REPORT_ACQUIRED",
+      "REWARD_BEST_MODEL_ITER": "800",
+      "RUNNER_RC": "0",
+      "RUN_ID": "train_260926-Go2_a033_lin_vel_z_m125_1000",
+      "SINGLE_CHANGE": "lin_vel_z_l2:-2.0->-1.25",
+      "STAGE": "full",
+      "TELEMETRY_BASELINE": "0",
+      "TELEMETRY_BASELINE_SENTINEL": "5",
+      "TELEMETRY_CANDIDATE": "69",
+      "TELEMETRY_SCHEMA": "6",
+      "TRAIN_SEED": "42",
+      "VIDEOS_BASELINE": "0",
+      "VIDEOS_CANDIDATE": "10",
+      "VIDEO_STATUS": "VIDEO_UNKNOWN",
+      "WORK_ID": "G-A048"
+    }
+  },
+  "harvest": "workspace\\_keep\\go2_g_a048_a033_lin_vel_z_m125",
+  "judgement": {
+    "climb_guard": {
+      "deferred_to_full_stage": [],
+      "groups": [
+        {
+          "baseline_counts": [
+            29,
+            30,
+            31
+          ],
+          "baseline_sum": 90,
+          "counts": [
+            31,
+            30,
+            30
+          ],
+          "floor": 83.329,
+          "group": "stairs_10_climb_ge1",
+          "inoperable": false,
+          "metric": "ge1",
+          "ok": true,
+          "total": 91
+        },
+        {
+          "baseline_counts": [
+            16,
+            13,
+            14
+          ],
+          "baseline_sum": 43,
+          "counts": [
+            31,
+            30,
+            29
+          ],
+          "floor": 29.261,
+          "group": "stairs_10_climb_ge2",
+          "inoperable": false,
+          "metric": "ge2",
+          "ok": true,
+          "total": 90
+        }
+      ],
+      "inoperable_guards": [],
+      "violations": []
+    },
+    "criteria": {
+      "1_target_basic_motion": true,
+      "2_total_points_delta": true,
+      "3_non_inferiority": true,
+      "4_locomotion": true,
+      "5_video": "VIDEO_UNKNOWN",
+      "6_target_axes_rise": true
+    },
+    "expected_weighted_gain": "미추정",
+    "failed": [],
+    "group_floor_violations": [],
+    "locomotion": {
+      "baseline_stationary": [
+        "G5/stairs_15_down/seed_101",
+        "G5/stairs_15_down/seed_202"
+      ],
+      "candidate_stationary": [],
+      "candidate_verdict": "POLICY_LOCOMOTES",
+      "new_stationary_in_guard": []
+    },
+    "mechanism": {
+      "height_p10_mean_baseline": 0.27446683625725504,
+      "height_p10_mean_candidate": 0.23462025581488846,
+      "note": "H1 (a higher stance) is read here; it is not a success criterion",
+      "posture_falls_baseline": 105,
+      "posture_falls_candidate": 49,
+      "speed_mean_baseline": 0.1998643275207688,
+      "speed_mean_candidate": 0.29263305344444135
+    },
+    "non_inferiority_violations": [],
+    "points_70": {
+      "baseline": 42.528610096105055,
+      "candidate": 50.156558621220285,
+      "delta": 7.6279485251152295
+    },
+    "scenarios": {
+      "G1": {
+        "delta": 0.051646019941993804,
+        "limit_70": null,
+        "weighted_loss_70": 0.0
+      },
+      "G2": {
+        "delta": 0.03430026680260456,
+        "limit_70": null,
+        "weighted_loss_70": 0.0
+      },
+      "G3": {
+        "delta": 0.33929306968065537,
+        "limit_70": 2.03646,
+        "weighted_loss_70": 0.0
+      },
+      "G4": {
+        "delta": 0.08268796806986023,
+        "limit_70": 0.99632,
+        "weighted_loss_70": 0.0
+      },
+      "G5": {
+        "delta": -0.004260083369260425,
+        "limit_70": 0.05604,
+        "weighted_loss_70": 0.04473087537723446
+      },
+      "G6": {
+        "delta": 0.13022096252250115,
+        "limit_70": 0.86196,
+        "weighted_loss_70": 0.0
+      },
+      "G7": {
+        "delta": 0.03433857310771027,
+        "limit_70": 0.40358,
+        "weighted_loss_70": 0.0
+      }
+    },
+    "status": "exploratory",
+    "target_axes": {
+      "by_axis_70": {
+        "G3": 4.750102975529175,
+        "G5": -0.04473087537723446
+      },
+      "delta_70": 4.705372100151941,
+      "rises": true
+    },
+    "target_groups": [
+      {
+        "group": "stairs",
+        "improved": true,
+        "mean_delta": 0.438922004913264,
+        "rows": [
+          {
+            "case": "G5:stairs_10_down:101",
+            "delta": 0.48292550886813446,
+            "height_p10_baseline": 0.1983773658141733,
+            "height_p10_candidate": 0.22834314007491352,
+            "posture_falls_baseline": 4,
+            "posture_falls_candidate": 8,
+            "proxy_baseline": 0.1859967797179376,
+            "proxy_candidate": 0.6689222885860721,
+            "speed_baseline": 0.19906291658396527,
+            "speed_candidate": 0.4816006506591467,
+            "survival_baseline": 0.875,
+            "survival_candidate": 0.75,
+            "terminated_baseline": 1,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.21256774824907154,
+            "tracking_candidate": 0.8918963847814294
+          },
+          {
+            "case": "G5:stairs_10_down:202",
+            "delta": 0.4320866838459477,
+            "height_p10_baseline": 0.1584582057866183,
+            "height_p10_candidate": 0.17455285596337544,
+            "posture_falls_baseline": 15,
+            "posture_falls_candidate": 10,
+            "proxy_baseline": 0.11776213986719072,
+            "proxy_candidate": 0.5498488237131385,
+            "speed_baseline": 0.18023850488225107,
+            "speed_candidate": 0.4339793263213323,
+            "survival_baseline": 0.53125,
+            "survival_candidate": 0.6875,
+            "terminated_baseline": 2,
+            "terminated_candidate": 1,
+            "tracking_baseline": 0.22166991033824135,
+            "tracking_candidate": 0.7997801072191105
+          },
+          {
+            "case": "G5:stairs_10_down:303",
+            "delta": 0.40175382202570986,
+            "height_p10_baseline": 0.13155887327729698,
+            "height_p10_candidate": 0.17440878261219372,
+            "posture_falls_baseline": 15,
+            "posture_falls_candidate": 12,
+            "proxy_baseline": 0.11769141186543253,
+            "proxy_candidate": 0.5194452338911424,
+            "speed_baseline": 0.1923569073363181,
+            "speed_candidate": 0.4531021387923551,
+            "survival_baseline": 0.53125,
+            "survival_candidate": 0.625,
+            "terminated_baseline": 3,
+            "terminated_candidate": 2,
+            "tracking_baseline": 0.2215367752761083,
+            "tracking_candidate": 0.8311123742258277
+          }
+        ]
+      },
+      {
+        "group": "rough",
+        "improved": true,
+        "mean_delta": 0.2883124009570346,
+        "rows": [
+          {
+            "case": "G3:rough_lateral:101",
+            "delta": 0.4400593343090847,
+            "height_p10_baseline": 0.26778634012064195,
+            "height_p10_candidate": 0.21481756475520006,
+            "posture_falls_baseline": 20,
+            "posture_falls_candidate": 5,
+            "proxy_baseline": 0.3037764612831412,
+            "proxy_candidate": 0.7438357955922259,
+            "speed_baseline": 0.1995558523603209,
+            "speed_candidate": 0.18264963228857467,
+            "survival_baseline": 0.375,
+            "survival_candidate": 0.84375,
+            "terminated_baseline": 19,
+            "terminated_candidate": 2,
+            "tracking_baseline": 0.8100705634217098,
+            "tracking_candidate": 0.8815831651463418
+          },
+          {
+            "case": "G3:rough_lateral:202",
+            "delta": 0.33929306968065537,
+            "height_p10_baseline": 0.26724979424859113,
+            "height_p10_candidate": 0.21001549567130798,
+            "posture_falls_baseline": 20,
+            "posture_falls_candidate": 8,
+            "proxy_baseline": 0.3019470263804906,
+            "proxy_candidate": 0.641240096061146,
+            "speed_baseline": 0.19520810897684968,
+            "speed_candidate": 0.164236093396803,
+            "survival_baseline": 0.375,
+            "survival_candidate": 0.75,
+            "terminated_baseline": 20,
+            "terminated_candidate": 7,
+            "tracking_baseline": 0.8051920703479749,
+            "tracking_candidate": 0.8549867947481946
+          },
+          {
+            "case": "G3:rough_lateral:303",
+            "delta": 0.45408656592962915,
+            "height_p10_baseline": 0.2911078944244487,
+            "height_p10_candidate": 0.2179465185512196,
+            "posture_falls_baseline": 19,
+            "posture_falls_candidate": 3,
+            "proxy_baseline": 0.3301962993875015,
+            "proxy_candidate": 0.7842828653171307,
+            "speed_baseline": 0.1899747123870208,
+            "speed_candidate": 0.17398877288218448,
+            "survival_baseline": 0.40625,
+            "survival_candidate": 0.90625,
+            "terminated_baseline": 19,
+            "terminated_candidate": 2,
+            "tracking_baseline": 0.8127908908000037,
+            "tracking_candidate": 0.865415575522351
+          },
+          {
+            "case": "G3:rough_forward:101",
+            "delta": 0.14338309354246226,
+            "height_p10_baseline": 0.27799654150391645,
+            "height_p10_candidate": 0.27553520499066236,
+            "posture_falls_baseline": 1,
+            "posture_falls_candidate": 2,
+            "proxy_baseline": 0.741610066800187,
+            "proxy_candidate": 0.8849931603426493,
+            "speed_baseline": 0.35939594654877677,
+            "speed_candidate": 0.4902897322752096,
+            "survival_baseline": 0.96875,
+            "survival_candidate": 0.9375,
+            "terminated_baseline": 0,
+            "terminated_candidate": 2,
+            "tracking_baseline": 0.7655329721808383,
+            "tracking_candidate": 0.9439927043654925
+          },
+          {
+            "case": "G3:rough_forward:202",
+            "delta": 0.1411750888501041,
+            "height_p10_baseline": 0.29138348893048294,
+            "height_p10_candidate": 0.2730788593304986,
+            "posture_falls_baseline": 0,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.8183393478900558,
+            "proxy_candidate": 0.9595144367401599,
+            "speed_baseline": 0.3824723040756911,
+            "speed_candidate": 0.49694277003270404,
+            "survival_baseline": 1.0,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 0,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.8183393478900558,
+            "tracking_candidate": 0.9595144367401599
+          },
+          {
+            "case": "G3:rough_forward:303",
+            "delta": 0.21187725343027186,
+            "height_p10_baseline": 0.294234228962883,
+            "height_p10_candidate": 0.27881849879887016,
+            "posture_falls_baseline": 3,
+            "posture_falls_candidate": 1,
+            "proxy_baseline": 0.6992595532327971,
+            "proxy_candidate": 0.911136806663069,
+            "speed_baseline": 0.35739520903347166,
+            "speed_candidate": 0.49083120396710034,
+            "survival_baseline": 0.90625,
+            "survival_candidate": 0.96875,
+            "terminated_baseline": 3,
+            "terminated_candidate": 1,
+            "tracking_baseline": 0.7715967483948106,
+            "tracking_candidate": 0.940528316555426
+          }
+        ]
+      },
+      {
+        "group": "push",
+        "improved": true,
+        "mean_delta": 0.08873874704659175,
+        "rows": [
+          {
+            "case": "G6:push_pos_x:101",
+            "delta": 0.16386509487203094,
+            "height_p10_baseline": 0.37004462665415067,
+            "height_p10_candidate": 0.2555671421920552,
+            "posture_falls_baseline": 5,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.8132783132128829,
+            "proxy_candidate": 0.9771434080849138,
+            "speed_baseline": 0.04861949469709407,
+            "speed_candidate": 0.046002809826877857,
+            "survival_baseline": 0.84375,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 5,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.9638854082523056,
+            "tracking_candidate": 0.9771434080849138
+          },
+          {
+            "case": "G6:push_pos_x:202",
+            "delta": 0.03431035296224505,
+            "height_p10_baseline": 0.3735910290702779,
+            "height_p10_candidate": 0.2512536549313183,
+            "posture_falls_baseline": 1,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.940247844511308,
+            "proxy_candidate": 0.9745581974735531,
+            "speed_baseline": 0.04648939883399484,
+            "speed_candidate": 0.04900967223727091,
+            "survival_baseline": 0.96875,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 1,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.9705784201407051,
+            "tracking_candidate": 0.9745581974735531
+          },
+          {
+            "case": "G6:push_pos_x:303",
+            "delta": 0.06804079330549928,
+            "height_p10_baseline": 0.37181364629357894,
+            "height_p10_candidate": 0.2611053519070467,
+            "posture_falls_baseline": 2,
+            "posture_falls_candidate": 0,
+            "proxy_baseline": 0.9068006707895246,
+            "proxy_candidate": 0.9748414640950239,
+            "speed_baseline": 0.04760257453347122,
+            "speed_candidate": 0.04896383865373702,
+            "survival_baseline": 0.9375,
+            "survival_candidate": 1.0,
+            "terminated_baseline": 2,
+            "terminated_candidate": 0,
+            "tracking_baseline": 0.9672540488421596,
+            "tracking_candidate": 0.9748414640950239
+          }
+        ]
+      }
+    ],
+    "target_groups_improved": 3,
+    "target_mean_proxy_delta": 0.2760713884684812,
+    "verdict": "QUANT_SUCCESS_VIDEO_REVIEW_PENDING"
+  },
+  "plan_screening": {
+    "baseline": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a033_a017_track_lin_vel_xy_150\\evaluation\\candidate",
+    "candidate": "workspace\\_keep\\go2_g_a048_a033_lin_vel_z_m125\\evaluation\\candidate",
+    "cases": [
+      "stairs_10_down",
+      "stairs_15_down",
+      "rough_forward",
+      "rough_lateral",
+      "push_pos_x",
+      "push_neg_x",
+      "push_pos_y",
+      "push_neg_y"
+    ],
+    "checks": [
+      {
+        "check": "stairs_10_down forward distance median delta > 0",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": 7.580088121734736
+      },
+      {
+        "check": "stairs_10_down pooled ge1 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "91 vs 90"
+      },
+      {
+        "check": "stairs_10_down pooled ge2 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "90 vs 43"
+      },
+      {
+        "check": "stairs_15_down forward distance median delta > 0",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": 0.21138742258066556
+      },
+      {
+        "check": "stairs_15_down pooled ge1 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "45 vs 4"
+      },
+      {
+        "check": "stairs_15_down pooled ge2 >= baseline",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": "24 vs 0"
+      },
+      {
+        "check": "at least one climb count strictly up",
+        "group": "stairs",
+        "note": "",
+        "ok": true,
+        "value": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      {
+        "check": "stairs_10_down stall share median delta < 0",
+        "group": "stall",
+        "note": "",
+        "ok": true,
+        "value": -0.139081
+      },
+      {
+        "check": "stairs_15_down stall share median delta < 0",
+        "group": "stall",
+        "note": "",
+        "ok": false,
+        "value": 0.06768000000000007
+      },
+      {
+        "check": "stairs_10_down pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "30 vs 34"
+      },
+      {
+        "check": "stairs_10_down survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.09375
+      },
+      {
+        "check": "stairs_15_down pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": "93 vs 90"
+      },
+      {
+        "check": "stairs_15_down survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": false,
+        "value": -0.03125
+      },
+      {
+        "check": "rough_forward pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "3 vs 4"
+      },
+      {
+        "check": "rough_forward survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.0
+      },
+      {
+        "check": "rough_lateral pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "16 vs 59"
+      },
+      {
+        "check": "rough_lateral survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.46875
+      },
+      {
+        "check": "push_pos_x pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "0 vs 8"
+      },
+      {
+        "check": "push_pos_x survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.0625
+      },
+      {
+        "check": "push_neg_x pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "0 vs 6"
+      },
+      {
+        "check": "push_neg_x survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.09375
+      },
+      {
+        "check": "push_pos_y pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "0 vs 4"
+      },
+      {
+        "check": "push_pos_y survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.03125
+      },
+      {
+        "check": "push_neg_y pooled posture falls <= baseline",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": "1 vs 4"
+      },
+      {
+        "check": "push_neg_y survival median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.03125
+      },
+      {
+        "check": "rough_forward tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.1689315681606154
+      },
+      {
+        "check": "rough_lateral tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.05262468472234738
+      },
+      {
+        "check": "push_pos_x tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.007587415252864327
+      },
+      {
+        "check": "push_neg_x tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.010519518175460152
+      },
+      {
+        "check": "push_pos_y tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.005440015548868082
+      },
+      {
+        "check": "push_neg_y tracking proxy median delta >= 0",
+        "group": "guard",
+        "note": "",
+        "ok": true,
+        "value": 0.00548568148663664
+      }
+    ],
+    "failed": [
+      "stairs_15_down stall share median delta < 0",
+      "stairs_15_down pooled posture falls <= baseline",
+      "stairs_15_down survival median delta >= 0"
+    ],
+    "identity_faults": [],
+    "not_claimed": "a PASS is a screening pass only: the full 69 cases, the guard axes, the videos and a symmetric independent-seed pair are still required before any promotion. fact_rules_v1 is judged separately by tools/verify_go2_basic_motion_harvest.py and is not weakened here.",
+    "rule": "upload/plan/GO2_FORWARD_STAIRS_POLICY_20260921.md section 4 (screening design criteria; not an official threshold and not a significance level); extended by upload/plan/GO2_POST_A042_PLAN_20260922.md section 5, which adds both G6 x-direction push cases to the protection block (post_a042_push_v1); extended again by upload/plan/GO2_POST_A043_PLAN_20260922.md section 6, which adds the two G6 y-direction push cases (post_a043_push4_v1)",
+    "undecided": [],
+    "unreadable": [],
+    "verdict": "INTERNAL_GATE_FAIL"
+  },
+  "ruler_mismatches": [],
+  "schema_version": 2,
+  "sentinel": {
+    "agrees": true,
+    "faults": [],
+    "rows": [
+      {
+        "agrees": true,
+        "case": "G3:rough_forward:101",
+        "ruler_fields_differ": [],
+        "survival_now": 0.96875,
+        "survival_stored": 0.96875,
+        "tracking_now": 0.7655329721808383,
+        "tracking_stored": 0.7655329721808383
+      },
+      {
+        "agrees": true,
+        "case": "G4:slope_plus_20:202",
+        "ruler_fields_differ": [],
+        "survival_now": 1.0,
+        "survival_stored": 1.0,
+        "tracking_now": 0.8588323165505137,
+        "tracking_stored": 0.8588323165505137
+      },
+      {
+        "agrees": true,
+        "case": "G7:dr_seed_202:202",
+        "ruler_fields_differ": [],
+        "survival_now": 0.96875,
+        "survival_stored": 0.96875,
+        "tracking_now": 0.7589179781744299,
+        "tracking_stored": 0.7589179781744299
+      },
+      {
+        "agrees": true,
+        "case": "G3:rough_lateral:101",
+        "ruler_fields_differ": [],
+        "survival_now": 0.375,
+        "survival_stored": 0.375,
+        "tracking_now": 0.8100705634217098,
+        "tracking_stored": 0.8100705634217098
+      },
+      {
+        "agrees": true,
+        "case": "G1:forward_nominal:101",
+        "ruler_fields_differ": [],
+        "survival_now": 1.0,
+        "survival_stored": 1.0,
+        "tracking_now": 0.9493719565386185,
+        "tracking_stored": 0.9493719565386185
+      }
+    ]
+  },
+  "stage": "full",
+  "verdict": "FAIL",
+  "work_id": "G-A048"
+}

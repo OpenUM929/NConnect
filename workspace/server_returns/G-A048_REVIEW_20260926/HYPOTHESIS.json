@@ -1,0 +1,39 @@
+{
+  "work_id": "G-A048",
+  "harvest": "workspace\\_keep\\go2_g_a048_a033_lin_vel_z_m125",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged here - tools/verify_go2_basic_motion_harvest.py",
+  "harvest_check": {
+    "verified": true,
+    "reason": "ARTIFACT_VERIFIED"
+  },
+  "indicators": {
+    "stairs_15_ge2": {
+      "verdict": "INSUFFICIENT",
+      "value": 24,
+      "per_seed": {
+        "101": 8,
+        "202": 4,
+        "303": 12
+      }
+    },
+    "rough_lateral_posture_falls": {
+      "verdict": "SUPPORTED",
+      "value": 16,
+      "per_seed": {
+        "101": 5,
+        "202": 8,
+        "303": 3
+      }
+    },
+    "yaw_right_posture_cost": {
+      "verdict": "ABSENT",
+      "value": 0,
+      "per_seed": {
+        "101": 0,
+        "202": 0,
+        "303": 0
+      }
+    }
+  }
+}

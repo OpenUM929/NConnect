@@ -1,0 +1,14 @@
+{
+  "status": "ARTIFACT_VERIFIED",
+  "method": "ZIP fallback; generic tar verifier unsupported ZIP",
+  "zip_sha256": "f42ce933e80964e2c3c2d70bb2ebe3e5d6531aa46d32cf9238e84e691e70ba91",
+  "crc": true,
+  "safe_paths": true,
+  "internal_sha_verified": 530,
+  "extracted_matches": 531,
+  "candidate_cases": 69,
+  "sentinel_cases": 5,
+  "videos": 8,
+  "model_sha256": "6f401bc9934d284718004acb8a031225e12635c53c7e821945bfd4ce32737eac",
+  "source": "a047_integrity read-only verifier"
+}

@@ -1,0 +1,4 @@
+plain 202 rough_lateral rc=0 wall_s=27
+diag 202 rough_lateral rc=0 wall_s=31
+diag 101 stairs_10_down rc=0 wall_s=28
+diag 101 stairs_15_down rc=0 wall_s=31

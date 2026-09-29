@@ -1,0 +1,68 @@
+[
+ {
+  "R_omega_xy_p95": 1.0058035695313474,
+  "S_stance_speed_p95": 0.6856357872639088,
+  "D_low_support_run_p95_s": 0.1,
+  "survivors": 24,
+  "rows_total": 23400,
+  "rows_omega": 23400,
+  "rows_contact_valid": 23400,
+  "rows_stance": 73305,
+  "low_support_runs": 76,
+  "case": "rough_lateral",
+  "eval_seed": 202,
+  "feet": [
+   "FL",
+   "FR",
+   "RL",
+   "RR"
+  ],
+  "unavailable": {},
+  "fallen": 8,
+  "envs": 32
+ },
+ {
+  "R_omega_xy_p95": 1.336061851150612,
+  "S_stance_speed_p95": 0.452867213788987,
+  "D_low_support_run_p95_s": 0.04,
+  "survivors": 24,
+  "rows_total": 23400,
+  "rows_omega": 23400,
+  "rows_contact_valid": 23400,
+  "rows_stance": 60735,
+  "low_support_runs": 656,
+  "case": "stairs_10_down",
+  "eval_seed": 101,
+  "feet": [
+   "FL",
+   "FR",
+   "RL",
+   "RR"
+  ],
+  "unavailable": {},
+  "fallen": 8,
+  "envs": 32
+ },
+ {
+  "R_omega_xy_p95": 1.9821359807604018,
+  "S_stance_speed_p95": 0.8965002384431418,
+  "D_low_support_run_p95_s": 0.06,
+  "survivors": 1,
+  "rows_total": 975,
+  "rows_omega": 975,
+  "rows_contact_valid": 975,
+  "rows_stance": 2651,
+  "low_support_runs": 22,
+  "case": "stairs_15_down",
+  "eval_seed": 101,
+  "feet": [
+   "FL",
+   "FR",
+   "RL",
+   "RR"
+  ],
+  "unavailable": {},
+  "fallen": 31,
+  "envs": 32
+ }
+]

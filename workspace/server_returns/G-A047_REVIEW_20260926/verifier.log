@@ -1,0 +1,10 @@
+{
+  "verdict": "FAIL",
+  "reason": null,
+  "stage": "full",
+  "artifact_faults": [],
+  "stage_faults": null,
+  "ruler_mismatches": [],
+  "baseline_arm": "STORED_G-A033"
+}
+VERDICT FAIL

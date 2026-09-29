@@ -1,0 +1,2 @@
+Evidence assertions OK: external SHA/CRC/548 internal hashes/549 extracted files; identity/ruler/sentinel; 14 new videos +6 reused; verdict and score; UTF8; NOW <=60 lines. Generated run reports: 33, command exit0.
+Independent reviewer unavailable (usage limit); behavior VIDEO_UNKNOWN. No canonical raw merge.

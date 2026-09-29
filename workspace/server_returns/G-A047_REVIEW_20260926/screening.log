@@ -1,0 +1,23 @@
+SCREENING INTERNAL_GATE_FAIL
+  ok   guard    stairs_10_down pooled posture falls <= baseline      1 vs 34
+  ok   guard    stairs_10_down survival median delta >= 0            0.4375
+  ok   guard    stairs_15_down pooled posture falls <= baseline      8 vs 90
+  ok   guard    stairs_15_down survival median delta >= 0            0.875
+  FAIL guard    rough_forward pooled posture falls <= baseline       5 vs 4
+  ok   guard    rough_forward survival median delta >= 0             0.0
+  FAIL guard    rough_lateral pooled posture falls <= baseline       60 vs 59
+  ok   guard    rough_lateral survival median delta >= 0             0.0
+  ok   guard    push_pos_x pooled posture falls <= baseline          8 vs 8
+  FAIL guard    push_pos_x survival median delta >= 0                -0.03125
+  FAIL guard    push_neg_x pooled posture falls <= baseline          8 vs 6
+  ok   guard    push_neg_x survival median delta >= 0                0.03125
+  ok   guard    push_pos_y pooled posture falls <= baseline          3 vs 4
+  ok   guard    push_pos_y survival median delta >= 0                0.03125
+  FAIL guard    push_neg_y pooled posture falls <= baseline          7 vs 4
+  FAIL guard    push_neg_y survival median delta >= 0                -0.0625
+  FAIL guard    rough_forward tracking proxy median delta >= 0       -0.269505482324034
+  FAIL guard    rough_lateral tracking proxy median delta >= 0       -0.05324286251761001
+  FAIL guard    push_pos_x tracking proxy median delta >= 0          -0.013676646848053031
+  FAIL guard    push_neg_x tracking proxy median delta >= 0          -0.005881043148299736
+  FAIL guard    push_pos_y tracking proxy median delta >= 0          -0.004491348473965817
+  FAIL guard    push_neg_y tracking proxy median delta >= 0          -0.00884224793806676

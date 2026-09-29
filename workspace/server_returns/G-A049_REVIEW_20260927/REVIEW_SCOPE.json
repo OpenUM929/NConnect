@@ -1,0 +1,12 @@
+{
+  "work_id": "G-A049-REVIEW-20260927",
+  "mode": "READ_ONLY_CANONICAL",
+  "zip_sha256": "896d66d1860dd030f243ebec080c211a540b92588ce30f8890c88226986b2c6f",
+  "zip_crc": "OK",
+  "zip_members": 537,
+  "manifest_verified": 536,
+  "report_read_status": "READ_MATCHED",
+  "report_best_iter": 700,
+  "evaluated_iter": 900,
+  "canonical_merge": false
+}

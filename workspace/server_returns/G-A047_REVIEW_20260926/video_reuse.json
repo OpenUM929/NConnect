@@ -1,0 +1,42 @@
+[
+  {
+    "case": "G3:rough_lateral:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G3:rough_forward:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G4:slope_plus_20:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G5:stairs_10_down:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G5:stairs_15_down:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G6:push_pos_x:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G2:combined_yaw_right:101",
+    "sha_ok": true,
+    "identity_ok": true
+  },
+  {
+    "case": "G1:forward_fast:101",
+    "sha_ok": true,
+    "identity_ok": true
+  }
+]
