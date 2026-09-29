@@ -1,0 +1,53 @@
+GO2 G-A056 실행 안내 — A043 진단 재생 · 한 파일 · 한 명령 · 결과 ZIP 하나
+============================================================
+
+학습하지 않는다. 보상을 바꾸지 않는다. G-A043 iter 900 정책(model 4d9236818f99…)을
+G-A043을 잰 평가기(schema 6, 353614487a90…)로 두 case 다시 재생하고, 같은 재생에 읽기 전용 진단 채널
+(몸통·발·접촉·지형·action·보상 항·관절 위치/속도/계산 토크/적용 토크)을 붙인 뒤, 미리 고른 로봇 네 대를 영상으로 찍는다.
+계획 workspace/training/quadruped/upload/plan/GO2_G_A056_A043_DIAG_REPLAY_PLAN_20260928.md
+서버 실행은 사용자 결정이다.
+
+1. 업로드 — 이 파일 하나만 올린다
+   GO2_G_A056_a043_diag_replay_v2.zip
+   SHA256 6f82da12d56ca511f0748dd897ff7c8152aae034dc64950d08a6fa10ed19c17e
+   서버 경로 /workspace/GO2_G_A056_a043_diag_replay_v2.zip
+
+2. 실행 — 한 줄
+   unzip -oq /workspace/GO2_G_A056_a043_diag_replay_v2.zip -d /workspace && bash /workspace/go2_g_a056/server_run_go2_a043_diag_replay.sh
+
+   진행 보기: tmux attach -t go2_g_a056
+   이전 결과가 서버에 남아 있으면 멈춘다. 내려받은 뒤라면 GO2_DISCARD_PREVIOUS=1 을 앞에 붙인다.
+
+3. 무엇이 도는가 — play.py 여덟 번
+   ① plain rough_lateral seed 202       ② diag rough_lateral seed 202
+   ③ plain combined_yaw_right seed 202  ④ diag combined_yaw_right seed 202
+   ⑤~⑧ 영상: rough_lateral env 5·11, combined_yaw_right env 3·16 (32 env, 같은 명령 + --video
+      --video_length 1000 --enable_cameras + env.viewer.env_index=<env>, 평가기 steps.csv 와 카메라 계측을 함께 기록)
+   시간 [추정]: ①~④ 약 2~3분(G-A052 실측 27~31초/회), ⑤~⑧ 4~8분(32 env·1000 step 카메라 실행은 잰 적 없음),
+   패키징 1분 이내. 서버 켜진 시간 전체 추정 25~35분(업로드·다운로드·로컬 검증 포함), 계획 예산 45분.
+   영상 실패는 러너를 멈추지 않는다(video/VIDEO_STATUS.txt 에 기록). ①~④ 실패는 멈추고 있는 것을 묶는다.
+
+4. 완료 표식과 내려받을 것
+   [DONE] GO2_G_A056_RESULT_READY
+   /workspace/_keep/GO2_G_A056_RESULT.zip
+   /workspace/_keep/GO2_G_A056_RESULT.zip.sha256
+   러너가 도중에 죽으면 표식 없이 부분 ZIP(COLLECTION_STATUS=INCOMPLETE_CRASH)이 남는다 —
+   표식을 기다리지 말고 launcher.log 와 RUNNER_STATUS.txt 를 읽는다.
+
+5. SERVER SHUTDOWN GATE — 로컬 검증기 하나가 아래를 모두 본다. 종료코드 하나로 끄지 않는다.
+   a. 결과 ZIP 과 .sha256 을 로컬로 내려받는다.
+   b. python -B tools/verify_go2_a043_diag_replay_harvest.py <내려받은 GO2_G_A056_RESULT.zip>
+      검증기는 ZIP SHA(sidecar 대조) → 압축 해제 → artifact(필수 파일·SHA 목록·식별자·진단 키)
+      → channels(필수 채널 묶음 7개·필수 열·접촉 갱신; 채널 실패 뒤 재생이 계속된 것은 확보가 아니다)
+      → video(영상 네 개: 파일·프레임 수·카메라 계측이 지정 로봇을 따라갔는지·steps.csv 대응)를 따로 판정하고
+      HARVEST_VERDICT.json 의 shutdown 에 결론을 적는다.
+      종료코드 0 / shutdown=OK — 네 판정 모두 통과. 끈다.
+      종료코드 3 / shutdown=EXCEPTION_DECISION_REQUIRED — ZIP·artifact 는 통과, 채널 또는 영상 미완료.
+                   **서버를 끄지 않는다.** channel_problems·video 를 읽고 같은 서버에서 복구할 수 있는지 판단한다
+                   (같은 case 재실행으로 채워지는가). 복구할 수 없으면 진단 데이터·checkpoint 식별 정보·실패 로그가
+                   이미 받은 ZIP 안에 있는지 검증기 출력으로 확인한 뒤, ARTIFACT_MANAGEMENT.md 의 G-A056 항목에
+                   예외 종료 결정(미완료 항목·사유·받은 것·unknown 으로 남을 질문)을 적고 끈다.
+                   이 경우 '회수 완결'·'진단 성공'으로 쓰지 않는다.
+      종료코드 1 / shutdown=DO_NOT_SHUTDOWN — ZIP SHA 또는 artifact 실패. **끄지 않는다.** 다시 회수한다.
+   c. 영상 판정: 조건부(Codex 지시 "가능하면"). 학습 report: 비해당(학습 없음, G-A043 원 report 는 로컬 보존본).
+   d. 미측정: G1~G7 점수, 다른 seed, 밀침·좌회전·계단, 보상 변경 효과.

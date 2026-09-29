@@ -1,0 +1,12 @@
+CURRENT GO2 UPLOAD — G-A052 (diagnostic replay, no training)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A052\current\GO2_G_A052_a048_diag_replay_v2.zip
+   SHA256 828c18cd21bed8b4ce9683480cdf88fb5aa8dc2e1d72871fb549580718cbde62
+
+절차는 같은 폴더의 GO2_G_A052_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260928_a048_diag_replay_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 v1(SHA 09973af1a5b9…)은 실행 전에 대체됐다 — history 에 불변 보존, 서버에 올리지 않는다.

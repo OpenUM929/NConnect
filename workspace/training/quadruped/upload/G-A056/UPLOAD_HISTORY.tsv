@@ -1,0 +1,3 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-28T00:00:00+00:00	G-A056	20260928_a043_diag_replay_v1	ARTIFACT_VERIFIED	GO2_G_A056_a043_diag_replay_v1.zip	7d4d6fe7a61cffd42b5fd02967cee7fd8c4a92553e0a40a519146d112bae8398	experiment.json(in ZIP)		A043 diagnostic replay, no training
+2026-09-28T00:00:00+00:00	G-A056	20260928_a043_diag_replay_v2	ARTIFACT_VERIFIED	GO2_G_A056_a043_diag_replay_v2.zip	6f82da12d56ca511f0748dd897ff7c8152aae034dc64950d08a6fa10ed19c17e	experiment.json(in ZIP)		A043 diagnostic replay, no training

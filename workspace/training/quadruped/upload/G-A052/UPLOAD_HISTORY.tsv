@@ -1,0 +1,3 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-09-28T00:00:00+00:00	G-A052	20260928_a048_diag_replay_v1	ARTIFACT_VERIFIED	GO2_G_A052_a048_diag_replay_v1.zip	09973af1a5b9e63d6f6679bc6a50eddc0071ead696174bd42f942a4f29c8465f	experiment.json(in ZIP)		diagnostic replay, no training
+2026-09-28T00:00:00+00:00	G-A052	20260928_a048_diag_replay_v2	ARTIFACT_VERIFIED	GO2_G_A052_a048_diag_replay_v2.zip	828c18cd21bed8b4ce9683480cdf88fb5aa8dc2e1d72871fb549580718cbde62	experiment.json(in ZIP)		diagnostic replay, no training

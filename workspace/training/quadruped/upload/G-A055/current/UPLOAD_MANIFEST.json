@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A055",
+  "note": "G-A055 G-A043 rewards (adoption vs G-A033) + ang_vel_xy_l2 -0.05->-0.08. One upload: the arm ZIP byte-identical to its builder, the whole 69-case evaluation in one pass (GO2_STAGE=full pinned in run_config.env), no target stage and no server gate, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-29T00:00:00+00:00",
+  "release_id": "20260929_a043_ang_vel_xy_m008_full69_v2",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A055_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A055_a043_ang_vel_xy_m008_full69_v2.zip",
+      "server_path": "/workspace/GO2_G_A055_a043_ang_vel_xy_m008_full69_v2.zip",
+      "sha256": "5a0efce583dc6b30da83d83ccac6a7c275a97566d255508844b410f320b0a75c"
+    }
+  ]
+}

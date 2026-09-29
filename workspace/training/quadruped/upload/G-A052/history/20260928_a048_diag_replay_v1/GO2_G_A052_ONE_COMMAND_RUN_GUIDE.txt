@@ -1,0 +1,46 @@
+GO2 G-A052 실행 안내 — 진단 재생 · 한 파일 · 한 명령 · 결과 ZIP 하나
+============================================================
+
+학습하지 않는다. 보상을 바꾸지 않는다. G-A048 iter 900 정책(model 984e614933f3…)을
+G-A048을 잰 평가기(schema 6, 353614487a90…)로 세 case 다시 재생하고,
+같은 재생에 읽기 전용 진단 채널(몸통 각속도·발 위치·접촉·체공시간·action·보상 항)을 붙인다.
+계획 workspace/training/quadruped/upload/plan/GO2_G_A052_DIAG_REPLAY_PLAN_20260928.md
+서버 실행은 사용자 결정이다.
+
+1. 업로드 — 이 파일 하나만 올린다
+   GO2_G_A052_a048_diag_replay_v1.zip
+   SHA256 09973af1a5b9e63d6f6679bc6a50eddc0071ead696174bd42f942a4f29c8465f
+   서버 경로 /workspace/GO2_G_A052_a048_diag_replay_v1.zip
+
+2. 실행 — 한 줄
+   unzip -oq /workspace/GO2_G_A052_a048_diag_replay_v1.zip -d /workspace && bash /workspace/go2_g_a052/server_run_go2_diag_replay.sh
+
+   진행 보기: tmux attach -t go2_g_a052
+   이전 결과가 서버에 남아 있으면 멈춘다. 내려받은 뒤라면 GO2_DISCARD_PREVIOUS=1 을 앞에 붙인다.
+
+3. 무엇이 도는가 — play.py 네 번
+   ① plain rough_lateral seed 202 (평가기만, 재현 확인용)
+   ② diag  rough_lateral seed 202 (평가기 + 진단 채널)
+   ③ diag  stairs_10_down seed 101
+   ④ diag  stairs_15_down seed 101
+   G-A048 스위트는 case 하나가 기동 포함 약 0.5분이었다(launcher.log 시각). 진단 CSV 쓰기 부담은
+   아직 잰 적이 없다. 서버 세션은 30분으로 잡는다(실행 15분 이내 예상 + 회수).
+   영상은 찍지 않는다 — 같은 정책·같은 평가 조건의 영상이 이미 검증돼 있고(G-A048 videos/),
+   녹화기는 별도 4 env 재생의 한 대만 따라가서 이 32 env 재생의 env_id와 묶을 수 없다.
+
+4. 완료 표식과 내려받을 것
+   [DONE] GO2_G_A052_RESULT_READY
+   /workspace/_keep/GO2_G_A052_RESULT.zip
+   /workspace/_keep/GO2_G_A052_RESULT.zip.sha256
+   정상 완료는 _keep/go2_g_a052_a048_diag_replay/RESULT_STATUS.txt 의 COLLECTION_STATUS=COMPLETE_4_OF_4 다.
+   러너가 도중에 죽으면 표식 없이 부분 ZIP(COLLECTION_STATUS=INCOMPLETE_CRASH)이 남는다 —
+   표식을 기다리지 말고 launcher.log 와 RUNNER_STATUS.txt 를 읽는다.
+   meta/REPRO_STATUS.txt 의 PLAIN_VS_DIAG 가 DIFFERENT 여도 실패가 아니다 — 로컬 판독에서 다룬다.
+
+5. SERVER SHUTDOWN GATE
+   a. 결과 ZIP 과 .sha256 이 로컬에 도착했고 SHA 가 맞는다.
+   b. 로컬에서 python -B tools/verify_go2_diag_replay_harvest.py <압축 푼 _keep 폴더> 가 종료코드 0
+      (ARTIFACT_VERIFIED)이다. 1 이면 problems 목록을 읽는다 — 서버가 살아 있을 때만 다시 잴 수 있다.
+   c. 영상 판정: NOT_REQUIRED(위 3). 학습 report: 비해당(학습 없음, G-A048 원 report는 로컬 보존본을 참조).
+   d. 미측정: G1~G7 점수는 이 재생의 목적이 아니다. 판정·변수 선택 없음.
+   네 줄이 채워지면 끈다.

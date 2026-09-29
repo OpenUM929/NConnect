@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A047",
+  "note": "G-A047 G-A033 + flat_orientation_l2 0.0->-0.5. One upload: the arm ZIP byte-identical to its builder, the whole 69-case evaluation in one pass (GO2_STAGE=full pinned in run_config.env), no target stage and no server gate, one result ZIP. exploratory.",
+  "published_at_utc": "2026-09-26T00:00:00+00:00",
+  "release_id": "20260926_a033_flat_orientation_m05_full69_v1",
+  "status": "ARTIFACT_VERIFIED",
+  "support_files": [
+    "GO2_G_A047_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A047_a033_flat_orientation_m05_full69_v1.zip",
+      "server_path": "/workspace/GO2_G_A047_a033_flat_orientation_m05_full69_v1.zip",
+      "sha256": "092793dc569855dab04fa3e85c7e9f8820350c861f4240642e3fbec8dd9c5825"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+CURRENT GO2 UPLOAD — G-A056 (A043 diagnostic replay, no training)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A056\current\GO2_G_A056_a043_diag_replay_v2.zip
+   SHA256 6f82da12d56ca511f0748dd897ff7c8152aae034dc64950d08a6fa10ed19c17e
+
+절차는 같은 폴더의 GO2_G_A056_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다(승인 전 실행 금지).
+
+RELEASE_ID 20260928_a043_diag_replay_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 v1(SHA 7d4d6fe7a61c…)은 실행 전에 대체됐다 — history 에 불변 보존, 서버에 올리지 않는다.

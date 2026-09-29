@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A053 (one command, full 69)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A053\current\GO2_G_A053_a048_dof_acc_m3e7_full69_v1.zip
+   SHA256 52d99463217cb001a156d3658b24a7b99ae1ee03f6c9e4fb2d2f1eda414f89ea
+
+한 파일·한 명령으로 학습 → 69 case 전수 → sentinel → 영상 → 결과 ZIP 하나.
+1단계 분기와 서버 게이트는 이 회차에 없다(계획 §5).
+절차는 같은 폴더의 GO2_G_A053_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260928_a048_dof_acc_m3e7_full69_v1
+STATUS ARTIFACT_VERIFIED
+첫 판이다(이전 판 없음).
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다 — A048 보상에 목록 밖 `dof_acc_l2` `-2.5e-7`→`-3.0e-7`(벌점 20% 강화) 한 줄을 더한다. A033 대비로는 `lin_vel_z_l2 -1.25`와 이 항이 다르다. 채택은 A033 대비, 효과는 A048 대비다. 배포 report.html 은 이 변경을 표시하지 않는다

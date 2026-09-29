@@ -19,12 +19,12 @@ CLI 인자가 전달된다는 것이 규정 허용의 증거는 아니며, 반�
 계획서: workspace/training/quadruped/upload/plan/GO2_A045_SEED_PAIR_PLAN_20260924.md
 
 1. 업로드 — 이 파일 하나만 올린다
-   GO2_G_A045_A046_seed43_pair_full69_v8.zip
-   SHA256 02c1b36c59e9a5c499b43c46776d69bce7e4d74f63c740ca8719e75d9c3df151
-   서버 경로 /workspace/GO2_G_A045_A046_seed43_pair_full69_v8.zip
+   GO2_G_A045_A046_seed43_pair_full69_v10.zip
+   SHA256 c5b4f8a39ea8abfe37ae18d38ad97e99a5d7b5bc46b032801460d940def8ce60
+   서버 경로 /workspace/GO2_G_A045_A046_seed43_pair_full69_v10.zip
 
 2. 실행 — 한 줄
-   unzip -oq /workspace/GO2_G_A045_A046_seed43_pair_full69_v8.zip -d /workspace && bash /workspace/go2_g_a045_a046/server_run_go2_full69_campaign.sh
+   unzip -oq /workspace/GO2_G_A045_A046_seed43_pair_full69_v10.zip -d /workspace && bash /workspace/go2_g_a045_a046/server_run_go2_full69_campaign.sh
 
    끊겼을 때 이어서: GO2_RESUME=1 bash /workspace/go2_g_a045_a046/server_run_go2_full69_campaign.sh
    **이어서 실행은 미완료 학습을 절대 덮어쓰지 않는다.** 미완료 학습을 만나면 로그·고정

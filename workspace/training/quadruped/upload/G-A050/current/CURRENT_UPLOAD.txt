@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A050 (one command, full 69)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A050\current\GO2_G_A050_a033_lin_vel_z_m1375_full69_v2.zip
+   SHA256 5f825566d02098c9f6719087bbecb03b01a645fe9f746a3e6e7fc71d1e0dfe0f
+
+한 파일·한 명령으로 학습 → 69 case 전수 → sentinel → 영상 → 결과 ZIP 하나.
+1단계 분기와 서버 게이트는 이 회차에 없다(계획 §5).
+절차는 같은 폴더의 GO2_G_A050_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260927_a033_lin_vel_z_m1375_full69_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 1개는 ../history 에 보존한다(가장 최근 20260927_a033_lin_vel_z_m1375_full69_v1), 모두 서버에 올린 적 없다.
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다. 기준선 `-2.0`에서 `-1.375`로(벌점 크기 31.25% 완화), 험지 옆걸음을 함께 올린 두 측정점 사이다. `-2.0`은 Isaac Lab 값이라 이 팔은 외부 기준에서 떨어지는 방향이고, 같은 방향의 A043·A048·A049는 모두 채택 기준에 실패했다. 표적은 험지(G3)이고 계단은 보호만 한다. 가설 판정과 채택 판정을 따로 읽는다.

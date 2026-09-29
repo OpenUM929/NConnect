@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	note
+2026-09-27T00:00:00+00:00	G-A049	20260927_a033_lin_vel_z_m1_full69_v1	ARTIFACT_VERIFIED	GO2_G_A049_a033_lin_vel_z_m1_full69_v1.zip	c7df9b6f6bdb0e73a557d45f248305accc7b37a0f2b5c1356a22f644e0bf0863	G-A049 G-A033 + lin_vel_z_l2 -2.0->-1.0. One upload: the arm ZIP byte-identical to its builder, the whole 69-case evaluation in one pass (GO2_STAGE=full pinned in run_config.env), no target stage and no server gate, one result ZIP. exploratory.

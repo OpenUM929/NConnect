@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A047 (one command, full 69)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A047\current\GO2_G_A047_a033_flat_orientation_m05_full69_v2.zip
+   SHA256 10dccd6b933f074bbdfd7df6551c59ddbf866785f75491442157229cd00029de
+
+한 파일·한 명령으로 학습 → 69 case 전수 → sentinel → 영상 → 결과 ZIP 하나.
+1단계 분기와 서버 게이트는 이 회차에 없다(계획 §5).
+절차는 같은 폴더의 GO2_G_A047_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260926_a033_flat_orientation_m05_full69_v2
+STATUS ARTIFACT_VERIFIED
+이전 판 1개는 ../history 에 보존한다(가장 최근 20260926_a033_flat_orientation_m05_full69_v1), 모두 서버에 올린 적 없다.
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다. 기준선 0.0에서 −0.5로, 목적은 G3 험지 자세 생존이다. Isaac Lab Go2 rough는 이 항을 0.0으로 두므로 외부 기준에서 떨어지는 방향이고, 반대 행 7건(부호 엇갈림·경사 상시 벌점·A013 정지·예측 방향 반례 등)을 지우지 않고 `contradicting`에 싣는다.

@@ -1,0 +1,15 @@
+CURRENT GO2 UPLOAD — G-A048 (one command, full 69)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\NConnect\workspace\training\quadruped\upload\G-A048\current\GO2_G_A048_a033_lin_vel_z_m125_full69_v1.zip
+   SHA256 bbbfbb258f4101a01e65f51dd6092df7866ff81a39cc9809c8f602efc659f3bc
+
+한 파일·한 명령으로 학습 → 69 case 전수 → sentinel → 영상 → 결과 ZIP 하나.
+1단계 분기와 서버 게이트는 이 회차에 없다(계획 §5).
+절차는 같은 폴더의 GO2_G_A048_ONE_COMMAND_RUN_GUIDE.txt.
+서버 실행은 사용자 결정 사항이다.
+
+RELEASE_ID 20260926_a033_lin_vel_z_m125_full69_v1
+STATUS ARTIFACT_VERIFIED
+첫 판이다(이전 판 없음).
+권고 상태: 추론 사슬 INFORMATION_RUN — 보상 가중치 한 항만 바꾼다. 기준선 `-2.0`에서 `-1.25`로, 걷는 관측값(`-2.0`·`-1.75`·`-1.5`) 밖을 한 간격 여는 탐색이다. `-2.0`은 Isaac Lab 값이라 이 팔은 외부 기준에서 떨어지는 방향이고, 같은 방향의 A043·A044는 둘 다 채택 기준에 실패했다. 가설 판정과 채택 판정을 따로 읽는다.
