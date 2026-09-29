@@ -87,9 +87,101 @@ RELEASES = {
         # 한국어 안내문 안에서 읽히지 않았다.  근거 문장을 한국어 두 줄로 옮겼다.  회차 ZIP 은
         # `experiment.json` 의 release_id 한 줄만 다르고 나머지는 같다.  v1 은 history 에 보존하며
         # 서버에 올린 적 없다 — 발행물은 고치지 않고 다음 판으로 낸다(불변 원칙).
+        # 2026-09-26: 소요 시간 문단은 회차 실측을 인용하므로 회차 자료다(G-A047 이 이 모듈을 함께 쓰게 되며 옮겼다).
+        # 글자는 v9 안내문 그대로다 — 발행된 안내문은 재빌드로 바이트 대조된다.
+        "estimate_ko": (
+            '   110분 안팎으로 본다. 근거는 A043 campaign 로그 실측이다 — 학습+23 case+sentinel+영상 8 이\n'
+            '   73분 49초, 남은 46 case 가 15분 58초였다. 이 회차는 그 46 case 를 첫 판에 합치고 영상을 14편 찍는다.\n'
+            '   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).\n'
+            '   **서버 세션은 120~150분으로 잡는다.** 위 110분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기\n'
+            '   · 영상 14편 · telemetry · report 확인)는 그 뒤에 온다 — 계획 §7 의 세션 계획치다.'),
         "guide": "GO2_G_A044_ONE_COMMAND_RUN_GUIDE.txt",
         "published_at": "2026-09-22T00:00:00+00:00",
     },
+    "G-A047": {
+        # v1 (2026-09-26): G3 험지 생존 탐색 — flat_orientation_l2 0.0 -> -0.5 (계획
+        # upload/plan/GO2_G_A047_PLAN_20260926.md).  U2 가 허용으로 오면 v10 이 먼저다.
+        # v2 (같은 날): v1 은 계획 screening 을 통째로 빼 밀침 네 방향이 G6 합산 한도로만 판정됐다.
+        # 보호 묶음만 남긴 판 g3_guard_push4_v1 을 쓴다.  v1 은 실행되지 않았고 history 에 불변으로 남는다.
+        "estimate_ko": (
+            '   95분 안팎으로 본다. 근거는 G-A044 실측이다 — 같은 계약(학습+69 case+sentinel+영상 14편)의 한 팔이\n'
+            '   94분(학습 58분 21초)이었다. 이 회차는 후보 영상 8편만 찍고 기준선 영상은 전부 저장본을 재사용한다.\n'
+            '   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).\n'
+            '   **서버 세션은 120~150분으로 잡는다.** 위 95분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기\n'
+            '   · 영상 8편 · telemetry · report 확인)는 그 뒤에 온다.\n'
+            '   **v10(G-A045·G-A046)과 같은 세션에서 돌리지 않는다.** 한 서버 세션에 한 패키지다.'),
+        "guide": "GO2_G_A047_ONE_COMMAND_RUN_GUIDE.txt",
+        "published_at": "2026-09-26T00:00:00+00:00",
+    },
+    "G-A048": {
+        # v1 (2026-09-26): lin_vel_z_l2 -2.0 -> -1.25, U2 미해결 분기의 탐색 회차(계획
+        # upload/plan/GO2_A043_YAW_RIGHT_AND_NEXT_20260926.md §4).  채택 계약은 G-A044 그대로이고,
+        # 가설 판정(tools/go2_dial_hypothesis.py)은 별도 판독이다.  U2 가 허용으로 오면 v10 재발행이 먼저다.
+        "estimate_ko": (
+            '   95분 안팎으로 본다. 근거는 G-A044 실측이다 — 같은 계약(학습+69 case+sentinel+영상)의 한 팔이\n'
+            '   94분(학습 58분 21초)이었다. 이 회차는 후보 영상 10편만 찍고 기준선 영상은 전부 저장본을 재사용한다.\n'
+            '   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).\n'
+            '   **서버 세션은 120~150분으로 잡는다.** 위 95분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기\n'
+            '   · 영상 10편 · telemetry · report 확인)는 그 뒤에 온다.\n'
+            '   **v10(G-A045·G-A046)과 같은 세션에서 돌리지 않는다.** 한 서버 세션에 한 패키지다.'),
+        "guide": "GO2_G_A048_ONE_COMMAND_RUN_GUIDE.txt",
+        "published_at": "2026-09-26T00:00:00+00:00",
+    },
+    "G-A049": {
+        # v1 (2026-09-27): lin_vel_z_l2 -2.0 -> -1.0, 분기 B(계획 upload/plan/GO2_NEXT_CANDIDATE_20260927.md §2,
+        # 사용자 결정 G-D-BRANCH-B-20260927).  fact_rules_v1 문턱은 G-A048 그대로, 계획 screening 은 사전등록 판
+        # post_a048_guard_margin_v1.  가설 판정은 별도 판독이다.  U2 허용이 확인되면 분기 A(seed 43 짝)는 따로 발행한다.
+        "estimate_ko": (
+            '   95분 안팎으로 본다. 근거는 G-A044 실측이다 — 같은 계약(학습+69 case+sentinel+영상)의 한 팔이\n'
+            '   94분(학습 58분 21초)이었다. 이 회차는 후보 영상 10편만 찍고 기준선 영상은 전부 저장본을 재사용한다.\n'
+            '   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).\n'
+            '   **서버 세션은 120~150분으로 잡는다.** 위 95분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기\n'
+            '   · 영상 10편 · telemetry · report 확인)는 그 뒤에 온다.\n'
+            '   **다른 패키지(v10·분기 A)와 같은 세션에서 돌리지 않는다.** 한 서버 세션에 한 패키지다.'),
+        "guide": "GO2_G_A049_ONE_COMMAND_RUN_GUIDE.txt",
+        "published_at": "2026-09-27T00:00:00+00:00",
+    },
+}
+
+
+# G-A050 is an unpublished draft; validation, not this registry, authorizes publication.
+RELEASES["G-A050"] = {
+    "estimate_ko": RELEASES["G-A049"]["estimate_ko"],
+    "guide": "GO2_G_A050_ONE_COMMAND_RUN_GUIDE.txt",
+    "published_at": "2026-09-27T00:00:00+00:00",
+}
+
+
+# G-A051 (2026-09-27): A048 보상 위 ang_vel_xy_l2 -0.05 -> -0.06.  같은 전수 수집 계약이다.
+RELEASES["G-A051"] = {
+    "estimate_ko": RELEASES["G-A049"]["estimate_ko"],
+    "guide": "GO2_G_A051_ONE_COMMAND_RUN_GUIDE.txt",
+    "published_at": "2026-09-27T00:00:00+00:00",
+}
+
+
+# G-A053 (2026-09-28): A048 보상 위 목록 밖 항 dof_acc_l2 -2.5e-7 -> -3.0e-7 한 줄 추가.  같은 전수 수집 계약이다.
+RELEASES["G-A053"] = {
+    "estimate_ko": RELEASES["G-A049"]["estimate_ko"],
+    "guide": "GO2_G_A053_ONE_COMMAND_RUN_GUIDE.txt",
+    "published_at": "2026-09-28T00:00:00+00:00",
+}
+
+
+# G-A055 (2026-09-29): A043 보상 위 ang_vel_xy_l2 -0.05 -> -0.08.  같은 전수 수집 계약이다.
+# 조건부 준비·실행 미승인(Codex 2026-09-29) — G-A056 진단 판독 뒤 Codex 가 실행 여부를 정한다.
+RELEASES["G-A055"] = {
+    "estimate_ko": RELEASES["G-A049"]["estimate_ko"],
+    "guide": "GO2_G_A055_ONE_COMMAND_RUN_GUIDE.txt",
+    "published_at": "2026-09-29T00:00:00+00:00",
+    # 안내문 선택 필드(이 회차만): 상태 줄과 다섯째 판독 줄.  두 필드가 없는 회차의 안내문 글자는 그대로다.
+    "status_ko": ("**조건부 준비·실행 미승인**(Codex 2026-09-29). G-A056 진단 재생의 회수·판독 뒤 Codex 가 실행 여부를 정한다\n"
+                  "(관측 → 원인 설명 가능 범위 → 강좌 예측 → 반례 대조 → 실행/미실행). 판독이 불명확하면 그 세션에서 돌리지 않는다.\n"
+                  "G-A056 러너는 이 패키지를 부르지 않는다 — 진단이 끝나도 이 학습은 자동으로 돌지 않는다.\n"),
+    "extra_readers": [(
+        "     python -B tools/go2_g_a055_readout.py --harvest workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008\n",
+        "   다섯째 명령은 사전등록 §4 의 1순위 case 판독이다(험지 옆걸음 + 조건 C, 복합 우회전 + 조건 S, 밀침 네 방향 따로,\n"
+        "   험지 전진·계단 공개). G-A043 대비이고 채택 판정과 합치지 않는다. exit 1 은 결손·미검증뿐이다.\n")],
 }
 
 
@@ -108,6 +200,28 @@ def validate(spec: dict) -> None:
             raise RuntimeError(f"{spec.get('work_id')}: {message}")
 
     reward.validate_spec(spec)
+    # 결함 C-37(2026-09-27): 추론 행의 인용 검사(tools/test_go2_detectability_gate.py _check_rows)를 발행 전에
+    # 돌린다.  G-A050 v2 는 이 검사를 거치지 않고 나가 CSV 칸에 없는 값을 인용했다.
+    import unittest
+    import test_go2_detectability_gate as gate
+    block = spec.get("inference") or {}
+    try:
+        gate._check_rows(unittest.TestCase(), str(spec.get("work_id")),
+                         list(block.get("rows") or []) + list(block.get("contradicting") or []),
+                         spec.get("work_id"), spec)
+    except AssertionError as exc:
+        raise RuntimeError(f"{spec.get('work_id')}: inference row citation fails the detectability gate: {exc}") from exc
+    # 결함 C-38(2026-09-27): 위 검사는 인용 행만 본다.  G-A051 v1 은 같은 관문 모듈의 다른 사양 검사(test_12 원장
+    # 인용, test_14 경로 열기)와 정본 정합성 검사를 거치지 않고 발행됐다.  두 모듈 전체를 돌려 **이 사양 파일 이름이
+    # 붙은** 실패만 모은다 — 다른 사양의 기존 실패(A045·A046 test_10 등)는 이 발행을 막지 않는다.
+    import test_go2_canonical_consistency as canonical
+    spec_file = reward.SPECS[spec["work_id"]].name
+    result = unittest.TestResult()
+    for module in (gate, canonical):
+        unittest.defaultTestLoader.loadTestsFromModule(module).run(result)
+    mine = [f"{test}: {trace.strip().splitlines()[-1]}" for test, trace in result.failures + result.errors
+            if spec_file in str(test) or spec_file in trace]
+    need(not mine, "spec fails a gate it will be judged by after publication:\n  " + "\n  ".join(mine))
     need(length.collection_mode(spec) == length.FULL_COLLECTION,
          "this publisher is for full-collection runs only; a staged arm goes through the campaign builder")
     config = reward.run_config(spec)
@@ -135,17 +249,67 @@ def build(work_id: str) -> Path:
 
 def run_guide(work_id: str, digest: str) -> str:
     spec = load(work_id)
+    release = RELEASES[work_id]
     out, single, base = spec["output"], spec["single_change"], spec["baseline"]
     root, runner = out["package_root"], spec["runner"]
     stage = spec["stages"]["full"]
     videos = len(spec["videos"]["candidate"]) + len(spec["videos"]["baseline"])
     reused = len(spec["videos"].get("baseline_reuse") or {})
+    # 2026-09-26 (G-A047): 계획 screening 을 쓰지 않는 회차는 둘째 판독 줄이 screening 이 아니라 정체시간
+    # 필수 기록이다.  screening 을 쓰는 회차(G-A044)의 글자는 그대로다.
+    screening = (spec["preregistered"].get("plan_screening") or {}).get("version")
+    if screening:
+        reader_two = f"""     python -B tools/go2_screening_gate.py --candidate workspace/_keep/{out['keep_dir_name']} \\
+         --rule-version {screening}
+"""
+        reader_two_note = """   둘째 명령은 INTERNAL_GATE_PASS 에만 exit 0 이고 FAIL 과 INCONCLUSIVE 가 같은 exit 1 이다.
+   둘은 다른 상태다 — SCREENING 줄의 이름으로 구분하고, INCONCLUSIVE 면 missing 목록을 회수 대상으로 본다.
+"""
+    else:
+        reader_two = ("     python -B tools/go2_stall_diagnostics.py --candidate "
+                      f"workspace/_keep/{out['keep_dir_name']}/evaluation/candidate\n")
+        reader_two_note = ("   둘째 명령은 판정이 아니라 정체시간 필수 기록이다 — 이 회차는 계획 screening 을 쓰지 않고\n"
+                           "   fact_rules_v1 만으로 판정한다. 결과는 reports/evidence/go2_stall_diagnostics/<회차>/ 에 쓰인다.\n")
+    # 2026-09-26 (G-A048): 가설 판정을 사전등록한 회차는 셋째 판독 줄이 붙는다.  채택 판정과 섞지 않는다.
+    # 가설 블록이 없는 회차(G-A044·G-A047)의 글자는 그대로다.
+    reader_three = reader_three_note = ""
+    if (spec["preregistered"].get("hypothesis") or {}).get("reader"):
+        reader_three = (f"     python -B {spec['preregistered']['hypothesis']['reader']} {work_id} "
+                        f"--harvest workspace/_keep/{out['keep_dir_name']}\n")
+        reader_three_note = ("   셋째 명령은 채택이 아니라 사전등록 가설의 지표별 판정이다(지지·미지지·불충분, 비용은 있음·없음·불충분).\n"
+                             "   채택 판정과 합치지 않는다. exit 1 은 기록 결손(MISSING)뿐이고 미지지는 exit 0 이다.\n")
+    # 2026-09-27 (G-A051): 보상 기준이 채택 기준선과 다른 회차는 무엇이 몇 줄 다른지와 넷째 판독 줄(보상 기준 대비
+    # 효과 판정)을 적는다.  reward_base 가 없는 회차의 글자는 그대로다.
+    rbase = spec.get("reward_base")
+    reader_four = reader_four_note = ""
+    if rbase:
+        own = rbase["change"]
+        what = (f"바꾸는 것은 보상 가중치 한 항이다: {rbase['name']} 보상 위에서 {single['name']} {single['from']} -> {single['to']}.\n"
+                f"채택 기준선 {base['name']} 대비로는 두 항이 다르다: {own['name']} {own['from']} -> {own['to']}({rbase['name']}의 변경)와 이 항.\n"
+                f"효과는 후보 - {rbase['name']}, 채택은 후보 - {base['name']}로 따로 읽는다. "
+                f"학습 seed 42·4096 env·1000 iter·평가 iter {spec['evaluation']['checkpoint_iter']}는 그대로다.\n")
+        if spec.get("change_class") == reward.ENV_REWARD_CLASS:
+            # G-A053: 목록 밖 항은 배포 report.html 의 보상 변화 표에 나오지 않는다(go2_task/_finalize.py 의
+            # _REP_BASELINE·_REP_INTENT 에 없다).  적용 증거는 학습 env.yaml 과 서버 env-rewards 검사다.
+            what += (f"{single['name']}은 배포 REWARD_WEIGHTS 목록 밖의 기존 보상 항이라 보상 파일에 한 줄을 더한다"
+                     f"(사용자 승인 G-D-U1-APPROVED-20260928). 배포 report.html 의 보상 변화 표에는 이 변경이 나오지 않는다 —\n"
+                     f"적용 증거는 학습 env.yaml 과 training/ENV_REWARD_CHECK.txt 다.\n")
+        comparison = spec["preregistered"]["reward_base_comparison"]
+        reader_four = (f"     python -B {comparison['reader']} {work_id} "
+                       f"--harvest workspace/_keep/{out['keep_dir_name']}\n")
+        reader_four_note = (f"   넷째 명령은 {rbase['name']} 대비 효과 판독이다(REVIEW_CANDIDATE · NOT_REVIEW_CANDIDATE · INCONCLUSIVE). 채택 판정과 합치지 않는다.\n"
+                            f"   REVIEW_CANDIDATE 는 정량 후보 검토 대상일 뿐 최종 진보 판정이 아니다 — {rbase['name']} 대비 계단·밀침·복합 회전의\n"
+                            f"   허용 손실은 사전등록하지 않았으므로, 출력된 차이를 사람이 읽기 전에는 진보라고 보고하지 않는다.\n"
+                            f"   첫 명령의 QUANT_SUCCESS_VIDEO_REVIEW_PENDING 은 영상 검토 전 정량 조건 충족이지 채택 PASS 가 아니다.\n")
+    else:
+        what = (f"바꾸는 것은 보상 가중치 한 항이다: {single['name']} {single['from']} -> {single['to']}.\n"
+                f"기준선 {base['name']}의 나머지 가중치·학습 seed 42·4096 env·1000 iter·평가 iter {spec['evaluation']['checkpoint_iter']}는 그대로다.\n")
+    extra_cmds = "".join(cmd for cmd, _ in release.get("extra_readers", []))
+    extra_notes = "".join(note for _, note in release.get("extra_readers", []))
     return f"""GO2 {work_id} 실행 안내 — 한 파일 · 한 명령 · 결과 ZIP 하나
 {'=' * 60}
 
-바꾸는 것은 보상 가중치 한 항이다: {single['name']} {single['from']} -> {single['to']}.
-기준선 {base['name']}의 나머지 가중치·학습 seed 42·4096 env·1000 iter·평가 iter {spec['evaluation']['checkpoint_iter']}는 그대로다.
-추론 사슬 상태 {spec['inference']['status']}. 서버 실행은 사용자 결정이다.
+{what}{release.get('status_ko', '')}추론 사슬 상태 {spec['inference']['status']}. 서버 실행은 사용자 결정이다.
 
 1. 업로드 — 이 파일 하나만 올린다
    {out['upload_zip']}
@@ -163,11 +327,7 @@ def run_guide(work_id: str, digest: str) -> str:
    -> **69 case 전부**(평가 seed 101/202/303 x 32 env) -> 기준선 sentinel {len(spec['evaluation']['sentinel_cases'])} case
    -> 영상 {videos}개(후보 {len(spec['videos']['candidate'])} · 기준선 신규 {len(spec['videos']['baseline'])}, 나머지 {reused}개는 저장본을 SHA로 재사용)
    -> 결과 ZIP 하나.
-   {stage['estimate_minutes']}분 안팎으로 본다. 근거는 A043 campaign 로그 실측이다 — 학습+23 case+sentinel+영상 8 이
-   73분 49초, 남은 46 case 가 15분 58초였다. 이 회차는 그 46 case 를 첫 판에 합치고 영상을 14편 찍는다.
-   이것은 계획치이고 보장이 아니다 — 스크립트는 시간 제한을 걸지 않는다(사양 stages.full.estimate_basis).
-   **서버 세션은 120~150분으로 잡는다.** 위 110분은 서버가 도는 시간이고, 회수(결과 ZIP 내려받기
-   · 영상 14편 · telemetry · report 확인)는 그 뒤에 온다 — 계획 §7 의 세션 계획치다.
+{release['estimate_ko']}
    실행 시간으로 TTL 을 잡으면 회수 도중에 시간이 끊기고, 그때 잃는 것은 영상과 report 다.
 
    정책이 서 있어도(파국 게이트 STATIONARY) 필수 수집과 영상은 그대로 회수한다
@@ -224,17 +384,13 @@ def run_guide(work_id: str, digest: str) -> str:
      python -B tools/verify_go2_basic_motion_harvest.py {work_id} \\
          --harvest workspace/_keep/{out['keep_dir_name']} \\
          --out workspace/_keep/{out['keep_dir_name']}/harvest_verification.json
-     python -B tools/go2_screening_gate.py --candidate workspace/_keep/{out['keep_dir_name']} \\
-         --rule-version {spec['preregistered']['plan_screening']['version']}
-   **exit code 만으로 성능도 서버 종료 여부도 판단하지 않는다.** 출력 VERDICT 와 결측·identity 오류를
+{reader_two}{reader_three}{reader_four}{extra_cmds}   **exit code 만으로 성능도 서버 종료 여부도 판단하지 않는다.** 출력 VERDICT 와 결측·identity 오류를
    읽고, 서버에서 더 회수하거나 재측정할 것이 없는지 확인한 뒤에 끈다.
    첫 명령은 **성능 FAIL 에도 exit 0** 을 낸다 — 판정을 했다는 뜻이다
    (`verify_go2_basic_motion_harvest.PASS_VERDICTS`). exit 1 은 INCONCLUSIVE 나
    BASELINE_REMEASURE_REQUIRED, 즉 **판정을 못 했다**는 뜻이고 그때 볼 것은 성능이 아니라
    `artifact_faults`·`ruler_mismatches` — 무엇이 없어서 못 했는지다. 그 결손은 서버가 살아 있을 때만 메운다.
-   둘째 명령은 INTERNAL_GATE_PASS 에만 exit 0 이고 FAIL 과 INCONCLUSIVE 가 같은 exit 1 이다.
-   둘은 다른 상태다 — SCREENING 줄의 이름으로 구분하고, INCONCLUSIVE 면 missing 목록을 회수 대상으로 본다.
-   서버 게이트는 이 회차에 없다 — 판정은 처음부터 끝까지 로컬 검증기가 한다.
+{reader_two_note}{reader_three_note}{reader_four_note}{extra_notes}   서버 게이트는 이 회차에 없다 — 판정은 처음부터 끝까지 로컬 검증기가 한다.
 
 6. 이 패키지가 보장하지 않는 것
    점수 이득을 약속하지 않는다. 학습 seed 는 42 하나뿐이라 한 회차로는 레버 효과와 seed 운을 가를 수 없다.
@@ -252,7 +408,10 @@ def publish(work_id: str, zip_path: Path) -> None:
     current.mkdir(parents=True, exist_ok=True)
     guide = release["guide"]
     single = spec["single_change"]
-    note = (f"{work_id} {spec['baseline']['name']} + {single['name']} {single['from']}->{single['to']}. "
+    # G-A051: 보상 기준이 채택 기준선과 다르면 그 이름을 적는다(없는 회차의 글자는 그대로).
+    on = (f"{spec['reward_base']['name']} rewards (adoption vs {spec['baseline']['name']})"
+          if spec.get("reward_base") else spec['baseline']['name'])
+    note = (f"{work_id} {on} + {single['name']} {single['from']}->{single['to']}. "
             "One upload: the arm ZIP byte-identical to its builder, the whole 69-case evaluation in one "
             "pass (GO2_STAGE=full pinned in run_config.env), no target stage and no server gate, one "
             f"result ZIP. {spec['status']}.")

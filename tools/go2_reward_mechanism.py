@@ -69,7 +69,9 @@ PROBES = (
     # 새 값이면 이 생성기로 계산한다(§8-1).  -1.0 은 G-A037 의 값이라 그대로 둔다.
     # 2026-09-22 (G-A044): -1.75 는 계획 `upload/plan/GO2_POST_A043_PLAN_20260922.md` §1 이 고른 값이다.
     # A043 이 -1.5 에서 걸었으므로 이 다이얼의 걷는 관측값은 둘이고, -1.75 는 그 사이다.
-    ("lin_vel_z_l2", -3.0), ("lin_vel_z_l2", -1.75), ("lin_vel_z_l2", -1.5),
+    # 2026-09-26 (G-A048): -1.25 는 계획 `upload/plan/GO2_A043_YAW_RIGHT_AND_NEXT_20260926.md` §4 가 고른
+    # 탐색 값이다(걷는 관측값 -2.0·-1.75·-1.5 밖).  §8 개정 뒤라 이 행은 후보 순위 근거가 아니라 사양의 기록이다.
+    ("lin_vel_z_l2", -3.0), ("lin_vel_z_l2", -1.75), ("lin_vel_z_l2", -1.5), ("lin_vel_z_l2", -1.25),
     ("lin_vel_z_l2", -1.0), ("lin_vel_z_l2", -0.5),
     ("ang_vel_xy_l2", -0.08), ("ang_vel_xy_l2", -0.1), ("ang_vel_xy_l2", -0.15), ("ang_vel_xy_l2", -0.02),
     # 2026-09-20: 완화 방향의 작은 값.  PM 1안이 제안한 -0.04 를 표에 넣어야 §8-1(새 값이면 이
@@ -87,7 +89,9 @@ STOPPED_CHILDREN = ("A010", "A013", "A024", "feet_air_time_020_v1", "A020", "A02
 HELD_OUT = (("G-A038", "ang_vel_xy_l2", "-0.08", "reports/evidence/go2_g_a038_readout_20260917"),
             # 2026-09-22: A043 은 회수됐는데 §9 대조가 없었다.  계획 §7 첫 줄이 요구한 대조다.
             # 표는 `tools/go2_a043_forecast_check.py` 가 원자료에서 만든다.
-            ("G-A043", "lin_vel_z_l2", "-1.5", "reports/evidence/go2_g_a043_readout_20260922"))
+            ("G-A043", "lin_vel_z_l2", "-1.5", "reports/evidence/go2_g_a043_readout_20260922"),
+            # 2026-09-26: 같은 대조.  표는 `tools/go2_a043_forecast_check.py --work G-A047` 이 원자료에서 만든다.
+            ("G-A047", "flat_orientation_l2", "-0.5", "reports/evidence/go2_g_a047_readout_20260926"))
 ENV_CFG = "workspace/training/quadruped/go2_task/env_cfg.py"
 REWARDS_PY = "workspace/training/quadruped/quadruped_rewards.py"
 # 기울기 판독 — 평가 기록 (run 폴더, arm, 이름).  chain01은 낙상 검출 세대의 멈춘 정책이다.
@@ -187,9 +191,9 @@ def run_margins(values: list[dict[str, str]]) -> list[dict[str, str]]:
                      "margin_loo": f"{sum(contributions(w, lw, ls).values()):.4f}",
                      **{f"part_{t}": f"{v:.4f}" for t, v in part.items()}})
     walkers = [float(r["margin"]) for r in rows if r["walking"] == "True"]
-    stoppers = [float(r["margin"]) for r in rows if r["walking"] != "True"]
+    stoppers = [float(r["margin"]) for r in rows if stopped(r)]
     walkers_loo = [float(r["margin_loo"]) for r in rows if r["walking"] == "True"]
-    stoppers_loo = [float(r["margin_loo"]) for r in rows if r["walking"] != "True"]
+    stoppers_loo = [float(r["margin_loo"]) for r in rows if stopped(r)]
     for r in rows:
         r["zone"] = zone(float(r["margin"]), min(walkers), max(stoppers))
         r["zone_loo"] = zone(float(r["margin_loo"]), min(walkers_loo), max(stoppers_loo))
@@ -216,10 +220,18 @@ def spec_margin(candidate: dict[str, float]) -> dict[str, object]:
             "unmeasured_in_situations": sorted(t for t in changed if t in UNMEASURED_IN_EVAL)}
 
 
+def stopped(row: dict[str, str]) -> bool:
+    """멈춘 회차.  2026-09-26 (G-A047): "걷지 않음" 과 "멈춤" 은 다르다 — A047 은 험지 속도 0.191 로 걷기
+    경계(0.2) 아래였지만 이동했다(`base.motion` = 저속 구간).  저속 구간 행을 멈춘 회차로 세면 멈춘 회차 최고
+    margin 이 그 행의 margin(= 이 모형이 볼 수 없는 항만 바꾼 G-A033 의 margin)으로 뛰어, 모든 사양의
+    걷기 구간 판정이 한꺼번에 바뀐다.  저속 구간 행은 어느 쪽 경계에도 넣지 않는다."""
+    return base.motion(row) == "정지"
+
+
 def band(rows: list[dict[str, str]], column: str = "margin") -> tuple[float, float]:
     """(걷는 회차 최저 margin, 멈춘 회차 최고 margin)."""
     return (min(float(r[column]) for r in rows if r["walking"] == "True"),
-            max(float(r[column]) for r in rows if r["walking"] != "True"))
+            max(float(r[column]) for r in rows if stopped(r)))
 
 
 def probes(values: list[dict[str, str]], rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -638,13 +650,14 @@ def render(values=None, rows=None, probe_rows=None, tilt=None, sit=None, probe_s
     for r in sorted(rows, key=lambda r: float(r["margin"])):
         w = w_rows[r["name"]]
         add(f"| {r['name']} | " + " | ".join(f"`{w[t]}`" for t in base.TERMS)
-            + f" | `{float(r['margin']):+.4f}` | `{float(r['margin_loo']):+.4f}` | {ZONE_TEXT[r['zone']]} | {'걷기' if r['walking'] == 'True' else '정지'} | {r['rough_forward_speed']} |")
+            + f" | `{float(r['margin']):+.4f}` | `{float(r['margin_loo']):+.4f}` | {ZONE_TEXT[r['zone']]} | {base.motion(r)} | {r['rough_forward_speed']} |")
     add("")
     add(f"- 구간 경계: 걷는 회차 최저 margin `{F['walk_min']:+.4f}`, 멈춘 회차 최고 margin `{F['stop_max']:+.4f}`. 그 사이가 경계대다.")
-    add(f"- [확인] 경계대 밖 회차 {len(F['consistent']) + len(F['wrong'])}개 중 margin과 실제가 어긋난 회차: **{len(F['wrong'])}개**. "
-        f"경계대 안 회차: " + ", ".join(f"{r['name']}({'걷기' if r['walking'] == 'True' else '정지'})" for r in F["band_rows"]) + ".")
+    add(f"- [확인] 경계대 밖 회차 {len(F['consistent']) + len(F['wrong'])}개 중 margin과 실제가 어긋난 회차: **{len(F['wrong'])}개**"
+        + ("" if not F["wrong"] else " — " + ", ".join(f"{r['name']}(예측 {ZONE_TEXT[r['zone']]}, 실제 {base.motion(r)})" for r in F["wrong"])) + ". "
+        f"경계대 안 회차: " + ", ".join(f"{r['name']}({base.motion(r)})" for r in F["band_rows"]) + ".")
     add(f"- [확인] LOO(그 회차를 빼고 식 값 평균을 다시 낸 것)로 해도 어긋난 회차는 **{len(F['wrong_loo'])}개**다. 경계대는 `{F['loo_min']:+.4f}` ~ `{F['loo_max']:+.4f}`로 넓어지고, "
-        "그 안에 " + ", ".join(f"{r['name']}({'걷기' if r['walking'] == 'True' else '정지'})" for r in rows if r["zone_loo"] == "BAND")
+        "그 안에 " + ", ".join(f"{r['name']}({base.motion(r)})" for r in rows if r["zone_loo"] == "BAND")
         + "가 든다. Pilot-01의 LOO margin이 크게 내려가는 것은 Pilot이 걷는 행동 식 값 평균에서 빠지기 때문이다.")
     add("- [추정] 경계대의 폭은 **학습 seed 운**이 결과를 가르는 구간으로 읽는다. Pilot-01은 이 구간에서 걸었고, 같은 구간의 A018은 멈췄다.")
     add("- [모름] 이 대조는 이미 아는 결과에 대한 사후 대조다. 새 가중치에 대한 예측력은 새 회차로만 확인된다.")
@@ -661,7 +674,7 @@ def render(values=None, rows=None, probe_rows=None, tilt=None, sit=None, probe_s
         r = by[name]
         moved = max(MARGIN_TERMS, key=lambda t: abs(float(r["part_" + t]) - float(pilot["part_" + t])))
         add(f"| {name} | {change} | `{float(r['margin']) - float(pilot['margin']):+.4f}` | `{SHORT[moved]}` "
-            f"`{float(r['part_' + moved]) - float(pilot['part_' + moved]):+.4f}` | {ZONE_TEXT[r['zone']]} | {'걷기' if r['walking'] == 'True' else '정지'} |")
+            f"`{float(r['part_' + moved]) - float(pilot['part_' + moved]):+.4f}` | {ZONE_TEXT[r['zone']]} | {base.motion(r)} |")
     add("")
     add("- [확인] A016: 구르기 속도 벌점 3배 → 걷기 비용이 커져 margin이 정지 구간으로 내려갔다. 원문 식상 이 벌점은 걷는 동안의 몸통 흔들림에 걸리고 멈추면 거의 0이다.")
     add("- [확인] A015: 체공 threshold `0.5` s보다 짧은 걸음이 음수라 가중치를 올리면 걷는 쪽 벌점이 커진다. margin이 경계대 아래로 내려갔다.")
@@ -828,31 +841,57 @@ def render(values=None, rows=None, probe_rows=None, tilt=None, sit=None, probe_s
     add("")
     add("## 8. 향후 튜닝 정책")
     add("")
-    add("1. **변수를 고르기 전에 세 가지를 적는다:** 원문 역할(기반 데이터 §0-1) → 네 구간 예측(걷기·계단·흔들림·밀침, 이 문서 §6-0; 새 값이면 `tools/go2_reward_mechanism.py`로 계산) → 겨냥 영역의 원자료 행.")
-    add(f"2. **네 구간 관문:** G-A033 위의 후보는 예측 걷기 margin이 멈춘 회차 최고값 `{F['stop_max']:+.4f}`보다 커야 한다(걷기 구간). "
-        "계단·흔들림·밀침 부분 margin이 나빠지는 후보는 그 구간을 사양에 적고 이유를 적어야 한다(`base_data.walk_margin.worse`·`reason`, 관문 검사). "
-        "경계대·정지 구간이나 이유 없는 악화 후보는 만들지 않는다.")
-    add("3. **track은 `1.5`에서 멈춘다.** margin은 더 오르지만 등급 A 쌍에서 G3·G6 종료가 늘었고, G3는 이미 G5와 함께 가장 큰 손실 영역이다(`GO2_NOW.md` §1 최대 손실).")
-    penalties = ("lin_vel_z_l2", "ang_vel_xy_l2", "flat_orientation_l2")
-    steady = [t for t in penalties if agree[("sway", t)].startswith("일치(−)")]
-    shaky = [t for t in penalties if agree[("sway", t)].startswith("불일치")]
-    pa = {(q["term"], q["to"]): q for q in probe_sit}
-    ang = pa[("ang_vel_xy_l2", "-0.08")]
-    add("4. **G3(험지 옆 뒤집힘)·G6(밀침) 후보 — 세 정책에서 부호가 일치하는 벌점부터.** 흔들림에서 넘어지기 직전 상태를 일관되게 더 벌하는 항: "
-        + ", ".join(f"`{t}`" for t in steady) + "; 부호가 엇갈리는 항: " + (", ".join(f"`{t}`" for t in shaky) or "없음") + "(§5-1).")
-    add(f"   - **`ang_vel_xy_l2` `−0.08`은 G-A038로 실행됐고, 단독 레버로 다시 쓰지 않는다(2026-09-17).** 예측은 걷기 유지(margin 변화 `{ang['walk_delta']}`)·흔들림 `{ang['sway_delta']}`·밀침 `{ang['push_delta']}` 상승·계단 `{ang['climb_delta']}`였다. "
-        "방향은 셋 다 맞았지만 10cm 오르기가 무너졌다(§9). 이 항과 `lin_vel_z_l2`는 계단과 흔들림·밀침의 부호가 반대인 **맞교환 항**이라, 계단 부분 margin의 작은 값으로 계단 비용을 판단하지 않는다.")
-    add("   - `lin_vel_z_l2` 강화도 흔들림·밀침을 돕지만 걷기·계단을 함께 낮춘다 — G5를 목표에서 빼지 않는 한 쓰지 않는다.")
-    add("   - `flat_orientation_l2`는 밀침에서만 부호가 일치하고 흔들림·계단은 엇갈린다. 경사 G4 상시 벌점(§5)도 있어 2순위다.")
-    add("5. **G5(15cm 오르기) 후보:** 한 번도 바꾸지 않은 최대 비용 항 `dof_acc_l2`를 약하게 하는 것이 역할상 가장 직접적이다(빠른 발 올리기 비용). 단 계단·흔들림·밀침 구간 효과는 **측정 없음**이다 — 걷기 구간 안에서 정보 측정으로 한다. "
-        "`lin_vel_z_l2` 약화(G-A037)는 계단 부분 margin을 올리지만 **흔들림·밀침 부분 margin을 낮춘다**(§6-0) — 넘어지기 직전의 튀는 움직임 벌점이 줄어서다. G3·G6 보호 판정 없이 올리지 않는다.")
-    add("6. **하지 않는 것:** `feet_air_time` 인상(짧은 걸음 벌점 강화, margin 하락), `ang_vel_xy_l2` 경계 밖 강화, 배포 시작값(`lin_vel_z −3`·`ang_vel_xy −0.08`) 복귀, track `1.5` 초과.")
-    add("7. **대조군:** 후보와 같은 묶음에 G-A033 seed 반복을 넣는다. margin 경계대의 폭이 seed 운이라는 [추정]을 여기서 확인한다.")
-    add("8. **결과 회수 후:** 새 회차는 먼저 `HELD_OUT`에 넣어 §9에서 예측과 대조한다. 대조를 기록한 뒤에만 계수(`TRAIN_EXTRA`)에 합친다. 예측과 실제가 어긋나면 이 정책부터 고친다.")
-    add("9. **판정과 후보 선정은 이 문서 밖의 규칙을 따른다(2026-09-17, G-D-FACT-RULES-20260917):** 판정 `fact_rules_v1`(`tools/go2_fact_rules.py`), 후보는 사실 근거 추론 사슬(MASTER §5-3). 이 문서의 margin은 사슬의 한 고리(방향)일 뿐 이득 추정이 아니다.")
+    tally = held_out_tally()
+    add("**2026-09-26 개정 (G-A047 사후 대조).** 이 절은 G-A047 전까지 부분 margin 부호와 '미탐색·최대 비용 항'으로 후보 순서를 매겼다"
+        " (옛 4항 `flat_orientation_l2` 2순위, 옛 5항 `dof_acc_l2` 우선). 사후 대조(§9)에서 부분 margin의 방향 적중은 "
+        + ", ".join(f"{w} `{a}/{n}`" for w, a, n in tally["per_work"]) + f", 누적 `{tally['agree']}/{tally['total']}`이다. 칸들은 서로 독립이 아니고(같은 회차·같은 기준선) 선정도 무작위가 아니어서 이 수치로 '예측력이 없다'를 통계적으로 확정하지는 않는다. "
+        "다만 반례가 이만큼 쌓인 도구를 검증된 성능 예측기로 쓰거나 후보 순위의 결정 근거로 쓸 수는 없다. "
+        "그래서 아래는 **근거의 등급**으로 후보를 고르고, 산수는 거부권에만 쓴다. 두 옛 순위는 철회한다.")
+    add("")
+    add("철회한 옛 문장(발행된 사양 G-A040·G-A047이 글자 그대로 인용하므로 원문을 남긴다): "
+        "옛 4항 '`flat_orientation_l2`는 밀침에서만 부호가 일치하고 흔들림·계단은 엇갈린다. 경사 G4 상시 벌점(§5)도 있어 2순위다.' · "
+        "옛 5항 'G5(15cm 오르기) 후보: 한 번도 바꾸지 않은 최대 비용 항 `dof_acc_l2`를 약하게 하는 것이 역할상 가장 직접적이다(빠른 발 올리기 비용).' — **둘 다 철회(2026-09-26).**")
+    add("")
+    add("1. **근거 등급 — 선택은 직접 근거로만 한다.**")
+    add("   - 직접 근거: 걷는 기준선(G-A033 계열) 위의 한 항 변경 회차에서 **표적 행동 지표**(표적 case의 생존·낙상 채널·속도·등반 로봇 수)가 움직인 관측 쌍. 등급 A(`reports/GO2_VARIABLE_INFLUENCE.md`)만 변수 효과로 인용한다.")
+    add("   - 간접 근거: 고정 행동의 보상 재계산(§1 식 값, §5-1 부분 margin, §6-0 네 구간), 항의 크기(걷기 비용 순위), 외부 기본값(Isaac Lab), '미탐색'. **이것만으로 후보를 채택·탈락시키지 않고 순위도 매기지 않는다.**")
+    add("   - 반대 근거를 사양에 적었다는 사실, 보호 관문을 붙였다는 사실은 후보의 지지 근거가 아니다. 그것은 실패를 읽을 수 있게 할 뿐이다(G-A047은 반대 행 7건과 보호 관문을 갖추고도 G3 가설이 지지되지 않았다).")
+    add("   - 직접 근거가 없는 후보는 비교표에 '미확정 연결'을 적는다. 그 연결을 한 회차로 가를 수 있을 때만 정보 회차로 올린다.")
+    add(f"2. **산수는 거부권만 가진다.** G-A033 위의 후보는 예측 걷기 margin이 멈춘 회차 최고값 `{F['stop_max']:+.4f}`보다 커야 한다 — 정지 구간·경계대 후보는 만들지 않는다. "
+        "반대로 **걷기 구간이라는 사실은 후보를 지지하지 않는다**: 이 모형은 모형 항(`MARGIN_TERMS`) 밖의 항을 보지 못하고(`flat_orientation_l2`), 한 번도 바꾸지 않은 항(`dof_acc_l2`·`dof_torques_l2`)은 고정값의 식 값만 있다. "
+        "G-A047은 걷기 구간(`+0.1359`)으로 계산됐지만 험지 속도가 걷기 경계 아래(저속 구간)였다 — 같은 case 대조에서는 G-A033보다 느려졌다. 계단·흔들림·밀침 부분 margin은 사양에 기록하되(`base_data.walk_margin`) 방향 가설로만 쓴다.")
+    add("3. **가설 판정과 채택 판정을 나눈다.** 사양은 두 줄을 따로 적는다.")
+    add("   - 가설 판정: 표적 영역의 표적 행동 지표 하나 이상과 그 반증 값(예: G-A047 — 험지 옆걸음 기울기 단독 낙상이 기준선 `9·8·13` 아래로 내려가는가).")
+    add("   - 채택 판정: `fact_rules_v1` 총점·보호(문턱 불변) + 계획 screening의 보호 묶음. 표적이 아닌 영역의 **개선 의무**를 표적 가설 판정에 섞지 않는다 — G3 회차에 계단 개선을 요구하지 않는다(`g3_guard_push4_v1`). 보호(비열등)는 그대로 요구한다.")
+    add("   - 어느 판정도 소급 변경하지 않는다. 발행된 사양·판정·문턱은 그대로다.")
+    add("4. **track은 `1.5`에서 멈춘다.** `1.6`(G-A042)은 10cm 등반 붕괴·험지 낙상 증가로 기각됐다.")
+    add("5. **G3(험지 옆걸음)·G6(밀침) — 직접 근거 목록.** 걷는 기준선 위에서 험지 옆걸음을 올린 한 항 변경은 두 번 관측됐다: `ang_vel_xy_l2 −0.08`(G-A038, 옆걸음 proxy `+0.356`, 10cm 오르기 붕괴)와 `lin_vel_z_l2 −1.5`(G-A043, 옆걸음 `+0.296`·계단 상승, G2 복합 우회전 생존 붕괴). "
+        "옆걸음이나 계단을 내린 한 항 변경: `ang_vel_xy_l2 −0.04`(G-A041), `track 1.6`(G-A042), `lin_vel_z_l2 −1.75`(G-A044), `flat_orientation_l2 −0.5`(G-A047).")
+    add("   - `flat_orientation_l2`: **옛 '2순위' 철회.** `−0.5`에서 표적(기울기 채널 낙상)이 줄지 않았고 평지 밖 전반이 감속했다. 작은 값(예 `−0.25`) 재시도와 A043과의 조합은 **자동으로 권하지 않는다** — 감속이 이 항 때문인지 학습 경로인지 가르는 새 직접 근거가 먼저다.")
+    add("   - `ang_vel_xy_l2 −0.08`은 단독 레버로 다시 쓰지 않는다(G-A038 10cm 붕괴). `lin_vel_z_l2` 강화가 걷기·계단을 낮춘다는 것은 산수(간접)이고 걷는 기준선 관측은 없다.")
+    add("6. **G5(15cm 오르기) — 옛 '`dof_acc_l2` 우선' 철회.** 근거가 '역할상 직접적'·'걷기 비용 1위'·'한 번도 바꾸지 않음' 셋뿐이었다 — 모두 간접이다. "
+        "15cm 정지가 관절 가속도 비용 때문이라는 관측은 없고(계단 부분 margin은 관절 항을 담지 못한다, §7), 배포 안내 목록 밖 항이라 R-6 적용도 사용자 결정이다. 직접 근거가 생기기 전에는 정보 회차 후보 목록에만 둔다. "
+        "15cm 오르기를 실제로 올린 한 항 변경은 `lin_vel_z_l2 −1.5`(G-A043, ≥2단 `0→77`/96) 하나다.")
+    add("7. **하지 않는 것:** `feet_air_time` 인상, `ang_vel_xy_l2` 경계 밖 강화, 배포 시작값(`lin_vel_z −3`·`ang_vel_xy −0.08`) 복귀, track `1.5` 초과, 이미 측정한 값의 같은 seed 재실행(이 스택은 같은 설정·같은 seed에서 결과가 같았다), 간접 근거만으로의 후보 순위.")
+    add("8. **대조군:** 한 회차의 차이가 학습 경로 흔들림보다 큰지는 모른다(A043·A044 비단조). 가능하면 같은 묶음에 G-A033 독립 seed 반복을 넣는다 — 학습 seed 변경의 R-6 해석은 열린 결정 U2다.")
+    add("9. **결과 회수 후:** 새 회차는 먼저 `HELD_OUT`에 넣어 §9에서 예측과 대조한다. 대조를 기록한 뒤에만 계수(`TRAIN_EXTRA`)에 합친다. 예측과 실제가 어긋나면 이 정책부터 고친다.")
+    add("10. **판정과 후보 선정은 이 문서 밖의 규칙을 따른다(2026-09-17, G-D-FACT-RULES-20260917):** 판정 `fact_rules_v1`(`tools/go2_fact_rules.py`), 후보는 사실 근거 추론 사슬(MASTER §5-3). 이 문서의 margin은 사슬의 한 고리(방향 가설)일 뿐 이득 추정도 순위도 아니다. 다음 후보 비교표는 `upload/plan/GO2_POST_A047_POLICY_20260926.md`.")
     add("")
     render_held_out(add, probe_sit, pr)
     return "\n".join(L)
+
+
+def held_out_tally() -> dict:
+    """§9 대조 표의 방향 적중 — 회차별과 누적.  문서의 숫자를 손으로 적지 않는다."""
+    per_work, agree, total = [], 0, 0
+    for work, _term, _to, folder in HELD_OUT:
+        with (QUAD / folder / "FORECAST_CHECK.csv").open(encoding="utf-8", newline="") as handle:
+            rows = [r for r in csv.DictReader(handle) if r["direction_agrees"] in ("True", "False")]
+        a = sum(r["direction_agrees"] == "True" for r in rows)
+        per_work.append((work, a, len(rows)))
+        agree += a
+        total += len(rows)
+    return {"per_work": per_work, "agree": agree, "total": total}
 
 
 def render_held_out(add, probe_sit, pr) -> None:
@@ -869,7 +908,8 @@ def render_held_out(add, probe_sit, pr) -> None:
             flat = {r["arm"]: r for r in csv.DictReader(handle)}
         speed = f"`{float(flat['G-A033']['speed_xy_mean']):.3f}` → `{float(flat[work]['speed_xy_mean']):.3f}`"
         for i, r in enumerate(check):
-            head = (f"| {work} | `{term}` `{to}` | {ZONE_TEXT[pr[(term, to)]['zone']]} | {speed} |" if i == 0
+            zone_text = ZONE_TEXT[pr[(term, to)]["zone"]] if (term, to) in pr else "걷기 구간(모형 항 밖 — G-A033과 같은 margin)"
+            head = (f"| {work} | `{term}` `{to}` | {zone_text} | {speed} |" if i == 0
                     else "| | | | |")
             add(f"{head} {r['zone']} | `{r['forecast_partial_margin_delta']}` | `{float(r['observed_mean_proxy_delta']):+.3f}` | "
                 + ("같음" if r["direction_agrees"] == "True" else "반대") + " |")
@@ -881,6 +921,10 @@ def render_held_out(add, probe_sit, pr) -> None:
     add("- [확인] **G-A043에서는 네 상황 중 둘이 방향까지 틀렸다.** 산수는 흔들림 `-0.0470`·밀침 `-0.0386`으로 악화를 예측했는데, 실제 험지 옆걸음 proxy는 `+0.296`, 밀침 네 방향은 `+0.056`·`+0.013`·`+0.037`·`-0.010`이었다(`reports/evidence/go2_g_a043_readout_20260922/FORECAST_CHECK.csv`). 걷기·계단 방향만 맞았다.")
     add("- [확인] G-A043의 실제 손실은 이 표에 **칸이 없다** — 평지 복합 우회전(G2 `combined_yaw_right`, 세 seed 전부 생존 하락)이고, 네 구간은 그 상황을 모형화하지 않는다(`reports/evidence/go2_a043_scenario_split_20260922/CASE_DELTAS.csv`).")
     add("- [추정] 두 사실을 합치면, 부분 margin은 **크기뿐 아니라 방향도** 이 다이얼에서는 근거가 되지 못한다. `lin_vel_z_l2`의 다음 값은 부분 margin이 아니라 관측된 두 끝점(`-2.0`·`-1.5`)으로 고른다(§8).")
+    add("- [확인] **G-A047에서는 여덟 칸 중 다섯 칸이 방향까지 틀렸다.** 산수는 계단 `+0.0560`·흔들림 `+0.1548`·밀침 `+0.1278`로 셋 다 개선을 예측했는데, 실제는 10cm 오르기 `-0.019`, 험지 옆걸음 `-0.029`, 밀침 `+x -0.010`·`-x -0.029`·`-y -0.040`이었다(`reports/evidence/go2_g_a047_readout_20260926/FORECAST_CHECK.csv`). 맞은 칸 셋 중 15cm 오르기 `+0.100`은 오르지 않고 서서 버틴 생존 이득이다(10cm ≥1단 등반 `90→3`/96).")
+    add("- [확인] G-A047의 가장 큰 손실은 이 표에 **칸이 없다** — 경사 G4 `-3.50/70`과 DR G7 `-2.55/70`이고, 같은 case 기록에서 평지 밖 전반이 감속했다(험지 전진 `0.366→0.192`, 경사 오르막 `0.433→0.272` m/s, 평지 전진 `0.736→0.730` 그대로; `CASE_PAIRS.csv`). 걷기 margin 모형은 이 항을 모형 항으로 갖지 않아 A047을 G-A033과 같은 `+0.1359`로 계산했다.")
+    add("- [확인] 사전등록 1차 판독(낙상 채널)에서 험지 옆걸음 기울기 단독 낙상은 `9·8·13 → 11·14·16`/32로 줄지 않았다(`FALL_CHANNELS.csv`). 이 항이 벌하는 각도 채널이 표적이었다.")
+    add("- [추정] 세 회차를 합치면 부분 margin은 크기도 방향도 재학습 결과의 예측량이 아니다. 고정된 한 정책의 궤적 위 산수이기 때문이다 — 학습이 궤적 자체를 바꾼다. §8을 이 사실에 맞춰 고쳤다.")
     add("")
 
 

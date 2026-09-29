@@ -61,6 +61,17 @@ PROMOTION = "forbidden_not_a_reward_change"
 
 PAIRS = {
     "G-A045_A046": {
+        # v10 (2026-09-25): v9 의 C-34 수정이 원인을 거꾸로 읽었다.  기반 데이터 표가 G-A043 에서
+        # 멈춰 G-A044(-1.75, 전수 회수, rough_forward 0.379 로 걸음)를 빠뜨린 것이 원인인데, v9 는
+        # 그 낡은 표에 사양을 맞춰 -1.75 를 지웠다.  정책 기각(INTERNAL_GATE_FAIL)은 관측 부재가
+        # 아니다.  표에 G-A044 를 넣고(`go2_stairs_behavior.WEIGHT_RUNS`), 수록 누락을 잡는 관문
+        # (`weight_table_gaps`)과 분류 무관 사양 검사(`reward_specs`)를 더한 뒤 A046 을 재생성했다.
+        # 두 팔 v9, 쌍 v10.  값·문턱·case·영상·러너는 그대로다.
+        # v9 (2026-09-25, 원인 판정 철회 — v10 참조): 결함 C-34 — v8 의 G-A046 사전등록이 `walking_values` 에 -1.75(G-A044)를
+        # 넣고 `walk_margin` 을 비워 두었다.  G-A044 는 INTERNAL_GATE_FAIL·NO_CANONICAL_MERGE 로
+        # 기반 데이터에 행이 없으므로 걷기 관측으로 인용할 수 없다.  `base_data` 를 생성기 출력으로
+        # 바꾸고 A045/A046 계약에 `spec_problems == []` 를 넣었다.  바뀐 사양은 A046 하나지만
+        # 팔 README 가 쌍 ZIP 이름을 적으므로 두 팔 모두 v8 로 다시 나간다.  값·문턱·case·영상·러너는 그대로다.
         # v8 (2026-09-24): 독립 검토 6차 — 중단·재개 경로의 결함 둘(C-27·C-28).  ① 재개가
         # 미완료 학습을 말없이 지우고 재학습하던 경로를 막고 보존·정지·명시 재시작으로
         # 갈랐다.  ② 완료 판단이 COLLECTION_STATUS 와 결과 ZIP·SHA 를 보지 않아
@@ -91,9 +102,9 @@ PAIRS = {
         # 팔 ZIP 두 개의 바이트는 v1 과 같다(러너는 쌍 ZIP 에만 들어간다) — 그래서 팔 이름은 v1 이다.
         "arms": ("G-A045", "G-A046"),
         "upload_id": "G-A045_A046",
-        "release_id": "20260924_seed43_pair_full69_v8",
+        "release_id": "20260924_seed43_pair_full69_v10",
         "prefix": "go2_g_a045_a046",
-        "upload_zip": "GO2_G_A045_A046_seed43_pair_full69_v8.zip",
+        "upload_zip": "GO2_G_A045_A046_seed43_pair_full69_v10.zip",
         "tmux": "go2_seed_pair",
         "keep_name": "go2_seed_pair_a045_a046",
         "result_zip": "GO2_SEED_PAIR_RESULT.zip",

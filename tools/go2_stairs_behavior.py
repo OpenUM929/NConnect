@@ -192,11 +192,60 @@ WEIGHT_RUNS = (
     # 에서 걷는 정책을 만들어 전수 69 case 를 남겼는데도 그 다이얼의 모든 값이 `OUT_OF_RANGE` 로
     # 계산됐다.  회수된 회차는 성패와 무관하게 표에 들어간다 — 표는 관측이고 판정은 판독문이 한다.
     ("A043", "go2_g_a043_a033_lin_vel_z_m15/training/env.yaml", "go2_g_a043_a033_lin_vel_z_m15", "candidate"),
+    # 2026-09-25 (결함 C-34): 같은 규칙 — 표는 관측이다.  G-A044(-1.75)는 2026-09-22 전수 69 case 로
+    # 회수·검증됐는데 이 목록에 들어오지 않아, 기반 데이터가 -1.75 를 "걷는 관측 없음" 으로 셌다.
+    # 정책 판정은 그대로다: `reports/GO2_G_A044_READOUT.md` — INTERNAL_GATE_FAIL, 기준선 G-A033 유지,
+    # NO_CANONICAL_MERGE.  이 행은 승급·병합을 뜻하지 않는다.  빠지는 회차가 또 생기지 않도록
+    # `tools/test_go2_tuning_base_data_contract.py` 가 전수 회수 회차의 수록 여부를 검사한다.
+    ("A044", "go2_g_a044_a033_lin_vel_z_m175/training/env.yaml", "go2_g_a044_a033_lin_vel_z_m175", "candidate"),
+    # 2026-09-26: 같은 규칙.  G-A047(`flat_orientation_l2 -0.5`)은 전수 69 case 로 회수·검증됐고 정책 판정은
+    # `reports/GO2_G_A047_READOUT.md` — INTERNAL_GATE_FAIL, 기준선 G-A033 유지.  기각된 정책도 관측이다.
+    ("A047", "go2_g_a047_a033_flat_orientation_m05/training/env.yaml", "go2_g_a047_a033_flat_orientation_m05", "candidate"),
+    # 2026-09-26: 같은 규칙.  G-A048(`lin_vel_z_l2 -1.25`)은 전수 69 case 로 회수·검증됐고 정책 판정은
+    # `reports/GO2_G_A048_READOUT.md` — INTERNAL_GATE_FAIL(screening), 기준선 G-A033 유지.
+    ("A048", "go2_g_a048_a033_lin_vel_z_m125/training/env.yaml", "go2_g_a048_a033_lin_vel_z_m125", "candidate"),
+    # 2026-09-27: 같은 규칙.  G-A049(`-1.0`)·G-A050(`-1.375`)은 전수 69 case 로 회수·검증됐고 정책 판정은
+    # `reports/GO2_G_A049_READOUT.md`·`workspace/server_returns/G-A050_REVIEW_20260927/` — 둘 다 INTERNAL_GATE_FAIL,
+    # 기준선 G-A033 유지.  외부 검토(2026-09-27)가 후보 비교 전에 표 누락을 바로잡으라고 했다.
+    ("A049", "go2_g_a049_a033_lin_vel_z_m1/training/env.yaml", "go2_g_a049_a033_lin_vel_z_m1", "candidate"),
+    ("A050", "go2_g_a050_a033_lin_vel_z_m1375/training/env.yaml", "go2_g_a050_a033_lin_vel_z_m1375", "candidate"),
     # A038·A041·A042 는 아직 넣지 않았다: 세 회차 모두 1단계만 재고 끝나 이 표의 칸(rough_forward
     # 속도·경사 전진·15cm 오르기) 중 일부가 **미측정**이다.  빈 칸을 0 이나 "없음" 으로 읽히게 두는
     # 것이 기울기 판독을 조용히 망가뜨리므로, 부분 행을 넣기 전에 미측정 칸의 표기를 정한다
     # (결함 C-12, `reports/GO2_DEFECT_LEDGER.md`).
 )
+# 위 주석의 "아직 넣지 않았다" 를 기계가 읽는 형태로 둔다(2026-09-25, 결함 C-34).  여기 적힌 회차는
+# 표의 칸 중 일부가 **실제로 비어 있어야만** 빠질 수 있다 — `weight_table_gaps` 가 확인한다.
+# 칸이 다 찬 회차를 이 목록으로 숨기면 관문이 잡는다.
+PARTIAL_WEIGHT_RUNS = {
+    "go2_g_a041_a033_ang_vel_xy_m004": "1단계 5 case — slope_plus_20·stairs_15_down 미측정 (결함 C-12)",
+    "go2_g_a042_a033_track_lin_vel_xy_160": "1단계 11 case — slope_plus_20 미측정 (결함 C-12)",
+}
+TABLE_CASES = ("rough_forward", "slope_plus_20", "stairs_10_down", "stairs_15_down")
+
+
+def weight_table_gaps() -> list[str]:
+    """학습 env.yaml 과 후보 rough_forward 3 seed 를 갖춘 회수 회차가 표에서 빠졌으면 그 이름.
+
+    표가 멈추면 기반 데이터가 관측을 "없음" 으로 센다(C-12, C-34).  사양과 표가 함께 낡으면
+    사양 대조(`spec_problems`)는 통과하므로, 표의 수록 자체를 따로 묻는다."""
+    listed = {run for _name, _env, run, _arm in WEIGHT_RUNS}
+    gaps = []
+    for run in sorted(p for p in KEEP.iterdir() if p.is_dir()):
+        cases = run / "evaluation" / "candidate" / "cases"
+        if not (run / "training" / "env.yaml").is_file():
+            continue
+        if not all((cases / f"seed_{s}" / "rough_forward" / "summary.json").is_file() for s in SEEDS):
+            continue
+        complete = all((cases / f"seed_{s}" / c / "summary.json").is_file() for s in SEEDS for c in TABLE_CASES)
+        if run.name in listed:
+            continue
+        if run.name in PARTIAL_WEIGHT_RUNS and not complete:
+            continue
+        gaps.append(run.name)
+    return gaps
+
+
 WEIGHT_TERMS = ("track_lin_vel_xy_exp", "lin_vel_z_l2", "ang_vel_xy_l2", "action_rate_l2",
                 "feet_air_time", "flat_orientation_l2")
 

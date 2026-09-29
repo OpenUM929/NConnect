@@ -674,7 +674,9 @@ DEFECTS: tuple[dict, ...] = (
               "print('lin_vel_z',b.walking_values('lin_vel_z_l2'),"
               "'status',b.range_status('lin_vel_z_l2',-1.75),"
               "'missing',sorted({'A038','A041','A042'}-names))",
-        repro_expect="lin_vel_z [-2.0, -1.5] status BETWEEN_OBSERVED missing ['A038', 'A041', 'A042']",
+        # 2026-09-25: C-34 가 G-A044 를 표에 넣어 앞 두 칸이 움직였다(-1.75 가 관측이 됐다).  남은 것 —
+        # 이 결함이 OPEN 인 이유 — 은 셋째 칸, 부분 측정 회차 셋의 미수록이다(`PARTIAL_WEIGHT_RUNS`).
+        repro_expect="lin_vel_z [-2.0, -1.75, -1.5] status OBSERVED missing ['A038', 'A041', 'A042']",
         where="tools/go2_stairs_behavior.py 의 WEIGHT_RUNS 와 그것으로 만들어지는 "
               "reports/evidence/go2_stairs_behavior_20260916/WEIGHT_OUTCOME.csv, "
               "그리고 그 표를 읽는 go2_tuning_base_data.walking_values/range_status.",
@@ -1319,12 +1321,15 @@ DEFECTS: tuple[dict, ...] = (
     ),
     dict(
         id="C-29", found_on="2026-09-24", found_by="C-27/C-28 회귀 검증 중 A043 계약 실패 8건 판독",
-        confidence="확인", severity="경미", status="OPEN",
-        repro="import sys;sys.path.insert(0,'tools');"
+        confidence="확인", severity="경미", status="FIXED",
+        # 고친 뒤의 재현: 당시 근거(서버가 실행한 사양 바이트)와 현재 관측을 나란히 찍는다 — 둘 다 참이다.
+        repro="import sys,json;sys.path.insert(0,'tools');"
               "sys.path.insert(0,'workspace/training/quadruped');"
               "import go2_tuning_base_data as b;"
-              "print(b.walking_values('lin_vel_z_l2'))",
-        repro_expect="[-2.0, -1.5]",
+              "s=json.load(open(b.EXECUTED_SPECS['G-A043'][1],encoding='utf-8'));"
+              "print(s['base_data']['terms']['lin_vel_z_l2']['walking_values'],"
+              "b.walking_values('lin_vel_z_l2'), b.is_executed_spec(s))",
+        repro_expect="[-2.0] [-2.0, -1.75, -1.5] True",
         where="tools/test_go2_g_a043_campaign_contract.py:133 "
               "`PackageTest::test_6_the_value_is_outside_the_observed_range_and_says_so`.",
         what="이 검사는 「걷는 회차는 전부 -2.0 이므로 이 다이얼의 기울기는 미측정이다」를 "
@@ -1338,9 +1343,13 @@ DEFECTS: tuple[dict, ...] = (
         origin_fix="회차 계약은 **그 회차가 실행되기 전의 세계**를 검사한다. 기획 시점 사실을 "
                    "시점 없이 적으면 실행이 곧 반증이 된다 — 자기 결과를 제외한 모집단으로 "
                    "묻거나, 사양이 선언한 `OUT_OF_RANGE` 근거 자체를 물어야 한다.",
-        resolution="미해결. 값·관문·발행 ZIP 에는 영향이 없다(A043 ZIP 은 재빌드 대조 통과). "
-                   "임계값을 사후에 무르지 않기 위해 **단정 완화로 고치지 않는다** — 모집단을 "
-                   "「사양 발행 시점까지의 회차」로 한정하는 수정이 맞고, 그것은 별도 결정이다.",
+        resolution="2026-09-25 v10 과 함께 고쳤다. 단정을 완화하지 않고 **둘로 갈랐다**: "
+                   "`test_6_the_value_was_outside_the_observed_range_when_published` 는 당시 근거를 묻는다 — "
+                   "서버가 돌려보낸 `meta/experiment.json` 의 SHA(`EXECUTED_SPECS`)와 사양 파일 바이트가 같고, "
+                   "그 사양의 `walking_values [-2.0]` 이 **발행 당시 표에 있던 18회차**(이름으로 고정, 현재 목록에서 "
+                   "유도하지 않음)에서 다시 계산된다. `test_6b_the_value_is_observed_now` 는 현재 관측을 묻는다 — "
+                   "`[-2.0, -1.75, -1.5]`, -1.5 는 OBSERVED. 두 검사가 동시에 성립하며 현재 표를 과거로 되돌리지 "
+                   "않는다. 가려져 있던 두 번째 낡은 단정(PROBES 의 -1.5 range_status OUT_OF_RANGE)도 같은 방식으로 갈랐다."
     ),
     dict(
         id="C-30", found_on="2026-09-24", found_by="A043 계약의 ERROR 2건을 클래스 단독 실행으로 재현",
@@ -1471,25 +1480,32 @@ DEFECTS: tuple[dict, ...] = (
     ),
     dict(
         id="C-34", found_on="2026-09-25", found_by="C-29 가 v8 에 닿는지 확인하다가",
-        confidence="확인", severity="중대", status="OPEN",
-        repro="import sys,json,pathlib;sys.path.insert(0,'tools');"
+        confidence="확인", severity="중대", status="FIXED",
+        # 고친 뒤의 재현은 **발행된 v10 안의 A046 팔 ZIP 안의 experiment.json** 과 표의 수록 관문을 읽는다.
+        repro="import sys,json,io,zipfile;sys.path.insert(0,'tools');"
               "sys.path.insert(0,'workspace/training/quadruped');"
-              "import go2_tuning_base_data as b;"
-              "s=json.loads(pathlib.Path('workspace/training/quadruped/config/experiments/"
-              "G_A046_seed43_lin_vel_z_m15.json').read_text(encoding='utf-8'));"
+              "import go2_tuning_base_data as b, go2_stairs_behavior as st;"
+              "p=zipfile.ZipFile('workspace/training/quadruped/upload/G-A045_A046/history/"
+              "20260924_seed43_pair_full69_v10/GO2_G_A045_A046_seed43_pair_full69_v10.zip');"
+              "a=zipfile.ZipFile(io.BytesIO(p.read('go2_g_a045_a046/arms/"
+              "GO2_G_A046_seed43_lin_vel_z_m15_full69_v9.zip')));"
+              "s=json.loads(a.read('go2_g_a046/experiment.json'));"
               "print(s['base_data']['terms']['lin_vel_z_l2']['walking_values'],"
-              "b.walking_values('lin_vel_z_l2'), len(b.spec_problems(s)))",
-        # 사양이 적은 목록과 기반 데이터의 목록을 **둘 다** 찍는다 — 어긋남 자체가 출력이다.
-        repro_expect="[-2.0, -1.75, -1.5] [-2.0, -1.5] 2",
+              "len(b.spec_problems(s)), st.weight_table_gaps())",
+        repro_expect="[-2.0, -1.75, -1.5] 0 []",
         where="config/experiments/G_A046_seed43_lin_vel_z_m15.json 의 `base_data` — 그리고 그것을 "
               "싣고 나간 발행본 GO2_G_A045_A046_seed43_pair_full69_v8.zip 안의 experiment.json.",
-        what="발행된 v8 팔의 사전등록 자료가 기반 데이터와 어긋난다. ① `walking_values` 를 "
-             "`[-2.0, -1.75, -1.5]` 로 적었으나 기반 데이터는 `[-2.0, -1.5]` 다 — `-1.75`(G-A044)는 "
-             "WEIGHT_OUTCOME.csv 19행 어디에도 **행이 없다**. 즉 사양이 근거 파일에 없는 관측을 "
-             "인용한다. ② `walk_margin` 이 비어 있다(null) — 기반 데이터는 margin 0.148·zone WALK·"
-             "worse=[push, sway] 를 낸다. **자를 대는 회차의 사전등록이 자를 과장하고 있다.** "
-             "더 나쁜 것은 관문의 공백이다: 옛 A043 계약은 `base_data.spec_problems(SPEC)` 를 "
-             "부르는데 새 A045/A046 계약은 부르지 않는다 — 검사가 뒤로 갔다.",
+        what="기반 데이터 표(WEIGHT_OUTCOME.csv)가 **A043 에서 멈춰 있다** — 결함 C-12 의 재발이다. "
+             "생성기 `tools/go2_stairs_behavior.py` 의 WEIGHT_RUNS 는 스스로 「회수된 회차는 성패와 "
+             "무관하게 표에 들어간다 — 표는 관측이고 판정은 판독문이 한다」고 적는데, 2026-09-22 에 "
+             "전수 69 case 로 회수된 G-A044(-1.75)가 목록에 없다. A044 의 rough_forward 속도는 "
+             "0.364·0.406·0.368(평균 0.380, 걷기 기준 0.2)로 **걷는 관측**이다. 그래서 "
+             "`walking_values('lin_vel_z_l2')` 가 -1.75 를 빠뜨린다. v8 의 A046 사양이 적은 "
+             "`[-2.0, -1.75, -1.5]` 는 **관측으로서는 맞았고**, 틀린 것은 ① 표의 누락 ② 사양의 "
+             "`walk_margin` 공백 ③ A045/A046 계약이 `spec_problems` 를 부르지 않은 관문 공백이다. "
+             "v9 는 누락된 표에 사양을 맞춰 -1.75 를 **지웠다** — 정책 기각(INTERNAL_GATE_FAIL·"
+             "NO_CANONICAL_MERGE)을 관측 부재로 읽은 오류이며, v9 의 사전등록은 v8 보다 오히려 "
+             "관측을 줄여 적는다.",
         verbatim="base_data.terms.lin_vel_z_l2 != {... 'walking_values': [-2.0, -1.5] ...}; "
                  "base_data.walk_margin != {...}",
         source_checked="b.spec_problems(G-A046) 가 2건을 낸다. b.walking_values('lin_vel_z_l2') = "
@@ -1498,16 +1514,177 @@ DEFECTS: tuple[dict, ...] = (
         origin_fix="사전등록을 **손으로 적고 기계가 대조하지 않으면**, 기반 데이터가 움직일 때 "
                    "사양만 과거에 남는다. 같은 뿌리가 C-29 다 — 그쪽은 계약이 낡아 빨개졌고, "
                    "이쪽은 계약이 없어 조용했다. 빨간 것보다 조용한 쪽이 위험하다.",
-        resolution="미해결. 발행 ZIP 은 불변이므로 이 판을 고치지 않는다 — 다음 판(v9)에서 "
-                   "`base_data` 를 기반 데이터에서 생성하고, A045/A046 계약에 "
-                   "`spec_problems(SPEC) == []` 를 넣어 같은 일이 조용히 지나가지 않게 한다. "
-                   "그 전까지 v8 은 **실행 보류**다: 자를 대는 회차의 자가 과장돼 있으면 "
-                   "그 회차로 잰 값의 해석이 흔들린다.",
+        resolution="2026-09-25 쌍 v10(두 팔 v9)로 고쳤다. v8·v9 는 불변으로 history 에 남고 실행하지 않는다. "
+                   "① 표: `go2_stairs_behavior.WEIGHT_RUNS` 에 G-A044 를 넣었다 — 정책 판정(INTERNAL_GATE_FAIL, "
+                   "승급·병합 없음)은 주석과 판독문에 그대로 두고, 관측(rough_forward 0.379, 10cm 62, 15cm 39)만 "
+                   "수록한다. 다른 표 다섯은 바이트 불변. ② 재발 관문 둘: `weight_table_gaps()` 는 학습 env 와 "
+                   "rough_forward 3 seed 를 갖춘 회수 회차가 표에 없으면 실패하고(제외 목록은 칸이 실제로 빈 "
+                   "A041·A042 뿐이며 그것도 검사한다), `reward_specs()` 는 분류가 아니라 **보상을 바꾸는가**로 "
+                   "사양을 고른다 — `training_seed` 인 G-A046 과 `env_reward_weight` 인 G-A039 가 검사 밖이었다. "
+                   "③ 실행 사양 예외는 이름이 아니라 회수물 `meta/experiment.json` 의 SHA 로 고정했다(G-A043·G-A044). "
+                   "④ detectability 의 인용 면제를 자료 전체에서 **칸 단위 옛값→새값**으로 좁혔다(SNAPSHOT_DRIFT). "
+                   "⑤ A046 base_data 를 재생성해 `[-2.0, -1.75, -1.5]`, test_38 은 이제 -1.75 의 **존재**와 수록 "
+                   "관문을 함께 검사한다. v9 의 원인 판정(\"기각 = 관측 없음\")은 철회했다. "
+                   "서버 실행은 U2-SEED-REPLICATE-20260918 확인 뒤 사용자 결정이다."
+    ),
+    dict(
+        id="C-35", found_on="2026-09-25", found_by="v10 검증 중 영향 계약 17개를 HEAD 와 대조(git stash)하다가",
+        confidence="확인", severity="경미", status="OPEN",
+        # 사라지지 않는 사실을 묻는다: 15cm 두 단을 오른 로봇이 표에 있다(계약 test_3 은 0 을 단정한다).
+        repro="import csv;"
+              "r=csv.DictReader(open('workspace/training/quadruped/reports/evidence/"
+              "go2_stairs_behavior_20260916/STAIRS_CLIMB.csv',encoding='utf-8'));"
+              "print(sum(int(x['body_rise_ge2']) for x in r if x['case']=='stairs_15_down'))",
+        repro_expect="77",
+        where="tools/test_go2_stairs_behavior_contract.py test_3·test_5·test_6·test_7, "
+              "tools/test_go2_ang_vel_relax_audit_contract.py test_3, "
+              "tools/test_go2_claim_check_contract.py (12건).",
+        what="HEAD(e1268c9)에서 이미 빨간 검사 18건(계단 5·ang_vel 1·claim_check 12)이 원장에 없다 — v10 에서 계단 test_11 을 고쳐 17건이 남는다. 대부분 C-29 와 같은 모양 — 기획 시점의 "
+             "사실을 시점 없이 굳혀, 뒤 회차가 회수되자 스스로 깨졌다. ① 계단 test_3 「15cm 두 단을 오른 "
+             "정책은 없다」: A043 이 3 seed 합 77대로 반례. ② test_5 「선별 단계는 오르기를 잰 적이 없다」·"
+             "test_6 「학습 오차가 걷는 회차와 멈춘 회차를 가른다」(0.564 < 1.054)·test_7 「학습 로그 20개」"
+             "(실제 24): A041~A044 회수로 전제가 바뀜. ③ ang_vel test_3 「완화 값을 돌린 회차가 없다」: "
+             "A041(-0.04)이 생김 — 검사 스스로 '전제가 바뀐다' 고 적은 대로다. ④ claim_check 12건: 문서 다섯의 "
+             "근거 없는·검사 불가 숫자가 래칫 기준을 넘었다(원장 D-0 해소문은 13/13 통과로 적혀 있다). "
+             "**빨간 관문이 기록 없이 쌓이면 새 빨강이 묻힌다** — 이번에 v10 영향 판정을 HEAD 대조로만 가를 수 있었다.",
+        verbatim="AssertionError: 77 != 0 / 24 != 20 / 0.564 not greater than or equal to 1.054 / "
+                 "GO2_NOW.md 의 근거 없는 소수가 0 -> 9",
+        source_checked="같은 모듈을 HEAD(stash)와 작업본에서 클래스별로 실행해 실패 목록을 대조했다: 계단 5→4 "
+                       "(test_11 은 v10 에서 문서 §8-1b 정정과 함께 고침), ang_vel 1→1, claim_check 12→12. "
+                       "단 claim_check 의 검사 불가 숫자(소수 1~2자리)는 v10 편집으로 17개 늘었다 — 2026-09-26 "
+                       "HEAD 와 줄 단위 대조: 기반 데이터 106→113(A044 표 행의 가중치 칸 5개 + lin_vel_z 걷기 목록의 "
+                       "A044 값 두 칸 — 둘 다 생성 문서이고 문서=render() 와 CSV 재생성 대조가 귀속을 건다), 결함 원장 "
+                       "26→34(C-29·C-34·C-35 설명의 값 인용 — 후보 선택 입력이 아니고, 현재 목록은 repro 가 실행으로 "
+                       "확인한다), GO2_NOW 45→47(v10 설명의 A044 값 두 개 — 손으로 친 목록이라 A045 계약 test_38 이 "
+                       "발행 사양 값과 글자 대조하도록 새로 걸었다). 이 17개는 **claim_check 가 검사하지 못하는 숫자지만 별도 계약으로 "
+                       "검증된다** — claim_check 자체가 해결된 것은 아니다. NOW↔사양 대조는 전사 오류만 막고, 원자료의 "
+                       "정확성은 앞단(회수물→CSV→문서) 계약이 맡는다. 첫 보고의 '원장 26→30'·'G-A039·G-A046 행'은 "
+                       "세지 않고 적은 값이었다 — 정정. 래칫 기준은 건드리지 않았다.",
+        origin_fix="회차 계약은 그 회차의 세계를 검사한다(C-29). 회수가 세계를 바꾸면 계약은 깨져야 맞지만, "
+                   "깨진 뒤 **누가 읽고 무엇을 고쳤는지**가 원장에 없으면 빨강이 평상 상태가 된다.",
+        resolution="미해결. 단정을 사후에 무르지 않는다. 각 검사를 C-29 방식(당시 근거 고정 + 현재 관측 "
+                   "별도 검사)으로 가르고, 반례가 뜻하는 것을 해당 문서에 날짜 붙여 정정한다 — 특히 계단 test_3 의 "
+                   "반례(A043 15cm 두 단 77대)는 튜닝 판단에 쓰이는 관측이다. claim_check 는 늘어난 숫자에 근거를 "
+                   "붙이거나 진실 집합에 묶는다. v10 의 수집·판정 코드와는 무관하다(이 계약들은 러너·판독기를 읽지 않는다).",
+    ),
+    dict(
+        id="C-36", found_on="2026-09-25", found_by="v10 검증 뒤 작업본에 손대지 않은 증거 파일이 바뀌어 있어서",
+        confidence="확인", severity="중대", status="FIXED",
+        # 사라지지 않는 사실: 날짜 폴더가 다시 A033·A041 두 팔의 판독이고, 임시 폴더 흔적이 없다.
+        repro="import csv;E='workspace/training/quadruped/reports/evidence/go2_stall_diagnostics_20260921/';"
+              "rows=list(csv.DictReader(open(E+'STALL_DIAGNOSTICS.csv',encoding='utf-8')));"
+              "print(sorted({r['arm'] for r in rows}),"
+              "[r['stall_share'][:5] for r in rows if r['arm'].startswith('go2_g_a041') and r['case']=='stairs_10_down'],"
+              "'no_harvest' in open(E+'STALL_DIAGNOSTICS_PROVENANCE.json',encoding='utf-8').read())",
+        repro_expect="['go2_g_a033_a017_track_lin_vel_xy_150', 'go2_g_a041_a033_ang_vel_xy_m004'] "
+                     "['0.646', '0.725', '0.702'] False",
+        where="`tools/go2_stall_diagnostics.py` 의 `--out` 기본값(날짜 폴더 `reports/evidence/go2_stall_diagnostics_20260921/`) "
+              "· 그것을 `--out` 없이 부르는 발행 사양 A042~A044 의 판독 명령 · 그 명령을 없는 수확물로 실행하는 "
+              "`tools/test_go2_g_a044_package_contract.py` test_14.",
+        what="서버 학습·수집 경로와는 별개인 **로컬 판독 출력 결함**이다. 테스트와 실제 판독 양쪽에서 기존 증거를 "
+             "덮을 수 있었고, 커밋된 증거의 오염도 확인됐다. 명령 배선만 재려고 수확물 경로를 **없는 임시 폴더**로 "
+             "바꿔 실행하는 검사가, 그 명령의 기본 출력 위치인 A041 정체 판독 증거 폴더에 결과를 썼다. HEAD 에 커밋된 STALL_DIAGNOSTICS.csv 는 12행 중 6행이 "
+             "A041 대신 `CreatorTemp` 행(관측 0)이었다 — `GO2_PROJECT_STATE.md` 가 이 파일에 있다고 인용하는 A041 "
+             "10cm 정체비율 0.646·0.726·0.702 가 파일에 없었다. 같은 기본값 때문에 발행된 A042~A044 사양의 판독 "
+             "명령도 회차를 판독할 때마다 이 폴더를 덮는다.",
+        verbatim="CreatorTemp,stairs_10_down,101,0,32,0,32,False, / "
+                 "\"arm_path\": \"...CreatorTemp\tmpk60l491h\no_harvest\"",
+        source_checked="HEAD 의 세 파일과 A041 수확물(`_keep/go2_g_a041_a033_ang_vel_xy_m004/evaluation/candidate`)에서 "
+                       "재생성한 결과를 대조 — 기준선(A033) 행은 CSV·ENV 모두 바이트 동일, 달라진 것은 두 번째 팔뿐. "
+                       "처음 기록에서 A045 test_22 도 쓴다고 적었으나 그 명령(verify·screening_gate)은 출력하지 않는다 — 정정.",
+        origin_fix="배선만 재는 검사도 명령이 쓰는 **출력 위치**까지 격리해야 하고, 판독기의 기본 출력은 다른 회차의 "
+                   "증거가 아니라 **판독하는 회차 자신의 폴더**여야 한다.",
+        resolution="2026-09-25 수정. ① 판독기 기본 출력을 `reports/evidence/go2_stall_diagnostics/<회차>/` 로 바꿨다 — "
+                   "발행된(불변) A042~A044 사양의 명령을 그대로 쳐도 날짜 폴더를 덮지 않는다. ② A044 test_14·A045 test_22 가 "
+                   "`--out` 을 받는 판독기에 임시 `--out` 을 준다. ③ 두 검사가 실행 전후 `reports/` 전체의 SHA 를 대조한다. "
+                   "④ 날짜 폴더 세 파일을 A041 수확물에서 재생성해 복원했다(값은 인용과 일치). 복구 이력은 같은 폴더의 "
+                   "`RECOVERY_20260925.json` 에 있다 — 회수 ZIP·model SHA·입력 steps.csv SHA·재생성 명령·복구 전후 SHA. "
+                   "`tools/test_go2_stall_diagnostics_contract.py` RecoveredEvidenceContract 가 그 명령을 다시 돌려 같은 "
+                   "바이트가 나오는지 본다.",
+    ),
+    dict(
+        id="C-37", found_on="2026-09-27", found_by="A049 정본 판독문을 쓰고 detectability 관문을 돌리다가",
+        confidence="확인", severity="경미", status="FIXED",
+        # 사라지지 않는 사실: 발행·실행된 G-A050 v2 사양의 세 행 value 가 인용한 CSV 칸에 없다.
+        repro="import json;s=json.load(open('workspace/training/quadruped/config/experiments/G_A050_a033_lin_vel_z_m1375.json',encoding='utf-8'));"
+              "t=open('workspace/training/quadruped/reports/evidence/go2_axis_bottleneck_four_arms_20260927/AXIS_BOTTLENECK_FOUR_ARMS.csv',encoding='utf-8').read();"
+              "r=[x for x in s['inference']['rows']+s['inference']['contradicting'] if x['key'] in ('G-A043,-1.5,G3','G-A049,-1.0,G3','G-A043,-1.5,G2')];"
+              "print([(x['value'],x['value'] in x['cells'].values(),x['value'] in t) for x in r])",
+        repro_expect="[('7.41', False, True), ('4.59', False, False), ('4.58', False, True)]",
+        where="config/experiments/G_A050_a033_lin_vel_z_m1375.json 의 inference.rows·contradicting 세 행 — 그리고 그것을 "
+              "싣고 나간 발행본 GO2_G_A050_a033_lin_vel_z_m1375_full69_v2.zip(실행·회수 완료).",
+        what="메인 루프가 사양 생성 스크립트에서 축 점수를 반올림한 값(7.41·4.59·4.58)을 `value` 로 적었다. key·선택자·칸 "
+             "인용은 원자료와 맞지만 value 가 칸에 묶이지 않고, 4.59 는 CSV 에 글자 그대로도 없다(원값 4.5854). "
+             "tools/test_go2_detectability_gate.py test_2 가 잡는 결함인데, G-A050 계약 테스트와 발행 빌더는 그 관문을 "
+             "부르지 않아 발행 전에 드러나지 않았다. 채택·가설 판정과 러너·보상 바이트에는 영향이 없다 — 추론 기록의 인용 결함이다.",
+        verbatim="AssertionError: False is not true : G_A050_a033_lin_vel_z_m1375.json: legacy value is not bound to cited cells",
+        source_checked="AXIS_BOTTLENECK_FOUR_ARMS.csv 의 G-A043 G3 score_70·G-A049 G3·G-A043 G2 칸과 사양 세 행을 대조. "
+                       "나머지 인용 행은 test_2 를 통과한다.",
+        origin_fix="사양 생성 스크립트가 원자료를 **손으로 반올림해 옮겼고**, 인용 관문이 발행 경로에 걸려 있지 않았다. "
+                   "관문이 있어도 발행 전에 돌지 않으면 없는 것과 같다(C-34 와 같은 뿌리).",
+        resolution="2026-09-27 수정. ① 발행 빌더 `build_go2_full_collection_release.validate` 가 발행 전에 "
+                   "detectability 의 `_check_rows` 를 추론 행 전부에 돌린다(G-A048·A049·A050 통과 확인). "
+                   "② 실행된 G-A050 의 그 세 행만 value 검사를 면제한다(`UNBOUND_VALUE_EXECUTED`, 발행본 존재 확인). "
+                   "key·선택자·칸 대조는 그대로 한다. ③ test_19 가 같은 행을 다른 회차 이름으로 들고 오면 막히는지 본다. "
+                   "사양과 발행 ZIP 은 불변으로 둔다. "
+                   "보강(같은 날, Codex 검토): ②의 면제가 회차명·출처·행 키와 'history 에 ZIP 이 있다'에만 묶여, G-A050 이름을 "
+                   "유지한 채 값을 바꿔도 통과할 수 있었다. 이제 면제는 행 value 가 등록값(7.41·4.59·4.58)과 정확히 같고, 사양 "
+                   "바이트 SHA 가 실행된 사양 bfa1c12f…와 같고, 회수 사본 `_keep/.../meta/experiment.json` 도 같은 SHA 일 때만 "
+                   "성립한다(`C37_EXECUTED_SPEC`). test_20 이 같은 이름에서 value 변조와 사양 다른 바이트 변조를 둘 다 거부하는지 본다.",
+    ),
+    dict(
+        id="C-38", found_on="2026-09-27", found_by="G-A051 v1 발행 직후 detectability·정본 정합성 관문을 돌리다가",
+        confidence="확인", severity="경미", status="FIXED",
+        # 사라지지 않는 사실: history 에 보존된 v1 ZIP 안의 사양에는 reports/runs/ 를 인용한 추론 행이 없다.
+        repro="import zipfile,json;z=zipfile.ZipFile('workspace/training/quadruped/upload/G-A051/history/20260927_a048_ang_vel_xy_m006_full69_v1/GO2_G_A051_a048_ang_vel_xy_m006_full69_v1.zip');"
+              "s=json.loads(z.read([n for n in z.namelist() if n.endswith('/experiment.json')][0]));"
+              "print(any(r['source'].startswith('reports/runs/') for r in s['inference']['rows']))",
+        repro_expect="False",
+        where="upload/G-A051/history/20260927_a048_ang_vel_xy_m006_full69_v1 의 발행본(실행 전 v2 로 대체) — 그리고 그것을 통과시킨 "
+              "발행 빌더 tools/build_go2_full_collection_release.validate.",
+        what="G-A051 v1 사양이 test_go2_detectability_gate 의 test_12(추천 사양은 reports/runs/ 원장 행을 인용한다)와 test_14(사양의 "
+             "경로는 열 수 있어야 한다: 같은 이름이 셋인 FALL_CHANNELS.csv, ZIP 안 경로 reference/…)에 걸린 채 발행됐다. 발행 빌더는 C-37 "
+             "수정으로 인용 행 검사(_check_rows)만 돌렸고, 같은 관문 모듈의 사양 단위 검사와 정본 정합성 검사는 돌리지 않았다. "
+             "메인 루프도 발행 전에 두 모듈을 돌리지 않았다. 보상·문턱·러너·코드에는 영향이 없다 — 추론 기록의 형식 결함이다.",
+        verbatim="AssertionError: [] is not true : G_A051_a048_ang_vel_xy_m006.json: reports/runs/ 원장 자산을 인용한 행이 없다",
+        source_checked="v1 ZIP 의 experiment.json 과 test_12·test_14 실패 원문을 대조. v2 사양은 같은 관문을 통과한다.",
+        origin_fix="C-37 의 수정이 관문의 **일부**(인용 행)만 발행 경로에 걸었다. 관문을 발행 경로에 걸 때는 그 사양이 나중에 받을 "
+                   "검사 전부를 걸어야 한다(C-34·C-37 과 같은 뿌리 — 돌지 않는 관문은 없는 관문이다).",
+        resolution="2026-09-27 수정. `build_go2_full_collection_release.validate` 가 발행 전에 detectability 와 정본 정합성 모듈 전체를 "
+                   "돌리고, 이 사양 파일 이름이 붙은 실패가 하나라도 있으면 발행을 거부한다(다른 사양의 기존 실패는 막지 않는다). "
+                   "새 관문은 v2 생성 중 남아 있던 네 번째 경로 표기를 실제로 잡았다. A049·A050 은 같은 관문 아래에서 SHA 그대로 "
+                   "재빌드된다. v1 은 history 에 불변 보존, 서버에 올린 적 없다.",
+    ),
+    dict(
+        id="C-39", found_on="2026-09-28", found_by="Codex 의 G-A052 진단 판독(DIAGNOSTIC_ANALYSIS.md §5)",
+        confidence="확인", severity="경미", status="OPEN",
+        # 사라지지 않는 사실: 저장된 A052 15cm 재생에서 전 기록과 첫 episode 만 본 fall_channel 이 세 로봇에서 다르다.
+        repro="import sys;sys.path.insert(0,'tools');import go2_failure_events as fe;from pathlib import Path;"
+              "E=fe.load(Path('workspace/_keep/go2_g_a052_a048_diag_replay/diag/cases/seed_101/stairs_15_down/steps.csv'));"
+              "print([e for e,r in sorted(E.items()) if fe.classify(r)['channel']!=fe.classify(r[:next((i for i,x in enumerate(r) "
+              "if x['term'] or x['trunc']),len(r))+1])['channel']])",
+        repro_expect="[12, 21, 23]",
+        where="tools/go2_failure_events.classify(와 그것이 맞춘 tools/go2_next_lever_evidence.channels) — fall_channel 열. "
+              "EVENTS.csv(1단계)·EVENTS_DIAG.csv(G-A052)·FALL_CHANNELS.csv 가 같은 정의를 쓴다.",
+        what="낙상 경로 이름(height_only·tilt_only·both·terminated_only)을 정하는 타이머가 첫 종료·reset 뒤의 다음 episode 행까지 "
+             "계속 돈다. 종료로 넘어진 로봇이 reset 뒤 새 episode 에서 자세 불량을 보이면 그 채널이 이름에 섞인다. 낙상 여부·낙상 수, "
+             "사건 시각·창·event_order·order 는 첫 episode 로 정해지므로 영향이 없다 — 이름만 틀린다. "
+             "저장 자료에서 A048 험지 옆걸음은 0대(1단계 세 무리 4·7·5 불변), A033 8대·A038 2대, A052 15cm 3대가 다르다.",
+        verbatim="15cm env12/21/23 은 원 출력 height_only지만 첫 episode만 보면 terminated_only",
+        source_checked="메인 루프가 저장 steps.csv 로 전 기록/첫 episode 분류를 다시 계산해 위 수를 확인했다(2026-09-28).",
+        origin_fix="FALL_CHANNELS.csv 합계와 맞추려고 channels() 의 타이머를 그대로 옮겼다(1단계 도구 머리말: '종료 뒤에도 타이머를 끊지 "
+                   "않는 점까지 같게 한다'). 대조를 위해 결함까지 복제했다.",
+        resolution="미수정. 고치면 FALL_CHANNELS.csv 와의 합계 대조가 깨지므로, 수정은 두 도구를 함께 첫 episode 기준으로 바꾸고 증거를 "
+                   "재생성하는 작업이다. 그 전까지 fall_channel 은 첫 episode 저고도 실패의 증거로 쓰지 않고 event_order·order 를 쓴다.",
     ),
 )
 
 
 FIGURES: tuple[tuple[str, str, str], ...] = (
+    ("C-35", "1.054", "계단 계약 단정이 요구한 하한 — HEAD 실행의 AssertionError 원문"),
+    ("C-36", "0.646214", "A041 stairs_10_down seed 101 stall_share — 복원한 STALL_DIAGNOSTICS.csv 칸"),
+    ("C-36", "0.725839", "A041 stairs_10_down seed 202 stall_share — 같은 표"),
+    ("C-36", "0.702282", "A041 stairs_10_down seed 303 stall_share — 같은 표"),
     ("X-1", "34298008", "HEAD 의 발행 ZIP 바이트 수"),
     ("X-1", "34298254", "현재 파일의 바이트 수"),
     ("S-2", "4", "stairs_15_climb_ge1 의 baseline_sum"),

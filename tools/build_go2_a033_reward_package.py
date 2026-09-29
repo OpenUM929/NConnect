@@ -62,7 +62,34 @@ SPECS = {"G-A037": EXPERIMENTS / "G_A037_a033_lin_vel_z_m1.json",
          # and the plan screening edition post_a043_push4_v1 guards all four G6 push directions
          # (plan section 6).  Both come from G-A043's readout: its decisive loss sat outside the
          # 23-case stage 1 and was only visible after the full suite ran (defect C-11).
-         "G-A044": EXPERIMENTS / "G_A044_a033_lin_vel_z_m175.json"}
+         "G-A044": EXPERIMENTS / "G_A044_a033_lin_vel_z_m175.json",
+         # 2026-09-26: flat_orientation_l2 0.0 -> -0.5 on G-A033, the G3 rough-terrain survival question
+         # (upload/plan/GO2_G_A047_PLAN_20260926.md).  Same value as the never-published G-A040, rebuilt on
+         # the ledger after G-A041..G-A046 under a new number; same full-69 single-stage contract as G-A044,
+         # judged by fact_rules_v1 alone because the stairs-improvement plan screening does not fit a G3 arm.
+         "G-A047": EXPERIMENTS / "G_A047_a033_flat_orientation_m05.json",
+         # 2026-09-26: lin_vel_z_l2 -2.0 -> -1.25, the branch the plan takes while U2 is unanswered
+         # (upload/plan/GO2_A043_YAW_RIGHT_AND_NEXT_20260926.md section 4).  One 0.25 interval beyond the three
+         # measured walking values; G-A044's full-69 contract and adoption thresholds unchanged, plus a separate
+         # preregistered hypothesis readout (tools/go2_dial_hypothesis.py) that gates nothing.
+         "G-A048": EXPERIMENTS / "G_A048_a033_lin_vel_z_m125.json",
+         # 2026-09-27: lin_vel_z_l2 -2.0 -> -1.0, branch B of upload/plan/GO2_NEXT_CANDIDATE_20260927.md (user
+         # decision G-D-BRANCH-B-20260927 while U2 is unanswered).  One interval beyond the four measured walking
+         # values; G-A048's full-69 contract and fact_rules_v1 thresholds, the plan screening edition
+         # post_a048_guard_margin_v1 preregistered on 2026-09-26, and a separate hypothesis readout.
+         "G-A049": EXPERIMENTS / "G_A049_a033_lin_vel_z_m1.json",
+         "G-A050": EXPERIMENTS / "G_A050_a033_lin_vel_z_m1375.json",
+         # 2026-09-27: ang_vel_xy_l2 -0.05 -> -0.06 on G-A048's rewards (Codex candidate selection relayed by the
+         # user, upload/plan/GO2_G_A051_PLAN_20260927.md).  The first arm whose REWARD base is not G-A033: the one
+         # change is read against G-A048's trained rewards (`reward_base`), while adoption is still judged
+         # against the stored G-A033 arm with fact_rules_v1 + g3_guard_margin_v1 unchanged.
+         "G-A051": EXPERIMENTS / "G_A051_a048_ang_vel_xy_m006.json",
+         # 2026-09-28: G-A048 보상 위 dof_acc_l2 -2.5e-7 -> -3.0e-7.  보상 기준(reward_base)과 목록 밖 항
+         # (env_reward_weight)을 함께 쓰는 첫 회차다 — 열린 결정 U1 은 사용자 승인 G-D-U1-APPROVED-20260928.
+         "G-A053": EXPERIMENTS / "G_A053_a048_dof_acc_m3e7.json",
+         # 2026-09-29: G-A043 보상 위 ang_vel_xy_l2 -0.05 -> -0.08(사전등록 upload/plan/GO2_G_A055_PLAN_20260928.md,
+         # Codex 후보 선택).  보상 기준이 A043 인 첫 회차.  조건부 준비·실행 미승인 — G-A056 판독 뒤 Codex 가 정한다.
+         "G-A055": EXPERIMENTS / "G_A055_a043_ang_vel_xy_m008.json"}
 # 2026-09-18: a reward term that is NOT one of the six names in the deployed REWARD_WEIGHTS list.
 # go2_tuning_config.REWARD_NAMES is read-only and holds those six, so such an arm cannot be rendered
 # by replacing a number; it adds one line to the deployed dict.  go2_task/env_cfg.py applies any name
@@ -159,9 +186,86 @@ DERIVATION = {
                 MECHANISM / "PROBE_SITUATIONS.csv"),
                {"track_lin_vel_xy_exp", "flat_orientation_l2", "ang_vel_xy_l2", "feet_air_time",
                 "action_rate_l2", "dof_acc_l2"}),
+    # G-A047 carries G-A040's evidence (fall-channel split, tilt values, situation grid) and must also say
+    # why every other deployed lever stayed put, including track_ang_vel_z_exp, which the 2026-09-26
+    # candidate comparison computed and set aside.
+    "G-A047": (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+               (GO2 / "reports/evidence/go2_a038_reread_20260919/FALL_CHANNEL_ROLLUP.csv",
+                GO2 / "reports/evidence/go2_a038_reread_20260919/ROUGH_LATERAL_ROLLUP.csv",
+                MECHANISM / "TILT.csv", MECHANISM / "SITUATIONS.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+               {"lin_vel_z_l2", "ang_vel_xy_l2", "track_lin_vel_xy_exp", "feet_air_time",
+                "action_rate_l2", "dof_acc_l2", "track_ang_vel_z_exp"}),
+    # G-A048 rests on the three measured points of its own dial (DIAL_THREE_POINTS.csv), the split of G-A043's
+    # combined-turn loss (YAW_SUMMARY.csv) and the probe grid extended to -1.25 on 2026-09-26.
+    "G-A048": (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+               (GO2 / "reports/evidence/go2_seed_pair_20260924/DIAL_THREE_POINTS.csv",
+                GO2 / "reports/evidence/go2_a043_yaw_right_20260926/YAW_SUMMARY.csv",
+                MECHANISM / "PROBES.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+               {"track_lin_vel_xy_exp", "flat_orientation_l2", "ang_vel_xy_l2", "feet_air_time",
+                "action_rate_l2", "dof_acc_l2", "track_ang_vel_z_exp"}),
+    # G-A049 rests on the four measured points of its own dial (DIAL_FOUR_POINTS.csv, MONOTONICITY_FOUR.csv) and
+    # the -1.25 forecast check; the probe grid already holds -1.0.
+    "G-A049": (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+               (GO2 / "reports/evidence/go2_g_a048_readout_20260926/DIAL_FOUR_POINTS.csv",
+                GO2 / "reports/evidence/go2_g_a048_readout_20260926/MONOTONICITY_FOUR.csv",
+                GO2 / "reports/evidence/go2_g_a048_readout_20260926/FORECAST_CHECK.csv",
+                MECHANISM / "PROBES.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+               {"track_lin_vel_xy_exp", "flat_orientation_l2", "ang_vel_xy_l2", "feet_air_time",
+                "action_rate_l2", "dof_acc_l2", "track_ang_vel_z_exp"}),
 }
+# 2026-09-27 (G-D-G3-FIRST-20260927): G3 표적 회차.  값은 이 다이얼에서 험지 옆걸음을 함께 올린 두 측정점
+# (-1.5, -1.25) 사이이고, 표적은 채점식 재계산(축 = case·seed 최솟값)으로 고른다.
+DERIVATION["G-A050"] = (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+    (GO2 / "reports/evidence/go2_axis_bottleneck_four_arms_20260927/AXIS_BOTTLENECK_FOUR_ARMS.csv",
+     GO2 / "reports/evidence/go2_g_a048_readout_20260926/DIAL_FOUR_POINTS.csv",
+     GO2 / "reports/evidence/go2_g_a048_readout_20260926/MONOTONICITY_FOUR.csv",
+     ROOT / "workspace/server_returns/G-A049_REVIEW_20260927/harvest_verification.json",
+     MECHANISM / "PROBES.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+    DERIVATION["G-A049"][2])
+# 2026-09-27 (G-A051): A048 보상 위의 한 항 변경.  근거는 같은 항을 G-A033 위에서 강화한 G-A038(험지 옆걸음·10cm
+# 오르기 원자료)과 A048 자신의 험지 옆걸음 낙상 경로, 그리고 지형 레벨 지연 기록이다.
+DERIVATION["G-A051"] = (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+    (GO2 / "reports/GO2_G_A038_READOUT.md",
+     GO2 / "reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv",
+     GO2 / "reports/evidence/go2_next_lever_20260927/FALL_CHANNELS.csv",
+     GO2 / "reports/evidence/go2_next_lever_20260927/AXIS.csv",
+     MECHANISM / "PROBES.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+    {"track_lin_vel_xy_exp", "flat_orientation_l2", "lin_vel_z_l2", "feet_air_time",
+     "action_rate_l2", "dof_acc_l2", "max_iterations", "training_seed"})
+# 2026-09-28 (G-A053): A048 보상 위 목록 밖 항 한 줄 추가.  근거는 G-A052 진단 재생의 실패 전 비용 시점
+# (COST_PHASES.csv·CASE_COST_SUMMARY.csv)과 기전 문서의 걷기 margin 기여(RUN_MARGIN.csv)다.
+DERIVATION["G-A053"] = (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+    (GO2 / "reports/GO2_G_A052_DIAG_READOUT_20260928.md",
+     GO2 / "reports/evidence/go2_g_a052_diag_20260928/COST_PHASES.csv",
+     GO2 / "reports/evidence/go2_g_a052_diag_20260928/CASE_COST_SUMMARY.csv",
+     GO2 / "reports/evidence/go2_g_a052_diag_20260928/TORQUE_BY_HEIGHT.csv",
+     MECHANISM / "RUN_MARGIN.csv"),
+    {"action_rate_l2", "dof_torques_l2", "ang_vel_xy_l2", "feet_air_time", "lin_vel_z_l2",
+     "track_lin_vel_xy_exp", "flat_orientation_l2", "max_iterations", "training_seed"})
+# 2026-09-29 (G-A055): A043 보상 위 ang_vel_xy_l2 -0.05 -> -0.08.  근거는 G-A038 판독(A033 위 같은 값), 기존 사건·case 표,
+# A043 감점 분해와 기울어짐 시작 분석, 기전 문서다.  조건부 준비·실행 미승인.
+DERIVATION["G-A055"] = (("source", "role", "walk_margin", "situations", "rule", "not_claimed"),
+    (GO2 / "reports/GO2_G_A038_READOUT.md",
+     GO2 / "reports/GO2_A043_DEDUCTIONS_20260928.md",
+     GO2 / "reports/GO2_A043_TILT_ONSET_20260928.md",
+     GO2 / "reports/evidence/go2_next_lever_20260927/CASE_ROWS.csv",
+     GO2 / "reports/evidence/go2_next_lever_20260927/FALL_CHANNELS.csv",
+     GO2 / "reports/evidence/go2_a043_tilt_onset_20260928/SUMMARY.csv",
+     MECHANISM / "PROBES.csv", MECHANISM / "PROBE_SITUATIONS.csv"),
+    {"track_lin_vel_xy_exp", "flat_orientation_l2", "lin_vel_z_l2", "feet_air_time",
+     "action_rate_l2", "dof_acc_l2", "max_iterations", "training_seed"})
 sha = length.sha
 prefix = length.prefix
+
+
+def reward_base(spec: dict) -> dict | None:
+    """The trained reward set the single change is applied to, when it is not the adoption baseline's.
+
+    None for every arm before G-A051: their one change is read against G-A033 itself, and their bytes
+    must not move.  G-A051 changes one weight of G-A048's rewards; G-A048's rewards differ from G-A033's
+    in its own single change, so the candidate differs from G-A033 in exactly those two weights.
+    """
+    return spec.get("reward_base") or None
 
 
 def targets(spec: dict) -> list[str]:
@@ -197,7 +301,23 @@ def validate_spec(spec: dict) -> None:
     base, cand_rewards = spec["rewards"]["baseline"], spec["rewards"]["candidate"]
     need(tuple(base) == REWARD_NAMES and tuple(cand_rewards) == REWARD_NAMES,
          f"reward keys/order must be {REWARD_NAMES}")
-    changed = [name for name in REWARD_NAMES if float(base[name]) != float(cand_rewards[name])]
+    rbase = reward_base(spec)
+    ref = base
+    if rbase is not None:
+        # The reward base is a trained arm's rewards, read from the source file that arm trained with.
+        ref = rbase["rewards"]
+        need(tuple(ref) == REWARD_NAMES, f"reward_base keys/order must be {REWARD_NAMES}")
+        trained_base = ROOT / rbase["trained_source"]
+        need(trained_base.is_file() and reward_dict(trained_base.read_text(encoding="utf-8")) == ref,
+             "reward_base.rewards must be the rewards the reward-base arm was trained with")
+        own = rbase["change"]
+        moved = [name for name in REWARD_NAMES if float(base[name]) != float(ref[name])]
+        need(moved == [own["name"]] and float(base[own["name"]]) == float(own["from"])
+             and float(ref[own["name"]]) == float(own["to"]),
+             f"reward_base must differ from the adoption baseline in its own single change only, got {moved}")
+        # 2026-09-28 (G-A053): 보상 기준 위에서 목록 밖 항 하나를 더하는 회차도 허용한다.  그때 목록 6개는
+        # 보상 기준 값 그대로여야 한다 — 아래 env 분기의 `changed == []` 가 ref(= 보상 기준)로 그것을 잰다.
+    changed = [name for name in REWARD_NAMES if float(ref[name]) != float(cand_rewards[name])]
     single = spec["single_change"]
     if spec["change_class"] == ENV_REWARD_CLASS:
         # The six listed names do not move; exactly one env term outside the list does.  Its baseline
@@ -215,7 +335,7 @@ def validate_spec(spec: dict) -> None:
              "single_change.applied_by must name the env override path that applies the weight")
     else:
         need(changed == [single["name"]], f"exactly the single_change reward must differ, got {changed}")
-        need(float(base[single["name"]]) == float(single["from"]) and float(cand_rewards[single["name"]]) == float(single["to"]),
+        need(float(ref[single["name"]]) == float(single["from"]) and float(cand_rewards[single["name"]]) == float(single["to"]),
              "single_change from/to must match the reward table")
 
     # The baseline rewards are G-A033's, read from the file it was trained with -- not typed here.
@@ -352,7 +472,8 @@ def rendered_rewards(spec: dict) -> tuple[str, str]:
     """Render candidate and reference reward files; they differ in the single_change line only."""
     template = (GO2 / "quadruped_rewards.py").read_text(encoding="utf-8")
     candidate = render_reward_source(template, spec["rewards"]["candidate"])
-    reference = render_reward_source(template, spec["rewards"]["baseline"])
+    rbase = reward_base(spec)
+    reference = render_reward_source(template, rbase["rewards"] if rbase else spec["rewards"]["baseline"])
     if spec["change_class"] == ENV_REWARD_CLASS:
         single = spec["single_change"]
         candidate = add_env_reward_line(candidate, single["name"], float(single["to"]))
@@ -361,7 +482,8 @@ def rendered_rewards(spec: dict) -> tuple[str, str]:
         if len(weight_lines) != 1 or f'"{single["name"]}"' not in weight_lines[0]:
             raise RuntimeError(f"exactly one weight line may be added, got {weight_lines}")
         expected = {**spec["rewards"]["candidate"], single["name"]: float(single["to"])}
-        if reward_dict(candidate) != expected or reward_dict(reference) != spec["rewards"]["baseline"]:
+        reference_expected = rbase["rewards"] if rbase else spec["rewards"]["baseline"]
+        if reward_dict(candidate) != expected or reward_dict(reference) != reference_expected:
             raise RuntimeError("rendered reward files do not read back as the spec")
         return candidate, reference
     differing = [(a, b) for a, b in zip(reference.splitlines(), candidate.splitlines()) if a != b]
@@ -371,7 +493,18 @@ def rendered_rewards(spec: dict) -> tuple[str, str]:
         raise RuntimeError(f"rendered reward files must differ in the {name} line only: {differing}")
     if reward_dict(candidate) != spec["rewards"]["candidate"]:
         raise RuntimeError("rendered reward file does not read back as the spec")
+    if rbase and reward_dict(reference) != rbase["rewards"]:
+        raise RuntimeError("rendered reward-base file does not read back as reward_base.rewards")
     return candidate, reference
+
+
+def adoption_reference(spec: dict) -> str:
+    """The adoption baseline's (G-A033's) reward file, used beside a reward-base reference."""
+    template = (GO2 / "quadruped_rewards.py").read_text(encoding="utf-8")
+    text = render_reward_source(template, spec["rewards"]["baseline"])
+    if reward_dict(text) != spec["rewards"]["baseline"]:
+        raise RuntimeError("rendered adoption-baseline file does not read back as rewards.baseline")
+    return text
 
 
 def run_config(spec: dict) -> str:
@@ -381,7 +514,9 @@ def run_config(spec: dict) -> str:
                         f"from {SPECS[spec['work_id']].name}; do not edit")
     text += "TARGET_CASES=(" + " ".join(shlex.quote(item) for item in targets(spec)) + ")\n"
     text += f"EVAL_CHECKPOINT_ITER={int(spec['evaluation']['checkpoint_iter'])}\n"
-    if spec['preregistered'].get('plan_screening'):
+    # 2026-09-26 (G-A047): 계획 screening 이 없는 전수 수집 회차도 정지 정책의 필수 수집을 남긴다.
+    # 발행된 회차는 둘 다 screening 을 가지므로 바이트는 그대로다.
+    if spec['preregistered'].get('plan_screening') or length.collection_mode(spec) == length.FULL_COLLECTION:
         text += "COLLECT_REQUIRED_ON_STATIONARY=1\n"
     # 전수 수집 회차는 1단계 분기를 쓰지 않는다.  러너는 `run_config.env` 를 **읽은 뒤** STAGE 를
     # 정하므로(`STAGE=${GO2_STAGE:-target}` 이 source 다음 줄에 온다), 여기서 쓰면 명령줄 선택이
@@ -415,6 +550,12 @@ def build_payload(spec: dict) -> dict[str, bytes]:
         for path in a030.source_files():
             payload[f"{role}/{path.relative_to(GO2).as_posix()}"] = path.read_bytes()
     payload["candidate/quadruped_rewards.py"] = candidate_rewards.encode("utf-8")
+    if reward_base(spec):
+        # G-A051: the runner diffs reference/baseline_quadruped_rewards.py against the trained file and keeps
+        # it as training/reward_only.diff.  That reference stays the adoption baseline (G-A033), so the
+        # recorded diff honestly shows both moved weights; the one-line diff lives beside it.
+        payload["reference/reward_base_quadruped_rewards.py"] = reference_rewards.encode("utf-8")
+        reference_rewards = adoption_reference(spec)
     payload["reference/baseline_quadruped_rewards.py"] = reference_rewards.encode("utf-8")
     # 결함 C-8 (2026-09-21 검토): 위 루프가 `baseline/` 에도 **작업본** 파일을 그대로 싣는다.
     # 학습에는 쓰이지 않지만(기준선은 SHA 고정 model/env 재생이다) 패키지를 열어 보는 사람에게는
@@ -430,7 +571,12 @@ def build_payload(spec: dict) -> dict[str, bytes]:
     payload[spec["runner"]] = runner
     payload["run_config.env"] = run_config(spec).encode("utf-8")
     payload["experiment.json"] = SPECS[spec["work_id"]].read_bytes()
-    payload["expected_rewards.json"] = (json.dumps(spec["rewards"], indent=2) + "\n").encode("utf-8")
+    expected = spec["rewards"]
+    if reward_base(spec) and spec["change_class"] == ENV_REWARD_CLASS:
+        # G-A053: 서버의 env-rewards 검사(candidate_suite_checks.py)는 `candidate` 키만 대조한다.  목록 밖 항을
+        # 그 키에 넣어야 학습 env.yaml 에 그 값이 실제로 걸렸는지 서버가 확인한다.  이전 회차의 바이트는 그대로다.
+        expected = {**expected, "candidate": {**expected["candidate"], **expected["candidate_env_extra"]}}
+    payload["expected_rewards.json"] = (json.dumps(expected, indent=2) + "\n").encode("utf-8")
     payload["README.txt"] = readme(spec).encode("utf-8")
     checksums = "".join(f"{sha(data)}  {name}\n" for name, data in sorted(payload.items()))
     payload["PACKAGE_SHA256SUMS.txt"] = checksums.encode("utf-8")
@@ -439,13 +585,27 @@ def build_payload(spec: dict) -> dict[str, bytes]:
 
 def readme(spec: dict) -> str:
     out, evaluation, single = spec["output"], spec["evaluation"], spec["single_change"]
-    title = f"GO2 {spec['work_id']} REWARD CHANGE ON G-A033 — {single['name']} {single['from']} -> {single['to']}"
+    rbase = reward_base(spec)
+    on = f"{rbase['name']} REWARDS" if rbase else "G-A033"
+    title = f"GO2 {spec['work_id']} REWARD CHANGE ON {on} — {single['name']} {single['from']} -> {single['to']}"
     why = "\n".join("  " + line for line in spec["why"])
     derivation = "\n".join(f"  {key}: {value}" for key, value in spec["value_derivation"].items())
     rejected = "\n".join(f"  {key}: {value}" for key, value in spec["rejected_alternatives"].items())
     videos = "\n".join(f"  {entry:26s} {spec['videos']['reasons'][entry]}" for entry in spec["videos"]["candidate"])
     limits = ", ".join(f"{k} {v}" for k, v in spec["preregistered"]["max_scenario_weighted_loss_70_by_scenario"].items())
     root = out["package_root"]
+    if rbase:
+        own = rbase["change"]
+        changes = (f"  Exactly one reward weight on {rbase['name']}'s trained rewards: {single['name']} {single['from']} -> {single['to']}.\n"
+                   f"  candidate/quadruped_rewards.py and reference/reward_base_quadruped_rewards.py differ in that line only.\n"
+                   f"  Against the adoption baseline G-A033 two weights differ: {own['name']} {own['from']} -> {own['to']}\n"
+                   f"  ({rbase['name']}'s own change) and this one; reference/baseline_quadruped_rewards.py is G-A033's.\n"
+                   f"  Effects are read as candidate - {rbase['name']}; adoption is judged against G-A033.\n"
+                   f"  Training length, seed and env count are G-A033's (and {rbase['name']}'s).\n")
+    else:
+        changes = (f"  Exactly one reward weight: {single['name']} {single['from']} -> {single['to']}.\n"
+                   f"  candidate/quadruped_rewards.py and reference/baseline_quadruped_rewards.py differ in that line only.\n"
+                   f"  Training length, seed, env count and every other weight are G-A033's.\n")
     # 전수 수집 회차는 campaign 껍데기를 쓰지 않는다 — 1단계도 게이트도 없으므로 이 ZIP 하나가 곧
     # 실행 단위다.  그 회차의 README 는 "혼자 돌리지 마라" 대신 실제 한 줄을 적는다.
     how = ("This package TRAINS one policy and then measures it.  status: %s.\n"
@@ -464,10 +624,7 @@ def readme(spec: dict) -> str:
 
 {how}
 WHAT CHANGES
-  Exactly one reward weight: {single['name']} {single['from']} -> {single['to']}.
-  candidate/quadruped_rewards.py and reference/baseline_quadruped_rewards.py differ in that line only.
-  Training length, seed, env count and every other weight are G-A033's.
-
+{changes}
 WHY (analysis {Path(spec['plan']).name})
 {why}
 

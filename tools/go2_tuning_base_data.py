@@ -18,6 +18,7 @@ from __future__ import annotations
 import ast
 import collections
 import csv
+import hashlib
 import json
 import math
 import re
@@ -40,7 +41,15 @@ SHORT = {"track_lin_vel_xy_exp": "track", "lin_vel_z_l2": "lin_vel_z", "ang_vel_
 
 # 걷는 회차 = 험지 전진 속도가 이 값 이상.  표에서 걷는 회차(0.242 이상)와 멈춘 회차(0.110 이하)
 # 사이가 비어 있어 경계를 어디에 둬도 분류가 같다.
+# 2026-09-26 (G-A047): 그 빈 구간에 처음으로 행이 들어왔다 — A047 험지 속도 0.191.  정지 판정기는
+# POLICY_LOCOMOTES 였고 평지 전진 속도는 0.730 이라 "정지" 가 아니다.  경계(0.2)는 옮기지 않는다
+# (걷는 관측값 집합이 결과를 본 뒤 바뀌면 안 된다).  대신 이동은 했지만 이 경계 아래인 행을 "저속 구간" 으로
+# 따로 적는다 — 관측 범위의 이름이지 "이전보다 느려졌다" 는 변화 판정이 아니고, 생존·보행 성공·정지 정책
+# 판정과도 다르다(2026-09-26 검토 정정: 처음 붙인 이름 "감속" 은 변화를 증명하는 것처럼 읽혔다).
+# 저속 구간과 정지의 경계는 계단 표 관문이 이미 쓰는 이동 기준 0.1 이다
+# (`tools/test_go2_stairs_behavior_contract.py` test_11).
 WALK_SPEED = 0.2
+STOP_SPEED = 0.1
 
 # 가중치 표 회차 → 옆걸음 표 (run, arm).  옆걸음을 잰 회차만 있다.
 LATERAL_OF = {
@@ -191,6 +200,16 @@ def walking(row: dict[str, str]) -> bool:
     return bool(speed) and float(speed) >= WALK_SPEED
 
 
+def motion(row: dict[str, str]) -> str:
+    """표의 이동 분류(험지 전진 속도의 관측 범위): 걷기 / 저속 구간(STOP_SPEED 이상 WALK_SPEED 미만) / 정지 / 미측정."""
+    speed = (row.get("rough_forward_speed") or "").strip()
+    if not speed:
+        return "미측정"
+    if float(speed) >= WALK_SPEED:
+        return "걷기"
+    return "저속 구간" if float(speed) >= STOP_SPEED else "정지"
+
+
 def lateral(run: str, arm: str, case: str = "rough_lateral") -> dict[str, str]:
     return next(r for r in read("LATERAL_BEHAVIOR.csv") if (r["run"], r["arm"], r["case"]) == (run, arm, case))
 
@@ -252,7 +271,33 @@ def expected_base_data(spec: dict) -> dict:
 # 그래서 이 목록의 사양은 '자기 항의 관측 위치' 한 가지만 어긋나는 것을 허용하고, 역할·값·다른 항·
 # margin 은 그대로 검사한다.  미실행 사양은 여기에 들어갈 수 없다 — 들어가려면 사람이 이 줄을 고쳐야
 # 하고, 그 순간 검토에 걸린다.  (2026-09-22, 결함 C-12)
-EXECUTED_SPECS = {"G-A043"}
+# 2026-09-25 (결함 C-34): 이름만으로 예외를 주지 않는다.  실행된 사양의 **바이트**를 고정한다 — 서버가
+# 돌려보낸 회수물의 `meta/experiment.json` SHA-256 과 그 경로.  사양 파일이 한 바이트라도 달라지면
+# (= 실행된 그 사양이 아니면) 예외가 사라지고 최신 기반 데이터 검사를 그대로 받는다.
+EXECUTED_SPECS = {
+    "G-A043": ("d64ecb667c0eb331ae4b69459fb47f811219e7cf8f0b41a66e117f27df9eb867",
+               "workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/meta/experiment.json"),
+    "G-A044": ("2729111b8a223c214785bf9e33ae3b4f7da5d7ef8bf5291984879239c9ba0584",
+               "workspace/_keep/go2_g_a044_a033_lin_vel_z_m175/meta/experiment.json"),
+    "G-A047": ("0e1e0ab0db817715d495bcefbca0dd787b3d9c5413a4e07c1567d967ac1bfd1c",
+               "workspace/_keep/go2_g_a047_a033_flat_orientation_m05/meta/experiment.json"),
+    "G-A048": ("1a3524e94d034db0f637ecdce591939ba1eb9319b6f74a4d1b4618cc4a38fc22",
+               "workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/meta/experiment.json"),
+    "G-A049": ("f5d633fb4a579835b11a1fdf0214f728f9532d1c45ebddda59a2a34e3ef294cb",
+               "workspace/_keep/go2_g_a049_a033_lin_vel_z_m1/meta/experiment.json"),
+    "G-A050": ("bfa1c12ffafc9a601df192b0aec97a6bf7daab04512c6171946318ae4c54dd4d",
+               "workspace/_keep/go2_g_a050_a033_lin_vel_z_m1375/meta/experiment.json"),
+}
+
+
+def spec_bytes(spec: dict) -> bytes:
+    """사양 JSON 의 저장 형식(사양 빌더·발행 ZIP 과 같다)."""
+    return (json.dumps(spec, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
+
+def is_executed_spec(spec: dict) -> bool:
+    pinned = EXECUTED_SPECS.get(spec.get("work_id"))
+    return bool(pinned) and hashlib.sha256(spec_bytes(spec)).hexdigest() == pinned[0]
 # 관측 위치만 움직였는가.  값·역할이 다르면 스냅샷 예외를 주지 않는다.
 _RANGE_KEYS = ("walking_values", "status")
 
@@ -275,7 +320,7 @@ def spec_problems(spec: dict) -> list[str]:
     expected = expected_base_data(spec)
     if declared.get("source") != expected["source"]:
         problems.append("base_data.source")
-    published = spec.get("work_id") in EXECUTED_SPECS
+    published = is_executed_spec(spec)
     for term, want in expected["terms"].items():
         got = (declared.get("terms") or {}).get(term)
         if published and isinstance(got, dict) and _only_own_range_shift(got, want):
@@ -298,7 +343,10 @@ def reward_specs() -> list[tuple[Path, dict]]:
     out = []
     for path in sorted(EXPERIMENTS.glob("G_A*.json")):
         spec = json.loads(path.read_text(encoding="utf-8"))
-        if spec.get("change_class") == "reward_weight":
+        # 2026-09-25 (결함 C-34): 분류가 아니라 **보상을 바꾸는가**로 고른다.  `training_seed` 인
+        # G-A046 과 `env_reward_weight` 인 G-A039 가 보상을 바꾸면서도 이 검사 밖에 있었다.
+        # 규칙 이전 사양(`change_class` 없음)은 그대로 제외한다.
+        if spec.get("change_class") == "reward_weight" or (spec.get("change_class") and spec_changes(spec)):
             out.append((path, spec))
     return out
 
@@ -413,8 +461,10 @@ def singularities() -> dict:
     # 따로 센다.  "이 쌍이 아니면 멈춘다" 는 옛 읽기가 반증된 사실이 S1 에 그대로 드러나야 한다.
     reference_pair = (rows["G-A033"]["lin_vel_z_l2"], rows["G-A033"]["ang_vel_xy_l2"])
     walk_other_pair = [r for r in walk if (r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) != reference_pair]
-    same_pair_stalled = [r for r in rows.values() if not walking(r)
+    same_pair_stalled = [r for r in rows.values() if motion(r) == "정지"
                          and (r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) in pair]
+    same_pair_slowed = [r for r in rows.values() if motion(r) == "저속 구간"
+                        and (r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) in pair]
     one_only = [r for r in rows.values() if not walking(r)
                 and ((r["lin_vel_z_l2"], r["ang_vel_xy_l2"]) != reference_pair)
                 and (r["lin_vel_z_l2"] == reference_pair[0] or r["ang_vel_xy_l2"] == reference_pair[1])]
@@ -433,7 +483,7 @@ def singularities() -> dict:
     return {
         "walk": walk, "pair": pair, "reference_pair": reference_pair,
         "walk_other_pair": walk_other_pair,
-        "same_pair_stalled": same_pair_stalled, "one_only": one_only,
+        "same_pair_stalled": same_pair_stalled, "same_pair_slowed": same_pair_slowed, "one_only": one_only,
         "track_line": track_line, "fat_line": fat_line,
         "climb15_monotone_in_track": climb15 == sorted(climb15) or climb15 == sorted(climb15, reverse=True),
         "shares": shares,
@@ -616,7 +666,10 @@ def render() -> str:
     add("4. 도출 원리가 표의 다른 회차와 반대로 나오면 그 원리로 값을 정하지 않는다(§5 S5가 그 예).")
     add("5. 학습 seed는 전 회차 42 하나다. 회차 간 차이는 seed 운과 가를 수 없다 — 특이점은 **방향 후보**이지 인과가 아니다.")
     add("")
-    add(f"걷는 회차 정의: `rough_forward_speed >= {WALK_SPEED}` (표의 걷는 회차와 멈춘 회차 사이가 비어 있어 경계 위치에 결과가 흔들리지 않는다).")
+    add(f"걷는 회차 정의: `rough_forward_speed >= {WALK_SPEED}`. 걷는 회차(`0.242` 이상)와 멈춘 회차(`0.110` 이하) 사이는 비어 있었으나 "
+        f"2026-09-26 A047(`0.191`)이 처음 들어왔다 — 이동은 했으므로 `저속 구간`(`{STOP_SPEED}` 이상 `{WALK_SPEED}` 미만)으로 따로 적고 걷는 관측값에는 넣지 않는다. 경계는 옮기지 않았다. "
+        "`저속 구간`은 험지 속도의 관측 범위 이름일 뿐이고, 이전보다 느려졌다는 변화 판정·생존·정지 정책 판정이 아니다. "
+        "같은 분류법으로 A015(험지 `0.110`)도 이 구간에 든다 — 이전 판 이 문서는 A015를 `정지`로 적었고, 과거 판정(G-D73 기각)은 그대로다.")
     add("")
     L.extend(render_roles())
     add("")
@@ -626,7 +679,7 @@ def render() -> str:
     add("|---|" + "---|" * len(TERMS) + "---|---|---|---|---|")
     for r in rows:
         add(f"| {r['name']} | " + " | ".join(_w(r, t) for t in TERMS)
-            + f" | {r['rough_forward_speed']} | {r['slope_plus_20_progress_m']} | {r['climb10_ge2'] or '—'} | {r['climb15_ge1'] or '—'} | {'걷기' if walking(r) else '정지'} |")
+            + f" | {r['rough_forward_speed']} | {r['slope_plus_20_progress_m']} | {r['climb10_ge2'] or '—'} | {r['climb15_ge1'] or '—'} | {motion(r)} |")
     add("")
     add("빈칸(—)은 오르기를 재지 않은 회차다.")
     add("")
@@ -725,7 +778,13 @@ def render() -> str:
         "같은 쌍인데 정지한 회차: " + ", ".join(
             f"{r['name']}(" + ", ".join(f"{SHORT[t]} {r[t]}" for t in TERMS
                                        if r[t] not in {w[t] for w in s['walk']}) + ")"
-            for r in s["same_pair_stalled"]) + " — 걷는 회차에 없는 값이 하나씩 있다.")
+            for r in s["same_pair_stalled"]) + " — 걷는 회차에 없는 값이 하나씩 있다."
+        + ("" if not s["same_pair_slowed"] else
+           " 같은 쌍인데 **저속 구간**인 회차(이동은 했으나 험지 속도가 걷기 경계 아래): " + ", ".join(
+               f"{r['name']}(" + ", ".join(f"{SHORT[t]} {r[t]}" for t in TERMS
+                                          if r[t] not in {w[t] for w in s['walk']})
+               + f", 험지 속도 {r['rough_forward_speed']})" for r in s["same_pair_slowed"])
+           + " — 이 값은 걷는 관측값이 아니다."))
     add("- **S2 track 선 (feet_air 0.2, 걷는 회차).** " + " → ".join(
         f"{r['name']} track {r['track_lin_vel_xy_exp']}: 경사 {r['slope_plus_20_progress_m']} m · 10cm {r['climb10_ge2']} · 15cm {r['climb15_ge1']}"
         for r in s["track_line"]) + ".")
@@ -758,7 +817,7 @@ def render() -> str:
         t = float(r["track_lin_vel_xy_exp"])
         level = terms_by_run[TRAIN_OF[r["name"]]]["terrain_level"] if r["name"] in TRAIN_OF else "—"
         add(f"| {r['name']} | `{r['track_lin_vel_xy_exp']}` | `{float(r['lin_vel_z_l2']) / t:.3f}` | `{float(r['ang_vel_xy_l2']) / t:.4f}` | "
-            f"`{float(r['feet_air_time']) / t:.4f}` | `{TRACK_ANG / t:.3f}` | {'걷기' if walking(r) else '정지'} | {r['climb10_ge2'] or '—'} | {level} |")
+            f"`{float(r['feet_air_time']) / t:.4f}` | `{TRACK_ANG / t:.3f}` | {motion(r)} | {r['climb10_ge2'] or '—'} | {level} |")
     add("")
     line = [next(r for r in rows if r["name"] == n) for n in ("Pilot-01", "A017", "G-A033")]
     steps = [1 - float(a["track_lin_vel_xy_exp"]) / float(b["track_lin_vel_xy_exp"]) for a, b in zip(line, line[1:])]
@@ -809,7 +868,7 @@ def render() -> str:
         ratio = float(t["feet_air_time"]) / float(r["feet_air_time"])
         if walking(r):
             raw.append(ratio)
-        add(f"| {r['name']} | `{r['feet_air_time']}` | {'걷기' if walking(r) else '정지'} | {t['feet_air_time']} | `{ratio:.2f}` | {t['terrain_level']} | {t['base_contact']} |")
+        add(f"| {r['name']} | `{r['feet_air_time']}` | {motion(r)} | {t['feet_air_time']} | `{ratio:.2f}` | {t['terrain_level']} | {t['base_contact']} |")
     add("")
     negative = all(float(terms[run]["feet_air_time"]) < 0 for run in TRAIN_OF.values())
     add(f"- 표의 모든 회차에서 항이 음수다(`{negative}`). 로봇의 평균 체공이 `0.5 s`보다 짧아서, 이 항은 실제로는 **짧은 걸음 벌점**으로 작동한다.")
@@ -826,12 +885,12 @@ def render() -> str:
         run, arm = STAIRS_OF[r["name"]]
         mine = [c for c in cases if (c["run"], c["arm"]) == (run, arm) and c["case"].startswith("stairs")]
         if not mine:
-            add(f"| {r['name']} | `{r['feet_air_time']}` | {'걷기' if walking(r) else '정지'} | 원격 측정 없음 | 0 | — | — | — |")
+            add(f"| {r['name']} | `{r['feet_air_time']}` | {motion(r)} | 원격 측정 없음 | 0 | — | — | — |")
             continue
         for case in sorted({c["case"] for c in mine}):
             got = [c for c in mine if c["case"] == case]
             kind = "오르기" if case.endswith("_down") else "내려가기"
-            add(f"| {r['name']} | `{r['feet_air_time']}` | {'걷기' if walking(r) else '정지'} | {case} ({kind}) | {len(got)} | "
+            add(f"| {r['name']} | `{r['feet_air_time']}` | {motion(r)} | {case} ({kind}) | {len(got)} | "
                 + " / ".join(c["speed_xy_mean"] for c in got) + " | "
                 + " / ".join(c["terminated_env_count"] for c in got) + " | "
                 + " / ".join(c["survival_proxy"] for c in got) + " |")

@@ -58,7 +58,39 @@ PUSH_Y = ("push_pos_y", "push_neg_y")
 PUSH_ALL = (*PUSH, *PUSH_Y)
 CASES = (*STAIRS, *ROUGH)
 RULE_VERSIONS = {"forward_stairs_v1": CASES, "post_a042_push_v1": (*CASES, *PUSH),
-                 "post_a043_push4_v1": (*CASES, *PUSH_ALL)}
+                 "post_a043_push4_v1": (*CASES, *PUSH_ALL),
+                 "g3_guard_push4_v1": (*CASES, *PUSH_ALL),
+                 "post_a048_guard_margin_v1": (*CASES, *PUSH_ALL),
+                 "g3_guard_margin_v1": (*CASES, *PUSH_ALL)}
+# 2026-09-26 (사용자 선택, 비교 `reports/GO2_GUARD_DESIGN_COMPARISON_20260926.md` §6~§7): 여유 0 보호 22검사는
+# 저장 G-A033 과 같은 경험분포의 후보도 0.9975 로 떨어뜨렸다.  이 판은 개선 두 묶음을 post_a043_push4_v1 그대로
+# 두고, 보호 묶음만 바꾼다 — case 마다 pooled 자세 낙상 ≤ 기준선 + 허용 손실, 추종 차이 중앙값 ≥ −허용 손실.
+# 생존 중앙값 검사는 같은 낙상을 다시 세므로 뺀다(22 → 14검사).  값은 계산 전에 고정했고
+# (`tools/go2_guard_design_compare.py` 의 margin_split_dedup 과 같아야 한다 — 계약 테스트가 대조한다),
+# 저장 표본 조건부 거짓 실패 0.519 · 자기 정의 악화 놓침 평균 0.035 를 알고 고른 판이다.
+# **향후 사양만 이 판을 고른다.**  G-A048 까지의 판정은 각자의 판으로 바이트 그대로 재현된다.
+GUARD_MARGINS = {
+    "post_a048_guard_margin_v1": {
+        "falls_pooled": {"stairs_10_down": 6, "rough_lateral": 6, "default": 3},
+        "tracking": {"rough_forward": 0.02, "default": 0.01},
+    },
+}
+# 2026-09-27 (사용자 결정 G-D-G3-FIRST-20260927): 채점식 재계산(축 = case·seed 최솟값)으로 G5 는 15cm 오르기
+# case 의 생존·전진이 함께 오르지 않으면 점수가 되지 않고, 남은 점수는 G3 에 있다.  G3 표적 회차는 계단을
+# **지키기만** 한다 — g3_guard_push4_v1 처럼 개선 두 묶음을 빼고, 보호 묶음은 post_a048_guard_margin_v1 의
+# 허용 손실 14검사를 같은 값으로 쓴다.  실행 전 사전등록한 향후 사양 전용 판이며 G-A048·G-A049 는 각자의 판으로
+# 판정된 그대로다(결과 뒤 재판정 금지).
+GUARD_MARGINS["g3_guard_margin_v1"] = GUARD_MARGINS["post_a048_guard_margin_v1"]
+# 추종 허용 손실 비교의 수치 오차 처리(2026-09-26 외부 검토).  추종 차이는 실수 뺄셈이라 정확히 경계인 값이
+# 부동소수 오차로 경계 밖에 떨어질 수 있다(0.49 - 0.5 = -0.010000000000000009).  이 판은 경계를 **포함**하며,
+# 그 포함을 `delta >= -allowed - TRACKING_TOLERANCE` 로 구현한다.  1e-9 는 proxy 의 유효 자릿수(측정·
+# 표집 흔들림 ~1e-3)보다 여섯 자리 작다.  낙상은 정수 비교라 오차 처리가 없다.  기존 판은 이 값을 쓰지 않는다.
+TRACKING_TOLERANCE = 1e-9
+# 2026-09-26 (G-A047): G3 표적 회차는 계단을 **지키기만** 하므로 계단 개선·정체 감소 두 묶음을 요구할 수
+# 없다.  그러나 그 두 묶음을 빼려고 판 전체를 빼면 보호 묶음(여덟 case 의 자세 낙상·생존·추종)까지
+# 사라진다 — 밀침 네 방향은 fact_rules_v1 에서 G6 합산 한도로만 남는다.  이 판은 post_a043_push4_v1 의
+# 보호 묶음을 같은 코드·같은 case 로 두고 개선 두 묶음만 뺀다.
+GUARD_ONLY = frozenset({"g3_guard_push4_v1", "g3_guard_margin_v1"})
 SCENARIO = {"stairs_10_down": "G5", "stairs_15_down": "G5",
             "rough_forward": "G3", "rough_lateral": "G3",
             "push_pos_x": "G6", "push_neg_x": "G6",
@@ -166,6 +198,16 @@ def cases_for(version: str | None) -> tuple[str, ...]:
     return RULE_VERSIONS[version]
 
 
+def guard_margin(version: str | None) -> dict | None:
+    """허용 손실 보호를 쓰는 판이면 그 값, 아니면 None(여유 0 보호 22검사 — 기존 판 전부)."""
+    return GUARD_MARGINS.get(version) if version else None
+
+
+def improvement_required(version: str | None) -> bool:
+    """계단 개선·정체 감소 묶음을 판정하는 판인가.  보호 전용 판만 False 다."""
+    return version not in GUARD_ONLY
+
+
 def case_rows(arm: Path, cases: tuple[str, ...] = CASES) -> dict[tuple[str, str], dict[str, Any]]:
     """case·seed 별 원값.  없는 칸은 None 이고 0 으로 채우지 않는다."""
     rows: dict[tuple[str, str], dict[str, Any]] = {}
@@ -221,7 +263,8 @@ def _pooled(rows: dict, case_id: str, key: str) -> int | None:
     return None if any(v is None for v in values) else sum(int(v) for v in values)
 
 
-def judge(base: dict, cand: dict, cases: tuple[str, ...] = CASES) -> dict[str, Any]:
+def judge(base: dict, cand: dict, cases: tuple[str, ...] = CASES,
+          improvement: bool = True, margin: dict | None = None) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
     unreadable = sorted({f"{case_id}:{seed}:{what}"
                          for (case_id, seed), row in cand.items() for what in row["missing"]}
@@ -235,35 +278,48 @@ def judge(base: dict, cand: dict, cases: tuple[str, ...] = CASES) -> dict[str, A
     def add(group: str, name: str, value: Any, ok: bool | None, note: str = "") -> None:
         checks.append({"group": group, "check": name, "value": value, "ok": ok, "note": note})
 
-    strict_climb = []
-    for case_id in STAIRS:
-        delta = _median_delta(base, cand, case_id, "progress_m")
-        add("stairs", f"{case_id} forward distance median delta > 0", delta,
-            None if delta is None else delta > 0)
-        for metric in ("ge1", "ge2"):
-            b, c = _pooled(base, case_id, metric), _pooled(cand, case_id, metric)
-            ok = None if b is None or c is None else c >= b
-            add("stairs", f"{case_id} pooled {metric} >= baseline", f"{c} vs {b}", ok)
-            strict_climb.append(None if b is None or c is None else c > b)
-    add("stairs", "at least one climb count strictly up", strict_climb,
-        None if any(v is None for v in strict_climb) else any(strict_climb))
+    if improvement:
+        strict_climb = []
+        for case_id in STAIRS:
+            delta = _median_delta(base, cand, case_id, "progress_m")
+            add("stairs", f"{case_id} forward distance median delta > 0", delta,
+                None if delta is None else delta > 0)
+            for metric in ("ge1", "ge2"):
+                b, c = _pooled(base, case_id, metric), _pooled(cand, case_id, metric)
+                ok = None if b is None or c is None else c >= b
+                add("stairs", f"{case_id} pooled {metric} >= baseline", f"{c} vs {b}", ok)
+                strict_climb.append(None if b is None or c is None else c > b)
+        add("stairs", "at least one climb count strictly up", strict_climb,
+            None if any(v is None for v in strict_climb) else any(strict_climb))
 
-    for case_id in STAIRS:
-        delta = _median_delta(base, cand, case_id, "stall_share")
-        add("stall", f"{case_id} stall share median delta < 0", delta,
-            None if delta is None else delta < 0)
+        for case_id in STAIRS:
+            delta = _median_delta(base, cand, case_id, "stall_share")
+            add("stall", f"{case_id} stall share median delta < 0", delta,
+                None if delta is None else delta < 0)
 
-    for case_id in cases:
-        b, c = _pooled(base, case_id, "posture_falls"), _pooled(cand, case_id, "posture_falls")
-        ok = None if b is None or c is None else c <= b
-        add("guard", f"{case_id} pooled posture falls <= baseline", f"{c} vs {b}", ok)
-        delta = _median_delta(base, cand, case_id, "survival")
-        add("guard", f"{case_id} survival median delta >= 0", delta,
-            None if delta is None else delta >= 0)
-    for case_id in (*ROUGH, *[c for c in cases if c in PUSH_ALL]):
-        delta = _median_delta(base, cand, case_id, "tracking")
-        add("guard", f"{case_id} tracking proxy median delta >= 0", delta,
-            None if delta is None else delta >= 0)
+    if margin is None:
+        for case_id in cases:
+            b, c = _pooled(base, case_id, "posture_falls"), _pooled(cand, case_id, "posture_falls")
+            ok = None if b is None or c is None else c <= b
+            add("guard", f"{case_id} pooled posture falls <= baseline", f"{c} vs {b}", ok)
+            delta = _median_delta(base, cand, case_id, "survival")
+            add("guard", f"{case_id} survival median delta >= 0", delta,
+                None if delta is None else delta >= 0)
+        for case_id in (*[c for c in ROUGH if c in cases], *[c for c in cases if c in PUSH_ALL]):
+            delta = _median_delta(base, cand, case_id, "tracking")
+            add("guard", f"{case_id} tracking proxy median delta >= 0", delta,
+                None if delta is None else delta >= 0)
+    else:
+        for case_id in cases:
+            allowed = margin["falls_pooled"].get(case_id, margin["falls_pooled"]["default"])
+            b, c = _pooled(base, case_id, "posture_falls"), _pooled(cand, case_id, "posture_falls")
+            ok = None if b is None or c is None else c <= b + allowed
+            add("guard", f"{case_id} pooled posture falls <= baseline + {allowed}", f"{c} vs {b}", ok)
+        for case_id in (*[c for c in ROUGH if c in cases], *[c for c in cases if c in PUSH_ALL]):
+            allowed = margin["tracking"].get(case_id, margin["tracking"]["default"])
+            delta = _median_delta(base, cand, case_id, "tracking")
+            add("guard", f"{case_id} tracking proxy median delta >= -{allowed}", delta,
+                None if delta is None else delta >= -allowed - TRACKING_TOLERANCE)
 
     undecided = [c["check"] for c in checks if c["ok"] is None]
     failed = [c["check"] for c in checks if c["ok"] is False]
@@ -281,7 +337,18 @@ def judge(base: dict, cand: dict, cases: tuple[str, ...] = CASES) -> dict[str, A
                    "G6 x-direction push cases to the protection block (post_a042_push_v1)")
                 + ("; extended again by upload/plan/GO2_POST_A043_PLAN_20260922.md section 6, which adds "
                    "the two G6 y-direction push cases (post_a043_push4_v1)"
-                   if set(PUSH_Y) <= set(cases) else ""),
+                   if set(PUSH_Y) <= set(cases) else "")
+                + ("" if improvement else
+                   "; the guard-only edition g3_guard_push4_v1 (upload/plan/GO2_G_A047_PLAN_20260926.md "
+                   "section 4) keeps that protection block and drops the stairs-improvement and "
+                   "stall-decrease blocks")
+                + ("" if margin is None else
+                   "; the protection block of post_a048_guard_margin_v1 "
+                   "(reports/GO2_GUARD_DESIGN_COMPARISON_20260926.md sections 6-7) allows a preregistered loss "
+                   "per case and drops the survival checks that re-count the same falls")
+                + ("; g3_guard_margin_v1 (G-D-G3-FIRST-20260927) combines both: no stairs-improvement or "
+                   "stall blocks, and the stairs stay only as margin-protected cases"
+                   if not improvement and margin is not None else ""),
         "not_claimed": "a PASS is a screening pass only: the full 69 cases, the guard axes, the "
                        "videos and a symmetric independent-seed pair are still required before any "
                        "promotion. fact_rules_v1 is judged separately by "
@@ -296,7 +363,8 @@ def judge(base: dict, cand: dict, cases: tuple[str, ...] = CASES) -> dict[str, A
 def screen(candidate: Path, baseline: Path = BASELINE_ARM,
            expected_candidate_identity: dict[str, Any] | None = None,
            expected_baseline_identity: dict[str, Any] | None = None,
-           cases: tuple[str, ...] = CASES) -> dict[str, Any]:
+           cases: tuple[str, ...] = CASES, improvement: bool = True,
+           margin: dict | None = None) -> dict[str, Any]:
     arm = candidate / "evaluation" / "candidate" if (candidate / "evaluation").is_dir() else candidate
     baseline_identity = _identity(baseline)
     identity_errors = [f"candidate:{fault}" for fault in
@@ -304,7 +372,7 @@ def screen(candidate: Path, baseline: Path = BASELINE_ARM,
     identity_errors += [f"baseline:{fault}" for fault in
                         identity_faults(baseline, expected_baseline_identity)]
     try:
-        report = judge(case_rows(baseline, cases), case_rows(arm, cases), cases)
+        report = judge(case_rows(baseline, cases), case_rows(arm, cases), cases, improvement, margin)
     except (OSError, ValueError, KeyError, TypeError, ZeroDivisionError) as error:
         report = {"verdict": INCONCLUSIVE, "checks": [], "failed": [], "undecided": [],
                   "unreadable": [f"diagnostic_unreadable:{type(error).__name__}:{error}"]}
@@ -324,7 +392,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--rule-version", choices=sorted(RULE_VERSIONS), default="forward_stairs_v1",
                         help="the spec's preregistered.plan_screening.version")
     args = parser.parse_args(argv)
-    report = screen(args.candidate, args.baseline, cases=cases_for(args.rule_version))
+    report = screen(args.candidate, args.baseline, cases=cases_for(args.rule_version),
+                    improvement=improvement_required(args.rule_version),
+                    margin=guard_margin(args.rule_version))
     text = json.dumps(report, ensure_ascii=False, indent=2, default=str)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

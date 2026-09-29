@@ -36,7 +36,12 @@ DECISIONS: list[tuple[str, ...]] = [
         "U1-R6-ENV-REWARD-20260918",
         "배포 `REWARD_WEIGHTS` 6개 목록 **밖**의 env RewTerm 가중치를 바꾸는 회차가 R-6 안인가?",
         "R-6 안으로 판단하고 `change_class: env_reward_weight` 를 신설했으며, "
-        "관문 상수 `R6_CHANGE_CLASSES` 에 그 값을 추가해 추천을 통과시켰다.",
+        "관문 상수 `R6_CHANGE_CLASSES` 에 그 값을 추가해 추천을 통과시켰다. "
+        "**2026-09-28 사용자 승인 G-D-U1-APPROVED-20260928**: 목록 밖 기존 env 보상 항의 가중치를 "
+        "quadruped_rewards.py 에 줄로 추가해 바꾸는 것을 허용한다. 근거는 배포 파일 머리말 '줄 추가/삭제 자유'·"
+        "'여기 없는 보상은 기본값', 강좌14 '표에 없는 보상 항목도 많아요'(주의이지 금지 아님), R-6 '값(가중치)뿐', "
+        "선례 G-D65. 조건: 배포 report.html 은 이 변경을 표시하지 않으므로(아래 '왜 중요한가') 제출 리포트에 "
+        "전→후 값을 직접 적고 env.yaml 을 대조 근거로 둔다.",
         "WIDENS",
         "env_reward_weight",
         "workspace/training/quadruped/reports/GO2_REWARD_MECHANISM_FORECAST.md",
@@ -54,7 +59,7 @@ DECISIONS: list[tuple[str, ...]] = [
             "workspace/training/quadruped/config/experiments/G_A039_a033_dof_acc_m125e7.json",
             "GO2_NOW.md",
         )),
-        "OPEN",
+        "APPROVED",
         "규칙 밖 추천을 막는 대신 규칙 쪽을 넓혀 통과시킨 것이다(보존 사례 C02와 같은 모양). "
         "2026-09-18 정정: 이 칸은 '기각되면 6개 목록 안에 남은 레버가 없다'고 적고 있었다 — "
         "원장 GO2_REWARD_EVIDENCE_MASTER.md §1-a 가 lin_vel_z_l2 양방향·ang_vel_xy_l2 완화·"

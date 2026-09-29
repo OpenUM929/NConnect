@@ -44,6 +44,15 @@ SEEDS = ("101", "202", "303")
 CASES = ("stairs_10_down", "stairs_15_down")
 BASELINE = ROOT / "workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/evaluation/candidate"
 OUT = QUAD / "reports/evidence/go2_stall_diagnostics_20260921"
+# 2026-09-25 (결함 C-36): `--out` 을 빼면 위 날짜 폴더 — A041 판독의 증거 — 에 썼다.  발행된 A042~A044
+# 사양의 판독 명령이 `--out` 없이 나가므로, 회차를 판독할 때마다 다른 회차의 증거를 덮는다.  실제로
+# 계약 검사가 없는 수확물로 명령을 돌려 A041 행이 임시 폴더 행으로 바뀐 채 커밋됐다.  기본값은
+# 이제 **판독하는 회차의 폴더**다.  날짜 폴더에는 `--out` 을 명시할 때만 쓴다.
+OUT_ROOT = QUAD / "reports/evidence/go2_stall_diagnostics"
+
+
+def default_out(candidate: Path) -> Path:
+    return OUT_ROOT / candidate.parent.parent.name
 
 
 FIELDS = (
@@ -374,8 +383,10 @@ def write_outputs(rows: list[dict], out: Path, provenance: dict) -> None:
         "specification": provenance.get("specification", specification()),
     }
     (out / "STALL_DIAGNOSTICS_PROVENANCE.json").write_text(
-        json.dumps(sidecar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(sidecar, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
+    # 2026-09-26: newline 을 고정한다 — 없으면 Windows 가 CRLF 로 써서 같은 입력의 바이트가 PC 마다 달라진다
+    # (결함 C-36 복구 기록의 SHA 가 그 차이를 잡았다).  두 CSV 는 이미 lineterminator 로 LF 다.
 
 
 
@@ -393,9 +404,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", required=True, type=Path, help="evaluation/candidate of the run")
     parser.add_argument("--baseline", type=Path, default=BASELINE, help="the arm it is read against")
-    parser.add_argument("--out", type=Path, default=OUT)
+    parser.add_argument("--out", type=Path, help="default: reports/evidence/go2_stall_diagnostics/<run>")
     parser.add_argument("--json", action="store_true", help="print the rows instead of writing the CSV")
     args = parser.parse_args(argv)
+    args.out = args.out or default_out(args.candidate)
     rows = [*arm_reading(args.baseline), *arm_reading(args.candidate)]
     if args.json:
         print(json.dumps(rows, ensure_ascii=False, indent=2))
