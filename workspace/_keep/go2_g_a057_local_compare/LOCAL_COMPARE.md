@@ -21,3 +21,17 @@
 | push_neg_x 낙상 | 2 | 70 (+68) | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 |
 | push_pos_y 낙상 | 0 | 68 (+68) | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 |
 | push_neg_y 낙상 | 4 | 72 (+68) | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 | 미완료 |
+
+## Isaac 실행 사양
+
+| 항목 | 이 PC (판독 시점 실측) | 서버 (인계 기록) |
+|---|---|---|
+| GPU | NVIDIA GeForce RTX 3050, 580.88, 6144 MiB | NVIDIA GeForce RTX 5080, 580.126.09, 16303 MiB (meta/gpu.csv of server arms) |
+| Isaac Sim | 5.1.0.0 | 5.1 |
+| Isaac Lab | 0.54.4 (git b0542fe2d 2026-07-24), isaaclab_rl 0.5.2, isaaclab_tasks 0.11.16 | 미기록 |
+| rsl-rl-lib | 5.0.1 | >=4 (actor_state_dict checkpoints) |
+| torch / Python | 2.7.0+cu128 / 3.11.9 | 미기록 |
+| OS | Windows-10-10.0.19045-SP0 (Git Bash, Windows 대체 스크립트) | Linux |
+| 에셋 | local mirror D:/dev/Nconnect/isaac_assets (kit_args asset_root); arrow_x.usd PLACEHOLDER (video arrow only) | NVIDIA S3 cloud |
+| 학습 설정 | seed 42·43·44, 4096 env, 1000 iter, iter 900 고정, 평가 seed 101/202/303, 69 case | 동일 |
+| 속도 | 약 18~37 s/iter (6GB VRAM 초과분 공유 메모리 사용), 행당 약 8.5~9시간 | 미기록 |
