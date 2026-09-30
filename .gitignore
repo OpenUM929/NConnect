@@ -66,3 +66,7 @@ workspace/_keep/go2_campaign_g_a041/
 # Ephemeral runner temp files
 workspace/tmp*/
 workspace/runner_inspect_temp.txt
+
+# Local-only smoke run output (checkpoints, hydra outputs, tfevents, pycache)
+# Kept on disk, never pushed. 2026-09-30.
+workspace/_local_runs/
