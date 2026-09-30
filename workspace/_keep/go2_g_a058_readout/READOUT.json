@@ -1,0 +1,184 @@
+{
+ "rule_source": "upload/plan/GO2_OTHER_PC_SEQUENCE_PROPOSAL_20260930.md §3",
+ "setting_reproducibility": "NOT_YET",
+ "rows": {
+  "a048_seed42": {
+   "role": "reference",
+   "state": "COMPLETE",
+   "gpu": "NVIDIA GeForce RTX 3050, 580.88, 6144 MiB",
+   "axes": {
+    "G1": {
+     "score": 9.562,
+     "survival": 1.0,
+     "tracking": 0.9107,
+     "worst": "forward_fast:303"
+    },
+    "G2": {
+     "score": 9.782,
+     "survival": 1.0,
+     "tracking": 0.9316,
+     "worst": "combined_yaw_left:303"
+    },
+    "G3": {
+     "score": 2.178,
+     "survival": 0.1875,
+     "tracking": 0.8299,
+     "worst": "rough_lateral:303"
+    },
+    "G4": {
+     "score": 9.844,
+     "survival": 1.0,
+     "tracking": 0.9375,
+     "worst": "slope_plus_20:101"
+    },
+    "G5": {
+     "score": 0.251,
+     "survival": 0.1562,
+     "tracking": 0.1533,
+     "worst": "stairs_15_down:303"
+    },
+    "G6": {
+     "score": 6.329,
+     "survival": 0.9375,
+     "tracking": 0.9644,
+     "worst": "push_pos_x:101"
+    },
+    "G7": {
+     "score": 5.451,
+     "survival": 1.0,
+     "tracking": 0.7788,
+     "worst": "dr_seed_303:303"
+    },
+    "total": 43.397
+   },
+   "cases": {
+    "stairs_15_down": {
+     "state": "OK",
+     "falls": 74,
+     "speed": 0.1268,
+     "case_score_min": 0.024,
+     "height_rel": 0.1799,
+     "tilt_deg": 2.77,
+     "ge1": 26,
+     "ge2": 6,
+     "stall": 81,
+     "completion": 0.1548,
+     "abs_rise_m": 0.078
+    },
+    "stairs_10_down": {
+     "state": "OK",
+     "falls": 18,
+     "speed": 0.25,
+     "case_score_min": 0.2672,
+     "height_rel": 0.3039,
+     "tilt_deg": 2.97,
+     "ge1": 96,
+     "ge2": 76,
+     "stall": 40,
+     "completion": 0.3454,
+     "abs_rise_m": 0.5812
+    },
+    "combined_yaw_right": {
+     "state": "OK",
+     "falls": 0,
+     "speed": 0.476,
+     "case_score_min": 0.9542,
+     "height_rel": 0.3778,
+     "tilt_deg": 3.29
+    },
+    "rough_lateral": {
+     "state": "OK",
+     "falls": 68,
+     "speed": 0.1811,
+     "case_score_min": 0.1556,
+     "height_rel": 0.3708,
+     "tilt_deg": 4.73
+    },
+    "rough_forward": {
+     "state": "OK",
+     "falls": 6,
+     "speed": 0.3643,
+     "case_score_min": 0.6725,
+     "height_rel": 0.361,
+     "tilt_deg": 4.46
+    },
+    "push_pos_x": {
+     "state": "OK",
+     "falls": 4,
+     "speed": 0.0476,
+     "case_score_min": 0.9041,
+     "height_rel": 0.3722,
+     "tilt_deg": 5.94
+    },
+    "push_neg_x": {
+     "state": "OK",
+     "falls": 2,
+     "speed": 0.047,
+     "case_score_min": 0.9074,
+     "height_rel": 0.3721,
+     "tilt_deg": 5.94
+    },
+    "push_pos_y": {
+     "state": "OK",
+     "falls": 0,
+     "speed": 0.0468,
+     "case_score_min": 0.9717,
+     "height_rel": 0.3723,
+     "tilt_deg": 5.94
+    },
+    "push_neg_y": {
+     "state": "OK",
+     "falls": 4,
+     "speed": 0.0481,
+     "case_score_min": 0.9048,
+     "height_rel": 0.3722,
+     "tilt_deg": 5.94
+    }
+   }
+  },
+  "a043_seed43": {
+   "role": "a043_replicate",
+   "state": "NOT_YET"
+  },
+  "a043_seed44": {
+   "role": "a043_replicate",
+   "state": "NOT_YET"
+  }
+ },
+ "notes": [
+  "row 1 is a reference record, not a threshold",
+  "local PC policies are exploratory, not submission candidates",
+  "server A048/A043 folders are not on this PC: server-vs-local differences not computed"
+ ],
+ "server_a048_prereg": {
+  "total_70": 50.16,
+  "rough_lateral": 16,
+  "rough_forward": 3,
+  "combined_yaw_right": 0,
+  "slope_plus_20": 0,
+  "push_neg_y": 1,
+  "stairs_10_down": 90,
+  "stairs_15_down": 24
+ },
+ "isaac_spec": {
+  "this_pc": {
+   "isaacsim": "5.1.0.0",
+   "isaaclab": "0.54.4",
+   "isaaclab_rl": "0.5.2",
+   "isaaclab_tasks": "0.11.16",
+   "rsl-rl-lib": "5.0.1",
+   "torch": "2.7.0+cu128",
+   "python": "3.11.9",
+   "isaaclab_git": "b0542fe2d 2026-07-24",
+   "gpu": "NVIDIA GeForce RTX 3050, 580.88, 6144 MiB",
+   "os": "Windows-10-10.0.19045-SP0",
+   "assets": "local mirror D:/dev/Nconnect/isaac_assets (kit_args asset_root); arrow_x.usd PLACEHOLDER (video arrow only)"
+  },
+  "server": {
+   "gpu": "NVIDIA GeForce RTX 5080, 580.126.09, 16303 MiB (meta/gpu.csv of server arms)",
+   "isaacsim": "5.1",
+   "rsl-rl-lib": ">=4 (actor_state_dict checkpoints)",
+   "assets": "NVIDIA S3 cloud"
+  }
+ }
+}

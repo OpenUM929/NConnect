@@ -1,0 +1,113 @@
+{
+ "reference": "go2_g_a058_a048_seed42 (this PC)",
+ "isaac_spec": {
+  "this_pc": {
+   "isaacsim": "5.1.0.0",
+   "isaaclab": "0.54.4",
+   "isaaclab_rl": "0.5.2",
+   "isaaclab_tasks": "0.11.16",
+   "rsl-rl-lib": "5.0.1",
+   "torch": "2.7.0+cu128",
+   "python": "3.11.9",
+   "isaaclab_git": "b0542fe2d 2026-07-24",
+   "gpu": "NVIDIA GeForce RTX 3050, 580.88, 6144 MiB",
+   "os": "Windows-10-10.0.19045-SP0",
+   "assets": "local mirror D:/dev/Nconnect/isaac_assets (kit_args asset_root); arrow_x.usd PLACEHOLDER (video arrow only)"
+  },
+  "server": {
+   "gpu": "NVIDIA GeForce RTX 5080, 580.126.09, 16303 MiB (meta/gpu.csv of server arms)",
+   "isaacsim": "5.1",
+   "rsl-rl-lib": ">=4 (actor_state_dict checkpoints)",
+   "assets": "NVIDIA S3 cloud"
+  }
+ },
+ "rows": {
+  "track_lin_vel_xy_exp_p1p2": {
+   "total": {
+    "value": 0.761,
+    "ref": 43.397,
+    "diff": -42.64
+   },
+   "G1": {
+    "value": 0.0,
+    "ref": 9.562,
+    "diff": -9.56
+   },
+   "G2": {
+    "value": 0.0,
+    "ref": 9.782,
+    "diff": -9.78
+   },
+   "G3": {
+    "value": 0.167,
+    "ref": 2.178,
+    "diff": -2.01
+   },
+   "G4": {
+    "value": 0.0,
+    "ref": 9.844,
+    "diff": -9.84
+   },
+   "G5": {
+    "value": 0.0,
+    "ref": 0.251,
+    "diff": -0.25
+   },
+   "G6": {
+    "value": 0.595,
+    "ref": 6.329,
+    "diff": -5.73
+   },
+   "G7": {
+    "value": 0.0,
+    "ref": 5.451,
+    "diff": -5.45
+   },
+   "stairs_15_down.ge2": {
+    "value": 0,
+    "ref": 6,
+    "diff": -6
+   },
+   "stairs_10_down.ge2": {
+    "value": 0,
+    "ref": 76,
+    "diff": -76
+   },
+   "combined_yaw_right.falls": {
+    "value": 96,
+    "ref": 0,
+    "diff": 96
+   },
+   "rough_lateral.falls": {
+    "value": 69,
+    "ref": 68,
+    "diff": 1
+   },
+   "rough_forward.falls": {
+    "value": 92,
+    "ref": 6,
+    "diff": 86
+   },
+   "push_pos_x.falls": {
+    "value": 74,
+    "ref": 4,
+    "diff": 70
+   },
+   "push_neg_x.falls": {
+    "value": 70,
+    "ref": 2,
+    "diff": 68
+   },
+   "push_pos_y.falls": {
+    "value": 68,
+    "ref": 0,
+    "diff": 68
+   },
+   "push_neg_y.falls": {
+    "value": 72,
+    "ref": 4,
+    "diff": 68
+   }
+  }
+ }
+}

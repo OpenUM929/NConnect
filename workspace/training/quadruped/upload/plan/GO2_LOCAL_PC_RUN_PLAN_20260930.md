@@ -12,7 +12,7 @@
 | 2 | G-A058 행 1 `a048_seed42` (A048 보상, seed 42) | [설정됨] 1이 검증 완료되면 자동 시작 | 약 22:40 → 10/1 07:30 |
 | 3 | G-A058 행 2 `a043_seed43` (A043 보상, seed 43) | [설정됨] 행 1 뒤 자동 | → 10/1 16:30 |
 | 4 | G-A058 행 3 `a043_seed44` (A043 보상, seed 44) | [설정됨] 행 2 뒤 자동 | → 10/2 01:30 |
-| 5 | G-A057 나머지 11행 (v1 순서 그대로) | **[미설정]** 이 문서 확인 후 자동 연결 | 약 10/2 01:30 → 10/6 전후 |
+| 5 | G-A057 나머지 11행 (v1 순서 그대로) | [설정됨] (21:45, 사용자 승인) G-A058 rc=0 종료 후 자동 | 약 10/2 01:30 → 10/6 전후 |
 
 시각은 이 PC 실측 기준 한 실행 약 8.5~9시간(학습 1000 iter 약 7시간 + 평가 74 case 약 1시간 + 영상·ZIP)으로 잡은 추정이다.
 서버(RTX 5080)는 한 실행 약 95분이다. **GPU 메모리 6GB가 학습에 모자라(학습 약 6.8GB 필요) 공유 메모리로 넘치는 것이 이 PC의 정상 상태다.**
@@ -39,12 +39,13 @@ G-A057 v1(SHA `c225879e…`)과 G-A058 v1(SHA `ece5a190…`) 패키지의 러너
 
 | 스크립트 | 하는 일 |
 |---|---|
-| `D:\workspace\chain_after_a057_p1p2.sh` | 1.2 러너가 끝나고 **FULL / FULL_69_COMPLETE + ZIP 해시 일치**일 때만 `go2_g_a058/run_sweep.sh --inner` 실행. 아니면 시작하지 않는다. 로그 `D:\workspace\_keep\chain_after_a057_p1p2.log` |
+| `D:\workspace\plan_supervisor.sh` (21:48부터, 아래 두 체인 대체) | 1.2 러너 종료 → `go2_g_a058/run_sweep.sh --inner` → `go2_g_a057/run_sweep.sh --inner` 순서로 실행. **멈춤이 나와도 다음 단계로 진행**하고, 계획 전체에서 **멈춤이 2회가 되면 그 즉시 전부 정지**(run_sweep·러너·train/play 종료, `D:\workspace\_keep\PLAN_HALTED.txt` 작성). 멈춤 = 1.2가 완전 결과 아님 / 상태 표에 DONE·SKIP_DONE 외 행(RUN_ERROR, COLLECTION_FAILED, SAFETY_STOP, ABORT_* 등) / 행 없이 run_sweep rc≠0. 1.2가 불완전하면 G-A057 스윕이 나중에 이어서 수집한다. 로그 `D:\workspace\_keep\plan_supervisor.log` |
+| ~~`chain_after_a057_p1p2.sh`, `chain_after_g_a058.sh`~~ | 21:48 종료·대체(완전 결과가 아니면 멈춰 버리는 방식이었음) |
 | `D:\workspace\sync_results_to_repo.sh` | 5분마다 검증 완료된 행을 `D:\dev\Nconnect\NConnect\workspace\_keep\`로 **복사**(원본 유지, ZIP 해시 재검사). 복사 후 분석 도구 실행(§4). 로그 `D:\workspace\_keep\sync_results_to_repo.log` |
 | `run_sweep.sh`의 상태 표 | `D:\workspace\_keep\go2_g_a058_sweep\SWEEP_STATUS.tsv` (DONE / RUN_ERROR 등, 인계 문서의 정의 그대로) |
 
-G-A058이 끝난 뒤 G-A057 나머지 11행으로 넘어가는 연결은 **[미설정]**이다. 이 문서의 §6 확인 뒤
-`go2_g_a057/run_sweep.sh --inner`를 같은 방식(완료 검증 후 시작)으로 건다. 1.2는 `SKIP_DONE`으로 건너뛴다.
+G-A058 뒤 G-A057 나머지 11행 연결은 **[설정됨]**(2026-09-30 사용자 승인): 위 `plan_supervisor.sh`가 담당한다(1.2는 `SKIP_DONE`, 불완전하면 이어서 수집).
+사용자 규칙(21:5x): "멈추는 경우에는 계획서에 따라 진행, 2회 이상 멈추면 그때 작업을 멈춘다".
 
 ## 3. 이 PC가 서버와 다른 점 — 판독 때 반드시 함께 볼 것
 
