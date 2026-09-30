@@ -33,21 +33,6 @@ Go2 학습·평가·보고를 수행할 때 적용하는 최소 차이 지침이
   260901 판의 "보존 비교군 Pilot-01(`c4d78adf…`) / 향후 기준선 Default-01"은 `SUPERSEDED`다.
   Default-01은 보행하지 않는다(G-D113). 기준선은 A017(G-D184)을 거쳐 2026-09-16부터 G-A033이다(G-D-BASELINE-A033-20260916).
 
-### 1-a. Default Baseline PRD는 살아있는 정본
-
-> 2026-09-14 정정: 이 PRD는 G-D94(260905)로 v1 범위(Default-01 vs Pilot-01)에서 종료됐다. 현재 위치의 living 정본은
-> `GO2_NOW.md`, 결정 이력은 `GO2_PROJECT_STATE.md`다. 아래 PRD 동기화 의무는 이 두 파일 갱신으로 이행한다.
-
-- `upload/plan/GO2_DEFAULT_BASELINE_TEST_PRD.md`는 단발 계획서가 아니다. Go2 기획자는 매 기획 턴 시작과
-  종료에 이 문서를 읽고, 최신 사용자 결정·artifact·구현 확정값·평가 결과·다음 분기를 반영한다.
-- `go2-campaign-manager`는 목표·순서·분기·완료조건, `go2-test-planner`는 통제변수·metric·허용오차·
-  산출물·후속 실험을 같은 턴에 갱신한다.
-- 실제 artifact가 PRD보다 최신이면 artifact를 우선 판정하고 즉시 PRD를 갱신한다.
-- PRD 변경 시 `GO2_PROJECT_STATE.md`, `GO2_CAMPAIGN_SCHEDULE.md`, `GO2_REWARD_EVIDENCE_MASTER.md`,
-  `ARTIFACT_MANAGEMENT.md`, 상세계획·planner brief 중 영향받는 문서를 함께 동기화한다.
-- PRD와 원장이 불일치하면 같은 턴에 동기화하고 진행한다. 불일치를 이유로 사용자가 요청한 튜닝 패키지 발행을
-  멈추지 않는다(2026-09-14 개정). 동기화 완료는 장기 학습 승급의 조건으로만 쓴다.
-
 ## 2. Go2 G1~G7 정본
 
 시나리오명·가중치·필수 측정은 반드시 `config/go2_self_eval_registry.json`에서 읽는다.
@@ -197,52 +182,10 @@ registry SHA(`8d8c34ca…9ba6`)는 A027 평가의 `registry_sha256` 지문이다
 - 완료 보고에는 최소한 `ZIP 경로 / SHA256 / 업로드 위치 / 한 줄 실행 / 완료 표식 / 결과 ZIP / 서버 종료 조건`을
   자동으로 포함한다.
 
-아래 표시 구간은 `tools/update_go2_report_first_contract.py`가 관리하는 2026-09-13 기록이다. 그 안의 NEXT·HOLD·기준선 언급은 당시 상태이며 현재 지시가 아니다(현재는 `GO2_NOW.md`).
+아래 표시 구간은 `tools/update_go2_report_first_contract.py`가 관리한다(2026-09-30에 루트 절을 가리키는 짧은 안내로 줄였다).
 
 <!-- GO2:REPORT-FIRST:START -->
-## 학습 report 필독·원인 우선 연구 계약 (2026-09-13 사용자 결정)
+## 학습 report 필독 — 루트 AGENTS.md 「학습 report 필독·원인 우선 연구 계약」을 따른다
 
-H1·Go2 튜닝 기획·평가·보고를 수행하는 메인과 모든 서브에이전트에 적용한다.
-보고서 존재 확인이나 다른 배우의 요약만으로 읽었다고 하지 않는다.
-
-1. **튜닝 후보 선정 전에 해당 정책과 대조군의 학습 `report.html` 본문을 직접 읽는다.**
-   학습 run·checkpoint iter/model SHA·env reward snapshot·학습 로그와 대응을 확인한다.
-   파일명/수정시각/같은 폴더만으로 대응을 확정하지 않는다. export 해시 차이는 tensor 의미 차이로 단정하지 않는다.
-2. `REPORT_READ_STATUS=READ_MATCHED|READ_UNMATCHED|MISSING|NOT_APPLICABLE`를 출력한다.
-   읽은 경로·보고서의 학습시각/iter/보상값·대조한 로그와 정책 식별자·일치/불일치·미확인 근거를 남긴다.
-   `READ_MATCHED`는 대응 확인이지 성능 판정이 아니다.
-3. 학습 HTML, 내부 `SELF_EVAL_REPORT`, 기술 개선 제출문은 서로 다른 자료다.
-   평가 전용 run은 새 학습 HTML이 없을 수 있으나, 튜닝에 쓰는 정책의 원 학습 report 조회를 생략하지 않는다.
-   `NOT_APPLICABLE`은 정책을 생성하지 않은 도구 smoke 등 실제 비해당 사유를 적을 때만 사용한다.
-4. report 누락/오래된 파일/정책 대응 불명은 `REPORT_REQUIRED_NOT_ACQUIRED` 또는
-   `REPORT_POLICY_UNMATCHED`로 기록한다. 먼저 로컬 원 학습 bundle·보존 snapshot·로그를 검색한다.
-   그래도 없으면 회수/복구 방법을 기록한다. 추정 HTML을 원본인 것처럼 만들지 않는다.
-   **[2026-09-14 개정] 휘발 서버에서 이미 사라진 과거 run의 report는 `REPORT_REQUIRED_NOT_ACQUIRED — 복구 불가`로
-   한 번 기록하고, 같은 run의 원 학습 로그 요약값(최고 reward·terrain level·학습 낙상률·action std)과
-   SELF_EVAL을 대체 근거로 삼아 진행한다. 이 상태는 새 reward 후보 확정·새 학습 패키지 발행을 막지 않는다.**
-   막히는 것은 새 run의 회수 완결 판정(§7)뿐이다. 같은 archive를 재검색하거나 원본 제공을 반복 요청하지 않는다.
-   (구판 차단 문구는 `SUPERSEDED` — 루트 「튜닝 요청 산출물 계약」 참조.)
-5. 연구 순서는 **학습 report·env·로그 대응 → 내부 시나리오 평가 → 영상/telemetry로 실패 유형 구분
-   → 경쟁 가설 비교 → 근거 있는 단일변수 후보 → 대조 실험·독립 seed**다.
-   HTML의 안정/공격 설명과 일반 경고는 가설 단서일 뿐 인과효과·최적 가중치 근거가 아니다.
-6. 학습낙상률/terrain level/mean reward를 시나리오 survival/tracking 또는 공식 점수로 바꾸지 않는다.
-   보고서 수치의 집계 구간과 지표 출처를 확인하고, 충돌은 원 로그와 evaluator 조건으로 해소한다.
-7. 새 학습 회수에는 같은 run의 `report.html`과 로그·env·checkpoint 대응 자료를 결과 bundle 및 SHA 목록에 포함한다.
-   누락하면 해당 공백을 기록하며 다운로드 완결 또는 튜닝 근거 완결로 보고하지 않는다.
-8. 최신 지침은 역할 문서의 과거 다음 실행·고정 현재단계보다 우선한다. H1/Go2 캠페인은 분리한다.
-   서브에이전트는 권한 범위 내 직접 읽기만 수행하고 공백을 상위에 보고한다. 이 계약은 편집/서버 권한을 추가하지 않는다.
-
-## 2026-09-13 연구 방향 변경 — G-D-REPORT-FIRST-20260913
-- 사용자 결정: 지침과 서브에이전트에 학습 report 필독을 강제하고 연구 방향을 변경한다.
-- 새 순서: report·env·학습로그/정책 대응 → 시나리오 약점 → 실패 유형/경쟁 가설 → 후보 선정.
-- 이전 T1 `ang_vel_xy_l2 -0.05→-0.06`은 **DEFERRED_HYPOTHESIS**로 내린다. 다음 튜닝값/1순위가 아니며 효과 INCONCLUSIVE.
-- G5 하강 생존은 현재 평가상 우선 진단 대상이나 원인은 미확정. 회전 과다, 발걸림/정지, 낮은 자세,
-  학습 성숙도 및 평가/영상 대응 문제를 구분한다. 모두 가설이며 보고서만으로 인과를 판정하지 않는다.
-- Pilot HTML은 직접 읽었으나 이번 작업에서 정책 대응을 완결 검증하지 않았으므로 READ_UNMATCHED.
-  A017 원 학습 HTML은 현재 탐색 범위에서 MISSING / REPORT_REQUIRED_NOT_ACQUIRED.
-  A027 SELF_EVAL_REPORT는 원 학습 HTML을 대체하지 않는다.
-- NEXT: 로컬 원 학습 bundle·snapshot·로그에서 A017/Pilot report 대응을 먼저 회수·검증한다.
-  그 후 필요한 진단을 다시 동결한다. 기존 18case 목록은 제안 범위이며 실행 승인/고정 패키지가 아니다.
-- 서버 실행·reward/배포코드 변경 없음. 새 학습 HOLD — report 대응 및 진단 근거 미완료.
-- 작업 ID GO2-P1-PREP-20260913 유지. 과거 승인 release와 결과는 변경하지 않는다.
+상태 이름(REPORT_READ_STATUS=READ_MATCHED|READ_UNMATCHED|MISSING|NOT_APPLICABLE, REPORT_REQUIRED_NOT_ACQUIRED, REPORT_POLICY_UNMATCHED)과 학습 HTML·내부 SELF_EVAL_REPORT·제출문의 구분은 루트 절이 정본이다. 이 파일에 사본을 두지 않는다(2026-09-30 정리, 원문은 `archive/AGENTS_ARCHIVE_20260930.md`).
 <!-- GO2:REPORT-FIRST:END -->

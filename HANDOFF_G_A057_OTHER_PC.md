@@ -1,5 +1,7 @@
 # G-A057 인계 — 다른 PC에서 보상 단일변수 일괄 학습 (새 Claude 세션용, 2026-09-29 작성)
 
+> **2026-09-30 순서 변경(Codex 합의):** 진행 중인 track 1.2 한 행이 끝나면 G-A057을 멈추고 **G-A058을 먼저** 돈 뒤 G-A057 나머지 11행을 이어 돈다. 절차는 §10.
+
 > 새 세션의 Claude는 **이 문서를 처음부터 끝까지 읽고 §1 → §7 순서대로** 진행한다. 사용자에게 같은 설명을 다시 요구하지 않는다.
 > 루트 `AGENTS.md`(최우선 절·R-1~R-7), `GO2_NOW.md` 맨 위 줄들, 메모리(MEMORY.md)의 규칙을 함께 따른다.
 
@@ -190,3 +192,15 @@
 - §8 할 일 3의 계단 판독 틀은 쓰지 않는다. `feet_air_time_p0p01` 행은 다른 행과 똑같이 판독한다.
 - **옛 문장 두 곳 정정 — 완료(2026-09-29, rebase 종료 후 적용).** `reports/GO2_EXTERNAL_TUNING_CASES_20260929.md` §1-1(Rudin 1500 iter에 "높이 관측·커리큘럼과 함께 쓴 결과" 부기)·§2 마지막 항, `upload/plan/GO2_CLAUDE_OPINION_AFTER_EXTERNAL_CASES_20260929.md` §5 외부 계단 해법 항을 "지형 높이 관측과 terrain_levels 커리큘럼은 이미 있다"로 고쳤다. 근거 A048 `training/env.yaml`: `height_scanner` L323, `height_scan` L599, `terrain_levels` L926(§8의 L925는 오기). 발행 ZIP은 바꾸지 않았다.
 - **A043 행을 넣지 않는 이유 (Codex 정정 2026-09-29).** "A048에서 이득이 없으면 A043을 생략해도 결론이 같다"는 틀렸다. 기준 설정에 따라 효과가 뒤집힌 전례(ang_vel_xy −0.08: A033 험지 옆걸음 낙상 59→18, A043 24→50)가 있어 두 설계는 같은 질문에 답하지 않는다. 생략하는 이유는 결론이 같아서가 아니라, 지금 추가 비용을 우선 배정할 근거가 부족하기 때문이다.
+
+## 10. 순서 변경 — G-A058 먼저 (2026-09-30, Claude 제안 + Codex 합의)
+- 근거·판독: `workspace/training/quadruped/upload/plan/GO2_OTHER_PC_SEQUENCE_PROPOSAL_20260930.md`. §7의 'A048 보정 재학습'은 이 G-A058 첫 행으로 해결한다(Codex: 이 한 번의 대조 실행에 한해 'A048 반복 실행 안 함' 변경).
+- 패키지: `workspace/training/quadruped/upload/G-A058/current/GO2_G_A058_replicate_a048s42_a043s43s44_v1.zip` SHA256 `ece5a1900cf7b1da5d348c68c9d4423a42c1892322a9c75b47bc0ddc79362da2`, 안내 `GO2_G_A058_RUN_GUIDE.txt`.
+  - 행: a048_seed42(A048 보상, seed 42) → a043_seed43(A043 보상, seed 43) → a043_seed44(A043 보상, seed 44). 보상 변경 없음. 선택 행 A043 seed 42는 넣지 않는다(Codex).
+  - 러너·shared는 G-A055 v2 바이트 그대로이고, 일괄 러너는 G-A057 러너에서 이름만 바꿨다(계약 테스트 `tools/test_go2_g_a058_replicate_contract.py`).
+- 절차:
+  1. G-A057 track 1.2 행이 DONE이 되면 G-A057 tmux를 멈춘다. 다음 행이 이미 학습을 시작했으면 러너가 부분 결과를 보존하고 종료코드 9로 멈춘다. 그 행을 처음부터 다시 할지는 나중에 사용자에게 묻는다.
+  2. `unzip -oq /workspace/GO2_G_A058_replicate_a048s42_a043s43s44_v1.zip -d /workspace && bash /workspace/go2_g_a058/run_sweep.sh` (먼저 `--list`로 목록 확인). 다른 학습 프로세스가 돌고 있으면 러너가 21로 멈춘다.
+  3. 세 행이 끝나면 `bash /workspace/go2_g_a057/run_sweep.sh`로 G-A057을 이어 돈다(완료된 1.2 행은 SKIP_DONE).
+- 회수: `/workspace/_keep/go2_g_a058_<key>/`, `GO2_G_A058_<KEY>_RESULT.zip`+`.sha256`, `/workspace/_keep/go2_g_a058_sweep/`를 저장소 `workspace/_keep/`에 복사한다.
+- 판독(Codex 정정 반영): A048 seed 42는 서버 A048과의 차이를 기록만 하는 비교 기준이며 효과 판정 문턱이 아니다. G-A057 행은 이 행과 먼저 비교하고, 서버 A048 대비 결과와 기존 사전등록 판정도 따로 유지한다. A043 행은 개별 정책과 설정 재현성을 나눠 판정한다. 다른 PC 정책은 제출 후보가 아니다.

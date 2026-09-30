@@ -1,5 +1,18 @@
 # NConnect 파일·artifact 운영 정본
 
+## GO2-EXTERNAL-FIRST-STUDY-20260930 — C1 정정 추가 기록
+- 기존 작업의 로컬 문서 정정: C1 우선 선정 철회, 연구 정본 §11 및 Go2 상태·일정 원장 동기화. 이전 선정 완료 문구는 정정 전 이력이다.
+- 근거: 기존 원인 기록·9월 29일 체공 판독·G-A057 사전등록 대조. 새 실험 결과가 아니다. 신규 최적값 선정은 미완료다.
+- 원자료·외부 E0·발행 ZIP·사전등록 판정 보존. 서버 실행·다운로드·병합·새 정책 생성 없음.
+
+## GO2-EXTERNAL-FIRST-STUDY-20260930 — 외부 우선 조사·기존 증거 대조
+- 상태: PLANNED → RUNNING(로컬 문서 작성·기존 회수물 읽기). 새 서버 실행·다운로드·병합 없음.
+- 사용자 범위: Go2 사족, Isaac Sim 5.1 기준 계단·우회전·험지·밀침 사례/강좌를 먼저 조사하고 외부 기준을 고정한 뒤 A043/A048 및 전체 실험과 대조.
+- 산출물: `workspace/training/quadruped/upload/plan/GO2_EXTERNAL_FIRST_TUNING_STUDY_20260930.md`.
+- 기존 회수물은 읽기만 하며 원본·사전등록·배포 코드를 변경하지 않는다. 새 정책/영상 없음(VIDEO_NOT_REQUIRED: 문헌·기존 증거 연구). 실행 패키지 발행·성능 승급을 뜻하지 않는다.
+- 연구 문서 작성·제한 범위 증거 검토 완료. E0 SHA·참조 파일·문서 차분 확인. 사용자 요청의 신규 최적값 선정은 미완료이며 전체 튜닝 완료로 보고하지 않는다. 새 회수/병합 상태 전이는 없다.
+- 후속 사용자 정정 반영: 같은 정본 §10에 C1(A048 + feet_air_time .15) 연구값 선정·경쟁 후보 비교 완료. 위 '값 미선정'은 이전 상태다. 성능 검증·실행 ZIP·학습은 미수행이고 회수물은 변경하지 않았다.
+
 ## G-A053-PACKAGE-20260928 — A048 보상 위 목록 밖 항 `dof_acc_l2 −2.5e−7→−3.0e−7` 전수 수집 패키지
 - 상태: PLANNED → RUNNING(로컬 제작·검증) → 발행 v1 → **실행 권고 철회(Codex·메인 루프, 2026-09-28), 사용자 처분 미정.** 사용자 원칙 '근본 원인 → 강좌 보상 예측'을 두 단계 모두 충족하지 않는다(경위 `workspace/training/quadruped/reports/GO2_G_A053_PRINCIPLE_REVIEW_20260928.md`). ZIP·사양·판정은 불변 보존하고, 서버에 올린 기록은 없다. 회차 G-A053은 upload·사양·원장에 미사용임을 확인했다.
 - 결정:
@@ -1014,9 +1027,16 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 - RECEIVED → VERIFIED. 결과 ZIP SHA `89698d3f806e0dd321610148bb36cc6f425e2a3c5752d59ca2e6692bab307389`, CRC·537파일 대응·결과 SHA536件 일치. provenance32件는 원 발행 ZIP과 대조 일치. full69·sentinel5·원 report·후보영상10/재사용10 회수. 필수 추가 회수 없음, 서버 종료 가능.
 - 분석·보고 완료, NO_CANONICAL_MERGE로 MERGED 상태를 부여하지 않음. 내부proxy50.15656/70이나 screening15cm3항 실패: INTERNAL_GATE_FAIL/A033 유지. `reports/GO2_G_A048_READOUT.md` 참조. 영상은3종 표본 프레임 관찰, 전체 VIDEO_UNKNOWN.
 
+## G-A058 — 보상 무변경 재학습 v1: A048 seed 42, A043 seed 43·44 (2026-09-30, 상태 PLANNED)
+- 발행: `workspace/training/quadruped/upload/G-A058/current/GO2_G_A058_replicate_a048s42_a043s43s44_v1.zip` SHA256 `ece5a1900cf7b1da5d348c68c9d4423a42c1892322a9c75b47bc0ddc79362da2`, 안내 `GO2_G_A058_RUN_GUIDE.txt`. 빌더 `tools/build_go2_g_a058_replicate_package.py`, 러너 `tools/go2_g_a058_run_sweep.sh`(G-A057 러너에서 이름만 교체), 행별 러너·shared 는 G-A055 v2 바이트 그대로.
+- 근거·순서·판독: `workspace/training/quadruped/upload/plan/GO2_OTHER_PC_SEQUENCE_PROPOSAL_20260930.md`(Codex 합의 2026-09-30). 다른 PC에서 G-A057 첫 행(track 1.2) 뒤, 나머지 11행보다 먼저 돈다. 인계 §7 'A048 반복 실행 안 함'은 이 한 번의 대조 실행에 한해 변경(Codex).
+- 판독: A048 seed 42 는 비교 기준이며 효과 판정 문턱이 아니다. A043 행은 개별 정책(15cm ≥50 · 우회전 ≤5 → 후보 검증)과 설정 재현성(두 seed 합)을 나눠 판정. 경계는 탐색용. 다른 PC 정책은 제출 후보가 아니다.
+- 영상 판정: 필수 — 러너가 실행마다 후보 영상 10편을 결과 ZIP에 넣는다. report.html 포함.
+- 검증: tools/test_go2_g_a058_replicate_contract.py 9 통과(보상=기준 env.yaml, seed 42/43/44, shared=G-A055 v2, 실행별 체크섬, 러너 이름 교체만, 가짜 러너 완료·실패 계속·재개·학습 전 실패 23). 발행 ZIP SHA·SWEEP 체크섬·세 트리 체크섬·bash -n·CRLF 없음 확인.
+
 ## G-A057 — A048 보상 단일변수 일괄 탐색 v1 (2026-09-29, 상태 PLANNED)
 - 발행: `workspace/training/quadruped/upload/G-A057/current/GO2_G_A057_a048_single_var_sweep_v1.zip` SHA256 `c225879e4e2730fa768b32aef4b3e374b14baae83a002ffacdaa92010e9e3484`, 안내 `GO2_G_A057_RUN_GUIDE.txt`. 새 학습 12개(순서 SWEEP_PLAN.json 그대로), 재사용 6, 기준 공유 5. seed 43·A043+0.01 행 없음.
-- 사전등록: `workspace/training/quadruped/config/experiments/G_A057_preregistration.json`(ZIP 안 `go2_g_a057/PREREGISTRATION.json`), 판독 `tools/go2_g_a057_prereg_readout.py`. 채택·승급 대상 아님.
+- 사전등록: `workspace/training/quadruped/reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.json`(ZIP 안 `go2_g_a057/PREREGISTRATION.json`), 판독 `tools/go2_g_a057_prereg_readout.py`. 채택·승급 대상 아님.
 - 영상 판정: 필수 — 실행마다 러너가 후보 영상 10편을 찍어 결과 ZIP에 넣는다. report.html 은 러너가 결과 ZIP·SHA 에 포함한다.
 - 상태 단어: 완료 DONE/SKIP_DONE · 실행 안전 중단 SAFETY_STOP_NONFINITE/SKIP_SAFETY_STOPPED/ABORT_* · 실행 실패 RUN_ERROR/COLLECTION_FAILED. 평가 결과로 멈추지 않는다.
 - 검증: tools/test_go2_g_a057_sweep_contract.py 16 · test_go2_g_a057_prereg_contract.py 9 · test_go2_g_a057_sweep_compare_contract.py 8 통과. 서버 실행 승인은 별개(미승인).

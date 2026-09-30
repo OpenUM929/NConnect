@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""G-A057 사전등록 판독 — config/experiments/G_A057_preregistration.json 만 읽고 판정한다 (2026-09-29).
+"""G-A057 사전등록 판독 — reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.json 만 읽고 판정한다 (2026-09-29).
 
 문턱은 JSON 에 있다.  여기에 숫자를 두지 않는다(결과를 본 뒤 판독기를 고쳐 경계를 옮기는 길을 막는다).
 실행 상태와 평가 판정을 섞지 않는다.
@@ -25,7 +25,7 @@ QUAD = ROOT / "workspace/training/quadruped"
 sys.path.insert(0, str(ROOT / "tools"))
 import go2_dial_hypothesis as dial  # noqa: E402
 
-PREREG = QUAD / "config/experiments/G_A057_preregistration.json"
+PREREG = QUAD / "reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.json"
 CHECKS = QUAD / "candidate_suite_checks.py"
 KEEP = ROOT / "workspace/_keep"
 OUT = QUAD / "reports/evidence/go2_g_a057_prereg_readout"

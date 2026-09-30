@@ -39,7 +39,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import go2_dial_hypothesis as dial  # noqa: E402
 import go2_g_a057_sweep_plan as planmod  # noqa: E402
 
-OUT_JSON = QUAD / "config/experiments/G_A057_preregistration.json"
+OUT_JSON = QUAD / "reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.json"
 OUT_MD = QUAD / "reports/evidence/go2_g_a057_sweep_plan/PREREGISTRATION.md"
 BASE = ROOT / "workspace/_keep" / planmod.BASE_ARM
 SEEDS = [101, 202, 303]
