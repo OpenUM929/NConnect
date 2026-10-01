@@ -4,6 +4,10 @@
 # GitHub enforces a hard 100 MB per-file limit, so these archives are stored
 # split into 95 MB parts. Parts are concatenated in numeric order and verified
 # against the recorded .sha256 manifest before replacing the original.
+#
+# To add another archive: split it into 95 MB parts as <name>.001.., keep its
+# .sha256 manifest, gitignore the original, and add its base name to the list
+# below. See ARTIFACT_MANAGEMENT.md 6-a.
 set -e
 DIR=$(cd "$(dirname "$0")" && pwd)
 
