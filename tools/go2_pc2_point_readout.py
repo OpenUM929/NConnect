@@ -256,6 +256,46 @@ def steps_problem(path: str) -> str | None:
     return None
 
 
+# 도달 후 판독(stairs_post_reach)은 go2_state_outcome.load 를 재사용한다. 그 로더는 아래 열이 모두 있어야 하고
+# 빈 칸이 아닌 값은 float 로 읽는다(§20 R1 잔여). 판정에 실제로 쓰는 열(time_s·actual_vx/vy·root_*·proj_grav_z·
+# height_rel·terminated·truncated)은 STEP_COLS 에서 이미 수치 검사한다. 나머지는 로더가 읽는 형식만 맞으면 된다.
+POST_REACH_COLS = tuple(dict.fromkeys(outcome.COLS + ("env_id", "upright", "terminated", "truncated")))
+POST_REACH_CASES = frozenset(it[2] for it in PROTECTION if it[1] == "climb_ge2")
+
+
+@functools.lru_cache(maxsize=None)
+def post_reach_problem(path: str) -> str | None:
+    """steps.csv 를 go2_state_outcome.load 가 예외 없이 읽을 수 있는지. None 이면 가능, 아니면 구체적 사유.
+    선택 입력을 필수로 늘리지 않는다: 로더가 실제로 요구하는 열의 존재와 읽기 형식(빈 칸 또는 수)만 본다."""
+    p = Path(path)
+    try:
+        with p.open(encoding="utf-8", newline="") as fh:
+            rd = csv.reader(fh)
+            head = next(rd, None) or []
+            missing_cols = [c for c in POST_REACH_COLS if c not in head]
+            if missing_cols:
+                return f"도달 후 판독 필수 열 없음 {missing_cols}"
+            ix = {c: head.index(c) for c in outcome.COLS}
+            ie = head.index("env_id")
+            for i, row in enumerate(rd, start=2):
+                if len(row) != len(head):
+                    return f"도달 후 판독 {i}행 칸 수 {len(row)} != 열 수 {len(head)}"
+                try:
+                    int(row[ie])  # 로더는 int(env_id) 로 읽는다 — '0.0' 은 STEP_COLS 수치 검사는 통과해도 여기서 막는다
+                except ValueError:
+                    return f"도달 후 판독 {i}행 env_id={row[ie]!r} 정수 아님"
+                for c, j in ix.items():
+                    if row[j] == "":
+                        continue
+                    try:
+                        float(row[j])
+                    except ValueError:
+                        return f"도달 후 판독 {i}행 {c}={row[j]!r} 수 아님"
+    except (OSError, UnicodeDecodeError, csv.Error) as err:
+        return f"도달 후 판독 읽기 실패 {type(err).__name__}"
+    return None
+
+
 def steps_ok(h: Path, seed: str, case: str) -> Path | None:
     p = cases(h) / f"seed_{seed}" / case / "steps.csv"
     return p if p.is_file() and steps_problem(str(p)) is None else None
@@ -274,6 +314,10 @@ def required_present(h: Path) -> list[str]:
             why = steps_problem(str(d / "steps.csv"))
             if why:
                 miss.append(f"{s}/{c}/steps.csv: {why}")
+            elif c in POST_REACH_CASES:
+                why = post_reach_problem(str(d / "steps.csv"))
+                if why:
+                    miss.append(f"{s}/{c}/steps.csv: {why}")
     return miss
 
 
@@ -404,7 +448,7 @@ def stairs_post_reach(h: Path, seed: str, case: str, height: float) -> dict | No
     post_channel_* 는 첫 도달 행부터 그 episode 의 끝(첫 종료·절단 행 포함, 그 뒤 reset 행 제외)만 읽는다.
     run_channel_* 는 같은 로봇의 전체 run 채널이며 이름을 나눠 보존한다. 새 문턱 없음. 자료가 부족·손상이면 None."""
     p = steps_ok(h, seed, case)
-    if p is None:
+    if p is None or post_reach_problem(str(p)) is not None:
         return None
     c = climb.count(p, height)
     if not c or int(c["robots"]) != ROBOTS:

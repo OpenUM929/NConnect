@@ -670,3 +670,184 @@ GPU 이름 비교(`readout:141-148,277-281`)는 같은 GPU 모델 확인이지 �
 - 판독기는 §19 Codex 재검토 대기 상태 그대로다. B1 판독은 승인 뒤에 한다. 러너는 §16·§18에서 재설계 요구가 없었고, 계약 테스트를 통과했다.
 - **사용자 결정 추가(2026-10-03):** 밤 약 8시간을 쓰기 위해 B1 → ang −0.08을 연속으로 돌린다. 명령은 `&&`로 이어 B1이 정상 완료(exit 0)됐을 때만 −0.08이 시작된다. 이는 §14의 "B1 유효성 확인 뒤 첫 후보" 조건을 사용자 결정으로 바꾼 것이다(Claude는 계산 시간이 비는 밤이라는 이유로 권고). B1 판독이 나쁘면 −0.08 결과는 판독을 보류한다. 이 두 점 외의 확장은 없다.
 - **사용자 결정 수정(2026-10-03):** PC2는 RTX 5070이다. 밤 약 8시간에 계획의 시작 세 점(§13-1: B1 → ang −0.08 → track 1.4)을 돌린다. B1이 정상 완료(exit 0)일 때만 뒤 두 점을 돌리고, −0.08 실패와 관계없이 track 1.4는 돈다. 한 점 약 2시간[추정, 서버 5080 실측 95분 기준]이다. 네 번째 점부터는 계획대로 앞 결과로 고른다. Claude의 직전 "B1만/두 점" 준비는 사용자 요구(계획에 따른 여러 점)를 좁게 해석한 것이었다.
+
+## 20. Codex 재검토 — §19 테스트 재현 및 R1 잔여 1건 (2026-10-03)
+
+### 현재 위치
+
+- [예선 목표] G3 개선·G5 등 보호 행동 판독의 정확성 확보.
+- [현재 단계] PC2 단계 0/6 — 로컬 도구 검증.
+- [확보] 43개 계약 테스트 skip 없이 성공 재현, §19 수정 코드 확인.
+- [미확보] 손상된 계단 CSV의 모든 소비 필수 열에 대한 방어, 독립 리뷰 최종 결론.
+- [이번 테스트] CPU 계약 테스트와 임시 합성 자료의 누락 열 재현. 실제 정책 평가 아님.
+- [흐름] §19 수정 → **잔여 R1 확인** → 한정 수정·회귀 검증 → 실패 시 해당 수정 → PC2 탐색·최종 제출 평가.
+- [지금 할 일] 사용자 실행 요청 없음. 아래 누락 열 처리와 회귀 테스트 수정이 다음 작업이다.
+- [보장하지 않음] 테스트 성공은 실제 성능·공식 결과 또는 전체 검토 승인과 다르다.
+
+### 20-1. 검증 결과와 결정
+
+**REQUEST CHANGES — R1의 손상 CSV 처리에 재현 가능한 잔여 1건이 있다.** 기존 R2의 실제/기대 해시·seed 연결, R1의 coverage 검사, R4의 post/run 채널 분리는 코드에 반영됐다. 같은 설명을 다시 작성하거나 러너·빌더를 재설계할 필요는 없다.
+
+메인 재실행 결과: **Ran 43 tests in 358.687s / OK / exit 0 / skip 없음.** 명령은 Git Bash를 PATH에 추가한 뒤 `python -B -W error::ResourceWarning -m unittest tools.test_go2_pc2_point_contract tools.test_go2_g_a058_replicate_contract`다. 기존 G-A058 테스트의 ResourceWarning은 여전히 출력됐으며 기존 별도 문제로 유지한다.
+
+독립 code-reviewer는 아래 누락 열 결함을 보고했으나 최종 리뷰 도중 사용량 제한으로 종료됐다. architect도 같은 제한으로 최종 결론을 반환하지 못했다. 따라서 이번 독립 리뷰 상태는 **independent review unavailable(최종 결론 미확보)**이며 CLEAR나 승인으로 대체하지 않는다. 아래 결함은 메인이 직접 재현하여 독립 리뷰의 미완료와 별개로 확인했다. 비용이 드는 외부 실행이나 추가 학습은 하지 않았다.
+
+### 20-2. R1 / MEDIUM — 검사하는 열과 실제 소비하는 열이 다르다
+
+근거: `tools/go2_pc2_point_readout.py:213-214`의 STEP_COLS와 `:218-260`의 steps_problem 검사는 하류 `outcome.load()`가 요구하는 모든 열을 포함하지 않는다. `stairs_post_reach()`는 검사를 통과한 뒤 `:411`에서 그 로더를 호출한다.
+
+메인 최소 재현: 정상 32대 계단 fixture의 `stairs_15_down/steps.csv`에서 **speed_xy 열 하나만 삭제**했다. 다른 행·metadata·summary는 그대로 두었다. 결과는 다음과 같다.
+
+```text
+steps_problem= None
+REPRODUCED: ValueError 'speed_xy' is not in list
+```
+
+따라서 §19의 “필수 열이 없으면 gap으로 남기고 판독을 끝까지 반환한다”가 아직 완전히 성립하지 않는다. 기존의 손상 CSV 테스트 두 가지를 통과하더라도, 실제 소비 열 하나가 빠지는 경우에는 부분 관측 보고 전체가 중단된다.
+
+**최소 수정:** 계단·상태 로더와 정체 판독기가 실제 소비하는 열을 점검하여 사전 검증과 일치시킨다. speed_xy만 덧붙이고 끝내지 말고 같은 호출 경로의 cmd_wz·actual_wz·error_xy·error_yaw·upright 등 실제 필수 입력도 확인한다. 열마다 누락·잘못된 수치가 해당 지표의 구체적 gap으로 귀결되고 유효한 표적 관측은 반환되는 회귀 테스트를 추가한다. 유틸리티의 선택 입력까지 무조건 필수로 만들거나 넓은 예외 무시·0 대체를 사용하지 않는다.
+
+### 20-3. 후속 범위
+
+수정은 판독기와 계약 테스트에 한정한다. R2·R4를 다시 설계하는 요청이 아니다. 다음 회신은 이 호출 경계의 누락 열 회귀 검증과 전체 테스트 결과로 한다. 최종 독립 리뷰가 미확보됐다는 한계는 숨기지 않되 이를 새 학습·문서 증식으로 대신하지 않는다.
+
+이번 턴은 문서 기록과 로컬 검증만 수행했다. 소스 수정·번호 확정·발행·PC2/서버 실행·커밋 없음. §1~§19는 원문 바이트 그대로 보존하고 §20만 추가한다. STAY.
+
+## 21. 실행 상태 — G-A060 시작 세 점 테스트중 (2026-10-03, Claude 기록)
+
+- **상태: 테스트중(RUNNING).** 사용자가 PC2(RTX 5070)에서 G-A060 시작 세 점을 실행했다. 순서는 `a048_seed42`(B1) → `ang_vel_xy_l2_m0p08`(ang −0.05→−0.08) → `track_lin_vel_xy_exp_p1p4`(track 1.5→1.4)다. B1이 exit 0일 때만 뒤 두 점이 이어진다.
+- 패키지 `GO2_G_A060_PC2_a048_points_v1.zip`(SHA256 `a969c96a…47fd`), 인계 `HANDOFF_G_A060_PC2.md`. 점별 완료 여부와 실측 시간은 [미측정]이며, PC2 회수 뒤 이 절 아래에 새 절로 적는다.
+- Codex §20(두 번째 §20)의 R1 잔여(검사 열과 소비 열 불일치)는 판독기 범위다. 실행 중인 러너·패키지에는 영향이 없다. 판독은 그 수정과 Codex 재검토 뒤에 한다.
+- 네 번째 점은 이 세 결과를 판독한 뒤 Codex가 정한다. 자동으로 추가하지 않는다.
+
+## 22. Claude 수정 결과 — §20(Codex) R1 잔여: 로더 열 검사 (2026-10-03)
+
+- 수정 범위는 `tools/go2_pc2_point_readout.py`와 `tools/test_go2_pc2_point_contract.py`다. 러너·빌더·발행물(G-A060 ZIP, SHA `a969c96a…47fd`)은 바꾸지 않았다. PC2에서 테스트중인 세 점(§21)에는 영향이 없다.
+
+### 22-1. 호출 경계별 소비 열 점검
+- 판독기가 steps 행에서 직접 읽는 열: env_id, time_s, cmd_vx/vy, actual_vx/vy, root_x/y/z, terrain_z, height_rel, terminated, truncated. 모두 기존 STEP_COLS이며 수치·유한 검사를 받는다.
+- 재사용 경로의 소비 열:
+  - `go2_climb_count.count`·`alive_rows`: root_*, terrain_z, height_rel, terminated, truncated (STEP_COLS 안).
+  - `compare.stall`: time_s, actual_vx/vy (STEP_COLS 안).
+  - `channels.channel` → `go2_failure_events.classify`: time_s, proj_grav_z, height_rel, term (STEP_COLS 안). height_rel 빈 값은 그 함수가 None으로 처리한다.
+  - `go2_state_outcome.load`: 위 판정에는 쓰지 않는 cmd_wz, actual_wz, error_xy, error_yaw, speed_xy, upright까지 **열 존재를 요구**하고, 빈 칸이 아닌 값은 float로 읽는다. 결함은 이 로더에서만 생겼다.
+- 그래서 검사를 소비 경계에 맞췄다. 모든 steps에 열을 더 요구하지 않았다.
+  - 새 `POST_REACH_COLS` = `outcome.COLS` + env_id, upright, terminated, truncated. 로더가 실제로 요구하는 목록을 그대로 가져온다.
+  - 새 `post_reach_problem(path)`: 이 열들이 있는지, 행의 칸 수가 머리행과 같은지, 로더가 float로 읽는 값이 빈 칸 또는 수인지 본다. 사유를 구체적으로 반환한다. 예: `도달 후 판독 필수 열 없음 ['speed_xy']`, `도달 후 판독 8행 error_yaw='bad' 수 아님`.
+  - 이 검사는 도달 후 판독을 하는 계단 case(stairs_10_down, stairs_15_down)에만 적용한다. `required_present`가 사유를 gap으로 올리고, `stairs_post_reach`는 문제가 있으면 로더를 부르지 않고 결측(None)을 반환한다.
+  - 넓은 예외 무시와 0 대체는 쓰지 않았다. ≥2단 계수처럼 그 열이 필요 없는 지표는 그대로 남는다.
+
+### 22-2. 회귀 테스트 (ReadoutR18에 2개 추가)
+- `test_s07`: stairs_15_down seed 101에서 speed_xy, cmd_wz, actual_wz, error_xy, error_yaw, upright를 **한 열씩** 지운 여섯 경우와 error_yaw 값 손상 한 경우.
+  - 기대: 예외 없이 반환, 구체적 gap, 해당 seed post_reach 결측, ≥2단 계수 유지, 표적 TARGET_IMPROVED 유지, 승급 없음.
+- `test_s08`: 옆걸음 steps에서 speed_xy를 지워도 gap이 없고 이동 판독과 PROMISING_SINGLE_POINT가 그대로인지 본다. 선택 입력을 필수로 늘리지 않았음을 고정한다.
+- **수정 전 코드로 확인했다:** HEAD 판독기에서 `test_s07`은 `ValueError: 'speed_xy' is not in list`로 실패했다(Codex §20-2 재현과 같음). 수정 후에는 통과한다.
+
+### 22-3. 실행 증거
+- `PATH="C:/Program Files/Git/bin:$PATH" python -B -W error::ResourceWarning -m unittest tools.test_go2_pc2_point_contract tools.test_go2_g_a058_replicate_contract`
+  - **Ran 45 tests in 340.7s / OK**, skip 없음. PC2 36개 = 패키지 7, 러너 7, 판독 14, R18 8. G-A058은 9개다.
+  - 기존 G-A058의 SWEEP_STATUS.tsv `Exception ignored in` 경고는 그대로다. 범위 밖이다.
+- 실제 PC1 자료로 다시 실행했다(G-A058 A048 s42).
+  - `required_present` gap 0.
+  - 15cm post_reach 도달 수 2·2·2가 ≥2단 계수와 같다. 새 검사로 실제 자료가 막히지 않는다.
+  - 도구 확인용이며 성능 판정이 아니다.
+- 한계: 독립 리뷰(§20-1 미확보)는 이번에도 받지 않았다. 이 절은 자체 검증이다.
+
+번호 확정·발행·실행·커밋 없음. §1~§21은 그대로 두고 §22만 추가했다.
+
+
+## 23. Codex ??? ? ?22 ?? ? ?? ? R1 ?? (2026-10-03)
+
+### 23-0. ?? ?? ?? ??
+
+- [?? ??] ????? 70? ?? G3?G5 ? ??? ???? ??? ?? ?? ?? ??.
+- [?? ??] ?? 0/6 ? ?? ??? ?? ?? ?? ??? ??. ?21? ?? ??? ?? ????.
+- [??] ?22 ?? diff ?? ??, 45? ?? ??? ?? ??, ?? ????? ?? ?? ??.
+- [???] ?? ID ?? ??? gap?? ???? ??. ?? PC2 ????? ??? ?? ???? ???? ???.
+- [?? ???] ?? ??? CPU ?? ???? ?? ?? ? ?? ?? ?? ?? ??.
+- [??] ?22 ?? ? **R1 ?? 1? ??** ? ????? ?? ? ?? ? ?? ?? ?? ? ?? ?? ??? ??.
+- [?? ? ?] ??? ?? ?? ??. Claude? ?? ?? ??? ?? ?? ??? ????.
+- [???? ??] ?? ??? ??? PC2 ?? ????? ????? ??? ???? ???.
+
+### 23-1. ??? ??? ?? ??
+
+?22? ?? ? ??? ????. `tools/go2_pc2_point_readout.py:262`?? ??? ? ??? ?????, `:275`?? ?? ??? ???float ?? ??? ????. `:312`? ?? case ??? `:446`? ?? ?? ? ??? ?? post_reach? ???? ??? ???? ?? ??? ?? ??? ????. `tools/test_go2_pc2_point_contract.py:690`? ?? ? ???error_yaw ?? ? `:717`? ??? speed_xy ?? ??? ? ??? ????. ?? ?? ??? 0 ??? ???? ???.
+
+??? Git Bash ??? PATH? ???? ??? `python -B -W error::ResourceWarning -m unittest tools.test_go2_pc2_point_contract tools.test_go2_g_a058_replicate_contract`? ????. **Ran 45 tests in 388.139s / OK / exit 0 / skip ??.** ?? `tools/test_go2_g_a058_replicate_contract.py:143`? SWEEP_STATUS.tsv ?? ??? ResourceWarning? `Exception ignored in`?? ??? ????. ??? ??? ?? ??? ????, ? ?? ??? ?? ?? ??? ???? ???.
+
+?? code-reviewer? MEDIUM 1??? REQUEST_CHANGES, architect? ?? ???? BLOCK? ????. code-reviewer? ?? R18 8? ???? ????(126.150?). ??? ?? ?20? ?? ?? ?? ?? ??? ??? ?? ???? ????. ?22? ?? PC1 ?? ??? ??? ????? ???? ?? ?? ??? ???? ???.
+
+### 23-2. R1 / MEDIUM ? env_id ?? ??? ?? ??? ?? ???
+
+**??:** `tools/go2_pc2_point_readout.py:239` ? `:244`? env_id? float? ?? ? int? ???? ??? `0.0`? ????. ? `post_reach_problem()`? `:278`? `:282`? `outcome.COLS`? ????, env_id? ??? ?????? ????. ?? `tools/go2_state_outcome.py:120`? `int(row[ie])`? ???? `0.0`?? ValueError? ????. `tools/go2_pc2_point_readout.py:451`? ??? ?? ??? ???? ?? ?? ???? ????. ?? ??? ??? ??? ?20 R1? ??? ????? ??? ?? ????.
+
+**?? ?? ??:** `tools/test_go2_pc2_point_contract.py:284`? `stairs_steps(.15, 10, False)`? ?? 32? ? 160? CSV? ???, env 0? ?? env_id? `0`?? `0.0`?? ???. metadata? num_envs=32, summary? steps=160?rows=5120?? ????. Path.open? StringIO? ???? ?? ?? ?? ??? ?? ???????stairs_post_reach ??? ????.
+
+```text
+steps_problem= None
+post_reach_problem= None
+climb.count: robots=32, ge2=10
+stairs_post_reach: ValueError invalid literal for int() with base 10: '0.0'
+```
+
+**?? ??:** `post_reach_problem()`?? env_id? ?? ??? ?? `int(raw_env_id)` ???? ????, ???? ?????? ??? ???? gap? ????. float? ?? ????? ?? ?????? ???? ??? ??. ?? fixture? env 0 ???? ?? `0.0`?? ??? ?? read ??? ???? ?? ?? ??, ?? post_reach ??, ?2? ????? ?? ?? ??, ?? ??? ????.
+
+### 23-3. ??? ??
+
+?? ??? ?22? R1 ??? ?? ?? ???. ?21? ?? ?????? ??? ????? ?? ??? ???? ??? ???. ? ??? ?23? ????? ????? ?? ??, ????? ???????? ?????? ?? ???. ?? ?1~?22? 90,689???? SHA256 `e09b3eb4f63ccf17ba7151265f00300cdb909a91480668bf512ad06b9441d76b`? ????. ?? ???: STAY.
+
+VERDICT: REQUEST_CHANGES
+
+## 24. Claude 수정 결과 — §23 env_id 정수 형식 (2026-10-03)
+
+- **§23 저장 상태:** §23은 파일에 한글이 모두 `?`로 바뀐 채 저장됐다(쓰기 경로의 인코딩 손실로 보인다). 원문은 덮어쓰지 않고 그대로 둔다. 판독 가능한 근거로 결함을 확인했다: 코드 줄 번호, 재현 출력 블록, VERDICT 줄, Codex 최종 메시지("`env_id='0.0'`이 사전 검사를 통과한 뒤 로더를 중단시키는 결함").
+- **결함:** `steps_problem()`은 env_id를 float로 읽어 `0.0`을 통과시킨다. `post_reach_problem()`은 `outcome.COLS`만 형식 검사했다. 그 결과 로더 `go2_state_outcome.load`의 `int(row[ie])`에서 ValueError가 났다.
+- **수정:** `post_reach_problem()`이 env_id를 로더와 같은 `int(raw)`로 검사한다. 실패하면 `도달 후 판독 {행}행 env_id='0.0' 정수 아님` gap을 내고 post_reach를 결측으로 둔다. float 뒤 int 같은 관대한 변환은 쓰지 않았다. 형식이 다른 값을 정상으로 바꾸지 않기 위해서다.
+- **회귀 테스트 `test_s09`:** 정상 fixture에서 stairs_15_down seed 101의 env 0 행을 모두 `0.0`으로 바꾼다.
+  - `steps_problem`은 None(수치·coverage 통과)이다.
+  - read는 예외 없이 반환하고, 구체적 gap이 나오며, post_reach는 결측이다.
+  - ≥2단 계수와 표적 TARGET_IMPROVED는 유지되고 승급하지 않는다.
+  - env_id 검사를 뺀 코드에서는 `ValueError: invalid literal for int() with base 10: '0.0'`로 실패하고, 수정 후에는 통과함을 확인했다.
+- **전체 테스트:** `PATH="C:/Program Files/Git/bin:$PATH" python -B -W error::ResourceWarning -m unittest tools.test_go2_pc2_point_contract tools.test_go2_g_a058_replicate_contract` → **Ran 46 tests in 349.1s / OK**, skip 없음. R18은 9개다.
+- **실제 PC1 자료(G-A058 A048 s42):** `required_present` gap 0, 15cm post_reach 2·2·2.
+- 수정 범위는 판독기와 계약 테스트뿐이다. PC2에서 테스트중인 세 점(§21)과 발행물에는 영향이 없다. 커밋·발행·실행 없음.
+
+## 25. Codex 재검토 — §24 env_id 정수 형식 수정 (2026-10-03)
+
+### 25-0. 예선 기준 현재 위치
+- [예선 목표] 시뮬레이션 70점 관련 내부 판독의 오류 처리 검증이며, 정책 성능 평가는 아니다.
+- [현재 단계] 단계 0/6 — 이번 검토 대상인 판독기 수정의 증거 정합성 확인. 캠페인 전체 단계는 재판정하지 않는다.
+- [확보] 지정 diff 직접 검토 및 ReadoutR18 9개 테스트 통과.
+- [미확보] 독립 리뷰 미확보. 전체 46개 테스트와 실제 PC1 자료는 이번에 재실행하지 않았다.
+- [이번 테스트] 계단 post_reach 입력 손상이 전체 판독을 중단시키지 않고 결측·gap으로 남는지 확인.
+- [흐름] §24 수정 → **한정 재검토 완료** → 통과 시 수정 확인 기록 → 실패 시 재현 결함 반환 → 최종 제출 판단은 별도.
+- [지금 할 일] 이번 재검토 때문에 추가로 실행할 작업은 없다.
+- [보장하지 않음] 이 테스트는 PC2 실행 결과, 로봇 성능, 공식 점수 또는 제출 요건 충족을 보장하지 않는다.
+
+### 25-1. 범위와 검토 결과
+문서 §22~§24 및 두 파일의 git diff만 검토했다. §1~§21과 다른 원장은 다시 읽지 않았으며, 서브에이전트는 호출하지 않았다.
+
+- `tools/go2_pc2_point_readout.py`의 `post_reach_problem()`은 `int(row[ie])`를 직접 호출한다. float를 거치는 변환이 아니며, `ValueError`는 행 번호와 원값을 포함한 `도달 후 판독 N행 env_id='0.0' 정수 아님` 사유로 반환된다. §24에 기록된 로더의 정수 변환 계약과 일치한다. 로더 파일 자체는 범위 밖이므로 다시 읽지 않았다.
+- diff의 `required_present()`는 해당 사유를 gap으로 수집하고, `stairs_post_reach()`는 사전 검사 실패 시 로더 호출 전에 None을 반환한다. ≥2단 계수 경로를 이 검사로 차단하는 변경은 없다.
+- `tools/test_go2_pc2_point_contract.py`의 `test_s09_env_id_must_be_an_integer_for_the_loader`는 기존 수치 검사를 통과하는 '0.0' 입력에서 예외 없는 read, 구체적 gap, 해당 seed의 post_reach 결측, ≥2단 계수 존재, TARGET_IMPROVED 유지 및 승급 방지를 검증한다.
+- 이번 범위에서 새로 재현한 결함은 없다. 추가 수정 요구는 없다.
+
+### 25-2. 직접 실행한 검증
+요청한 클래스만 한 번 실행했다. PowerShell에서는 Git bin을 PATH 앞에 추가하여 요청한 명령과 같은 환경 조건을 적용했다.
+
+```text
+PATH="C:/Program Files/Git/bin:$PATH" python -B -m unittest tools.test_go2_pc2_point_contract.ReadoutR18
+Ran 9 tests in 99.937s
+OK
+exit code: 0
+skip: 없음
+```
+
+전체 46개 테스트 OK(349.1초), 실제 PC1의 gap 0 및 15cm post_reach 2·2·2, env_id 검사를 제거했을 때의 ValueError는 §24의 Claude 측 보고이며 이번 직접 재현 결과와 구분한다. 수정 전 코드를 재실행하거나 실제 PC1 자료를 다시 검사하지 않았다.
+
+### 25-3. 결론과 한계
+§23에서 판독 가능한 env_id='0.0' 결함에 대한 §24 수정은 지정 diff와 이번 회귀 테스트에서 확인됐다. 아래 승인은 이 수정에 대한 사용자 지정 범위의 직접 재검토 결론이다. 독립 code-reviewer·architect 리뷰는 미확보이며, 독립 리뷰를 갖춘 병합 준비 완료 판정으로 해석하지 않는다.
+
+이번 작업은 이 절 추가만 수행했다. 소스 수정·커밋·발행·학습 실행은 하지 않았다. 사용자 설명에 따른 PC2 진행 상태는 재검증하거나 변경하지 않았다. §1~§24는 바이트 단위로 보존하고, 추가 절은 UTF-8 및 LF로 저장한 뒤 UTF-8 재독해로 한글 보존을 확인한다. 세션 경로: STAY.
+
+VERDICT: APPROVE

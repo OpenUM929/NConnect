@@ -168,3 +168,5 @@ VALID_SYMMETRIC_COMPARISONS: 2
 - 2026-10-03 사용자 결정: 오늘 밤 PC2 G-A060 B1 → ang −0.08 연속(B1 exit 0일 때만), 안내 `upload/G-A060/current/GO2_G_A060_B1_TONIGHT.txt`. 협의 문서 §20.
 - 2026-10-03 사용자 결정 수정: 오늘 밤 PC2(RTX 5070) G-A060 시작 세 점 B1 → ang −0.08 → track 1.4(약 6시간 추정), 안내 `upload/G-A060/current/GO2_G_A060_B1_TONIGHT.txt`.
 - 2026-10-03 PC2 인계 계획서 `HANDOFF_G_A060_PC2.md` — PC2 Claude가 읽고 시작 세 점(B1 → ang −0.08 → track 1.4)을 실행·회수.
+- 2026-10-03 **G-A060 테스트중(RUNNING)**: PC2(RTX 5070)에서 시작 세 점 B1 → ang −0.08 → track 1.4 실행 중. 완료·실측 시간 [미측정], 회수 뒤 판독(판독기 R1 잔여 수정·Codex 재검토 후). 협의 문서 §21.
+- 2026-10-03 PC2 판독기(`tools/go2_pc2_point_readout.py`) Codex **APPROVE**(협의 문서 §25, 범위: §22 로더 열·§24 env_id 정수, 독립 리뷰 미확보). 46 tests OK. G-A060 세 점 회수 뒤 이 판독기로 B1부터 판독한다.

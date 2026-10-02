@@ -571,7 +571,7 @@ class Readout(unittest.TestCase):
 
 
 class ReadoutR18(unittest.TestCase):
-    """§18 잔여 결함 회귀: 실제·기대 identity 연결, 로봇 coverage, 손상 CSV, 도달 후 시간창."""
+    """§18 잔여 결함 회귀: 실제·기대 identity 연결, 로봇 coverage, 손상 CSV, 도달 후 시간창. §20 R1 잔여: 로더 열."""
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -678,6 +678,70 @@ class ReadoutR18(unittest.TestCase):
         self.assertEqual(post["run_channel_tilt_or_both"], 3)    # 전체 run 채널은 별도 이름으로 보존
         self.assertEqual(post["run_channel_terminated"], 1)
         self.assertEqual(post["run_channel_none"], 6)
+
+    # --- §20 R1 잔여: 사전 검사 열 = 도달 후 로더가 실제로 읽는 열 ---
+    @staticmethod
+    def drop_column(f: Path, col: str) -> None:
+        lines = f.read_text(encoding="utf-8").splitlines()
+        j = lines[0].split(",").index(col)
+        f.write_text("\n".join(",".join(c for k, c in enumerate(l.split(",")) if k != j) for l in lines) + "\n",
+                     encoding="utf-8")
+
+    def test_s07_loader_columns_missing_or_bad_are_specific_gaps(self) -> None:
+        rel = "evaluation/candidate/cases/seed_101/stairs_15_down/steps.csv"
+        for col in ("speed_xy", "cmd_wz", "actual_wz", "error_xy", "error_yaw", "upright"):
+            p = self.point(f"drop_{col}")
+            self.drop_column(p / rel, col)
+            r = self.read(p)  # 예외 없이 반환해야 한다
+            self.assertTrue(any(f"도달 후 판독 필수 열 없음 ['{col}']" in g for g in r["state"]["gaps"]),
+                            (col, r["state"]["gaps"]))
+            item = next(x for x in r["protection"] if x["item"] == "stairs_15_ge2")
+            self.assertIsNone(item["seeds"]["101"]["post_reach"]["point"], col)
+            self.assertIn("101", item["post_reach_missing_seeds"], col)
+            self.assertIsNotNone(item["seeds"]["101"]["point"], col)  # ≥2단 계수는 그 열이 필요 없어 남는다
+            self.assertEqual(r["target"]["class"], "TARGET_IMPROVED", col)
+            self.not_promoted(r)
+        p = self.point("bad_error_yaw")
+        f = p / rel
+        lines = f.read_text(encoding="utf-8").splitlines()
+        j = lines[0].split(",").index("error_yaw")
+        cells = lines[7].split(",")
+        cells[j] = "bad"
+        lines[7] = ",".join(cells)
+        f.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        r = self.read(p)
+        self.assertTrue(any("도달 후 판독 8행 error_yaw='bad' 수 아님" in g for g in r["state"]["gaps"]),
+                        r["state"]["gaps"])
+        self.not_promoted(r)
+
+    def test_s09_env_id_must_be_an_integer_for_the_loader(self) -> None:
+        p = self.point("env_id_float")
+        f = p / "evaluation/candidate/cases/seed_101/stairs_15_down/steps.csv"
+        lines = f.read_text(encoding="utf-8").splitlines()
+        j = lines[0].split(",").index("env_id")
+        out = [lines[0]]
+        for l in lines[1:]:
+            cells = l.split(",")
+            if cells[j] == "0":
+                cells[j] = "0.0"  # 수치 검사·coverage 는 통과하지만 로더의 int() 는 실패하는 형식
+            out.append(",".join(cells))
+        f.write_text("\n".join(out) + "\n", encoding="utf-8")
+        self.assertIsNone(readout.steps_problem(str(f)))
+        r = self.read(p)  # 예외 없이 반환해야 한다
+        self.assertTrue(any("env_id='0.0' 정수 아님" in g for g in r["state"]["gaps"]), r["state"]["gaps"])
+        item = next(x for x in r["protection"] if x["item"] == "stairs_15_ge2")
+        self.assertIsNone(item["seeds"]["101"]["post_reach"]["point"])
+        self.assertIsNotNone(item["seeds"]["101"]["point"])  # ≥2단 계수는 남는다
+        self.assertEqual(r["target"]["class"], "TARGET_IMPROVED")
+        self.not_promoted(r)
+
+    def test_s08_loader_only_columns_are_not_required_outside_post_reach(self) -> None:
+        p = self.point("lateral_no_speed")
+        self.drop_column(p / "evaluation/candidate/cases/seed_101/rough_lateral/steps.csv", "speed_xy")
+        r = self.read(p)  # 옆걸음은 도달 후 로더를 쓰지 않는다 — 선택 입력을 필수로 늘리지 않는다
+        self.assertEqual(r["state"]["gaps"], [])
+        self.assertEqual(r["motion_tracking"]["label"], "NONE_WORSE")
+        self.assertEqual(r["combined"]["class"], "PROMISING_SINGLE_POINT")
 
 
 if __name__ == "__main__":

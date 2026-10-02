@@ -1,7 +1,7 @@
 # NConnect 파일·artifact 운영 정본
 
 ## G-A060 — PC2 단일 점 탐색, 오늘 밤 B1만 실행 준비 (2026-10-03, 사용자 지시)
-- 상태: PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
+- 상태: RUNNING(테스트중, 2026-10-03 사용자 PC2 실행 — 시작 세 점 B1 → ang −0.08 → track 1.4). 이전 상태 PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
 - 범위: Codex 승인(협의 문서 §14) 안에서 기준선 B1(`a048_seed42`)만 실행. 첫 후보 ang −0.08은 B1 확인 뒤. 판독기는 Codex §19 재검토 대기 — 판독은 승인 뒤.
 - 영상 판정: 필수(새 학습). 러너가 후보 영상 10편을 찍는다. 회수: `go2_g_a060_pc2_a048_seed42/`, `GO2_G_A060_PC2_A048_SEED42_RESULT.zip`+`.sha256`, `go2_g_a060_pc2_points/`(PC2_ENV_RECORD 포함). report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
 - PC2 결과는 탐색용이며 제출 정책이 아니다(R-6·제14조).
