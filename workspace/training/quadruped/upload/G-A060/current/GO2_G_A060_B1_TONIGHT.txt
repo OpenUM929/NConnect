@@ -1,0 +1,47 @@
+GO2 G-A060 PC2 — 오늘 밤 실행: 기준선 B1 한 점만 (2026-10-03)
+====================================================================
+
+무엇을 돌리나: B1 = A048 보상 그대로, 학습 seed 42, 4096 env, 1000 iter, 평가 iter 900, 69 case, 영상 10편.
+왜 이것만: Codex 승인(협의 문서 §14)은 "B1 을 먼저 돌려 유효성을 확인한 뒤 첫 후보 ang_vel_xy −0.08".
+          두 점을 자동으로 이어 돌리지 않는다. −0.08 은 B1 결과를 보고 다음에 돌린다.
+주의: 판독 도구(go2_pc2_point_readout.py)는 Codex 재검토(§19) 대기 중이다. 실행·회수에는 영향이 없고,
+      B1 판독은 승인 뒤에 한다. 러너는 지정한 한 점만 돌고 멈춘다(계약 테스트 43개 통과).
+
+ZIP: GO2_G_A060_PC2_a048_points_v1.zip
+SHA256: a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd
+
+----------------------------------------------------------------------
+0. ZIP 을 PC2 의 /workspace/ 에 둔다 (Windows Git Bash 면 /workspace 가 C:/workspace 를 가리키게 마운트 —
+   PC1 과 같은 방식, HANDOFF_G_A057_OTHER_PC.md §5-b).
+   확인: sha256sum /workspace/GO2_G_A060_PC2_a048_points_v1.zip   (위 SHA256 과 같아야 한다)
+
+1. 환경 기록 (1분, 결과는 회수 때 함께 가져온다)
+   mkdir -p /workspace/_keep/go2_g_a060_pc2_points && { date -Is; uname -a; nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv; \
+     git -C /workspace/IsaacLab describe --tags --always; /workspace/IsaacLab/isaaclab.sh -p -m pip show torch rsl-rl-lib isaacsim 2>/dev/null | grep -E '^(Name|Version)'; \
+     df -h /workspace; } > /workspace/_keep/go2_g_a060_pc2_points/PC2_ENV_RECORD.txt 2>&1; cat /workspace/_keep/go2_g_a060_pc2_points/PC2_ENV_RECORD.txt
+
+2. 실행 — 한 줄
+   Linux (tmux 있음):
+     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && bash /workspace/go2_g_a060_pc2/run_point.sh --only a048_seed42
+     진행 보기: tmux attach -t go2_g_a060_pc2
+   Windows Git Bash (tmux 없음 — 백그라운드로 같은 한 점만):
+     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && nohup bash /workspace/go2_g_a060_pc2/run_point.sh --inner a048_seed42 > /workspace/go2_g_a060_b1.out 2>&1 &
+     진행 보기: tail -f /workspace/_keep/go2_g_a060_pc2_points/point.log
+   Isaac Lab 이 /workspace/IsaacLab 에 없으면 앞에 ISAACLAB_SH=<경로>/isaaclab.sh 를 붙인다.
+
+3. 바로 실패하는 경우 (몇 분 안에 끝남 — 자고 일어나서 확인)
+   종료 코드 22 = Isaac Lab/GPU 못 찾음, 23 = 학습 시작 전 실패(환경), 21 = 다른 학습이 돌고 있음, 20 = 디스크 20 GB 미만.
+   4096 env 가 메모리 부족이면 23 또는 30 으로 멈춘다. 로봇 수는 줄이지 않는다(비교 불가).
+   상태 표: /workspace/_keep/go2_g_a060_pc2_points/POINT_STATUS.tsv
+
+4. 예상 시간: PC2 실측 전. PC1(RTX 3050)은 같은 설정 한 점에 약 9시간이었다. 서버(RTX 5080)는 약 95분.
+   끊기면 같은 명령을 다시 친다(부분 결과는 GO2_RESUME=1 로 이어 간다, 완료면 SKIP_DONE).
+
+5. 끝나면 가져올 것 (저장소 workspace/_keep/ 에 같은 이름으로 복사, 원본 유지)
+   /workspace/_keep/go2_g_a060_pc2_a048_seed42/            폴더 전체 (report.html 포함)
+   /workspace/_keep/GO2_G_A060_PC2_A048_SEED42_RESULT.zip  + .sha256  (100 MB 넘으면 95 MB parts 로 등재)
+   /workspace/_keep/go2_g_a060_pc2_points/                 상태 표·로그·환경 기록
+
+6. 다음: B1 회수·판독(판독 도구 Codex 승인 후) → B1 유효하면 첫 후보
+     bash /workspace/go2_g_a060_pc2/run_point.sh --only ang_vel_xy_l2_m0p08
+   PC2 결과는 탐색용이며 제출 정책이 아니다. 배포 학습 코드는 수정하지 않았다(보상 가중치만, R-6).

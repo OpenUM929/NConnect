@@ -1,5 +1,11 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A060 — PC2 단일 점 탐색, 오늘 밤 B1만 실행 준비 (2026-10-03, 사용자 지시)
+- 상태: PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
+- 범위: Codex 승인(협의 문서 §14) 안에서 기준선 B1(`a048_seed42`)만 실행. 첫 후보 ang −0.08은 B1 확인 뒤. 판독기는 Codex §19 재검토 대기 — 판독은 승인 뒤.
+- 영상 판정: 필수(새 학습). 러너가 후보 영상 10편을 찍는다. 회수: `go2_g_a060_pc2_a048_seed42/`, `GO2_G_A060_PC2_A048_SEED42_RESULT.zip`+`.sha256`, `go2_g_a060_pc2_points/`(PC2_ENV_RECORD 포함). report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
+- PC2 결과는 탐색용이며 제출 정책이 아니다(R-6·제14조).
+
 ## G-A058-READOUT-READY-20261001 — Codex 후속 판독 준비
 - 보고서 §13-4와 작업 기록의 합의 반영 직접 확인. G-A058 판독 도구 `tools/go2_g_a058_readout.py` 및 경계·미회수·부분회수 테스트 5건 작성/통과. 기존 발행물·사전등록 변경 없음.
 - 현재 로컬 재판독: A048 seed42 COMPLETE(계단15 ≥2단 6, 우회전 판정 0), A043 seed43/44 NOT_RECOVERED. G-A057 track1.2 EXCLUDED_STATIONARY, 나머지 11행 NOT_RECOVERED. 이는 현재 저장소 도착 상태이며 다른 PC 실행 상태가 아니다.
@@ -24,6 +30,14 @@
 - 2026-10-01 Codex 지적 정정 두 건(같은 보고서 §12): 도구 `tools/go2_state_order_sink_check.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_order_sink_20261001/`, 테스트 8건 통과. (1) 계단 ≥2단↔낙상 순서: A048 15cm 24 = 무낙상 3·오른 뒤 낙상 12·오르기 전 높이 채널 판정 9(이전 '21대가 오른 뒤 낙상' 철회). 계단 낙상 대부분이 높이 채널만(스캐너 편향 혼입 가능, [모름]). (2) '가라앉음'→'자기 중앙값보다 낮게 섬'으로 정정, 1~3초 하강 추세는 일관 표지 아님. 선택 결론 불변.
 - 2026-10-01 Codex 지적 반영(같은 보고서 §13): 판정 채널 분리 도구 `tools/go2_state_channel_split.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_channel_split_20261001/`, 테스트 9건 통과. 험지 옆걸음 판정은 대부분 몸통 접촉 종료라 '자기 중앙값보다 낮게 섬' 연관은 높이 문턱과 무관하게 유지(서버 A048은 높이만 5건 제외 시 6 대 2). 계단 판정은 대부분 높이만(A048 15cm 93 = 종료 18·높이만 75) → 계단 '낙상' 수를 보상으로 줄이려 하지 않고 ≥2단·종료·높이만을 따로 읽는다. '낙상' 표현은 '내부 자세 게이트 판정'으로 정정. 사전등록·평가기 불변.
 - 2026-10-01 Codex 재검토 반영: union_only를 높이 문턱 없는 판정에서 제외(해당 A043 험지 옆 1대, 비교 수치 불변), 그룹 합·채널 합 54개 정책·case 일치. 험지 수준 연관은 서버 A048·A050·PC A048에 한정(A043·A047 반대). 높이 분석은 여기서 닫고 G-A057 판독 기준으로 쓴다. 계단 결론 정정: '새 계단 보상값 미선정, 기존 근거 검토 유지, G-A057에서 개선·부작용 대조'(제약 재개방을 선행조건으로 두지 않음, 종료 감소는 필수조건 아님 — §13-4).
+
+## G-A058-ROW2 — 실행 PC(RTX 3050) A043 seed 43 회수·판독 (2026-10-02)
+- 상태: RECEIVED → VERIFIED → ANALYZED → REPORTED. MERGED 없음(NO_CANONICAL_MERGE): 회수물은 `workspace/_keep/go2_g_a058_a043_seed43/`에 둔다.
+- `GO2_G_A058_A043_SEED43_RESULT.zip` `ca497aa6beb92df5dd045a16afaea1ff2b3497da75da0b39da680d85a279ac7d` — 분할본 4개 복원, 외부 SHA·내부 SHA 536/536 일치.
+- FULL_69_COMPLETE, RUNNER_RC=0, REPORT_READ_STATUS=READ_MATCHED, 영상 10(VIDEO_UNKNOWN), 평가 iter 900 SHA `783927889415…`.
+- 판독: NOT_JOINT_CANDIDATE(15cm 0/96), 우회전 PROTECTED(0/96), 설정 재현성 NOT_YET(REPRODUCED 불가). 41.892/70.
+- 보고: `workspace/training/quadruped/reports/GO2_G_A058_ROW2_A043_SEED43_READOUT_20261002.md`
+- 도구·테스트: `tools/go2_g_a058_row2_check.py`, `tools/test_go2_g_a058_row2_check.py`
 
 ## G-A058-ROW1 / G-A057-P1P2 — 실행 PC(RTX 3050) 결과 회수·판독 (2026-10-01)
 - 상태: RECEIVED → VERIFIED → ANALYZED → REPORTED. MERGED 없음(NO_CANONICAL_MERGE): 회수물은 `workspace/_keep/`에 그대로 둔다.
