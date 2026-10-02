@@ -45,7 +45,8 @@ rebuild_one() {
 
 for base in \
   "GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip" \
-  "GO2_G_A058_A048_SEED42_RESULT.zip"
+  "GO2_G_A058_A048_SEED42_RESULT.zip" \
+  "GO2_G_A058_A043_SEED43_RESULT.zip"
 do
   rebuild_one "$base"
 done

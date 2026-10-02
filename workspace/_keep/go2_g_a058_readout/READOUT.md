@@ -5,7 +5,7 @@
 | 행 | 역할 | 상태 | 총점/70 | 15cm ≥2단 /96 | 10cm ≥2단 /96 | 우회전 낙상 /96 | 개별 판정 | 우회전 결함 |
 |---|---|---|---|---|---|---|---|---|
 | a048_seed42 | reference | COMPLETE | 43.397 | 6 | 76 | 0 | 기록만 | - |
-| a043_seed43 | a043_replicate | NOT_YET | | | | | | |
+| a043_seed43 | a043_replicate | COMPLETE | 41.892 | 0 | 57 | 0 | NOT_CANDIDATE | PROTECTION_MET |
 | a043_seed44 | a043_replicate | NOT_YET | | | | | | |
 
 행 1 기록: 서버 A048(사전등록 내장값) vs 이 PC A048 seed 42 — 기록만, 판정 아님
@@ -23,6 +23,7 @@
 험지·밀침 낙상(/96):
 
 - a048_seed42: rough_lateral=68, rough_forward=6, push_pos_x=4, push_neg_x=2, push_pos_y=0, push_neg_y=4 | 축 점수 G1=9.562, G2=9.782, G3=2.178, G4=9.844, G5=0.251, G6=6.329, G7=5.451
+- a043_seed43: rough_lateral=5, rough_forward=22, push_pos_x=19, push_neg_x=23, push_pos_y=18, push_neg_y=27 | 축 점수 G1=9.538, G2=9.659, G3=7.626, G4=6.905, G5=0.0, G6=4.554, G7=3.61
 
 - 행 1은 기준 기록이며 판정 문턱이 아니다.
 - 이 PC 정책은 탐색용이며 제출 후보가 아니다.
