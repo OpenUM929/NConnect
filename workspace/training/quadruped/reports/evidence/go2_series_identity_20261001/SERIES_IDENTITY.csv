@@ -1,0 +1,12 @@
+series,value,base,arm,verdict,reward_diff,env_lines_diff,env_diff_sample,agent_lines_diff,agent_diff_sample,train_code_files_diff,condition_diff,seed_iter_envs_ckpt
+lin_vel_z (A033 기준),-1.75,A033,A044,ONLY_ONE_REWARD,lin_vel_z_l2: -2.0 → -1.75,0,,0,,없음,없음,42/1000/4096/900
+lin_vel_z (A033 기준),-1.5,A033,A043,ONLY_ONE_REWARD,lin_vel_z_l2: -2.0 → -1.5,0,,0,,없음,없음,42/1000/4096/900
+lin_vel_z (A033 기준),-1.375,A033,A050,ONLY_ONE_REWARD,lin_vel_z_l2: -2.0 → -1.375,0,,0,,없음,없음,42/1000/4096/900
+lin_vel_z (A033 기준),-1.25,A033,A048,ONLY_ONE_REWARD,lin_vel_z_l2: -2.0 → -1.25,0,,0,,없음,없음,42/1000/4096/900
+lin_vel_z (A033 기준),-1.0,A033,A049,ONLY_ONE_REWARD,lin_vel_z_l2: -2.0 → -1.0,0,,0,,없음,없음,42/1000/4096/900
+ang_vel_xy (A033 기준),-0.04,A033,A041,ONLY_ONE_REWARD,ang_vel_xy_l2: -0.05 → -0.04,0,,0,,없음,없음,42/1000/4096/900
+ang_vel_xy (A033 기준),-0.08,A033,A038,ONLY_ONE_REWARD,ang_vel_xy_l2: -0.05 → -0.08,0,,0,,없음,없음,42/1000/4096/900
+ang_vel_xy (A043 기준),-0.08,A043,A055,ONLY_ONE_REWARD,ang_vel_xy_l2: -0.05 → -0.08,0,,0,,없음,없음,42/1000/4096/900
+flat_orientation (A033 기준),-0.5,A033,A047,ONLY_ONE_REWARD,flat_orientation_l2: 0.0 → -0.5,0,,0,,없음,없음,42/1000/4096/900
+track_lin_vel_xy (A033 기준),1.6,A033,A042,ONLY_ONE_REWARD,track_lin_vel_xy_exp: 1.5 → 1.6,0,,0,,없음,없음,42/1000/4096/900
+참고: 보상 같음 서버→PC,same,A048,PC_A048,SAME_REWARD_DIFFERENT_MACHINE,없음,0,,0,,없음,layer: server → pc,42/1000/4096/900

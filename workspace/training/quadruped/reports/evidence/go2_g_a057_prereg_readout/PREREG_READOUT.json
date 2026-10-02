@@ -2,7 +2,7 @@
  "track_lin_vel_xy_exp_p1p2": {
   "work_id": "G-A057",
   "row": "track_lin_vel_xy_exp_p1p2",
-  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p2",
+  "harvest": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p2",
   "tier": "INTERNAL_HYPOTHESIS_READOUT",
   "adoption": "not judged — G-A057 is sweep data only",
   "run_state": "COMPLETE",

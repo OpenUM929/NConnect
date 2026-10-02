@@ -1,0 +1,5 @@
+{
+ "envs": 3264,
+ "ge2_rule_consistent": true,
+ "sink_threshold_m": -0.01
+}

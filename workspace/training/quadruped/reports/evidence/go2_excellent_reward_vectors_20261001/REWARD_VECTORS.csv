@@ -1,0 +1,8 @@
+policy,why_listed,source_env_yaml,action_rate_l2,ang_vel_xy_l2,dof_acc_l2,dof_pos_limits,dof_torques_l2,feet_air_time,flat_orientation_l2,lin_vel_z_l2,track_ang_vel_z_exp,track_lin_vel_xy_exp,undesired_contacts
+A033,기준선(대조군),workspace/_keep/go2_g_a033_a017_track_lin_vel_xy_150/training/env.yaml,-0.01,-0.05,-2.5e-07,0.0,-0.0002,0.2,0.0,-2.0,0.75,1.5,null
+A038,험지 옆걸음 성공 78,workspace/_keep/go2_g_a038_a033_ang_vel_xy_m008/training/env.yaml,-0.01,-0.08,-2.5e-07,0.0,-0.0002,0.2,0.0,-2.0,0.75,1.5,null
+A043,15cm 계단 성공 46·≥2단 77,workspace/_keep/go2_g_a043_a033_lin_vel_z_m15/training/env.yaml,-0.01,-0.05,-2.5e-07,0.0,-0.0002,0.2,0.0,-1.5,0.75,1.5,null
+A048,총점 50.16·험지·밀침,workspace/_keep/go2_g_a048_a033_lin_vel_z_m125/training/env.yaml,-0.01,-0.05,-2.5e-07,0.0,-0.0002,0.2,0.0,-1.25,0.75,1.5,null
+A049,험지 전진 성공 94,workspace/_keep/go2_g_a049_a033_lin_vel_z_m1/training/env.yaml,-0.01,-0.05,-2.5e-07,0.0,-0.0002,0.2,0.0,-1.0,0.75,1.5,null
+A050,험지 옆걸음 성공 77,workspace/_keep/go2_g_a050_a033_lin_vel_z_m1375/training/env.yaml,-0.01,-0.05,-2.5e-07,0.0,-0.0002,0.2,0.0,-1.375,0.75,1.5,null
+A055,우회전 판정 0·밀침 375,workspace/_keep/go2_g_a055_a043_ang_vel_xy_m008/training/env.yaml,-0.01,-0.08,-2.5e-07,0.0,-0.0002,0.2,0.0,-1.5,0.75,1.5,null
