@@ -1,5 +1,47 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A058-READOUT-READY-20261001 — Codex 후속 판독 준비
+- 보고서 §13-4와 작업 기록의 합의 반영 직접 확인. G-A058 판독 도구 `tools/go2_g_a058_readout.py` 및 경계·미회수·부분회수 테스트 5건 작성/통과. 기존 발행물·사전등록 변경 없음.
+- 현재 로컬 재판독: A048 seed42 COMPLETE(계단15 ≥2단 6, 우회전 판정 0), A043 seed43/44 NOT_RECOVERED. G-A057 track1.2 EXCLUDED_STATIONARY, 나머지 11행 NOT_RECOVERED. 이는 현재 저장소 도착 상태이며 다른 PC 실행 상태가 아니다.
+- 결과 `reports/evidence/go2_g_a058_codex_readout/READOUT.json`. 다음: 새 결과 위치 식별 → 해당 artifact 검증 → 같은 판독 도구 실행 → 기존 사전등록과 보조 분석을 분리 보고. 로컬 판독 도구는 파일 무결성 검사·전 축 채택 판단을 대체하지 않는다.
+
+## G-A059 — A043 계단 진단 재생 (2026-10-01, 학습 없음)
+- 상태: PLANNED. 패키지 발행(ARTIFACT_VERIFIED). **실행 보류(2026-10-01 사용자: 영상 확인 작업은 나중에).** 실행·회수 없음.
+- 목적: 15cm 계단 성공 상태 기준(발 들기 높이·앞 들기·디딤판 기준 몸높이)을 잘 오르는 정책(A043)에서 처음 잰다. 사용자 요청: 성공 사례 상태 조사가 없으면 이후 결과를 기준 중심으로 읽을 수 없다.
+- 패키지 `workspace/training/quadruped/upload/G-A059/current/GO2_G_A059_a043_stairs_diag_replay_v1.zip` SHA256 `feb588fc797197c40e37039906eee71de606d7a86919446fad8c9106707c43d9`, 계획 `workspace/training/quadruped/upload/plan/GO2_G_A059_A043_STAIRS_DIAG_PLAN_20261001.md`.
+- 실행 한 줄: `unzip -oq /workspace/GO2_G_A059_a043_stairs_diag_replay_v1.zip -d /workspace && bash /workspace/go2_g_a059/server_run_go2_a043_stairs_diag_replay.sh`. 결과 `/workspace/_keep/GO2_G_A059_RESULT.zip`(+`.sha256`), 완료 표식 `[DONE] GO2_G_A059_RESULT_READY`.
+- 영상 판정: 필수(4편, 15cm env 1·0·4·12). 학습 report: 비해당(학습 없음).
+- 종료 게이트: `python -B tools/verify_go2_g_a059_harvest.py <ZIP>` 0 = 종료 가능, 3 = 예외 결정, 1 = 종료 금지. 판독 `tools/go2_g_a059_stairs_foot_readout.py`.
+- 로컬 검증: 빌더 `--check` REBUILD_IDENTICAL, 계약 테스트 `tools/test_go2_g_a059_diag_contract.py` 9건 통과(러너 bash -n·LF, 명령 = G-A043 seed 101 계단 명령, 계측 모듈 = G-A056 v2 바이트, 가짜 회수물 검증 0/3/1, 판독기 가짜·실자료 실행).
+- 발견: 작업 트리의 A043 `training/env.yaml`과 계측 모듈이 CRLF로 바뀌어 있다(git core.autocrlf). LF로 되돌리면 기록된 SHA와 같다. 빌더는 원본을 고치지 않고 읽을 때 LF로 되돌려 SHA·G-A056 바이트와 대조한다. G-A056 빌더 `--check`도 같은 이유로 실패할 수 있다(미확인).
+
+## GO2-HEIGHT-CROSSCASE-20261001 — 몸높이·험지·계단 비교
+- 2026-10-01 사용자 후속 요청: 계단·험지·우회전·밀침 상태별 최선 관측점/유망 구간과 보상 대응 정책을 Claude가 분석하도록 전달 계획 작성. `workspace/training/quadruped/upload/plan/GO2_STATE_OPTIMUM_ANALYSIS_HANDOFF_20261001.md`. .24m/.31m는 검증할 후보점이며 최적값 확정 아님. 직접 Claude 실행·서버 실행 없음.
+- 상태: PLANNED → RUNNING. 기존 회수 steps.csv·summary만 읽어 동일 정의의 비교 CSV를 생성한다. 서버 실행·원자료 수정·병합 없음.
+- 목적: 높이와 성능의 연관 및 반례 확인. 인과효과·최적 높이·새 보상값은 판정하지 않는다.
+- 로컬 분석 완료: 49개 설정×case 집계, 4,704개 env 기록. 높이 산술·표본 수·중복·문법 검증 및 diff 검사 완료. 보고 `workspace/training/quadruped/reports/GO2_HEIGHT_CROSSCASE_20261001.md`. 회수·병합 상태 전이 없음. 영상 미판독, 신규 실행 없음.
+- 2026-10-01 Claude 확장(계획서 §4~§6): 같은 보고서 §5~§11(표 A~E·튜닝 정책 연결). 도구 `tools/go2_state_outcome.py`, 테스트 `tools/test_go2_state_outcome_contract.py` 7건 통과, 증거 `workspace/training/quadruped/reports/evidence/go2_state_outcome_20261001/`. 13 정책×10 case, 339 arm×case×seed 낙상 수 summary와 전부 일치, 기존 초기 높이·≥2단 4,704건 차이 0, 밀침 16,533건(미검출 20). 원자료·기존 증거 불변, 서버 실행·패키지 발행·번호 예약 없음. 결론: .24 수정(서버 A048 한정 0.24~0.28), .31 기각, 새 보상값 선택 없음, 정책 B 후보 track 1.4 근거 약화(G-A057 행은 그대로).
+- 2026-10-01 Codex 지적 정정 두 건(같은 보고서 §12): 도구 `tools/go2_state_order_sink_check.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_order_sink_20261001/`, 테스트 8건 통과. (1) 계단 ≥2단↔낙상 순서: A048 15cm 24 = 무낙상 3·오른 뒤 낙상 12·오르기 전 높이 채널 판정 9(이전 '21대가 오른 뒤 낙상' 철회). 계단 낙상 대부분이 높이 채널만(스캐너 편향 혼입 가능, [모름]). (2) '가라앉음'→'자기 중앙값보다 낮게 섬'으로 정정, 1~3초 하강 추세는 일관 표지 아님. 선택 결론 불변.
+- 2026-10-01 Codex 지적 반영(같은 보고서 §13): 판정 채널 분리 도구 `tools/go2_state_channel_split.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_channel_split_20261001/`, 테스트 9건 통과. 험지 옆걸음 판정은 대부분 몸통 접촉 종료라 '자기 중앙값보다 낮게 섬' 연관은 높이 문턱과 무관하게 유지(서버 A048은 높이만 5건 제외 시 6 대 2). 계단 판정은 대부분 높이만(A048 15cm 93 = 종료 18·높이만 75) → 계단 '낙상' 수를 보상으로 줄이려 하지 않고 ≥2단·종료·높이만을 따로 읽는다. '낙상' 표현은 '내부 자세 게이트 판정'으로 정정. 사전등록·평가기 불변.
+- 2026-10-01 Codex 재검토 반영: union_only를 높이 문턱 없는 판정에서 제외(해당 A043 험지 옆 1대, 비교 수치 불변), 그룹 합·채널 합 54개 정책·case 일치. 험지 수준 연관은 서버 A048·A050·PC A048에 한정(A043·A047 반대). 높이 분석은 여기서 닫고 G-A057 판독 기준으로 쓴다. 계단 결론 정정: '새 계단 보상값 미선정, 기존 근거 검토 유지, G-A057에서 개선·부작용 대조'(제약 재개방을 선행조건으로 두지 않음, 종료 감소는 필수조건 아님 — §13-4).
+
+## G-A058-ROW1 / G-A057-P1P2 — 실행 PC(RTX 3050) 결과 회수·판독 (2026-10-01)
+- 상태: RECEIVED → VERIFIED → ANALYZED → REPORTED. MERGED 없음(NO_CANONICAL_MERGE): 회수물은 `workspace/_keep/`에 그대로 둔다.
+- 결과 ZIP 두 개를 git 분할본에서 복원했고 외부 SHA·CRC·내부 SHA 536/536이 일치한다.
+  - `GO2_G_A058_A048_SEED42_RESULT.zip` `6cd57a7a1d2f78c3dc6661dbcf38aedbd8f9becc971ae4fd7fce1d036b498250`
+  - `GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip` `83da374eb0c80effec3a4f2626f6c1d85ae629ceab05b4549559eaf3bd66c3e3`
+- 두 결과 모두 FULL_69_COMPLETE, REPORT_READ_STATUS=READ_MATCHED, 영상 10/10(VIDEO_UNKNOWN, 임시 화살표).
+- 판독: track 1.2 = EXCLUDED_STATIONARY. 이 PC A048 s42 = 43.397/70(서버 50.157). 행 1 사전등록 신호(정지)는 미발생.
+- 보고: `workspace/training/quadruped/reports/GO2_G_A058_ROW1_A057_P1P2_READOUT_20261001.md`
+- 도구: `tools/go2_g_a058_row1_check.py`
+
+## STORAGE-CLEANUP-20260930 — 로컬 저장 공간 정리(영상·중복 사본·.git)
+- 상태: PLANNED → RUNNING. 사용자 승인: 계획 A+B+C+D 전체(2026-09-30). 계획·결과 `STORAGE_CLEANUP_PLAN_20260930.md`.
+- 삭제: untracked 102개·0.94 GB. 구성은 `server_returns` 중복 ZIP 2개와 영상 100개(ZIP에 같은 CRC로 존재하는 Go2 영상, H1 `exported` 중복분)다. 행별 기록은 `STORAGE_CLEANUP_RESULT_20260930.tsv`에 있다.
+- 보존: git 추적 파일, 결과 ZIP 원본, 도구가 참조하는 해제 폴더, G-A052·G-A056·G-A057·G-A058 자료. 추적 파일 삭제 0건.
+- `.git`: reflog expire·gc 완료, 12.3 GB → 3.5 GB.
+- 후속(사용자 지시 1·2항): 브랜치 `chore/storage-cleanup-20260930` 커밋 `784663b`에서 추적 중복 3.51 GB와 종료 run 해제 파일 2.80 GB(ZIP과 CRC 일치분만)를 삭제했다. 추적 파일 2,837개다. 프로젝트 37.4 → 21.9 GB. 상태: REPORTED. 상세는 계획서 §5에 있다.
+
 ## GO2-EXTERNAL-FIRST-STUDY-20260930 — C1 정정 추가 기록
 - 기존 작업의 로컬 문서 정정: C1 우선 선정 철회, 연구 정본 §11 및 Go2 상태·일정 원장 동기화. 이전 선정 완료 문구는 정정 전 이력이다.
 - 근거: 기존 원인 기록·9월 29일 체공 판독·G-A057 사전등록 대조. 새 실험 결과가 아니다. 신규 최적값 선정은 미완료다.
