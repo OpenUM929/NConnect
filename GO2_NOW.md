@@ -167,3 +167,4 @@ VALID_SYMMETRIC_COMPARISONS: 2
 - 2026-10-03 **G-A060 발행·PC2 B1만 오늘 밤 실행 준비(사용자 지시)**: `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_B1_TONIGHT.txt`, ZIP SHA `a969c96a…47fd`. ang −0.08은 B1 확인 뒤, 판독기는 Codex §19 재검토 대기.
 - 2026-10-03 사용자 결정: 오늘 밤 PC2 G-A060 B1 → ang −0.08 연속(B1 exit 0일 때만), 안내 `upload/G-A060/current/GO2_G_A060_B1_TONIGHT.txt`. 협의 문서 §20.
 - 2026-10-03 사용자 결정 수정: 오늘 밤 PC2(RTX 5070) G-A060 시작 세 점 B1 → ang −0.08 → track 1.4(약 6시간 추정), 안내 `upload/G-A060/current/GO2_G_A060_B1_TONIGHT.txt`.
+- 2026-10-03 PC2 인계 계획서 `HANDOFF_G_A060_PC2.md` — PC2 Claude가 읽고 시작 세 점(B1 → ang −0.08 → track 1.4)을 실행·회수.
