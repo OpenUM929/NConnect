@@ -1,4 +1,4 @@
-GO2 G-A060 PC2 — 오늘 밤 실행: 기준선 B1 → 첫 후보 ang −0.08 (두 점, B1 정상 완료 시에만 이어감) (2026-10-03)
+GO2 G-A060 PC2 — 오늘 밤 실행: 시작 세 점 B1 → ang −0.08 → track 1.4 (2026-10-03)
 ====================================================================
 
 무엇을 돌리나: B1 = A048 보상 그대로, 학습 seed 42, 4096 env, 1000 iter, 평가 iter 900, 69 case, 영상 10편.
@@ -21,30 +21,32 @@ SHA256: a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd
      git -C /workspace/IsaacLab describe --tags --always; /workspace/IsaacLab/isaaclab.sh -p -m pip show torch rsl-rl-lib isaacsim 2>/dev/null | grep -E '^(Name|Version)'; \
      df -h /workspace; } > /workspace/_keep/go2_g_a060_pc2_points/PC2_ENV_RECORD.txt 2>&1; cat /workspace/_keep/go2_g_a060_pc2_points/PC2_ENV_RECORD.txt
 
-2. 실행 — 한 줄 (사용자 결정 2026-10-03: B1 → ang −0.08 연속. B1 이 정상 완료(exit 0)일 때만 −0.08 시작)
+2. 실행 — 한 줄 (사용자 결정 2026-10-03: 계획의 시작 세 점 B1 → ang −0.08 → track 1.4.
+   B1 이 정상 완료(exit 0)일 때만 뒤 두 점을 돈다. −0.08 이 실패해도 track 1.4 는 돈다)
    Linux (tmux 있음):
-     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && tmux new-session -d -s go2_g_a060_pc2 "bash /workspace/go2_g_a060_pc2/run_point.sh --inner a048_seed42 && bash /workspace/go2_g_a060_pc2/run_point.sh --inner ang_vel_xy_l2_m0p08"
+     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && tmux new-session -d -s go2_g_a060_pc2 "bash /workspace/go2_g_a060_pc2/run_point.sh --inner a048_seed42 && { bash /workspace/go2_g_a060_pc2/run_point.sh --inner ang_vel_xy_l2_m0p08; bash /workspace/go2_g_a060_pc2/run_point.sh --inner track_lin_vel_xy_exp_p1p4; }"
      진행 보기: tmux attach -t go2_g_a060_pc2
    Windows Git Bash (tmux 없음 — 백그라운드):
-     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && nohup bash -c "bash /workspace/go2_g_a060_pc2/run_point.sh --inner a048_seed42 && bash /workspace/go2_g_a060_pc2/run_point.sh --inner ang_vel_xy_l2_m0p08" > /workspace/go2_g_a060_night.out 2>&1 &
+     unzip -oq /workspace/GO2_G_A060_PC2_a048_points_v1.zip -d /workspace && nohup bash -c "bash /workspace/go2_g_a060_pc2/run_point.sh --inner a048_seed42 && { bash /workspace/go2_g_a060_pc2/run_point.sh --inner ang_vel_xy_l2_m0p08; bash /workspace/go2_g_a060_pc2/run_point.sh --inner track_lin_vel_xy_exp_p1p4; }" > /workspace/go2_g_a060_night.out 2>&1 &
      진행 보기: tail -f /workspace/_keep/go2_g_a060_pc2_points/point.log
    Isaac Lab 이 /workspace/IsaacLab 에 없으면 먼저 export ISAACLAB_SH=<경로>/isaaclab.sh
-   B1 하나만 돌리려면 && 뒤를 지운다. 이 두 점 외에는 돌리지 않는다(다음 점은 −0.08 판독 뒤 Codex 결정).
+   네 번째 점부터는 계획상 앞 결과로 고른다(자동으로 넣지 않음).
 
 3. 바로 실패하는 경우 (몇 분 안에 끝남 — 자고 일어나서 확인)
    종료 코드 22 = Isaac Lab/GPU 못 찾음, 23 = 학습 시작 전 실패(환경), 21 = 다른 학습이 돌고 있음, 20 = 디스크 20 GB 미만.
    4096 env 가 메모리 부족이면 23 또는 30 으로 멈춘다. 로봇 수는 줄이지 않는다(비교 불가).
    상태 표: /workspace/_keep/go2_g_a060_pc2_points/POINT_STATUS.tsv
 
-4. 예상 시간: PC2 실측 전. PC1(RTX 3050)은 같은 설정 한 점에 약 9시간이었다. 서버(RTX 5080)는 약 95분.
+4. 예상 시간 [추정]: PC2 = RTX 5070. 서버 RTX 5080 실측 한 점 약 95분(학습 58분) 기준으로 한 점 약 2시간(1.7~2.3시간),
+   세 점 약 6시간. 실제는 학습 로그의 iteration당 초 × 1000 + 평가·영상으로 다시 잰다. PC1(RTX 3050)은 한 점 약 9시간이었다.
    끊기면 같은 명령을 다시 친다(부분 결과는 GO2_RESUME=1 로 이어 간다, 완료면 SKIP_DONE).
 
 5. 끝나면 가져올 것 (저장소 workspace/_keep/ 에 같은 이름으로 복사, 원본 유지)
-   (−0.08 도 끝났으면 go2_g_a060_pc2_ang_vel_xy_l2_m0p08/ 와 GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip 도 같은 방식)
+   (끝난 점마다 go2_g_a060_pc2_<key>/ 와 GO2_G_A060_PC2_<KEY>_RESULT.zip — ang_vel_xy_l2_m0p08, track_lin_vel_xy_exp_p1p4 도 같은 방식)
    /workspace/_keep/go2_g_a060_pc2_a048_seed42/            폴더 전체 (report.html 포함)
    /workspace/_keep/GO2_G_A060_PC2_A048_SEED42_RESULT.zip  + .sha256  (100 MB 넘으면 95 MB parts 로 등재)
    /workspace/_keep/go2_g_a060_pc2_points/                 상태 표·로그·환경 기록
 
-6. 다음: B1·−0.08 회수 → 판독(판독 도구 Codex 승인 후, B1 유효성 먼저) → 다음 점은 Codex 결정.
-   −0.08 이 밤에 못 끝났으면 같은 명령(--inner ang_vel_xy_l2_m0p08)으로 이어 간다.
+6. 다음: 세 점 회수 → 판독(판독 도구 Codex 승인 후, B1 유효성 먼저) → 네 번째 점은 결과로 Codex 결정.
+   못 끝난 점은 같은 명령(--inner <key>)으로 이어 간다(완료 점은 SKIP_DONE).
    PC2 결과는 탐색용이며 제출 정책이 아니다. 배포 학습 코드는 수정하지 않았다(보상 가중치만, R-6).
