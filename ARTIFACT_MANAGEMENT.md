@@ -446,6 +446,33 @@ PLANNED → RUNNING → RECEIVED → VERIFIED → MERGED → ANALYZED → REPORT
 7. 같은 이름의 파일은 자동 overwrite하지 않는다. 내용 비교 후 `add / replace / keep-local / conflict`를 명시한다.
 8. 서버 snapshot에만 있고 필수 bundle에 없는 파일은 누락 원인을 확인한 뒤 별도 판정한다.
 
+## 6-a. 대용량 artifact의 git 등재 방법 (2026-10-01 사용자 지정)
+
+GitHub는 파일당 100MB 하드 제한이 있어 100MB를 넘는 archive는 통째로 push할 수 없다.
+이 저장소의 원격은 `github.com/OpenUM929/NConnect`이고, **대용량 파일은 parts 분할로 등재한다.**
+
+1. **기준선.** 100MB 이하 파일은 평소대로 `git add` 한다. 95MB blob 추적 이력이 있어
+   관례와 충돌하지 않는다. 100MB를 넘는 파일에만 아래를 적용한다.
+2. **분할.** 원본을 95MB로 나눠 `<원본명>.001`, `.002`, … 로 저장한다. `.sha256` 매니페스트는
+   원본 zip 기준이므로 **그대로 유지한다** — parts는 원본의 바이트 그대로 자른 것이라
+   유효성이 깨지지 않는다.
+3. **원본은 로컬 전용.** 원본 zip 경로를 `.gitignore`에 넣고 parts만 커밋한다.
+   이미 ignore된 추출 디렉터리(`go2_g_a057_track_lin_vel_xy_exp_p1p2/` 등)도 그대로 둔다.
+4. **재구축.** `workspace/_keep/reconstruct_zips.sh`가 parts를 번호 순으로 이어 붙인 뒤
+   `.sha256`과 일치할 때만 원본을 교체하고, 불일치하면 원본을 건드리지 않고 실패한다.
+   대상 archive를 늘릴 때는 이 스크립트의 `for base in` 목록에 한 줄을 추가한다.
+5. **Git LFS를 먼저 쓰지 않는다.** 이 네트워크는 Amazon S3(`github-cloud.s3.amazonaws.com`)를
+   차단한다. LFS 업로드는 HTTP 200을 반환하면서 본문이 차단 페이지(`차단정책_24시간차단`)이고,
+   GitHub는 object를 받지 못해 verify가 404 `error verifying object`가 된다. parts 경로는
+   `github.com`만 지나므로 동작한다. **네트워크가 바뀌어 LFS가 됐는지 다시 확인하기 전까지
+   LFS를 기본값으로 두지 않는다.**
+6. **push 후 확인.** `git ls-tree -r --long origin/master`로 parts가 원격에 있고 크기가 일치하는지
+   확인한다. 재구축이 실제로 되는지 검증하려면 별도 클론에서 `reconstruct_zips.sh`를 돌려
+   sha256 일치를 확인한다.
+
+> 분할 대상은 archive뿐이다. 추출된 CSV·로그는 `.gitignore`로 두고 커밋하지 않는다
+> (`workspace/_keep/go2_g_a058_sweep/logs/`처럼 작은 로그만 등재하는 기존 관례를 따른다).
+
 ## 7. Run별 필수 회수 파일
 
 | 분류 | 필수 파일/검사 |

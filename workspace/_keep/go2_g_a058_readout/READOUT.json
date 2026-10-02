@@ -138,7 +138,141 @@
   },
   "a043_seed43": {
    "role": "a043_replicate",
-   "state": "NOT_YET"
+   "state": "COMPLETE",
+   "gpu": "NVIDIA GeForce RTX 3050, 580.88, 6144 MiB",
+   "axes": {
+    "G1": {
+     "score": 9.538,
+     "survival": 1.0,
+     "tracking": 0.9084,
+     "worst": "forward_fast:303"
+    },
+    "G2": {
+     "score": 9.659,
+     "survival": 1.0,
+     "tracking": 0.9199,
+     "worst": "combined_yaw_right:101"
+    },
+    "G3": {
+     "score": 7.626,
+     "survival": 0.7188,
+     "tracking": 0.7578,
+     "worst": "rough_forward:101"
+    },
+    "G4": {
+     "score": 6.905,
+     "survival": 0.9375,
+     "tracking": 0.7014,
+     "worst": "slope_plus_20:303"
+    },
+    "G5": {
+     "score": 0.0,
+     "survival": 0.0,
+     "tracking": 0.1523,
+     "worst": "stairs_15_down:101"
+    },
+    "G6": {
+     "score": 4.554,
+     "survival": 0.6875,
+     "tracking": 0.9463,
+     "worst": "push_neg_x:202"
+    },
+    "G7": {
+     "score": 3.61,
+     "survival": 0.7188,
+     "tracking": 0.7176,
+     "worst": "dr_seed_303:303"
+    },
+    "total": 41.892
+   },
+   "cases": {
+    "stairs_15_down": {
+     "state": "OK",
+     "falls": 96,
+     "speed": 0.109,
+     "case_score_min": 0.0,
+     "height_rel": 0.1419,
+     "tilt_deg": 7.75,
+     "ge1": 1,
+     "ge2": 0,
+     "stall": 73,
+     "completion": 0.1392,
+     "abs_rise_m": 0.0233
+    },
+    "stairs_10_down": {
+     "state": "OK",
+     "falls": 63,
+     "speed": 0.1866,
+     "case_score_min": 0.0537,
+     "height_rel": 0.2318,
+     "tilt_deg": 8.11,
+     "ge1": 79,
+     "ge2": 57,
+     "stall": 46,
+     "completion": 0.2249,
+     "abs_rise_m": 0.2052
+    },
+    "combined_yaw_right": {
+     "state": "OK",
+     "falls": 0,
+     "speed": 0.4755,
+     "case_score_min": 0.9199,
+     "height_rel": 0.3655,
+     "tilt_deg": 11.33
+    },
+    "rough_lateral": {
+     "state": "OK",
+     "falls": 5,
+     "speed": 0.1955,
+     "case_score_min": 0.7979,
+     "height_rel": 0.3559,
+     "tilt_deg": 6.79
+    },
+    "rough_forward": {
+     "state": "OK",
+     "falls": 22,
+     "speed": 0.3683,
+     "case_score_min": 0.5447,
+     "height_rel": 0.3461,
+     "tilt_deg": 8.38
+    },
+    "push_pos_x": {
+     "state": "OK",
+     "falls": 19,
+     "speed": 0.0528,
+     "case_score_min": 0.6845,
+     "height_rel": 0.3749,
+     "tilt_deg": 7.91
+    },
+    "push_neg_x": {
+     "state": "OK",
+     "falls": 23,
+     "speed": 0.0541,
+     "case_score_min": 0.6506,
+     "height_rel": 0.3745,
+     "tilt_deg": 7.91
+    },
+    "push_pos_y": {
+     "state": "OK",
+     "falls": 18,
+     "speed": 0.053,
+     "case_score_min": 0.7466,
+     "height_rel": 0.3747,
+     "tilt_deg": 7.91
+    },
+    "push_neg_y": {
+     "state": "OK",
+     "falls": 27,
+     "speed": 0.0547,
+     "case_score_min": 0.6509,
+     "height_rel": 0.3747,
+     "tilt_deg": 7.91
+    }
+   },
+   "individual": "NOT_CANDIDATE",
+   "yaw_right_defect": "PROTECTION_MET",
+   "stairs15_ge2_of_96": 0,
+   "yaw_right_falls_of_96": 0
   },
   "a043_seed44": {
    "role": "a043_replicate",
