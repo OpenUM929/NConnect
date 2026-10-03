@@ -1,0 +1,144 @@
+{
+ "key": "a048_seed42",
+ "point": "workspace\\server_returns\\G-A060\\extracted\\go2_g_a060_pc2_a048_seed42",
+ "base": null,
+ "state": {
+  "overall": "COMPLETE",
+  "gaps": [],
+  "reward_snapshot": "OK",
+  "identity": {
+   "run_id": "train_G-A060-Go2_pc2_a048_seed42_1000",
+   "model_sha": "0fbd3e9d7e5687b05b19eaefafaa5a9bb757a81e6f78219e78604f5f10088d75",
+   "env_sha": "ae27a1d02ff92705acdce77fb4d3905adaef7bde0c5bf65a3173e477926c2449",
+   "evaluator_sha": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+   "registry_sha": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+   "gpu_model": "NVIDIA GeForce RTX 5070",
+   "train_seed": "42"
+  },
+  "partial_observations_kept": true
+ },
+ "base_state": null,
+ "comparison": null,
+ "sentinel": {
+  "label": "EVAL_LAYER_DIFFERS",
+  "outside": [
+   "202/dr_seed_202"
+  ],
+  "values": {
+   "101/rough_lateral": {
+    "value": 20,
+    "observed_server_pc1": [
+     19,
+     20
+    ]
+   },
+   "101/rough_forward": {
+    "value": 2,
+    "observed_server_pc1": [
+     1,
+     2
+    ]
+   },
+   "101/forward_nominal": {
+    "value": 0,
+    "observed_server_pc1": [
+     0,
+     0
+    ]
+   },
+   "202/slope_plus_20": {
+    "value": 0,
+    "observed_server_pc1": [
+     0,
+     0
+    ]
+   },
+   "202/dr_seed_202": {
+    "value": 0,
+    "observed_server_pc1": [
+     1,
+     1
+    ]
+   }
+  },
+  "note": "과거 관측 범위이며 허용구간이 아니다. 무효·추가 평가로 자동 연결하지 않는다."
+ },
+ "moving_gate": "MOVING",
+ "target": {
+  "class": "NO_BASE",
+  "seeds": {
+   "101": {
+    "b1": null,
+    "point": 13,
+    "delta": null,
+    "floor_b1_zero": false
+   },
+   "202": {
+    "b1": null,
+    "point": 16,
+    "delta": null,
+    "floor_b1_zero": false
+   },
+   "303": {
+    "b1": null,
+    "point": 12,
+    "delta": null,
+    "floor_b1_zero": false
+   }
+  }
+ },
+ "motion_tracking": {
+  "case": "rough_lateral",
+  "label": "NO_BASE",
+  "worse_seeds": [],
+  "overspeed_seeds": [],
+  "seeds": {
+   "101": {
+    "b1": null,
+    "point": {
+     "v_cmd_axis": 0.15066066975491663,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.14933934216601233,
+     "abs_error": 0.14933934216601233,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.20522460467308345
+    },
+    "worse": null
+   },
+   "202": {
+    "b1": null,
+    "point": {
+     "v_cmd_axis": 0.15089517260942176,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.1491048393115072,
+     "abs_error": 0.1491048393115072,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.20229972387228073
+    },
+    "worse": null
+   },
+   "303": {
+    "b1": null,
+    "point": {
+     "v_cmd_axis": 0.15365056837009097,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.14634944355083798,
+     "abs_error": 0.14634944355083798,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.2003756974848173
+    },
+    "worse": null
+   }
+  },
+  "rule": "명령 방향 속도와 명령의 오차·추종 RMSE 가 커지면 나쁨. 명령보다 빠른 것(과속)은 개선이 아니다. RMSE·속도 결측·비유한 값은 결측으로 전파한다."
+ },
+ "protection": [],
+ "combined": {
+  "class": "B1_SELF_READ",
+  "meaning": "B1 자체 판독(비교 없음).",
+  "missing_parts": [],
+  "common_loss_items": [],
+  "partial_loss_items": [],
+  "next_point": "자동 선택 없음"
+ }
+}

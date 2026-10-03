@@ -108,3 +108,6 @@ workspace/runner_inspect_temp.txt
 # Local-only smoke run output (checkpoints, hydra outputs, tfevents, pycache)
 # Kept on disk, never pushed. 2026-09-30.
 workspace/_local_runs/
+
+# G-A060 PC2 결과 압축 해제본 (원본 ZIP은 _keep parts로 등재)
+workspace/server_returns/G-A060/extracted/

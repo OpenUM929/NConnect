@@ -1,0 +1,680 @@
+{
+ "key": "track_lin_vel_xy_exp_p1p4",
+ "point": "workspace\\server_returns\\G-A060\\extracted\\go2_g_a060_pc2_track_lin_vel_xy_exp_p1p4",
+ "base": "workspace\\server_returns\\G-A060\\extracted\\go2_g_a060_pc2_a048_seed42",
+ "state": {
+  "overall": "COMPLETE",
+  "gaps": [],
+  "reward_snapshot": "OK",
+  "identity": {
+   "run_id": "train_G-A060-Go2_pc2_track_lin_vel_xy_exp_p1p4_1000",
+   "model_sha": "2f51937394932e5ee3a8716d1719d90fdb0c2762b8160dd77d2978e49ed13308",
+   "env_sha": "9e0447c80e7a080372b57586d7f6ffb177b79468755f0af18115bf0c2c69aebe",
+   "evaluator_sha": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+   "registry_sha": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+   "gpu_model": "NVIDIA GeForce RTX 5070",
+   "train_seed": "42"
+  },
+  "partial_observations_kept": true
+ },
+ "base_state": {
+  "overall": "COMPLETE",
+  "gaps": [],
+  "reward_snapshot": "OK",
+  "identity": {
+   "run_id": "train_G-A060-Go2_pc2_a048_seed42_1000",
+   "model_sha": "0fbd3e9d7e5687b05b19eaefafaa5a9bb757a81e6f78219e78604f5f10088d75",
+   "env_sha": "ae27a1d02ff92705acdce77fb4d3905adaef7bde0c5bf65a3173e477926c2449",
+   "evaluator_sha": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+   "registry_sha": "8d8c34caf66813e2c18070fb9a85ed7c843c379cb3a5ffb3d0a73923b9349ba6",
+   "gpu_model": "NVIDIA GeForce RTX 5070",
+   "train_seed": "42"
+  },
+  "partial_observations_kept": true
+ },
+ "comparison": {
+  "label": "OK",
+  "problems": [],
+  "gpu_model": "NVIDIA GeForce RTX 5070",
+  "note": "GPU 모델이 같다는 확인이지 같은 PC·환경의 증명이 아니다(§18-3 WATCH)."
+ },
+ "sentinel": {
+  "label": "EVAL_LAYER_DIFFERS",
+  "outside": [
+   "202/dr_seed_202"
+  ],
+  "values": {
+   "101/rough_lateral": {
+    "value": 20,
+    "observed_server_pc1": [
+     19,
+     20
+    ]
+   },
+   "101/rough_forward": {
+    "value": 2,
+    "observed_server_pc1": [
+     1,
+     2
+    ]
+   },
+   "101/forward_nominal": {
+    "value": 0,
+    "observed_server_pc1": [
+     0,
+     0
+    ]
+   },
+   "202/slope_plus_20": {
+    "value": 0,
+    "observed_server_pc1": [
+     0,
+     0
+    ]
+   },
+   "202/dr_seed_202": {
+    "value": 0,
+    "observed_server_pc1": [
+     1,
+     1
+    ]
+   }
+  },
+  "note": "과거 관측 범위이며 허용구간이 아니다. 무효·추가 평가로 자동 연결하지 않는다."
+ },
+ "moving_gate": "MOVING",
+ "target": {
+  "class": "TARGET_WORSENED",
+  "seeds": {
+   "101": {
+    "b1": 13,
+    "point": 19,
+    "delta": 6,
+    "floor_b1_zero": false
+   },
+   "202": {
+    "b1": 16,
+    "point": 19,
+    "delta": 3,
+    "floor_b1_zero": false
+   },
+   "303": {
+    "b1": 12,
+    "point": 17,
+    "delta": 5,
+    "floor_b1_zero": false
+   }
+  },
+  "tie_seeds": [],
+  "missing_seeds": [],
+  "floor_note": "",
+  "pooled_b1": 41,
+  "pooled_point": 55
+ },
+ "motion_tracking": {
+  "case": "rough_lateral",
+  "label": "ALL_SEEDS_WORSE",
+  "worse_seeds": [
+   "101",
+   "202",
+   "303"
+  ],
+  "overspeed_seeds": [],
+  "seeds": {
+   "101": {
+    "b1": {
+     "v_cmd_axis": 0.15066066975491663,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.14933934216601233,
+     "abs_error": 0.14933934216601233,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.20522460467308345
+    },
+    "point": {
+     "v_cmd_axis": 0.14419867017124466,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.1558013417496843,
+     "abs_error": 0.1558013417496843,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.20985532237241475
+    },
+    "worse": true
+   },
+   "202": {
+    "b1": {
+     "v_cmd_axis": 0.15089517260942176,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.1491048393115072,
+     "abs_error": 0.1491048393115072,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.20229972387228073
+    },
+    "point": {
+     "v_cmd_axis": 0.12574171063696904,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.17425830128395992,
+     "abs_error": 0.17425830128395992,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.2225744795048414
+    },
+    "worse": true
+   },
+   "303": {
+    "b1": {
+     "v_cmd_axis": 0.15365056837009097,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.14634944355083798,
+     "abs_error": 0.14634944355083798,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.2003756974848173
+    },
+    "point": {
+     "v_cmd_axis": 0.15340024514383063,
+     "cmd": 0.30000001192092896,
+     "signed_error": -0.14659976677709832,
+     "abs_error": 0.14659976677709832,
+     "overspeed": false,
+     "tracking_xy_rmse": 0.1999263073142936
+    },
+    "worse": true
+   }
+  },
+  "rule": "명령 방향 속도와 명령의 오차·추종 RMSE 가 커지면 나쁨. 명령보다 빠른 것(과속)은 개선이 아니다. RMSE·속도 결측·비유한 값은 결측으로 전파한다."
+ },
+ "protection": [
+  {
+   "item": "stairs_10_ge2",
+   "case": "stairs_10_down",
+   "label": "COMMON_LOSS_OBSERVED",
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 26,
+     "point": 13,
+     "delta": -13,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 26,
+       "stalled_after_reach": 8,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 6,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 20,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 11,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 15
+      },
+      "point": {
+       "reached_ge2": 13,
+       "stalled_after_reach": 6,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 3,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 10,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 3,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 10
+      }
+     }
+    },
+    "202": {
+     "b1": 30,
+     "point": 20,
+     "delta": -10,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 30,
+       "stalled_after_reach": 11,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 7,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 23,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 11,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 19
+      },
+      "point": {
+       "reached_ge2": 20,
+       "stalled_after_reach": 10,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 5,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 15,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 7,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 13
+      }
+     }
+    },
+    "303": {
+     "b1": 29,
+     "point": 14,
+     "delta": -15,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 29,
+       "stalled_after_reach": 8,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 9,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 20,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 14,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 15
+      },
+      "point": {
+       "reached_ge2": 14,
+       "stalled_after_reach": 5,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 2,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 12,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 2,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 12
+      }
+     }
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "stairs_15_ge2",
+   "case": "stairs_15_down",
+   "label": "COMMON_LOSS_OBSERVED",
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 1,
+     "point": 0,
+     "delta": -1,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 1,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 0,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 1,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 1,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      },
+      "point": {
+       "reached_ge2": 0,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 0,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 0,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 0,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      }
+     }
+    },
+    "202": {
+     "b1": 1,
+     "point": 0,
+     "delta": -1,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 1,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 1,
+       "post_channel_height_only": 0,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 0,
+       "run_channel_terminated": 1,
+       "run_channel_height_only": 0,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      },
+      "point": {
+       "reached_ge2": 0,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 0,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 0,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 0,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      }
+     }
+    },
+    "303": {
+     "b1": 1,
+     "point": 0,
+     "delta": -1,
+     "worse": true,
+     "post_reach": {
+      "b1": {
+       "reached_ge2": 1,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 1,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 0,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 1,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      },
+      "point": {
+       "reached_ge2": 0,
+       "stalled_after_reach": 0,
+       "post_channel_terminated": 0,
+       "post_channel_height_only": 0,
+       "post_channel_tilt_or_both": 0,
+       "post_channel_union_only": 0,
+       "post_channel_none": 0,
+       "run_channel_terminated": 0,
+       "run_channel_height_only": 0,
+       "run_channel_tilt_or_both": 0,
+       "run_channel_union_only": 0,
+       "run_channel_none": 0
+      }
+     }
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "yaw_right_falls",
+   "case": "combined_yaw_right",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "202": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "push_pos_x_falls",
+   "case": "push_pos_x",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "202": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "push_neg_x_falls",
+   "case": "push_neg_x",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "202": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "push_pos_y_falls",
+   "case": "push_pos_y",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "202": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "push_neg_y_falls",
+   "case": "push_neg_y",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "202": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "rough_forward_falls",
+   "case": "rough_forward",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 4,
+     "point": 1,
+     "delta": -3,
+     "worse": false
+    },
+    "202": {
+     "b1": 2,
+     "point": 0,
+     "delta": -2,
+     "worse": false
+    },
+    "303": {
+     "b1": 0,
+     "point": 0,
+     "delta": 0,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "rough_forward_cmd_error",
+   "case": "rough_forward",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [
+    "202",
+    "303"
+   ],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0.14389231611321246,
+     "point": 0.1384539371044871,
+     "delta": -0.005438379008725347,
+     "worse": false
+    },
+    "202": {
+     "b1": 0.10030702088473559,
+     "point": 0.11672097680404764,
+     "delta": 0.01641395591931205,
+     "worse": true
+    },
+    "303": {
+     "b1": 0.12981202803889502,
+     "point": 0.1321714148275061,
+     "delta": 0.002359386788611084,
+     "worse": true
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  },
+  {
+   "item": "forward_nominal_cmd_error",
+   "case": "forward_nominal",
+   "label": "COMMON_LOSS_NOT_OBSERVED",
+   "worse_seeds": [],
+   "missing_seeds": [],
+   "post_reach_missing_seeds": [],
+   "seeds": {
+    "101": {
+     "b1": 0.06584699518880566,
+     "point": 0.013498825282838744,
+     "delta": -0.05234816990596691,
+     "worse": false
+    },
+    "202": {
+     "b1": 0.06588044092647338,
+     "point": 0.009754710178822235,
+     "delta": -0.05612573074765115,
+     "worse": false
+    },
+    "303": {
+     "b1": 0.06613569222880822,
+     "point": 0.015665370787640964,
+     "delta": -0.050470321441167254,
+     "worse": false
+    }
+   },
+   "note": "COMMON_LOSS_NOT_OBSERVED 는 비열등의 증명이 아니다. 나빠진 seed 는 값과 함께 본다. 계단 post_reach 는 ≥2단 도달 뒤 정체·판정 채널(문턱 없음)."
+  }
+ ],
+ "combined": {
+  "class": "TARGET_WORSENED",
+  "meaning": "그 방향의 바깥 점은 열지 않는다(영구 기각 아님).",
+  "missing_parts": [],
+  "common_loss_items": [
+   "stairs_10_ge2",
+   "stairs_15_ge2"
+  ],
+  "partial_loss_items": [
+   "rough_forward_cmd_error"
+  ],
+  "next_point": "자동 선택 없음 — 표적·보호 결과와 남은 비용으로 Codex 가 정한다."
+ }
+}

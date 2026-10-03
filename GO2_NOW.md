@@ -170,3 +170,5 @@ VALID_SYMMETRIC_COMPARISONS: 2
 - 2026-10-03 PC2 인계 계획서 `HANDOFF_G_A060_PC2.md` — PC2 Claude가 읽고 시작 세 점(B1 → ang −0.08 → track 1.4)을 실행·회수.
 - 2026-10-03 **G-A060 테스트중(RUNNING)**: PC2(RTX 5070)에서 시작 세 점 B1 → ang −0.08 → track 1.4 실행 중. 완료·실측 시간 [미측정], 회수 뒤 판독(판독기 R1 잔여 수정·Codex 재검토 후). 협의 문서 §21.
 - 2026-10-03 PC2 판독기(`tools/go2_pc2_point_readout.py`) Codex **APPROVE**(협의 문서 §25, 범위: §22 로더 열·§24 env_id 정수, 독립 리뷰 미확보). 46 tests OK. G-A060 세 점 회수 뒤 이 판독기로 B1부터 판독한다.
+- 2026-10-03 **G-A060 시작 세 점 판독·분석 완료(PC2, ANALYZED)**: ang −0.08·track 1.4 모두 TARGET_WORSENED(험지 옆걸음 41→59·55, 10cm ≥2단 85→1·47). 분석 정본 `workspace/training/quadruped/reports/GO2_G_A060_PC2_THREE_POINT_ANALYSIS_20261003.md`, 자료 도구 `tools/go2_g_a060_pc2_analysis.py`. 네 번째 점은 Codex 회신 대기(협의 문서 §30→§31).
+- 2026-10-04 **G-A061 발행(PC2, 실행 전)**: 트랙 1.5 고정 탐색트리 첫 노드 N3 = P0(PC2 B1) + `dof_torques_l2` −2e−4→−1e−4. ZIP `workspace/training/quadruped/upload/G-A061/current/GO2_G_A061_PC2_TREE_n3_dof_torques_l2_m1e_4_v1.zip` SHA `f9665bf3…`, 인계 `HANDOFF_G_A061_PC2.md`. 계획 Codex APPROVE §37, 구현 APPROVE §41. 다음 노드는 판독 뒤 `tools/go2_pc2_tree_readout.py next`가 정한다.

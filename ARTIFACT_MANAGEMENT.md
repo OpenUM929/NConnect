@@ -22,7 +22,15 @@
 - 증거: `.omx/diagnostics/isaac-pc2-perf-20261003/{gpu-owner.json,containment.json,timing.json}`. 도구 `tools/inspect_isaac_gpu_owner.ps1`, `tools/contain_isaac_gpu_miners.py`; 안전성 mock 테스트 `tools/test_contain_isaac_gpu_miners.py` 5건 통과, Python/PowerShell 구문 및 diff 검사 완료. 기존 학습 코드·발행 ZIP 불변.
 - 잔여 위험: 현재 세션에서만 일시정지한 것이며 감염 경로·자동 실행·재부팅 후 재발 방지는 미확인. InstallUtil PID 11776은 원인 미확정으로 변경하지 않았다. 영구 제거 완료 또는 시스템 안전 판정을 하지 않는다. 후속 보안 정리는 이 기록과 원본 증거를 보존하고 별도 범위를 정해야 한다.
 
+## G-A061 — PC2 트랙 고정 탐색트리, 첫 노드 N3 발행 (2026-10-04)
+- 상태: PLANNED(발행, 실행 전). 패키지 `workspace/training/quadruped/upload/G-A061/current/GO2_G_A061_PC2_TREE_n3_dof_torques_l2_m1e_4_v1.zip` SHA256 `f9665bf3d39f32de7f296f862534f797c4f8029372dab81fe9a7a4224b6580c5` (39 files, sha256sum -c OK, 내부 SHA256SUMS 38줄 OK, run_point.sh LF·bash -n OK).
+- 설계 `upload/plan/GO2_TRACK_FIXED_SEARCH_TREE_20261003.md` §12·§13, Codex 계획 APPROVE §37·구현 APPROVE §41(협의 문서 `GO2_PC2_DENSE_SWEEP_PROPOSAL_20261002.md`). 빌더 `tools/build_go2_pc2_tree_package.py`, 판독·진행 `tools/go2_pc2_tree_readout.py`, 계약 테스트 51개 OK(skip 0, 이 PC bash 있음).
+- 변경: P0(PC2 B1, A048 보상·track 1.5) 위 `dof_torques_l2` −2e−4→−1e−4 한 항. 같은 항·값 시험 이력 없음(빌드 시 원장·_keep 검사). 트리 상태 `workspace/training/quadruped/reports/evidence/go2_pc2_tree_readout/TREE_STATE.json`.
+- 영상 판정: 필수(새 학습). 러너가 후보 영상 10편. 회수: `go2_g_a061_pc2_n3_dof_torques_l2_m1e_4/`, `GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip`+`.sha256`, `go2_g_a061_pc2_points/`, `go2_gpu_watch/`. report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED. 인계 `HANDOFF_G_A061_PC2.md`.
+- PC2 결과는 탐색용이며 제출 정책이 아니다(R-6·제14조). 실행은 사용자 결정.
+
 ## G-A060 — PC2 단일 점 탐색, 오늘 밤 B1만 실행 준비 (2026-10-03, 사용자 지시)
+- 2026-10-03 22:35 **ANALYZED(판독 완료)**: 세 점 모두 RUNNER_RC=0·FULL_69_COMPLETE·영상 10·REPORT_ACQUIRED, 결과 ZIP SHA 일치(`42fcf78`, parts 재조립 확인). 압축 해제 `workspace/server_returns/G-A060/extracted/`(gitignore). 판독기(§25 APPROVE) 결과 `workspace/training/quadruped/reports/evidence/go2_pc2_point_readout/`: B1 험지 옆걸음 자세 낙상 13/16/12, 10cm ≥2단 26/30/29. ang −0.08 = TARGET_WORSENED(16/23/20, 10cm ≥2단 1/0/0). track 1.4 = TARGET_WORSENED(19/19/17, 10cm ≥2단 13/20/14). VIDEO_UNKNOWN(영상 미시청), 내부 판독만, 공식 결과 아님. 네 번째 점은 Codex가 정한다.
 - 상태: RUNNING(테스트중, 2026-10-03 사용자 PC2 실행 — 시작 세 점 B1 → ang −0.08 → track 1.4). 이전 상태 PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
 - 범위: Codex 승인(협의 문서 §14) 안에서 기준선 B1(`a048_seed42`)만 실행. 첫 후보 ang −0.08은 B1 확인 뒤. 판독기는 Codex §19 재검토 대기 — 판독은 승인 뒤.
 - 영상 판정: 필수(새 학습). 러너가 후보 영상 10편을 찍는다. 회수: `go2_g_a060_pc2_a048_seed42/`, `GO2_G_A060_PC2_A048_SEED42_RESULT.zip`+`.sha256`, `go2_g_a060_pc2_points/`(PC2_ENV_RECORD 포함). report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
