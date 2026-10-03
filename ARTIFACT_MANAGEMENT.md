@@ -1,5 +1,27 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A060-PC2-RECOVERY-20261003 — Windows 평가 연결·체인 복구
+- 15:28 정정/복구: B1 69-case·sentinel 뒤 첫 영상에서 Vulkan RTX 초기화 access violation 발생. 단일 GPU만 끄는 smoke 성공은 Intel compatibility fallback이라 해결 근거가 아니었고 NVIDIA 선택 시 재현됐다. PC2 영상 자식에만 Direct3D12(`app.vulkan=false`) + multiGpu 비활성 + Kit GPU1(RTX5070)을 적용하자 실제 MP4 생성/exit0 확인. 드라이버 자체 결함이나 다운그레이드 필요성은 확정하지 않는다.
+- 로컬 런처 `tools/pc2_video_python_launcher.py`, `tools/go2_pc2_python.bat` 사용. 외부 `C:/workspace/IsaacLab/_isaac_sim/python.bat` 연결, 원본 `.before_single_gpu` 보존. 배포 학습 코드·고정 runner·ZIP 변경 없음. GPU1은 PC2 Kit 순서이며 CUDA 번호와 다름; 하드웨어 변경 시 재검증 필요.
+- 15:25:43 체인 1회 재개(PID24112), 로그 `C:/workspace/_keep/go2_g_a060_pc2_points/logs/a048_seed42_20261003-152543.log`. 15:28 candidate G2 좌/우회전 영상 2편 생성 및 H264/1920×1080/50fps/9.98초/첫 프레임 디코딩 확인. 나머지 영상·B1 패키징·점2/점3 완료는 아직 미확인. 성능 판정 아님.
+- 검증: 런처 회귀 4건 + 체인 회귀 5건, bash -n, Python compile, git diff --check 완료. 진단 로그 `workspace/_keep/pc2_video_d3d_gpu1.log` exit0. 기존 performance 패치는 runner checksum 복원으로 제거됐으므로 실제 성능모드 실패 실험으로 인용하지 않는다.
+- 상태: RUNNING. 사용자 요청: 멈추는 평가 스크립트 복구 후 기존 세 점 순차 실행.
+- 배포 play.py/train.py·고정 러너·발행 ZIP 불변. PC2 pip 설치에 누락된 `IsaacLab/_isaac_sim/python.bat` 연결 추가: 기존 자식 분기의 checkpoint 전달·telemetry 설치를 그대로 사용.
+- 외부 체인의 전체 600초 timeout·명령줄 패턴 일괄 종료 제거. B1 정상 수집 후 점2, 원 인계대로 점2 실패 시에도 점3 진행. 최종 오류 exit code 보존.
+- 기존 G-A060 학습·report·영상 10편·69 case 회수 요건 유지. 기존 학습 재실행 대신 runner resume 사용. 코드 회귀 테스트 5건 통과, 실제 평가 검증 진행 중.
+- 10:51:30 체인 재개(PID 25752). 첫 G1 forward_nominal seed101: EVAL_RC=0, 1000 steps/32000 rows, summary completed=true. PHASE 3/6 전체 69-case 진입 및 forward_slow 시작 확인. 실제 로딩 exported/model_best.pt SHA=0fbd3e9d7e5687b05b19eaefafaa5a9bb757a81e6f78219e78604f5f10088d75, iter900 핀과 일치. 점2 전환은 아직 미실측. 로그: workspace/_keep/go2_g_a060_pc2_recovery_20261003-105130.log 및 C:/workspace/_keep/go2_g_a060_pc2_points/logs/a048_seed42_20261003-105131.log.
+
+## ISAAC-PC2-PERF-20261003 — RTX 5070 실행 속도 진단·가역적 수정
+- 상태: PLANNED → RUNNING. 사용자 요청: RTX 3050과 유사한 Isaac 실행 속도의 원인 확인 및 수정.
+- 범위: PC2 실행 설정·프로세스·GPU/CPU 계측·학습 로그 시간만 확인. 보상·학습 코드·4096 env·seed·iteration·기존 패키지는 변경하지 않는다. 실행 중 학습을 중단하지 않는다.
+- 확인 대상: `C:/workspace/_keep/go2_g_a060_pc2_a048_seed42/logs/candidate_training.log`, Python PID 22380. 신규 학습·다운로드·병합 없음. 성능 수정은 가역적 OS 프로세스 설정으로 한정하고 전후 collection/learning 시간을 비교한다.
+- 영상 판정: 이 진단 자체는 VIDEO_NOT_REQUIRED(정책·evaluator 변경 없음). 기존 G-A060 영상 10편·report 회수 의무는 유지한다. 행동 성능·서버 종료 가능 판정은 하지 않는다.
+- 08:19 KST 로컬 진단·현재 세션 속도 복구 검증 완료(신규 artifact 회수·병합 lifecycle 비해당). GPU 엔진 3초 표본에서 PID 21840(cmd.exe)이 82.3%, Isaac PID 22380이 19.9%였다. 관리자 조회에서 PID 21840의 `--algo progpowz`/채굴 풀 접속, PID 5780의 `-a rx/0`/채굴 접속을 확인했다. 디스크상의 cmd.exe·svchost.exe는 Microsoft 서명 유효이며 삭제하지 않았다. 서명은 프로세스 메모리의 무결성을 보장하는 근거로 쓰지 않는다.
+- 조치: PID·생성시각·경로·부모·채굴 명령·Windows 서비스 비해당을 확인한 뒤 전용 부모 PID 2588과 채굴 PID 5780/21840을 suspend. 세 PID 모두 stopped 확인. Isaac PID 22380은 중단·재시작·설정 변경 없음. CPU·GPU 채굴을 함께 정지했으므로 각각의 기여율은 분리하지 않는다.
+- 검증: 직전 9회(iter 952~960) 반복시간 중앙값 29.08초 → 조치 후 9회(iter 962~970) 4.70초, 약 6.19배. 전환 iter 961 제외. 같은 실행 내 비교이며 RTX 3050과 통제된 장비 성능 비교가 아니다. 구간 뒤에도 학습 계속 진행 확인.
+- 증거: `.omx/diagnostics/isaac-pc2-perf-20261003/{gpu-owner.json,containment.json,timing.json}`. 도구 `tools/inspect_isaac_gpu_owner.ps1`, `tools/contain_isaac_gpu_miners.py`; 안전성 mock 테스트 `tools/test_contain_isaac_gpu_miners.py` 5건 통과, Python/PowerShell 구문 및 diff 검사 완료. 기존 학습 코드·발행 ZIP 불변.
+- 잔여 위험: 현재 세션에서만 일시정지한 것이며 감염 경로·자동 실행·재부팅 후 재발 방지는 미확인. InstallUtil PID 11776은 원인 미확정으로 변경하지 않았다. 영구 제거 완료 또는 시스템 안전 판정을 하지 않는다. 후속 보안 정리는 이 기록과 원본 증거를 보존하고 별도 범위를 정해야 한다.
+
 ## G-A060 — PC2 단일 점 탐색, 오늘 밤 B1만 실행 준비 (2026-10-03, 사용자 지시)
 - 상태: RUNNING(테스트중, 2026-10-03 사용자 PC2 실행 — 시작 세 점 B1 → ang −0.08 → track 1.4). 이전 상태 PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
 - 범위: Codex 승인(협의 문서 §14) 안에서 기준선 B1(`a048_seed42`)만 실행. 첫 후보 ang −0.08은 B1 확인 뒤. 판독기는 Codex §19 재검토 대기 — 판독은 승인 뒤.
@@ -486,6 +508,45 @@ GitHub는 파일당 100MB 하드 제한이 있어 100MB를 넘는 archive는 통
 
 > 분할 대상은 archive뿐이다. 추출된 CSV·로그는 `.gitignore`로 두고 커밋하지 않는다
 > (`workspace/_keep/go2_g_a058_sweep/logs/`처럼 작은 로그만 등재하는 기존 관례를 따른다).
+
+**2026-10-03 추가 분할 — parts + sha256 일치 확인 후 등재.**
+
+| archive | 원 크기 | parts | sha256 |
+|---|---:|---|---|
+| `GO2_CHAIN01_BASELINE_RESULT.zip` | 242.04 MB | `.001`~`.003` (95/95/52.04 MB) | `11b4bfe4…7a42f46` 일치 |
+| `GO2_G_A028_RESULT.zip` | 104.33 MB | `.001`~`.002` (95/9.33 MB) | `6e4a807b…94ed1e` 일치 |
+
+- 두 archive 모두 parts를 이어 붙인 임시 파일의 sha256이 기존 `.sha256` 매니페스트와 일치한 뒤에
+  parts만 커밋했다(§6-a 4단계 재구축과 동일한 판정). 원본 zip은 `.gitignore`에 추가했다.
+- `workspace/server_returns/G-A028/received/GO2_G_A028_RESULT.zip`은 `_keep` 원본과 sha256이
+  동일한 104.3 MB 사본이다. `_keep` 정본이 parts로 등재되므로 이 사본은 push하지 않고
+  `.gitignore`에 추가했다. `received/GO2_G_A028_RESULT.zip.sha256` 매니페스트는 그대로 커밋하며
+  파일 경로도 이미 `/workspace/_keep/`를 가리킨다. 사용자 결정(2026-10-03): `_keep`만 분할.
+- 두 base를 `workspace/_keep/reconstruct_zips.sh`의 `for base in` 목록에 등록했다.
+
+## 6-b. archive 무결성 결함 — `GO2_LIN_VEL_Z_M2_RESULT.zip` 잘림 (2026-10-03 발견·복구)
+
+- **관측.** git에 커밋된 `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip`의 크기는 37,227,124 B이고
+  sha256은 `e154734e…4cb4cde`였다. 같은 이름의 `.sha256` 매니페스트가 요구하는 값은
+  `0c404c98…6e93833`(43,585,148 B)였다. **커밋된 사본이 자기 매니페스트와 불일치한다.**
+  `git cat-file -s HEAD:…`도 37,227,124 B로 같은 값이므로 커밋 시점에 이미 잘려 있었다.
+- **근위(확정).** `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip.local_backup`(43,585,148 B)의
+  sha256이 `0c404c98…6e93833`으로 **매니페스트와 일치**했다. 따라서 잘린 쪽은 사본이며
+  매니페스트가 옳다. 어느 원본이 잘렸는지·어느 시점에 잘렸는지는 이 기록으로 확정하지 않는다.
+- **조치.** 매니페스트와 일치하는 `.local_backup`을 `GO2_LIN_VEL_Z_M2_RESULT.zip`으로 복구해
+  커밋했다(사용자 결정 2026-10-03: 재커밋·push). 복구 후 크기 43,585,148 B·sha256 일치 확인.
+  `.local_backup`은 `.gitignore`에 추가했다.
+- **한계.** git 히스토리의 잘린 blob은 남아 있다. 되돌리기로 지우지 않았다. 과거 커밋을 참조하는
+  재구축·대조는 잘린 사본을 받을 수 있으므로 이 archive를 인용할 때는 매니페스트
+  `0c404c98…6e93833`을 기준으로 확인할 것.
+- **동일 점검 결과.** `_keep`의 매니페스트를 가진 tracked archive 전수와 이번에 추가하는
+  untracked archive 8개를 대조했다. 위 1건 외 불일치는 없다.
+  `go2_g_a025_flat_orientation_m1 (2).zip`은 tracked 사본과 sha256이 같은 재다운로드 중복본이라
+  push하지 않는다.
+- **문서 편집 주의.** 같은 날 이 파일의 ISAAC-PC2-PERF 블록을 다른 세션이 쓰는 중인 상태에서
+  PowerShell 문자열 경합으로 삽입했다가 한국어가 CP949 해석으로 깨졌다. `git show` 출력을
+  PowerShell 문자열로 받아쓸 때 인코딩이 CP949로 풀리므로, 이 문서 블록을 삽입·대조할 때는
+  git 바이트를 파일로 리디렉션한 뒤 UTF-8로 읽거나 편집 도구를 쓴다. 복구 후 대조 완료.
 
 ## 7. Run별 필수 회수 파일
 

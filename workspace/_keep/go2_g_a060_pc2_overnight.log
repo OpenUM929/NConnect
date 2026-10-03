@@ -1,0 +1,5 @@
+mount: warning: couldn't determine mount type.
+[CHAIN START] 2026-10-03T10:02:30+09:00
+[ATTEMPT 1/3] a048_seed42 2026-10-03T10:02:30+09:00
+[POINT START] a048_seed42 2026-10-03T10:02:30+09:00
+[TIMEOUT] a048_seed42 attempt=1 after 600s — cleaning up and retrying

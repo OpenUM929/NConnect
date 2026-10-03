@@ -1,0 +1,146 @@
+[
+  {
+    "arm": "a017",
+    "case": "slope_plus_20_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "slope_plus_20_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "slope_plus_20_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_10_down_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_10_down_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_10_down_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_15_down_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_15_down_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "a017",
+    "case": "stairs_15_down_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "slope_plus_20_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "slope_plus_20_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "slope_plus_20_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_10_down_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_10_down_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_10_down_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_15_down_seed_101",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_15_down_seed_202",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  },
+  {
+    "arm": "pilot",
+    "case": "stairs_15_down_seed_303",
+    "fps": 50.0,
+    "frames": 999,
+    "decoded": 999,
+    "duration": 19.98
+  }
+]

@@ -49,6 +49,22 @@ workspace/training/quadruped/go2_reeval.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip
 workspace/_keep/GO2_G_A058_A048_SEED42_RESULT.zip
 workspace/_keep/GO2_G_A058_A043_SEED43_RESULT.zip
+workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip
+workspace/_keep/GO2_G_A028_RESULT.zip
+
+# Byte-identical re-download of the tracked workspace/_keep/go2_g_a025_flat_orientation_m1.zip
+# (both sha256 156e8e6b...9fcbd, 41.4MB). Kept on disk, not pushed. 2026-10-03.
+workspace/_keep/go2_g_a025_flat_orientation_m1 (2).zip
+
+# Pre-repair local copy of the truncated GO2_LIN_VEL_Z_M2_RESULT.zip. Superseded 2026-10-03
+# by the restored archive that matches the .sha256 manifest; kept until the repair is pushed.
+workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip.local_backup
+
+# Byte-identical staging copy of workspace/_keep/GO2_G_A028_RESULT.zip
+# (sha256 6e4a807b...94ed1e, both 104.3MB). The _keep original is published as
+# .zip.001.. parts, so this duplicate is not pushed; its .sha256 manifest stays
+# tracked and already points at the /workspace/_keep path. 2026-10-03.
+workspace/server_returns/G-A028/received/GO2_G_A028_RESULT.zip
 
 # Local-only extracted evidence (100MB~700MB per dir, exceed GitHub push limits)
 # Kept on disk, never pushed. 2026-09-29.

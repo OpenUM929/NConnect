@@ -1,0 +1,31 @@
+[INFO] Run: C:\workspace\go2_g_a060_pc2_work\a048_seed42\candidate\logs\rsl_rl\quadruped\2026-10-03_02-04-23
+[INFO] 학습 기록(tfevents) 읽는 중... 수십 초 걸릴 수 있습니다 — Ctrl+C 누르지 마세요.
+[INFO] Best by 'Train/mean_reward': step 549, reward 20.223 → model_500.pt
+[OK] model_best.pt → C:\workspace\go2_g_a060_pc2_work\a048_seed42\candidate\exported\model_best.pt  (iter=549, reward=20.223430633544922)
+[OK] 백업 → model_best_20261003020423.pt
+[OK] env.yaml → C:\workspace\go2_g_a060_pc2_work\a048_seed42\candidate\exported\env.yaml
+[OK] 백업 → env_20261003020423.yaml
+[CLEAN] logs/ 의 intermediate .pt 10개 삭제 (66MB 회수)
+[KEEP] logs/<run>/model_500.pt 보존 (play.py 호환)
+
+[report] 보상 변화 (기본값 대비):
+  track_lin_vel_xy_exp  +1 → +1.5  (+0.5)  속도 추종
+  feet_air_time         +0.01 → +0.2  (+0.19)  발 들기
+  lin_vel_z_l2          -3 → -1.25  (+1.75)  지면 밀착
+  ang_vel_xy_l2         -0.08 → -0.05  (+0.03)  좌우 흔들림
+[report] 튜닝 의도: 공격/적극 지향 — 속도↑·발들기↑(등반)·튐허용↑(불안정)
+[report] 학습 결과(진단): 최고보상 20.22(iter 549) · 지형 4.98 · 낙상률 19.3% · std 0.628
+[OK] report.html → C:\workspace\go2_g_a060_pc2_work\a048_seed42\candidate\exported\report.html  (브라우저로 열어 보기)
+[backup] 백업 서버 설정 없음 — 자동 백업 skip. (운영 서버: env SUBMIT_HOST/SUBMIT_TOKEN 또는 submit_config.txt)
+============================================================
+[DONE] 예선 제출 결과물 → C:\workspace\go2_g_a060_pc2_work\a048_seed42\candidate\exported/
+  ★ model_best.pt    (예선 채점용 RSL-RL checkpoint)
+  ★ env.yaml         (학습 의도/reward 검증)
+
+  본선 매치용 policy.pt 도 같은 폴더에 생길 거:
+    > isaaclab.bat -p play.py --task Quadruped-v0 --num_envs 4
+    → exported/policy.pt 자동 생성
+    ⚠️ 시뮬 창을 '닫아야'(Esc/창 종료) exported/policy.pt 가 복사됨.
+       (policy 는 시작 직후 logs/<run>/exported/ 에 만들어지고,
+        창 종료 시 exported/ 직속으로 복사 — 창 떠 있으면 아직 안 옮겨짐.)
+============================================================

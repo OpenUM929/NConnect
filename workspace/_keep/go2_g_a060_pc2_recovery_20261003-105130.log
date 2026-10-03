@@ -1,0 +1,9 @@
+mount: warning: couldn't determine mount type.
+[CHAIN START] 2026-10-03T10:51:30+09:00
+[POINT CALL] a048_seed42 2026-10-03T10:51:30+09:00
+[POINT START] a048_seed42 2026-10-03T10:51:31+09:00
+[POINT] a048_seed42 RUN_ERROR rc=30 collection=INCOMPLETE_CRASH resume=1 runner rc=1; see /workspace/_keep/go2_g_a060_pc2_points/logs and /workspace/_keep/go2_g_a060_pc2_a048_seed42/RUNNER_STATUS.txt
+[POINT RETURN] a048_seed42 rc=30 2026-10-03T11:46:31+09:00
+[a048_seed42 exit] 30
+[SKIP] B1(a048_seed42) failed rc=30 — per HANDOFF_G_A060_PC2.md this blocks points 2 and 3
+[CHAIN END] 2026-10-03T11:46:31+09:00

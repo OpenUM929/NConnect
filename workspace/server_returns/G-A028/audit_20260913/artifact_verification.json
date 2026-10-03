@@ -1,0 +1,143 @@
+{
+  "status": "ARTIFACT_VERIFIED",
+  "zip_sha256": "6e4a807b276e566e01aa58e5f12a61f01e74df999809e975220f69722794ed1e",
+  "members": 193,
+  "internal_manifest_verified": 192,
+  "html_members": [],
+  "cases": [
+    {
+      "arm": "a017",
+      "case": "slope_plus_20_seed_101",
+      "metadata_case": "slope_plus_20",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "slope_plus_20_seed_202",
+      "metadata_case": "slope_plus_20",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "slope_plus_20_seed_303",
+      "metadata_case": "slope_plus_20",
+      "seed": "303",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_10_down_seed_101",
+      "metadata_case": "stairs_10_down",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_10_down_seed_202",
+      "metadata_case": "stairs_10_down",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_10_down_seed_303",
+      "metadata_case": "stairs_10_down",
+      "seed": "303",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_15_down_seed_101",
+      "metadata_case": "stairs_15_down",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_15_down_seed_202",
+      "metadata_case": "stairs_15_down",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "a017",
+      "case": "stairs_15_down_seed_303",
+      "metadata_case": "stairs_15_down",
+      "seed": "303",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "slope_plus_20_seed_101",
+      "metadata_case": "slope_plus_20",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "slope_plus_20_seed_202",
+      "metadata_case": "slope_plus_20",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "slope_plus_20_seed_303",
+      "metadata_case": "slope_plus_20",
+      "seed": "303",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_10_down_seed_101",
+      "metadata_case": "stairs_10_down",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_10_down_seed_202",
+      "metadata_case": "stairs_10_down",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_10_down_seed_303",
+      "metadata_case": "stairs_10_down",
+      "seed": "303",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_15_down_seed_101",
+      "metadata_case": "stairs_15_down",
+      "seed": "101",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_15_down_seed_202",
+      "metadata_case": "stairs_15_down",
+      "seed": "202",
+      "valid": true
+    },
+    {
+      "arm": "pilot",
+      "case": "stairs_15_down_seed_303",
+      "metadata_case": "stairs_15_down",
+      "seed": "303",
+      "valid": true
+    }
+  ],
+  "source_preserved": true,
+  "training_merge": "NOT_PERFORMED",
+  "video_validation": "video_validation.json",
+  "limitations": [
+    "video999frames_vs_1000steps_exact_alignment_unverified",
+    "terrain_height_is_ray_mean_not_local_contact_height",
+    "stairs_down_label_not_proof_of_descent"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "work_id": "G-A028",
+  "phase": "P1_DIAGNOSIS",
+  "training": false,
+  "source_release_sha256": "e7749d0f6adc4abb2b32fca9393523b8059b8954cec068ba2c7c2930af0a7d15",
+  "num_envs": 4,
+  "steps": 1000,
+  "cases": [
+    {
+      "policy": "a017",
+      "case": "stairs_10_down",
+      "seed": 101
+    },
+    {
+      "policy": "a017",
+      "case": "stairs_15_down",
+      "seed": 101
+    },
+    {
+      "policy": "a017",
+      "case": "slope_plus_20",
+      "seed": 101
+    },
+    {
+      "policy": "a017",
+      "case": "stairs_10_down",
+      "seed": 202
+    },
+    {
+      "policy": "a017",
+      "case": "stairs_15_down",
+      "seed": 202
+    },
+    {
+      "policy": "a017",
+      "case": "slope_plus_20",
+      "seed": 202
+    },
+    {
+      "policy": "a017",
+      "case": "stairs_10_down",
+      "seed": 303
+    },
+    {
+      "policy": "a017",
+      "case": "stairs_15_down",
+      "seed": 303
+    },
+    {
+      "policy": "a017",
+      "case": "slope_plus_20",
+      "seed": 303
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_10_down",
+      "seed": 101
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_15_down",
+      "seed": 101
+    },
+    {
+      "policy": "pilot",
+      "case": "slope_plus_20",
+      "seed": 101
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_10_down",
+      "seed": 202
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_15_down",
+      "seed": 202
+    },
+    {
+      "policy": "pilot",
+      "case": "slope_plus_20",
+      "seed": 202
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_10_down",
+      "seed": 303
+    },
+    {
+      "policy": "pilot",
+      "case": "stairs_15_down",
+      "seed": 303
+    },
+    {
+      "policy": "pilot",
+      "case": "slope_plus_20",
+      "seed": 303
+    }
+  ],
+  "required": [
+    "video",
+    "telemetry",
+    "summary",
+    "logs",
+    "model",
+    "env",
+    "SHA256SUMS"
+  ],
+  "report_status": {
+    "a017": "MISSING",
+    "pilot": "READ_UNMATCHED",
+    "new_training": "NOT_APPLICABLE"
+  },
+  "limitations": [
+    "Not a 70-point evaluation",
+    "4-env rollout is not A027 32-env rollout",
+    "No wx/wy or foot-contact channels; rotation cause remains unconfirmed",
+    "Video/telemetry frame alignment requires post-run verification"
+  ],
+  "next_training": "HOLD; diagnosis and report identity required"
+}
