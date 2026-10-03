@@ -52,6 +52,16 @@ workspace/_keep/GO2_G_A058_A043_SEED43_RESULT.zip
 workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip
 workspace/_keep/GO2_G_A028_RESULT.zip
 
+# G-A060 PC2 three-point results (431.3MB / 296.0MB / 297.2MB): pushed as .zip.001.. parts.
+# Quarantined copies under workspace/server_returns/G-A060/received/ are byte-identical and
+# stay local; their .sha256 manifests are committed and point at the /workspace/_keep path.
+workspace/_keep/GO2_G_A060_PC2_A048_SEED42_RESULT.zip
+workspace/_keep/GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip
+workspace/_keep/GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_A048_SEED42_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
+
 # Byte-identical re-download of the tracked workspace/_keep/go2_g_a025_flat_orientation_m1.zip
 # (both sha256 156e8e6b...9fcbd, 41.4MB). Kept on disk, not pushed. 2026-10-03.
 workspace/_keep/go2_g_a025_flat_orientation_m1 (2).zip

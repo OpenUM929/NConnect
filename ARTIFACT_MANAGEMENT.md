@@ -524,6 +524,29 @@ GitHub는 파일당 100MB 하드 제한이 있어 100MB를 넘는 archive는 통
   파일 경로도 이미 `/workspace/_keep/`를 가리킨다. 사용자 결정(2026-10-03): `_keep`만 분할.
 - 두 base를 `workspace/_keep/reconstruct_zips.sh`의 `for base in` 목록에 등록했다.
 
+### 6-a-2. G-A060 PC2 세 점 결과 parts 등재 (2026-10-03)
+
+사용자 지적("세 점 결과가 원격에 없다고 함")을 확인했다. 세 archive는 PC2의
+`C:\workspace\_keep\`에만 있었고 저장소 `workspace/_keep/`로 복사된 적이 없었다.
+
+| 회차 지점 | archive | 크기 | parts | sha256 |
+|---|---|---:|---:|---|
+| B1 기준선 | `GO2_G_A060_PC2_A048_SEED42_RESULT.zip` | 431.3 MB | `.001`~`.005` | `5e8619d2…f725780d` 일치 |
+| 점2 `ang_vel_xy_l2 −0.08` | `GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip` | 296.0 MB | `.001`~`.004` | `269abcfd…5273e29c` 일치 |
+| 점3 `track_lin_vel_xy exp 1.4` | `GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip` | 297.2 MB | `.001`~`.004` | `c3071c8b…f0323d2` 일치 |
+
+- lifecycle: `RECEIVED → VERIFIED → MERGED → REPORTED`. 격리 위치
+  `workspace/server_returns/G-A060/received/`에 먼저 복사해 sha256을 대조한 뒤
+  `workspace/_keep/`로 선택 병합했다. PC2 원본 3개는 삭제하지 않고 그대로 뒀다.
+  검증 기록은 `workspace/server_returns/G-A060/received/STATUS.txt`.
+- parts 13개는 이어 붙인 sha256이 위 매니페스트와 일치한 뒤에 커밋했다(§6-a 4단계와 동일한 판정).
+  원본 zip은 `_keep`과 `server_returns` 양쪽 모두 `.gitignore`에 추가했다. 세 base를
+  `reconstruct_zips.sh`에 등록했다. push 전량 약 1.02 GB.
+- **이 기록이 확인하지 않는 것.** archive sha256 일치는 파일 무결성(ARTIFACT_VERIFIED)일 뿐이다.
+  세 점의 행동·생존·추종, G1~G7 시나리오 점수, `report.html` 대응, 영상 판독은 이 작업에서
+  측정하지 않았다. `VIDEO_OBSERVED`·`OFFICIAL_RESULT`는 여전히 미확정이다. 결과 판독은
+  `GO2_REWARD_EVIDENCE_MASTER.md` §19 절차와 사용자 승인 뒤에 수행한다.
+
 ## 6-b. archive 무결성 결함 — `GO2_LIN_VEL_Z_M2_RESULT.zip` 잘림 (2026-10-03 발견·복구)
 
 - **관측.** git에 커밋된 `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip`의 크기는 37,227,124 B이고
