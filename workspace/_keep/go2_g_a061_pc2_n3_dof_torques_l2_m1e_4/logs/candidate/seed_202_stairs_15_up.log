@@ -1,0 +1,243 @@
+======================================================================
+[play] ⚠️ exported/policy.pt 는 '시뮬 창을 닫은 뒤' 생성됩니다.
+        (창이 떠 있는 동안엔 logs/<run>/exported/ 에만 있음 → 창 종료
+         시 exported/ 직속으로 자동 복사. 창 안 닫으면 policy.pt 안 보임.)
+======================================================================
+[play] 재생 대상: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\model_best.pt
+[play] play 자식 실행 (env 셋업 python.sh): C:\workspace\IsaacLab\_isaac_sim\python.bat
+[play]   args: ['--task', 'Quadruped-v0', '--num_envs', '32', '--headless', 'agent.seed=202', 'env.commands.base_velocity.heading_command=false', 'env.commands.base_velocity.rel_standing_envs=0.0', 'env.commands.base_velocity.resampling_time_range=[1000.0,1000.0]', 'env.commands.base_velocity.ranges.lin_vel_x=[0.50,0.50]', 'env.commands.base_velocity.ranges.lin_vel_y=[0,0]', 'env.commands.base_velocity.ranges.ang_vel_z=[0,0]', 'env.scene.terrain.terrain_type=generator', 'env.curriculum.terrain_levels=null', 'env.scene.terrain.terrain_generator.curriculum=false', 'env.scene.terrain.terrain_generator.num_rows=1', 'env.scene.terrain.terrain_generator.num_cols=4', 'env.scene.terrain.terrain_generator.difficulty_range=[1.0,1.0]', 'env.scene.terrain.max_init_terrain_level=0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=1.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.step_height_range=[0.15,0.15]']
+----------------------------------------------------------------------
+[PC2 launcher] ['C:\\workspace\\isaaclab_venv\\Scripts\\python.exe', '-u', 'C:\\workspace\\go2_g_a061_pc2_work\\n3_dof_torques_l2_m1e_4\\candidate\\play.py', '--_run_isaaclab_child', '--task', 'Quadruped-v0', '--num_envs', '32', '--headless', 'agent.seed=202', 'env.commands.base_velocity.heading_command=false', 'env.commands.base_velocity.rel_standing_envs=0.0', 'env.commands.base_velocity.resampling_time_range=[1000.0,1000.0]', 'env.commands.base_velocity.ranges.lin_vel_x=[0.50,0.50]', 'env.commands.base_velocity.ranges.lin_vel_y=[0,0]', 'env.commands.base_velocity.ranges.ang_vel_z=[0,0]', 'env.scene.terrain.terrain_type=generator', 'env.curriculum.terrain_levels=null', 'env.scene.terrain.terrain_generator.curriculum=false', 'env.scene.terrain.terrain_generator.num_rows=1', 'env.scene.terrain.terrain_generator.num_cols=4', 'env.scene.terrain.terrain_generator.difficulty_range=[1.0,1.0]', 'env.scene.terrain.max_init_terrain_level=0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs_inv.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.boxes.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.random_rough.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.hf_pyramid_slope_inv.proportion=0.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.proportion=1.0', 'env.scene.terrain.terrain_generator.sub_terrains.pyramid_stairs.step_height_range=[0.15,0.15]', '--checkpoint', 'C:\\workspace\\go2_g_a061_pc2_work\\n3_dof_torques_l2_m1e_4\\candidate\\exported\\model_best.pt']
+[go2-eval] telemetry enabled: out=C:/workspace/_keep/go2_g_a061_pc2_n3_dof_torques_l2_m1e_4/evaluation/candidate/cases/seed_202/stairs_15_up steps=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: C:\workspace\IsaacLab\apps\isaaclab.python.headless.kit
+Loading user config located at: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261004_033725.log
+2026-10-03T18:37:26Z [27ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\bb903df2-701e-4fc7-a991-aac3bc132997.dmp'
+2026-10-03T18:37:26Z [28ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\4f97b6f6-b2ab-47cb-90dc-d325762f7ca6.dmp'
+2026-10-03T18:37:26Z [29ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\2a511bf3-f7b0-47ad-aebc-d3b72bcc99fb.dmp'
+2026-10-03T18:37:26Z [29ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\4c8bfc07-b1d2-427f-b6e3-7904fb7a4bb1.dmp'
+2026-10-03T18:37:26Z [30ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\9d806c41-ab40-482e-8340-ddfeb418bb4e.dmp'
+2026-10-03T18:37:26Z [30ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\ac78c5aa-b81c-49f2-9dff-47837b1c9b18.dmp'
+2026-10-03T18:37:26Z [31ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\d17ba02f-6cf2-44da-beb8-2bce8ae954ef.dmp'
+2026-10-03T18:37:26Z [31ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\dd5235d2-26cd-4751-942c-d29a8a070398.dmp'
+2026-10-03T18:37:26Z [32ms] [Warning] [carb.crashreporter-breakpad.plugin] [previous crash] preventing upload of minidump due to user opt-out: 'c:/workspace/isaaclab_venv/lib/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1\9950743e-f3b3-4feb-b28c-7b1a598697c8.dmp'
+2026-10-03T18:37:26Z [257ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-10-03T18:37:26Z [780ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-03T18:37:26Z [793ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-03T18:37:30Z [4,092ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: Intel(R) UHD Graphics
+2026-10-03T18:37:30Z [4,094ms] [Warning] [gpu.foundation.plugin] Skipping unsupported non-NVIDIA GPU: Intel(R) UHD Graphics
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 616.92        | Graphics API: D3D12
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | Intel(R) UHD Graphics            |        |     | 128     MB | 8086      | 09520100.. |
+|     |                                  |        |     |            | a720      | 0          |
+|     |                                  |        |     |            | N/A       |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | NVIDIA GeForce RTX 5070          | Yes: 0 |     | 11943   MB | 10de      | 9d3e0100.. |
+|     |                                  |        |     |            | 2f04      | 0          |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: Windows 11 Pro, Version: 10.0 (25H2), Build: 26200, Kernel: 10.0.26100.9457
+| Processor: 13th Gen Intel(R) Core(TM) i9-13900HK
+| Cores: 14 | Logical Cores: 20
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 32527 | Free Memory: 20877
+| Total Page/Swap (MB): 34575 | Free Page/Swap: 19159
+|---------------------------------------------------------------------------------------------|
+2026-10-03T18:37:30Z [4,372ms] [Warning] [gpu.foundation.plugin] PCIe link width current (8) and maximum (16) for device 1 don't match.
+[INFO]: Parsing configuration from: go2_task.env_cfg:QuadrupedRoughEnvCfg
+[Quadruped:student] 7 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.5
+  [OK] feet_air_time.weight = 0.2
+  [OK] lin_vel_z_l2.weight = -1.25
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] action_rate_l2.weight = -0.01
+  [OK] flat_orientation_l2.weight = 0.0
+  [OK] dof_torques_l2.weight = -0.0001
+[Quadruped:student] terrain override - boxes ≤0.15m
+[INFO]: Parsing configuration from: go2_task.agent_cfg:QuadrupedPPORunnerCfg
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Loading experiment from directory: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\logs\rsl_rl\quadruped
+
+[36m==================================================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: C:\Users\Park\AppData\Local\Temp\isaaclab\logs\isaaclab_2026-10-04_03-37-32.log[0m
+[36m==================================================================================================================[0m
+
+[33m03:37:32 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 202
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 0.022679 seconds
+[INFO]: Time taken for scene creation : 1.154373 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.619782 seconds
+[33m03:37:34 [velocity_command.py] WARNING: The velocity command has the 'ranges.heading' attribute set to '(-3.141592653589793, 3.141592653589793)' but the heading command is not active. Consider setting the flag for the heading command to True.[0m
+[INFO] Command Manager:  <CommandManager> contains 1 active terms.
++------------------------------------------------+
+|              Active Command Terms              |
++-------+---------------+------------------------+
+| Index | Name          |          Type          |
++-------+---------------+------------------------+
+|   0   | base_velocity | UniformVelocityCommand |
++-------+---------------+------------------------+
+
+[INFO] Event Manager:  <EventManager> contains 2 active terms.
++--------------------------------------+
+| Active Event Terms in Mode: 'startup' |
++----------+---------------------------+
+|  Index   | Name                      |
++----------+---------------------------+
+|    0     | physics_material          |
+|    1     | add_base_mass             |
++----------+---------------------------+
++---------------------------------------+
+|  Active Event Terms in Mode: 'reset'  |
++--------+------------------------------+
+| Index  | Name                         |
++--------+------------------------------+
+|   0    | base_external_force_torque   |
+|   1    | reset_base                   |
+|   2    | reset_robot_joints           |
++--------+------------------------------+
+
+[INFO] Recorder Manager:  <RecorderManager> contains 0 active terms.
++---------------------+
+| Active Recorder Terms |
++-----------+---------+
+|   Index   | Name    |
++-----------+---------+
++-----------+---------+
+
+[INFO] Action Manager:  <ActionManager> contains 1 active terms.
++------------------------------------+
+|  Active Action Terms (shape: 12)   |
++--------+-------------+-------------+
+| Index  | Name        |   Dimension |
++--------+-------------+-------------+
+|   0    | joint_pos   |          12 |
++--------+-------------+-------------+
+
+[INFO] Observation Manager: <ObservationManager> contains 1 groups.
++----------------------------------------------------------+
+| Active Observation Terms in Group: 'policy' (shape: (235,)) |
++-----------+--------------------------------+-------------+
+|   Index   | Name                           |    Shape    |
++-----------+--------------------------------+-------------+
+|     0     | base_lin_vel                   |     (3,)    |
+|     1     | base_ang_vel                   |     (3,)    |
+|     2     | projected_gravity              |     (3,)    |
+|     3     | velocity_commands              |     (3,)    |
+|     4     | joint_pos                      |    (12,)    |
+|     5     | joint_vel                      |    (12,)    |
+|     6     | actions                        |    (12,)    |
+|     7     | height_scan                    |    (187,)   |
++-----------+--------------------------------+-------------+
+
+[INFO] Termination Manager:  <TerminationManager> contains 2 active terms.
++---------------------------------+
+|     Active Termination Terms    |
++-------+--------------+----------+
+| Index | Name         | Time Out |
++-------+--------------+----------+
+|   0   | time_out     |   True   |
+|   1   | base_contact |  False   |
++-------+--------------+----------+
+
+[INFO] Reward Manager:  <RewardManager> contains 10 active terms.
++-----------------------------------------+
+|           Active Reward Terms           |
++-------+----------------------+----------+
+| Index | Name                 |   Weight |
++-------+----------------------+----------+
+|   0   | track_lin_vel_xy_exp |      1.5 |
+|   1   | track_ang_vel_z_exp  |     0.75 |
+|   2   | lin_vel_z_l2         |    -1.25 |
+|   3   | ang_vel_xy_l2        |    -0.05 |
+|   4   | dof_torques_l2       |  -0.0001 |
+|   5   | dof_acc_l2           | -2.5e-07 |
+|   6   | action_rate_l2       |    -0.01 |
+|   7   | feet_air_time        |      0.2 |
+|   8   | flat_orientation_l2  |      0.0 |
+|   9   | dof_pos_limits       |      0.0 |
++-------+----------------------+----------+
+
+[INFO] Curriculum Manager:  <CurriculumManager> contains 0 active terms.
++----------------------+
+| Active Curriculum Terms |
++-----------+----------+
+|   Index   | Name     |
++-----------+----------+
++-----------+----------+
+
+[INFO]: Completed setting up the environment...
+2026-10-03T18:37:35Z [9,119ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-10-03T18:37:35Z [9,119ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+[INFO]: Loading model checkpoint from: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\model_best.pt
+C:\workspace\isaaclab_venv\Lib\site-packages\rsl_rl\utils\utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+C:\workspace\isaaclab_venv\Lib\site-packages\rsl_rl\utils\utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+C:\workspace\isaaclab_venv\Lib\site-packages\rsl_rl\utils\utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+--------------------------------------------------------------------------------
+Resolved observation sets: 
+	 actor :  ['policy']
+	 critic :  ['policy']
+--------------------------------------------------------------------------------
+Actor Model: MLPModel(
+  (obs_normalizer): Identity()
+  (distribution): GaussianDistribution()
+  (mlp): MLP(
+    (0): Linear(in_features=235, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=12, bias=True)
+  )
+)
+Critic Model: MLPModel(
+  (obs_normalizer): Identity()
+  (mlp): MLP(
+    (0): Linear(in_features=235, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+
+[play] subprocess 종료 (exit=0)
+[play] 동기화 시작 (finally)...
+======================================================================
+[play] ★ policy.pt export 완료
+       원본: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\exported\policy.pt
+       복사: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\policy.pt   (백업 policy_20261004_033802.pt)
+======================================================================
+======================================================================
+[play] ★ policy.onnx export 완료
+       원본: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\exported\policy.onnx
+       복사: C:\workspace\go2_g_a061_pc2_work\n3_dof_torques_l2_m1e_4\candidate\exported\policy.onnx   (백업 policy_20261004_033802.onnx)
+======================================================================

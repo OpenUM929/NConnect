@@ -1,0 +1,7 @@
+mount: warning - /workspace does not exist.
+[CHAIN START] 2026-10-04T01:49:51+09:00
+[POINT START] n3_dof_torques_l2_m1e_4 2026-10-04T01:49:52+09:00
+[POINT] n3_dof_torques_l2_m1e_4 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] n3_dof_torques_l2_m1e_4 DONE — 다음 점은 판독 뒤 따로 정한다.
+[n3_dof_torques_l2_m1e_4 exit] 0 2026-10-04T04:08:23+09:00
+[CHAIN END] 2026-10-04T04:08:23+09:00

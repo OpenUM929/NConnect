@@ -1,0 +1,3 @@
+REPORT_STATUS=REPORT_ACQUIRED
+SOURCE=/workspace/go2_g_a061_pc2_work/n3_dof_torques_l2_m1e_4/candidate/exported/report.html
+IDENTITY=see_training_model_env_and_logs
