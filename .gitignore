@@ -118,3 +118,4 @@ workspace/_keep/GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip
 # G-A062 PC2 batch 결과 원본 ZIP(~311MB 각): .zip.001.. parts로 등재, reconstruct_zips.sh로 재조립
 workspace/_keep/GO2_G_A062_PC2_Q0_LIN_VEL_Z_L2_M1P5_RESULT.zip
 workspace/_keep/GO2_G_A062_PC2_Q1_TRACK_ANG_VEL_Z_EXP_P1P0_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_Q2_ANG_VEL_XY_L2_M0P06_RESULT.zip
