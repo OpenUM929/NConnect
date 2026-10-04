@@ -4,3 +4,5 @@ workspace/training/quadruped/server_run_go2_tuning_engine_v1.sh text eol=lf
 # 발행 ZIP·회수 증거는 대상이 아니며, 기존 파일을 일괄 재정규화하지 않는다.
 *.sh text eol=lf
 workspace/training/quadruped/config/experiments/*.json text eol=lf
+# 2026-10-04: Windows 체크아웃에서 .sha256 이 CRLF 가 되면 sha256sum -c 가 파일명 끝  로 실패한다(G-A061 N3 결과 sha).
+*.sha256 text eol=lf
