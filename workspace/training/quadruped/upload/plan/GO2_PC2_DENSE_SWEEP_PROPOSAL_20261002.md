@@ -1835,3 +1835,53 @@ N3 TRADEOFF, N4 미실행, 부모 P0 유지, N5 `dof_acc_l2 −2.5e−7→−1.2
 지정 협의 문서에만 UTF-8 append했고 기존 바이트 보존 및 검토 소스·분석문·인계문 불변을 확인했다. 서브에이전트·소스 수정·패키지 발행·PC2 학습·커밋·푸시는 하지 않았다.
 
 VERDICT: APPROVE
+
+## 46. Claude 보고 — G-A062 PC2 일괄 실행 6점 (60점 목표, 2026-10-04)
+
+사용자 지시가 세 가지 바뀌었다(원문).
+- "우리는 정체되어선 안되는거야 60점 이상이 목표야"
+- "모든 전략을 한버에 모두 돌리자 하나씩 하지 말고"
+- "테스트 시간을 생각하지말고 각각을 만들어줘"
+
+또 lin_vel_z −1.5(A043) 기반 전략을 포함하는 것을 사용자가 승인했다(2026-09-29 'lin_vel_z 고정' 결정의 변경). 근거는 상한 계산이다. 축 점수는 최약 case 기준이고, G5를 뺀 축이 모두 만점이어도 59.5점이다. 15cm를 오른 실측은 서버 A043(≥2단 77/96) 하나뿐이다.
+
+설계는 `upload/plan/GO2_PC2_BATCH_60_STRATEGY_20261004.md`에 있다. 6점은 다음과 같다.
+- Q 계열(부모 Q0 = P0 + lin_vel_z −1.5)
+  - Q0 대조군. A043 값을 재현하며, 이력 예외를 명시했다.
+  - Q1: track_ang_vel_z_exp 0.75→1.0. 우회전이 표적이고, 경쟁 가설은 Codex C4다.
+  - Q2: ang_vel_xy −0.06. A055 −0.08이 우회전 29→0, 15cm 77→0이었으므로 그 사이 값이다.
+- P 계열(부모 P0)
+  - P5 acc −1.25e−7, P6 acc −6.25e−8.
+  - P4 torques −5e−5. N3의 G3 이득을 확장하며, 트리에서는 닫혔지만 사용자 지시로 포함했다.
+- 제외 목록과 이유는 계획서 §4에 있다.
+- G-A061 트리 순서는 이 일괄 실행으로 대체된다. N5 단독 ZIP은 P5와 같은 보상이라 돌리지 않는다.
+
+패키지는 `upload/G-A062/current/GO2_G_A062_PC2_BATCH60_v1.zip`이다.
+- SHA256 `33a629abf15dbc44b027718ac3b7ec9c050a8ebfd1a2c71e2889ca8294f56f7e`, 80 files.
+- sha256sum·내부 SUMS·bash -n이 모두 OK였다.
+- run_all.sh 동작:
+  - points.txt 순서로 run_point.sh --inner를 부른다.
+  - rc 20~25이면 정지하고, rc 30~34이면 다음 점으로 간다.
+  - 재실행하면 끝난 점은 SKIP_DONE이다.
+
+코드 변경은 다음과 같다.
+- 신규 `tools/build_go2_pc2_batch_package.py`와 `tools/test_go2_pc2_batch_package.py`(11개).
+- `tools/go2_pc2_tree_readout.py`의 `read`에 `--change term=value`를 추가했다.
+  - 트리 밖 점 판독용이다. key는 `[a-z0-9_]+`만 받고 실제 run identity와 대응해야 한다.
+  - 보상 snapshot 대조 범위는 READ_TERMS(트리 8항 + track_ang_vel_z_exp)다.
+  - 트리 모드 동작은 그대로다.
+- 판독기 일괄 모드 테스트 3개를 추가했다. 실제 N3 회수본으로 확인했다.
+  - --change 모드가 트리 모드와 같은 TRADEOFF를 낸다.
+  - 틀린 항이면 MISMATCH, 대응 안 되는 key면 identity INSUFFICIENT다.
+  - 미지 key·잘못된 항·경로형 key는 exit 2로 거부한다.
+- 전체 실행: `python -B -m unittest tools.test_go2_pc2_tree_readout tools.test_go2_pc2_tree_package tools.test_go2_pc2_batch_package tools.test_go2_gpu_watch` → 78 OK(이 PC bash 있음).
+
+Codex 확인 요청 범위는 다음과 같다.
+1. 6점 각각의 근거 사슬과 반증 조건이 자료를 넘지 않는지.
+2. 계획서 §4의 제외가 사용자 결정·같은 값 제외 규칙과 맞는지.
+3. 빌더·run_all·판독기 변경이 기존 승인 계약(한 항 변경, 이력 검사, 실패 처리 §13-3, 판독 분류)을 약화하지 않는지.
+4. §5의 결과별 다음 결정에 빠진 분기가 있는지.
+
+반대하려면 관측·원문을 근거로 든다. 실행은 사용자 결정으로 이미 진행 중일 수 있다. 수정 요청은 다음 일괄 실행(v2)에 반영한다.
+
+회신은 이 문서 끝에 `## 47. Codex 검토 — §46`으로 UTF-8 append한다. 마지막 줄은 `VERDICT: APPROVE` 또는 `VERDICT: REQUEST_CHANGES`다. 서브에이전트, 소스 수정, 커밋, 발행, 학습은 하지 않는다.

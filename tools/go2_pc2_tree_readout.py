@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -32,6 +33,8 @@ SEEDS = pr.SEEDS
 ROBOTS = pr.ROBOTS
 EXTRA_TERMS = ("dof_torques_l2", "dof_acc_l2")
 TREE_TERMS = pr.REWARD_TERMS + EXTRA_TERMS
+# 판독 시 보상 snapshot 대조 범위: 트리 8항 + G-A062 일괄 실행의 회전 추종 항(env 기본 0.75).
+READ_TERMS = TREE_TERMS + ("track_ang_vel_z_exp",)
 
 # 트리(§12-7·§13). 변수 순서와 노드 값은 계획서에서 고정. (변수, [(노드 key, 값), ...])
 TREE: tuple[tuple[str, tuple[tuple[str, float], ...]], ...] = (
@@ -199,7 +202,7 @@ def rewards_all(h: Path) -> dict | None:
     if not p.is_file():
         return None
     w = reward_weights(p.read_text(encoding="utf-8"))
-    return {k: w.get(k) for k in TREE_TERMS}
+    return {k: w.get(k) for k in READ_TERMS}
 
 
 def snapshot_problem(point: Path, parent: Path, changes: dict[str, float]) -> str | None:
@@ -209,7 +212,7 @@ def snapshot_problem(point: Path, parent: Path, changes: dict[str, float]) -> st
         return "training/env.yaml 없음"
     if any(v is None for v in (*a.values(), *b.values())):
         return f"보상 항 결측 point={a} parent={b}"
-    diff = sorted(k for k in TREE_TERMS if not math.isclose(a[k], b[k], rel_tol=1e-9, abs_tol=0.0))
+    diff = sorted(k for k in READ_TERMS if not math.isclose(a[k], b[k], rel_tol=1e-9, abs_tol=0.0))
     want = sorted(changes)
     if diff != want or any(not math.isclose(a[k], v, rel_tol=1e-9, abs_tol=0.0) for k, v in changes.items()):
         return f"MISMATCH diff={diff} want={want}"
@@ -380,7 +383,8 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("read")
-    r.add_argument("--node", required=True, choices=sorted(keys))
+    r.add_argument("--node", required=True, help="트리 노드 key, 또는 --change 와 함께 일괄 실행(G-A062) 점 key")
+    r.add_argument("--change", help="트리 밖 점(G-A062 일괄 실행)의 단일 변경 'term=value' — 부모 대비 이 한 항만 달라야 한다")
     r.add_argument("--point", required=True, type=Path)
     r.add_argument("--parent", required=True, type=Path, help="비교 부모 수확물(직접 부모·형제·P0)")
     r.add_argument("--parent-key", default=pr.B1_KEY)
@@ -398,7 +402,17 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         print(json.dumps(out, ensure_ascii=False, indent=1))
         return 0
-    var, val = keys[a.node]
+    if a.change:
+        if not re.fullmatch(r"[a-z0-9_]+", a.node):
+            ap.error(f"node key must be [a-z0-9_]+: {a.node}")
+        term, _, value = a.change.partition("=")
+        if term not in READ_TERMS:
+            ap.error(f"--change term must be one of {READ_TERMS}")
+        var, val = term, float(value)
+    elif a.node in keys:
+        var, val = keys[a.node]
+    else:
+        ap.error(f"unknown tree node {a.node} (트리 밖 점은 --change term=value 가 필요하다)")
     changes = {var: val}
     if a.cumulative:
         changes = {k: float(v) for k, v in (kv.split("=", 1) for kv in a.cumulative.split(","))}

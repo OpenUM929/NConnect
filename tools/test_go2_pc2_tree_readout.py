@@ -270,5 +270,42 @@ class RealHarvest(unittest.TestCase):
         self.assertEqual(r["verdict"]["class"], "WORSENED")
 
 
+N3_HARVEST = ROOT / "workspace/server_returns/G-A061/extracted/go2_g_a061_pc2_n3_dof_torques_l2_m1e_4"
+
+
+@unittest.skipUnless(N3_HARVEST.is_dir() and (X / "go2_g_a060_pc2_a048_seed42").is_dir(), "G-A061 N3·G-A060 압축 해제본 없음")
+class BatchModeRead(unittest.TestCase):
+    """G-A062 일괄 실행 점 판독(--change): 트리 밖 key 도 실제 run 과 대응해야 하고, 한 항만 달라야 한다."""
+    B1 = X / "go2_g_a060_pc2_a048_seed42"
+
+    def cli(self, *args):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            try:
+                rc = t.main(["read", *args, "--point", str(N3_HARVEST), "--parent", str(self.B1), "--out", d])
+            except SystemExit as e:
+                return e.code, None
+            js = json.loads(next(Path(d).glob("*.json")).read_text(encoding="utf-8"))
+            return rc, js["verdict"]
+
+    def test_change_mode_matches_tree_mode_on_real_n3(self):
+        self.assertEqual(self.cli("--node", "n3_dof_torques_l2_m1e_4", "--change", "dof_torques_l2=-0.0001")[1]["class"], "TRADEOFF")
+        self.assertIsNone(t.snapshot_problem(N3_HARVEST, self.B1, {"dof_torques_l2": -1e-4}))
+        self.assertEqual(t.rewards_all(N3_HARVEST)["track_ang_vel_z_exp"], 0.75)
+
+    def test_wrong_term_and_unmatched_key_are_insufficient(self):
+        v = self.cli("--node", "n3_dof_torques_l2_m1e_4", "--change", "track_ang_vel_z_exp=1.0")[1]
+        self.assertEqual(v["class"], "INSUFFICIENT")
+        self.assertTrue(any("MISMATCH" in w for w in v["why"]), v)
+        v = self.cli("--node", "q1_track_ang_vel_z_exp_p1p0", "--change", "dof_torques_l2=-0.0001")[1]
+        self.assertTrue(any("identity" in w for w in v["why"]), v)  # key 가 실제 run 과 대응하지 않음
+
+    def test_unknown_key_without_change_and_bad_term_are_refused(self):
+        self.assertEqual(self.cli("--node", "q9_unknown")[0], 2)
+        self.assertEqual(self.cli("--node", "x", "--change", "not_a_term=1")[0], 2)
+        self.assertEqual(self.cli("--node", "../x", "--change", "dof_acc_l2=-1e-7")[0], 2)
+
+
 if __name__ == "__main__":
     unittest.main()

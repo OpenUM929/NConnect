@@ -22,6 +22,12 @@
 - 증거: `.omx/diagnostics/isaac-pc2-perf-20261003/{gpu-owner.json,containment.json,timing.json}`. 도구 `tools/inspect_isaac_gpu_owner.ps1`, `tools/contain_isaac_gpu_miners.py`; 안전성 mock 테스트 `tools/test_contain_isaac_gpu_miners.py` 5건 통과, Python/PowerShell 구문 및 diff 검사 완료. 기존 학습 코드·발행 ZIP 불변.
 - 잔여 위험: 현재 세션에서만 일시정지한 것이며 감염 경로·자동 실행·재부팅 후 재발 방지는 미확인. InstallUtil PID 11776은 원인 미확정으로 변경하지 않았다. 영구 제거 완료 또는 시스템 안전 판정을 하지 않는다. 후속 보안 정리는 이 기록과 원본 증거를 보존하고 별도 범위를 정해야 한다.
 
+## G-A062 — PC2 60점 목표 일괄 실행 6점 (2026-10-04, 사용자 지시)
+- 상태: PLANNED(발행, 실행 전). 패키지 `workspace/training/quadruped/upload/G-A062/current/GO2_G_A062_PC2_BATCH60_v1.zip` SHA256 `33a629abf15dbc44b027718ac3b7ec9c050a8ebfd1a2c71e2889ca8294f56f7e` (80 files, sha256sum -c·내부 SUMS·bash -n OK). 빌더 `tools/build_go2_pc2_batch_package.py`, 테스트 78 OK.
+- 점(순서): q0 lin_vel_z −1.5(A043 재현, Q 부모) → q1 track_ang_vel_z_exp 1.0 → q2 ang_vel_xy −0.06 → p5 dof_acc −1.25e−7 → p6 dof_acc −6.25e−8 → p4 dof_torques −5e−5. 설계 `upload/plan/GO2_PC2_BATCH_60_STRATEGY_20261004.md`, 인계 `HANDOFF_G_A062_PC2.md`. lin_vel_z −1.5 포함은 사용자 승인(2026-10-04).
+- G-A061 N5 단독 ZIP은 p5와 같은 보상이므로 실행하지 않는다(트리 순서는 이 일괄 실행으로 대체).
+- 영상 판정: 필수(점마다 10편). 회수: 점마다 `go2_g_a062_pc2_<key>/`, `GO2_G_A062_PC2_<KEY>_RESULT.zip`+`.sha256`, `go2_g_a062_pc2_points/`. report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
+
 ## G-A061 — PC2 트랙 고정 탐색트리, 첫 노드 N3 발행 (2026-10-04)
 - 2026-10-04 08:30 **N3 ANALYZED**: RUNNER rc 0·FULL_69_COMPLETE·영상 10·REPORT_ACQUIRED, 결과 ZIP 4 parts 재조립 SHA 일치(`798e4a0`), 내부 SHA256SUMS OK, env `dof_torques_l2` −0.0001 확인. 압축 해제 `workspace/server_returns/G-A061/extracted/`(gitignore). 판독 **TRADEOFF**(험지 옆걸음 낙상 41→19 공통 개선, 15cm ≥1단 52→0·10cm ≥2단 85→69 공통 손실). 분석 `workspace/training/quadruped/reports/GO2_G_A061_N3_ANALYSIS_20261004.md`. VIDEO_UNKNOWN, 내부 판독만. GPU 감시 기록은 G-A060 패턴으로 떠서 무효(감시 도구 수정·테스트 추가).
 - 2026-10-04 **N5 발행(PLANNED, 실행 전)**: 트리 `next` = RUN `n5_dof_acc_l2_m1p25e_7`(부모 P0). `upload/G-A061/current/GO2_G_A061_PC2_TREE_n5_dof_acc_l2_m1p25e_7_v1.zip` SHA256 `210d8364f9a69c69045100473f55321fc1b0682be804dd558e0037e59c6e551b`(39 files, sha256sum -c·내부 SUMS·bash -n OK). 회수 `go2_g_a061_pc2_n5_dof_acc_l2_m1p25e_7/`, `GO2_G_A061_PC2_N5_DOF_ACC_L2_M1P25E_7_RESULT.zip`+`.sha256`. 영상 필수.
