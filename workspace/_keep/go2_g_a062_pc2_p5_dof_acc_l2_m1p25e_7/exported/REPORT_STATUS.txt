@@ -1,0 +1,3 @@
+REPORT_STATUS=REPORT_ACQUIRED
+SOURCE=/workspace/go2_g_a062_pc2_work/p5_dof_acc_l2_m1p25e_7/candidate/exported/report.html
+IDENTITY=see_training_model_env_and_logs
