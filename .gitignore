@@ -111,3 +111,7 @@ workspace/_local_runs/
 
 # G-A060 PC2 결과 압축 해제본 (원본 ZIP은 _keep parts로 등재)
 workspace/server_returns/G-A060/extracted/
+# G-A061 PC2 결과 압축 해제본 (원본 ZIP은 _keep parts로 등재)
+workspace/server_returns/G-A061/extracted/
+# G-A061 N3 결과 원본 ZIP(311MB): .zip.001.. parts로 등재, reconstruct_zips.sh로 재조립
+workspace/_keep/GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip

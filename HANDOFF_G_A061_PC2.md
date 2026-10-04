@@ -30,7 +30,9 @@ PC2의 Claude는 이 문서를 처음부터 끝까지 읽고 §1 → §5 순서�
 - 한 줄:
   `unzip -oq /workspace/GO2_G_A061_PC2_TREE_n3_dof_torques_l2_m1e_4_v1.zip -d /workspace && bash /workspace/go2_g_a061_pc2/run_point.sh --only n3_dof_torques_l2_m1e_4`
   - Linux는 tmux, Windows는 `nohup … &`로 띄운다.
-- GPU 감시를 함께 띄운다: `tools/go2_gpu_watch.sh --hours 6` (`HANDOFF_G_A060_PC2.md` §6).
+- GPU 감시를 함께 띄운다: `tools/go2_gpu_watch.sh --hours 6 --pattern 'go2_g_a061_pc2_*'` (`HANDOFF_G_A060_PC2.md` §6).
+  - `--pattern`을 반드시 준다. 기본값은 G-A060이라, N3 때는 지난 회차 상태를 STALL로 기록했다(2026-10-04).
+  - N5부터는 이 문서의 `--only` key를 `RUN_GUIDE.txt`의 node로 바꿔 실행한다.
   - 감시는 기록만 한다. 프로세스를 끄지 않는다.
 - 상태 확인: `/workspace/_keep/go2_g_a061_pc2_points/POINT_STATUS.tsv`
 

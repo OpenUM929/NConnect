@@ -8,6 +8,7 @@
 #   --hours        최대 감시 시간(기본 10). 끝나면 스스로 종료한다.
 #   --interval     확인 간격 초(기본 60).
 #   --pattern      감시할 회수 폴더 이름 패턴(기본 go2_g_a060_pc2_*). 학습 로그 logs/candidate_training.log 를 읽는다.
+#                  러너 상태 폴더는 패턴 끝 '*'를 'points'로 바꾼 이름이다(예: go2_g_a061_pc2_* → go2_g_a061_pc2_points).
 #   --out          기록 폴더(기본 $KEEP/go2_gpu_watch).
 #   --allow        GPU 를 써도 되는 프로세스 이름 정규식(기본 python|kit|isaac). 그 밖은 FOREIGN_GPU_PROCESS 경보.
 #   --base-iter-s  정상 iteration 초. 생략하면 현재 학습의 iteration 6~25 중앙값을 기준으로 쓴다.
@@ -33,7 +34,7 @@ BASE_ITER_S=""; ONCE=0
 SLOW_RATIO=${GO2_WATCH_SLOW_RATIO:-1.3}; STALL_MIN=${GO2_WATCH_STALL_MIN:-20}; BUSY_UTIL=${GO2_WATCH_BUSY_UTIL:-30}
 VRAM_FRAC=${GO2_WATCH_VRAM_FRAC:-0.95}; NVSMI=${NVSMI:-nvidia-smi}
 
-usage() { sed -n '2,28p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,29p' "$0" | sed 's/^# \{0,1\}//'; }
 need() { [[ $# -ge 2 ]] || { echo "$1 needs a value" >&2; exit 64; }; }  # 값 없는 옵션은 반복하지 않고 64(§27 R3)
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -57,6 +58,7 @@ for v in "$HOURS" "$INTERVAL"; do num "$v" || { echo "--hours/--interval must be
 [[ -z "$BASE_ITER_S" ]] || num "$BASE_ITER_S" || { echo "--base-iter-s must be a number" >&2; exit 64; }
 [[ -d "$KEEP" ]] || { echo "keep dir not found: $KEEP" >&2; exit 64; }
 OUT=${OUT:-$KEEP/go2_gpu_watch}
+POINTS=${PATTERN%\*}points  # 러너 상태 폴더(go2_g_a061_pc2_* → go2_g_a061_pc2_points)
 mkdir -p "$OUT"
 TSV="$OUT/WATCH.tsv"; ALERTS="$OUT/ALERTS.txt"
 [[ -s "$TSV" ]] || printf 'time\tgpu_util\tvram_used_mb\tvram_total_mb\ttemp_c\tpower_w\tgpu_procs\tforeign\tpoint\titer\titer_total\titer_s_recent\titer_s_base\teta\tlog_age_min\talerts\n' >"$TSV"
@@ -132,12 +134,12 @@ check() {
   fi
   # 멈춤: 학습 로그·러너 로그 중 가장 최근 갱신
   local newest
-  newest=$(ls -t "$KEEP"/$PATTERN/logs/*.log "$KEEP"/go2_g_a060_pc2_points/logs/*.log "$KEEP"/go2_g_a060_pc2_points/point.log 2>/dev/null | head -1)
+  newest=$(ls -t "$KEEP"/$PATTERN/logs/*.log "$KEEP"/$POINTS/logs/*.log "$KEEP"/$POINTS/point.log 2>/dev/null | head -1)
   if [[ -n "$newest" ]]; then
     age=$(( ( $(date +%s) - $(date -r "$newest" +%s) ) / 60 ))
     if (( age >= STALL_MIN )); then
       local done_note=""
-      [[ -f "$KEEP/go2_g_a060_pc2_points/POINT_STATUS.tsv" ]] && done_note=$(tail -1 "$KEEP/go2_g_a060_pc2_points/POINT_STATUS.tsv" | cut -f1,2 | tr '\t' ':')
+      [[ -f "$KEEP/$POINTS/POINT_STATUS.tsv" ]] && done_note=$(tail -1 "$KEEP/$POINTS/POINT_STATUS.tsv" | cut -f1,2 | tr '\t' ':')
       alerts+=("STALL no log update ${age}min (last status ${done_note:-none})")
     fi
   fi

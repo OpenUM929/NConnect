@@ -187,13 +187,14 @@ class TreeProgress(unittest.TestCase):
         self.assertEqual((s["action"], s["parent_changes"]), ("END", {"dof_torques_l2": -1e-4}))
 
     def test_tree_values_not_previously_tested(self):
-        # 같은 항·같은 값 이력 제외 규칙(§1-3): 트리 값은 원장·시험 이력에 없는 값이어야 한다.
-        # 시험 이력 참고본·증거 원장에서 dof_torques 는 변경 기록이 없고, dof_acc 변경 행은 모두 미실행(G-A039·G-A053)이다.
+        # 같은 항·같은 값 이력 제외 규칙(§1-3): 트리 값은 트리 시작 전 원장·시험 이력에 없는 값이어야 한다.
+        # 트리 밖 기록에서 dof_torques 는 변경 기록이 없고, dof_acc 변경 행은 모두 미실행(G-A039·G-A053)이다.
+        # 이 트리 자신의 실행 기록(G-A061 행, _keep/go2_g_a061_pc2_*)은 실행이 진행되며 생기므로 제외한다.
         for rel in ("workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md", "GO2_REWARD_EVIDENCE_MASTER.md"):
             for line in (ROOT / rel).read_text(encoding="utf-8").splitlines():
-                if line.startswith("| G-A") and ("dof_acc" in line or "dof_torques" in line):
+                if line.startswith("| G-A") and not line.startswith("| G-A061") and ("dof_acc" in line or "dof_torques" in line):
                     self.assertIn("미실행", line, f"{rel}: {line[:80]}")
-        keep = [p.name for p in (ROOT / "workspace/_keep").iterdir()]
+        keep = [p.name for p in (ROOT / "workspace/_keep").iterdir() if not p.name.startswith("go2_g_a061_pc2_")]
         self.assertFalse([n for n in keep if "dof_torques" in n or "dof_acc" in n])
         self.assertEqual([v for _, pts in t.TREE for _, v in pts], [-1e-4, -5e-5, -1.25e-7, -6.25e-8])
 

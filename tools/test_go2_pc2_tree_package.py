@@ -36,6 +36,24 @@ def step(nodes=None, siblings=None):
     return tree.next_step({"nodes": nodes or {}, "siblings": siblings or {}})
 
 
+# 이 트리 자신의 실행 기록(원장 G-A061 행, _keep/go2_g_a061_pc2_*)은 실행이 진행될수록 늘어난다.
+# 패키지 구조 테스트는 빈 상태에서 N3 를 빌드하므로, 그 기록만 걸러 원장 진행과 무관하게 만든다.
+# 같은 값 재실행 거부 자체는 OwnTreeHistory 가 실제 원장으로 확인한다.
+_LIVE_CONFLICTS = b.history_conflicts
+
+
+def _pre_tree_conflicts(var, value):
+    return [h for h in _LIVE_CONFLICTS(var, value) if "| G-A061" not in h and "_keep/go2_g_a061_pc2_" not in h]
+
+
+def setUpModule():
+    b.history_conflicts = _pre_tree_conflicts
+
+
+def tearDownModule():
+    b.history_conflicts = _LIVE_CONFLICTS
+
+
 class Package(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -120,6 +138,25 @@ class Gates(unittest.TestCase):
         self.assertNotIn("dof_acc_l2", par)
         self.assertEqual(json.loads(f[f"runs/{N5}/experiment.json"])["single_change"],
                          {"name": "dof_acc_l2", "from": -2.5e-7, "to": -1.25e-7})
+
+
+class OwnTreeHistory(unittest.TestCase):
+    """실행을 마친 노드의 같은 값은 실제 원장으로 거부된다(N3 판독 뒤 원장 G-A061 행 추가, 2026-10-04)."""
+
+    def test_executed_n3_value_is_history(self):
+        hits = _LIVE_CONFLICTS("dof_torques_l2", -1e-4)
+        self.assertTrue(any("| G-A061" in h for h in hits), hits)
+        b.history_conflicts = _LIVE_CONFLICTS
+        try:
+            with self.assertRaises(ValueError) as e:
+                b.build(step())
+            self.assertIn("EXCLUDED_HISTORY", str(e.exception))
+        finally:
+            b.history_conflicts = _pre_tree_conflicts
+
+    def test_unexecuted_tree_values_are_not_history(self):
+        for var, v in (("dof_torques_l2", -5e-5), ("dof_acc_l2", -1.25e-7), ("dof_acc_l2", -6.25e-8)):
+            self.assertEqual(_LIVE_CONFLICTS(var, v), [], (var, v))
 
 
 class HistoryNumbers(unittest.TestCase):

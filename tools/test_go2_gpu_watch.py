@@ -166,6 +166,27 @@ class GpuWatch(unittest.TestCase):
             self.assertEqual(r.returncode, 64, opt)
             self.assertIn("needs a value", r.stderr, opt)
 
+    def test_11_points_dir_follows_pattern(self) -> None:
+        """G-A061 N3 실측: 기본 패턴(G-A060)으로 떠서 지난 회차 상태를 STALL로 보고했다. 상태 폴더는 --pattern 을 따른다."""
+        log = self.write_log([2.0] * 40)
+        old = time.time() - 30 * 60
+        os.utime(log, (old, old))
+        a060 = self.keep / "go2_g_a060_pc2_points"
+        a060.mkdir()
+        (a060 / "POINT_STATUS.tsv").write_text("key\tstatus\nold_point\tDONE\n", encoding="utf-8", newline="\n")
+        pts = self.keep / "go2_g_a061_pc2_points"
+        pts.mkdir()
+        (pts / "POINT_STATUS.tsv").write_text("key\tstatus\nn3_x\tRUNNING\n", encoding="utf-8", newline="\n")
+        run = self.keep / "go2_g_a061_pc2_n3_x" / "logs"
+        run.mkdir(parents=True)
+        p = run / "candidate_training.log"
+        p.write_text(training_log([2.0] * 40), encoding="utf-8", newline="\n")
+        os.utime(p, (old, old))
+        self.run_once("--pattern", "go2_g_a061_pc2_*")
+        a = self.alerts()
+        self.assertIn("last status n3_x:RUNNING", a)
+        self.assertNotIn("old_point", a)
+
 
 if __name__ == "__main__":
     unittest.main()
