@@ -385,6 +385,8 @@ def main(argv: list[str] | None = None) -> int:
     r = sub.add_parser("read")
     r.add_argument("--node", required=True, help="트리 노드 key, 또는 --change 와 함께 일괄 실행(G-A062) 점 key")
     r.add_argument("--change", help="트리 밖 점(G-A062 일괄 실행)의 단일 변경 'term=value' — 부모 대비 이 한 항만 달라야 한다")
+    r.add_argument("--repeat", action="store_true",
+                   help="부모 그대로 재학습 점(G-A063 s14) — 보상이 부모와 한 항도 다르지 않아야 한다(학습 흔들림 측정)")
     r.add_argument("--point", required=True, type=Path)
     r.add_argument("--parent", required=True, type=Path, help="비교 부모 수확물(직접 부모·형제·P0)")
     r.add_argument("--parent-key", default=pr.B1_KEY)
@@ -402,7 +404,11 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         print(json.dumps(out, ensure_ascii=False, indent=1))
         return 0
-    if a.change:
+    if a.repeat:
+        if not re.fullmatch(r"[a-z0-9_]+", a.node):
+            ap.error(f"node key must be [a-z0-9_]+: {a.node}")
+        var = val = None
+    elif a.change:
         if not re.fullmatch(r"[a-z0-9_]+", a.node):
             ap.error(f"node key must be [a-z0-9_]+: {a.node}")
         term, _, value = a.change.partition("=")
@@ -413,7 +419,7 @@ def main(argv: list[str] | None = None) -> int:
         var, val = keys[a.node]
     else:
         ap.error(f"unknown tree node {a.node} (트리 밖 점은 --change term=value 가 필요하다)")
-    changes = {var: val}
+    changes = {} if a.repeat else {var: val}
     if a.cumulative:
         changes = {k: float(v) for k, v in (kv.split("=", 1) for kv in a.cumulative.split(","))}
     res = read(a.node, a.point, a.parent, changes, a.parent_key)

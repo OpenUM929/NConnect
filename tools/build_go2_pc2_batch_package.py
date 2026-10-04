@@ -143,13 +143,16 @@ exit "$worst"
 
 def point_files(n: dict, src: dict, key: str, parent_changes: dict, var: str, value: float,
                 exemption: str | None, note: str) -> tuple[dict[str, bytes], str]:
-    hits = tb.history_conflicts(var, value)
+    # 같은 회차 자신의 회수 결과(원장 행·_keep 폴더)는 이력이 아니다 — 발행 뒤 재빌드가 자기 결과에 막히지 않게.
+    own = (f"| {n['work_id']} ", f"_keep/go2_{n['slug']}_pc2_{key}")
+    hits = [h for h in tb.history_conflicts(var, value) if not any(o in h for o in own)]
     if hits and not exemption:
         raise ValueError(f"{key}: {var}={value} 시험 이력 있음 — 제외 대상: {hits}")
     sentinel6 = a057.six(json.loads(src["expected_rewards.json"])["baseline"])
     parent_w, cand_w = rewards(parent_changes), rewards(parent_changes, var, value)
     diff = [k for k in TERMS if cand_w[k] != parent_w[k]]
-    if diff != [var]:
+    repeat = bool(exemption and exemption.startswith("REPEAT:")) and diff == []  # 부모 그대로 재학습(학습 흔들림 측정)
+    if diff != [var] and not repeat:
         raise ValueError(f"{key}: must change exactly {var}, changed {diff}")
     template = src["candidate/quadruped_rewards.py"].decode("utf-8")
     cand_src, parent_src = render(template, cand_w), render(template, parent_w)

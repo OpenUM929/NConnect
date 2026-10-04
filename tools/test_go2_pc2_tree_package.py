@@ -42,8 +42,13 @@ def step(nodes=None, siblings=None):
 _LIVE_CONFLICTS = b.history_conflicts
 
 
+# 트리 자신의 실행 기록. G-A062 일괄 실행 P5·P6·P4는 트리 N5·N6·N4와 같은 보상을 대신 돌린 것이다
+# (GO2_PC2_BATCH_60_STRATEGY_20261004.md §3 "둘 중 일괄 실행만 돌린다").
+OWN = ("| G-A061", "_keep/go2_g_a061_pc2_", "| G-A062", "_keep/go2_g_a062_pc2_")
+
+
 def _pre_tree_conflicts(var, value):
-    return [h for h in _LIVE_CONFLICTS(var, value) if "| G-A061" not in h and "_keep/go2_g_a061_pc2_" not in h]
+    return [h for h in _LIVE_CONFLICTS(var, value) if not any(o in h for o in OWN)]
 
 
 def setUpModule():
@@ -156,7 +161,7 @@ class OwnTreeHistory(unittest.TestCase):
 
     def test_unexecuted_tree_values_are_not_history(self):
         for var, v in (("dof_torques_l2", -5e-5), ("dof_acc_l2", -1.25e-7), ("dof_acc_l2", -6.25e-8)):
-            self.assertEqual(_LIVE_CONFLICTS(var, v), [], (var, v))
+            self.assertEqual(_pre_tree_conflicts(var, v), [], (var, v))
 
 
 class HistoryNumbers(unittest.TestCase):

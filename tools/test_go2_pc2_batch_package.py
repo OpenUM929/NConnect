@@ -85,7 +85,8 @@ class Package(unittest.TestCase):
 class History(unittest.TestCase):
     def test_only_q0_is_exempt_and_others_have_no_history(self):
         for key, _, var, value, ex, _ in bb.POINTS:
-            hits = bb.tb.history_conflicts(var, value)
+            own = ("| G-A062 ", f"_keep/go2_g_a062_pc2_{key}")  # 회수 뒤 생긴 자기 결과는 이력이 아니다
+            hits = [h for h in bb.tb.history_conflicts(var, value) if not any(o in h for o in own)]
             if key == KEYS[0]:
                 self.assertTrue(hits and ex, hits)  # A043 의 −1.5 이력이 잡히고, 예외로 명시돼 있다
             else:
