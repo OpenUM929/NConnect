@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A062",
+ "device": "PC2",
+ "run_key": "q0_lin_vel_z_l2_m1p5",
+ "design": "workspace/training/quadruped/upload/plan/GO2_PC2_BATCH_60_STRATEGY_20261004.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "P0",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.2,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/server_returns/G-A060/extracted/go2_g_a060_pc2_a048_seed42"
+ },
+ "single_change": {
+  "name": "lin_vel_z_l2",
+  "from": -1.25,
+  "to": -1.5
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.2,
+  "lin_vel_z_l2": -1.5,
+  "ang_vel_xy_l2": -0.05,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "이력 예외: Q0 대조군 — A043 값을 PC2 부모로 재현(탐색 노드 아님, 사용자 승인 2026-10-04); 이력 ['workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A043 | lin_vel_z −2.0→−1.5 | 22 | 44.62 | 94 | 88 | 77 | 17 | 49 | 24 | 6 | 10 | 29 |']",
+ "note": "Q0 = P0 + lin_vel_z −1.5(A043 보상). B 계열의 직접 부모. 서버 A043 15cm ≥2단 77/96·우회전 낙상 29/96의 PC2 재현 여부.",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}

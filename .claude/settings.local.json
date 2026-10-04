@@ -14,7 +14,15 @@
       "PowerShell($env:PYTHONIOENCODING='utf-8'; python -B tools/go2_a043_forecast_check.py --work G-A047; Get-Content workspace/training/quadruped/reports/evidence/go2_g_a047_readout_20260926/FALL_CHANNEL_ROLLUP.csv)",
       "Bash(git stash *)",
       "Bash(cd *)",
-      "Bash(PYTHONIOENCODING=utf-8 timeout 300 python -B -m unittest test_go2_run_ledger_freshness)"
+      "Bash(PYTHONIOENCODING=utf-8 timeout 300 python -B -m unittest test_go2_run_ledger_freshness)",
+      "Read(//c/workspace/_keep/**)",
+      "Read(//c/workspace/_keep/go2_g_a062_pc2_points/**)",
+      "Read(//c/workspace/_keep/go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5/**)",
+      "Bash(date -Is)",
+      "Bash(cp -r /c/workspace/_keep/go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 workspace/_keep/)",
+      "Bash(zip -qr GO2_G_A062_PC2_Q0_LIN_VEL_Z_L2_M1P5_RESULT.zip go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5/)",
+      "Bash(sha256sum GO2_G_A062_PC2_Q0_LIN_VEL_Z_L2_M1P5_RESULT.zip)",
+      "Bash(python3)"
     ]
   }
 }
