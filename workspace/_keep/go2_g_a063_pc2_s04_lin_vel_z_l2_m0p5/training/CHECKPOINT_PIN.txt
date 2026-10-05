@@ -1,0 +1,5 @@
+EVAL_CHECKPOINT_ITER=900
+EVAL_CHECKPOINT_SHA=9b390d4e2be2c6a1fcc3fdb421a33754178082c9de7507428780268c40ffcdf3
+REWARD_BEST_MODEL_ITER=600
+REWARD_BEST_MODEL_SHA=d40df65a0ad033452170c4332a21e087ac0f80c66a31238a2889d8814b266613
+RULE=the candidate is evaluated at the baseline checkpoint iteration; training/model_best.pt is that checkpoint, training/model_best_by_reward.pt is the finalize pick
