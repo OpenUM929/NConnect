@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A063",
+ "device": "PC2",
+ "run_key": "s03_lin_vel_z_l2_m2",
+ "design": "workspace/training/quadruped/upload/plan/GO2_PC2_STAIRS_RANGE_SWEEP_20261004.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "P0",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.2,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/server_returns/G-A060/extracted/go2_g_a060_pc2_a048_seed42"
+ },
+ "single_change": {
+  "name": "lin_vel_z_l2",
+  "from": -1.25,
+  "to": -2.0
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.2,
+  "lin_vel_z_l2": -2.0,
+  "ang_vel_xy_l2": -0.05,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "이력 예외: P0 기준 범위 스윕 재측정(사용자 지시 2026-10-04: 기준 고정·한 항씩 배포 최소~최대); 이력 ['workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A044 | lin_vel_z −2.0→−1.75 | 22 | 38.89 | 62 | 39 | 0 | 65 | 95 | 80 | 3 | 66 | 0 |', 'workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A043 | lin_vel_z −2.0→−1.5 | 22 | 44.62 | 94 | 88 | 77 | 17 | 49 | 24 | 6 | 10 | 29 |', 'workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A050 | lin_vel_z −2.0→−1.375 | 22 | 47.25 | 31 | 0 | 0 | 87 | 96 | 19 | 8 | 11 | 0 |', 'workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A048 | lin_vel_z −2.0→−1.25 | 22 | 50.16 | 90 | 45 | 24 | 30 | 93 | 16 | 3 | 1 | 0 |', 'workspace/training/quadruped/reports/GO2_REWARD_TRIAL_REFERENCE.md: | G-A049 | lin_vel_z −2.0→−1.0 | 22 | 46.20 | 61 | 5 | 1 | 32 | 96 | 46 | 2 | 11 | 0 |', 'GO2_REWARD_EVIDENCE_MASTER.md: | G-A010 | lin_vel_z −3→−2 | Default-01 | v1/v1 · v1/v2 | ✗ | ✗ | +2.26 · −7.63 | G-D116 철', 'GO2_REWARD_EVIDENCE_MASTER.md: | G-A020 | lin_vel_z −3→−2 | Chain-01 | v1/v2 | ✗ | ✗ | −18.18 | G-D116 철회 |']",
+ "note": "서버 A033 값을 P0 기준으로 재측정.",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}
