@@ -23,3 +23,6 @@
 [POINT] s08_feet_air_time_p0p5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
 [POINT END] s08_feet_air_time_p0p5 DONE — 다음 점은 판독 뒤 따로 정한다.
 [POINT START] s09_ang_vel_xy_l2_m0p3 2026-10-06T00:02:45+09:00
+[POINT] s09_ang_vel_xy_l2_m0p3 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s09_ang_vel_xy_l2_m0p3 DONE — 다음 점은 판독 뒤 따로 정한다.
+[POINT START] s10_ang_vel_xy_l2_m0p15 2026-10-06T02:29:54+09:00
