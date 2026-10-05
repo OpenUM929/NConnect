@@ -1,0 +1,34 @@
+mount: warning: couldn't determine mount type.
+[BATCH START] 2026-10-05T04:06:28+09:00
+[BATCH POINT] s01_lin_vel_z_l2_m5 2026-10-05T04:06:28+09:00
+[POINT START] s01_lin_vel_z_l2_m5 2026-10-05T04:06:28+09:00
+[POINT] s01_lin_vel_z_l2_m5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s01_lin_vel_z_l2_m5 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s01_lin_vel_z_l2_m5 rc=0 2026-10-05T07:04:03+09:00
+[BATCH POINT] s02_lin_vel_z_l2_m3 2026-10-05T07:04:03+09:00
+[POINT START] s02_lin_vel_z_l2_m3 2026-10-05T07:04:03+09:00
+[POINT] s02_lin_vel_z_l2_m3 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s02_lin_vel_z_l2_m3 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s02_lin_vel_z_l2_m3 rc=0 2026-10-05T09:58:36+09:00
+[BATCH POINT] s03_lin_vel_z_l2_m2 2026-10-05T09:58:36+09:00
+[POINT START] s03_lin_vel_z_l2_m2 2026-10-05T09:58:36+09:00
+[POINT] s03_lin_vel_z_l2_m2 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s03_lin_vel_z_l2_m2 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s03_lin_vel_z_l2_m2 rc=0 2026-10-05T12:30:11+09:00
+[BATCH POINT] s04_lin_vel_z_l2_m0p5 2026-10-05T12:30:11+09:00
+[POINT START] s04_lin_vel_z_l2_m0p5 2026-10-05T12:30:11+09:00
+[POINT] s04_lin_vel_z_l2_m0p5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s04_lin_vel_z_l2_m0p5 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s04_lin_vel_z_l2_m0p5 rc=0 2026-10-05T14:54:52+09:00
+[BATCH POINT] s05_feet_air_time_p0p01 2026-10-05T14:54:52+09:00
+[POINT START] s05_feet_air_time_p0p01 2026-10-05T14:54:53+09:00
+[POINT] s05_feet_air_time_p0p01 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s05_feet_air_time_p0p01 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s05_feet_air_time_p0p01 rc=0 2026-10-05T17:14:11+09:00
+[BATCH POINT] s06_feet_air_time_p0p1 2026-10-05T17:14:11+09:00
+[POINT START] s06_feet_air_time_p0p1 2026-10-05T17:14:12+09:00
+[POINT] s06_feet_air_time_p0p1 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s06_feet_air_time_p0p1 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s06_feet_air_time_p0p1 rc=0 2026-10-05T19:31:37+09:00
+[BATCH POINT] s07_feet_air_time_p0p35 2026-10-05T19:31:37+09:00
+[POINT START] s07_feet_air_time_p0p35 2026-10-05T19:31:37+09:00
