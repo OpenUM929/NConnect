@@ -32,3 +32,8 @@ mount: warning: couldn't determine mount type.
 [BATCH POINT END] s06_feet_air_time_p0p1 rc=0 2026-10-05T19:31:37+09:00
 [BATCH POINT] s07_feet_air_time_p0p35 2026-10-05T19:31:37+09:00
 [POINT START] s07_feet_air_time_p0p35 2026-10-05T19:31:37+09:00
+[POINT] s07_feet_air_time_p0p35 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s07_feet_air_time_p0p35 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s07_feet_air_time_p0p35 rc=0 2026-10-05T21:46:31+09:00
+[BATCH POINT] s08_feet_air_time_p0p5 2026-10-05T21:46:31+09:00
+[POINT START] s08_feet_air_time_p0p5 2026-10-05T21:46:31+09:00
