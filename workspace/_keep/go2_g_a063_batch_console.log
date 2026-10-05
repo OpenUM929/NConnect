@@ -47,3 +47,8 @@ mount: warning: couldn't determine mount type.
 [BATCH POINT END] s09_ang_vel_xy_l2_m0p3 rc=0 2026-10-06T02:29:54+09:00
 [BATCH POINT] s10_ang_vel_xy_l2_m0p15 2026-10-06T02:29:54+09:00
 [POINT START] s10_ang_vel_xy_l2_m0p15 2026-10-06T02:29:54+09:00
+[POINT] s10_ang_vel_xy_l2_m0p15 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s10_ang_vel_xy_l2_m0p15 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] s10_ang_vel_xy_l2_m0p15 rc=0 2026-10-06T04:46:04+09:00
+[BATCH POINT] s11_ang_vel_xy_l2_m0p02 2026-10-06T04:46:04+09:00
+[POINT START] s11_ang_vel_xy_l2_m0p02 2026-10-06T04:46:04+09:00
