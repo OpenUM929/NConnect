@@ -1,0 +1,945 @@
+mount: warning: couldn't determine mount type.
+[2026-10-04T11:56:42+09:00] gpu=6% vram=1518/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=-/- iter_s=0.00 base=- eta=- alerts=none
+[2026-10-04T11:57:43+09:00] gpu=90% vram=7184/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=4/1000 iter_s=5.01 base=- eta=02:18:51 alerts=none
+[2026-10-04T11:58:44+09:00] gpu=81% vram=7184/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=16/1000 iter_s=5.05 base=- eta=01:39:02 alerts=none
+[2026-10-04T11:59:45+09:00] gpu=80% vram=7248/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=28/1000 iter_s=5.29 base=5.18 eta=01:32:50 alerts=none
+[2026-10-04T12:00:47+09:00] gpu=91% vram=7244/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=39/1000 iter_s=5.49 base=5.18 eta=01:30:47 alerts=none
+[2026-10-04T12:01:48+09:00] gpu=88% vram=7610/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=50/1000 iter_s=5.59 base=5.18 eta=01:29:25 alerts=none
+[2026-10-04T12:02:49+09:00] gpu=91% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=61/1000 iter_s=5.53 base=5.18 eta=01:28:05 alerts=none
+[2026-10-04T12:03:50+09:00] gpu=79% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=72/1000 iter_s=5.47 base=5.18 eta=01:26:41 alerts=none
+[2026-10-04T12:04:52+09:00] gpu=87% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=83/1000 iter_s=5.55 base=5.18 eta=01:25:30 alerts=none
+[2026-10-04T12:05:53+09:00] gpu=92% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=94/1000 iter_s=5.59 base=5.18 eta=01:24:28 alerts=none
+[2026-10-04T12:06:54+09:00] gpu=91% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=105/1000 iter_s=5.61 base=5.18 eta=01:23:27 alerts=none
+[2026-10-04T12:07:56+09:00] gpu=90% vram=7410/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=116/1000 iter_s=5.54 base=5.18 eta=01:22:19 alerts=none
+[2026-10-04T12:08:57+09:00] gpu=89% vram=7412/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=127/1000 iter_s=5.47 base=5.18 eta=01:21:09 alerts=none
+[2026-10-04T12:09:58+09:00] gpu=82% vram=7412/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=138/1000 iter_s=5.41 base=5.18 eta=01:19:56 alerts=none
+[2026-10-04T12:11:00+09:00] gpu=93% vram=7412/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=150/1000 iter_s=5.36 base=5.18 eta=01:18:35 alerts=none
+[2026-10-04T12:12:01+09:00] gpu=91% vram=7412/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=161/1000 iter_s=5.29 base=5.18 eta=01:17:19 alerts=none
+[2026-10-04T12:13:02+09:00] gpu=92% vram=7864/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=173/1000 iter_s=5.33 base=5.18 eta=01:16:03 alerts=none
+[2026-10-04T12:14:04+09:00] gpu=88% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=184/1000 iter_s=5.24 base=5.18 eta=01:14:49 alerts=none
+[2026-10-04T12:15:05+09:00] gpu=78% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=197/1000 iter_s=4.94 base=5.18 eta=01:13:09 alerts=none
+[2026-10-04T12:16:06+09:00] gpu=89% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=209/1000 iter_s=4.97 base=5.18 eta=01:11:41 alerts=none
+[2026-10-04T12:17:08+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=221/1000 iter_s=4.97 base=5.18 eta=01:10:17 alerts=none
+[2026-10-04T12:18:09+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=233/1000 iter_s=4.99 base=5.18 eta=01:08:55 alerts=none
+[2026-10-04T12:19:10+09:00] gpu=78% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=246/1000 iter_s=4.91 base=5.18 eta=01:07:26 alerts=none
+[2026-10-04T12:20:11+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=258/1000 iter_s=4.96 base=5.18 eta=01:06:07 alerts=none
+[2026-10-04T12:21:12+09:00] gpu=76% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=270/1000 iter_s=4.90 base=5.18 eta=01:04:48 alerts=none
+[2026-10-04T12:22:13+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=283/1000 iter_s=4.90 base=5.18 eta=01:03:25 alerts=none
+[2026-10-04T12:23:14+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=295/1000 iter_s=4.88 base=5.18 eta=01:02:08 alerts=none
+[2026-10-04T12:24:15+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=308/1000 iter_s=4.96 base=5.18 eta=01:00:49 alerts=none
+[2026-10-04T12:25:17+09:00] gpu=89% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=320/1000 iter_s=4.90 base=5.18 eta=00:59:35 alerts=none
+[2026-10-04T12:26:18+09:00] gpu=91% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=333/1000 iter_s=4.86 base=5.18 eta=00:58:16 alerts=none
+[2026-10-04T12:27:19+09:00] gpu=79% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=345/1000 iter_s=4.84 base=5.18 eta=00:57:04 alerts=none
+[2026-10-04T12:28:20+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=358/1000 iter_s=4.84 base=5.18 eta=00:55:46 alerts=none
+[2026-10-04T12:29:21+09:00] gpu=91% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=371/1000 iter_s=4.87 base=5.18 eta=00:54:30 alerts=none
+[2026-10-04T12:30:22+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=383/1000 iter_s=4.83 base=5.18 eta=00:53:20 alerts=none
+[2026-10-04T12:31:23+09:00] gpu=82% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=396/1000 iter_s=4.90 base=5.18 eta=00:52:06 alerts=none
+[2026-10-04T12:32:24+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=408/1000 iter_s=4.91 base=5.18 eta=00:50:59 alerts=none
+[2026-10-04T12:33:25+09:00] gpu=77% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=421/1000 iter_s=4.92 base=5.18 eta=00:49:46 alerts=none
+[2026-10-04T12:34:26+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=433/1000 iter_s=4.89 base=5.18 eta=00:48:40 alerts=none
+[2026-10-04T12:35:27+09:00] gpu=84% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=446/1000 iter_s=4.92 base=5.18 eta=00:47:29 alerts=none
+[2026-10-04T12:36:28+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=458/1000 iter_s=4.92 base=5.18 eta=00:46:23 alerts=none
+[2026-10-04T12:37:29+09:00] gpu=87% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=470/1000 iter_s=4.96 base=5.18 eta=00:45:19 alerts=none
+[2026-10-04T12:38:31+09:00] gpu=91% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=483/1000 iter_s=4.88 base=5.18 eta=00:44:08 alerts=none
+[2026-10-04T12:39:33+09:00] gpu=93% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=495/1000 iter_s=4.91 base=5.18 eta=00:43:04 alerts=none
+[2026-10-04T12:40:34+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=508/1000 iter_s=4.88 base=5.18 eta=00:41:54 alerts=none
+[2026-10-04T12:41:35+09:00] gpu=77% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=520/1000 iter_s=4.95 base=5.18 eta=00:40:51 alerts=none
+[2026-10-04T12:42:36+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=533/1000 iter_s=4.80 base=5.18 eta=00:39:41 alerts=none
+[2026-10-04T12:43:37+09:00] gpu=72% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=545/1000 iter_s=4.89 base=5.18 eta=00:38:37 alerts=none
+[2026-10-04T12:44:39+09:00] gpu=71% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=558/1000 iter_s=4.90 base=5.18 eta=00:37:29 alerts=none
+[2026-10-04T12:45:40+09:00] gpu=69% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=571/1000 iter_s=4.87 base=5.18 eta=00:36:20 alerts=none
+[2026-10-04T12:46:42+09:00] gpu=80% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=583/1000 iter_s=4.75 base=5.18 eta=00:35:16 alerts=none
+[2026-10-04T12:47:44+09:00] gpu=82% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=596/1000 iter_s=4.84 base=5.18 eta=00:34:08 alerts=none
+[2026-10-04T12:48:45+09:00] gpu=82% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=609/1000 iter_s=4.86 base=5.18 eta=00:33:00 alerts=none
+[2026-10-04T12:49:46+09:00] gpu=86% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=621/1000 iter_s=4.86 base=5.18 eta=00:31:58 alerts=none
+[2026-10-04T12:50:48+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=634/1000 iter_s=4.76 base=5.18 eta=00:30:50 alerts=none
+[2026-10-04T12:51:49+09:00] gpu=88% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=647/1000 iter_s=4.87 base=5.18 eta=00:29:42 alerts=none
+[2026-10-04T12:52:50+09:00] gpu=80% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=659/1000 iter_s=4.70 base=5.18 eta=00:28:34 alerts=none
+[2026-10-04T12:53:52+09:00] gpu=74% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=672/1000 iter_s=4.83 base=5.18 eta=00:27:32 alerts=none
+[2026-10-04T12:54:53+09:00] gpu=82% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=685/1000 iter_s=4.70 base=5.18 eta=00:26:25 alerts=none
+[2026-10-04T12:55:55+09:00] gpu=89% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=698/1000 iter_s=4.76 base=5.18 eta=00:25:17 alerts=none
+[2026-10-04T12:56:56+09:00] gpu=89% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=711/1000 iter_s=4.66 base=5.18 eta=00:24:10 alerts=none
+[2026-10-04T12:57:57+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=724/1000 iter_s=4.76 base=5.18 eta=00:23:03 alerts=none
+[2026-10-04T12:58:58+09:00] gpu=87% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=737/1000 iter_s=4.63 base=5.18 eta=00:21:56 alerts=none
+[2026-10-04T13:00:00+09:00] gpu=62% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=750/1000 iter_s=4.75 base=5.18 eta=00:20:50 alerts=none
+[2026-10-04T13:01:01+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=763/1000 iter_s=4.63 base=5.18 eta=00:19:43 alerts=none
+[2026-10-04T13:02:02+09:00] gpu=89% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=776/1000 iter_s=4.67 base=5.18 eta=00:18:37 alerts=none
+[2026-10-04T13:03:03+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=789/1000 iter_s=4.70 base=5.18 eta=00:17:30 alerts=none
+[2026-10-04T13:04:05+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=802/1000 iter_s=4.75 base=5.18 eta=00:16:25 alerts=none
+[2026-10-04T13:05:06+09:00] gpu=80% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=815/1000 iter_s=4.66 base=5.18 eta=00:15:18 alerts=none
+[2026-10-04T13:06:07+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=828/1000 iter_s=4.67 base=5.18 eta=00:14:13 alerts=none
+[2026-10-04T13:07:08+09:00] gpu=91% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=841/1000 iter_s=4.62 base=5.18 eta=00:13:07 alerts=none
+[2026-10-04T13:08:10+09:00] gpu=63% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=854/1000 iter_s=4.64 base=5.18 eta=00:12:01 alerts=none
+[2026-10-04T13:09:11+09:00] gpu=87% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=868/1000 iter_s=4.65 base=5.18 eta=00:10:51 alerts=none
+[2026-10-04T13:10:12+09:00] gpu=76% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=881/1000 iter_s=4.61 base=5.18 eta=00:09:46 alerts=none
+[2026-10-04T13:11:13+09:00] gpu=83% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=894/1000 iter_s=4.58 base=5.18 eta=00:08:40 alerts=none
+[2026-10-04T13:12:15+09:00] gpu=92% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=907/1000 iter_s=4.66 base=5.18 eta=00:07:36 alerts=none
+[2026-10-04T13:13:16+09:00] gpu=65% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=920/1000 iter_s=4.68 base=5.18 eta=00:06:31 alerts=none
+[2026-10-04T13:14:18+09:00] gpu=90% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=934/1000 iter_s=4.62 base=5.18 eta=00:05:21 alerts=none
+[2026-10-04T13:15:19+09:00] gpu=87% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=947/1000 iter_s=4.59 base=5.18 eta=00:04:17 alerts=none
+[2026-10-04T13:16:20+09:00] gpu=81% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=960/1000 iter_s=4.63 base=5.18 eta=00:03:12 alerts=none
+[2026-10-04T13:17:22+09:00] gpu=85% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=974/1000 iter_s=4.66 base=5.18 eta=00:02:03 alerts=none
+[2026-10-04T13:18:23+09:00] gpu=77% vram=6267/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=987/1000 iter_s=4.59 base=5.18 eta=00:00:59 alerts=none
+[2026-10-04T13:19:24+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:20:25+09:00] gpu=0% vram=2323/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:21:27+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:22:28+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:23:30+09:00] gpu=22% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:24:32+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:25:33+09:00] gpu=23% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:26:35+09:00] gpu=1% vram=3255/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:27:37+09:00] gpu=35% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:28:38+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:29:40+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:30:41+09:00] gpu=36% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:31:42+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:32:44+09:00] gpu=0% vram=183/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:33:45+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:34:46+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:35:48+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:36:49+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:37:51+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:38:52+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:39:54+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:40:55+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:41:57+09:00] gpu=0% vram=0/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:42:59+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:44:00+09:00] gpu=1% vram=3255/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:45:01+09:00] gpu=38% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:46:03+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:47:04+09:00] gpu=1% vram=2365/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:48:06+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:49:07+09:00] gpu=23% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:50:09+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:51:10+09:00] gpu=23% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:52:12+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:53:14+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:54:16+09:00] gpu=34% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:55:17+09:00] gpu=32% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:56:19+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:57:20+09:00] gpu=14% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:58:21+09:00] gpu=36% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T13:59:22+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:00:23+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:01:25+09:00] gpu=32% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:02:26+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:03:27+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:04:28+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:05:29+09:00] gpu=32% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:06:31+09:00] gpu=40% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:07:32+09:00] gpu=0% vram=5645/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:08:34+09:00] gpu=0% vram=5645/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:09:35+09:00] gpu=0% vram=387/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:10:36+09:00] gpu=0% vram=408/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:11:37+09:00] gpu=0% vram=1134/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:12:39+09:00] gpu=0% vram=4390/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:13:40+09:00] gpu=40% vram=5141/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:14:41+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q0_lin_vel_z_l2_m1p5 iter=999/1000 iter_s=4.56 base=5.18 eta=00:00:00 alerts=none
+[2026-10-04T14:15:42+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=3/1000 iter_s=4.58 base=- eta=02:23:24 alerts=none
+[2026-10-04T14:16:43+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=16/1000 iter_s=4.71 base=- eta=01:32:11 alerts=none
+[2026-10-04T14:17:44+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=29/1000 iter_s=5.03 base=4.77 eta=01:26:39 alerts=none
+[2026-10-04T14:18:46+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=41/1000 iter_s=5.03 base=4.77 eta=01:24:17 alerts=none
+[2026-10-04T14:19:47+09:00] gpu=93% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=53/1000 iter_s=5.08 base=4.77 eta=01:22:35 alerts=none
+[2026-10-04T14:20:49+09:00] gpu=72% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=65/1000 iter_s=5.04 base=4.77 eta=01:21:05 alerts=none
+[2026-10-04T14:21:50+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=76/1000 iter_s=5.19 base=4.77 eta=01:20:07 alerts=none
+[2026-10-04T14:22:51+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=88/1000 iter_s=5.11 base=4.77 eta=01:18:56 alerts=none
+[2026-10-04T14:23:52+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=100/1000 iter_s=5.25 base=4.77 eta=01:17:59 alerts=none
+[2026-10-04T14:24:54+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=112/1000 iter_s=5.24 base=4.77 eta=01:17:01 alerts=none
+[2026-10-04T14:25:55+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=123/1000 iter_s=5.35 base=4.77 eta=01:16:14 alerts=none
+[2026-10-04T14:26:56+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=135/1000 iter_s=5.20 base=4.77 eta=01:15:11 alerts=none
+[2026-10-04T14:27:58+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=146/1000 iter_s=5.22 base=4.77 eta=01:14:15 alerts=none
+[2026-10-04T14:28:59+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=158/1000 iter_s=5.12 base=4.77 eta=01:13:09 alerts=none
+[2026-10-04T14:30:00+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=170/1000 iter_s=5.19 base=4.77 eta=01:12:05 alerts=none
+[2026-10-04T14:31:01+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=182/1000 iter_s=5.09 base=4.77 eta=01:10:57 alerts=none
+[2026-10-04T14:32:02+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=193/1000 iter_s=5.28 base=4.77 eta=01:10:03 alerts=none
+[2026-10-04T14:33:03+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=205/1000 iter_s=5.26 base=4.77 eta=01:09:06 alerts=none
+[2026-10-04T14:34:05+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=217/1000 iter_s=5.04 base=4.77 eta=01:07:56 alerts=none
+[2026-10-04T14:35:06+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=229/1000 iter_s=4.99 base=4.77 eta=01:06:45 alerts=none
+[2026-10-04T14:36:07+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=241/1000 iter_s=4.97 base=4.77 eta=01:05:34 alerts=none
+[2026-10-04T14:37:10+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=253/1000 iter_s=5.03 base=4.77 eta=01:04:34 alerts=none
+[2026-10-04T14:38:11+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=265/1000 iter_s=4.98 base=4.77 eta=01:03:27 alerts=none
+[2026-10-04T14:39:13+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=277/1000 iter_s=4.95 base=4.77 eta=01:02:23 alerts=none
+[2026-10-04T14:40:14+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=289/1000 iter_s=5.20 base=4.77 eta=01:01:21 alerts=none
+[2026-10-04T14:41:15+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=299/1000 iter_s=5.83 base=4.77 eta=01:00:46 alerts=none
+[2026-10-04T14:42:16+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=310/1000 iter_s=5.55 base=4.77 eta=00:59:57 alerts=none
+[2026-10-04T14:43:18+09:00] gpu=67% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=321/1000 iter_s=5.63 base=4.77 eta=00:59:10 alerts=none
+[2026-10-04T14:44:19+09:00] gpu=72% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=332/1000 iter_s=5.46 base=4.77 eta=00:58:17 alerts=none
+[2026-10-04T14:45:20+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=343/1000 iter_s=5.42 base=4.77 eta=00:57:25 alerts=none
+[2026-10-04T14:46:22+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=354/1000 iter_s=5.45 base=4.77 eta=00:56:34 alerts=none
+[2026-10-04T14:47:24+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=366/1000 iter_s=5.36 base=4.77 eta=00:55:35 alerts=none
+[2026-10-04T14:48:26+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=377/1000 iter_s=5.45 base=4.77 eta=00:54:42 alerts=none
+[2026-10-04T14:49:27+09:00] gpu=74% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=388/1000 iter_s=5.35 base=4.77 eta=00:53:45 alerts=none
+[2026-10-04T14:50:28+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=400/1000 iter_s=5.30 base=4.77 eta=00:52:42 alerts=none
+[2026-10-04T14:51:30+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=411/1000 iter_s=5.25 base=4.77 eta=00:51:44 alerts=none
+[2026-10-04T14:52:31+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=422/1000 iter_s=5.33 base=4.77 eta=00:50:47 alerts=none
+[2026-10-04T14:53:32+09:00] gpu=70% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=434/1000 iter_s=5.32 base=4.77 eta=00:49:44 alerts=none
+[2026-10-04T14:54:33+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=445/1000 iter_s=5.33 base=4.77 eta=00:48:46 alerts=none
+[2026-10-04T14:55:34+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=457/1000 iter_s=5.37 base=4.77 eta=00:47:44 alerts=none
+[2026-10-04T14:56:36+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=468/1000 iter_s=5.36 base=4.77 eta=00:46:47 alerts=none
+[2026-10-04T14:57:37+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=479/1000 iter_s=5.41 base=4.77 eta=00:45:50 alerts=none
+[2026-10-04T14:58:38+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=491/1000 iter_s=5.33 base=4.77 eta=00:44:47 alerts=none
+[2026-10-04T14:59:39+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=502/1000 iter_s=5.37 base=4.77 eta=00:43:50 alerts=none
+[2026-10-04T15:00:41+09:00] gpu=61% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=513/1000 iter_s=5.38 base=4.77 eta=00:42:53 alerts=none
+[2026-10-04T15:01:42+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=525/1000 iter_s=5.39 base=4.77 eta=00:41:50 alerts=none
+[2026-10-04T15:02:44+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=536/1000 iter_s=5.38 base=4.77 eta=00:40:53 alerts=none
+[2026-10-04T15:03:45+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=548/1000 iter_s=5.38 base=4.77 eta=00:39:50 alerts=none
+[2026-10-04T15:04:47+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=559/1000 iter_s=5.42 base=4.77 eta=00:38:53 alerts=none
+[2026-10-04T15:05:48+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=570/1000 iter_s=5.39 base=4.77 eta=00:37:56 alerts=none
+[2026-10-04T15:06:50+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=581/1000 iter_s=5.42 base=4.77 eta=00:36:58 alerts=none
+[2026-10-04T15:07:51+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=593/1000 iter_s=5.38 base=4.77 eta=00:35:55 alerts=none
+[2026-10-04T15:08:53+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=604/1000 iter_s=5.42 base=4.77 eta=00:34:57 alerts=none
+[2026-10-04T15:09:54+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=615/1000 iter_s=5.42 base=4.77 eta=00:34:00 alerts=none
+[2026-10-04T15:10:55+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=627/1000 iter_s=5.39 base=4.77 eta=00:32:57 alerts=none
+[2026-10-04T15:11:57+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=638/1000 iter_s=5.37 base=4.77 eta=00:31:58 alerts=none
+[2026-10-04T15:12:58+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=649/1000 iter_s=5.36 base=4.77 eta=00:31:00 alerts=none
+[2026-10-04T15:14:00+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=661/1000 iter_s=5.33 base=4.77 eta=00:29:57 alerts=none
+[2026-10-04T15:15:01+09:00] gpu=73% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=672/1000 iter_s=5.35 base=4.77 eta=00:28:58 alerts=none
+[2026-10-04T15:16:02+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=684/1000 iter_s=5.34 base=4.77 eta=00:27:55 alerts=none
+[2026-10-04T15:17:04+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=695/1000 iter_s=5.35 base=4.77 eta=00:26:56 alerts=none
+[2026-10-04T15:18:05+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=707/1000 iter_s=5.31 base=4.77 eta=00:25:52 alerts=none
+[2026-10-04T15:19:07+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=718/1000 iter_s=5.29 base=4.77 eta=00:24:54 alerts=none
+[2026-10-04T15:20:09+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=730/1000 iter_s=5.30 base=4.77 eta=00:23:50 alerts=none
+[2026-10-04T15:21:10+09:00] gpu=65% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=741/1000 iter_s=5.31 base=4.77 eta=00:22:51 alerts=none
+[2026-10-04T15:22:11+09:00] gpu=61% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=753/1000 iter_s=5.31 base=4.77 eta=00:21:47 alerts=none
+[2026-10-04T15:23:13+09:00] gpu=67% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=764/1000 iter_s=5.29 base=4.77 eta=00:20:49 alerts=none
+[2026-10-04T15:24:14+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=776/1000 iter_s=5.30 base=4.77 eta=00:19:45 alerts=none
+[2026-10-04T15:25:16+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=787/1000 iter_s=5.30 base=4.77 eta=00:18:47 alerts=none
+[2026-10-04T15:26:17+09:00] gpu=75% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=799/1000 iter_s=5.28 base=4.77 eta=00:17:43 alerts=none
+[2026-10-04T15:27:19+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=811/1000 iter_s=5.29 base=4.77 eta=00:16:39 alerts=none
+[2026-10-04T15:28:20+09:00] gpu=75% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=822/1000 iter_s=5.33 base=4.77 eta=00:15:40 alerts=none
+[2026-10-04T15:29:22+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=834/1000 iter_s=5.31 base=4.77 eta=00:14:37 alerts=none
+[2026-10-04T15:30:24+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=845/1000 iter_s=5.31 base=4.77 eta=00:13:38 alerts=none
+[2026-10-04T15:31:25+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=857/1000 iter_s=5.27 base=4.77 eta=00:12:34 alerts=none
+[2026-10-04T15:32:27+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=868/1000 iter_s=5.31 base=4.77 eta=00:11:36 alerts=none
+[2026-10-04T15:33:28+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=880/1000 iter_s=5.29 base=4.77 eta=00:10:32 alerts=none
+[2026-10-04T15:34:30+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=892/1000 iter_s=5.28 base=4.77 eta=00:09:28 alerts=none
+[2026-10-04T15:35:32+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=903/1000 iter_s=5.28 base=4.77 eta=00:08:30 alerts=none
+[2026-10-04T15:36:33+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=915/1000 iter_s=5.28 base=4.77 eta=00:07:26 alerts=none
+[2026-10-04T15:37:35+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=926/1000 iter_s=5.27 base=4.77 eta=00:06:27 alerts=none
+[2026-10-04T15:38:37+09:00] gpu=69% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=938/1000 iter_s=5.28 base=4.77 eta=00:05:24 alerts=none
+[2026-10-04T15:39:39+09:00] gpu=51% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=950/1000 iter_s=5.25 base=4.77 eta=00:04:20 alerts=none
+[2026-10-04T15:40:40+09:00] gpu=67% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=961/1000 iter_s=5.30 base=4.77 eta=00:03:21 alerts=none
+[2026-10-04T15:41:42+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=973/1000 iter_s=5.29 base=4.77 eta=00:02:18 alerts=none
+[2026-10-04T15:42:44+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=984/1000 iter_s=5.31 base=4.77 eta=00:01:19 alerts=none
+[2026-10-04T15:43:45+09:00] gpu=65% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=996/1000 iter_s=5.30 base=4.77 eta=00:00:15 alerts=none
+[2026-10-04T15:44:47+09:00] gpu=12% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:45:48+09:00] gpu=2% vram=2315/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:46:50+09:00] gpu=0% vram=2315/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:47:51+09:00] gpu=0% vram=2365/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:48:53+09:00] gpu=0% vram=2315/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:49:55+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:50:56+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:51:58+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:52:59+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:54:00+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:55:01+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:56:02+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:57:05+09:00] gpu=1% vram=3293/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:58:06+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T15:59:07+09:00] gpu=20% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:00:09+09:00] gpu=24% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:01:10+09:00] gpu=18% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:02:12+09:00] gpu=21% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:03:13+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:04:14+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:05:15+09:00] gpu=5% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:06:16+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:07:18+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:08:19+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:09:20+09:00] gpu=1% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:10:21+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:11:22+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:12:24+09:00] gpu=36% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:13:25+09:00] gpu=0% vram=231/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:14:26+09:00] gpu=32% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:15:27+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:16:29+09:00] gpu=12% vram=1137/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:17:30+09:00] gpu=0% vram=186/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:18:31+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:19:32+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:20:33+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:21:35+09:00] gpu=7% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:22:36+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:23:38+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:24:39+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:25:41+09:00] gpu=35% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:26:43+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:27:44+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:28:45+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:29:47+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:30:49+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:31:50+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:32:51+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:33:54+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:34:55+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:35:57+09:00] gpu=0% vram=480/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:37:00+09:00] gpu=0% vram=451/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:38:04+09:00] gpu=0% vram=1102/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:39:06+09:00] gpu=0% vram=5251/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:40:07+09:00] gpu=35% vram=5690/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:41:09+09:00] gpu=35% vram=5690/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:42:10+09:00] gpu=38% vram=5142/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:43:11+09:00] gpu=35% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:44:13+09:00] gpu=31% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:45:14+09:00] gpu=0% vram=5098/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q1_track_ang_vel_z_exp_p1p0 iter=999/1000 iter_s=5.30 base=4.77 eta=00:00:00 alerts=none
+[2026-10-04T16:46:16+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=-/- iter_s=0.00 base=- eta=- alerts=none
+[2026-10-04T16:47:17+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=7/1000 iter_s=4.62 base=- eta=01:49:49 alerts=none
+[2026-10-04T16:48:19+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=20/1000 iter_s=4.87 base=- eta=01:30:14 alerts=none
+[2026-10-04T16:49:20+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=32/1000 iter_s=5.06 base=4.82 eta=01:26:01 alerts=none
+[2026-10-04T16:50:21+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=44/1000 iter_s=5.13 base=4.82 eta=01:24:14 alerts=none
+[2026-10-04T16:51:22+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=55/1000 iter_s=5.16 base=4.82 eta=01:22:51 alerts=none
+[2026-10-04T16:52:23+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=67/1000 iter_s=5.24 base=4.82 eta=01:21:37 alerts=none
+[2026-10-04T16:53:24+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=79/1000 iter_s=5.21 base=4.82 eta=01:20:22 alerts=none
+[2026-10-04T16:54:25+09:00] gpu=73% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=91/1000 iter_s=5.20 base=4.82 eta=01:19:14 alerts=none
+[2026-10-04T16:55:27+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=103/1000 iter_s=5.22 base=4.82 eta=01:18:07 alerts=none
+[2026-10-04T16:56:29+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=114/1000 iter_s=5.25 base=4.82 eta=01:17:09 alerts=none
+[2026-10-04T16:57:31+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=126/1000 iter_s=5.28 base=4.82 eta=01:16:08 alerts=none
+[2026-10-04T16:58:32+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=138/1000 iter_s=5.19 base=4.82 eta=01:15:01 alerts=none
+[2026-10-04T16:59:33+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=150/1000 iter_s=5.17 base=4.82 eta=01:13:53 alerts=none
+[2026-10-04T17:00:35+09:00] gpu=73% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=162/1000 iter_s=5.12 base=4.82 eta=01:12:44 alerts=none
+[2026-10-04T17:01:36+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=174/1000 iter_s=5.21 base=4.82 eta=01:11:40 alerts=none
+[2026-10-04T17:02:37+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=186/1000 iter_s=5.03 base=4.82 eta=01:10:30 alerts=none
+[2026-10-04T17:03:39+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=198/1000 iter_s=5.12 base=4.82 eta=01:09:24 alerts=none
+[2026-10-04T17:04:40+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=210/1000 iter_s=5.03 base=4.82 eta=01:08:16 alerts=none
+[2026-10-04T17:05:42+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=222/1000 iter_s=5.15 base=4.82 eta=01:07:12 alerts=none
+[2026-10-04T17:06:43+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=234/1000 iter_s=4.96 base=4.82 eta=01:06:02 alerts=none
+[2026-10-04T17:07:44+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=246/1000 iter_s=5.03 base=4.82 eta=01:04:54 alerts=none
+[2026-10-04T17:08:46+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=258/1000 iter_s=4.89 base=4.82 eta=01:03:43 alerts=none
+[2026-10-04T17:09:47+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=271/1000 iter_s=4.97 base=4.82 eta=01:02:29 alerts=none
+[2026-10-04T17:10:48+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=283/1000 iter_s=4.87 base=4.82 eta=01:01:20 alerts=none
+[2026-10-04T17:11:50+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=296/1000 iter_s=4.96 base=4.82 eta=01:00:07 alerts=none
+[2026-10-04T17:12:52+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=308/1000 iter_s=4.99 base=4.82 eta=00:59:02 alerts=none
+[2026-10-04T17:13:53+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=320/1000 iter_s=4.98 base=4.82 eta=00:57:56 alerts=none
+[2026-10-04T17:14:55+09:00] gpu=70% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=333/1000 iter_s=4.86 base=4.82 eta=00:56:44 alerts=none
+[2026-10-04T17:15:57+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=345/1000 iter_s=4.96 base=4.82 eta=00:55:39 alerts=none
+[2026-10-04T17:16:58+09:00] gpu=93% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=358/1000 iter_s=4.87 base=4.82 eta=00:54:28 alerts=none
+[2026-10-04T17:18:00+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=370/1000 iter_s=4.95 base=4.82 eta=00:53:24 alerts=none
+[2026-10-04T17:19:01+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=383/1000 iter_s=4.81 base=4.82 eta=00:52:13 alerts=none
+[2026-10-04T17:20:02+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=395/1000 iter_s=4.92 base=4.82 eta=00:51:09 alerts=none
+[2026-10-04T17:21:03+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=407/1000 iter_s=4.94 base=4.82 eta=00:50:06 alerts=none
+[2026-10-04T17:22:04+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=420/1000 iter_s=4.95 base=4.82 eta=00:48:57 alerts=none
+[2026-10-04T17:23:06+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=432/1000 iter_s=4.85 base=4.82 eta=00:47:53 alerts=none
+[2026-10-04T17:24:07+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=445/1000 iter_s=4.95 base=4.82 eta=00:46:45 alerts=none
+[2026-10-04T17:25:09+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=457/1000 iter_s=4.87 base=4.82 eta=00:45:42 alerts=none
+[2026-10-04T17:26:10+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=470/1000 iter_s=4.88 base=4.82 eta=00:44:34 alerts=none
+[2026-10-04T17:27:11+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=482/1000 iter_s=4.88 base=4.82 eta=00:43:31 alerts=none
+[2026-10-04T17:28:13+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=495/1000 iter_s=4.92 base=4.82 eta=00:42:23 alerts=none
+[2026-10-04T17:29:14+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=508/1000 iter_s=4.92 base=4.82 eta=00:41:15 alerts=none
+[2026-10-04T17:30:16+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=520/1000 iter_s=4.90 base=4.82 eta=00:40:13 alerts=none
+[2026-10-04T17:31:18+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=533/1000 iter_s=4.90 base=4.82 eta=00:39:06 alerts=none
+[2026-10-04T17:32:19+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=545/1000 iter_s=4.95 base=4.82 eta=00:38:04 alerts=none
+[2026-10-04T17:33:21+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=558/1000 iter_s=4.94 base=4.82 eta=00:36:57 alerts=none
+[2026-10-04T17:34:23+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=570/1000 iter_s=4.87 base=4.82 eta=00:35:56 alerts=none
+[2026-10-04T17:35:24+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=583/1000 iter_s=4.88 base=4.82 eta=00:34:49 alerts=none
+[2026-10-04T17:36:26+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=596/1000 iter_s=4.87 base=4.82 eta=00:33:42 alerts=none
+[2026-10-04T17:37:27+09:00] gpu=NA% vram=NA/NAMB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=608/1000 iter_s=4.91 base=4.82 eta=00:32:41 alerts=NVIDIA_SMI_FAILED query-gpu
+[2026-10-04T17:38:28+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=620/1000 iter_s=4.89 base=4.82 eta=00:31:40 alerts=none
+[2026-10-04T17:39:29+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=633/1000 iter_s=4.94 base=4.82 eta=00:30:34 alerts=none
+[2026-10-04T17:40:30+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=646/1000 iter_s=4.88 base=4.82 eta=00:29:28 alerts=none
+[2026-10-04T17:41:32+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=658/1000 iter_s=4.94 base=4.82 eta=00:28:27 alerts=none
+[2026-10-04T17:42:33+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=671/1000 iter_s=4.80 base=4.82 eta=00:27:21 alerts=none
+[2026-10-04T17:43:35+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=683/1000 iter_s=4.84 base=4.82 eta=00:26:20 alerts=none
+[2026-10-04T17:44:36+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=696/1000 iter_s=4.74 base=4.82 eta=00:25:13 alerts=none
+[2026-10-04T17:45:37+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=709/1000 iter_s=4.87 base=4.82 eta=00:24:08 alerts=none
+[2026-10-04T17:46:39+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=722/1000 iter_s=4.71 base=4.82 eta=00:23:01 alerts=none
+[2026-10-04T17:47:41+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=735/1000 iter_s=4.86 base=4.82 eta=00:21:56 alerts=none
+[2026-10-04T17:48:43+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=747/1000 iter_s=4.71 base=4.82 eta=00:20:55 alerts=none
+[2026-10-04T17:49:44+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=760/1000 iter_s=4.89 base=4.82 eta=00:19:50 alerts=none
+[2026-10-04T17:50:45+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=773/1000 iter_s=4.72 base=4.82 eta=00:18:45 alerts=none
+[2026-10-04T17:51:46+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=785/1000 iter_s=4.86 base=4.82 eta=00:17:44 alerts=none
+[2026-10-04T17:52:48+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=798/1000 iter_s=4.72 base=4.82 eta=00:16:39 alerts=none
+[2026-10-04T17:53:50+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=811/1000 iter_s=4.84 base=4.82 eta=00:15:34 alerts=none
+[2026-10-04T17:54:51+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=824/1000 iter_s=4.69 base=4.82 eta=00:14:29 alerts=none
+[2026-10-04T17:55:52+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=836/1000 iter_s=4.79 base=4.82 eta=00:13:24 alerts=none
+[2026-10-04T17:56:54+09:00] gpu=92% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=849/1000 iter_s=4.66 base=4.82 eta=00:12:24 alerts=none
+[2026-10-04T17:57:55+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=862/1000 iter_s=4.80 base=4.82 eta=00:11:19 alerts=none
+[2026-10-04T17:58:57+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=875/1000 iter_s=4.63 base=4.82 eta=00:10:14 alerts=none
+[2026-10-04T17:59:59+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=888/1000 iter_s=4.71 base=4.82 eta=00:09:09 alerts=none
+[2026-10-04T18:01:00+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=901/1000 iter_s=4.62 base=4.82 eta=00:08:04 alerts=none
+[2026-10-04T18:02:02+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=914/1000 iter_s=4.79 base=4.82 eta=00:07:00 alerts=none
+[2026-10-04T18:03:03+09:00] gpu=72% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=927/1000 iter_s=4.63 base=4.82 eta=00:05:55 alerts=none
+[2026-10-04T18:04:04+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=940/1000 iter_s=4.75 base=4.82 eta=00:04:51 alerts=none
+[2026-10-04T18:05:06+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=953/1000 iter_s=4.64 base=4.82 eta=00:03:47 alerts=none
+[2026-10-04T18:06:07+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=966/1000 iter_s=4.72 base=4.82 eta=00:02:42 alerts=none
+[2026-10-04T18:07:09+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=979/1000 iter_s=4.67 base=4.82 eta=00:01:38 alerts=none
+[2026-10-04T18:08:11+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=992/1000 iter_s=4.71 base=4.82 eta=00:00:34 alerts=none
+[2026-10-04T18:09:12+09:00] gpu=1% vram=2315/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:10:14+09:00] gpu=22% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:11:15+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:12:16+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:13:18+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:14:20+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:15:21+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:16:23+09:00] gpu=5% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:17:25+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:18:27+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:19:28+09:00] gpu=42% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:20:29+09:00] gpu=0% vram=2523/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:21:31+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:22:33+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:23:34+09:00] gpu=34% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:24:36+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:25:37+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:26:37+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:27:39+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:28:41+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:29:43+09:00] gpu=33% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:30:44+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:31:45+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:32:47+09:00] gpu=33% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:33:48+09:00] gpu=35% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:34:50+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:35:51+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:36:52+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:37:54+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:38:55+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:39:56+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:40:57+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:41:59+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:43:00+09:00] gpu=8% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:44:03+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:45:05+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:46:06+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:47:07+09:00] gpu=0% vram=2511/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:48:09+09:00] gpu=19% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:49:10+09:00] gpu=20% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:50:11+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:51:12+09:00] gpu=20% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:52:13+09:00] gpu=24% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:53:15+09:00] gpu=19% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:54:16+09:00] gpu=26% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:55:17+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:56:18+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:57:20+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:58:21+09:00] gpu=19% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T18:59:22+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:00:23+09:00] gpu=12% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:01:26+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:02:27+09:00] gpu=12% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:03:30+09:00] gpu=11% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:04:31+09:00] gpu=1% vram=979/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:05:33+09:00] gpu=16% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:06:35+09:00] gpu=0% vram=4021/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:07:37+09:00] gpu=1% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:08:40+09:00] gpu=28% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:09:42+09:00] gpu=0% vram=419/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:10:45+09:00] gpu=21% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:11:46+09:00] gpu=0% vram=5013/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:12:47+09:00] gpu=0% vram=387/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:13:49+09:00] gpu=30% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:14:50+09:00] gpu=20% vram=5141/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:15:52+09:00] gpu=0% vram=449/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:16:55+09:00] gpu=1% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:17:56+09:00] gpu=16% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:18:59+09:00] gpu=0% vram=387/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:20:00+09:00] gpu=15% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:21:03+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_q2_ang_vel_xy_l2_m0p06 iter=999/1000 iter_s=4.58 base=4.82 eta=00:00:00 alerts=none
+[2026-10-04T19:22:04+09:00] gpu=0% vram=4893/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=-/- iter_s=0.00 base=- eta=- alerts=none
+[2026-10-04T19:23:06+09:00] gpu=67% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=4/1000 iter_s=5.36 base=- eta=02:42:30 alerts=none
+[2026-10-04T19:24:08+09:00] gpu=86% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=15/1000 iter_s=5.36 base=- eta=01:50:23 alerts=none
+[2026-10-04T19:25:09+09:00] gpu=84% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=25/1000 iter_s=6.24 base=5.44 eta=01:45:47 alerts=none
+[2026-10-04T19:26:10+09:00] gpu=84% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=36/1000 iter_s=5.71 base=5.44 eta=01:40:52 alerts=none
+[2026-10-04T19:27:12+09:00] gpu=84% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=45/1000 iter_s=6.66 base=5.44 eta=01:40:29 alerts=none
+[2026-10-04T19:28:13+09:00] gpu=85% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=56/1000 iter_s=5.78 base=5.44 eta=01:37:45 alerts=none
+[2026-10-04T19:29:14+09:00] gpu=49% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=66/1000 iter_s=6.04 base=5.44 eta=01:36:46 alerts=none
+[2026-10-04T19:30:17+09:00] gpu=55% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=76/1000 iter_s=5.86 base=5.44 eta=01:35:13 alerts=none
+[2026-10-04T19:31:19+09:00] gpu=77% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=87/1000 iter_s=5.73 base=5.44 eta=01:33:17 alerts=none
+[2026-10-04T19:32:20+09:00] gpu=72% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=97/1000 iter_s=5.74 base=5.44 eta=01:31:38 alerts=none
+[2026-10-04T19:33:22+09:00] gpu=84% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=108/1000 iter_s=5.63 base=5.44 eta=01:29:48 alerts=none
+[2026-10-04T19:34:23+09:00] gpu=85% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=118/1000 iter_s=6.40 base=5.44 eta=01:29:06 alerts=none
+[2026-10-04T19:35:24+09:00] gpu=71% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=129/1000 iter_s=5.61 base=5.44 eta=01:27:27 alerts=none
+[2026-10-04T19:36:26+09:00] gpu=62% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=141/1000 iter_s=5.04 base=5.44 eta=01:25:04 alerts=none
+[2026-10-04T19:37:27+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=153/1000 iter_s=5.04 base=5.44 eta=01:22:53 alerts=none
+[2026-10-04T19:38:28+09:00] gpu=80% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=165/1000 iter_s=4.98 base=5.44 eta=01:20:48 alerts=none
+[2026-10-04T19:39:29+09:00] gpu=75% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=177/1000 iter_s=5.00 base=5.44 eta=01:18:54 alerts=none
+[2026-10-04T19:40:32+09:00] gpu=80% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=189/1000 iter_s=5.22 base=5.44 eta=01:17:32 alerts=none
+[2026-10-04T19:41:33+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=201/1000 iter_s=4.96 base=5.44 eta=01:15:45 alerts=none
+[2026-10-04T19:42:34+09:00] gpu=83% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=212/1000 iter_s=5.72 base=5.44 eta=01:14:37 alerts=none
+[2026-10-04T19:43:37+09:00] gpu=92% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=224/1000 iter_s=4.91 base=5.44 eta=01:13:00 alerts=none
+[2026-10-04T19:44:38+09:00] gpu=81% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=237/1000 iter_s=4.84 base=5.44 eta=01:11:13 alerts=none
+[2026-10-04T19:45:39+09:00] gpu=90% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=249/1000 iter_s=4.86 base=5.44 eta=01:09:41 alerts=none
+[2026-10-04T19:46:40+09:00] gpu=81% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=262/1000 iter_s=4.86 base=5.44 eta=01:08:03 alerts=none
+[2026-10-04T19:47:41+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=274/1000 iter_s=4.93 base=5.44 eta=01:06:37 alerts=none
+[2026-10-04T19:48:42+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=287/1000 iter_s=4.88 base=5.44 eta=01:05:06 alerts=none
+[2026-10-04T19:49:44+09:00] gpu=79% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=298/1000 iter_s=5.52 base=5.44 eta=01:04:06 alerts=none
+[2026-10-04T19:50:45+09:00] gpu=92% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=310/1000 iter_s=4.91 base=5.44 eta=01:02:45 alerts=none
+[2026-10-04T19:51:46+09:00] gpu=92% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=322/1000 iter_s=4.95 base=5.44 eta=01:01:27 alerts=none
+[2026-10-04T19:52:48+09:00] gpu=82% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=335/1000 iter_s=4.92 base=5.44 eta=01:00:03 alerts=none
+[2026-10-04T19:53:49+09:00] gpu=78% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=347/1000 iter_s=4.99 base=5.44 eta=00:58:48 alerts=none
+[2026-10-04T19:54:51+09:00] gpu=79% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=359/1000 iter_s=4.97 base=5.44 eta=00:57:34 alerts=none
+[2026-10-04T19:55:52+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=372/1000 iter_s=4.90 base=5.44 eta=00:56:13 alerts=none
+[2026-10-04T19:56:54+09:00] gpu=91% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=385/1000 iter_s=4.82 base=5.44 eta=00:54:53 alerts=none
+[2026-10-04T19:57:55+09:00] gpu=75% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=397/1000 iter_s=4.92 base=5.44 eta=00:53:41 alerts=none
+[2026-10-04T19:58:57+09:00] gpu=83% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=410/1000 iter_s=4.80 base=5.44 eta=00:52:22 alerts=none
+[2026-10-04T19:59:59+09:00] gpu=82% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=422/1000 iter_s=4.94 base=5.44 eta=00:51:11 alerts=none
+[2026-10-04T20:01:01+09:00] gpu=68% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=435/1000 iter_s=4.82 base=5.44 eta=00:49:54 alerts=none
+[2026-10-04T20:02:02+09:00] gpu=89% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=447/1000 iter_s=4.92 base=5.44 eta=00:48:45 alerts=none
+[2026-10-04T20:03:03+09:00] gpu=78% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=460/1000 iter_s=4.83 base=5.44 eta=00:47:29 alerts=none
+[2026-10-04T20:04:05+09:00] gpu=87% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=473/1000 iter_s=4.93 base=5.44 eta=00:46:15 alerts=none
+[2026-10-04T20:05:07+09:00] gpu=87% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=485/1000 iter_s=4.84 base=5.44 eta=00:45:06 alerts=none
+[2026-10-04T20:06:08+09:00] gpu=67% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=498/1000 iter_s=4.85 base=5.44 eta=00:43:52 alerts=none
+[2026-10-04T20:07:10+09:00] gpu=88% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=510/1000 iter_s=4.78 base=5.44 eta=00:42:44 alerts=none
+[2026-10-04T20:08:11+09:00] gpu=79% vram=5903/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=523/1000 iter_s=4.84 base=5.44 eta=00:41:32 alerts=none
+[2026-10-04T20:09:13+09:00] gpu=64% vram=6848/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=533/1000 iter_s=5.99 base=5.44 eta=00:40:47 alerts=none
+[2026-10-04T20:10:14+09:00] gpu=69% vram=7829/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=543/1000 iter_s=6.02 base=5.44 eta=00:40:00 alerts=none
+[2026-10-04T20:11:16+09:00] gpu=84% vram=7916/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=553/1000 iter_s=6.00 base=5.44 eta=00:39:13 alerts=none
+[2026-10-04T20:12:17+09:00] gpu=91% vram=7990/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=565/1000 iter_s=5.26 base=5.44 eta=00:38:11 alerts=none
+[2026-10-04T20:13:18+09:00] gpu=84% vram=7619/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=576/1000 iter_s=5.34 base=5.44 eta=00:37:14 alerts=none
+[2026-10-04T20:14:20+09:00] gpu=82% vram=7679/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=588/1000 iter_s=5.23 base=5.44 eta=00:36:10 alerts=none
+[2026-10-04T20:15:22+09:00] gpu=82% vram=6086/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=600/1000 iter_s=5.17 base=5.44 eta=00:35:06 alerts=none
+[2026-10-04T20:16:23+09:00] gpu=86% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=611/1000 iter_s=5.14 base=5.44 eta=00:34:08 alerts=none
+[2026-10-04T20:17:25+09:00] gpu=77% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=624/1000 iter_s=4.95 base=5.44 eta=00:32:58 alerts=none
+[2026-10-04T20:18:26+09:00] gpu=77% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=636/1000 iter_s=4.68 base=5.44 eta=00:31:51 alerts=none
+[2026-10-04T20:19:28+09:00] gpu=88% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=649/1000 iter_s=4.68 base=5.44 eta=00:30:38 alerts=none
+[2026-10-04T20:20:29+09:00] gpu=79% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=663/1000 iter_s=4.66 base=5.44 eta=00:29:21 alerts=none
+[2026-10-04T20:21:30+09:00] gpu=91% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=676/1000 iter_s=4.68 base=5.44 eta=00:28:09 alerts=none
+[2026-10-04T20:22:31+09:00] gpu=71% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=689/1000 iter_s=4.67 base=5.44 eta=00:26:58 alerts=none
+[2026-10-04T20:23:33+09:00] gpu=90% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=702/1000 iter_s=4.61 base=5.44 eta=00:25:47 alerts=none
+[2026-10-04T20:24:34+09:00] gpu=66% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=715/1000 iter_s=4.62 base=5.44 eta=00:24:36 alerts=none
+[2026-10-04T20:25:35+09:00] gpu=80% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=728/1000 iter_s=4.66 base=5.44 eta=00:23:26 alerts=none
+[2026-10-04T20:26:37+09:00] gpu=80% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=741/1000 iter_s=4.61 base=5.44 eta=00:22:16 alerts=none
+[2026-10-04T20:27:38+09:00] gpu=90% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=755/1000 iter_s=4.60 base=5.44 eta=00:21:01 alerts=none
+[2026-10-04T20:28:39+09:00] gpu=86% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=768/1000 iter_s=4.56 base=5.44 eta=00:19:51 alerts=none
+[2026-10-04T20:29:40+09:00] gpu=81% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=781/1000 iter_s=4.58 base=5.44 eta=00:18:42 alerts=none
+[2026-10-04T20:30:41+09:00] gpu=80% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=795/1000 iter_s=4.58 base=5.44 eta=00:17:28 alerts=none
+[2026-10-04T20:31:43+09:00] gpu=91% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=808/1000 iter_s=4.61 base=5.44 eta=00:16:20 alerts=none
+[2026-10-04T20:32:44+09:00] gpu=88% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=821/1000 iter_s=4.61 base=5.44 eta=00:15:11 alerts=none
+[2026-10-04T20:33:45+09:00] gpu=72% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=834/1000 iter_s=4.58 base=5.44 eta=00:14:04 alerts=none
+[2026-10-04T20:34:46+09:00] gpu=86% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=848/1000 iter_s=4.58 base=5.44 eta=00:12:51 alerts=none
+[2026-10-04T20:35:48+09:00] gpu=69% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=861/1000 iter_s=4.76 base=5.44 eta=00:11:43 alerts=none
+[2026-10-04T20:36:49+09:00] gpu=74% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=873/1000 iter_s=4.76 base=5.44 eta=00:10:42 alerts=none
+[2026-10-04T20:37:51+09:00] gpu=78% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=886/1000 iter_s=4.80 base=5.44 eta=00:09:35 alerts=none
+[2026-10-04T20:38:52+09:00] gpu=88% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=899/1000 iter_s=4.78 base=5.44 eta=00:08:28 alerts=none
+[2026-10-04T20:39:53+09:00] gpu=86% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=912/1000 iter_s=4.75 base=5.44 eta=00:07:22 alerts=none
+[2026-10-04T20:40:55+09:00] gpu=90% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=925/1000 iter_s=4.74 base=5.44 eta=00:06:15 alerts=none
+[2026-10-04T20:41:56+09:00] gpu=89% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=937/1000 iter_s=4.74 base=5.44 eta=00:05:14 alerts=none
+[2026-10-04T20:42:58+09:00] gpu=90% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=950/1000 iter_s=4.87 base=5.44 eta=00:04:08 alerts=none
+[2026-10-04T20:43:59+09:00] gpu=79% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=963/1000 iter_s=4.67 base=5.44 eta=00:03:02 alerts=none
+[2026-10-04T20:45:01+09:00] gpu=70% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=976/1000 iter_s=4.75 base=5.44 eta=00:01:56 alerts=none
+[2026-10-04T20:46:02+09:00] gpu=75% vram=5896/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=989/1000 iter_s=4.72 base=5.44 eta=00:00:50 alerts=none
+[2026-10-04T20:47:03+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:48:05+09:00] gpu=15% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:49:06+09:00] gpu=0% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:50:08+09:00] gpu=14% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:51:09+09:00] gpu=16% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:52:11+09:00] gpu=0% vram=2323/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:53:12+09:00] gpu=16% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:54:14+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:55:15+09:00] gpu=24% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:56:17+09:00] gpu=26% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:57:18+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:58:19+09:00] gpu=24% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T20:59:21+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:00:23+09:00] gpu=27% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:01:24+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:02:25+09:00] gpu=15% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:03:27+09:00] gpu=15% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:04:28+09:00] gpu=23% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:05:30+09:00] gpu=15% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:06:32+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:07:33+09:00] gpu=18% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:08:35+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:09:36+09:00] gpu=14% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:10:38+09:00] gpu=32% vram=3664/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:11:40+09:00] gpu=34% vram=3659/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:12:43+09:00] gpu=33% vram=3660/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:13:46+09:00] gpu=37% vram=4546/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:14:49+09:00] gpu=42% vram=4548/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:15:52+09:00] gpu=34% vram=4548/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:16:55+09:00] gpu=36% vram=4551/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:17:58+09:00] gpu=41% vram=4552/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:19:01+09:00] gpu=39% vram=4569/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:20:04+09:00] gpu=34% vram=4569/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:21:07+09:00] gpu=40% vram=4570/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:22:10+09:00] gpu=27% vram=3684/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:23:13+09:00] gpu=28% vram=3684/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:24:16+09:00] gpu=33% vram=3687/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:25:19+09:00] gpu=32% vram=3688/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:26:22+09:00] gpu=36% vram=4574/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:27:25+09:00] gpu=28% vram=3688/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:28:28+09:00] gpu=24% vram=3688/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:29:31+09:00] gpu=26% vram=3688/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:30:34+09:00] gpu=27% vram=3690/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:31:37+09:00] gpu=25% vram=3689/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:32:40+09:00] gpu=25% vram=3689/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:33:43+09:00] gpu=30% vram=3691/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:34:46+09:00] gpu=29% vram=3691/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:35:49+09:00] gpu=30% vram=3691/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:36:52+09:00] gpu=30% vram=3691/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=22192 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T21:37:55+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:38:56+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:39:57+09:00] gpu=30% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:40:59+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:42:00+09:00] gpu=38% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:43:01+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:44:03+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:45:04+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:46:05+09:00] gpu=30% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:47:06+09:00] gpu=31% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:48:08+09:00] gpu=0% vram=348/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:49:09+09:00] gpu=0% vram=419/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:50:10+09:00] gpu=0% vram=1192/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:51:12+09:00] gpu=20% vram=5645/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:52:14+09:00] gpu=29% vram=5689/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=none
+[2026-10-04T21:53:15+09:00] gpu=14% vram=1407/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:54:21+09:00] gpu=28% vram=6576/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:55:24+09:00] gpu=43% vram=6583/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:56:28+09:00] gpu=28% vram=2842/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:57:31+09:00] gpu=28% vram=3923/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:58:35+09:00] gpu=45% vram=6038/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T21:59:38+09:00] gpu=51% vram=6078/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:00:42+09:00] gpu=26% vram=1360/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:01:45+09:00] gpu=24% vram=6041/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:02:49+09:00] gpu=26% vram=948/12227MB procs=2 foreign=2 point=go2_g_a062_pc2_p5_dof_acc_l2_m1p25e_7 iter=999/1000 iter_s=4.69 base=5.44 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:03:52+09:00] gpu=79% vram=6828/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=1/1000 iter_s=14.69 base=- eta=04:04:21 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:04:54+09:00] gpu=91% vram=6828/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=11/1000 iter_s=6.13 base=- eta=02:04:35 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:05:57+09:00] gpu=92% vram=6828/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=21/1000 iter_s=6.33 base=- eta=01:54:24 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:07:00+09:00] gpu=75% vram=6847/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=30/1000 iter_s=6.60 base=6.28 eta=01:51:44 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:08:03+09:00] gpu=77% vram=6849/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=39/1000 iter_s=6.92 base=6.28 eta=01:50:22 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:09:05+09:00] gpu=83% vram=6849/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=49/1000 iter_s=6.94 base=6.28 eta=01:49:11 alerts=FOREIGN_GPU_PROCESS pid=14480 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:10:08+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=60/1000 iter_s=5.19 base=6.28 eta=01:43:58 alerts=none
+[2026-10-04T22:11:09+09:00] gpu=71% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=72/1000 iter_s=5.11 base=6.28 eta=01:38:45 alerts=none
+[2026-10-04T22:12:11+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=83/1000 iter_s=5.16 base=6.28 eta=01:35:06 alerts=none
+[2026-10-04T22:13:12+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=95/1000 iter_s=5.11 base=6.28 eta=01:31:45 alerts=none
+[2026-10-04T22:14:13+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=107/1000 iter_s=5.12 base=6.28 eta=01:28:55 alerts=none
+[2026-10-04T22:15:14+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=120/1000 iter_s=4.99 base=6.28 eta=01:26:01 alerts=none
+[2026-10-04T22:16:15+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=132/1000 iter_s=5.00 base=6.28 eta=01:23:42 alerts=none
+[2026-10-04T22:17:17+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=144/1000 iter_s=4.98 base=6.28 eta=01:21:36 alerts=none
+[2026-10-04T22:18:18+09:00] gpu=52% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=156/1000 iter_s=5.27 base=6.28 eta=01:19:59 alerts=none
+[2026-10-04T22:19:20+09:00] gpu=86% vram=7164/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=167/1000 iter_s=5.44 base=6.28 eta=01:18:44 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:20:23+09:00] gpu=80% vram=7143/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=177/1000 iter_s=6.34 base=6.28 eta=01:18:18 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:21:26+09:00] gpu=92% vram=7147/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=187/1000 iter_s=6.53 base=6.28 eta=01:17:57 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:22:29+09:00] gpu=85% vram=7147/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=196/1000 iter_s=6.49 base=6.28 eta=01:17:33 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:23:33+09:00] gpu=90% vram=7147/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=206/1000 iter_s=6.42 base=6.28 eta=01:16:59 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:24:36+09:00] gpu=91% vram=7148/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=216/1000 iter_s=6.33 base=6.28 eta=01:16:20 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:25:39+09:00] gpu=67% vram=7151/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=226/1000 iter_s=6.38 base=6.28 eta=01:15:42 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:26:43+09:00] gpu=79% vram=7155/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=236/1000 iter_s=6.46 base=6.28 eta=01:15:01 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:27:46+09:00] gpu=92% vram=7155/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=246/1000 iter_s=6.27 base=6.28 eta=01:14:14 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:28:49+09:00] gpu=90% vram=7160/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=255/1000 iter_s=6.40 base=6.28 eta=01:13:34 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:29:52+09:00] gpu=89% vram=7160/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=265/1000 iter_s=6.36 base=6.28 eta=01:12:46 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:30:56+09:00] gpu=87% vram=7160/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=275/1000 iter_s=6.44 base=6.28 eta=01:11:59 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-04T22:31:59+09:00] gpu=85% vram=7136/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=285/1000 iter_s=6.25 base=6.28 eta=01:11:05 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:33:02+09:00] gpu=91% vram=7137/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=295/1000 iter_s=6.29 base=6.28 eta=01:10:14 alerts=FOREIGN_GPU_PROCESS pid=20676 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T22:34:05+09:00] gpu=67% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=306/1000 iter_s=5.43 base=6.28 eta=01:09:01 alerts=none
+[2026-10-04T22:35:06+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=317/1000 iter_s=5.32 base=6.28 eta=01:07:41 alerts=none
+[2026-10-04T22:36:07+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=329/1000 iter_s=5.27 base=6.28 eta=01:06:13 alerts=none
+[2026-10-04T22:37:09+09:00] gpu=65% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=340/1000 iter_s=5.29 base=6.28 eta=01:04:54 alerts=none
+[2026-10-04T22:38:10+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=352/1000 iter_s=5.26 base=6.28 eta=01:03:29 alerts=none
+[2026-10-04T22:39:11+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=364/1000 iter_s=5.32 base=6.28 eta=01:02:07 alerts=none
+[2026-10-04T22:40:13+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=376/1000 iter_s=4.75 base=6.28 eta=01:00:38 alerts=none
+[2026-10-04T22:41:14+09:00] gpu=52% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=387/1000 iter_s=5.69 base=6.28 eta=00:59:27 alerts=none
+[2026-10-04T22:42:16+09:00] gpu=61% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=398/1000 iter_s=5.63 base=6.28 eta=00:58:24 alerts=none
+[2026-10-04T22:43:18+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=410/1000 iter_s=4.88 base=6.28 eta=00:57:01 alerts=none
+[2026-10-04T22:44:19+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=422/1000 iter_s=5.25 base=6.28 eta=00:55:39 alerts=none
+[2026-10-04T22:45:20+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=433/1000 iter_s=5.21 base=6.28 eta=00:54:27 alerts=none
+[2026-10-04T22:46:22+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=445/1000 iter_s=5.17 base=6.28 eta=00:53:07 alerts=none
+[2026-10-04T22:47:23+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=457/1000 iter_s=5.26 base=6.28 eta=00:51:51 alerts=none
+[2026-10-04T22:48:24+09:00] gpu=23% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=469/1000 iter_s=5.21 base=6.28 eta=00:50:35 alerts=none
+[2026-10-04T22:49:26+09:00] gpu=72% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=479/1000 iter_s=5.64 base=6.28 eta=00:49:37 alerts=none
+[2026-10-04T22:50:27+09:00] gpu=54% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=490/1000 iter_s=5.63 base=6.28 eta=00:48:33 alerts=none
+[2026-10-04T22:51:29+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=501/1000 iter_s=5.64 base=6.28 eta=00:47:29 alerts=none
+[2026-10-04T22:52:30+09:00] gpu=54% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=512/1000 iter_s=5.64 base=6.28 eta=00:46:25 alerts=none
+[2026-10-04T22:53:32+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=523/1000 iter_s=5.63 base=6.28 eta=00:45:21 alerts=none
+[2026-10-04T22:54:33+09:00] gpu=74% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=534/1000 iter_s=5.61 base=6.28 eta=00:44:17 alerts=none
+[2026-10-04T22:55:34+09:00] gpu=45% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=545/1000 iter_s=5.60 base=6.28 eta=00:43:13 alerts=none
+[2026-10-04T22:56:36+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=558/1000 iter_s=4.60 base=6.28 eta=00:41:49 alerts=none
+[2026-10-04T22:57:37+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=569/1000 iter_s=5.36 base=6.28 eta=00:40:44 alerts=none
+[2026-10-04T22:58:39+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=580/1000 iter_s=5.43 base=6.28 eta=00:39:39 alerts=none
+[2026-10-04T22:59:41+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=592/1000 iter_s=5.36 base=6.28 eta=00:38:29 alerts=none
+[2026-10-04T23:00:42+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=603/1000 iter_s=5.36 base=6.28 eta=00:37:24 alerts=none
+[2026-10-04T23:01:43+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=614/1000 iter_s=5.37 base=6.28 eta=00:36:20 alerts=none
+[2026-10-04T23:02:45+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=626/1000 iter_s=5.38 base=6.28 eta=00:35:09 alerts=none
+[2026-10-04T23:03:46+09:00] gpu=58% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=637/1000 iter_s=5.38 base=6.28 eta=00:34:06 alerts=none
+[2026-10-04T23:04:47+09:00] gpu=60% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=648/1000 iter_s=5.37 base=6.28 eta=00:33:02 alerts=none
+[2026-10-04T23:05:49+09:00] gpu=58% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=660/1000 iter_s=5.35 base=6.28 eta=00:31:52 alerts=none
+[2026-10-04T23:06:50+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=671/1000 iter_s=5.33 base=6.28 eta=00:30:48 alerts=none
+[2026-10-04T23:07:52+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=683/1000 iter_s=5.33 base=6.28 eta=00:29:39 alerts=none
+[2026-10-04T23:08:53+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=694/1000 iter_s=5.33 base=6.28 eta=00:28:36 alerts=none
+[2026-10-04T23:09:54+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=706/1000 iter_s=5.33 base=6.28 eta=00:27:27 alerts=none
+[2026-10-04T23:10:56+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=717/1000 iter_s=5.33 base=6.28 eta=00:26:24 alerts=none
+[2026-10-04T23:11:57+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=728/1000 iter_s=5.34 base=6.28 eta=00:25:21 alerts=none
+[2026-10-04T23:12:59+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=740/1000 iter_s=5.34 base=6.28 eta=00:24:12 alerts=none
+[2026-10-04T23:14:00+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=751/1000 iter_s=5.35 base=6.28 eta=00:23:10 alerts=none
+[2026-10-04T23:15:02+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=764/1000 iter_s=4.53 base=6.28 eta=00:21:53 alerts=none
+[2026-10-04T23:16:03+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=778/1000 iter_s=4.54 base=6.28 eta=00:20:31 alerts=none
+[2026-10-04T23:17:04+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=791/1000 iter_s=4.57 base=6.28 eta=00:19:15 alerts=none
+[2026-10-04T23:18:06+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=803/1000 iter_s=5.28 base=6.28 eta=00:18:08 alerts=none
+[2026-10-04T23:19:07+09:00] gpu=63% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=814/1000 iter_s=5.26 base=6.28 eta=00:17:06 alerts=none
+[2026-10-04T23:20:08+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=827/1000 iter_s=4.68 base=6.28 eta=00:15:52 alerts=none
+[2026-10-04T23:21:10+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=840/1000 iter_s=4.64 base=6.28 eta=00:14:38 alerts=none
+[2026-10-04T23:22:11+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=853/1000 iter_s=4.87 base=6.28 eta=00:13:24 alerts=none
+[2026-10-04T23:23:13+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=865/1000 iter_s=4.94 base=6.28 eta=00:12:17 alerts=none
+[2026-10-04T23:24:15+09:00] gpu=64% vram=7168/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=877/1000 iter_s=4.97 base=6.28 eta=00:11:10 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:25:17+09:00] gpu=66% vram=7141/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=888/1000 iter_s=6.11 base=6.28 eta=00:10:10 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:26:20+09:00] gpu=86% vram=7161/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=898/1000 iter_s=6.03 base=6.28 eta=00:09:16 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:27:23+09:00] gpu=65% vram=7161/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=908/1000 iter_s=6.03 base=6.28 eta=00:08:21 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:28:25+09:00] gpu=71% vram=7161/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=919/1000 iter_s=6.09 base=6.28 eta=00:07:21 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:29:28+09:00] gpu=86% vram=7162/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=929/1000 iter_s=6.08 base=6.28 eta=00:06:27 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:30:31+09:00] gpu=65% vram=7162/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=939/1000 iter_s=6.07 base=6.28 eta=00:05:32 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:31:34+09:00] gpu=86% vram=7162/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=949/1000 iter_s=6.09 base=6.28 eta=00:04:37 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:32:36+09:00] gpu=82% vram=7163/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=960/1000 iter_s=6.12 base=6.28 eta=00:03:36 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:33:40+09:00] gpu=64% vram=7163/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=970/1000 iter_s=6.12 base=6.28 eta=00:02:41 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:34:42+09:00] gpu=88% vram=7163/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=980/1000 iter_s=6.12 base=6.28 eta=00:01:45 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:35:45+09:00] gpu=77% vram=7164/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=990/1000 iter_s=6.08 base=6.28 eta=00:00:50 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:36:48+09:00] gpu=20% vram=1263/12227MB procs=1 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:37:50+09:00] gpu=29% vram=3674/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:38:53+09:00] gpu=20% vram=3602/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:39:56+09:00] gpu=19% vram=1503/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:40:59+09:00] gpu=31% vram=3675/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:42:01+09:00] gpu=30% vram=3675/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:43:04+09:00] gpu=22% vram=3629/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:44:07+09:00] gpu=17% vram=1409/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:45:10+09:00] gpu=26% vram=3677/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:46:13+09:00] gpu=30% vram=3678/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:47:15+09:00] gpu=30% vram=3678/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:48:18+09:00] gpu=28% vram=3678/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:49:21+09:00] gpu=27% vram=3677/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:50:24+09:00] gpu=22% vram=3595/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:51:27+09:00] gpu=21% vram=1508/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:52:30+09:00] gpu=30% vram=4564/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:53:33+09:00] gpu=36% vram=4564/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:54:35+09:00] gpu=35% vram=4564/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:55:38+09:00] gpu=31% vram=4564/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:56:41+09:00] gpu=18% vram=3802/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:57:44+09:00] gpu=18% vram=1413/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:58:47+09:00] gpu=39% vram=4565/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=11024 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-04T23:59:50+09:00] gpu=15% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:00:51+09:00] gpu=21% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:01:53+09:00] gpu=35% vram=3661/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:02:56+09:00] gpu=29% vram=3701/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:03:59+09:00] gpu=32% vram=3703/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:05:03+09:00] gpu=21% vram=1536/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:06:06+09:00] gpu=18% vram=1440/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:07:09+09:00] gpu=35% vram=4592/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:08:12+09:00] gpu=31% vram=3706/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:09:16+09:00] gpu=29% vram=3707/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:10:19+09:00] gpu=31% vram=3708/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:11:22+09:00] gpu=28% vram=3708/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:12:26+09:00] gpu=32% vram=3708/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:13:29+09:00] gpu=31% vram=3708/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:14:32+09:00] gpu=22% vram=1528/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:15:35+09:00] gpu=20% vram=1475/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:16:38+09:00] gpu=20% vram=1300/12227MB procs=2 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:17:41+09:00] gpu=30% vram=3712/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:18:45+09:00] gpu=32% vram=3712/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:19:48+09:00] gpu=38% vram=4599/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:20:51+09:00] gpu=39% vram=4599/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:21:55+09:00] gpu=34% vram=4599/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:22:58+09:00] gpu=22% vram=3827/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:24:01+09:00] gpu=20% vram=1480/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:25:04+09:00] gpu=43% vram=4600/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=9420 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:26:07+09:00] gpu=22% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:27:09+09:00] gpu=16% vram=1150/12227MB procs=2 foreign=1 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]
+[2026-10-05T00:28:12+09:00] gpu=42% vram=4332/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:29:15+09:00] gpu=35% vram=3450/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:30:19+09:00] gpu=37% vram=3448/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:31:22+09:00] gpu=37% vram=3452/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:32:25+09:00] gpu=38% vram=3451/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:33:29+09:00] gpu=NA% vram=NA/NAMB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=NVIDIA_SMI_FAILED query-gpu|FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:34:32+09:00] gpu=39% vram=3457/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:35:35+09:00] gpu=38% vram=3458/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:36:39+09:00] gpu=38% vram=3461/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:37:42+09:00] gpu=33% vram=3463/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:38:46+09:00] gpu=36% vram=3463/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:39:49+09:00] gpu=37% vram=3467/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:40:53+09:00] gpu=37% vram=3466/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:41:56+09:00] gpu=33% vram=3469/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:42:59+09:00] gpu=38% vram=3469/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:44:03+09:00] gpu=24% vram=1061/12227MB procs=2 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:45:05+09:00] gpu=41% vram=4356/12227MB procs=3 foreign=2 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=FOREIGN_GPU_PROCESS pid=23584 name=League of Legends.exe vram_mb=[N/A]|FOREIGN_GPU_PROCESS pid=15848 name=NVIDIA Overlay.exe vram_mb=[N/A]
+[2026-10-05T00:46:09+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:47:10+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:48:12+09:00] gpu=36% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:49:13+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:50:14+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:51:16+09:00] gpu=20% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:52:17+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:53:18+09:00] gpu=30% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:54:20+09:00] gpu=33% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:55:21+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:56:22+09:00] gpu=0% vram=1102/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:57:24+09:00] gpu=0% vram=1101/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:58:25+09:00] gpu=0% vram=2814/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T00:59:26+09:00] gpu=1% vram=5592/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:00:27+09:00] gpu=0% vram=5013/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:01:29+09:00] gpu=0% vram=387/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:02:30+09:00] gpu=23% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:03:31+09:00] gpu=26% vram=5141/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:04:33+09:00] gpu=0% vram=458/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:05:35+09:00] gpu=0% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:06:37+09:00] gpu=26% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:07:38+09:00] gpu=0% vram=4381/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:08:39+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p6_dof_acc_l2_m6p25e_8 iter=999/1000 iter_s=6.07 base=6.28 eta=00:00:00 alerts=none
+[2026-10-05T01:09:40+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=-/- iter_s=0.00 base=- eta=- alerts=none
+[2026-10-05T01:10:41+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=2/1000 iter_s=5.12 base=- eta=03:10:09 alerts=none
+[2026-10-05T01:11:42+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=14/1000 iter_s=5.29 base=- eta=01:47:20 alerts=none
+[2026-10-05T01:12:44+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=26/1000 iter_s=4.99 base=5.29 eta=01:36:07 alerts=none
+[2026-10-05T01:13:45+09:00] gpu=NA% vram=NA/NAMB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=37/1000 iter_s=5.16 base=5.29 eta=01:31:36 alerts=NVIDIA_SMI_FAILED query-gpu
+[2026-10-05T01:14:46+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=49/1000 iter_s=5.18 base=5.29 eta=01:28:26 alerts=none
+[2026-10-05T01:15:47+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=61/1000 iter_s=5.14 base=5.29 eta=01:26:00 alerts=none
+[2026-10-05T01:16:48+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=73/1000 iter_s=5.16 base=5.29 eta=01:24:02 alerts=none
+[2026-10-05T01:17:50+09:00] gpu=84% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=84/1000 iter_s=5.73 base=5.29 eta=01:23:11 alerts=none
+[2026-10-05T01:18:51+09:00] gpu=54% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=94/1000 iter_s=5.74 base=5.29 eta=01:22:45 alerts=none
+[2026-10-05T01:19:52+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=105/1000 iter_s=5.76 base=5.29 eta=01:22:12 alerts=none
+[2026-10-05T01:20:53+09:00] gpu=65% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=116/1000 iter_s=5.74 base=5.29 eta=01:21:30 alerts=none
+[2026-10-05T01:21:55+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=126/1000 iter_s=5.70 base=5.29 eta=01:20:45 alerts=none
+[2026-10-05T01:22:56+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=137/1000 iter_s=5.66 base=5.29 eta=01:19:52 alerts=none
+[2026-10-05T01:23:57+09:00] gpu=88% vram=5901/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=148/1000 iter_s=5.55 base=5.29 eta=01:18:52 alerts=NVIDIA_SMI_FAILED query-compute-apps
+[2026-10-05T01:24:58+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=160/1000 iter_s=5.06 base=5.29 eta=01:17:12 alerts=none
+[2026-10-05T01:26:00+09:00] gpu=61% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=170/1000 iter_s=6.05 base=5.29 eta=01:16:43 alerts=none
+[2026-10-05T01:27:02+09:00] gpu=28% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=181/1000 iter_s=5.79 base=5.29 eta=01:15:57 alerts=none
+[2026-10-05T01:28:03+09:00] gpu=65% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=192/1000 iter_s=5.51 base=5.29 eta=01:14:54 alerts=none
+[2026-10-05T01:29:05+09:00] gpu=59% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=203/1000 iter_s=5.50 base=5.29 eta=01:13:49 alerts=none
+[2026-10-05T01:30:06+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=214/1000 iter_s=5.52 base=5.29 eta=01:12:45 alerts=none
+[2026-10-05T01:31:07+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=225/1000 iter_s=5.43 base=5.29 eta=01:11:37 alerts=none
+[2026-10-05T01:32:08+09:00] gpu=56% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=236/1000 iter_s=5.46 base=5.29 eta=01:10:33 alerts=none
+[2026-10-05T01:33:09+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=248/1000 iter_s=5.46 base=5.29 eta=01:09:23 alerts=none
+[2026-10-05T01:34:11+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=259/1000 iter_s=5.44 base=5.29 eta=01:08:18 alerts=none
+[2026-10-05T01:35:12+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=270/1000 iter_s=5.43 base=5.29 eta=01:07:14 alerts=none
+[2026-10-05T01:36:13+09:00] gpu=75% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=281/1000 iter_s=5.40 base=5.29 eta=01:06:10 alerts=none
+[2026-10-05T01:37:14+09:00] gpu=57% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=292/1000 iter_s=5.48 base=5.29 eta=01:05:07 alerts=none
+[2026-10-05T01:38:15+09:00] gpu=48% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=303/1000 iter_s=5.45 base=5.29 eta=01:04:04 alerts=none
+[2026-10-05T01:39:17+09:00] gpu=63% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=315/1000 iter_s=5.42 base=5.29 eta=01:02:56 alerts=none
+[2026-10-05T01:40:18+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=326/1000 iter_s=5.50 base=5.29 eta=01:01:54 alerts=none
+[2026-10-05T01:41:19+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=337/1000 iter_s=5.46 base=5.29 eta=01:00:53 alerts=none
+[2026-10-05T01:42:20+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=348/1000 iter_s=5.42 base=5.29 eta=00:59:50 alerts=none
+[2026-10-05T01:43:21+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=359/1000 iter_s=5.49 base=5.29 eta=00:58:49 alerts=none
+[2026-10-05T01:44:23+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=370/1000 iter_s=5.46 base=5.29 eta=00:57:47 alerts=none
+[2026-10-05T01:45:24+09:00] gpu=66% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=381/1000 iter_s=5.50 base=5.29 eta=00:56:46 alerts=none
+[2026-10-05T01:46:25+09:00] gpu=73% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=392/1000 iter_s=5.46 base=5.29 eta=00:55:39 alerts=none
+[2026-10-05T01:47:26+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=404/1000 iter_s=5.50 base=5.29 eta=00:54:38 alerts=none
+[2026-10-05T01:48:28+09:00] gpu=58% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=416/1000 iter_s=5.18 base=5.29 eta=00:53:26 alerts=none
+[2026-10-05T01:49:29+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=427/1000 iter_s=5.45 base=5.29 eta=00:52:24 alerts=none
+[2026-10-05T01:50:30+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=438/1000 iter_s=5.45 base=5.29 eta=00:51:22 alerts=none
+[2026-10-05T01:51:31+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=449/1000 iter_s=5.40 base=5.29 eta=00:50:21 alerts=none
+[2026-10-05T01:52:33+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=461/1000 iter_s=4.88 base=5.29 eta=00:49:09 alerts=none
+[2026-10-05T01:53:34+09:00] gpu=89% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=474/1000 iter_s=4.87 base=5.29 eta=00:47:49 alerts=none
+[2026-10-05T01:54:35+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=486/1000 iter_s=4.84 base=5.29 eta=00:46:36 alerts=none
+[2026-10-05T01:55:36+09:00] gpu=87% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=499/1000 iter_s=4.83 base=5.29 eta=00:45:17 alerts=none
+[2026-10-05T01:56:37+09:00] gpu=72% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=511/1000 iter_s=5.39 base=5.29 eta=00:44:09 alerts=none
+[2026-10-05T01:57:39+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=522/1000 iter_s=5.42 base=5.29 eta=00:43:09 alerts=none
+[2026-10-05T01:58:40+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=534/1000 iter_s=4.79 base=5.29 eta=00:42:00 alerts=none
+[2026-10-05T01:59:41+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=547/1000 iter_s=4.86 base=5.29 eta=00:40:43 alerts=none
+[2026-10-05T02:00:42+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=558/1000 iter_s=5.37 base=5.29 eta=00:39:43 alerts=none
+[2026-10-05T02:01:43+09:00] gpu=75% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=570/1000 iter_s=5.00 base=5.29 eta=00:38:35 alerts=none
+[2026-10-05T02:02:45+09:00] gpu=69% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=582/1000 iter_s=5.30 base=5.29 eta=00:37:30 alerts=none
+[2026-10-05T02:03:46+09:00] gpu=78% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=593/1000 iter_s=5.34 base=5.29 eta=00:36:30 alerts=none
+[2026-10-05T02:04:47+09:00] gpu=83% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=604/1000 iter_s=5.34 base=5.29 eta=00:35:30 alerts=none
+[2026-10-05T02:05:48+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=617/1000 iter_s=4.71 base=5.29 eta=00:34:15 alerts=none
+[2026-10-05T02:06:50+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=630/1000 iter_s=4.70 base=5.29 eta=00:33:00 alerts=none
+[2026-10-05T02:07:51+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=643/1000 iter_s=4.71 base=5.29 eta=00:31:46 alerts=none
+[2026-10-05T02:08:52+09:00] gpu=61% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=656/1000 iter_s=4.70 base=5.29 eta=00:30:32 alerts=none
+[2026-10-05T02:09:53+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=667/1000 iter_s=5.27 base=5.29 eta=00:29:33 alerts=none
+[2026-10-05T02:10:54+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=679/1000 iter_s=5.26 base=5.29 eta=00:28:29 alerts=none
+[2026-10-05T02:11:56+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=691/1000 iter_s=5.24 base=5.29 eta=00:27:23 alerts=none
+[2026-10-05T02:12:57+09:00] gpu=81% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=704/1000 iter_s=4.67 base=5.29 eta=00:26:11 alerts=none
+[2026-10-05T02:13:58+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=717/1000 iter_s=4.66 base=5.29 eta=00:24:58 alerts=none
+[2026-10-05T02:14:59+09:00] gpu=79% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=730/1000 iter_s=4.62 base=5.29 eta=00:23:46 alerts=none
+[2026-10-05T02:16:00+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=743/1000 iter_s=4.67 base=5.29 eta=00:22:34 alerts=none
+[2026-10-05T02:17:02+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=756/1000 iter_s=4.60 base=5.29 eta=00:21:22 alerts=none
+[2026-10-05T02:18:03+09:00] gpu=82% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=769/1000 iter_s=4.96 base=5.29 eta=00:20:12 alerts=none
+[2026-10-05T02:19:04+09:00] gpu=86% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=781/1000 iter_s=5.22 base=5.29 eta=00:19:09 alerts=none
+[2026-10-05T02:20:05+09:00] gpu=79% vram=5901/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=793/1000 iter_s=4.63 base=5.29 eta=00:18:04 alerts=NVIDIA_SMI_FAILED query-compute-apps
+[2026-10-05T02:21:06+09:00] gpu=88% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=806/1000 iter_s=4.61 base=5.29 eta=00:16:54 alerts=none
+[2026-10-05T02:22:07+09:00] gpu=77% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=819/1000 iter_s=4.83 base=5.29 eta=00:15:44 alerts=none
+[2026-10-05T02:23:08+09:00] gpu=76% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=830/1000 iter_s=5.24 base=5.29 eta=00:14:46 alerts=none
+[2026-10-05T02:24:10+09:00] gpu=68% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=842/1000 iter_s=5.18 base=5.29 eta=00:13:43 alerts=none
+[2026-10-05T02:25:11+09:00] gpu=88% vram=5901/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=855/1000 iter_s=4.69 base=5.29 eta=00:12:34 alerts=NVIDIA_SMI_FAILED query-compute-apps
+[2026-10-05T02:26:12+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=868/1000 iter_s=4.79 base=5.29 eta=00:11:25 alerts=none
+[2026-10-05T02:27:13+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=880/1000 iter_s=4.69 base=5.29 eta=00:10:22 alerts=none
+[2026-10-05T02:28:14+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=893/1000 iter_s=4.56 base=5.29 eta=00:09:13 alerts=none
+[2026-10-05T02:29:15+09:00] gpu=75% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=907/1000 iter_s=4.64 base=5.29 eta=00:07:59 alerts=none
+[2026-10-05T02:30:17+09:00] gpu=91% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=920/1000 iter_s=4.65 base=5.29 eta=00:06:50 alerts=none
+[2026-10-05T02:31:18+09:00] gpu=90% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=933/1000 iter_s=4.67 base=5.29 eta=00:05:42 alerts=none
+[2026-10-05T02:32:19+09:00] gpu=64% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=946/1000 iter_s=4.61 base=5.29 eta=00:04:34 alerts=none
+[2026-10-05T02:33:20+09:00] gpu=62% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=958/1000 iter_s=5.21 base=5.29 eta=00:03:32 alerts=none
+[2026-10-05T02:34:21+09:00] gpu=74% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=969/1000 iter_s=5.14 base=5.29 eta=00:02:35 alerts=none
+[2026-10-05T02:35:23+09:00] gpu=85% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=981/1000 iter_s=5.17 base=5.29 eta=00:01:33 alerts=none
+[2026-10-05T02:36:24+09:00] gpu=80% vram=5901/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=995/1000 iter_s=4.58 base=5.29 eta=00:00:20 alerts=none
+[2026-10-05T02:37:25+09:00] gpu=21% vram=2411/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=NVIDIA_SMI_FAILED query-compute-apps
+[2026-10-05T02:38:26+09:00] gpu=20% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:39:27+09:00] gpu=11% vram=2411/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:40:29+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:41:30+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:42:31+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:43:32+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:44:34+09:00] gpu=1% vram=2315/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:45:35+09:00] gpu=11% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:46:36+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:47:37+09:00] gpu=18% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:48:39+09:00] gpu=23% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:49:40+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:50:41+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:51:42+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:52:43+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:53:45+09:00] gpu=35% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:54:46+09:00] gpu=22% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:55:48+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:56:49+09:00] gpu=0% vram=144/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:57:50+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:58:51+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T02:59:53+09:00] gpu=19% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:00:54+09:00] gpu=0% vram=2327/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:01:56+09:00] gpu=12% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:02:57+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:03:58+09:00] gpu=30% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:04:59+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:06:01+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:07:02+09:00] gpu=0% vram=176/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:08:03+09:00] gpu=20% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:09:05+09:00] gpu=37% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:10:06+09:00] gpu=17% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:11:07+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:12:09+09:00] gpu=17% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:13:10+09:00] gpu=0% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:14:11+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:15:13+09:00] gpu=21% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:16:14+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:17:15+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:18:17+09:00] gpu=0% vram=2337/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:19:18+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:20:19+09:00] gpu=28% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:21:20+09:00] gpu=16% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:22:22+09:00] gpu=21% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:23:23+09:00] gpu=32% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:24:24+09:00] gpu=20% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:25:26+09:00] gpu=13% vram=2409/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:26:27+09:00] gpu=2% vram=239/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:27:28+09:00] gpu=25% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:28:30+09:00] gpu=0% vram=229/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:29:31+09:00] gpu=19% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:30:32+09:00] gpu=29% vram=3295/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:31:34+09:00] gpu=1% vram=416/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:32:39+09:00] gpu=0% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:33:40+09:00] gpu=28% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:34:42+09:00] gpu=35% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:35:43+09:00] gpu=0% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:36:45+09:00] gpu=28% vram=5644/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:37:47+09:00] gpu=40% vram=5645/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:38:48+09:00] gpu=34% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:39:49+09:00] gpu=0% vram=5096/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:40:51+09:00] gpu=1% vram=5097/12227MB procs=1 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:41:52+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:42:53+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:43:54+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:44:55+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:45:55+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:46:56+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:47:57+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:48:58+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:49:59+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:51:00+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:52:00+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:53:01+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:54:02+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:55:03+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:56:04+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:57:05+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:58:05+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T03:59:06+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T04:00:07+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T04:01:08+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T04:02:09+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=none
+[2026-10-05T04:03:09+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=STALL no log update 20min (last status p4_dof_torques_l2_m5e_5:DONE)
+[2026-10-05T04:04:10+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=STALL no log update 21min (last status p4_dof_torques_l2_m5e_5:DONE)
+[2026-10-05T04:05:11+09:00] gpu=0% vram=0/12227MB procs=0 foreign=0 point=go2_g_a062_pc2_p4_dof_torques_l2_m5e_5 iter=999/1000 iter_s=4.58 base=5.29 eta=00:00:00 alerts=STALL no log update 22min (last status p4_dof_torques_l2_m5e_5:DONE)

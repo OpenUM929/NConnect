@@ -49,6 +49,32 @@ workspace/training/quadruped/go2_reeval.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip
 workspace/_keep/GO2_G_A058_A048_SEED42_RESULT.zip
 workspace/_keep/GO2_G_A058_A043_SEED43_RESULT.zip
+workspace/_keep/GO2_CHAIN01_BASELINE_RESULT.zip
+workspace/_keep/GO2_G_A028_RESULT.zip
+
+# G-A060 PC2 three-point results (431.3MB / 296.0MB / 297.2MB): pushed as .zip.001.. parts.
+# Quarantined copies under workspace/server_returns/G-A060/received/ are byte-identical and
+# stay local; their .sha256 manifests are committed and point at the /workspace/_keep path.
+workspace/_keep/GO2_G_A060_PC2_A048_SEED42_RESULT.zip
+workspace/_keep/GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip
+workspace/_keep/GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_A048_SEED42_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip
+workspace/server_returns/G-A060/received/GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
+
+# Byte-identical re-download of the tracked workspace/_keep/go2_g_a025_flat_orientation_m1.zip
+# (both sha256 156e8e6b...9fcbd, 41.4MB). Kept on disk, not pushed. 2026-10-03.
+workspace/_keep/go2_g_a025_flat_orientation_m1 (2).zip
+
+# Pre-repair local copy of the truncated GO2_LIN_VEL_Z_M2_RESULT.zip. Superseded 2026-10-03
+# by the restored archive that matches the .sha256 manifest; kept until the repair is pushed.
+workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip.local_backup
+
+# Byte-identical staging copy of workspace/_keep/GO2_G_A028_RESULT.zip
+# (sha256 6e4a807b...94ed1e, both 104.3MB). The _keep original is published as
+# .zip.001.. parts, so this duplicate is not pushed; its .sha256 manifest stays
+# tracked and already points at the /workspace/_keep path. 2026-10-03.
+workspace/server_returns/G-A028/received/GO2_G_A028_RESULT.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P6_RESULT.zip
 workspace/_keep/GO2_G_A057_ANG_VEL_XY_L2_M0P04_RESULT.zip
@@ -90,3 +116,28 @@ workspace/runner_inspect_temp.txt
 # Local-only smoke run output (checkpoints, hydra outputs, tfevents, pycache)
 # Kept on disk, never pushed. 2026-09-30.
 workspace/_local_runs/
+
+# G-A060 PC2 결과 압축 해제본 (원본 ZIP은 _keep parts로 등재)
+workspace/server_returns/G-A060/extracted/
+# G-A061 PC2 결과 압축 해제본 (원본 ZIP은 _keep parts로 등재)
+workspace/server_returns/G-A061/extracted/
+# G-A061 N3 결과 원본 ZIP(311MB): .zip.001.. parts로 등재, reconstruct_zips.sh로 재조립
+workspace/_keep/GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip
+# G-A062 PC2 batch 결과 원본 ZIP(~311MB 각): .zip.001.. parts로 등재, reconstruct_zips.sh로 재조립
+workspace/_keep/GO2_G_A062_PC2_Q0_LIN_VEL_Z_L2_M1P5_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_Q1_TRACK_ANG_VEL_Z_EXP_P1P0_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_Q2_ANG_VEL_XY_L2_M0P06_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_P5_DOF_ACC_L2_M1P25E_7_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_P6_DOF_ACC_L2_M6P25E_8_RESULT.zip
+workspace/_keep/GO2_G_A062_PC2_P4_DOF_TORQUES_L2_M5E_5_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S01_LIN_VEL_Z_L2_M5_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S02_LIN_VEL_Z_L2_M3_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S03_LIN_VEL_Z_L2_M2_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S04_LIN_VEL_Z_L2_M0P5_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S05_FEET_AIR_TIME_P0P01_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S06_FEET_AIR_TIME_P0P1_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S07_FEET_AIR_TIME_P0P35_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S08_FEET_AIR_TIME_P0P5_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S09_ANG_VEL_XY_L2_M0P3_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S10_ANG_VEL_XY_L2_M0P15_RESULT.zip
+workspace/_keep/GO2_G_A063_PC2_S11_ANG_VEL_XY_L2_M0P02_RESULT.zip

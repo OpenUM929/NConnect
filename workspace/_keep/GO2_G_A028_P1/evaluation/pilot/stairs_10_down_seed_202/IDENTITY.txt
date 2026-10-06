@@ -1,0 +1,7 @@
+
+POLICY=pilot
+CASE=stairs_10_down
+SCENARIO=G5
+SEED=202
+NUM_ENVS=4
+STEPS=1000

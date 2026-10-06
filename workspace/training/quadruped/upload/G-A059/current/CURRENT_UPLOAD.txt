@@ -1,0 +1,11 @@
+CURRENT GO2 UPLOAD — G-A059 (A043 stairs diagnostic replay, no training)
+
+UPLOAD ONLY THIS ONE FILE
+1. C:\dev\Nconnect\workspace\training\quadruped\upload\G-A059\current\GO2_G_A059_a043_stairs_diag_replay_v1.zip
+   SHA256 feb588fc797197c40e37039906eee71de606d7a86919446fad8c9106707c43d9
+
+절차는 같은 폴더의 GO2_G_A059_ONE_COMMAND_RUN_GUIDE.txt.
+실행 위치와 실행 여부는 사용자 결정 사항이다(승인 전 실행 금지).
+
+RELEASE_ID 20261001_a043_stairs_diag_replay_v1
+STATUS ARTIFACT_VERIFIED

@@ -1,0 +1,10 @@
+{
+ "max_height_arithmetic_error": 2.7755575615628914e-17,
+ "fall_check_rows": 60,
+ "fall_check_mismatch": [],
+ "crosscase_compared": 0,
+ "crosscase_early_h_diff": 0,
+ "crosscase_ge2_diff": 0,
+ "push_events": 3070,
+ "push_not_detected": 0
+}

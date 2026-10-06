@@ -1,0 +1,17 @@
+{
+  "experiment_id": "G-A059",
+  "release_id": "20261001_a043_stairs_diag_replay_v1",
+  "status": "ARTIFACT_VERIFIED",
+  "published_at_utc": "2026-10-01T00:00:00+00:00",
+  "note": "G-A043 iter 900 stairs diagnostic replay, 4 evaluation + 4 video play.py runs, no training, no reward change.",
+  "support_files": [
+    "GO2_G_A059_ONE_COMMAND_RUN_GUIDE.txt"
+  ],
+  "upload_files": [
+    {
+      "name": "GO2_G_A059_a043_stairs_diag_replay_v1.zip",
+      "server_path": "/workspace/GO2_G_A059_a043_stairs_diag_replay_v1.zip",
+      "sha256": "feb588fc797197c40e37039906eee71de606d7a86919446fad8c9106707c43d9"
+    }
+  ]
+}

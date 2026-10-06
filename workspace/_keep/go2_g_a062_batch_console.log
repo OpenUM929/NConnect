@@ -1,0 +1,33 @@
+mount: warning - /workspace does not exist.
+[BATCH START] 2026-10-04T11:56:16+09:00
+[BATCH POINT] q0_lin_vel_z_l2_m1p5 2026-10-04T11:56:16+09:00
+[POINT START] q0_lin_vel_z_l2_m1p5 2026-10-04T11:56:16+09:00
+[POINT] q0_lin_vel_z_l2_m1p5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] q0_lin_vel_z_l2_m1p5 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] q0_lin_vel_z_l2_m1p5 rc=0 2026-10-04T14:14:42+09:00
+[BATCH POINT] q1_track_ang_vel_z_exp_p1p0 2026-10-04T14:14:42+09:00
+[POINT START] q1_track_ang_vel_z_exp_p1p0 2026-10-04T14:14:42+09:00
+[POINT] q1_track_ang_vel_z_exp_p1p0 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] q1_track_ang_vel_z_exp_p1p0 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] q1_track_ang_vel_z_exp_p1p0 rc=0 2026-10-04T16:46:01+09:00
+[BATCH POINT] q2_ang_vel_xy_l2_m0p06 2026-10-04T16:46:01+09:00
+[POINT START] q2_ang_vel_xy_l2_m0p06 2026-10-04T16:46:01+09:00
+[POINT] q2_ang_vel_xy_l2_m0p06 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] q2_ang_vel_xy_l2_m0p06 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] q2_ang_vel_xy_l2_m0p06 rc=0 2026-10-04T19:21:36+09:00
+[BATCH POINT] p5_dof_acc_l2_m1p25e_7 2026-10-04T19:21:36+09:00
+[POINT START] p5_dof_acc_l2_m1p25e_7 2026-10-04T19:21:36+09:00
+[POINT] p5_dof_acc_l2_m1p25e_7 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] p5_dof_acc_l2_m1p25e_7 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] p5_dof_acc_l2_m1p25e_7 rc=0 2026-10-04T22:02:54+09:00
+[BATCH POINT] p6_dof_acc_l2_m6p25e_8 2026-10-04T22:02:54+09:00
+[POINT START] p6_dof_acc_l2_m6p25e_8 2026-10-04T22:02:54+09:00
+[POINT] p6_dof_acc_l2_m6p25e_8 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] p6_dof_acc_l2_m6p25e_8 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] p6_dof_acc_l2_m6p25e_8 rc=0 2026-10-05T01:09:29+09:00
+[BATCH POINT] p4_dof_torques_l2_m5e_5 2026-10-05T01:09:29+09:00
+[POINT START] p4_dof_torques_l2_m5e_5 2026-10-05T01:09:29+09:00
+[POINT] p4_dof_torques_l2_m5e_5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] p4_dof_torques_l2_m5e_5 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] p4_dof_torques_l2_m5e_5 rc=0 2026-10-05T03:42:26+09:00
+[BATCH END] 2026-10-05T03:42:26+09:00 worst_rc=0

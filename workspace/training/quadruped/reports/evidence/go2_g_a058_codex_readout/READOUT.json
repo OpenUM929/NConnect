@@ -1,0 +1,58 @@
+{
+  "scope": "published exploratory thresholds; not artifact verification or adoption",
+  "rules_source": "G-A058 v1 READOUT / GO2_OTHER_PC_SEQUENCE_PROPOSAL_20260930.md",
+  "rows": {
+    "a048_seed42": {
+      "row": "a048_seed42",
+      "run_state": "COMPLETE",
+      "climb15": 6,
+      "yaw_right": 0,
+      "reason": "FULL / FULL_69_COMPLETE",
+      "per_seed": {
+        "climb15": [
+          2,
+          2,
+          2
+        ],
+        "yaw_right": [
+          0,
+          0,
+          0
+        ]
+      },
+      "individual": "REFERENCE_ONLY",
+      "yaw_defect": "PROTECTED",
+      "adoption": "NOT_JUDGED_LOCAL_EXPLORATORY"
+    },
+    "a043_seed43": {
+      "row": "a043_seed43",
+      "run_state": "COMPLETE",
+      "climb15": 0,
+      "yaw_right": 0,
+      "reason": "FULL / FULL_69_COMPLETE",
+      "per_seed": {
+        "climb15": [
+          0,
+          0,
+          0
+        ],
+        "yaw_right": [
+          0,
+          0,
+          0
+        ]
+      },
+      "individual": "NOT_JOINT_CANDIDATE",
+      "yaw_defect": "PROTECTED",
+      "adoption": "NOT_JUDGED_LOCAL_EXPLORATORY"
+    },
+    "a043_seed44": {
+      "row": "a043_seed44",
+      "run_state": "NOT_RECOVERED",
+      "climb15": null,
+      "yaw_right": null
+    }
+  },
+  "setting_reproducibility": "NOT_YET",
+  "next": "Verify newly received A043 seed43/44 artifacts, then rerun; keep G-A057 prereg and local comparison separate."
+}

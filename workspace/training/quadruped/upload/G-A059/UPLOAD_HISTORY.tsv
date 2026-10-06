@@ -1,0 +1,2 @@
+published_at_utc	experiment_id	release_id	status	engine_file	engine_sha256	spec_file	spec_sha256	note
+2026-10-01T00:00:00+00:00	G-A059	20261001_a043_stairs_diag_replay_v1	ARTIFACT_VERIFIED	GO2_G_A059_a043_stairs_diag_replay_v1.zip	feb588fc797197c40e37039906eee71de606d7a86919446fad8c9106707c43d9	experiment.json(in ZIP)		A043 stairs diagnostic replay, no training

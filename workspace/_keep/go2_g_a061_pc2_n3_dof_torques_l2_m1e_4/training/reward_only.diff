@@ -1,0 +1,13 @@
+--- /workspace/go2_g_a061_pc2_work/n3_dof_torques_l2_m1e_4/reference/baseline_quadruped_rewards.py	2026-10-04 00:00:00.000000000 +0900
++++ quadruped_rewards.py	2026-10-04 00:00:00.000000000 +0900
+@@ -91,6 +91,10 @@
+     #   (flat_orientation_l2 은 위 ⑥ 으로 승격했다 — 중복을 피해 여기서는 지웠다)
+     # "undesired_contacts":  -1.0,  # 배/무릎 닿음 패널티 (Go2 기본값엔 미정의일 수 있음 → skip 경고 가능)
+     # "termination_penalty": -200.0,# 넘어짐 벌점 (있으면 적용, 없으면 경고 후 skip)
++
++    # [dof_torques_l2] 배포 목록에 없던 env 보상 항 — Isaac Lab Go2 rough 기본값에서 바꾼다.
++    #   이름이 env 의 RewTerm 이면 go2_task/env_cfg.py 가 그대로 적용한다.
++    "dof_torques_l2": -0.0001,
+ }
+ 
+ # ══════════════════════════════════════════════════════════════════════

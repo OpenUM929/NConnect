@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A063",
+ "device": "PC2",
+ "run_key": "s10_ang_vel_xy_l2_m0p15",
+ "design": "workspace/training/quadruped/upload/plan/GO2_PC2_STAIRS_RANGE_SWEEP_20261004.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "P0",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.2,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/server_returns/G-A060/extracted/go2_g_a060_pc2_a048_seed42"
+ },
+ "single_change": {
+  "name": "ang_vel_xy_l2",
+  "from": -0.05,
+  "to": -0.15
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.2,
+  "lin_vel_z_l2": -1.25,
+  "ang_vel_xy_l2": -0.15,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "이력 예외: P0 기준 범위 스윕 재측정(사용자 지시 2026-10-04: 기준 고정·한 항씩 배포 최소~최대); 이력 ['GO2_REWARD_EVIDENCE_MASTER.md: | G-A016 | ang_vel_xy −.05→−.15 | Pilot-01 | v2/v2 | ✓ | ✓ | −45.12 | G-D77 기각 |', 'GO2_REWARD_EVIDENCE_MASTER.md: | G-A024 | ang_vel_xy −.08→−.15 | Default-01 | v1/v2 | ✗ | ✗ | −17.13 | G-D116 철회 |']",
+ "note": "범위 중간.",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}

@@ -1,0 +1,23 @@
+arm case falls | terminated | height_only_no_term (of which upright later) | tilt_or_both_no_term
+A033 stairs_10_down 34 | 6 | 27 (12) | 1
+A033 stairs_15_down 90 | 1 | 88 (27) | 1
+A038 stairs_10_down 96 | 1 | 88 (55) | 7
+A041 stairs_10_down 93 | 7 | 86 (18) | 0
+A042 stairs_10_down 85 | 8 | 77 (4) | 0
+A042 stairs_15_down 94 | 7 | 87 (6) | 0
+A043 stairs_10_down 17 | 0 | 7 (6) | 10
+A043 stairs_15_down 49 | 19 | 28 (18) | 2
+A044 stairs_10_down 65 | 0 | 65 (55) | 0
+A044 stairs_15_down 95 | 54 | 41 (35) | 0
+A047 stairs_10_down 1 | 0 | 1 (0) | 0
+A047 stairs_15_down 8 | 1 | 7 (5) | 0
+A048 stairs_10_down 30 | 3 | 27 (21) | 0
+A048 stairs_15_down 93 | 18 | 75 (21) | 0
+A049 stairs_10_down 32 | 2 | 30 (0) | 0
+A049 stairs_15_down 96 | 17 | 77 (2) | 2
+A050 stairs_10_down 87 | 0 | 87 (25) | 0
+A050 stairs_15_down 96 | 2 | 94 (4) | 0
+A055 stairs_10_down 93 | 2 | 86 (10) | 5
+A055 stairs_15_down 96 | 2 | 94 (5) | 0
+PC_A048 stairs_10_down 18 | 0 | 18 (2) | 0
+PC_A048 stairs_15_down 74 | 16 | 57 (13) | 1

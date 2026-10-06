@@ -1,5 +1,99 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A060-PC2-RECOVERY-20261003 — Windows 평가 연결·체인 복구
+- 15:28 정정/복구: B1 69-case·sentinel 뒤 첫 영상에서 Vulkan RTX 초기화 access violation 발생. 단일 GPU만 끄는 smoke 성공은 Intel compatibility fallback이라 해결 근거가 아니었고 NVIDIA 선택 시 재현됐다. PC2 영상 자식에만 Direct3D12(`app.vulkan=false`) + multiGpu 비활성 + Kit GPU1(RTX5070)을 적용하자 실제 MP4 생성/exit0 확인. 드라이버 자체 결함이나 다운그레이드 필요성은 확정하지 않는다.
+- 로컬 런처 `tools/pc2_video_python_launcher.py`, `tools/go2_pc2_python.bat` 사용. 외부 `C:/workspace/IsaacLab/_isaac_sim/python.bat` 연결, 원본 `.before_single_gpu` 보존. 배포 학습 코드·고정 runner·ZIP 변경 없음. GPU1은 PC2 Kit 순서이며 CUDA 번호와 다름; 하드웨어 변경 시 재검증 필요.
+- 15:25:43 체인 1회 재개(PID24112), 로그 `C:/workspace/_keep/go2_g_a060_pc2_points/logs/a048_seed42_20261003-152543.log`. 15:28 candidate G2 좌/우회전 영상 2편 생성 및 H264/1920×1080/50fps/9.98초/첫 프레임 디코딩 확인. 나머지 영상·B1 패키징·점2/점3 완료는 아직 미확인. 성능 판정 아님.
+- 검증: 런처 회귀 4건 + 체인 회귀 5건, bash -n, Python compile, git diff --check 완료. 진단 로그 `workspace/_keep/pc2_video_d3d_gpu1.log` exit0. 기존 performance 패치는 runner checksum 복원으로 제거됐으므로 실제 성능모드 실패 실험으로 인용하지 않는다.
+- 상태: RUNNING. 사용자 요청: 멈추는 평가 스크립트 복구 후 기존 세 점 순차 실행.
+- 배포 play.py/train.py·고정 러너·발행 ZIP 불변. PC2 pip 설치에 누락된 `IsaacLab/_isaac_sim/python.bat` 연결 추가: 기존 자식 분기의 checkpoint 전달·telemetry 설치를 그대로 사용.
+- 외부 체인의 전체 600초 timeout·명령줄 패턴 일괄 종료 제거. B1 정상 수집 후 점2, 원 인계대로 점2 실패 시에도 점3 진행. 최종 오류 exit code 보존.
+- 기존 G-A060 학습·report·영상 10편·69 case 회수 요건 유지. 기존 학습 재실행 대신 runner resume 사용. 코드 회귀 테스트 5건 통과, 실제 평가 검증 진행 중.
+- 10:51:30 체인 재개(PID 25752). 첫 G1 forward_nominal seed101: EVAL_RC=0, 1000 steps/32000 rows, summary completed=true. PHASE 3/6 전체 69-case 진입 및 forward_slow 시작 확인. 실제 로딩 exported/model_best.pt SHA=0fbd3e9d7e5687b05b19eaefafaa5a9bb757a81e6f78219e78604f5f10088d75, iter900 핀과 일치. 점2 전환은 아직 미실측. 로그: workspace/_keep/go2_g_a060_pc2_recovery_20261003-105130.log 및 C:/workspace/_keep/go2_g_a060_pc2_points/logs/a048_seed42_20261003-105131.log.
+
+## ISAAC-PC2-PERF-20261003 — RTX 5070 실행 속도 진단·가역적 수정
+- 상태: PLANNED → RUNNING. 사용자 요청: RTX 3050과 유사한 Isaac 실행 속도의 원인 확인 및 수정.
+- 범위: PC2 실행 설정·프로세스·GPU/CPU 계측·학습 로그 시간만 확인. 보상·학습 코드·4096 env·seed·iteration·기존 패키지는 변경하지 않는다. 실행 중 학습을 중단하지 않는다.
+- 확인 대상: `C:/workspace/_keep/go2_g_a060_pc2_a048_seed42/logs/candidate_training.log`, Python PID 22380. 신규 학습·다운로드·병합 없음. 성능 수정은 가역적 OS 프로세스 설정으로 한정하고 전후 collection/learning 시간을 비교한다.
+- 영상 판정: 이 진단 자체는 VIDEO_NOT_REQUIRED(정책·evaluator 변경 없음). 기존 G-A060 영상 10편·report 회수 의무는 유지한다. 행동 성능·서버 종료 가능 판정은 하지 않는다.
+- 08:19 KST 로컬 진단·현재 세션 속도 복구 검증 완료(신규 artifact 회수·병합 lifecycle 비해당). GPU 엔진 3초 표본에서 PID 21840(cmd.exe)이 82.3%, Isaac PID 22380이 19.9%였다. 관리자 조회에서 PID 21840의 `--algo progpowz`/채굴 풀 접속, PID 5780의 `-a rx/0`/채굴 접속을 확인했다. 디스크상의 cmd.exe·svchost.exe는 Microsoft 서명 유효이며 삭제하지 않았다. 서명은 프로세스 메모리의 무결성을 보장하는 근거로 쓰지 않는다.
+- 조치: PID·생성시각·경로·부모·채굴 명령·Windows 서비스 비해당을 확인한 뒤 전용 부모 PID 2588과 채굴 PID 5780/21840을 suspend. 세 PID 모두 stopped 확인. Isaac PID 22380은 중단·재시작·설정 변경 없음. CPU·GPU 채굴을 함께 정지했으므로 각각의 기여율은 분리하지 않는다.
+- 검증: 직전 9회(iter 952~960) 반복시간 중앙값 29.08초 → 조치 후 9회(iter 962~970) 4.70초, 약 6.19배. 전환 iter 961 제외. 같은 실행 내 비교이며 RTX 3050과 통제된 장비 성능 비교가 아니다. 구간 뒤에도 학습 계속 진행 확인.
+- 증거: `.omx/diagnostics/isaac-pc2-perf-20261003/{gpu-owner.json,containment.json,timing.json}`. 도구 `tools/inspect_isaac_gpu_owner.ps1`, `tools/contain_isaac_gpu_miners.py`; 안전성 mock 테스트 `tools/test_contain_isaac_gpu_miners.py` 5건 통과, Python/PowerShell 구문 및 diff 검사 완료. 기존 학습 코드·발행 ZIP 불변.
+- 잔여 위험: 현재 세션에서만 일시정지한 것이며 감염 경로·자동 실행·재부팅 후 재발 방지는 미확인. InstallUtil PID 11776은 원인 미확정으로 변경하지 않았다. 영구 제거 완료 또는 시스템 안전 판정을 하지 않는다. 후속 보안 정리는 이 기록과 원본 증거를 보존하고 별도 범위를 정해야 한다.
+
+## G-A062 — PC2 60점 목표 일괄 실행 6점 (2026-10-04, 사용자 지시)
+- 상태: PLANNED(발행, 실행 전). 패키지 `workspace/training/quadruped/upload/G-A062/current/GO2_G_A062_PC2_BATCH60_v1.zip` SHA256 `33a629abf15dbc44b027718ac3b7ec9c050a8ebfd1a2c71e2889ca8294f56f7e` (80 files, sha256sum -c·내부 SUMS·bash -n OK). 빌더 `tools/build_go2_pc2_batch_package.py`, 테스트 78 OK.
+- 점(순서): q0 lin_vel_z −1.5(A043 재현, Q 부모) → q1 track_ang_vel_z_exp 1.0 → q2 ang_vel_xy −0.06 → p5 dof_acc −1.25e−7 → p6 dof_acc −6.25e−8 → p4 dof_torques −5e−5. 설계 `upload/plan/GO2_PC2_BATCH_60_STRATEGY_20261004.md`, 인계 `HANDOFF_G_A062_PC2.md`. lin_vel_z −1.5 포함은 사용자 승인(2026-10-04).
+- G-A061 N5 단독 ZIP은 p5와 같은 보상이므로 실행하지 않는다(트리 순서는 이 일괄 실행으로 대체).
+- 영상 판정: 필수(점마다 10편). 회수: 점마다 `go2_g_a062_pc2_<key>/`, `GO2_G_A062_PC2_<KEY>_RESULT.zip`+`.sha256`, `go2_g_a062_pc2_points/`. report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
+
+## G-A061 — PC2 트랙 고정 탐색트리, 첫 노드 N3 발행 (2026-10-04)
+- 2026-10-04 08:30 **N3 ANALYZED**: RUNNER rc 0·FULL_69_COMPLETE·영상 10·REPORT_ACQUIRED, 결과 ZIP 4 parts 재조립 SHA 일치(`798e4a0`), 내부 SHA256SUMS OK, env `dof_torques_l2` −0.0001 확인. 압축 해제 `workspace/server_returns/G-A061/extracted/`(gitignore). 판독 **TRADEOFF**(험지 옆걸음 낙상 41→19 공통 개선, 15cm ≥1단 52→0·10cm ≥2단 85→69 공통 손실). 분석 `workspace/training/quadruped/reports/GO2_G_A061_N3_ANALYSIS_20261004.md`. VIDEO_UNKNOWN, 내부 판독만. GPU 감시 기록은 G-A060 패턴으로 떠서 무효(감시 도구 수정·테스트 추가).
+- 2026-10-04 **N5 발행(PLANNED, 실행 전)**: 트리 `next` = RUN `n5_dof_acc_l2_m1p25e_7`(부모 P0). `upload/G-A061/current/GO2_G_A061_PC2_TREE_n5_dof_acc_l2_m1p25e_7_v1.zip` SHA256 `210d8364f9a69c69045100473f55321fc1b0682be804dd558e0037e59c6e551b`(39 files, sha256sum -c·내부 SUMS·bash -n OK). 회수 `go2_g_a061_pc2_n5_dof_acc_l2_m1p25e_7/`, `GO2_G_A061_PC2_N5_DOF_ACC_L2_M1P25E_7_RESULT.zip`+`.sha256`. 영상 필수.
+- 상태: PLANNED(발행, 실행 전). 패키지 `workspace/training/quadruped/upload/G-A061/current/GO2_G_A061_PC2_TREE_n3_dof_torques_l2_m1e_4_v1.zip` SHA256 `f9665bf3d39f32de7f296f862534f797c4f8029372dab81fe9a7a4224b6580c5` (39 files, sha256sum -c OK, 내부 SHA256SUMS 38줄 OK, run_point.sh LF·bash -n OK).
+- 설계 `upload/plan/GO2_TRACK_FIXED_SEARCH_TREE_20261003.md` §12·§13, Codex 계획 APPROVE §37·구현 APPROVE §41(협의 문서 `GO2_PC2_DENSE_SWEEP_PROPOSAL_20261002.md`). 빌더 `tools/build_go2_pc2_tree_package.py`, 판독·진행 `tools/go2_pc2_tree_readout.py`, 계약 테스트 51개 OK(skip 0, 이 PC bash 있음).
+- 변경: P0(PC2 B1, A048 보상·track 1.5) 위 `dof_torques_l2` −2e−4→−1e−4 한 항. 같은 항·값 시험 이력 없음(빌드 시 원장·_keep 검사). 트리 상태 `workspace/training/quadruped/reports/evidence/go2_pc2_tree_readout/TREE_STATE.json`.
+- 영상 판정: 필수(새 학습). 러너가 후보 영상 10편. 회수: `go2_g_a061_pc2_n3_dof_torques_l2_m1e_4/`, `GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip`+`.sha256`, `go2_g_a061_pc2_points/`, `go2_gpu_watch/`. report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED. 인계 `HANDOFF_G_A061_PC2.md`.
+- PC2 결과는 탐색용이며 제출 정책이 아니다(R-6·제14조). 실행은 사용자 결정.
+
+## G-A060 — PC2 단일 점 탐색, 오늘 밤 B1만 실행 준비 (2026-10-03, 사용자 지시)
+- 2026-10-03 22:35 **ANALYZED(판독 완료)**: 세 점 모두 RUNNER_RC=0·FULL_69_COMPLETE·영상 10·REPORT_ACQUIRED, 결과 ZIP SHA 일치(`42fcf78`, parts 재조립 확인). 압축 해제 `workspace/server_returns/G-A060/extracted/`(gitignore). 판독기(§25 APPROVE) 결과 `workspace/training/quadruped/reports/evidence/go2_pc2_point_readout/`: B1 험지 옆걸음 자세 낙상 13/16/12, 10cm ≥2단 26/30/29. ang −0.08 = TARGET_WORSENED(16/23/20, 10cm ≥2단 1/0/0). track 1.4 = TARGET_WORSENED(19/19/17, 10cm ≥2단 13/20/14). VIDEO_UNKNOWN(영상 미시청), 내부 판독만, 공식 결과 아님. 네 번째 점은 Codex가 정한다.
+- 상태: RUNNING(테스트중, 2026-10-03 사용자 PC2 실행 — 시작 세 점 B1 → ang −0.08 → track 1.4). 이전 상태 PLANNED. 패키지 `workspace/training/quadruped/upload/G-A060/current/GO2_G_A060_PC2_a048_points_v1.zip` SHA256 `a969c96a9f74d29664953e1a9c43655a328070eab176e1553257fdde722d47fd`(최대 목록 11점, 러너는 한 점만 돌고 멈춤). 실행 안내 `GO2_G_A060_B1_TONIGHT.txt`.
+- 범위: Codex 승인(협의 문서 §14) 안에서 기준선 B1(`a048_seed42`)만 실행. 첫 후보 ang −0.08은 B1 확인 뒤. 판독기는 Codex §19 재검토 대기 — 판독은 승인 뒤.
+- 영상 판정: 필수(새 학습). 러너가 후보 영상 10편을 찍는다. 회수: `go2_g_a060_pc2_a048_seed42/`, `GO2_G_A060_PC2_A048_SEED42_RESULT.zip`+`.sha256`, `go2_g_a060_pc2_points/`(PC2_ENV_RECORD 포함). report.html 누락은 REPORT_REQUIRED_NOT_ACQUIRED.
+- PC2 결과는 탐색용이며 제출 정책이 아니다(R-6·제14조).
+
+## G-A058-READOUT-READY-20261001 — Codex 후속 판독 준비
+- 보고서 §13-4와 작업 기록의 합의 반영 직접 확인. G-A058 판독 도구 `tools/go2_g_a058_readout.py` 및 경계·미회수·부분회수 테스트 5건 작성/통과. 기존 발행물·사전등록 변경 없음.
+- 현재 로컬 재판독: A048 seed42 COMPLETE(계단15 ≥2단 6, 우회전 판정 0), A043 seed43/44 NOT_RECOVERED. G-A057 track1.2 EXCLUDED_STATIONARY, 나머지 11행 NOT_RECOVERED. 이는 현재 저장소 도착 상태이며 다른 PC 실행 상태가 아니다.
+- 결과 `reports/evidence/go2_g_a058_codex_readout/READOUT.json`. 다음: 새 결과 위치 식별 → 해당 artifact 검증 → 같은 판독 도구 실행 → 기존 사전등록과 보조 분석을 분리 보고. 로컬 판독 도구는 파일 무결성 검사·전 축 채택 판단을 대체하지 않는다.
+
+## G-A059 — A043 계단 진단 재생 (2026-10-01, 학습 없음)
+- 상태: PLANNED. 패키지 발행(ARTIFACT_VERIFIED). **실행 보류(2026-10-01 사용자: 영상 확인 작업은 나중에).** 실행·회수 없음.
+- 목적: 15cm 계단 성공 상태 기준(발 들기 높이·앞 들기·디딤판 기준 몸높이)을 잘 오르는 정책(A043)에서 처음 잰다. 사용자 요청: 성공 사례 상태 조사가 없으면 이후 결과를 기준 중심으로 읽을 수 없다.
+- 패키지 `workspace/training/quadruped/upload/G-A059/current/GO2_G_A059_a043_stairs_diag_replay_v1.zip` SHA256 `feb588fc797197c40e37039906eee71de606d7a86919446fad8c9106707c43d9`, 계획 `workspace/training/quadruped/upload/plan/GO2_G_A059_A043_STAIRS_DIAG_PLAN_20261001.md`.
+- 실행 한 줄: `unzip -oq /workspace/GO2_G_A059_a043_stairs_diag_replay_v1.zip -d /workspace && bash /workspace/go2_g_a059/server_run_go2_a043_stairs_diag_replay.sh`. 결과 `/workspace/_keep/GO2_G_A059_RESULT.zip`(+`.sha256`), 완료 표식 `[DONE] GO2_G_A059_RESULT_READY`.
+- 영상 판정: 필수(4편, 15cm env 1·0·4·12). 학습 report: 비해당(학습 없음).
+- 종료 게이트: `python -B tools/verify_go2_g_a059_harvest.py <ZIP>` 0 = 종료 가능, 3 = 예외 결정, 1 = 종료 금지. 판독 `tools/go2_g_a059_stairs_foot_readout.py`.
+- 로컬 검증: 빌더 `--check` REBUILD_IDENTICAL, 계약 테스트 `tools/test_go2_g_a059_diag_contract.py` 9건 통과(러너 bash -n·LF, 명령 = G-A043 seed 101 계단 명령, 계측 모듈 = G-A056 v2 바이트, 가짜 회수물 검증 0/3/1, 판독기 가짜·실자료 실행).
+- 발견: 작업 트리의 A043 `training/env.yaml`과 계측 모듈이 CRLF로 바뀌어 있다(git core.autocrlf). LF로 되돌리면 기록된 SHA와 같다. 빌더는 원본을 고치지 않고 읽을 때 LF로 되돌려 SHA·G-A056 바이트와 대조한다. G-A056 빌더 `--check`도 같은 이유로 실패할 수 있다(미확인).
+
+## GO2-HEIGHT-CROSSCASE-20261001 — 몸높이·험지·계단 비교
+- 2026-10-01 사용자 후속 요청: 계단·험지·우회전·밀침 상태별 최선 관측점/유망 구간과 보상 대응 정책을 Claude가 분석하도록 전달 계획 작성. `workspace/training/quadruped/upload/plan/GO2_STATE_OPTIMUM_ANALYSIS_HANDOFF_20261001.md`. .24m/.31m는 검증할 후보점이며 최적값 확정 아님. 직접 Claude 실행·서버 실행 없음.
+- 상태: PLANNED → RUNNING. 기존 회수 steps.csv·summary만 읽어 동일 정의의 비교 CSV를 생성한다. 서버 실행·원자료 수정·병합 없음.
+- 목적: 높이와 성능의 연관 및 반례 확인. 인과효과·최적 높이·새 보상값은 판정하지 않는다.
+- 로컬 분석 완료: 49개 설정×case 집계, 4,704개 env 기록. 높이 산술·표본 수·중복·문법 검증 및 diff 검사 완료. 보고 `workspace/training/quadruped/reports/GO2_HEIGHT_CROSSCASE_20261001.md`. 회수·병합 상태 전이 없음. 영상 미판독, 신규 실행 없음.
+- 2026-10-01 Claude 확장(계획서 §4~§6): 같은 보고서 §5~§11(표 A~E·튜닝 정책 연결). 도구 `tools/go2_state_outcome.py`, 테스트 `tools/test_go2_state_outcome_contract.py` 7건 통과, 증거 `workspace/training/quadruped/reports/evidence/go2_state_outcome_20261001/`. 13 정책×10 case, 339 arm×case×seed 낙상 수 summary와 전부 일치, 기존 초기 높이·≥2단 4,704건 차이 0, 밀침 16,533건(미검출 20). 원자료·기존 증거 불변, 서버 실행·패키지 발행·번호 예약 없음. 결론: .24 수정(서버 A048 한정 0.24~0.28), .31 기각, 새 보상값 선택 없음, 정책 B 후보 track 1.4 근거 약화(G-A057 행은 그대로).
+- 2026-10-01 Codex 지적 정정 두 건(같은 보고서 §12): 도구 `tools/go2_state_order_sink_check.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_order_sink_20261001/`, 테스트 8건 통과. (1) 계단 ≥2단↔낙상 순서: A048 15cm 24 = 무낙상 3·오른 뒤 낙상 12·오르기 전 높이 채널 판정 9(이전 '21대가 오른 뒤 낙상' 철회). 계단 낙상 대부분이 높이 채널만(스캐너 편향 혼입 가능, [모름]). (2) '가라앉음'→'자기 중앙값보다 낮게 섬'으로 정정, 1~3초 하강 추세는 일관 표지 아님. 선택 결론 불변.
+- 2026-10-01 Codex 지적 반영(같은 보고서 §13): 판정 채널 분리 도구 `tools/go2_state_channel_split.py`, 증거 `workspace/training/quadruped/reports/evidence/go2_state_channel_split_20261001/`, 테스트 9건 통과. 험지 옆걸음 판정은 대부분 몸통 접촉 종료라 '자기 중앙값보다 낮게 섬' 연관은 높이 문턱과 무관하게 유지(서버 A048은 높이만 5건 제외 시 6 대 2). 계단 판정은 대부분 높이만(A048 15cm 93 = 종료 18·높이만 75) → 계단 '낙상' 수를 보상으로 줄이려 하지 않고 ≥2단·종료·높이만을 따로 읽는다. '낙상' 표현은 '내부 자세 게이트 판정'으로 정정. 사전등록·평가기 불변.
+- 2026-10-01 Codex 재검토 반영: union_only를 높이 문턱 없는 판정에서 제외(해당 A043 험지 옆 1대, 비교 수치 불변), 그룹 합·채널 합 54개 정책·case 일치. 험지 수준 연관은 서버 A048·A050·PC A048에 한정(A043·A047 반대). 높이 분석은 여기서 닫고 G-A057 판독 기준으로 쓴다. 계단 결론 정정: '새 계단 보상값 미선정, 기존 근거 검토 유지, G-A057에서 개선·부작용 대조'(제약 재개방을 선행조건으로 두지 않음, 종료 감소는 필수조건 아님 — §13-4).
+
+## G-A058-ROW2 — 실행 PC(RTX 3050) A043 seed 43 회수·판독 (2026-10-02)
+- 상태: RECEIVED → VERIFIED → ANALYZED → REPORTED. MERGED 없음(NO_CANONICAL_MERGE): 회수물은 `workspace/_keep/go2_g_a058_a043_seed43/`에 둔다.
+- `GO2_G_A058_A043_SEED43_RESULT.zip` `ca497aa6beb92df5dd045a16afaea1ff2b3497da75da0b39da680d85a279ac7d` — 분할본 4개 복원, 외부 SHA·내부 SHA 536/536 일치.
+- FULL_69_COMPLETE, RUNNER_RC=0, REPORT_READ_STATUS=READ_MATCHED, 영상 10(VIDEO_UNKNOWN), 평가 iter 900 SHA `783927889415…`.
+- 판독: NOT_JOINT_CANDIDATE(15cm 0/96), 우회전 PROTECTED(0/96), 설정 재현성 NOT_YET(REPRODUCED 불가). 41.892/70.
+- 보고: `workspace/training/quadruped/reports/GO2_G_A058_ROW2_A043_SEED43_READOUT_20261002.md`
+- 도구·테스트: `tools/go2_g_a058_row2_check.py`, `tools/test_go2_g_a058_row2_check.py`
+
+## G-A058-ROW1 / G-A057-P1P2 — 실행 PC(RTX 3050) 결과 회수·판독 (2026-10-01)
+- 상태: RECEIVED → VERIFIED → ANALYZED → REPORTED. MERGED 없음(NO_CANONICAL_MERGE): 회수물은 `workspace/_keep/`에 그대로 둔다.
+- 결과 ZIP 두 개를 git 분할본에서 복원했고 외부 SHA·CRC·내부 SHA 536/536이 일치한다.
+  - `GO2_G_A058_A048_SEED42_RESULT.zip` `6cd57a7a1d2f78c3dc6661dbcf38aedbd8f9becc971ae4fd7fce1d036b498250`
+  - `GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip` `83da374eb0c80effec3a4f2626f6c1d85ae629ceab05b4549559eaf3bd66c3e3`
+- 두 결과 모두 FULL_69_COMPLETE, REPORT_READ_STATUS=READ_MATCHED, 영상 10/10(VIDEO_UNKNOWN, 임시 화살표).
+- 판독: track 1.2 = EXCLUDED_STATIONARY. 이 PC A048 s42 = 43.397/70(서버 50.157). 행 1 사전등록 신호(정지)는 미발생.
+- 보고: `workspace/training/quadruped/reports/GO2_G_A058_ROW1_A057_P1P2_READOUT_20261001.md`
+- 도구: `tools/go2_g_a058_row1_check.py`
+
+## STORAGE-CLEANUP-20260930 — 로컬 저장 공간 정리(영상·중복 사본·.git)
+- 상태: PLANNED → RUNNING. 사용자 승인: 계획 A+B+C+D 전체(2026-09-30). 계획·결과 `STORAGE_CLEANUP_PLAN_20260930.md`.
+- 삭제: untracked 102개·0.94 GB. 구성은 `server_returns` 중복 ZIP 2개와 영상 100개(ZIP에 같은 CRC로 존재하는 Go2 영상, H1 `exported` 중복분)다. 행별 기록은 `STORAGE_CLEANUP_RESULT_20260930.tsv`에 있다.
+- 보존: git 추적 파일, 결과 ZIP 원본, 도구가 참조하는 해제 폴더, G-A052·G-A056·G-A057·G-A058 자료. 추적 파일 삭제 0건.
+- `.git`: reflog expire·gc 완료, 12.3 GB → 3.5 GB.
+- 후속(사용자 지시 1·2항): 브랜치 `chore/storage-cleanup-20260930` 커밋 `784663b`에서 추적 중복 3.51 GB와 종료 run 해제 파일 2.80 GB(ZIP과 CRC 일치분만)를 삭제했다. 추적 파일 2,837개다. 프로젝트 37.4 → 21.9 GB. 상태: REPORTED. 상세는 계획서 §5에 있다.
+
 ## GO2-EXTERNAL-FIRST-STUDY-20260930 — C1 정정 추가 기록
 - 기존 작업의 로컬 문서 정정: C1 우선 선정 철회, 연구 정본 §11 및 Go2 상태·일정 원장 동기화. 이전 선정 완료 문구는 정정 전 이력이다.
 - 근거: 기존 원인 기록·9월 29일 체공 판독·G-A057 사전등록 대조. 새 실험 결과가 아니다. 신규 최적값 선정은 미완료다.
@@ -430,6 +524,68 @@ GitHub는 파일당 100MB 하드 제한이 있어 100MB를 넘는 archive는 통
 
 > 분할 대상은 archive뿐이다. 추출된 CSV·로그는 `.gitignore`로 두고 커밋하지 않는다
 > (`workspace/_keep/go2_g_a058_sweep/logs/`처럼 작은 로그만 등재하는 기존 관례를 따른다).
+
+**2026-10-03 추가 분할 — parts + sha256 일치 확인 후 등재.**
+
+| archive | 원 크기 | parts | sha256 |
+|---|---:|---|---|
+| `GO2_CHAIN01_BASELINE_RESULT.zip` | 242.04 MB | `.001`~`.003` (95/95/52.04 MB) | `11b4bfe4…7a42f46` 일치 |
+| `GO2_G_A028_RESULT.zip` | 104.33 MB | `.001`~`.002` (95/9.33 MB) | `6e4a807b…94ed1e` 일치 |
+
+- 두 archive 모두 parts를 이어 붙인 임시 파일의 sha256이 기존 `.sha256` 매니페스트와 일치한 뒤에
+  parts만 커밋했다(§6-a 4단계 재구축과 동일한 판정). 원본 zip은 `.gitignore`에 추가했다.
+- `workspace/server_returns/G-A028/received/GO2_G_A028_RESULT.zip`은 `_keep` 원본과 sha256이
+  동일한 104.3 MB 사본이다. `_keep` 정본이 parts로 등재되므로 이 사본은 push하지 않고
+  `.gitignore`에 추가했다. `received/GO2_G_A028_RESULT.zip.sha256` 매니페스트는 그대로 커밋하며
+  파일 경로도 이미 `/workspace/_keep/`를 가리킨다. 사용자 결정(2026-10-03): `_keep`만 분할.
+- 두 base를 `workspace/_keep/reconstruct_zips.sh`의 `for base in` 목록에 등록했다.
+
+### 6-a-2. G-A060 PC2 세 점 결과 parts 등재 (2026-10-03)
+
+사용자 지적("세 점 결과가 원격에 없다고 함")을 확인했다. 세 archive는 PC2의
+`C:\workspace\_keep\`에만 있었고 저장소 `workspace/_keep/`로 복사된 적이 없었다.
+
+| 회차 지점 | archive | 크기 | parts | sha256 |
+|---|---|---:|---:|---|
+| B1 기준선 | `GO2_G_A060_PC2_A048_SEED42_RESULT.zip` | 431.3 MB | `.001`~`.005` | `5e8619d2…f725780d` 일치 |
+| 점2 `ang_vel_xy_l2 −0.08` | `GO2_G_A060_PC2_ANG_VEL_XY_L2_M0P08_RESULT.zip` | 296.0 MB | `.001`~`.004` | `269abcfd…5273e29c` 일치 |
+| 점3 `track_lin_vel_xy exp 1.4` | `GO2_G_A060_PC2_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip` | 297.2 MB | `.001`~`.004` | `c3071c8b…f0323d2` 일치 |
+
+- lifecycle: `RECEIVED → VERIFIED → MERGED → REPORTED`. 격리 위치
+  `workspace/server_returns/G-A060/received/`에 먼저 복사해 sha256을 대조한 뒤
+  `workspace/_keep/`로 선택 병합했다. PC2 원본 3개는 삭제하지 않고 그대로 뒀다.
+  검증 기록은 `workspace/server_returns/G-A060/received/STATUS.txt`.
+- parts 13개는 이어 붙인 sha256이 위 매니페스트와 일치한 뒤에 커밋했다(§6-a 4단계와 동일한 판정).
+  원본 zip은 `_keep`과 `server_returns` 양쪽 모두 `.gitignore`에 추가했다. 세 base를
+  `reconstruct_zips.sh`에 등록했다. push 전량 약 1.02 GB.
+- **이 기록이 확인하지 않는 것.** archive sha256 일치는 파일 무결성(ARTIFACT_VERIFIED)일 뿐이다.
+  세 점의 행동·생존·추종, G1~G7 시나리오 점수, `report.html` 대응, 영상 판독은 이 작업에서
+  측정하지 않았다. `VIDEO_OBSERVED`·`OFFICIAL_RESULT`는 여전히 미확정이다. 결과 판독은
+  `GO2_REWARD_EVIDENCE_MASTER.md` §19 절차와 사용자 승인 뒤에 수행한다.
+
+## 6-b. archive 무결성 결함 — `GO2_LIN_VEL_Z_M2_RESULT.zip` 잘림 (2026-10-03 발견·복구)
+
+- **관측.** git에 커밋된 `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip`의 크기는 37,227,124 B이고
+  sha256은 `e154734e…4cb4cde`였다. 같은 이름의 `.sha256` 매니페스트가 요구하는 값은
+  `0c404c98…6e93833`(43,585,148 B)였다. **커밋된 사본이 자기 매니페스트와 불일치한다.**
+  `git cat-file -s HEAD:…`도 37,227,124 B로 같은 값이므로 커밋 시점에 이미 잘려 있었다.
+- **근위(확정).** `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip.local_backup`(43,585,148 B)의
+  sha256이 `0c404c98…6e93833`으로 **매니페스트와 일치**했다. 따라서 잘린 쪽은 사본이며
+  매니페스트가 옳다. 어느 원본이 잘렸는지·어느 시점에 잘렸는지는 이 기록으로 확정하지 않는다.
+- **조치.** 매니페스트와 일치하는 `.local_backup`을 `GO2_LIN_VEL_Z_M2_RESULT.zip`으로 복구해
+  커밋했다(사용자 결정 2026-10-03: 재커밋·push). 복구 후 크기 43,585,148 B·sha256 일치 확인.
+  `.local_backup`은 `.gitignore`에 추가했다.
+- **한계.** git 히스토리의 잘린 blob은 남아 있다. 되돌리기로 지우지 않았다. 과거 커밋을 참조하는
+  재구축·대조는 잘린 사본을 받을 수 있으므로 이 archive를 인용할 때는 매니페스트
+  `0c404c98…6e93833`을 기준으로 확인할 것.
+- **동일 점검 결과.** `_keep`의 매니페스트를 가진 tracked archive 전수와 이번에 추가하는
+  untracked archive 8개를 대조했다. 위 1건 외 불일치는 없다.
+  `go2_g_a025_flat_orientation_m1 (2).zip`은 tracked 사본과 sha256이 같은 재다운로드 중복본이라
+  push하지 않는다.
+- **문서 편집 주의.** 같은 날 이 파일의 ISAAC-PC2-PERF 블록을 다른 세션이 쓰는 중인 상태에서
+  PowerShell 문자열 경합으로 삽입했다가 한국어가 CP949 해석으로 깨졌다. `git show` 출력을
+  PowerShell 문자열로 받아쓸 때 인코딩이 CP949로 풀리므로, 이 문서 블록을 삽입·대조할 때는
+  git 바이트를 파일로 리디렉션한 뒤 UTF-8로 읽거나 편집 도구를 쓴다. 복구 후 대조 완료.
 
 ## 7. Run별 필수 회수 파일
 

@@ -1,0 +1,68 @@
+{
+  "warning": "Historical flawed-proxy sensitivity only; not performance forecast; all case factors hypothetically changed then worst-case recomputed",
+  "scenarios": [
+    {
+      "scenario": "G1",
+      "historical_points": 9.390734685596994,
+      "cap": 10.5,
+      "loss": 1.1092653144030056,
+      "tracking_plus_005_gain": 0.5250000000000004,
+      "tracking_perfect_gain": 1.1092653144030056,
+      "survival_perfect_gain": 0.0
+    },
+    {
+      "scenario": "G2",
+      "historical_points": 9.367386569434096,
+      "cap": 10.5,
+      "loss": 1.132613430565904,
+      "tracking_plus_005_gain": 0.5250000000000004,
+      "tracking_perfect_gain": 1.132613430565904,
+      "survival_perfect_gain": 0.0
+    },
+    {
+      "scenario": "G3",
+      "historical_points": 4.970144119356285,
+      "cap": 14.0,
+      "loss": 9.029855880643716,
+      "tracking_plus_005_gain": 0.3281250000000009,
+      "tracking_perfect_gain": 1.5923558806437148,
+      "survival_perfect_gain": 3.8245285283432304
+    },
+    {
+      "scenario": "G4",
+      "historical_points": 5.363070411358965,
+      "cap": 10.5,
+      "loss": 5.136929588641035,
+      "tracking_plus_005_gain": 0.3937499999999998,
+      "tracking_perfect_gain": 2.511929588641035,
+      "survival_perfect_gain": 1.7876901371196547
+    },
+    {
+      "scenario": "G5",
+      "historical_points": 0.0,
+      "cap": 10.5,
+      "loss": 10.5,
+      "tracking_plus_005_gain": 0.0,
+      "tracking_perfect_gain": 0.0,
+      "survival_perfect_gain": 1.2665398842973692
+    },
+    {
+      "scenario": "G6",
+      "historical_points": 6.100351807416515,
+      "cap": 7.0,
+      "loss": 0.8996481925834852,
+      "tracking_plus_005_gain": 0.24339819258348516,
+      "tracking_perfect_gain": 0.24339819258348516,
+      "survival_perfect_gain": 0.6310708766292947
+    },
+    {
+      "scenario": "G7",
+      "historical_points": 4.573261065432714,
+      "cap": 7.0,
+      "loss": 2.426738934567286,
+      "tracking_plus_005_gain": 0.31718750000000107,
+      "tracking_perfect_gain": 1.770488934567286,
+      "survival_perfect_gain": 0.02765834555322133
+    }
+  ]
+}

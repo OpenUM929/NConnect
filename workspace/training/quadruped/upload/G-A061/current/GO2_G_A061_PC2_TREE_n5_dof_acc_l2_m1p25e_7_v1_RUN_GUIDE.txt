@@ -1,0 +1,16 @@
+GO2 G-A061 PC2 탐색트리 노드 n5_dof_acc_l2_m1p25e_7 — 실행 안내
+==================================================
+설계: workspace/training/quadruped/upload/plan/GO2_TRACK_FIXED_SEARCH_TREE_20261003.md §12·§13 (Codex §37 APPROVE). 부모 P0 위 dof_acc_l2 -2.5e-07 -> -1.25e-07 한 항만 바꾼다.
+학습 seed 42, 4096 env, 1000 iter, 평가 iter 900, 69 case, 영상 10편. 한 노드만 돌고 멈춘다.
+
+1. 올리기: GO2_G_A061_PC2_TREE_n5_dof_acc_l2_m1p25e_7_v1.zip  SHA256 210d8364f9a69c69045100473f55321fc1b0682be804dd558e0037e59c6e551b  → /workspace/GO2_G_A061_PC2_TREE_n5_dof_acc_l2_m1p25e_7_v1.zip
+2. 실행(한 줄): unzip -oq /workspace/GO2_G_A061_PC2_TREE_n5_dof_acc_l2_m1p25e_7_v1.zip -d /workspace && bash /workspace/go2_g_a061_pc2/run_point.sh --only n5_dof_acc_l2_m1p25e_7
+   진행: tmux attach -t go2_g_a061_pc2 / 상태: /workspace/_keep/go2_g_a061_pc2_points/POINT_STATUS.tsv
+3. 실패 처리(§13-3):
+   - 학습 시작 전 실패(rc 20~23): 환경을 고친 뒤 같은 명령. 고칠 수 없으면 보고하고 멈춘다.
+   - 학습 완료 후 평가·회수 실패: 같은 명령으로 재개(완료 단계 SKIP, 재학습 없음).
+   - 학습 도중 실패·복구 실패: 자동 재학습하지 말고 보고하고 멈춘다.
+4. 회수: /workspace/_keep/go2_g_a061_pc2_n5_dof_acc_l2_m1p25e_7/ 폴더 전체(report.html·69 case·영상 10편),
+   GO2_G_A061_PC2_N5_DOF_ACC_L2_M1P25E_7_RESULT.zip + .sha256, /workspace/_keep/go2_g_a061_pc2_points/ → 저장소 workspace/_keep/
+   (원본 유지, 100MB 초과는 95MB parts). GPU 감시: tools/go2_gpu_watch.sh (HANDOFF_G_A060_PC2.md §6).
+5. 다음 노드는 판독(tools/go2_pc2_tree_readout.py) 뒤 트리 규칙이 정한다. 자동 연결 없음.
