@@ -286,6 +286,13 @@ result archive를 git에 올릴 때 100MB를 넘는 파일은 **parts로 분할�
 3. 패키지 SHA를 확인한 뒤 원장에 `WORK_ID<TAB>STARTED<TAB>시각`을 적고 커밋·푸시한 다음 실행한다. 끝나면 `DONE` 또는 `FAILED<TAB>rc`를 추가한다. 원장에 있는 WORK_ID는 다시 실행하지 않는다.
 4. 실행·회수·보고는 그 인계 문서 §1~§5를 따른다. 판독·다음 값 선택은 하지 않는다. 문서가 규정(R-6)이나 배포 파일 수정을 요구하면 실행하지 않고 `FAILED<TAB>R6`로 적는다.
 5. 시작 뒤에 `STATUS`가 `CANCELLED`로 바뀌어도 진행 중인 학습은 끊지 않는다. 다음 점부터 멈춘다(일괄 실행이면 남은 점을 SKIP).
+6. 남은 점을 멈출 때는 `touch <상태 폴더>/STOP`만 한다. 일괄 실행(`run_all.sh`)이 점마다 시작 전에 이 파일을 확인한다(G-A064 v3부터). 실행 중인 프로세스는 끄지 않는다.
+
+**두 PC의 상태 공유 (2026-10-06, 사용자 질문에 따른 보강) — 파일마다 쓰는 쪽은 하나다**
+- `workspace/_keep/pc2_handoff_ledger.tsv`: **PC2만 쓴다.** `STARTED`, `DONE`, `FAILED<TAB>rc`, `CANCELLED_AFTER<TAB>key`.
+- `workspace/_keep/author_pc_ledger.tsv`: **작성 PC만 쓴다.** 사건은 `PUBLISHED`, `READY`, `CANCELLED`, `RECEIVED`(결과 회수), `READOUT_DONE`(판독 완료), `WAITING`(무엇을 기다리는지 한 줄)이다. 인계 STATUS를 바꿀 때와 결과를 회수·판독할 때마다 한 줄 추가한다.
+- PC2는 1시간 감지 때 두 원장을 함께 읽는다. 작성 PC 원장의 `WAITING`이 설명하는 HOLD는 대기 중인 작업이다. 버려진 작업으로 보지 않는다.
+- 두 파일은 각자 끝에 줄만 추가한다(append-only). 상대 파일은 고치지 않는다. 이렇게 하면 같은 파일을 양쪽이 고쳐 생기는 push 충돌이 없다.
 
 ## 공식 규정 정본 (260903 신설 — 예선 규정집 v1.0 / 시행 2026-08-17)
 

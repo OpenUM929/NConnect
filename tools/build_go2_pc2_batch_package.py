@@ -129,6 +129,8 @@ echo "[BATCH START] $(date -Is)" | tee -a "$LOG"
 worst=0
 while read -r key _keep _zip; do
   [[ -z "${key:-}" ]] && continue
+  # 작성 PC가 남은 점을 멈추라고 하면(인계 STATUS CANCELLED) PC2가 이 파일을 만든다. 진행 중인 점은 끊지 않는다.
+  if [[ -e "$LOG_DIR/STOP" ]]; then echo "[BATCH STOP] STOP file present — $key and later points not started" | tee -a "$LOG"; exit 0; fi
   echo "[BATCH POINT] $key $(date -Is)" | tee -a "$LOG"
   bash "$ROOT_DIR/run_point.sh" --inner "$key"
   rc=$?

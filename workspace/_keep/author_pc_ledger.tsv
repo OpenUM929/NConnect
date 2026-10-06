@@ -1,0 +1,5 @@
+WORK_ID	EVENT	AT	NOTE
+G-A064	PUBLISHED	2026-10-06T15:58+09:00	v3 HOLD, START_AFTER G-A065; v1/v2 superseded never run
+G-A065	READY	2026-10-06T15:15+09:00	diag replay 5 policies x 12 runs, no training (pushed 281d914f)
+G-A063	READOUT_DONE	2026-10-06T15:20+09:00	14/14 read; summary reports/GO2_G_A063_SWEEP_SUMMARY_20261006.md
+G-A064	WAITING	2026-10-06T15:58+09:00	first point and READY decided after G-A065 readout (consult doc sections 25/28/29)

@@ -76,7 +76,7 @@ class G064(unittest.TestCase):
 
     def test_scripts_lf_bash_n_and_checksums(self):
         self.assertEqual([l.split()[0] for l in self.f["points.txt"].decode().splitlines()], [k for k, *_ in EXPECTED])
-        self.assertEqual(self.info["names"]["release"], "GO2_G_A064_PC2_S07_COMBO_v2")
+        self.assertEqual(self.info["names"]["release"], "GO2_G_A064_PC2_S07_COMBO_v3")
         z = zipfile.ZipFile(io.BytesIO(self.data))
         self.assertIsNone(z.testzip())
         self.assertTrue(all(n.startswith("go2_g_a064_pc2/") for n in z.namelist()))
@@ -96,6 +96,21 @@ class G064(unittest.TestCase):
         # report.html 회수는 공용 러너가 한다(G-A063 회수본마다 exported/report.html 존재로 확인).
         runner = self.f["shared/server_run_go2_candidate_iter_pinned.sh"].decode()
         self.assertIn("exported/report.html", runner)
+
+    @unittest.skipUnless(BASH, "bash required")
+    def test_stop_file_stops_before_next_point(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            zipfile.ZipFile(io.BytesIO(self.data)).extractall(tmp)
+            root = tmp / "go2_g_a064_pc2"
+            log_dir = tmp / "status"
+            log_dir.mkdir()
+            (log_dir / "STOP").write_text("stop")
+            env = {**os.environ, "GO2_BATCH_LOG_DIR": str(log_dir)}
+            r = subprocess.run([BASH, str(root / "run_all.sh")], env=env, capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("[BATCH STOP] STOP file present", r.stdout)
+            self.assertNotIn("[BATCH POINT] c1", r.stdout)
 
     def test_build_does_not_leak_into_g_a062_builder(self):
         self.assertEqual(bb.PROVISIONAL_WORK_ID, "G-A062")

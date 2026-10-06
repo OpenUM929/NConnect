@@ -5,7 +5,8 @@
 "action_rate는 사이 값 테스트가 필요할 것 같아" → −0.0075·−0.015, s13 판독을 기다리지 않고 둘 다 넣어 선택 단계를 없앤다),
 §15(사용자 승인: 계단 레버 중간값 lin_vel_z −0.875·ang_vel_xy −0.035 추가, 6점).
 v2(§26, 사용자 승인 2026-10-06): c4(action_rate −0.015) 제외 — s12(−0.02) 붕괴, c4 이득을 지지하는 관측 없음(Codex 3/3).
-진단 전 기본 순서 c1 → c2 → c3 → c6 → c5. G-A065 진단 결과로 순서가 바뀌면 v3로 다시 낸다.
+진단 전 기본 순서 c1 → c2 → c3 → c6 → c5.
+v3(2026-10-06): 점 목록·순서는 v2와 같다. run_all.sh가 점마다 시작 전 STOP 파일을 확인한다(최대 대기 목록의 정지 수단, 합의 §28). G-A065 결과로 순서가 바뀌면 v4로 낸다.
 G-A062 일괄 실행 빌더(tools/build_go2_pc2_batch_package.py)의 점 생성·run_all·run_point 를 그대로 쓰고 점 목록·부모만 바꾼다.
 
     python -B tools/build_go2_pc2_g_a064_package.py --check
@@ -51,7 +52,7 @@ def points() -> tuple:
 
 def names(work_id: str) -> dict[str, str]:
     n = batch.pkg.names(work_id)
-    n["release"] = f"GO2_{n['up']}_PC2_S07_COMBO_v2"
+    n["release"] = f"GO2_{n['up']}_PC2_S07_COMBO_v3"
     return n
 
 

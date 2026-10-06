@@ -3,10 +3,10 @@ WORK_ID: G-A064
 STATUS: HOLD
 START_AFTER: G-A065
 START_MARKER: /workspace/_keep/go2_g_a065_pc2_points/BATCH_RUN.log 에 [BATCH END]
-PACKAGE: workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v2.zip
-PACKAGE_SHA256: 7f7c66f7c0dbc50f29cf272eec9135151b8b6141e79d148a6cfad0435e112ef4
+PACKAGE: workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip
+PACKAGE_SHA256: 12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624
 -->
-# G-A064 인계 — PC2(RTX 5070) s07 부모 위 계단 레버 조합·중간값 5점 (v2) (PC2 Claude 세션용, 2026-10-06)
+# G-A064 인계 — PC2(RTX 5070) s07 부모 위 계단 레버 조합·중간값 5점 (v3) (PC2 Claude 세션용, 2026-10-06)
 
 PC2의 Claude는 이 문서를 처음부터 끝까지 읽고 §1 → §5 순서로 진행한다. 루트 `AGENTS.md`(R-1~R-7, 「PC2 작업 인계」 절)와 `GO2_NOW.md` 맨 위 줄을 함께 따른다.
 PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G-A060~G-A063 때와 같다(`HANDOFF_PC2_CONTINUOUS_MONITOR_20261003.md`, `workspace/_keep/go2_g_a060_pc2_run_chain.sh`).
@@ -14,9 +14,14 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
 **머리말 `STATUS: HOLD`인 동안은 시작하지 않는다.** 작성 PC가 `READY`로 바꾼 커밋을 받은 뒤에만 시작한다.
 
 ## 0. 한눈에
-- **설계·합의:** `workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md` §12~§15, §25·§26(v2: c4 제외, 순서 변경)
+- **설계·합의:** `workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md` §12~§15, §25·§26(v2: c4 제외, 순서 변경), §28(v3: 점마다 STOP 파일 확인)
 - **시작 조건:** G-A065 진단 재생이 끝난 뒤(`[BATCH END]`)에 시작한다. 두 작업을 동시에 돌리지 않는다.
-- **v2 순서는 진단 전 기본 순서다.** G-A065 결과로 순서가 바뀌면 작성 PC가 v3로 다시 내고 이 문서를 고친다.
+- **v3 순서(v2와 같음)는 진단 전 기본 순서다.** G-A065 결과로 순서가 바뀌면 작성 PC가 v4로 다시 내고 이 문서를 고친다.
+- **5점은 최대 대기 목록이다.** 작성 PC가 끝난 점부터 판독한다(합의 문서 §21·§25·§28).
+  - 남은 점을 멈춰야 하면 작성 PC가 머리말 `STATUS`를 `CANCELLED`로 바꿔 올린다. 멈추는 경우는 상태 A, 두 점 연속 '둘 다 실패', 순서 변경이다.
+  - PC2는 1시간 감지 때 `CANCELLED`를 보면 `touch /workspace/_keep/go2_g_a064_pc2_points/STOP`만 한다. **실행 중인 프로세스는 끄지 않는다.**
+  - `run_all.sh`는 점마다 시작 전에 이 파일을 확인한다. 진행 중인 점은 끝까지 학습·평가·회수하고, 다음 점부터 `[BATCH STOP] STOP file present`로 멈춘다. 끝난 점의 회수·커밋은 평소대로 한다.
+  - 원장에는 `G-A064<TAB>CANCELLED_AFTER<TAB><마지막으로 끝낸 key>`를 적는다.
 - **무엇을 하나:** 모든 점의 부모는 S07 = P0(PC2 A048, track 1.5) + feet_air_time 0.35(G-A063 s07)다. 점마다 보상 한 항만 바꾼다.
 - **실행 방식:** 5점을 명령 한 줄로 순서대로 돈다. 점당 약 2시간 25분, 합계 약 12시간 [추정].
   1. `c1_s07_ang_vel_xy_l2_m0p02` — ang_vel_xy −0.05 → −0.02
@@ -28,13 +33,13 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
 
 ## 1. 준비 확인
 1. `git pull`한 뒤 패키지를 확인한다.
-   - 경로: `workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v2.zip`
-   - SHA256: `7f7c66f7c0dbc50f29cf272eec9135151b8b6141e79d148a6cfad0435e112ef4`
-   - 확인: `cd workspace/training/quadruped/upload/G-A064/current && sha256sum -c GO2_G_A064_PC2_S07_COMBO_v2.zip.sha256`
+   - 경로: `workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip`
+   - SHA256: `12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624`
+   - 확인: `cd workspace/training/quadruped/upload/G-A064/current && sha256sum -c GO2_G_A064_PC2_S07_COMBO_v3.zip.sha256`
 2. G-A065가 끝났는지 확인한다: `/workspace/_keep/go2_g_a065_pc2_points/BATCH_RUN.log`에 `[BATCH END]` 줄이 있어야 한다.
 3. 다른 학습(train.py·play.py)이 돌고 있지 않은지 확인한다. 돌고 있으면 첫 점이 rc 21로 거부되고 일괄 실행이 멈춘다.
 4. `workspace/_keep/pc2_handoff_ledger.tsv`에 `G-A064<TAB>STARTED<TAB>시각`을 적고 커밋·푸시한다(AGENTS.md 「PC2 작업 인계」 PC2 3항).
-5. ZIP을 `/workspace/`에 복사한다: `cp workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v2.zip /workspace/`
+5. ZIP을 `/workspace/`에 복사한다: `cp workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip /workspace/`
 
 ## 2. 실행 (Git Bash)
 1. 환경 변수(매 셸마다 한 번):
@@ -49,7 +54,7 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
    ```
 2. 실행 한 줄(백그라운드):
    ```bash
-   unzip -oq /workspace/GO2_G_A064_PC2_S07_COMBO_v2.zip -d /workspace && nohup bash /workspace/go2_g_a064_pc2/run_all.sh > /workspace/_keep/go2_g_a064_batch_console.log 2>&1 &
+   unzip -oq /workspace/GO2_G_A064_PC2_S07_COMBO_v3.zip -d /workspace && nohup bash /workspace/go2_g_a064_pc2/run_all.sh > /workspace/_keep/go2_g_a064_batch_console.log 2>&1 &
    ```
 3. GPU 감시(별도 셸, 같은 환경 변수 뒤):
    ```bash
