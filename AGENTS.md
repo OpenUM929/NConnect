@@ -178,6 +178,7 @@ result archive를 git에 올릴 때 100MB를 넘는 파일은 **parts로 분할�
 3. 재구축은 `workspace/_keep/reconstruct_zips.sh`를 쓴다. sha256이 일치할 때만 원본을 교체한다.
 4. **Git LFS를 먼저 시도하지 않는다.** 이 네트워크는 Amazon S3를 차단해 LFS verify가
    404로 실패한다. parts 경로(`github.com`)는 정상 동작한다.
+5. **결과를 내려받을 때마다 용량 정리를 같은 작업으로 끝낸다(2026-10-05 사용자 지시).** `bash tools/keep_fetch_result.sh <archive>.zip`으로 받는다. 이 도구는 parts를 GitHub에서 직접 받고(.git에 사본을 남기지 않음), SHA를 대조하고, 압축을 풀고, ZIP·parts를 지우고, 압축 해제 폴더를 LZX로 압축하고, 임시 파일을 지운 뒤 여유 공간 전후를 출력한다. parts를 `git pull`·`git cat-file`로 받지 않는다(받은 blob이 .git에 한 벌 더 쌓인다). 보고에는 여유 공간 전후를 한 줄로 적는다.
 
 ## 학습 승인·진보 게이트 (260831 신설)
 
@@ -256,6 +257,35 @@ result archive를 git에 올릴 때 100MB를 넘는 파일은 **parts로 분할�
    **로봇 유형 Go2 선택 + `policy.pt` + `.yaml` + 기술 개선 리포트**.
    리포트 상한은 **2라운드 제출부터 500자**다(1라운드 200자에서 상향, R-4a).
    `report.html`, 영상, 내부 장문 보고서는 검증 근거이지 업로드 3종이 아니다.
+
+## PC2 작업 인계 — HANDOFF 자동 실행 계약 (2026-10-05 사용자 지시)
+
+사용자 지시: PC2에 넘길 작업은 앞으로도 `HANDOFF_G_A063_PC2.md`처럼 인계 문서로 만든다. git에 올리면 PC2가 1시간 단위로 감지해 수행한다.
+
+**작성 PC(메인 루프)가 지킬 것**
+1. PC2에서 돌릴 작업은 루트 `HANDOFF_<WORK_ID>_PC2.md` 하나로 만든다. 본문 형식은 `HANDOFF_G_A063_PC2.md`를 따른다: §0 한눈에(설계·시작 조건·점 목록·예상 시간), §1 준비 확인(패키지 경로·SHA·선행 작업 종료 표식), §2 실행(환경 변수·실행 한 줄·GPU 감시), §3 실패 처리(rc별), §4 회수(경로·parts 분할·점마다 커밋), §5 보고(판독은 하지 않는다). 실행 프로그램을 새로 만들지 않는다(기존 빌더·러너 사용).
+2. 파일 맨 위에 아래 머리말을 넣는다. **PC2는 이 머리말이 있는 문서만 실행한다.** 머리말이 없는 과거 인계 문서(G-A057~G-A063, `HANDOFF_PC2_*`)는 실행 대상이 아니다.
+   ```
+   <!-- PC2_HANDOFF
+   WORK_ID: G-A0NN
+   STATUS: READY
+   START_AFTER: G-A0MM
+   START_MARKER: /workspace/_keep/go2_g_a0mm_pc2_points/BATCH_RUN.log 에 [BATCH END]
+   PACKAGE: workspace/training/quadruped/upload/G-A0NN/current/<이름>_v<N>.zip
+   PACKAGE_SHA256: <64자>
+   -->
+   ```
+   - `STATUS`는 `READY`(실행) · `HOLD`(대기) · `CANCELLED`(취소) 중 하나다. 작성 PC만 바꾼다.
+   - 선행 작업이 없으면 `START_AFTER: NONE`, `START_MARKER: NONE`.
+3. 발행 전에 기존 규칙(넘버링, 로컬 패키지 검증 6항목, R-6)을 그대로 지킨다. 패키지 ZIP·SHA·인계 문서를 **한 커밋**으로 올린다. 패키지 없이 인계 문서만 올리지 않는다.
+4. 올린 뒤의 수정은 `STATUS`를 바꾸는 것만 허용한다. 내용이 바뀌면 새 판(`_v<N+1>` ZIP)과 새 WORK_ID 또는 새 인계 문서로 낸다. 실행 중인 문서를 고쳐 조건을 바꾸지 않는다.
+
+**PC2(실행 PC)가 지킬 것**
+1. 1시간마다 `git pull` 뒤 루트 `HANDOFF_*_PC2.md` 중 머리말이 있고 `STATUS: READY`이며 `workspace/_keep/pc2_handoff_ledger.tsv`에 그 WORK_ID가 없는 문서를 찾는다.
+2. `START_MARKER`가 충족되지 않았거나 다른 train.py·play.py가 돌고 있으면 시작하지 않고 다음 감지를 기다린다. **학습은 한 번에 하나다.** 후보가 둘 이상이면 WORK_ID 번호가 작은 것부터 한다.
+3. 패키지 SHA를 확인한 뒤 원장에 `WORK_ID<TAB>STARTED<TAB>시각`을 적고 커밋·푸시한 다음 실행한다. 끝나면 `DONE` 또는 `FAILED<TAB>rc`를 추가한다. 원장에 있는 WORK_ID는 다시 실행하지 않는다.
+4. 실행·회수·보고는 그 인계 문서 §1~§5를 따른다. 판독·다음 값 선택은 하지 않는다. 문서가 규정(R-6)이나 배포 파일 수정을 요구하면 실행하지 않고 `FAILED<TAB>R6`로 적는다.
+5. 시작 뒤에 `STATUS`가 `CANCELLED`로 바뀌어도 진행 중인 학습은 끊지 않는다. 다음 점부터 멈춘다(일괄 실행이면 남은 점을 SKIP).
 
 ## 공식 규정 정본 (260903 신설 — 예선 규정집 v1.0 / 시행 2026-08-17)
 
