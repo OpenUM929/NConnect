@@ -6,3 +6,4 @@ G-A064	WAITING	2026-10-06T15:58+09:00	first point and READY decided after G-A065
 G-A065	CANCELLED	2026-10-06T17:05+09:00	PC2 rc5: package lacked quadruped_rewards.py; superseded by G-A066
 G-A066	READY	2026-10-06T17:05+09:00	diag replay v1 with per-policy rewards file; sha 610a5b9b; START_AFTER NONE
 G-A064	WAITING	2026-10-06T17:05+09:00	START_AFTER now G-A066; first point decided after G-A066 readout
+G-A064	WAITING	2026-10-06T18:10+09:00	G-A066 readout protocol fixed (population first, representative by median fall time); D1 default order (c2 first?) awaiting Codex
