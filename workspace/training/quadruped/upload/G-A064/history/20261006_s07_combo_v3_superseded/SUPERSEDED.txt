@@ -1,0 +1,1 @@
+SUPERSEDED 2026-10-06 by GO2_G_A064_PC2_S07_COMBO_v4: order changed to c2 -> c1 -> c3 -> c6 -> c5 (G-A066 behaviour readout, Claude-Codex agreement, user approval). Points, values and parent unchanged. Never run on PC2.

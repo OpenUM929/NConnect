@@ -28,9 +28,9 @@ DEPLOY_RANGE = {"lin_vel_z_l2": (-5.0, -0.5), "feet_air_time": (0.01, 0.5),
 P0 = {"track_lin_vel_xy_exp": 1.5, "feet_air_time": 0.2, "lin_vel_z_l2": -1.25, "ang_vel_xy_l2": -0.05,
       "action_rate_l2": -0.01, "flat_orientation_l2": 0.0, **bb.EXTRA_DEFAULTS}
 S07 = {**P0, "feet_air_time": 0.35}
-# 합의 문서 §12·§14
-EXPECTED = [("c1_s07_ang_vel_xy_l2_m0p02", "ang_vel_xy_l2", -0.02),
-            ("c2_s07_lin_vel_z_l2_m0p5", "lin_vel_z_l2", -0.5),
+# 합의 문서 §12·§14, v4 순서(c2 먼저)
+EXPECTED = [("c2_s07_lin_vel_z_l2_m0p5", "lin_vel_z_l2", -0.5),
+            ("c1_s07_ang_vel_xy_l2_m0p02", "ang_vel_xy_l2", -0.02),
             ("c3_s07_action_rate_l2_m0p0075", "action_rate_l2", -0.0075),
             ("c6_s07_ang_vel_xy_l2_m0p035", "ang_vel_xy_l2", -0.035),
             ("c5_s07_lin_vel_z_l2_m0p875", "lin_vel_z_l2", -0.875)]
@@ -76,7 +76,7 @@ class G064(unittest.TestCase):
 
     def test_scripts_lf_bash_n_and_checksums(self):
         self.assertEqual([l.split()[0] for l in self.f["points.txt"].decode().splitlines()], [k for k, *_ in EXPECTED])
-        self.assertEqual(self.info["names"]["release"], "GO2_G_A064_PC2_S07_COMBO_v3")
+        self.assertEqual(self.info["names"]["release"], "GO2_G_A064_PC2_S07_COMBO_v4")
         z = zipfile.ZipFile(io.BytesIO(self.data))
         self.assertIsNone(z.testzip())
         self.assertTrue(all(n.startswith("go2_g_a064_pc2/") for n in z.namelist()))
@@ -110,7 +110,7 @@ class G064(unittest.TestCase):
             r = subprocess.run([BASH, str(root / "run_all.sh")], env=env, capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             self.assertIn("[BATCH STOP] STOP file present", r.stdout)
-            self.assertNotIn("[BATCH POINT] c1", r.stdout)
+            self.assertNotIn("[BATCH POINT] c2", r.stdout)
 
     def test_build_does_not_leak_into_g_a062_builder(self):
         self.assertEqual(bb.PROVISIONAL_WORK_ID, "G-A062")

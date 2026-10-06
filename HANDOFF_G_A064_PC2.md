@@ -1,22 +1,22 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A064
-STATUS: HOLD
-START_AFTER: G-A066
-START_MARKER: /workspace/_keep/go2_g_a066_pc2_points/BATCH_RUN.log 에 [BATCH END]
-PACKAGE: workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip
-PACKAGE_SHA256: 12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624
+STATUS: READY
+START_AFTER: NONE
+START_MARKER: NONE
+PACKAGE: workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v4.zip
+PACKAGE_SHA256: 8c0e711568e09b41b50102ec24c9d6c18a0a4f419447c0095b613f90f4260f0b
 -->
-# G-A064 인계 — PC2(RTX 5070) s07 부모 위 계단 레버 조합·중간값 5점 (v3) (PC2 Claude 세션용, 2026-10-06)
+# G-A064 인계 — PC2(RTX 5070) s07 부모 위 계단 레버 조합·중간값 5점 (v4) (PC2 Claude 세션용, 2026-10-06)
 
 PC2의 Claude는 이 문서를 처음부터 끝까지 읽고 §1 → §5 순서로 진행한다. 루트 `AGENTS.md`(R-1~R-7, 「PC2 작업 인계」 절)와 `GO2_NOW.md` 맨 위 줄을 함께 따른다.
 PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G-A060~G-A063 때와 같다(`HANDOFF_PC2_CONTINUOUS_MONITOR_20261003.md`, `workspace/_keep/go2_g_a060_pc2_run_chain.sh`).
 
-**머리말 `STATUS: HOLD`인 동안은 시작하지 않는다.** 작성 PC가 `READY`로 바꾼 커밋을 받은 뒤에만 시작한다.
+**v4는 `STATUS: READY`다(2026-10-06 사용자 승인 "수행해줘").** G-A066(진단 재생)은 끝났다. G-A067(분석, GPU 없음)과 겹쳐도 된다. 학습은 이 작업 하나만 돈다.
 
 ## 0. 한눈에
 - **설계·합의:** `workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md` §12~§15, §25·§26(v2: c4 제외, 순서 변경), §28(v3: 점마다 STOP 파일 확인)
-- **시작 조건:** G-A066 진단 재생이 끝난 뒤(`[BATCH END]`)에 시작한다. 두 작업을 동시에 돌리지 않는다.
-- **v3 순서(v2와 같음)는 진단 전 기본 순서다.** G-A066 결과로 순서가 바뀌면 작성 PC가 v4로 다시 내고 이 문서를 고친다.
+- **시작 조건:** 없음(G-A066 끝남). 다른 train.py·play.py가 돌고 있으면 시작하지 않는다.
+- **v4 순서는 c2 → c1 → c3 → c6 → c5다(v3의 c1 먼저에서 바꿈).** 근거: G-A066 재생과 행동 판독에서 계단의 주된 상황은 몸통 높이 미달(s07 63/96)이고, P0 위에서 이를 줄인 레버는 lin 완화뿐이었다(41→13). 합의: `upload/plan/GO2_STAIRS_ROUGH_SITUATION_DEBATE_20261006.md` §7-3·§10. 점·값·부모는 v3와 같다.
 - **5점은 최대 대기 목록이다.** 작성 PC가 끝난 점부터 판독한다(합의 문서 §21·§25·§28).
   - 남은 점을 멈춰야 하면 작성 PC가 머리말 `STATUS`를 `CANCELLED`로 바꿔 올린다. 멈추는 경우는 상태 A, 두 점 연속 '둘 다 실패', 순서 변경이다.
   - PC2는 1시간 감지 때 `CANCELLED`를 보면 `touch /workspace/_keep/go2_g_a064_pc2_points/STOP`만 한다. **실행 중인 프로세스는 끄지 않는다.**
@@ -24,8 +24,8 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
   - 원장에는 `G-A064<TAB>CANCELLED_AFTER<TAB><마지막으로 끝낸 key>`를 적는다.
 - **무엇을 하나:** 모든 점의 부모는 S07 = P0(PC2 A048, track 1.5) + feet_air_time 0.35(G-A063 s07)다. 점마다 보상 한 항만 바꾼다.
 - **실행 방식:** 5점을 명령 한 줄로 순서대로 돈다. 점당 약 2시간 25분, 합계 약 12시간 [추정].
-  1. `c1_s07_ang_vel_xy_l2_m0p02` — ang_vel_xy −0.05 → −0.02
-  2. `c2_s07_lin_vel_z_l2_m0p5` — lin_vel_z −1.25 → −0.5
+  1. `c2_s07_lin_vel_z_l2_m0p5` — lin_vel_z −1.25 → −0.5
+  2. `c1_s07_ang_vel_xy_l2_m0p02` — ang_vel_xy −0.05 → −0.02
   3. `c3_s07_action_rate_l2_m0p0075` — action_rate −0.01 → −0.0075
   4. `c6_s07_ang_vel_xy_l2_m0p035` — ang_vel_xy −0.05 → −0.035
   5. `c5_s07_lin_vel_z_l2_m0p875` — lin_vel_z −1.25 → −0.875
@@ -33,13 +33,13 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
 
 ## 1. 준비 확인
 1. `git pull`한 뒤 패키지를 확인한다.
-   - 경로: `workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip`
-   - SHA256: `12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624`
-   - 확인: `cd workspace/training/quadruped/upload/G-A064/current && sha256sum -c GO2_G_A064_PC2_S07_COMBO_v3.zip.sha256`
-2. G-A066가 끝났는지 확인한다: `/workspace/_keep/go2_g_a066_pc2_points/BATCH_RUN.log`에 `[BATCH END]` 줄이 있어야 한다.
+   - 경로: `workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v4.zip`
+   - SHA256: `8c0e711568e09b41b50102ec24c9d6c18a0a4f419447c0095b613f90f4260f0b`
+   - 확인: `cd workspace/training/quadruped/upload/G-A064/current && sha256sum -c GO2_G_A064_PC2_S07_COMBO_v4.zip.sha256`
+2. G-A066은 끝났다(원장 DONE 2026-10-06T18:31). 따로 확인할 시작 조건은 없다.
 3. 다른 학습(train.py·play.py)이 돌고 있지 않은지 확인한다. 돌고 있으면 첫 점이 rc 21로 거부되고 일괄 실행이 멈춘다.
 4. `workspace/_keep/pc2_handoff_ledger.tsv`에 `G-A064<TAB>STARTED<TAB>시각`을 적고 커밋·푸시한다(AGENTS.md 「PC2 작업 인계」 PC2 3항).
-5. ZIP을 `/workspace/`에 복사한다: `cp workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip /workspace/`
+5. ZIP을 `/workspace/`에 복사한다: `cp workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v4.zip /workspace/`
 
 ## 2. 실행 (Git Bash)
 1. 환경 변수(매 셸마다 한 번):
@@ -54,7 +54,7 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
    ```
 2. 실행 한 줄(백그라운드):
    ```bash
-   unzip -oq /workspace/GO2_G_A064_PC2_S07_COMBO_v3.zip -d /workspace && nohup bash /workspace/go2_g_a064_pc2/run_all.sh > /workspace/_keep/go2_g_a064_batch_console.log 2>&1 &
+   unzip -oq /workspace/GO2_G_A064_PC2_S07_COMBO_v4.zip -d /workspace && nohup bash /workspace/go2_g_a064_pc2/run_all.sh > /workspace/_keep/go2_g_a064_batch_console.log 2>&1 &
    ```
 3. GPU 감시(별도 셸, 같은 환경 변수 뒤):
    ```bash

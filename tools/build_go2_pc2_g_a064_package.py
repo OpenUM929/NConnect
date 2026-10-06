@@ -7,6 +7,9 @@
 v2(§26, 사용자 승인 2026-10-06): c4(action_rate −0.015) 제외 — s12(−0.02) 붕괴, c4 이득을 지지하는 관측 없음(Codex 3/3).
 진단 전 기본 순서 c1 → c2 → c3 → c6 → c5.
 v3(2026-10-06): 점 목록·순서는 v2와 같다. run_all.sh가 점마다 시작 전 STOP 파일을 확인한다(최대 대기 목록의 정지 수단, 합의 §28). G-A065 결과로 순서가 바뀌면 v4로 낸다.
+v4(2026-10-06): 순서만 c2 → c1 → c3 → c6 → c5로 바꾼다. 점·값·부모는 v3와 같다. 근거: G-A066 재생과 첫 episode 행동 판독에서
+계단 실패는 '몸통 높이 미달'(s07 63/96)이 주된 상황이고, P0 위에서 이를 줄인 레버는 lin 완화뿐이었다(41→13). Claude·Codex 합의
+(`upload/plan/GO2_STAIRS_ROUGH_SITUATION_DEBATE_20261006.md` §7-3·§10, `GO2_STAIRS_ROUGH_INVESTIGATION_DISCUSSION_20261006.md` §10-1 D1), 사용자 승인 "수행해줘".
 G-A062 일괄 실행 빌더(tools/build_go2_pc2_batch_package.py)의 점 생성·run_all·run_point 를 그대로 쓰고 점 목록·부모만 바꾼다.
 
     python -B tools/build_go2_pc2_g_a064_package.py --check
@@ -28,10 +31,10 @@ S07_HARVEST = "workspace/_keep/go2_g_a063_pc2_s07_feet_air_time_p0p35"
 COMBO = "조합 시험: G-A063에서 P0 위로 잰 값을 s07(feet 0.35) 부모 위에서 다시 잰다(합의 §12, 부모가 다름)"
 # (key, 바꿀 항, 값, 메모) — 실행 순서
 GRID = (
-    ("c1_s07_ang_vel_xy_l2_m0p02", "ang_vel_xy_l2", -0.02,
-     "계단 원인(모서리에서 앞을 들지 못함) → 강좌 '몸통을 기울이지 마라' 벌점 완화 → G-A063 s11 15cm ≥2단 3→13·밀침 2. 험지 이득 보존 여부."),
     ("c2_s07_lin_vel_z_l2_m0p5", "lin_vel_z_l2", -0.5,
      "같은 원인 → '위아래 흔들림 억제' 벌점 완화 → G-A063 s04 15cm ≥2단 3→23. 경쟁 설명: 진입 몸높이 상승. 밀침 0→40 부작용."),
+    ("c1_s07_ang_vel_xy_l2_m0p02", "ang_vel_xy_l2", -0.02,
+     "계단 원인(모서리에서 앞을 들지 못함) → 강좌 '몸통을 기울이지 마라' 벌점 완화 → G-A063 s11 15cm ≥2단 3→13·밀침 2. 험지 이득 보존 여부."),
     ("c3_s07_action_rate_l2_m0p0075", "action_rate_l2", -0.0075,
      "험지 원인 2-1(가는 쪽 발을 다시 딛지 못함) → 배포 ⑤ '약하게: 민첩' → 재착지 유리 예측. P0 −0.01과 범위 끝 −0.005 사이."),
     ("c6_s07_ang_vel_xy_l2_m0p035", "ang_vel_xy_l2", -0.035,
@@ -52,7 +55,7 @@ def points() -> tuple:
 
 def names(work_id: str) -> dict[str, str]:
     n = batch.pkg.names(work_id)
-    n["release"] = f"GO2_{n['up']}_PC2_S07_COMBO_v3"
+    n["release"] = f"GO2_{n['up']}_PC2_S07_COMBO_v4"
     return n
 
 
