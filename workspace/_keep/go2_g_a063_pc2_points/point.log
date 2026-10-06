@@ -35,3 +35,6 @@
 [POINT] s12_action_rate_l2_m0p02 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
 [POINT END] s12_action_rate_l2_m0p02 DONE — 다음 점은 판독 뒤 따로 정한다.
 [POINT START] s13_action_rate_l2_m0p005 2026-10-06T09:15:24+09:00
+[POINT] s13_action_rate_l2_m0p005 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] s13_action_rate_l2_m0p005 DONE — 다음 점은 판독 뒤 따로 정한다.
+[POINT START] s14_p0_repeat 2026-10-06T11:32:08+09:00
