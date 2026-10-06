@@ -1,0 +1,26 @@
+key	status	rc	collection	resume	started	ended	note
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	DONE	0	FULL_69_COMPLETE	0	2026-10-02T11:21:49+09:00	2026-10-02T18:05:38+09:00	-
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p6	DONE	0	FULL_69_COMPLETE	0	2026-10-02T19:25:42+09:00	2026-10-03T13:34:57+09:00	-
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p6	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p04	DONE	0	FULL_69_COMPLETE	0	2026-10-03T15:05:00+09:00	2026-10-04T10:55:35+09:00	-
+ang_vel_xy_l2_m0p08	DONE	0	FULL_69_COMPLETE	0	2026-10-04T10:55:39+09:00	2026-10-04T17:46:10+09:00	-
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p6	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p04	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p08	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p6	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p04	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p08	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p2	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p4	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+track_lin_vel_xy_exp_p1p6	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p04	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present
+ang_vel_xy_l2_m0p08	SKIP_DONE	0	FULL_69_COMPLETE	-	-	-	verified result already present

@@ -1,0 +1,1797 @@
+[START] G-A057 train_G-A057-Go2_a048_feet_air_time_p0p01_1000 resume=0 remeasure_baseline=0 at 2026-10-04T20:55:00+09:00
+[PHASE 1/6] G-A057 single-variable training: feet_air_time 0.2->0.01 seed=42 envs=4096 iterations=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: D:\dev\Nconnect\IsaacLab\apps\isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: go2_task.env_cfg:QuadrupedRoughEnvCfg
+[Quadruped:student] 6 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.5
+  [OK] feet_air_time.weight = 0.01
+  [OK] lin_vel_z_l2.weight = -1.25
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] action_rate_l2.weight = -0.01
+  [OK] flat_orientation_l2.weight = 0.0
+[Quadruped:student] terrain override - boxes ≤0.15m
+[INFO]: Parsing configuration from: go2_task.agent_cfg:QuadrupedPPORunnerCfg
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Logging experiment in directory: D:\workspace\go2_g_a057_work\feet_air_time_p0p01\candidate\logs\rsl_rl\quadruped
+Exact experiment name requested from command line: 2026-10-04_20-55-17
+
+[36m======================================================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: C:\Users\ADMINI~1\AppData\Local\Temp\isaaclab\logs\isaaclab_2026-10-04_20-55-17.log[0m
+[36m======================================================================================================================[0m
+
+[33m20:55:17 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+D:\dev\Nconnect\.venv-isaaclab\Lib\site-packages\rsl_rl\utils\utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+D:\dev\Nconnect\.venv-isaaclab\Lib\site-packages\rsl_rl\utils\utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+D:\dev\Nconnect\.venv-isaaclab\Lib\site-packages\rsl_rl\utils\utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 42
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains based on curriculum took : 1.273593 seconds
+[INFO]: Time taken for scene creation : 5.686254 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 4096
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 5.086727 seconds
+[INFO] Command Manager:  <CommandManager> contains 1 active terms.
++------------------------------------------------+
+|              Active Command Terms              |
++-------+---------------+------------------------+
+| Index | Name          |          Type          |
++-------+---------------+------------------------+
+|   0   | base_velocity | UniformVelocityCommand |
++-------+---------------+------------------------+
+
+[INFO] Event Manager:  <EventManager> contains 2 active terms.
++--------------------------------------+
+| Active Event Terms in Mode: 'startup' |
++----------+---------------------------+
+|  Index   | Name                      |
++----------+---------------------------+
+|    0     | physics_material          |
+|    1     | add_base_mass             |
++----------+---------------------------+
++---------------------------------------+
+|  Active Event Terms in Mode: 'reset'  |
++--------+------------------------------+
+| Index  | Name                         |
++--------+------------------------------+
+|   0    | base_external_force_torque   |
+|   1    | reset_base                   |
+|   2    | reset_robot_joints           |
++--------+------------------------------+
+
+[INFO] Recorder Manager:  <RecorderManager> contains 0 active terms.
++---------------------+
+| Active Recorder Terms |
++-----------+---------+
+|   Index   | Name    |
++-----------+---------+
++-----------+---------+
+
+[INFO] Action Manager:  <ActionManager> contains 1 active terms.
++------------------------------------+
+|  Active Action Terms (shape: 12)   |
++--------+-------------+-------------+
+| Index  | Name        |   Dimension |
++--------+-------------+-------------+
+|   0    | joint_pos   |          12 |
++--------+-------------+-------------+
+
+[INFO] Observation Manager: <ObservationManager> contains 1 groups.
++----------------------------------------------------------+
+| Active Observation Terms in Group: 'policy' (shape: (235,)) |
++-----------+--------------------------------+-------------+
+|   Index   | Name                           |    Shape    |
++-----------+--------------------------------+-------------+
+|     0     | base_lin_vel                   |     (3,)    |
+|     1     | base_ang_vel                   |     (3,)    |
+|     2     | projected_gravity              |     (3,)    |
+|     3     | velocity_commands              |     (3,)    |
+|     4     | joint_pos                      |    (12,)    |
+|     5     | joint_vel                      |    (12,)    |
+|     6     | actions                        |    (12,)    |
+|     7     | height_scan                    |    (187,)   |
++-----------+--------------------------------+-------------+
+
+[INFO] Termination Manager:  <TerminationManager> contains 2 active terms.
++---------------------------------+
+|     Active Termination Terms    |
++-------+--------------+----------+
+| Index | Name         | Time Out |
++-------+--------------+----------+
+|   0   | time_out     |   True   |
+|   1   | base_contact |  False   |
++-------+--------------+----------+
+
+[INFO] Reward Manager:  <RewardManager> contains 10 active terms.
++-----------------------------------------+
+|           Active Reward Terms           |
++-------+----------------------+----------+
+| Index | Name                 |   Weight |
++-------+----------------------+----------+
+|   0   | track_lin_vel_xy_exp |      1.5 |
+|   1   | track_ang_vel_z_exp  |     0.75 |
+|   2   | lin_vel_z_l2         |    -1.25 |
+|   3   | ang_vel_xy_l2        |    -0.05 |
+|   4   | dof_torques_l2       |  -0.0002 |
+|   5   | dof_acc_l2           | -2.5e-07 |
+|   6   | action_rate_l2       |    -0.01 |
+|   7   | feet_air_time        |     0.01 |
+|   8   | flat_orientation_l2  |      0.0 |
+|   9   | dof_pos_limits       |      0.0 |
++-------+----------------------+----------+
+
+[INFO] Curriculum Manager:  <CurriculumManager> contains 1 active terms.
++---------------------------+
+|  Active Curriculum Terms  |
++--------+------------------+
+| Index  | Name             |
++--------+------------------+
+|   0    | terrain_levels   |
++--------+------------------+
+
+[INFO]: Completed setting up the environment...
+--------------------------------------------------------------------------------
+Resolved observation sets: 
+	 actor :  ['policy']
+	 critic :  ['policy']
+--------------------------------------------------------------------------------
+Actor Model: MLPModel(
+  (obs_normalizer): Identity()
+  (distribution): GaussianDistribution()
+  (mlp): MLP(
+    (0): Linear(in_features=235, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=12, bias=True)
+  )
+)
+Critic Model: MLPModel(
+  (obs_normalizer): Identity()
+  (mlp): MLP(
+    (0): Linear(in_features=235, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+Could not find git repository in D:\dev\Nconnect\.venv-isaaclab\Lib\site-packages\rsl_rl\__init__.py. Skipping.
+Storing git diff for 'IsaacLab' in: D:\workspace\go2_g_a057_work\feet_air_time_p0p01\candidate\logs\rsl_rl\quadruped\2026-10-04_20-55-17\git\IsaacLab.diff
+################################################################################
+[1m                           Learning iteration 0/1000                            [0m 
+
+                            Total steps: 98304 
+                       Steps per second: 5907 
+                        Collection time: 16.052s 
+                          Learning time: 0.589s 
+                        Mean value loss: 0.0582
+                    Mean surrogate loss: 0.0053
+                      Mean entropy loss: 17.0084
+                            Mean reward: -0.45
+                    Mean episode length: 13.33
+                        Mean action std: 1.00
+    Episode_Reward/track_lin_vel_xy_exp: 0.0026
+     Episode_Reward/track_ang_vel_z_exp: 0.0029
+            Episode_Reward/lin_vel_z_l2: -0.0095
+           Episode_Reward/ang_vel_xy_l2: -0.0079
+          Episode_Reward/dof_torques_l2: -0.0016
+              Episode_Reward/dof_acc_l2: -0.0049
+          Episode_Reward/action_rate_l2: -0.0029
+           Episode_Reward/feet_air_time: -0.0000
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.5265
+     Metrics/base_velocity/error_vel_xy: 0.0241
+    Metrics/base_velocity/error_vel_yaw: 0.0183
+           Episode_Termination/time_out: 0.0124
+       Episode_Termination/base_contact: 0.0000
+--------------------------------------------------------------------------------
+                         Iteration time: 16.64s
+                           Time elapsed: 00:00:16
+                                    ETA: 04:37:04
+
+################################################################################
+[1m                           Learning iteration 1/1000                            [0m 
+
+                            Total steps: 196608 
+                       Steps per second: 6015 
+                        Collection time: 15.862s 
+                          Learning time: 0.481s 
+                        Mean value loss: 0.0192
+                    Mean surrogate loss: -0.0060
+                      Mean entropy loss: 16.9317
+                            Mean reward: -0.97
+                    Mean episode length: 35.79
+                        Mean action std: 0.99
+    Episode_Reward/track_lin_vel_xy_exp: 0.0079
+     Episode_Reward/track_ang_vel_z_exp: 0.0073
+            Episode_Reward/lin_vel_z_l2: -0.0160
+           Episode_Reward/ang_vel_xy_l2: -0.0249
+          Episode_Reward/dof_torques_l2: -0.0049
+              Episode_Reward/dof_acc_l2: -0.0108
+          Episode_Reward/action_rate_l2: -0.0087
+           Episode_Reward/feet_air_time: -0.0001
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.5019
+     Metrics/base_velocity/error_vel_xy: 0.0799
+    Metrics/base_velocity/error_vel_yaw: 0.0659
+           Episode_Termination/time_out: 0.0371
+       Episode_Termination/base_contact: 0.0000
+--------------------------------------------------------------------------------
+                         Iteration time: 16.34s
+                           Time elapsed: 00:00:32
+                                    ETA: 04:34:19
+
+################################################################################
+[1m                           Learning iteration 2/1000                            [0m 
+
+                            Total steps: 294912 
+                       Steps per second: 5828 
+                        Collection time: 16.386s 
+                          Learning time: 0.479s 
+                        Mean value loss: 0.0141
+                    Mean surrogate loss: -0.0081
+                      Mean entropy loss: 16.7613
+                            Mean reward: -1.29
+                    Mean episode length: 63.47
+                        Mean action std: 0.97
+    Episode_Reward/track_lin_vel_xy_exp: 0.0189
+     Episode_Reward/track_ang_vel_z_exp: 0.0129
+            Episode_Reward/lin_vel_z_l2: -0.0177
+           Episode_Reward/ang_vel_xy_l2: -0.0418
+          Episode_Reward/dof_torques_l2: -0.0077
+              Episode_Reward/dof_acc_l2: -0.0157
+          Episode_Reward/action_rate_l2: -0.0144
+           Episode_Reward/feet_air_time: -0.0001
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.4774
+     Metrics/base_velocity/error_vel_xy: 0.1123
+    Metrics/base_velocity/error_vel_yaw: 0.1092
+           Episode_Termination/time_out: 0.0617
+       Episode_Termination/base_contact: 0.0005
+--------------------------------------------------------------------------------
+                         Iteration time: 16.87s
+                           Time elapsed: 00:00:49
+                                    ETA: 04:36:06
+
+################################################################################
+[1m                           Learning iteration 3/1000                            [0m 
+
+                            Total steps: 393216 
+                       Steps per second: 5763 
+                        Collection time: 16.577s 
+                          Learning time: 0.480s 
+                        Mean value loss: 0.0131
+                    Mean surrogate loss: -0.0067
+                      Mean entropy loss: 16.5704
+                            Mean reward: -1.68
+                    Mean episode length: 85.87
+                        Mean action std: 0.96
+    Episode_Reward/track_lin_vel_xy_exp: 0.0288
+     Episode_Reward/track_ang_vel_z_exp: 0.0177
+            Episode_Reward/lin_vel_z_l2: -0.0180
+           Episode_Reward/ang_vel_xy_l2: -0.0581
+          Episode_Reward/dof_torques_l2: -0.0106
+              Episode_Reward/dof_acc_l2: -0.0206
+          Episode_Reward/action_rate_l2: -0.0199
+           Episode_Reward/feet_air_time: -0.0002
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.4477
+     Metrics/base_velocity/error_vel_xy: 0.1493
+    Metrics/base_velocity/error_vel_yaw: 0.1511
+           Episode_Termination/time_out: 0.0901
+       Episode_Termination/base_contact: 0.0023
+--------------------------------------------------------------------------------
+                         Iteration time: 17.06s
+                           Time elapsed: 00:01:06
+                                    ETA: 04:37:39
+
+################################################################################
+[1m                           Learning iteration 4/1000                            [0m 
+
+                            Total steps: 491520 
+                       Steps per second: 5729 
+                        Collection time: 16.675s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0121
+                    Mean surrogate loss: -0.0045
+                      Mean entropy loss: 16.3749
+                            Mean reward: -2.12
+                    Mean episode length: 111.49
+                        Mean action std: 0.94
+    Episode_Reward/track_lin_vel_xy_exp: 0.0366
+     Episode_Reward/track_ang_vel_z_exp: 0.0227
+            Episode_Reward/lin_vel_z_l2: -0.0218
+           Episode_Reward/ang_vel_xy_l2: -0.0756
+          Episode_Reward/dof_torques_l2: -0.0132
+              Episode_Reward/dof_acc_l2: -0.0265
+          Episode_Reward/action_rate_l2: -0.0254
+           Episode_Reward/feet_air_time: -0.0002
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.4184
+     Metrics/base_velocity/error_vel_xy: 0.2001
+    Metrics/base_velocity/error_vel_yaw: 0.2004
+           Episode_Termination/time_out: 0.1146
+       Episode_Termination/base_contact: 0.0084
+--------------------------------------------------------------------------------
+                         Iteration time: 17.16s
+                           Time elapsed: 00:01:24
+                                    ETA: 04:38:48
+
+################################################################################
+[1m                           Learning iteration 5/1000                            [0m 
+
+                            Total steps: 589824 
+                       Steps per second: 5686 
+                        Collection time: 16.809s 
+                          Learning time: 0.478s 
+                        Mean value loss: 0.0119
+                    Mean surrogate loss: -0.0050
+                      Mean entropy loss: 16.1716
+                            Mean reward: -2.45
+                    Mean episode length: 135.20
+                        Mean action std: 0.93
+    Episode_Reward/track_lin_vel_xy_exp: 0.0515
+     Episode_Reward/track_ang_vel_z_exp: 0.0287
+            Episode_Reward/lin_vel_z_l2: -0.0231
+           Episode_Reward/ang_vel_xy_l2: -0.0896
+          Episode_Reward/dof_torques_l2: -0.0158
+              Episode_Reward/dof_acc_l2: -0.0329
+          Episode_Reward/action_rate_l2: -0.0306
+           Episode_Reward/feet_air_time: -0.0003
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.3826
+     Metrics/base_velocity/error_vel_xy: 0.2220
+    Metrics/base_velocity/error_vel_yaw: 0.2382
+           Episode_Termination/time_out: 0.1387
+       Episode_Termination/base_contact: 0.0207
+--------------------------------------------------------------------------------
+                         Iteration time: 17.29s
+                           Time elapsed: 00:01:41
+                                    ETA: 04:39:50
+
+################################################################################
+[1m                           Learning iteration 6/1000                            [0m 
+
+                            Total steps: 688128 
+                       Steps per second: 5637 
+                        Collection time: 16.953s 
+                          Learning time: 0.484s 
+                        Mean value loss: 0.0109
+                    Mean surrogate loss: -0.0051
+                      Mean entropy loss: 15.9508
+                            Mean reward: -2.72
+                    Mean episode length: 160.49
+                        Mean action std: 0.91
+    Episode_Reward/track_lin_vel_xy_exp: 0.0423
+     Episode_Reward/track_ang_vel_z_exp: 0.0362
+            Episode_Reward/lin_vel_z_l2: -0.0238
+           Episode_Reward/ang_vel_xy_l2: -0.0999
+          Episode_Reward/dof_torques_l2: -0.0188
+              Episode_Reward/dof_acc_l2: -0.0358
+          Episode_Reward/action_rate_l2: -0.0353
+           Episode_Reward/feet_air_time: -0.0003
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.3495
+     Metrics/base_velocity/error_vel_xy: 0.3074
+    Metrics/base_velocity/error_vel_yaw: 0.2658
+           Episode_Termination/time_out: 0.1601
+       Episode_Termination/base_contact: 0.0325
+--------------------------------------------------------------------------------
+                         Iteration time: 17.44s
+                           Time elapsed: 00:01:58
+                                    ETA: 04:40:50
+
+################################################################################
+[1m                           Learning iteration 7/1000                            [0m 
+
+                            Total steps: 786432 
+                       Steps per second: 5578 
+                        Collection time: 17.138s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0090
+                    Mean surrogate loss: -0.0044
+                      Mean entropy loss: 15.8085
+                            Mean reward: -2.78
+                    Mean episode length: 184.51
+                        Mean action std: 0.90
+    Episode_Reward/track_lin_vel_xy_exp: 0.0621
+     Episode_Reward/track_ang_vel_z_exp: 0.0404
+            Episode_Reward/lin_vel_z_l2: -0.0255
+           Episode_Reward/ang_vel_xy_l2: -0.1108
+          Episode_Reward/dof_torques_l2: -0.0220
+              Episode_Reward/dof_acc_l2: -0.0410
+          Episode_Reward/action_rate_l2: -0.0402
+           Episode_Reward/feet_air_time: -0.0003
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.3142
+     Metrics/base_velocity/error_vel_xy: 0.3331
+    Metrics/base_velocity/error_vel_yaw: 0.3155
+           Episode_Termination/time_out: 0.1812
+       Episode_Termination/base_contact: 0.0473
+--------------------------------------------------------------------------------
+                         Iteration time: 17.62s
+                           Time elapsed: 00:02:16
+                                    ETA: 04:41:54
+
+################################################################################
+[1m                           Learning iteration 8/1000                            [0m 
+
+                            Total steps: 884736 
+                       Steps per second: 5530 
+                        Collection time: 17.295s 
+                          Learning time: 0.480s 
+                        Mean value loss: 0.0081
+                    Mean surrogate loss: -0.0062
+                      Mean entropy loss: 15.6266
+                            Mean reward: -3.20
+                    Mean episode length: 204.42
+                        Mean action std: 0.89
+    Episode_Reward/track_lin_vel_xy_exp: 0.0667
+     Episode_Reward/track_ang_vel_z_exp: 0.0462
+            Episode_Reward/lin_vel_z_l2: -0.0283
+           Episode_Reward/ang_vel_xy_l2: -0.1237
+          Episode_Reward/dof_torques_l2: -0.0242
+              Episode_Reward/dof_acc_l2: -0.0442
+          Episode_Reward/action_rate_l2: -0.0444
+           Episode_Reward/feet_air_time: -0.0004
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.2818
+     Metrics/base_velocity/error_vel_xy: 0.3782
+    Metrics/base_velocity/error_vel_yaw: 0.3463
+           Episode_Termination/time_out: 0.2020
+       Episode_Termination/base_contact: 0.0595
+--------------------------------------------------------------------------------
+                         Iteration time: 17.78s
+                           Time elapsed: 00:02:34
+                                    ETA: 04:42:57
+
+################################################################################
+[1m                           Learning iteration 9/1000                            [0m 
+
+                            Total steps: 983040 
+                       Steps per second: 5485 
+                        Collection time: 17.439s 
+                          Learning time: 0.481s 
+                        Mean value loss: 0.0165
+                    Mean surrogate loss: -0.0045
+                      Mean entropy loss: 15.4529
+                            Mean reward: -3.63
+                    Mean episode length: 225.67
+                        Mean action std: 0.87
+    Episode_Reward/track_lin_vel_xy_exp: 0.0573
+     Episode_Reward/track_ang_vel_z_exp: 0.0519
+            Episode_Reward/lin_vel_z_l2: -0.0308
+           Episode_Reward/ang_vel_xy_l2: -0.1364
+          Episode_Reward/dof_torques_l2: -0.0265
+              Episode_Reward/dof_acc_l2: -0.0474
+          Episode_Reward/action_rate_l2: -0.0485
+           Episode_Reward/feet_air_time: -0.0004
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.2445
+     Metrics/base_velocity/error_vel_xy: 0.4465
+    Metrics/base_velocity/error_vel_yaw: 0.3799
+           Episode_Termination/time_out: 0.2230
+       Episode_Termination/base_contact: 0.0748
+--------------------------------------------------------------------------------
+                         Iteration time: 17.92s
+                           Time elapsed: 00:02:52
+                                    ETA: 04:43:58
+
+################################################################################
+[1m                           Learning iteration 10/1000                           [0m 
+
+                            Total steps: 1081344 
+                       Steps per second: 5424 
+                        Collection time: 17.639s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0075
+                    Mean surrogate loss: -0.0061
+                      Mean entropy loss: 15.2626
+                            Mean reward: -3.79
+                    Mean episode length: 253.49
+                        Mean action std: 0.86
+    Episode_Reward/track_lin_vel_xy_exp: 0.0759
+     Episode_Reward/track_ang_vel_z_exp: 0.0560
+            Episode_Reward/lin_vel_z_l2: -0.0297
+           Episode_Reward/ang_vel_xy_l2: -0.1426
+          Episode_Reward/dof_torques_l2: -0.0297
+              Episode_Reward/dof_acc_l2: -0.0515
+          Episode_Reward/action_rate_l2: -0.0535
+           Episode_Reward/feet_air_time: -0.0005
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.2107
+     Metrics/base_velocity/error_vel_xy: 0.4703
+    Metrics/base_velocity/error_vel_yaw: 0.4255
+           Episode_Termination/time_out: 0.2411
+       Episode_Termination/base_contact: 0.0905
+--------------------------------------------------------------------------------
+                         Iteration time: 18.12s
+                           Time elapsed: 00:03:10
+                                    ETA: 04:45:03
+
+################################################################################
+[1m                           Learning iteration 11/1000                           [0m 
+
+                            Total steps: 1179648 
+                       Steps per second: 5367 
+                        Collection time: 17.831s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0069
+                    Mean surrogate loss: -0.0058
+                      Mean entropy loss: 15.1195
+                            Mean reward: -3.90
+                    Mean episode length: 278.14
+                        Mean action std: 0.85
+    Episode_Reward/track_lin_vel_xy_exp: 0.0917
+     Episode_Reward/track_ang_vel_z_exp: 0.0616
+            Episode_Reward/lin_vel_z_l2: -0.0300
+           Episode_Reward/ang_vel_xy_l2: -0.1507
+          Episode_Reward/dof_torques_l2: -0.0320
+              Episode_Reward/dof_acc_l2: -0.0544
+          Episode_Reward/action_rate_l2: -0.0574
+           Episode_Reward/feet_air_time: -0.0005
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.1752
+     Metrics/base_velocity/error_vel_xy: 0.5120
+    Metrics/base_velocity/error_vel_yaw: 0.4638
+           Episode_Termination/time_out: 0.2627
+       Episode_Termination/base_contact: 0.1041
+--------------------------------------------------------------------------------
+                         Iteration time: 18.31s
+                           Time elapsed: 00:03:28
+                                    ETA: 04:46:09
+
+################################################################################
+[1m                           Learning iteration 12/1000                           [0m 
+
+                            Total steps: 1277952 
+                       Steps per second: 5316 
+                        Collection time: 18.002s 
+                          Learning time: 0.488s 
+                        Mean value loss: 0.0169
+                    Mean surrogate loss: -0.0062
+                      Mean entropy loss: 14.9620
+                            Mean reward: -4.11
+                    Mean episode length: 293.51
+                        Mean action std: 0.84
+    Episode_Reward/track_lin_vel_xy_exp: 0.0850
+     Episode_Reward/track_ang_vel_z_exp: 0.0646
+            Episode_Reward/lin_vel_z_l2: -0.0347
+           Episode_Reward/ang_vel_xy_l2: -0.1625
+          Episode_Reward/dof_torques_l2: -0.0329
+              Episode_Reward/dof_acc_l2: -0.0582
+          Episode_Reward/action_rate_l2: -0.0602
+           Episode_Reward/feet_air_time: -0.0006
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.1381
+     Metrics/base_velocity/error_vel_xy: 0.5583
+    Metrics/base_velocity/error_vel_yaw: 0.4981
+           Episode_Termination/time_out: 0.2819
+       Episode_Termination/base_contact: 0.1204
+--------------------------------------------------------------------------------
+                         Iteration time: 18.49s
+                           Time elapsed: 00:03:47
+                                    ETA: 04:47:16
+
+################################################################################
+[1m                           Learning iteration 13/1000                           [0m 
+
+                            Total steps: 1376256 
+                       Steps per second: 5299 
+                        Collection time: 18.067s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0080
+                    Mean surrogate loss: -0.0044
+                      Mean entropy loss: 14.7997
+                            Mean reward: -3.83
+                    Mean episode length: 324.50
+                        Mean action std: 0.83
+    Episode_Reward/track_lin_vel_xy_exp: 0.1026
+     Episode_Reward/track_ang_vel_z_exp: 0.0729
+            Episode_Reward/lin_vel_z_l2: -0.0350
+           Episode_Reward/ang_vel_xy_l2: -0.1717
+          Episode_Reward/dof_torques_l2: -0.0373
+              Episode_Reward/dof_acc_l2: -0.0611
+          Episode_Reward/action_rate_l2: -0.0657
+           Episode_Reward/feet_air_time: -0.0006
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.1003
+     Metrics/base_velocity/error_vel_xy: 0.6320
+    Metrics/base_velocity/error_vel_yaw: 0.5412
+           Episode_Termination/time_out: 0.3013
+       Episode_Termination/base_contact: 0.1377
+--------------------------------------------------------------------------------
+                         Iteration time: 18.55s
+                           Time elapsed: 00:04:05
+                                    ETA: 04:48:15
+
+################################################################################
+[1m                           Learning iteration 14/1000                           [0m 
+
+                            Total steps: 1474560 
+                       Steps per second: 5257 
+                        Collection time: 18.214s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0181
+                    Mean surrogate loss: -0.0035
+                      Mean entropy loss: 14.6693
+                            Mean reward: -3.85
+                    Mean episode length: 337.76
+                        Mean action std: 0.82
+    Episode_Reward/track_lin_vel_xy_exp: 0.1070
+     Episode_Reward/track_ang_vel_z_exp: 0.0778
+            Episode_Reward/lin_vel_z_l2: -0.0314
+           Episode_Reward/ang_vel_xy_l2: -0.1747
+          Episode_Reward/dof_torques_l2: -0.0383
+              Episode_Reward/dof_acc_l2: -0.0650
+          Episode_Reward/action_rate_l2: -0.0681
+           Episode_Reward/feet_air_time: -0.0006
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.0616
+     Metrics/base_velocity/error_vel_xy: 0.6429
+    Metrics/base_velocity/error_vel_yaw: 0.5613
+           Episode_Termination/time_out: 0.3219
+       Episode_Termination/base_contact: 0.1548
+--------------------------------------------------------------------------------
+                         Iteration time: 18.70s
+                           Time elapsed: 00:04:24
+                                    ETA: 04:49:14
+
+################################################################################
+[1m                           Learning iteration 15/1000                           [0m 
+
+                            Total steps: 1572864 
+                       Steps per second: 5212 
+                        Collection time: 18.378s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0080
+                    Mean surrogate loss: -0.0056
+                      Mean entropy loss: 14.5110
+                            Mean reward: -4.17
+                    Mean episode length: 362.92
+                        Mean action std: 0.81
+    Episode_Reward/track_lin_vel_xy_exp: 0.1140
+     Episode_Reward/track_ang_vel_z_exp: 0.0837
+            Episode_Reward/lin_vel_z_l2: -0.0353
+           Episode_Reward/ang_vel_xy_l2: -0.1850
+          Episode_Reward/dof_torques_l2: -0.0406
+              Episode_Reward/dof_acc_l2: -0.0664
+          Episode_Reward/action_rate_l2: -0.0721
+           Episode_Reward/feet_air_time: -0.0007
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 3.0291
+     Metrics/base_velocity/error_vel_xy: 0.6921
+    Metrics/base_velocity/error_vel_yaw: 0.6002
+           Episode_Termination/time_out: 0.3390
+       Episode_Termination/base_contact: 0.1676
+--------------------------------------------------------------------------------
+                         Iteration time: 18.86s
+                           Time elapsed: 00:04:43
+                                    ETA: 04:50:12
+
+################################################################################
+[1m                           Learning iteration 16/1000                           [0m 
+
+                            Total steps: 1671168 
+                       Steps per second: 5166 
+                        Collection time: 18.546s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0062
+                    Mean surrogate loss: -0.0061
+                      Mean entropy loss: 14.3903
+                            Mean reward: -4.30
+                    Mean episode length: 375.71
+                        Mean action std: 0.80
+    Episode_Reward/track_lin_vel_xy_exp: 0.0976
+     Episode_Reward/track_ang_vel_z_exp: 0.0892
+            Episode_Reward/lin_vel_z_l2: -0.0363
+           Episode_Reward/ang_vel_xy_l2: -0.1875
+          Episode_Reward/dof_torques_l2: -0.0424
+              Episode_Reward/dof_acc_l2: -0.0690
+          Episode_Reward/action_rate_l2: -0.0743
+           Episode_Reward/feet_air_time: -0.0007
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.9987
+     Metrics/base_velocity/error_vel_xy: 0.7648
+    Metrics/base_velocity/error_vel_yaw: 0.6223
+           Episode_Termination/time_out: 0.3550
+       Episode_Termination/base_contact: 0.1797
+--------------------------------------------------------------------------------
+                         Iteration time: 19.03s
+                           Time elapsed: 00:05:02
+                                    ETA: 04:51:12
+
+################################################################################
+[1m                           Learning iteration 17/1000                           [0m 
+
+                            Total steps: 1769472 
+                       Steps per second: 5107 
+                        Collection time: 18.754s 
+                          Learning time: 0.493s 
+                        Mean value loss: 0.0069
+                    Mean surrogate loss: -0.0063
+                      Mean entropy loss: 14.2583
+                            Mean reward: -4.46
+                    Mean episode length: 409.17
+                        Mean action std: 0.80
+    Episode_Reward/track_lin_vel_xy_exp: 0.1252
+     Episode_Reward/track_ang_vel_z_exp: 0.0943
+            Episode_Reward/lin_vel_z_l2: -0.0346
+           Episode_Reward/ang_vel_xy_l2: -0.1959
+          Episode_Reward/dof_torques_l2: -0.0465
+              Episode_Reward/dof_acc_l2: -0.0733
+          Episode_Reward/action_rate_l2: -0.0792
+           Episode_Reward/feet_air_time: -0.0007
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.9664
+     Metrics/base_velocity/error_vel_xy: 0.7507
+    Metrics/base_velocity/error_vel_yaw: 0.6798
+           Episode_Termination/time_out: 0.3719
+       Episode_Termination/base_contact: 0.1924
+--------------------------------------------------------------------------------
+                         Iteration time: 19.25s
+                           Time elapsed: 00:05:21
+                                    ETA: 04:52:14
+
+################################################################################
+[1m                           Learning iteration 18/1000                           [0m 
+
+                            Total steps: 1867776 
+                       Steps per second: 5072 
+                        Collection time: 18.896s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0147
+                    Mean surrogate loss: 0.0005
+                      Mean entropy loss: 14.1989
+                            Mean reward: -3.84
+                    Mean episode length: 423.51
+                        Mean action std: 0.79
+    Episode_Reward/track_lin_vel_xy_exp: 0.1307
+     Episode_Reward/track_ang_vel_z_exp: 0.1050
+            Episode_Reward/lin_vel_z_l2: -0.0377
+           Episode_Reward/ang_vel_xy_l2: -0.1977
+          Episode_Reward/dof_torques_l2: -0.0481
+              Episode_Reward/dof_acc_l2: -0.0738
+          Episode_Reward/action_rate_l2: -0.0814
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.9353
+     Metrics/base_velocity/error_vel_xy: 0.8619
+    Metrics/base_velocity/error_vel_yaw: 0.6688
+           Episode_Termination/time_out: 0.3878
+       Episode_Termination/base_contact: 0.2047
+--------------------------------------------------------------------------------
+                         Iteration time: 19.38s
+                           Time elapsed: 00:05:40
+                                    ETA: 04:53:15
+
+################################################################################
+[1m                           Learning iteration 19/1000                           [0m 
+
+                            Total steps: 1966080 
+                       Steps per second: 5069 
+                        Collection time: 18.906s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0064
+                    Mean surrogate loss: -0.0083
+                      Mean entropy loss: 14.0317
+                            Mean reward: -4.14
+                    Mean episode length: 439.54
+                        Mean action std: 0.78
+    Episode_Reward/track_lin_vel_xy_exp: 0.1531
+     Episode_Reward/track_ang_vel_z_exp: 0.1060
+            Episode_Reward/lin_vel_z_l2: -0.0346
+           Episode_Reward/ang_vel_xy_l2: -0.1991
+          Episode_Reward/dof_torques_l2: -0.0485
+              Episode_Reward/dof_acc_l2: -0.0738
+          Episode_Reward/action_rate_l2: -0.0820
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.9028
+     Metrics/base_velocity/error_vel_xy: 0.8064
+    Metrics/base_velocity/error_vel_yaw: 0.6964
+           Episode_Termination/time_out: 0.4046
+       Episode_Termination/base_contact: 0.2157
+--------------------------------------------------------------------------------
+                         Iteration time: 19.39s
+                           Time elapsed: 00:06:00
+                                    ETA: 04:54:08
+
+################################################################################
+[1m                           Learning iteration 20/1000                           [0m 
+
+                            Total steps: 2064384 
+                       Steps per second: 5050 
+                        Collection time: 18.978s 
+                          Learning time: 0.484s 
+                        Mean value loss: 0.0409
+                    Mean surrogate loss: -0.0045
+                      Mean entropy loss: 13.9772
+                            Mean reward: -3.74
+                    Mean episode length: 445.05
+                        Mean action std: 0.78
+    Episode_Reward/track_lin_vel_xy_exp: 0.1347
+     Episode_Reward/track_ang_vel_z_exp: 0.1078
+            Episode_Reward/lin_vel_z_l2: -0.0383
+           Episode_Reward/ang_vel_xy_l2: -0.1983
+          Episode_Reward/dof_torques_l2: -0.0500
+              Episode_Reward/dof_acc_l2: -0.0744
+          Episode_Reward/action_rate_l2: -0.0819
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.8701
+     Metrics/base_velocity/error_vel_xy: 0.8558
+    Metrics/base_velocity/error_vel_yaw: 0.6976
+           Episode_Termination/time_out: 0.4172
+       Episode_Termination/base_contact: 0.2307
+--------------------------------------------------------------------------------
+                         Iteration time: 19.46s
+                           Time elapsed: 00:06:19
+                                    ETA: 04:54:58
+
+################################################################################
+[1m                           Learning iteration 21/1000                           [0m 
+
+                            Total steps: 2162688 
+                       Steps per second: 5033 
+                        Collection time: 19.047s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0073
+                    Mean surrogate loss: -0.0079
+                      Mean entropy loss: 13.8591
+                            Mean reward: -4.30
+                    Mean episode length: 473.45
+                        Mean action std: 0.77
+    Episode_Reward/track_lin_vel_xy_exp: 0.1496
+     Episode_Reward/track_ang_vel_z_exp: 0.1116
+            Episode_Reward/lin_vel_z_l2: -0.0341
+           Episode_Reward/ang_vel_xy_l2: -0.2035
+          Episode_Reward/dof_torques_l2: -0.0529
+              Episode_Reward/dof_acc_l2: -0.0782
+          Episode_Reward/action_rate_l2: -0.0866
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.8412
+     Metrics/base_velocity/error_vel_xy: 0.9066
+    Metrics/base_velocity/error_vel_yaw: 0.7546
+           Episode_Termination/time_out: 0.4279
+       Episode_Termination/base_contact: 0.2443
+--------------------------------------------------------------------------------
+                         Iteration time: 19.53s
+                           Time elapsed: 00:06:39
+                                    ETA: 04:55:44
+
+################################################################################
+[1m                           Learning iteration 22/1000                           [0m 
+
+                            Total steps: 2260992 
+                       Steps per second: 5011 
+                        Collection time: 19.129s 
+                          Learning time: 0.488s 
+                        Mean value loss: 0.0077
+                    Mean surrogate loss: -0.0059
+                      Mean entropy loss: 13.7446
+                            Mean reward: -3.83
+                    Mean episode length: 457.47
+                        Mean action std: 0.76
+    Episode_Reward/track_lin_vel_xy_exp: 0.1358
+     Episode_Reward/track_ang_vel_z_exp: 0.1192
+            Episode_Reward/lin_vel_z_l2: -0.0347
+           Episode_Reward/ang_vel_xy_l2: -0.1996
+          Episode_Reward/dof_torques_l2: -0.0508
+              Episode_Reward/dof_acc_l2: -0.0762
+          Episode_Reward/action_rate_l2: -0.0840
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.8144
+     Metrics/base_velocity/error_vel_xy: 0.9189
+    Metrics/base_velocity/error_vel_yaw: 0.7096
+           Episode_Termination/time_out: 0.4383
+       Episode_Termination/base_contact: 0.2560
+--------------------------------------------------------------------------------
+                         Iteration time: 19.62s
+                           Time elapsed: 00:06:58
+                                    ETA: 04:56:29
+
+################################################################################
+[1m                           Learning iteration 23/1000                           [0m 
+
+                            Total steps: 2359296 
+                       Steps per second: 4992 
+                        Collection time: 19.204s 
+                          Learning time: 0.485s 
+                        Mean value loss: 0.0087
+                    Mean surrogate loss: -0.0046
+                      Mean entropy loss: 13.6374
+                            Mean reward: -3.67
+                    Mean episode length: 488.08
+                        Mean action std: 0.76
+    Episode_Reward/track_lin_vel_xy_exp: 0.1849
+     Episode_Reward/track_ang_vel_z_exp: 0.1203
+            Episode_Reward/lin_vel_z_l2: -0.0364
+           Episode_Reward/ang_vel_xy_l2: -0.2075
+          Episode_Reward/dof_torques_l2: -0.0534
+              Episode_Reward/dof_acc_l2: -0.0785
+          Episode_Reward/action_rate_l2: -0.0872
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.7837
+     Metrics/base_velocity/error_vel_xy: 0.8731
+    Metrics/base_velocity/error_vel_yaw: 0.7625
+           Episode_Termination/time_out: 0.4485
+       Episode_Termination/base_contact: 0.2690
+--------------------------------------------------------------------------------
+                         Iteration time: 19.69s
+                           Time elapsed: 00:07:18
+                                    ETA: 04:57:11
+
+################################################################################
+[1m                           Learning iteration 24/1000                           [0m 
+
+                            Total steps: 2457600 
+                       Steps per second: 4974 
+                        Collection time: 19.269s 
+                          Learning time: 0.492s 
+                        Mean value loss: 0.0092
+                    Mean surrogate loss: -0.0055
+                      Mean entropy loss: 13.5181
+                            Mean reward: -4.01
+                    Mean episode length: 485.55
+                        Mean action std: 0.75
+    Episode_Reward/track_lin_vel_xy_exp: 0.1442
+     Episode_Reward/track_ang_vel_z_exp: 0.1261
+            Episode_Reward/lin_vel_z_l2: -0.0365
+           Episode_Reward/ang_vel_xy_l2: -0.2068
+          Episode_Reward/dof_torques_l2: -0.0546
+              Episode_Reward/dof_acc_l2: -0.0790
+          Episode_Reward/action_rate_l2: -0.0881
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.7524
+     Metrics/base_velocity/error_vel_xy: 0.9929
+    Metrics/base_velocity/error_vel_yaw: 0.7644
+           Episode_Termination/time_out: 0.4559
+       Episode_Termination/base_contact: 0.2828
+--------------------------------------------------------------------------------
+                         Iteration time: 19.76s
+                           Time elapsed: 00:07:38
+                                    ETA: 04:57:51
+
+################################################################################
+[1m                           Learning iteration 25/1000                           [0m 
+
+                            Total steps: 2555904 
+                       Steps per second: 4969 
+                        Collection time: 19.303s 
+                          Learning time: 0.480s 
+                        Mean value loss: 0.0113
+                    Mean surrogate loss: -0.0028
+                      Mean entropy loss: 13.4281
+                            Mean reward: -4.01
+                    Mean episode length: 530.66
+                        Mean action std: 0.74
+    Episode_Reward/track_lin_vel_xy_exp: 0.1647
+     Episode_Reward/track_ang_vel_z_exp: 0.1402
+            Episode_Reward/lin_vel_z_l2: -0.0369
+           Episode_Reward/ang_vel_xy_l2: -0.2202
+          Episode_Reward/dof_torques_l2: -0.0576
+              Episode_Reward/dof_acc_l2: -0.0870
+          Episode_Reward/action_rate_l2: -0.0946
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.7202
+     Metrics/base_velocity/error_vel_xy: 1.0766
+    Metrics/base_velocity/error_vel_yaw: 0.8088
+           Episode_Termination/time_out: 0.4646
+       Episode_Termination/base_contact: 0.2969
+--------------------------------------------------------------------------------
+                         Iteration time: 19.78s
+                           Time elapsed: 00:07:58
+                                    ETA: 04:58:27
+
+################################################################################
+[1m                           Learning iteration 26/1000                           [0m 
+
+                            Total steps: 2654208 
+                       Steps per second: 4957 
+                        Collection time: 19.335s 
+                          Learning time: 0.493s 
+                        Mean value loss: 0.0095
+                    Mean surrogate loss: -0.0058
+                      Mean entropy loss: 13.3013
+                            Mean reward: -2.90
+                    Mean episode length: 494.59
+                        Mean action std: 0.74
+    Episode_Reward/track_lin_vel_xy_exp: 0.2010
+     Episode_Reward/track_ang_vel_z_exp: 0.1299
+            Episode_Reward/lin_vel_z_l2: -0.0352
+           Episode_Reward/ang_vel_xy_l2: -0.2009
+          Episode_Reward/dof_torques_l2: -0.0550
+              Episode_Reward/dof_acc_l2: -0.0796
+          Episode_Reward/action_rate_l2: -0.0885
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.6899
+     Metrics/base_velocity/error_vel_xy: 0.9011
+    Metrics/base_velocity/error_vel_yaw: 0.7953
+           Episode_Termination/time_out: 0.4705
+       Episode_Termination/base_contact: 0.3101
+--------------------------------------------------------------------------------
+                         Iteration time: 19.83s
+                           Time elapsed: 00:08:17
+                                    ETA: 04:59:00
+
+################################################################################
+[1m                           Learning iteration 27/1000                           [0m 
+
+                            Total steps: 2752512 
+                       Steps per second: 4951 
+                        Collection time: 19.372s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0107
+                    Mean surrogate loss: -0.0055
+                      Mean entropy loss: 13.2352
+                            Mean reward: -3.42
+                    Mean episode length: 536.61
+                        Mean action std: 0.73
+    Episode_Reward/track_lin_vel_xy_exp: 0.1494
+     Episode_Reward/track_ang_vel_z_exp: 0.1347
+            Episode_Reward/lin_vel_z_l2: -0.0346
+           Episode_Reward/ang_vel_xy_l2: -0.2049
+          Episode_Reward/dof_torques_l2: -0.0572
+              Episode_Reward/dof_acc_l2: -0.0805
+          Episode_Reward/action_rate_l2: -0.0900
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.6612
+     Metrics/base_velocity/error_vel_xy: 1.0926
+    Metrics/base_velocity/error_vel_yaw: 0.8084
+           Episode_Termination/time_out: 0.4757
+       Episode_Termination/base_contact: 0.3223
+--------------------------------------------------------------------------------
+                         Iteration time: 19.85s
+                           Time elapsed: 00:08:37
+                                    ETA: 04:59:31
+
+################################################################################
+[1m                           Learning iteration 28/1000                           [0m 
+
+                            Total steps: 2850816 
+                       Steps per second: 4938 
+                        Collection time: 19.418s 
+                          Learning time: 0.490s 
+                        Mean value loss: 0.0121
+                    Mean surrogate loss: -0.0036
+                      Mean entropy loss: 13.1516
+                            Mean reward: -3.24
+                    Mean episode length: 559.39
+                        Mean action std: 0.73
+    Episode_Reward/track_lin_vel_xy_exp: 0.1904
+     Episode_Reward/track_ang_vel_z_exp: 0.1456
+            Episode_Reward/lin_vel_z_l2: -0.0337
+           Episode_Reward/ang_vel_xy_l2: -0.2106
+          Episode_Reward/dof_torques_l2: -0.0586
+              Episode_Reward/dof_acc_l2: -0.0841
+          Episode_Reward/action_rate_l2: -0.0930
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.6286
+     Metrics/base_velocity/error_vel_xy: 1.0161
+    Metrics/base_velocity/error_vel_yaw: 0.8117
+           Episode_Termination/time_out: 0.4821
+       Episode_Termination/base_contact: 0.3370
+--------------------------------------------------------------------------------
+                         Iteration time: 19.91s
+                           Time elapsed: 00:08:57
+                                    ETA: 05:00:00
+
+################################################################################
+[1m                           Learning iteration 29/1000                           [0m 
+
+                            Total steps: 2949120 
+                       Steps per second: 4914 
+                        Collection time: 19.510s 
+                          Learning time: 0.493s 
+                        Mean value loss: 0.0122
+                    Mean surrogate loss: -0.0052
+                      Mean entropy loss: 13.0715
+                            Mean reward: -3.11
+                    Mean episode length: 554.87
+                        Mean action std: 0.72
+    Episode_Reward/track_lin_vel_xy_exp: 0.1675
+     Episode_Reward/track_ang_vel_z_exp: 0.1477
+            Episode_Reward/lin_vel_z_l2: -0.0341
+           Episode_Reward/ang_vel_xy_l2: -0.2006
+          Episode_Reward/dof_torques_l2: -0.0577
+              Episode_Reward/dof_acc_l2: -0.0813
+          Episode_Reward/action_rate_l2: -0.0895
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.6017
+     Metrics/base_velocity/error_vel_xy: 1.0783
+    Metrics/base_velocity/error_vel_yaw: 0.7884
+           Episode_Termination/time_out: 0.4851
+       Episode_Termination/base_contact: 0.3494
+--------------------------------------------------------------------------------
+                         Iteration time: 20.00s
+                           Time elapsed: 00:09:17
+                                    ETA: 05:00:29
+
+################################################################################
+[1m                           Learning iteration 30/1000                           [0m 
+
+                            Total steps: 3047424 
+                       Steps per second: 4925 
+                        Collection time: 19.476s 
+                          Learning time: 0.481s 
+                        Mean value loss: 0.0119
+                    Mean surrogate loss: -0.0050
+                      Mean entropy loss: 12.9823
+                            Mean reward: -3.14
+                    Mean episode length: 535.39
+                        Mean action std: 0.72
+    Episode_Reward/track_lin_vel_xy_exp: 0.1549
+     Episode_Reward/track_ang_vel_z_exp: 0.1461
+            Episode_Reward/lin_vel_z_l2: -0.0330
+           Episode_Reward/ang_vel_xy_l2: -0.1982
+          Episode_Reward/dof_torques_l2: -0.0549
+              Episode_Reward/dof_acc_l2: -0.0817
+          Episode_Reward/action_rate_l2: -0.0887
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.5731
+     Metrics/base_velocity/error_vel_xy: 1.0708
+    Metrics/base_velocity/error_vel_yaw: 0.7786
+           Episode_Termination/time_out: 0.4891
+       Episode_Termination/base_contact: 0.3621
+--------------------------------------------------------------------------------
+                         Iteration time: 19.96s
+                           Time elapsed: 00:09:37
+                                    ETA: 05:00:53
+
+################################################################################
+[1m                           Learning iteration 31/1000                           [0m 
+
+                            Total steps: 3145728 
+                       Steps per second: 4932 
+                        Collection time: 19.449s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0098
+                    Mean surrogate loss: -0.0037
+                      Mean entropy loss: 12.9281
+                            Mean reward: -3.01
+                    Mean episode length: 547.31
+                        Mean action std: 0.71
+    Episode_Reward/track_lin_vel_xy_exp: 0.1731
+     Episode_Reward/track_ang_vel_z_exp: 0.1561
+            Episode_Reward/lin_vel_z_l2: -0.0339
+           Episode_Reward/ang_vel_xy_l2: -0.2069
+          Episode_Reward/dof_torques_l2: -0.0605
+              Episode_Reward/dof_acc_l2: -0.0821
+          Episode_Reward/action_rate_l2: -0.0924
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.5388
+     Metrics/base_velocity/error_vel_xy: 1.1093
+    Metrics/base_velocity/error_vel_yaw: 0.8116
+           Episode_Termination/time_out: 0.4928
+       Episode_Termination/base_contact: 0.3765
+--------------------------------------------------------------------------------
+                         Iteration time: 19.93s
+                           Time elapsed: 00:09:57
+                                    ETA: 05:01:14
+
+################################################################################
+[1m                           Learning iteration 32/1000                           [0m 
+
+                            Total steps: 3244032 
+                       Steps per second: 4925 
+                        Collection time: 19.470s 
+                          Learning time: 0.487s 
+                        Mean value loss: 0.0093
+                    Mean surrogate loss: -0.0055
+                      Mean entropy loss: 12.8336
+                            Mean reward: -2.77
+                    Mean episode length: 529.24
+                        Mean action std: 0.71
+    Episode_Reward/track_lin_vel_xy_exp: 0.1353
+     Episode_Reward/track_ang_vel_z_exp: 0.1444
+            Episode_Reward/lin_vel_z_l2: -0.0349
+           Episode_Reward/ang_vel_xy_l2: -0.1904
+          Episode_Reward/dof_torques_l2: -0.0549
+              Episode_Reward/dof_acc_l2: -0.0809
+          Episode_Reward/action_rate_l2: -0.0855
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.5016
+     Metrics/base_velocity/error_vel_xy: 1.0960
+    Metrics/base_velocity/error_vel_yaw: 0.7824
+           Episode_Termination/time_out: 0.4923
+       Episode_Termination/base_contact: 0.3946
+--------------------------------------------------------------------------------
+                         Iteration time: 19.96s
+                           Time elapsed: 00:10:17
+                                    ETA: 05:01:33
+
+################################################################################
+[1m                           Learning iteration 33/1000                           [0m 
+
+                            Total steps: 3342336 
+                       Steps per second: 4814 
+                        Collection time: 19.934s 
+                          Learning time: 0.484s 
+                        Mean value loss: 0.0098
+                    Mean surrogate loss: -0.0025
+                      Mean entropy loss: 12.7889
+                            Mean reward: -2.53
+                    Mean episode length: 514.74
+                        Mean action std: 0.71
+    Episode_Reward/track_lin_vel_xy_exp: 0.1344
+     Episode_Reward/track_ang_vel_z_exp: 0.1389
+            Episode_Reward/lin_vel_z_l2: -0.0327
+           Episode_Reward/ang_vel_xy_l2: -0.1687
+          Episode_Reward/dof_torques_l2: -0.0511
+              Episode_Reward/dof_acc_l2: -0.0725
+          Episode_Reward/action_rate_l2: -0.0769
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.4666
+     Metrics/base_velocity/error_vel_xy: 1.0181
+    Metrics/base_velocity/error_vel_yaw: 0.7151
+           Episode_Termination/time_out: 0.4865
+       Episode_Termination/base_contact: 0.4133
+--------------------------------------------------------------------------------
+                         Iteration time: 20.42s
+                           Time elapsed: 00:10:37
+                                    ETA: 05:02:03
+
+################################################################################
+[1m                           Learning iteration 34/1000                           [0m 
+
+                            Total steps: 3440640 
+                       Steps per second: 4882 
+                        Collection time: 19.647s 
+                          Learning time: 0.486s 
+                        Mean value loss: 0.0104
+                    Mean surrogate loss: -0.0062
+                      Mean entropy loss: 12.7042
+                            Mean reward: -1.62
+                    Mean episode length: 543.26
+                        Mean action std: 0.70
+    Episode_Reward/track_lin_vel_xy_exp: 0.1837
+     Episode_Reward/track_ang_vel_z_exp: 0.1585
+            Episode_Reward/lin_vel_z_l2: -0.0332
+           Episode_Reward/ang_vel_xy_l2: -0.1821
+          Episode_Reward/dof_torques_l2: -0.0557
+              Episode_Reward/dof_acc_l2: -0.0786
+          Episode_Reward/action_rate_l2: -0.0841
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.4299
+     Metrics/base_velocity/error_vel_xy: 1.0050
+    Metrics/base_velocity/error_vel_yaw: 0.7491
+           Episode_Termination/time_out: 0.4840
+       Episode_Termination/base_contact: 0.4308
+--------------------------------------------------------------------------------
+                         Iteration time: 20.13s
+                           Time elapsed: 00:10:58
+                                    ETA: 05:02:22
+
+################################################################################
+[1m                           Learning iteration 35/1000                           [0m 
+
+                            Total steps: 3538944 
+                       Steps per second: 4876 
+                        Collection time: 19.673s 
+                          Learning time: 0.486s 
+                        Mean value loss: 0.0237
+                    Mean surrogate loss: -0.0045
+                      Mean entropy loss: 12.6259
+                            Mean reward: -1.77
+                    Mean episode length: 493.80
+                        Mean action std: 0.70
+    Episode_Reward/track_lin_vel_xy_exp: 0.1544
+     Episode_Reward/track_ang_vel_z_exp: 0.1492
+            Episode_Reward/lin_vel_z_l2: -0.0315
+           Episode_Reward/ang_vel_xy_l2: -0.1607
+          Episode_Reward/dof_torques_l2: -0.0518
+              Episode_Reward/dof_acc_l2: -0.0703
+          Episode_Reward/action_rate_l2: -0.0751
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.3904
+     Metrics/base_velocity/error_vel_xy: 0.9911
+    Metrics/base_velocity/error_vel_yaw: 0.6780
+           Episode_Termination/time_out: 0.4754
+       Episode_Termination/base_contact: 0.4528
+--------------------------------------------------------------------------------
+                         Iteration time: 20.16s
+                           Time elapsed: 00:11:18
+                                    ETA: 05:02:39
+
+################################################################################
+[1m                           Learning iteration 36/1000                           [0m 
+
+                            Total steps: 3637248 
+                       Steps per second: 4852 
+                        Collection time: 19.773s 
+                          Learning time: 0.485s 
+                        Mean value loss: 0.0127
+                    Mean surrogate loss: -0.0044
+                      Mean entropy loss: 12.5946
+                            Mean reward: -1.34
+                    Mean episode length: 502.99
+                        Mean action std: 0.70
+    Episode_Reward/track_lin_vel_xy_exp: 0.1624
+     Episode_Reward/track_ang_vel_z_exp: 0.1517
+            Episode_Reward/lin_vel_z_l2: -0.0312
+           Episode_Reward/ang_vel_xy_l2: -0.1618
+          Episode_Reward/dof_torques_l2: -0.0506
+              Episode_Reward/dof_acc_l2: -0.0729
+          Episode_Reward/action_rate_l2: -0.0758
+           Episode_Reward/feet_air_time: -0.0008
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.3484
+     Metrics/base_velocity/error_vel_xy: 0.9720
+    Metrics/base_velocity/error_vel_yaw: 0.6909
+           Episode_Termination/time_out: 0.4648
+       Episode_Termination/base_contact: 0.4755
+--------------------------------------------------------------------------------
+                         Iteration time: 20.26s
+                           Time elapsed: 00:11:38
+                                    ETA: 05:02:58
+
+################################################################################
+[1m                           Learning iteration 37/1000                           [0m 
+
+                            Total steps: 3735552 
+                       Steps per second: 4851 
+                        Collection time: 19.778s 
+                          Learning time: 0.483s 
+                        Mean value loss: 0.0091
+                    Mean surrogate loss: -0.0049
+                      Mean entropy loss: 12.5065
+                            Mean reward: -0.71
+                    Mean episode length: 550.66
+                        Mean action std: 0.69
+    Episode_Reward/track_lin_vel_xy_exp: 0.1922
+     Episode_Reward/track_ang_vel_z_exp: 0.1804
+            Episode_Reward/lin_vel_z_l2: -0.0322
+           Episode_Reward/ang_vel_xy_l2: -0.1825
+          Episode_Reward/dof_torques_l2: -0.0582
+              Episode_Reward/dof_acc_l2: -0.0796
+          Episode_Reward/action_rate_l2: -0.0860
+           Episode_Reward/feet_air_time: -0.0010
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.3080
+     Metrics/base_velocity/error_vel_xy: 1.0900
+    Metrics/base_velocity/error_vel_yaw: 0.7356
+           Episode_Termination/time_out: 0.4580
+       Episode_Termination/base_contact: 0.4958
+--------------------------------------------------------------------------------
+                         Iteration time: 20.26s
+                           Time elapsed: 00:11:58
+                                    ETA: 05:03:14
+
+################################################################################
+[1m                           Learning iteration 38/1000                           [0m 
+
+                            Total steps: 3833856 
+                       Steps per second: 4905 
+                        Collection time: 19.559s 
+                          Learning time: 0.481s 
+                        Mean value loss: 0.0090
+                    Mean surrogate loss: -0.0029
+                      Mean entropy loss: 12.4578
+                            Mean reward: -1.46
+                    Mean episode length: 539.25
+                        Mean action std: 0.69
+    Episode_Reward/track_lin_vel_xy_exp: 0.1807
+     Episode_Reward/track_ang_vel_z_exp: 0.1707
+            Episode_Reward/lin_vel_z_l2: -0.0322
+           Episode_Reward/ang_vel_xy_l2: -0.1721
+          Episode_Reward/dof_torques_l2: -0.0559
+              Episode_Reward/dof_acc_l2: -0.0799
+          Episode_Reward/action_rate_l2: -0.0826
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.2710
+     Metrics/base_velocity/error_vel_xy: 1.0341
+    Metrics/base_velocity/error_vel_yaw: 0.7327
+           Episode_Termination/time_out: 0.4533
+       Episode_Termination/base_contact: 0.5125
+--------------------------------------------------------------------------------
+                         Iteration time: 20.04s
+                           Time elapsed: 00:12:18
+                                    ETA: 05:03:23
+
+################################################################################
+[1m                           Learning iteration 39/1000                           [0m 
+
+                            Total steps: 3932160 
+                       Steps per second: 4803 
+                        Collection time: 19.972s 
+                          Learning time: 0.495s 
+                        Mean value loss: 0.0073
+                    Mean surrogate loss: -0.0077
+                      Mean entropy loss: 12.3640
+                            Mean reward: -1.21
+                    Mean episode length: 564.24
+                        Mean action std: 0.68
+    Episode_Reward/track_lin_vel_xy_exp: 0.1808
+     Episode_Reward/track_ang_vel_z_exp: 0.1627
+            Episode_Reward/lin_vel_z_l2: -0.0305
+           Episode_Reward/ang_vel_xy_l2: -0.1621
+          Episode_Reward/dof_torques_l2: -0.0527
+              Episode_Reward/dof_acc_l2: -0.0793
+          Episode_Reward/action_rate_l2: -0.0784
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.2366
+     Metrics/base_velocity/error_vel_xy: 1.0621
+    Metrics/base_velocity/error_vel_yaw: 0.7234
+           Episode_Termination/time_out: 0.4510
+       Episode_Termination/base_contact: 0.5253
+--------------------------------------------------------------------------------
+                         Iteration time: 20.47s
+                           Time elapsed: 00:12:39
+                                    ETA: 05:03:40
+
+################################################################################
+[1m                           Learning iteration 40/1000                           [0m 
+
+                            Total steps: 4030464 
+                       Steps per second: 3035 
+                        Collection time: 31.898s 
+                          Learning time: 0.492s 
+                        Mean value loss: 0.0087
+                    Mean surrogate loss: -0.0038
+                      Mean entropy loss: 12.2820
+                            Mean reward: -1.64
+                    Mean episode length: 597.69
+                        Mean action std: 0.68
+    Episode_Reward/track_lin_vel_xy_exp: 0.1697
+     Episode_Reward/track_ang_vel_z_exp: 0.1868
+            Episode_Reward/lin_vel_z_l2: -0.0327
+           Episode_Reward/ang_vel_xy_l2: -0.1813
+          Episode_Reward/dof_torques_l2: -0.0608
+              Episode_Reward/dof_acc_l2: -0.0869
+          Episode_Reward/action_rate_l2: -0.0884
+           Episode_Reward/feet_air_time: -0.0010
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.2042
+     Metrics/base_velocity/error_vel_xy: 1.1609
+    Metrics/base_velocity/error_vel_yaw: 0.7972
+           Episode_Termination/time_out: 0.4512
+       Episode_Termination/base_contact: 0.5376
+--------------------------------------------------------------------------------
+                         Iteration time: 32.39s
+                           Time elapsed: 00:13:11
+                                    ETA: 05:08:35
+
+################################################################################
+[1m                           Learning iteration 41/1000                           [0m 
+
+                            Total steps: 4128768 
+                       Steps per second: 673 
+                        Collection time: 145.448s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0110
+                    Mean surrogate loss: -0.0041
+                      Mean entropy loss: 12.2316
+                            Mean reward: -1.17
+                    Mean episode length: 576.84
+                        Mean action std: 0.68
+    Episode_Reward/track_lin_vel_xy_exp: 0.1964
+     Episode_Reward/track_ang_vel_z_exp: 0.1714
+            Episode_Reward/lin_vel_z_l2: -0.0299
+           Episode_Reward/ang_vel_xy_l2: -0.1643
+          Episode_Reward/dof_torques_l2: -0.0568
+              Episode_Reward/dof_acc_l2: -0.0780
+          Episode_Reward/action_rate_l2: -0.0808
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.1732
+     Metrics/base_velocity/error_vel_xy: 0.9974
+    Metrics/base_velocity/error_vel_yaw: 0.7395
+           Episode_Termination/time_out: 0.4484
+       Episode_Termination/base_contact: 0.5496
+--------------------------------------------------------------------------------
+                         Iteration time: 145.93s
+                           Time elapsed: 00:15:37
+                                    ETA: 05:56:24
+
+################################################################################
+[1m                           Learning iteration 42/1000                           [0m 
+
+                            Total steps: 4227072 
+                       Steps per second: 314 
+                        Collection time: 312.192s 
+                          Learning time: 0.489s 
+                        Mean value loss: 0.0103
+                    Mean surrogate loss: -0.0038
+                      Mean entropy loss: 12.1624
+                            Mean reward: -0.51
+                    Mean episode length: 547.70
+                        Mean action std: 0.67
+    Episode_Reward/track_lin_vel_xy_exp: 0.1974
+     Episode_Reward/track_ang_vel_z_exp: 0.1698
+            Episode_Reward/lin_vel_z_l2: -0.0300
+           Episode_Reward/ang_vel_xy_l2: -0.1579
+          Episode_Reward/dof_torques_l2: -0.0535
+              Episode_Reward/dof_acc_l2: -0.0757
+          Episode_Reward/action_rate_l2: -0.0778
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.1422
+     Metrics/base_velocity/error_vel_xy: 0.9906
+    Metrics/base_velocity/error_vel_yaw: 0.7005
+           Episode_Termination/time_out: 0.4391
+       Episode_Termination/base_contact: 0.5614
+--------------------------------------------------------------------------------
+                         Iteration time: 312.68s
+                           Time elapsed: 00:20:50
+                                    ETA: 07:43:44
+
+################################################################################
+[1m                           Learning iteration 43/1000                           [0m 
+
+                            Total steps: 4325376 
+                       Steps per second: 314 
+                        Collection time: 312.428s 
+                          Learning time: 0.480s 
+                        Mean value loss: 0.0097
+                    Mean surrogate loss: -0.0044
+                      Mean entropy loss: 12.0938
+                            Mean reward: -1.02
+                    Mean episode length: 627.20
+                        Mean action std: 0.67
+    Episode_Reward/track_lin_vel_xy_exp: 0.2053
+     Episode_Reward/track_ang_vel_z_exp: 0.1863
+            Episode_Reward/lin_vel_z_l2: -0.0310
+           Episode_Reward/ang_vel_xy_l2: -0.1746
+          Episode_Reward/dof_torques_l2: -0.0616
+              Episode_Reward/dof_acc_l2: -0.0835
+          Episode_Reward/action_rate_l2: -0.0869
+           Episode_Reward/feet_air_time: -0.0010
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.1108
+     Metrics/base_velocity/error_vel_xy: 1.1198
+    Metrics/base_velocity/error_vel_yaw: 0.8120
+           Episode_Termination/time_out: 0.4283
+       Episode_Termination/base_contact: 0.5722
+--------------------------------------------------------------------------------
+                         Iteration time: 312.91s
+                           Time elapsed: 00:26:03
+                                    ETA: 09:26:02
+
+################################################################################
+[1m                           Learning iteration 44/1000                           [0m 
+
+                            Total steps: 4423680 
+                       Steps per second: 313 
+                        Collection time: 312.747s 
+                          Learning time: 0.494s 
+                        Mean value loss: 0.0116
+                    Mean surrogate loss: -0.0026
+                      Mean entropy loss: 12.0653
+                            Mean reward: -0.40
+                    Mean episode length: 590.74
+                        Mean action std: 0.67
+    Episode_Reward/track_lin_vel_xy_exp: 0.2109
+     Episode_Reward/track_ang_vel_z_exp: 0.1824
+            Episode_Reward/lin_vel_z_l2: -0.0303
+           Episode_Reward/ang_vel_xy_l2: -0.1600
+          Episode_Reward/dof_torques_l2: -0.0575
+              Episode_Reward/dof_acc_l2: -0.0812
+          Episode_Reward/action_rate_l2: -0.0818
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.0792
+     Metrics/base_velocity/error_vel_xy: 1.0430
+    Metrics/base_velocity/error_vel_yaw: 0.7638
+           Episode_Termination/time_out: 0.4182
+       Episode_Termination/base_contact: 0.5823
+--------------------------------------------------------------------------------
+                         Iteration time: 313.24s
+                           Time elapsed: 00:31:16
+                                    ETA: 11:03:40
+
+################################################################################
+[1m                           Learning iteration 45/1000                           [0m 
+
+                            Total steps: 4521984 
+                       Steps per second: 313 
+                        Collection time: 312.978s 
+                          Learning time: 0.488s 
+                        Mean value loss: 0.0079
+                    Mean surrogate loss: -0.0053
+                      Mean entropy loss: 12.0011
+                            Mean reward: -1.44
+                    Mean episode length: 597.16
+                        Mean action std: 0.66
+    Episode_Reward/track_lin_vel_xy_exp: 0.1639
+     Episode_Reward/track_ang_vel_z_exp: 0.1784
+            Episode_Reward/lin_vel_z_l2: -0.0288
+           Episode_Reward/ang_vel_xy_l2: -0.1587
+          Episode_Reward/dof_torques_l2: -0.0588
+              Episode_Reward/dof_acc_l2: -0.0806
+          Episode_Reward/action_rate_l2: -0.0814
+           Episode_Reward/feet_air_time: -0.0009
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.0474
+     Metrics/base_velocity/error_vel_xy: 1.2254
+    Metrics/base_velocity/error_vel_yaw: 0.7945
+           Episode_Termination/time_out: 0.4093
+       Episode_Termination/base_contact: 0.5912
+--------------------------------------------------------------------------------
+                         Iteration time: 313.47s
+                           Time elapsed: 00:36:29
+                                    ETA: 12:36:54
+
+################################################################################
+[1m                           Learning iteration 46/1000                           [0m 
+
+                            Total steps: 4620288 
+                       Steps per second: 313 
+                        Collection time: 313.094s 
+                          Learning time: 0.482s 
+                        Mean value loss: 0.0113
+                    Mean surrogate loss: -0.0035
+                      Mean entropy loss: 11.9490
+                            Mean reward: -0.56
+                    Mean episode length: 668.68
+                        Mean action std: 0.66
+    Episode_Reward/track_lin_vel_xy_exp: 0.2112
+     Episode_Reward/track_ang_vel_z_exp: 0.2079
+            Episode_Reward/lin_vel_z_l2: -0.0298
+           Episode_Reward/ang_vel_xy_l2: -0.1678
+          Episode_Reward/dof_torques_l2: -0.0653
+              Episode_Reward/dof_acc_l2: -0.0847
+          Episode_Reward/action_rate_l2: -0.0889
+           Episode_Reward/feet_air_time: -0.0011
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 2.0156
+     Metrics/base_velocity/error_vel_xy: 1.1987
+    Metrics/base_velocity/error_vel_yaw: 0.8339
+           Episode_Termination/time_out: 0.4049
+       Episode_Termination/base_contact: 0.5956
+--------------------------------------------------------------------------------
+                         Iteration time: 313.58s
+                           Time elapsed: 00:41:43
+                                    ETA: 14:06:00
+
+################################################################################
+[1m                           Learning iteration 47/1000                           [0m 
+
+                            Total steps: 4718592 
+                       Steps per second: 313 
+                        Collection time: 313.427s 
+                          Learning time: 0.484s 
+                        Mean value loss: 0.0088
+                    Mean surrogate loss: -0.0035
+                      Mean entropy loss: 11.8971
+                            Mean reward: -0.49
+                    Mean episode length: 639.96
+                        Mean action std: 0.66
+    Episode_Reward/track_lin_vel_xy_exp: 0.2205
+     Episode_Reward/track_ang_vel_z_exp: 0.2028
+            Episode_Reward/lin_vel_z_l2: -0.0285
+           Episode_Reward/ang_vel_xy_l2: -0.1608
+          Episode_Reward/dof_torques_l2: -0.0654
+              Episode_Reward/dof_acc_l2: -0.0869
+          Episode_Reward/action_rate_l2: -0.0879
+           Episode_Reward/feet_air_time: -0.0010
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 1.9876
+     Metrics/base_velocity/error_vel_xy: 1.2206
+    Metrics/base_velocity/error_vel_yaw: 0.8484
+           Episode_Termination/time_out: 0.4031
+       Episode_Termination/base_contact: 0.5973
+--------------------------------------------------------------------------------
+                         Iteration time: 313.91s
+                           Time elapsed: 00:46:57
+                                    ETA: 15:31:16
+
+################################################################################
+[1m                           Learning iteration 48/1000                           [0m 
+
+                            Total steps: 4816896 
+                       Steps per second: 311 
+                        Collection time: 314.781s 
+                          Learning time: 0.480s 
+                        Mean value loss: 0.0111
+                    Mean surrogate loss: -0.0049
+                      Mean entropy loss: 11.8409
+                            Mean reward: -0.50
+                    Mean episode length: 737.64
+                        Mean action std: 0.66
+    Episode_Reward/track_lin_vel_xy_exp: 0.2526
+     Episode_Reward/track_ang_vel_z_exp: 0.2184
+            Episode_Reward/lin_vel_z_l2: -0.0291
+           Episode_Reward/ang_vel_xy_l2: -0.1754
+          Episode_Reward/dof_torques_l2: -0.0767
+              Episode_Reward/dof_acc_l2: -0.0956
+          Episode_Reward/action_rate_l2: -0.0995
+           Episode_Reward/feet_air_time: -0.0012
+     Episode_Reward/flat_orientation_l2: 0.0000
+          Episode_Reward/dof_pos_limits: 0.0000
+              Curriculum/terrain_levels: 1.9615
+     Metrics/base_velocity/error_vel_xy: 1.3772
+    Metrics/base_velocity/error_vel_yaw: 1.0051
+           Episode_Termination/time_out: 0.4008
+       Episode_Termination/base_contact: 0.5997
+--------------------------------------------------------------------------------
+                         Iteration time: 315.26s
+                           Time elapsed: 00:52:12
+                                    ETA: 16:53:17
+

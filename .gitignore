@@ -49,6 +49,10 @@ workspace/training/quadruped/go2_reeval.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P2_RESULT.zip
 workspace/_keep/GO2_G_A058_A048_SEED42_RESULT.zip
 workspace/_keep/GO2_G_A058_A043_SEED43_RESULT.zip
+workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
+workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P6_RESULT.zip
+workspace/_keep/GO2_G_A057_ANG_VEL_XY_L2_M0P04_RESULT.zip
+workspace/_keep/GO2_G_A057_ANG_VEL_XY_L2_M0P08_RESULT.zip
 
 # Local-only extracted evidence (100MB~700MB per dir, exceed GitHub push limits)
 # Kept on disk, never pushed. 2026-09-29.
@@ -74,6 +78,10 @@ workspace/_keep/go2_campaign_g_a041/
 workspace/_keep/go2_g_a057_track_lin_vel_xy_exp_p1p2/
 workspace/_keep/go2_g_a058_a048_seed42/
 workspace/_keep/go2_g_a058_a043_seed43/
+workspace/_keep/go2_g_a057_track_lin_vel_xy_exp_p1p4/
+workspace/_keep/go2_g_a057_track_lin_vel_xy_exp_p1p6/
+workspace/_keep/go2_g_a057_ang_vel_xy_l2_m0p04/
+workspace/_keep/go2_g_a057_ang_vel_xy_l2_m0p08/
 
 # Ephemeral runner temp files
 workspace/tmp*/

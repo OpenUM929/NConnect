@@ -189,20 +189,745 @@
   "exclusion": "EXCLUDED_STATIONARY"
  },
  "track_lin_vel_xy_exp_p1p4": {
+  "work_id": "G-A057",
   "row": "track_lin_vel_xy_exp_p1p4",
-  "run_state": "NOT_RECOVERED"
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p4",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged — G-A057 is sweep data only",
+  "run_state": "COMPLETE",
+  "run_state_reason": "FULL / FULL_69_COMPLETE",
+  "change": {
+   "name": "track_lin_vel_xy_exp",
+   "from": 1.5,
+   "to": 1.4,
+   "held": {
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   }
+  },
+  "targets": {
+   "rough_lateral_falls_down": {
+    "verdict": "NOT_SUPPORTED",
+    "value": 47,
+    "per_seed": {
+     "101": 16,
+     "202": 16,
+     "303": 15
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    },
+    "cost": false
+   },
+   "rough_forward_speed_down_cost": {
+    "verdict": "INSUFFICIENT",
+    "value": 2,
+    "per_seed": {
+     "101": 0.4891118182683382,
+     "202": 0.5032012925161147,
+     "303": 0.4878941345961564
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    },
+    "cost": true
+   }
+  },
+  "protection": {
+   "moving_gate": {
+    "state": "MOVING"
+   },
+   "forward_speed": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0.8129118430442349,
+     "202": 0.8182955362510882,
+     "303": 0.8092302659830387
+    },
+    "a048_per_seed": {
+     "101": 0.7566368848496076,
+     "202": 0.7581272708382605,
+     "303": 0.7569665569202084
+    }
+   },
+   "rough_forward_speed": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0.4891118182683382,
+     "202": 0.5032012925161147,
+     "303": 0.4878941345961564
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    }
+   },
+   "yaw_right_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.5340502713231768,
+     "202": 0.5382758123938728,
+     "303": 0.5316164681011606
+    },
+    "a048_per_seed": {
+     "101": 0.5479645455511899,
+     "202": 0.5512965749677617,
+     "303": 0.5475032936345644
+    }
+   },
+   "rough_lateral_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 16,
+     "202": 16,
+     "303": 15
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    }
+   },
+   "rough_forward_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 4,
+     "202": 5,
+     "303": 3
+    },
+    "a048_per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    }
+   },
+   "yaw_right_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "slope_plus_20_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "push_neg_y_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 1,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 1,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "stairs_10_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 21,
+     "202": 20,
+     "303": 23
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    }
+   },
+   "stairs_15_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0,
+     "202": 1,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    }
+   }
+  },
+  "exclusion": "EXCLUDED_NO_TARGET_SUPPORT"
  },
  "track_lin_vel_xy_exp_p1p6": {
+  "work_id": "G-A057",
   "row": "track_lin_vel_xy_exp_p1p6",
-  "run_state": "NOT_RECOVERED"
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p6",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged — G-A057 is sweep data only",
+  "run_state": "COMPLETE",
+  "run_state_reason": "FULL / FULL_69_COMPLETE",
+  "change": {
+   "name": "track_lin_vel_xy_exp",
+   "from": 1.5,
+   "to": 1.6,
+   "held": {
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   }
+  },
+  "targets": {
+   "rough_forward_speed_up": {
+    "verdict": "NOT_SUPPORTED",
+    "value": 0,
+    "per_seed": {
+     "101": 0.45106671442601504,
+     "202": 0.43874729696460085,
+     "303": 0.45023726294106275
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    },
+    "cost": false
+   },
+   "stairs_10_ge2_down_risk": {
+    "verdict": "INSUFFICIENT",
+    "value": 74,
+    "per_seed": {
+     "101": 24,
+     "202": 25,
+     "303": 25
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    },
+    "cost": true
+   }
+  },
+  "protection": {
+   "moving_gate": {
+    "state": "MOVING"
+   },
+   "forward_speed": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0.7693720592902878,
+     "202": 0.7714449819149916,
+     "303": 0.7680786120338876
+    },
+    "a048_per_seed": {
+     "101": 0.7566368848496076,
+     "202": 0.7581272708382605,
+     "303": 0.7569665569202084
+    }
+   },
+   "rough_forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.45106671442601504,
+     "202": 0.43874729696460085,
+     "303": 0.45023726294106275
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    }
+   },
+   "yaw_right_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.472478503647013,
+     "202": 0.47807469888588466,
+     "303": 0.4696443234184328
+    },
+    "a048_per_seed": {
+     "101": 0.5479645455511899,
+     "202": 0.5512965749677617,
+     "303": 0.5475032936345644
+    }
+   },
+   "rough_lateral_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 30,
+     "202": 31,
+     "303": 32
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    }
+   },
+   "rough_forward_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 1,
+     "202": 4,
+     "303": 1
+    },
+    "a048_per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    }
+   },
+   "yaw_right_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "slope_plus_20_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "push_neg_y_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 12,
+     "202": 10,
+     "303": 6
+    },
+    "a048_per_seed": {
+     "101": 1,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "stairs_10_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 24,
+     "202": 25,
+     "303": 25
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    }
+   },
+   "stairs_15_ge2": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 4,
+     "202": 5,
+     "303": 2
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    }
+   }
+  },
+  "exclusion": "EXCLUDED_NO_TARGET_SUPPORT"
  },
  "ang_vel_xy_l2_m0p04": {
+  "work_id": "G-A057",
   "row": "ang_vel_xy_l2_m0p04",
-  "run_state": "NOT_RECOVERED"
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_ang_vel_xy_l2_m0p04",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged — G-A057 is sweep data only",
+  "run_state": "COMPLETE",
+  "run_state_reason": "FULL / FULL_69_COMPLETE",
+  "change": {
+   "name": "ang_vel_xy_l2",
+   "from": -0.05,
+   "to": -0.04,
+   "held": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   }
+  },
+  "targets": {
+   "rough_lateral_falls_down": {
+    "verdict": "NOT_SUPPORTED",
+    "value": 56,
+    "per_seed": {
+     "101": 22,
+     "202": 15,
+     "303": 19
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    },
+    "cost": false
+   },
+   "rough_forward_speed_up": {
+    "verdict": "NOT_SUPPORTED",
+    "value": 0,
+    "per_seed": {
+     "101": 0.33176504644886845,
+     "202": 0.32361996789125425,
+     "303": 0.3186421409213978
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    },
+    "cost": false
+   }
+  },
+  "protection": {
+   "moving_gate": {
+    "state": "MOVING"
+   },
+   "forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.7129612983474061,
+     "202": 0.7163145317383326,
+     "303": 0.7118162183422914
+    },
+    "a048_per_seed": {
+     "101": 0.7566368848496076,
+     "202": 0.7581272708382605,
+     "303": 0.7569665569202084
+    }
+   },
+   "rough_forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.33176504644886845,
+     "202": 0.32361996789125425,
+     "303": 0.3186421409213978
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    }
+   },
+   "yaw_right_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.5140865697269343,
+     "202": 0.5140087066531611,
+     "303": 0.5147263894442726
+    },
+    "a048_per_seed": {
+     "101": 0.5479645455511899,
+     "202": 0.5512965749677617,
+     "303": 0.5475032936345644
+    }
+   },
+   "rough_lateral_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 22,
+     "202": 15,
+     "303": 19
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    }
+   },
+   "rough_forward_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 5,
+     "202": 6,
+     "303": 6
+    },
+    "a048_per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    }
+   },
+   "yaw_right_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "slope_plus_20_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "push_neg_y_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 1,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "stairs_10_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 6,
+     "202": 3,
+     "303": 4
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    }
+   },
+   "stairs_15_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    }
+   }
+  },
+  "exclusion": "EXCLUDED_NO_TARGET_SUPPORT"
  },
  "ang_vel_xy_l2_m0p08": {
+  "work_id": "G-A057",
   "row": "ang_vel_xy_l2_m0p08",
-  "run_state": "NOT_RECOVERED"
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_ang_vel_xy_l2_m0p08",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged — G-A057 is sweep data only",
+  "run_state": "COMPLETE",
+  "run_state_reason": "FULL / FULL_69_COMPLETE",
+  "change": {
+   "name": "ang_vel_xy_l2",
+   "from": -0.05,
+   "to": -0.08,
+   "held": {
+    "track_lin_vel_xy_exp": 1.5,
+    "feet_air_time": 0.2,
+    "lin_vel_z_l2": -1.25,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   }
+  },
+  "targets": {
+   "rough_lateral_falls_down": {
+    "verdict": "NOT_SUPPORTED",
+    "value": 62,
+    "per_seed": {
+     "101": 20,
+     "202": 23,
+     "303": 19
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    },
+    "cost": false
+   }
+  },
+  "protection": {
+   "moving_gate": {
+    "state": "MOVING"
+   },
+   "forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.6588563136168182,
+     "202": 0.6631590934293791,
+     "303": 0.6577615653508855
+    },
+    "a048_per_seed": {
+     "101": 0.7566368848496076,
+     "202": 0.7581272708382605,
+     "303": 0.7569665569202084
+    }
+   },
+   "rough_forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.18823004818216263,
+     "202": 0.16348405831023521,
+     "303": 0.18761397005883737
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    }
+   },
+   "yaw_right_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.3818154193911445,
+     "202": 0.3873716078853671,
+     "303": 0.38041355080107436
+    },
+    "a048_per_seed": {
+     "101": 0.5479645455511899,
+     "202": 0.5512965749677617,
+     "303": 0.5475032936345644
+    }
+   },
+   "rough_lateral_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 20,
+     "202": 23,
+     "303": 19
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    }
+   },
+   "rough_forward_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 18,
+     "202": 14,
+     "303": 23
+    },
+    "a048_per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    }
+   },
+   "yaw_right_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "slope_plus_20_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 1,
+     "202": 1,
+     "303": 3
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "push_neg_y_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 3,
+     "202": 1,
+     "303": 1
+    },
+    "a048_per_seed": {
+     "101": 1,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "stairs_10_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    }
+   },
+   "stairs_15_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    }
+   }
+  },
+  "exclusion": "EXCLUDED_NO_TARGET_SUPPORT"
  },
  "feet_air_time_p0p01": {
   "row": "feet_air_time_p0p01",

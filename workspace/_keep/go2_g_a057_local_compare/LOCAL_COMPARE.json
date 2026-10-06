@@ -108,6 +108,354 @@
     "ref": 4,
     "diff": 68
    }
+  },
+  "track_lin_vel_xy_exp_p1p4": {
+   "total": {
+    "value": 44.659,
+    "ref": 43.397,
+    "diff": 1.26
+   },
+   "G1": {
+    "value": 9.08,
+    "ref": 9.562,
+    "diff": -0.48
+   },
+   "G2": {
+    "value": 9.538,
+    "ref": 9.782,
+    "diff": -0.24
+   },
+   "G3": {
+    "value": 5.533,
+    "ref": 2.178,
+    "diff": 3.36
+   },
+   "G4": {
+    "value": 9.933,
+    "ref": 9.844,
+    "diff": 0.09
+   },
+   "G5": {
+    "value": 0.0,
+    "ref": 0.251,
+    "diff": -0.25
+   },
+   "G6": {
+    "value": 6.415,
+    "ref": 6.329,
+    "diff": 0.09
+   },
+   "G7": {
+    "value": 4.161,
+    "ref": 5.451,
+    "diff": -1.29
+   },
+   "stairs_15_down.ge2": {
+    "value": 1,
+    "ref": 6,
+    "diff": -5
+   },
+   "stairs_10_down.ge2": {
+    "value": 64,
+    "ref": 76,
+    "diff": -12
+   },
+   "combined_yaw_right.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "rough_lateral.falls": {
+    "value": 47,
+    "ref": 68,
+    "diff": -21
+   },
+   "rough_forward.falls": {
+    "value": 12,
+    "ref": 6,
+    "diff": 6
+   },
+   "push_pos_x.falls": {
+    "value": 3,
+    "ref": 4,
+    "diff": -1
+   },
+   "push_neg_x.falls": {
+    "value": 2,
+    "ref": 2,
+    "diff": 0
+   },
+   "push_pos_y.falls": {
+    "value": 1,
+    "ref": 0,
+    "diff": 1
+   },
+   "push_neg_y.falls": {
+    "value": 1,
+    "ref": 4,
+    "diff": -3
+   }
+  },
+  "track_lin_vel_xy_exp_p1p6": {
+   "total": {
+    "value": 35.349,
+    "ref": 43.397,
+    "diff": -8.05
+   },
+   "G1": {
+    "value": 9.521,
+    "ref": 9.562,
+    "diff": -0.04
+   },
+   "G2": {
+    "value": 7.795,
+    "ref": 9.782,
+    "diff": -1.99
+   },
+   "G3": {
+    "value": 0.0,
+    "ref": 2.178,
+    "diff": -2.18
+   },
+   "G4": {
+    "value": 9.939,
+    "ref": 9.844,
+    "diff": 0.1
+   },
+   "G5": {
+    "value": 0.202,
+    "ref": 0.251,
+    "diff": -0.05
+   },
+   "G6": {
+    "value": 3.11,
+    "ref": 6.329,
+    "diff": -3.22
+   },
+   "G7": {
+    "value": 4.783,
+    "ref": 5.451,
+    "diff": -0.67
+   },
+   "stairs_15_down.ge2": {
+    "value": 11,
+    "ref": 6,
+    "diff": 5
+   },
+   "stairs_10_down.ge2": {
+    "value": 74,
+    "ref": 76,
+    "diff": -2
+   },
+   "combined_yaw_right.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "rough_lateral.falls": {
+    "value": 93,
+    "ref": 68,
+    "diff": 25
+   },
+   "rough_forward.falls": {
+    "value": 6,
+    "ref": 6,
+    "diff": 0
+   },
+   "push_pos_x.falls": {
+    "value": 31,
+    "ref": 4,
+    "diff": 27
+   },
+   "push_neg_x.falls": {
+    "value": 32,
+    "ref": 2,
+    "diff": 30
+   },
+   "push_pos_y.falls": {
+    "value": 26,
+    "ref": 0,
+    "diff": 26
+   },
+   "push_neg_y.falls": {
+    "value": 28,
+    "ref": 4,
+    "diff": 24
+   }
+  },
+  "ang_vel_xy_l2_m0p04": {
+   "total": {
+    "value": 40.897,
+    "ref": 43.397,
+    "diff": -2.5
+   },
+   "G1": {
+    "value": 9.801,
+    "ref": 9.562,
+    "diff": 0.24
+   },
+   "G2": {
+    "value": 7.573,
+    "ref": 9.782,
+    "diff": -2.21
+   },
+   "G3": {
+    "value": 3.833,
+    "ref": 2.178,
+    "diff": 1.66
+   },
+   "G4": {
+    "value": 9.921,
+    "ref": 9.844,
+    "diff": 0.08
+   },
+   "G5": {
+    "value": 0.0,
+    "ref": 0.251,
+    "diff": -0.25
+   },
+   "G6": {
+    "value": 6.85,
+    "ref": 6.329,
+    "diff": 0.52
+   },
+   "G7": {
+    "value": 2.919,
+    "ref": 5.451,
+    "diff": -2.53
+   },
+   "stairs_15_down.ge2": {
+    "value": 0,
+    "ref": 6,
+    "diff": -6
+   },
+   "stairs_10_down.ge2": {
+    "value": 13,
+    "ref": 76,
+    "diff": -63
+   },
+   "combined_yaw_right.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "rough_lateral.falls": {
+    "value": 56,
+    "ref": 68,
+    "diff": -12
+   },
+   "rough_forward.falls": {
+    "value": 17,
+    "ref": 6,
+    "diff": 11
+   },
+   "push_pos_x.falls": {
+    "value": 0,
+    "ref": 4,
+    "diff": -4
+   },
+   "push_neg_x.falls": {
+    "value": 0,
+    "ref": 2,
+    "diff": -2
+   },
+   "push_pos_y.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "push_neg_y.falls": {
+    "value": 0,
+    "ref": 4,
+    "diff": -4
+   }
+  },
+  "ang_vel_xy_l2_m0p08": {
+   "total": {
+    "value": 30.781,
+    "ref": 43.397,
+    "diff": -12.62
+   },
+   "G1": {
+    "value": 9.029,
+    "ref": 9.562,
+    "diff": -0.53
+   },
+   "G2": {
+    "value": 7.423,
+    "ref": 9.782,
+    "diff": -2.36
+   },
+   "G3": {
+    "value": 2.064,
+    "ref": 2.178,
+    "diff": -0.11
+   },
+   "G4": {
+    "value": 5.738,
+    "ref": 9.844,
+    "diff": -4.11
+   },
+   "G5": {
+    "value": 0.0,
+    "ref": 0.251,
+    "diff": -0.25
+   },
+   "G6": {
+    "value": 5.681,
+    "ref": 6.329,
+    "diff": -0.65
+   },
+   "G7": {
+    "value": 0.846,
+    "ref": 5.451,
+    "diff": -4.6
+   },
+   "stairs_15_down.ge2": {
+    "value": 0,
+    "ref": 6,
+    "diff": -6
+   },
+   "stairs_10_down.ge2": {
+    "value": 3,
+    "ref": 76,
+    "diff": -73
+   },
+   "combined_yaw_right.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "rough_lateral.falls": {
+    "value": 62,
+    "ref": 68,
+    "diff": -6
+   },
+   "rough_forward.falls": {
+    "value": 55,
+    "ref": 6,
+    "diff": 49
+   },
+   "push_pos_x.falls": {
+    "value": 10,
+    "ref": 4,
+    "diff": 6
+   },
+   "push_neg_x.falls": {
+    "value": 8,
+    "ref": 2,
+    "diff": 6
+   },
+   "push_pos_y.falls": {
+    "value": 8,
+    "ref": 0,
+    "diff": 8
+   },
+   "push_neg_y.falls": {
+    "value": 5,
+    "ref": 4,
+    "diff": 1
+   }
   }
  }
 }
