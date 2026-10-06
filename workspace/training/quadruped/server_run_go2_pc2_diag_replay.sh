@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PC2 진단 재생 러너 (G-A065, 2026-10-06).  학습 없음 · 보상 변경 없음.
+# PC2 진단 재생 러너 (G-A065/G-A066, 2026-10-06).  학습 없음 · 보상 변경 없음.
 # server_run_go2_a043_diag_replay.sh(G-A056)에서 다음만 바꿨다:
 #   - 실행 목록: stairs_15_down·rough_lateral × 평가 seed 202·101·303 × plain·diag = 12회 (영상 없음)
 #   - set_case: 두 case 의 분기를 PC2 평가 러너(server_run_go2_candidate_iter_pinned.sh)와 같은 문자열로 둔다
@@ -138,7 +138,7 @@ package_result() {
 if [[ "${1:-}" != "--inner" ]]; then
   [[ -x "$ISAACLAB_SH" ]] || { echo "[FAIL] missing $ISAACLAB_SH (ISAACLAB_SH 로 알려 준다)"; exit 2; }
   for root in "$PLAIN_ROOT" "$DIAG_ROOT"; do
-    [[ -s "$root/play.py" && -s "$root/go2_eval_telemetry.py" && -d "$root/go2_task" ]] || {
+    [[ -s "$root/play.py" && -s "$root/go2_eval_telemetry.py" && -s "$root/quadruped_rewards.py" && -d "$root/go2_task" ]] || {
       echo "[FAIL] incomplete source root $root"; exit 2; }
   done
   [[ "$(sha256sum "$PLAIN_ROOT/go2_eval_telemetry.py" | awk '{print $1}')" == "$EXPECTED_EVALUATOR_SHA" &&

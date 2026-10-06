@@ -1,8 +1,8 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A064
 STATUS: HOLD
-START_AFTER: G-A065
-START_MARKER: /workspace/_keep/go2_g_a065_pc2_points/BATCH_RUN.log 에 [BATCH END]
+START_AFTER: G-A066
+START_MARKER: /workspace/_keep/go2_g_a066_pc2_points/BATCH_RUN.log 에 [BATCH END]
 PACKAGE: workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip
 PACKAGE_SHA256: 12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624
 -->
@@ -15,8 +15,8 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
 
 ## 0. 한눈에
 - **설계·합의:** `workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md` §12~§15, §25·§26(v2: c4 제외, 순서 변경), §28(v3: 점마다 STOP 파일 확인)
-- **시작 조건:** G-A065 진단 재생이 끝난 뒤(`[BATCH END]`)에 시작한다. 두 작업을 동시에 돌리지 않는다.
-- **v3 순서(v2와 같음)는 진단 전 기본 순서다.** G-A065 결과로 순서가 바뀌면 작성 PC가 v4로 다시 내고 이 문서를 고친다.
+- **시작 조건:** G-A066 진단 재생이 끝난 뒤(`[BATCH END]`)에 시작한다. 두 작업을 동시에 돌리지 않는다.
+- **v3 순서(v2와 같음)는 진단 전 기본 순서다.** G-A066 결과로 순서가 바뀌면 작성 PC가 v4로 다시 내고 이 문서를 고친다.
 - **5점은 최대 대기 목록이다.** 작성 PC가 끝난 점부터 판독한다(합의 문서 §21·§25·§28).
   - 남은 점을 멈춰야 하면 작성 PC가 머리말 `STATUS`를 `CANCELLED`로 바꿔 올린다. 멈추는 경우는 상태 A, 두 점 연속 '둘 다 실패', 순서 변경이다.
   - PC2는 1시간 감지 때 `CANCELLED`를 보면 `touch /workspace/_keep/go2_g_a064_pc2_points/STOP`만 한다. **실행 중인 프로세스는 끄지 않는다.**
@@ -36,7 +36,7 @@ PC2 환경 우회(마운트, isaaclab.sh shim, pyshim, D3D12 영상 런처)는 G
    - 경로: `workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip`
    - SHA256: `12975a5ddb7ed103423f067139130b446660c689df1a8407f40d3d2353ac6624`
    - 확인: `cd workspace/training/quadruped/upload/G-A064/current && sha256sum -c GO2_G_A064_PC2_S07_COMBO_v3.zip.sha256`
-2. G-A065가 끝났는지 확인한다: `/workspace/_keep/go2_g_a065_pc2_points/BATCH_RUN.log`에 `[BATCH END]` 줄이 있어야 한다.
+2. G-A066가 끝났는지 확인한다: `/workspace/_keep/go2_g_a066_pc2_points/BATCH_RUN.log`에 `[BATCH END]` 줄이 있어야 한다.
 3. 다른 학습(train.py·play.py)이 돌고 있지 않은지 확인한다. 돌고 있으면 첫 점이 rc 21로 거부되고 일괄 실행이 멈춘다.
 4. `workspace/_keep/pc2_handoff_ledger.tsv`에 `G-A064<TAB>STARTED<TAB>시각`을 적고 커밋·푸시한다(AGENTS.md 「PC2 작업 인계」 PC2 3항).
 5. ZIP을 `/workspace/`에 복사한다: `cp workspace/training/quadruped/upload/G-A064/current/GO2_G_A064_PC2_S07_COMBO_v3.zip /workspace/`

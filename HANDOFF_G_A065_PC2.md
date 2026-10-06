@@ -1,11 +1,13 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A065
-STATUS: READY
+STATUS: CANCELLED
 START_AFTER: G-A063
 START_MARKER: /workspace/_keep/go2_g_a063_pc2_points/BATCH_RUN.log 에 [BATCH END]
 PACKAGE: workspace/training/quadruped/upload/G-A065/current/GO2_G_A065_PC2_DIAG_REPLAY_v1.zip
 PACKAGE_SHA256: 56d5fd2f24d0654977f3b7714421b999fa4f1e6bf65ed21ce88dddc0c74fad36
 -->
+> **CANCELLED — v1 패키지 결함(quadruped_rewards.py 누락)으로 PC2 rc5 실패. 대체: `HANDOFF_G_A066_PC2.md`.**
+
 # G-A065 인계 — PC2(RTX 5070) 진단 재생 5정책 (학습 없음, PC2 Claude 세션용, 2026-10-06)
 
 PC2의 Claude는 이 문서를 처음부터 끝까지 읽고 §1 → §5 순서로 진행한다. 루트 `AGENTS.md`(R-1~R-7, 「PC2 작업 인계」 절)와 `GO2_NOW.md` 맨 위 줄을 함께 따른다.
