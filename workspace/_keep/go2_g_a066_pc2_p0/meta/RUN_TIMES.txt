@@ -1,0 +1,14 @@
+RUNNER_START=2026-10-06T17:40:36+09:00
+plain 202 stairs_15_down rc=0 wall_s=46
+diag 202 stairs_15_down rc=0 wall_s=54
+plain 202 rough_lateral rc=0 wall_s=38
+diag 202 rough_lateral rc=0 wall_s=49
+plain 101 stairs_15_down rc=0 wall_s=39
+diag 101 stairs_15_down rc=0 wall_s=53
+plain 101 rough_lateral rc=0 wall_s=37
+diag 101 rough_lateral rc=0 wall_s=47
+plain 303 stairs_15_down rc=0 wall_s=39
+diag 303 stairs_15_down rc=0 wall_s=51
+plain 303 rough_lateral rc=0 wall_s=37
+diag 303 rough_lateral rc=0 wall_s=49
+RUNNER_END=2026-10-06T17:49:37+09:00
