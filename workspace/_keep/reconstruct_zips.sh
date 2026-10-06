@@ -94,7 +94,12 @@ for base in \
   "GO2_A017_FULL_SUITE_RESULT.zip" \
   "GO2_DEFAULT_VS_PILOT_RESULT.zip" \
   "GO2_G_A033_CAMPAIGN_RESULT.zip" \
-  "GO2_G_A043_CAMPAIGN_RESULT.zip"
+  "GO2_G_A043_CAMPAIGN_RESULT.zip" \
+  "GO2_G_A044_RESULT.zip" \
+  "GO2_G_A047_RESULT.zip" \
+  "GO2_G_A048_RESULT.zip" \
+  "GO2_G_A049_RESULT.zip" \
+  "GO2_BASIC_MOTION_PAIR_RESULT.zip"
 do
   rebuild_one "$base"
 done
