@@ -2,3 +2,6 @@
 [POINT] c2_s07_lin_vel_z_l2_m0p5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
 [POINT END] c2_s07_lin_vel_z_l2_m0p5 DONE — 다음 점은 판독 뒤 따로 정한다.
 [POINT START] c1_s07_ang_vel_xy_l2_m0p02 2026-10-06T23:56:23+09:00
+[POINT] c1_s07_ang_vel_xy_l2_m0p02 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c1_s07_ang_vel_xy_l2_m0p02 DONE — 다음 점은 판독 뒤 따로 정한다.
+[POINT START] c3_s07_action_rate_l2_m0p0075 2026-10-07T02:10:34+09:00

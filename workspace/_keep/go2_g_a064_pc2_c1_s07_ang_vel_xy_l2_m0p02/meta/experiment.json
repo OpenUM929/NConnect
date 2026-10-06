@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A064",
+ "device": "PC2",
+ "run_key": "c1_s07_ang_vel_xy_l2_m0p02",
+ "design": "workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "S07",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.35,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/_keep/go2_g_a063_pc2_s07_feet_air_time_p0p35"
+ },
+ "single_change": {
+  "name": "ang_vel_xy_l2",
+  "from": -0.05,
+  "to": -0.02
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.35,
+  "lin_vel_z_l2": -1.25,
+  "ang_vel_xy_l2": -0.02,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "이력 예외: 조합 시험: G-A063에서 P0 위로 잰 값을 s07(feet 0.35) 부모 위에서 다시 잰다(합의 §12, 부모가 다름); 이력 []",
+ "note": "계단 원인(모서리에서 앞을 들지 못함) → 강좌 '몸통을 기울이지 마라' 벌점 완화 → G-A063 s11 15cm ≥2단 3→13·밀침 2. 험지 이득 보존 여부.",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}
