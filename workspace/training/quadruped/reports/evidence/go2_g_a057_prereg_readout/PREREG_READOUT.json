@@ -2,7 +2,7 @@
  "track_lin_vel_xy_exp_p1p2": {
   "work_id": "G-A057",
   "row": "track_lin_vel_xy_exp_p1p2",
-  "harvest": "C:\\dev\\Nconnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p2",
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_track_lin_vel_xy_exp_p1p2",
   "tier": "INTERNAL_HYPOTHESIS_READOUT",
   "adoption": "not judged — G-A057 is sweep data only",
   "run_state": "COMPLETE",
@@ -934,8 +934,193 @@
   "run_state": "NOT_RECOVERED"
  },
  "feet_air_time_p0p1": {
+  "work_id": "G-A057",
   "row": "feet_air_time_p0p1",
-  "run_state": "NOT_RECOVERED"
+  "harvest": "D:\\dev\\Nconnect\\NConnect\\workspace\\_keep\\go2_g_a057_feet_air_time_p0p1",
+  "tier": "INTERNAL_HYPOTHESIS_READOUT",
+  "adoption": "not judged — G-A057 is sweep data only",
+  "run_state": "COMPLETE",
+  "run_state_reason": "FULL / FULL_69_COMPLETE",
+  "change": {
+   "name": "feet_air_time",
+   "from": 0.2,
+   "to": 0.1,
+   "held": {
+    "track_lin_vel_xy_exp": 1.5,
+    "lin_vel_z_l2": -1.25,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.01,
+    "flat_orientation_l2": 0.0
+   }
+  },
+  "targets": {
+   "stairs_15_ge2_down_cost": {
+    "verdict": "SUPPORTED",
+    "value": 0,
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    },
+    "cost": true
+   },
+   "rough_lateral_falls_down_mech": {
+    "verdict": "INSUFFICIENT",
+    "value": 14,
+    "per_seed": {
+     "101": 2,
+     "202": 6,
+     "303": 6
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    },
+    "cost": false
+   }
+  },
+  "protection": {
+   "moving_gate": {
+    "state": "MOVING"
+   },
+   "forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.7301319095774663,
+     "202": 0.7315969343360438,
+     "303": 0.729222351693043
+    },
+    "a048_per_seed": {
+     "101": 0.7566368848496076,
+     "202": 0.7581272708382605,
+     "303": 0.7569665569202084
+    }
+   },
+   "rough_forward_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.2833666331625653,
+     "202": 0.2722834628912848,
+     "303": 0.2791546923270132
+    },
+    "a048_per_seed": {
+     "101": 0.4902897322752096,
+     "202": 0.49694277003270404,
+     "303": 0.49083120396710034
+    }
+   },
+   "yaw_right_speed": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0.3728578550236371,
+     "202": 0.37789165269560443,
+     "303": 0.3738357277362444
+    },
+    "a048_per_seed": {
+     "101": 0.5479645455511899,
+     "202": 0.5512965749677617,
+     "303": 0.5475032936345644
+    }
+   },
+   "rough_lateral_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 2,
+     "202": 6,
+     "303": 6
+    },
+    "a048_per_seed": {
+     "101": 5,
+     "202": 8,
+     "303": 3
+    }
+   },
+   "rough_forward_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 2,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 2,
+     "202": 0,
+     "303": 1
+    }
+   },
+   "yaw_right_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "slope_plus_20_falls": {
+    "state": "NOT_CONSISTENT",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "push_neg_y_falls": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 2,
+     "202": 2,
+     "303": 2
+    },
+    "a048_per_seed": {
+     "101": 1,
+     "202": 0,
+     "303": 0
+    }
+   },
+   "stairs_10_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 6,
+     "202": 4,
+     "303": 2
+    },
+    "a048_per_seed": {
+     "101": 31,
+     "202": 30,
+     "303": 29
+    }
+   },
+   "stairs_15_ge2": {
+    "state": "WORSE_ALL_SEEDS",
+    "per_seed": {
+     "101": 0,
+     "202": 0,
+     "303": 0
+    },
+    "a048_per_seed": {
+     "101": 8,
+     "202": 4,
+     "303": 12
+    }
+   }
+  },
+  "exclusion": "KEPT_FOR_REVIEW"
  },
  "feet_air_time_p0p35": {
   "row": "feet_air_time_p0p35",

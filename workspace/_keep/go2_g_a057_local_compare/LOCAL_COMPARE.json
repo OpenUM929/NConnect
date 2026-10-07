@@ -456,6 +456,93 @@
     "ref": 4,
     "diff": 1
    }
+  },
+  "feet_air_time_p0p1": {
+   "total": {
+    "value": 43.99,
+    "ref": 43.397,
+    "diff": 0.59
+   },
+   "G1": {
+    "value": 9.31,
+    "ref": 9.562,
+    "diff": -0.25
+   },
+   "G2": {
+    "value": 8.673,
+    "ref": 9.782,
+    "diff": -1.11
+   },
+   "G3": {
+    "value": 8.194,
+    "ref": 2.178,
+    "diff": 6.02
+   },
+   "G4": {
+    "value": 9.1,
+    "ref": 9.844,
+    "diff": -0.74
+   },
+   "G5": {
+    "value": 0.0,
+    "ref": 0.251,
+    "diff": -0.25
+   },
+   "G6": {
+    "value": 5.243,
+    "ref": 6.329,
+    "diff": -1.09
+   },
+   "G7": {
+    "value": 3.468,
+    "ref": 5.451,
+    "diff": -1.98
+   },
+   "stairs_15_down.ge2": {
+    "value": 0,
+    "ref": 6,
+    "diff": -6
+   },
+   "stairs_10_down.ge2": {
+    "value": 12,
+    "ref": 76,
+    "diff": -64
+   },
+   "combined_yaw_right.falls": {
+    "value": 0,
+    "ref": 0,
+    "diff": 0
+   },
+   "rough_lateral.falls": {
+    "value": 14,
+    "ref": 68,
+    "diff": -54
+   },
+   "rough_forward.falls": {
+    "value": 2,
+    "ref": 6,
+    "diff": -4
+   },
+   "push_pos_x.falls": {
+    "value": 9,
+    "ref": 4,
+    "diff": 5
+   },
+   "push_neg_x.falls": {
+    "value": 11,
+    "ref": 2,
+    "diff": 9
+   },
+   "push_pos_y.falls": {
+    "value": 3,
+    "ref": 0,
+    "diff": 3
+   },
+   "push_neg_y.falls": {
+    "value": 6,
+    "ref": 4,
+    "diff": 2
+   }
   }
  }
 }

@@ -1,0 +1,33 @@
+[START] G-A057 train_G-A057-Go2_a048_feet_air_time_p0p35_1000 resume=0 remeasure_baseline=0 at 2026-10-07T08:26:18+09:00
+[PHASE 1/6] G-A057 single-variable training: feet_air_time 0.2->0.35 seed=42 envs=4096 iterations=1000
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: D:\dev\Nconnect\IsaacLab\apps\isaaclab.python.headless.kit
+[INFO]: Parsing configuration from: go2_task.env_cfg:QuadrupedRoughEnvCfg
+[Quadruped:student] 6 reward 항목 로드
+  [OK] track_lin_vel_xy_exp.weight = 1.5
+  [OK] feet_air_time.weight = 0.35
+  [OK] lin_vel_z_l2.weight = -1.25
+  [OK] ang_vel_xy_l2.weight = -0.05
+  [OK] action_rate_l2.weight = -0.01
+  [OK] flat_orientation_l2.weight = 0.0
+[Quadruped:student] terrain override - boxes ≤0.15m
+[INFO]: Parsing configuration from: go2_task.agent_cfg:QuadrupedPPORunnerCfg
+[WARNING]: The `policy` configuration is deprecated for rsl-rl >= 4.0.0. Please use, e.g., `actor` and `critic` model configurations instead.
+[WARNING]: The `empirical_normalization` parameter is deprecated. Please set `actor_obs_normalization` and `critic_obs_normalization` as part of the `policy` configuration instead.
+[WARNING]: The `policy` configuration is used to infer the `actor` model configuration.
+[WARNING]: The `policy` configuration is used to infer the `critic` model configuration.
+[WARNING]: The `distribution_cfg` configuration is now used to specify the output distribution for stochastic policies. Consider updating the configuration to use `distribution_cfg` instead of `stochastic`, `init_noise_std`, `noise_std_type`, and `state_dependent_std` parameters.
+[INFO] Logging experiment in directory: D:\workspace\go2_g_a057_work\feet_air_time_p0p35\candidate\logs\rsl_rl\quadruped
+Exact experiment name requested from command line: 2026-10-07_08-27-01
+
+[36m======================================================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: C:\Users\ADMINI~1\AppData\Local\Temp\isaaclab\logs\isaaclab_2026-10-07_08-27-01.log[0m
+[36m======================================================================================================================[0m
+
+[33m08:27:01 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+forrtl: error (200): program aborting due to window-CLOSE event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FFDA5CAC203  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFDA8057374  Unknown               Unknown  Unknown
+ntdll.dll          00007FFDA85DCC91  Unknown               Unknown  Unknown
+^C

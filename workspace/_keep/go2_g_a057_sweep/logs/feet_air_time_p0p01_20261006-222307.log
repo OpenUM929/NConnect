@@ -1,0 +1,12 @@
+[START] G-A057 train_G-A057-Go2_a048_feet_air_time_p0p01_1000 resume=1 remeasure_baseline=0 at 2026-10-06T22:23:09+09:00
+[PHASE 1/6] G-A057 single-variable training: feet_air_time 0.2->0.01 seed=42 envs=4096 iterations=1000
+TRAINING_STATE=INTERRUPTED_TRAINING_PRESERVED
+PRESERVED_AT=2026-10-06T22:23:12+09:00
+PRESERVED_IN=/workspace/_keep/go2_g_a057_feet_air_time_p0p01/training/interrupted_20261006-222310
+WHY=GO2_RESUME=1 but the preserved training is not TRAIN_RC=0; retraining here would delete it
+TO_RESTART=GO2_RESTART_TRAINING=1 (deletes the preserved training and trains from scratch)
+[STOP] INTERRUPTED_TRAINING_PRESERVED: resume cannot continue this training and will not
+       destroy it.  Download the arm as it stands, or rerun with GO2_RESTART_TRAINING=1
+       to retrain from scratch over the preserved copy.
+[DOWNLOAD] /workspace/_keep/GO2_G_A057_FEET_AIR_TIME_P0P01_RESULT.zip
+[DOWNLOAD] /workspace/_keep/GO2_G_A057_FEET_AIR_TIME_P0P01_RESULT.zip.sha256
