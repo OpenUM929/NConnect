@@ -11,3 +11,5 @@
 [POINT] c6_s07_ang_vel_xy_l2_m0p035 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
 [POINT END] c6_s07_ang_vel_xy_l2_m0p035 DONE — 다음 점은 판독 뒤 따로 정한다.
 [POINT START] c5_s07_lin_vel_z_l2_m0p875 2026-10-07T06:40:02+09:00
+[POINT] c5_s07_lin_vel_z_l2_m0p875 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c5_s07_lin_vel_z_l2_m0p875 DONE — 다음 점은 판독 뒤 따로 정한다.

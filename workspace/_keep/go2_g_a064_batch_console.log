@@ -21,3 +21,7 @@
 [BATCH POINT END] c6_s07_ang_vel_xy_l2_m0p035 rc=0 2026-10-07T06:40:02+09:00
 [BATCH POINT] c5_s07_lin_vel_z_l2_m0p875 2026-10-07T06:40:02+09:00
 [POINT START] c5_s07_lin_vel_z_l2_m0p875 2026-10-07T06:40:02+09:00
+[POINT] c5_s07_lin_vel_z_l2_m0p875 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c5_s07_lin_vel_z_l2_m0p875 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c5_s07_lin_vel_z_l2_m0p875 rc=0 2026-10-07T08:55:53+09:00
+[BATCH END] 2026-10-07T08:55:54+09:00 worst_rc=0

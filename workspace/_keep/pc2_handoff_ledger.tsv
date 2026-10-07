@@ -7,3 +7,4 @@ G-A066	DONE	2026-10-06T18:31+09:00	all 5 policies (p0,s04,s11,s13,s07) rc=0, 6/6
 G-A064	STARTED	2026-10-06T21:39+09:00	v4 (order c2,c1,c3,c6,c5; user approved). package sha verified, no other train.py/play.py running
 G-A067	STARTED	2026-10-06T21:39+09:00	CPU-only behavior analysis, no GPU, explicitly permitted to run alongside G-A064 training. package sha verified
 G-A067	DONE	2026-10-06T21:42+09:00	G_A067_ANALYSIS=COMPLETE, all 5 policies (p0,s04,s07,s11,s13) processed, ~1min wall time, output ~107KB (SUMMARY.json, PER_ENV.csv, STATUS.txt, RUN.log)
+G-A064	DONE	2026-10-07T09:59+09:00	all 5 points (c2,c1,c3,c6,c5) rc=0, FULL_69_COMPLETE, report.html+10 videos each. BATCH END worst_rc=0 2026-10-07T08:55:54+09:00. Each point recovered+committed+pushed individually as 95MB parts.
