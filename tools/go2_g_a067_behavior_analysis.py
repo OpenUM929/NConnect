@@ -163,10 +163,15 @@ def main(argv=None):
     ap.add_argument("--out", default="workspace/_keep/go2_g_a067_analysis")
     ap.add_argument("--policies", default=",".join(POLICIES))
     ap.add_argument("--seeds", default=",".join(SEEDS))
+    ap.add_argument("--prefix", default="go2_g_a066_pc2_",
+                    help="재생 결과 폴더 접두사. G-A066 정책(p0·s04·s07·s11·s13)은 항상 go2_g_a066_pc2_ 에서 읽는다(기준 비교용)")
     a = ap.parse_args(argv)
     keep, out = Path(a.keep), Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     pols, seeds = a.policies.split(","), a.seeds.split(",")
+
+    def pdir(pol):
+        return keep / (f"go2_g_a066_pc2_{pol}" if pol in POLICIES else f"{a.prefix}{pol}")
     summary = {"definitions": __doc__.split("고정 정의")[1].strip(), "stairs": {}, "rough": {}}
     rows = []
     # 험지 기준 분포: P0 생존 개체 첫 episode(사건 없는 개체)
@@ -178,7 +183,7 @@ def main(argv=None):
                                    (20.0, 0.7, "민감도(20N,70%)"), (15.0, 0.5, "민감도(15N,50%)")):
             cnt, by_seed, paths, ends, dx = Counter(), {}, Counter(), Counter(), []
             for seed in seeds:
-                eps = read_case(keep / f"go2_g_a066_pc2_{pol}/diag/cases/seed_{seed}/stairs_15_down")
+                eps = read_case(pdir(pol) / f"diag/cases/seed_{seed}/stairs_15_down")
                 sc = Counter()
                 for env, ep in sorted(eps.items()):
                     r = stairs_env(ep, force_n, hold)
@@ -200,7 +205,7 @@ def main(argv=None):
         all_eps = []
         ev_by_seed = {}
         for seed in seeds:
-            eps = read_case(keep / f"go2_g_a066_pc2_{pol}/diag/cases/seed_{seed}/rough_lateral")
+            eps = read_case(pdir(pol) / f"diag/cases/seed_{seed}/rough_lateral")
             sc = Counter()
             for env, ep in sorted(eps.items()):
                 at, kind = rough_event(ep)

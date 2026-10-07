@@ -12,3 +12,9 @@ G-A066	READOUT_DONE	2026-10-06T21:10+09:00	behaviour readout from steps.csv (fir
 G-A064	READY	2026-10-06T21:10+09:00	v4 sha 8c0e7115, order c2 -> c1 -> c3 -> c6 -> c5, START_AFTER NONE (user: "수행해줘")
 G-A067	PUBLISHED	2026-10-06T21:10+09:00	analysis handoff, no GPU, may run alongside G-A064
 G-A067	READY	2026-10-06T21:10+09:00	sha 9feae0fb
+G-A064	RECEIVED	2026-10-07T12:30+09:00	all 5 points fetched (c2,c1,c3,c6,c5)
+G-A064	READOUT_DONE	2026-10-07T13:00+09:00	c6 only R1 met (stairs hold 3->45) with rough/push loss; non-monotonic in ang and lin -> training-seed variance suspected
+G-A068	PUBLISHED	2026-10-07T14:00+09:00	diag replay c6,c3,c2 + behaviour analysis (Codex 1/3 agreed)
+G-A068	READY	2026-10-07T14:00+09:00	sha 51ba29f0
+G-A069	PUBLISHED	2026-10-07T14:00+09:00	c6 retrain with train seed 43 (reproducibility of stairs hold 3->45)
+G-A069	READY	2026-10-07T14:00+09:00	sha 84744be6, START_AFTER G-A068

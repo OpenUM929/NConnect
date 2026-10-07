@@ -95,12 +95,15 @@ def render(template: str, w: dict[str, float]) -> str:
     return src
 
 
+TRAIN_SEED = "42"  # 학습 seed. 재현 시험(G-A069)만 바꾼다.
+
+
 def run_config(template: str, n: dict, key: str, var: str, frm: float, to: float) -> str:
     keep = f"go2_{n['slug']}_pc2_{key}"
     repl = {
         "WORK_ID": n["work_id"], "RUN_ID": f"train_{n['work_id']}-Go2_pc2_{key}_1000", "EXPERIMENT_SLUG": keep,
         "KEEP_DIR_NAME": keep, "RESULT_ZIP_NAME": f"GO2_{n['up']}_PC2_{key.upper()}_RESULT.zip",
-        "DONE_MARKER": f"'[DONE] GO2_{n['up']}_PC2_{key.upper()}_RESULT_READY'", "TMUX_NAME": keep, "TRAIN_SEED": "42",
+        "DONE_MARKER": f"'[DONE] GO2_{n['up']}_PC2_{key.upper()}_RESULT_READY'", "TMUX_NAME": keep, "TRAIN_SEED": TRAIN_SEED,
         "SINGLE_CHANGE_NAME": var, "SINGLE_CHANGE_FROM": f"{frm:g}", "SINGLE_CHANGE_TO": f"{to:g}",
     }
     lines = []

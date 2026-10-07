@@ -1,0 +1,1118 @@
+{
+ "node": "c5_s07_lin_vel_z_l2_m0p875",
+ "point": "workspace\\_keep\\go2_g_a064_pc2_c5_s07_lin_vel_z_l2_m0p875",
+ "parent": "workspace\\_keep\\go2_g_a063_pc2_s07_feet_air_time_p0p35",
+ "parent_key": "s07_feet_air_time_p0p35",
+ "changes": {
+  "lin_vel_z_l2": -0.875
+ },
+ "moving_gate": "MOVING",
+ "indicators": [
+  {
+   "name": "T_G3_rough_lateral_falls",
+   "role": "target",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G3_rough_lateral_motion",
+   "role": "target",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G5_stairs15_ge1",
+   "role": "target",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "better",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G5_stairs15_ge2",
+   "role": "target",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G5_stairs15_nonstall_after_ge2",
+   "role": "target",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G5_stairs15_progress_ratio",
+   "role": "target",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "T_G5_stairs15_survival",
+   "role": "target",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "same",
+    "303": "better"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_stairs10_ge2",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_stairs10_survival",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "better"
+   },
+   "worse_seeds": [
+    "101",
+    "202"
+   ]
+  },
+  {
+   "name": "S_stairs10_progress_ratio",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_yaw_right_falls",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "same",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_yaw_right_survival",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "same",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_yaw_right_yaw_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_yaw_right_xy_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_x_falls",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_x_survival",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_x_post_push_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_x_recovery_upright",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "better",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_push_neg_x_falls",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_x_survival",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_x_post_push_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_x_recovery_upright",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "better",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_push_pos_y_falls",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_y_survival",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_y_post_push_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_pos_y_recovery_upright",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "same",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_push_neg_y_falls",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_y_survival",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_y_post_push_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_push_neg_y_recovery_upright",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "same",
+    "303": "same"
+   },
+   "worse_seeds": []
+  },
+  {
+   "name": "S_rough_forward_falls",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "better",
+    "202": "worse",
+    "303": "better"
+   },
+   "worse_seeds": [
+    "202"
+   ]
+  },
+  {
+   "name": "S_rough_forward_motion",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_forward_nominal_cmd_error",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_G4_slope_plus_20_survival",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "same",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "303"
+   ]
+  },
+  {
+   "name": "S_G4_slope_plus_20_xy_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_G7_dr_survival",
+   "role": "protect",
+   "label": "NO_COMMON_DIRECTION",
+   "seed_dirs": {
+    "101": "same",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "202",
+    "303"
+   ]
+  },
+  {
+   "name": "S_G7_dr_xy_rmse",
+   "role": "protect",
+   "label": "COMMON_LOSS",
+   "seed_dirs": {
+    "101": "worse",
+    "202": "worse",
+    "303": "worse"
+   },
+   "worse_seeds": [
+    "101",
+    "202",
+    "303"
+   ]
+  }
+ ],
+ "values": {
+  "T_G3_rough_lateral_falls": {
+   "point": {
+    "101": 25,
+    "202": 22,
+    "303": 23
+   },
+   "parent": {
+    "101": 3,
+    "202": 5,
+    "303": 8
+   }
+  },
+  "T_G3_rough_lateral_motion": {
+   "point": {
+    "101": {
+     "abs_error": 0.2210913164435016,
+     "rmse": 0.2544502752555353
+    },
+    "202": {
+     "abs_error": 0.2294072489156443,
+     "rmse": 0.26294386899569505
+    },
+    "303": {
+     "abs_error": 0.2417046171340438,
+     "rmse": 0.2670884326223308
+    }
+   },
+   "parent": {
+    "101": {
+     "abs_error": 0.14039722322317585,
+     "rmse": 0.19510230847836174
+    },
+    "202": {
+     "abs_error": 0.1627081054053983,
+     "rmse": 0.21967638388985145
+    },
+    "303": {
+     "abs_error": 0.16984056842603062,
+     "rmse": 0.21559204447541716
+    }
+   }
+  },
+  "T_G5_stairs15_ge1": {
+   "point": {
+    "101": 9,
+    "202": 8,
+    "303": 7
+   },
+   "parent": {
+    "101": 13,
+    "202": 7,
+    "303": 12
+   }
+  },
+  "T_G5_stairs15_ge2": {
+   "point": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   },
+   "parent": {
+    "101": 0,
+    "202": 2,
+    "303": 1
+   }
+  },
+  "T_G5_stairs15_nonstall_after_ge2": {
+   "point": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   },
+   "parent": {
+    "101": 0,
+    "202": 1,
+    "303": 1
+   }
+  },
+  "T_G5_stairs15_progress_ratio": {
+   "point": {
+    "101": 0.14581602309364822,
+    "202": 0.14340801916795284,
+    "303": 0.13664489882311326
+   },
+   "parent": {
+    "101": 0.14745918322674703,
+    "202": 0.15286497493990464,
+    "303": 0.14337488934914297
+   }
+  },
+  "T_G5_stairs15_survival": {
+   "point": {
+    "101": 0.09375,
+    "202": 0.0625,
+    "303": 0.21875
+   },
+   "parent": {
+    "101": 0.0,
+    "202": 0.0625,
+    "303": 0.1875
+   }
+  },
+  "S_stairs10_ge2": {
+   "point": {
+    "101": 12,
+    "202": 11,
+    "303": 12
+   },
+   "parent": {
+    "101": 30,
+    "202": 30,
+    "303": 31
+   }
+  },
+  "S_stairs10_survival": {
+   "point": {
+    "101": 0.6875,
+    "202": 0.59375,
+    "303": 0.8125
+   },
+   "parent": {
+    "101": 0.875,
+    "202": 0.84375,
+    "303": 0.75
+   }
+  },
+  "S_stairs10_progress_ratio": {
+   "point": {
+    "101": 0.17806052172719503,
+    "202": 0.16989677091821806,
+    "303": 0.16525697796139865
+   },
+   "parent": {
+    "101": 0.4083756859167772,
+    "202": 0.5211638469014357,
+    "303": 0.3786358565602714
+   }
+  },
+  "S_yaw_right_falls": {
+   "point": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   },
+   "parent": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   }
+  },
+  "S_yaw_right_survival": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_yaw_right_yaw_rmse": {
+   "point": {
+    "101": 0.1474019639108601,
+    "202": 0.14525408018218183,
+    "303": 0.15099563271790634
+   },
+   "parent": {
+    "101": 0.11891220280490894,
+    "202": 0.12086704864376427,
+    "303": 0.11991639788568106
+   }
+  },
+  "S_yaw_right_xy_rmse": {
+   "point": {
+    "101": 0.15503053898995783,
+    "202": 0.15025352587783963,
+    "303": 0.1620475524149995
+   },
+   "parent": {
+    "101": 0.0871629178308252,
+    "202": 0.09151623937316376,
+    "303": 0.09443598463247216
+   }
+  },
+  "S_push_pos_x_falls": {
+   "point": {
+    "101": 0,
+    "202": 4,
+    "303": 2
+   },
+   "parent": {
+    "101": 1,
+    "202": 2,
+    "303": 0
+   }
+  },
+  "S_push_pos_x_survival": {
+   "point": {
+    "101": 1.0,
+    "202": 0.875,
+    "303": 0.9375
+   },
+   "parent": {
+    "101": 0.96875,
+    "202": 0.9375,
+    "303": 1.0
+   }
+  },
+  "S_push_pos_x_post_push_rmse": {
+   "point": {
+    "101": 0.11049706238570099,
+    "202": 0.12060633484204147,
+    "303": 0.11362125256167349
+   },
+   "parent": {
+    "101": 0.08736975726492062,
+    "202": 0.08609528177584123,
+    "303": 0.08010200443102393
+   }
+  },
+  "S_push_pos_x_recovery_upright": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   },
+   "parent": {
+    "101": 0.96875,
+    "202": 0.9453125,
+    "303": 1.0
+   }
+  },
+  "S_push_neg_x_falls": {
+   "point": {
+    "101": 6,
+    "202": 3,
+    "303": 2
+   },
+   "parent": {
+    "101": 1,
+    "202": 2,
+    "303": 0
+   }
+  },
+  "S_push_neg_x_survival": {
+   "point": {
+    "101": 0.8125,
+    "202": 0.90625,
+    "303": 0.9375
+   },
+   "parent": {
+    "101": 0.96875,
+    "202": 0.9375,
+    "303": 1.0
+   }
+  },
+  "S_push_neg_x_post_push_rmse": {
+   "point": {
+    "101": 0.1206227315465169,
+    "202": 0.12312572049176496,
+    "303": 0.11268256643352899
+   },
+   "parent": {
+    "101": 0.08378573706241087,
+    "202": 0.08935629885422403,
+    "303": 0.08331589218547793
+   }
+  },
+  "S_push_neg_x_recovery_upright": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   },
+   "parent": {
+    "101": 0.9765625,
+    "202": 0.953125,
+    "303": 1.0
+   }
+  },
+  "S_push_pos_y_falls": {
+   "point": {
+    "101": 6,
+    "202": 2,
+    "303": 3
+   },
+   "parent": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   }
+  },
+  "S_push_pos_y_survival": {
+   "point": {
+    "101": 0.8125,
+    "202": 0.9375,
+    "303": 0.90625
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_push_pos_y_post_push_rmse": {
+   "point": {
+    "101": 0.12545134507110572,
+    "202": 0.11473650661688566,
+    "303": 0.10685368480826553
+   },
+   "parent": {
+    "101": 0.08344106693599032,
+    "202": 0.08259399741654232,
+    "303": 0.08212561464307105
+   }
+  },
+  "S_push_pos_y_recovery_upright": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_push_neg_y_falls": {
+   "point": {
+    "101": 8,
+    "202": 2,
+    "303": 4
+   },
+   "parent": {
+    "101": 0,
+    "202": 0,
+    "303": 0
+   }
+  },
+  "S_push_neg_y_survival": {
+   "point": {
+    "101": 0.75,
+    "202": 0.9375,
+    "303": 0.875
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_push_neg_y_post_push_rmse": {
+   "point": {
+    "101": 0.12710548628290125,
+    "202": 0.11957793909498483,
+    "303": 0.12148558698470871
+   },
+   "parent": {
+    "101": 0.0825792335103558,
+    "202": 0.08385918230551727,
+    "303": 0.0849169228411315
+   }
+  },
+  "S_push_neg_y_recovery_upright": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_rough_forward_falls": {
+   "point": {
+    "101": 0,
+    "202": 6,
+    "303": 1
+   },
+   "parent": {
+    "101": 1,
+    "202": 2,
+    "303": 2
+   }
+  },
+  "S_rough_forward_motion": {
+   "point": {
+    "101": {
+     "abs_error": 0.24461924109471916,
+     "rmse": 0.33507583368733357
+    },
+    "202": {
+     "abs_error": 0.19189692985394996,
+     "rmse": 0.2931690382590688
+    },
+    "303": {
+     "abs_error": 0.2507953400053662,
+     "rmse": 0.3377574335227472
+    }
+   },
+   "parent": {
+    "101": {
+     "abs_error": 0.06542251308634556,
+     "rmse": 0.1757237524495671
+    },
+    "202": {
+     "abs_error": 0.09185409532217476,
+     "rmse": 0.21215743404631837
+    },
+    "303": {
+     "abs_error": 0.08347512502121213,
+     "rmse": 0.19940232218900505
+    }
+   }
+  },
+  "S_forward_nominal_cmd_error": {
+   "point": {
+    "101": 0.030182849711885562,
+    "202": 0.023317978262509143,
+    "303": 0.03397480925937235
+   },
+   "parent": {
+    "101": 0.0006094765486686082,
+    "202": 0.0035127792115273726,
+    "303": 0.0005496084180317551
+   }
+  },
+  "S_G4_slope_plus_20_survival": {
+   "point": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 0.96875
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 1.0,
+    "303": 1.0
+   }
+  },
+  "S_G4_slope_plus_20_xy_rmse": {
+   "point": {
+    "101": 0.22162705454572915,
+    "202": 0.19673041560516363,
+    "303": 0.23922086185740424
+   },
+   "parent": {
+    "101": 0.1107149260131976,
+    "202": 0.11299388872750336,
+    "303": 0.11278422658967056
+   }
+  },
+  "S_G7_dr_survival": {
+   "point": {
+    "101": 1.0,
+    "202": 0.9375,
+    "303": 0.90625
+   },
+   "parent": {
+    "101": 1.0,
+    "202": 0.96875,
+    "303": 0.9375
+   }
+  },
+  "S_G7_dr_xy_rmse": {
+   "point": {
+    "101": 0.35798485891234466,
+    "202": 0.31790606933048016,
+    "303": 0.32535051020537786
+   },
+   "parent": {
+    "101": 0.16111067480247954,
+    "202": 0.14717089901500344,
+    "303": 0.17983685984932218
+   }
+  }
+ },
+ "descriptive_stairs15_post_reach": {
+  "101": {
+   "point": {
+    "value": 0,
+    "reached_ge2": 0,
+    "stalled_after_reach": 0,
+    "conditional_stall_rate": "NOT_APPLICABLE"
+   },
+   "parent": {
+    "value": 0,
+    "reached_ge2": 0,
+    "stalled_after_reach": 0,
+    "conditional_stall_rate": "NOT_APPLICABLE"
+   }
+  },
+  "202": {
+   "point": {
+    "value": 0,
+    "reached_ge2": 0,
+    "stalled_after_reach": 0,
+    "conditional_stall_rate": "NOT_APPLICABLE"
+   },
+   "parent": {
+    "value": 1,
+    "reached_ge2": 2,
+    "stalled_after_reach": 1,
+    "conditional_stall_rate": 0.5
+   }
+  },
+  "303": {
+   "point": {
+    "value": 0,
+    "reached_ge2": 0,
+    "stalled_after_reach": 0,
+    "conditional_stall_rate": "NOT_APPLICABLE"
+   },
+   "parent": {
+    "value": 1,
+    "reached_ge2": 1,
+    "stalled_after_reach": 0,
+    "conditional_stall_rate": 0.0
+   }
+  }
+ },
+ "verdict": {
+  "class": "WORSENED",
+  "target_improvements": [],
+  "common_losses": [
+   "T_G3_rough_lateral_falls",
+   "T_G3_rough_lateral_motion",
+   "T_G5_stairs15_progress_ratio",
+   "S_stairs10_ge2",
+   "S_stairs10_progress_ratio",
+   "S_yaw_right_yaw_rmse",
+   "S_yaw_right_xy_rmse",
+   "S_push_pos_x_post_push_rmse",
+   "S_push_neg_x_falls",
+   "S_push_neg_x_survival",
+   "S_push_neg_x_post_push_rmse",
+   "S_push_pos_y_falls",
+   "S_push_pos_y_survival",
+   "S_push_pos_y_post_push_rmse",
+   "S_push_neg_y_falls",
+   "S_push_neg_y_survival",
+   "S_push_neg_y_post_push_rmse",
+   "S_rough_forward_motion",
+   "S_forward_nominal_cmd_error",
+   "S_G4_slope_plus_20_xy_rmse",
+   "S_G7_dr_xy_rmse"
+  ],
+  "partial_seed_losses": {
+   "T_G5_stairs15_ge1": [
+    "101",
+    "303"
+   ],
+   "T_G5_stairs15_ge2": [
+    "202",
+    "303"
+   ],
+   "T_G5_stairs15_nonstall_after_ge2": [
+    "202",
+    "303"
+   ],
+   "S_stairs10_survival": [
+    "101",
+    "202"
+   ],
+   "S_push_pos_x_falls": [
+    "202",
+    "303"
+   ],
+   "S_push_pos_x_survival": [
+    "202",
+    "303"
+   ],
+   "S_rough_forward_falls": [
+    "202"
+   ],
+   "S_G4_slope_plus_20_survival": [
+    "303"
+   ],
+   "S_G7_dr_survival": [
+    "202",
+    "303"
+   ]
+  }
+ },
+ "limits": "평가 seed 세 개 공통 방향 판정이며 독립 학습 재현·통계적 유의성·채택 증명이 아니다(§37-2)."
+}
