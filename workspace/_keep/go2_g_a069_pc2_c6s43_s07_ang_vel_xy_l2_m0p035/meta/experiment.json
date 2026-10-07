@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A069",
+ "device": "PC2",
+ "run_key": "c6s43_s07_ang_vel_xy_l2_m0p035",
+ "design": "workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "S07",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.35,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/_keep/go2_g_a063_pc2_s07_feet_air_time_p0p35"
+ },
+ "single_change": {
+  "name": "ang_vel_xy_l2",
+  "from": -0.05,
+  "to": -0.035
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.35,
+  "lin_vel_z_l2": -1.25,
+  "ang_vel_xy_l2": -0.035,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "이력 예외: 학습 seed 재현: G-A064 c6(같은 부모 s07·같은 값 ang_vel_xy_l2 −0.035, 학습 seed 42)를 seed 43으로 다시 학습한다; 이력 []",
+ "note": "c6 seed 42는 계단 높이 유지 3→45·R1 충족, 험지 뒤집힘 7→31·밀침 6→43. 같은 항 −0.05/−0.02와 정반대라 학습 흔들림인지 확인한다. 예측(문서 §17-6·Codex): 유지 ≥25, 2/3 seed에서 s07보다 높음; 험지 뒤집힘 ≥15.",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}
