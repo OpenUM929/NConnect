@@ -29,3 +29,35 @@
 [SWEEP] track_lin_vel_xy_exp_p1p6 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
 [SWEEP] ang_vel_xy_l2_m0p04 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
 [SWEEP] ang_vel_xy_l2_m0p08 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP START] 2026-10-06T09:47:21+09:00
+[SWEEP] track_lin_vel_xy_exp_p1p2 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p4 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p6 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p04 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p08 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] feet_air_time_p0p01 RUN_ERROR rc=3 collection=INCOMPLETE_CRASH resume=0 see /workspace/_keep/go2_g_a057_sweep/logs and /workspace/_keep/go2_g_a057_feet_air_time_p0p01/RUNNER_STATUS.txt
+[SWEEP] feet_air_time_p0p1 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[SWEEP START] 2026-10-06T22:22:51+09:00
+[SWEEP] track_lin_vel_xy_exp_p1p2 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p4 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p6 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p04 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p08 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] feet_air_time_p0p01 RUN_ERROR rc=9 collection=INCOMPLETE_CRASH resume=1 see /workspace/_keep/go2_g_a057_sweep/logs and /workspace/_keep/go2_g_a057_feet_air_time_p0p01/RUNNER_STATUS.txt
+[SWEEP] feet_air_time_p0p1 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP START] 2026-10-07T08:25:51+09:00
+[SWEEP] track_lin_vel_xy_exp_p1p2 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p4 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p6 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p04 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p08 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] feet_air_time_p0p01 RUN_ERROR rc=9 collection=INCOMPLETE_CRASH resume=1 see /workspace/_keep/go2_g_a057_sweep/logs and /workspace/_keep/go2_g_a057_feet_air_time_p0p01/RUNNER_STATUS.txt
+[SWEEP] feet_air_time_p0p1 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP START] 2026-10-07T08:28:10+09:00
+[SWEEP] track_lin_vel_xy_exp_p1p2 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p4 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] track_lin_vel_xy_exp_p1p6 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p04 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] ang_vel_xy_l2_m0p08 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present
+[SWEEP] feet_air_time_p0p01 RUN_ERROR rc=9 collection=INCOMPLETE_CRASH resume=1 see /workspace/_keep/go2_g_a057_sweep/logs and /workspace/_keep/go2_g_a057_feet_air_time_p0p01/RUNNER_STATUS.txt
+[SWEEP] feet_air_time_p0p1 SKIP_DONE rc=0 collection=FULL_69_COMPLETE resume=- verified result already present

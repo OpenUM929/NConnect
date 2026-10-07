@@ -79,6 +79,7 @@ workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P4_RESULT.zip
 workspace/_keep/GO2_G_A057_TRACK_LIN_VEL_XY_EXP_P1P6_RESULT.zip
 workspace/_keep/GO2_G_A057_ANG_VEL_XY_L2_M0P04_RESULT.zip
 workspace/_keep/GO2_G_A057_ANG_VEL_XY_L2_M0P08_RESULT.zip
+workspace/_keep/GO2_G_A057_FEET_AIR_TIME_P0P1_RESULT.zip
 
 # Local-only extracted evidence (100MB~700MB per dir, exceed GitHub push limits)
 # Kept on disk, never pushed. 2026-09-29.
@@ -108,6 +109,7 @@ workspace/_keep/go2_g_a057_track_lin_vel_xy_exp_p1p4/
 workspace/_keep/go2_g_a057_track_lin_vel_xy_exp_p1p6/
 workspace/_keep/go2_g_a057_ang_vel_xy_l2_m0p04/
 workspace/_keep/go2_g_a057_ang_vel_xy_l2_m0p08/
+workspace/_keep/go2_g_a057_feet_air_time_p0p1/
 
 # Ephemeral runner temp files
 workspace/tmp*/
