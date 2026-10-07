@@ -1,0 +1,27 @@
+[BATCH START] 2026-10-06T21:41:12+09:00
+[BATCH POINT] c2_s07_lin_vel_z_l2_m0p5 2026-10-06T21:41:12+09:00
+[POINT START] c2_s07_lin_vel_z_l2_m0p5 2026-10-06T21:41:12+09:00
+[POINT] c2_s07_lin_vel_z_l2_m0p5 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c2_s07_lin_vel_z_l2_m0p5 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c2_s07_lin_vel_z_l2_m0p5 rc=0 2026-10-06T23:56:23+09:00
+[BATCH POINT] c1_s07_ang_vel_xy_l2_m0p02 2026-10-06T23:56:23+09:00
+[POINT START] c1_s07_ang_vel_xy_l2_m0p02 2026-10-06T23:56:23+09:00
+[POINT] c1_s07_ang_vel_xy_l2_m0p02 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c1_s07_ang_vel_xy_l2_m0p02 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c1_s07_ang_vel_xy_l2_m0p02 rc=0 2026-10-07T02:10:33+09:00
+[BATCH POINT] c3_s07_action_rate_l2_m0p0075 2026-10-07T02:10:34+09:00
+[POINT START] c3_s07_action_rate_l2_m0p0075 2026-10-07T02:10:34+09:00
+[POINT] c3_s07_action_rate_l2_m0p0075 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c3_s07_action_rate_l2_m0p0075 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c3_s07_action_rate_l2_m0p0075 rc=0 2026-10-07T04:25:27+09:00
+[BATCH POINT] c6_s07_ang_vel_xy_l2_m0p035 2026-10-07T04:25:27+09:00
+[POINT START] c6_s07_ang_vel_xy_l2_m0p035 2026-10-07T04:25:27+09:00
+[POINT] c6_s07_ang_vel_xy_l2_m0p035 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c6_s07_ang_vel_xy_l2_m0p035 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c6_s07_ang_vel_xy_l2_m0p035 rc=0 2026-10-07T06:40:02+09:00
+[BATCH POINT] c5_s07_lin_vel_z_l2_m0p875 2026-10-07T06:40:02+09:00
+[POINT START] c5_s07_lin_vel_z_l2_m0p875 2026-10-07T06:40:02+09:00
+[POINT] c5_s07_lin_vel_z_l2_m0p875 DONE rc=0 collection=FULL_69_COMPLETE resume=0 -
+[POINT END] c5_s07_lin_vel_z_l2_m0p875 DONE — 다음 점은 판독 뒤 따로 정한다.
+[BATCH POINT END] c5_s07_lin_vel_z_l2_m0p875 rc=0 2026-10-07T08:55:53+09:00
+[BATCH END] 2026-10-07T08:55:54+09:00 worst_rc=0

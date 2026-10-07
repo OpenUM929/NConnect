@@ -1,0 +1,247 @@
+#!/usr/bin/env python3
+"""G-A066 PC2 진단 재생 패키지 빌더 (2026-10-06).  학습 없음 · 보상 변경 없음.
+
+합의: workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md §25·§26
+(Codex 3/3 APPROVE, 사용자 승인 "진단 먼저"). 계단·험지 실패 경로(몸체 불안정 선행 / 지지 실패 선행)를 정책 5개에서 가른다.
+
+정책(PC2 학습 iter 900, 회수본의 model_iter900.pt·env.yaml, 평가 identity.json 과 대조):
+  p0  P0(G-A060 B1, A048 보상)   s04 lin_vel_z −0.5   s11 ang_vel_xy −0.02   s13 action_rate −0.005   s07 feet_air_time 0.35
+case: stairs_15_down, rough_lateral × 평가 seed 202·101·303 × plain·diag = 정책당 12회(영상 없음). s14는 P0와 model SHA가 같아 제외.
+
+바이트 출처
+  평가 소스: G-A063 발행 ZIP 의 shared/candidate/(PC2가 다섯 정책을 평가한 바로 그 바이트, train.py 제외)
+  계측: G-A056 v2 발행본의 diag/go2_eval_diag_v2.py·diag/go2_eval_telemetry.py(진단 wrapper)와 같은 바이트
+  러너: workspace/training/quadruped/server_run_go2_pc2_diag_replay.sh
+
+    python -B tools/build_go2_pc2_g_a065_diag_package.py --check
+    python -B tools/build_go2_pc2_g_a065_diag_package.py --publish
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import io
+import json
+import zipfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+GO2 = ROOT / "workspace/training/quadruped"
+WORK_ID, SLUG, UP = "G-A066", "g_a066", "G_A066"  # G-A065 v1 은 quadruped_rewards.py 누락으로 PC2 rc5 실패(2026-10-06) → 새 번호로 재발행
+EDITION = "v1"
+RELEASE = f"GO2_{UP}_PC2_DIAG_REPLAY_{EDITION}"
+PREFIX = f"go2_{SLUG}_pc2/"
+STATUS_DIR = f"go2_{SLUG}_pc2_points"
+DESIGN = "workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md"
+FIXED = (2026, 10, 6, 0, 0, 0)
+EVALUATOR_SHA = "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84"
+G_A063_ZIP = GO2 / "upload/G-A063/current/GO2_G_A063_PC2_STAIRS_SWEEP_v1.zip"
+G_A063_ZIP_SHA = "e02e5eae1f226dd4efee4413b4aed37d571f936e546add69ae5b19005c46cccd"
+G_A056_ZIP = GO2 / "upload/G-A056/current/GO2_G_A056_a043_diag_replay_v2.zip"
+RUNNER = "server_run_go2_pc2_diag_replay.sh"
+# (key, 회수본, 설명) — 실행 순서. 회수본 경로는 저장소 기준.
+POLICIES = (
+    ("p0", "workspace/server_returns/G-A060/extracted/go2_g_a060_pc2_a048_seed42", "P0 = PC2 A048 보상(track 1.5)"),
+    ("s04", "workspace/_keep/go2_g_a063_pc2_s04_lin_vel_z_l2_m0p5", "P0 + lin_vel_z_l2 -1.25->-0.5"),
+    ("s11", "workspace/_keep/go2_g_a063_pc2_s11_ang_vel_xy_l2_m0p02", "P0 + ang_vel_xy_l2 -0.05->-0.02"),
+    ("s13", "workspace/_keep/go2_g_a063_pc2_s13_action_rate_l2_m0p005", "P0 + action_rate_l2 -0.01->-0.005"),
+    ("s07", "workspace/_keep/go2_g_a063_pc2_s07_feet_air_time_p0p35", "P0 + feet_air_time 0.2->0.35 (G-A064 부모)"),
+)
+
+
+# 정책이 학습된 보상 파일(go2_task/env_cfg.py 가 import 한다. 재생에서는 값이 쓰이지 않지만 모듈은 있어야 한다). p0 = s14(P0 반복, 같은 보상).
+REWARD_RUNS = {"p0": "s14_p0_repeat", "s04": "s04_lin_vel_z_l2_m0p5", "s11": "s11_ang_vel_xy_l2_m0p02",
+               "s13": "s13_action_rate_l2_m0p005", "s07": "s07_feet_air_time_p0p35"}
+
+
+def sha(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
+
+
+def need(ok: bool, msg: str) -> None:
+    if not ok:
+        raise SystemExit(f"[FAIL] {msg}")
+
+
+def lf(b: bytes, name: str) -> bytes:
+    need(b"\r" not in b, f"{name} has CR bytes")
+    return b
+
+
+def pc2_source() -> dict[str, bytes]:
+    outer = G_A063_ZIP.read_bytes()
+    need(sha(outer) == G_A063_ZIP_SHA, "G-A063 release ZIP SHA changed")
+    out = {}
+    with zipfile.ZipFile(io.BytesIO(outer)) as z:
+        pre = "go2_g_a063_pc2/shared/candidate/"
+        for n in z.namelist():
+            if n.startswith(pre) and not n.endswith("/") and not n.endswith("train.py"):
+                out[n[len(pre):]] = z.read(n)
+        out["_package_go2_result.py"] = z.read("go2_g_a063_pc2/shared/package_go2_result.py")
+        for key, run in REWARD_RUNS.items():
+            out[f"_rewards_{key}"] = z.read(f"go2_g_a063_pc2/runs/{run}/candidate/quadruped_rewards.py")
+    need(sha(out["go2_eval_telemetry.py"]) == EVALUATOR_SHA, "PC2 evaluator bytes are not the measured ruler")
+    return out
+
+
+def diag_modules() -> dict[str, bytes]:
+    with zipfile.ZipFile(G_A056_ZIP) as z:
+        return {"go2_eval_diag_v2.py": z.read("go2_g_a056/diag/go2_eval_diag_v2.py"),
+                "wrapper": z.read("go2_g_a056/diag/go2_eval_telemetry.py")}
+
+
+def policy(key: str, keep_rel: str) -> tuple[bytes, bytes, str, str]:
+    keep = ROOT / keep_rel
+    model = (keep / "training/model_iter900.pt").read_bytes()
+    env = (keep / "training/env.yaml").read_bytes()
+    ident = json.loads((keep / "evaluation/candidate/identity.json").read_text(encoding="utf-8"))
+    need(ident["model_sha256"] == sha(model) and ident["env_sha256"] == sha(env)
+         and ident["evaluator_sha256"] == EVALUATOR_SHA, f"{key}: evaluation identity does not match the policy files")
+    status = (keep / "RESULT_STATUS.txt").read_text(encoding="utf-8")
+    need("COLLECTION_STATUS=FULL_69_COMPLETE" in status, f"{key}: harvest is not FULL_69_COMPLETE")
+    return model, env, sha(model), sha(env)
+
+
+RUN_ALL = r"""#!/usr/bin/env bash
+# G-A066 PC2 진단 재생 일괄 실행 (generated by tools/build_go2_pc2_g_a065_diag_package.py). 학습 없음.
+# policies.txt 순서대로 runs/<key>/ 를 그 자체로 패키지 루트로 삼아 러너를 부른다.
+# 끝난 정책(RESULT_ZIP + .sha256 일치, COMPLETE_12_OF_12)은 건너뛴다. 실패하면 남은 정책을 멈춘다(환경 문제일 가능성이 크다).
+set -uo pipefail
+ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+KB=${GO2_DIAG_KEEP_BASE:-/workspace/_keep}  # 시험용으로만 바꾼다(계약 테스트)
+LOG_DIR=$KB/__STATUS_DIR__
+mkdir -p "$LOG_DIR"
+LOG="$LOG_DIR/BATCH_RUN.log"
+ISAACLAB_SH=${ISAACLAB_SH:-/workspace/IsaacLab/isaaclab.sh}
+(cd "$ROOT_DIR" && sha256sum -c --quiet SHA256SUMS.txt) || { echo '[FAIL] package checksum mismatch' | tee -a "$LOG"; exit 25; }
+echo "[BATCH START] $(date -Is)" | tee -a "$LOG"
+while read -r key keep zip; do
+  [[ -z "${key:-}" ]] && continue
+  if [[ -s "$KB/$zip" && -s "$KB/$zip.sha256" ]] &&
+     [[ "$(awk '{print $1}' "$KB/$zip.sha256")" == "$(sha256sum "$KB/$zip" | awk '{print $1}')" ]] &&
+     grep -qx 'COLLECTION_STATUS=COMPLETE_12_OF_12' "$KB/$keep/RESULT_STATUS.txt" 2>/dev/null; then
+    echo "[BATCH POINT] $key SKIP_DONE" | tee -a "$LOG"; continue
+  fi
+  echo "[BATCH POINT] $key $(date -Is)" | tee -a "$LOG"
+  PACKAGE_ROOT="$ROOT_DIR/runs/$key" ISAACLAB_SH="$ISAACLAB_SH" bash "$ROOT_DIR/runs/$key/__RUNNER__"
+  rc=$?
+  echo "[BATCH POINT END] $key rc=$rc $(date -Is)" | tee -a "$LOG"
+  if (( rc != 0 )); then
+    echo "[BATCH STOP] $key rc=$rc — remaining policies not started" | tee -a "$LOG"
+    exit "$rc"
+  fi
+done <"$ROOT_DIR/policies.txt"
+echo "[BATCH END] $(date -Is) worst_rc=0" | tee -a "$LOG"
+"""
+
+
+def build() -> tuple[bytes, dict]:
+    src = pc2_source()
+    helper = src.pop("_package_go2_result.py")
+    rewards = {k: src.pop(f"_rewards_{k}") for k in REWARD_RUNS}
+    mods = diag_modules()
+    runner = lf((GO2 / RUNNER).read_bytes().replace(b"\r\n", b"\n"), "runner")
+    files: dict[str, tuple[bytes, int]] = {}
+    lines = []
+    for key, keep_rel, label in POLICIES:
+        model, env, msha, esha = policy(key, keep_rel)
+        keep_name = f"go2_{SLUG}_pc2_{key}"
+        zip_name = f"GO2_{UP}_PC2_{key.upper()}_RESULT.zip"
+        arm: dict[str, tuple[bytes, int]] = {}
+        for rel, b in src.items():
+            arm[f"plain/{rel}"] = (b, 0o644)
+            if rel != "go2_eval_telemetry.py":
+                arm[f"diag/{rel}"] = (b, 0o644)
+        arm["diag/go2_eval_telemetry_v6.py"] = (src["go2_eval_telemetry.py"], 0o644)
+        arm["diag/go2_eval_telemetry.py"] = (mods["wrapper"], 0o644)
+        arm["diag/go2_eval_diag_v2.py"] = (mods["go2_eval_diag_v2.py"], 0o644)
+        arm["plain/quadruped_rewards.py"] = (rewards[key], 0o644)
+        arm["diag/quadruped_rewards.py"] = (rewards[key], 0o644)
+        arm["policy/model_best.pt"] = (model, 0o644)
+        arm["policy/env.yaml"] = (env, 0o644)
+        arm[RUNNER] = (runner, 0o755)
+        arm["package_go2_result.py"] = (helper, 0o644)
+        cfg = (f"WORK_ID={WORK_ID}\nKEEP_DIR_NAME={keep_name}\nRESULT_ZIP_NAME={zip_name}\n"
+               f"TMUX_NAME=go2_{SLUG}_{key}\nDONE_MARKER='[DONE] {zip_name} READY'\nMODEL_SHA={msha}\nENV_SHA={esha}\n"
+               f"EXPECTED_EVALUATOR_SHA={EVALUATOR_SHA}\nPOLICY_LABEL='{key}: {label}'\n")
+        arm["run_config.env"] = (cfg.encode(), 0o644)
+        exp = {"work_id": WORK_ID, "kind": "diagnostic_replay_no_training", "device": "PC2", "policy_key": key,
+               "policy": {"label": label, "harvest": keep_rel, "checkpoint": "iter 900",
+                          "model_sha256": msha, "env_sha256": esha},
+               "evaluator": {"schema": 6, "sha256": EVALUATOR_SHA, "source": "G-A063 shared/candidate",
+                             "diag_module_sha256": sha(mods["go2_eval_diag_v2.py"]),
+                             "diag_wrapper_sha256": sha(mods["wrapper"])},
+               "runs": [{"label": lab, "case": c, "seed": s} for s in (202, 101, 303)
+                        for c in ("stairs_15_down", "rough_lateral") for lab in ("plain", "diag")],
+               "videos": [], "design": DESIGN,
+               "interpretation_limits": [
+                   "first episode only; reset after a fall may change RNG consumption between policies",
+                   "torque rows are the last physics substep of each step",
+                   "contact_time > 0 marks contact, not load support",
+                   "events within one 0.02 s row are order-unknown",
+                   "a replay compares behaviour paths of stored policies; it does not prove a reward's causal effect"]}
+        arm["experiment.json"] = ((json.dumps(exp, indent=1, ensure_ascii=False) + "\n").encode(), 0o644)
+        arm["PACKAGE_SHA256SUMS.txt"] = ("".join(f"{sha(b)}  {n}\n" for n, (b, _) in sorted(arm.items())).encode(), 0o644)
+        files.update({f"runs/{key}/{n}": v for n, v in arm.items()})
+        lines.append(f"{key} {keep_name} {zip_name}")
+    files["policies.txt"] = (("\n".join(lines) + "\n").encode(), 0o644)
+    files["run_all.sh"] = (RUN_ALL.replace("__STATUS_DIR__", STATUS_DIR).replace("__RUNNER__", RUNNER).encode(), 0o755)
+    files["README.txt"] = (guide(None).encode(), 0o644)
+    files["SHA256SUMS.txt"] = ("".join(f"{sha(b)}  {n}\n" for n, (b, _) in sorted(files.items())).encode(), 0o644)
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+        for name, (b, mode) in sorted(files.items()):
+            info = zipfile.ZipInfo(PREFIX + name, date_time=FIXED)
+            info.external_attr = (0o100000 | mode) << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            z.writestr(info, b)
+    data = buf.getvalue()
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        need(z.testzip() is None, "ZIP CRC failure")
+    return data, {"files": files, "policies": lines}
+
+
+def guide(zip_sha: str | None) -> str:
+    pts = "\n".join(f"   {i}. {k:4s} {lab}" for i, (k, _, lab) in enumerate(POLICIES, 1))
+    return f"""GO2 {WORK_ID} PC2 진단 재생 — 학습 없음 · 보상 변경 없음 · 정책 {len(POLICIES)}개 × 12회 (설계 {DESIGN} §25·§26)
+==================================================
+정책(실행 순서, 모두 PC2 학습 iter 900):
+{pts}
+정책마다 stairs_15_down·rough_lateral × 평가 seed 202·101·303 × plain·diag(읽기 전용 진단 채널). 영상 없음.
+시간 [추정]: 서버 실측 회당 21~33초 → 60회 약 30~40분 + 초기화. PC2 실측 없음.
+
+1. 올리기: {RELEASE}.zip  SHA256 {zip_sha or '(발행 시 기록)'}  → /workspace/{RELEASE}.zip
+2. 환경 변수: G-A063 인계 §2 의 mount·export 줄을 먼저 실행한다.
+3. 실행(한 줄): unzip -oq /workspace/{RELEASE}.zip -d /workspace && bash /workspace/{PREFIX}run_all.sh
+   진행: /workspace/_keep/{STATUS_DIR}/BATCH_RUN.log
+4. 실패: 러너가 멈추면 run_all 도 멈춘다. 고친 뒤 같은 한 줄(끝난 정책은 SKIP_DONE).
+5. 회수: 정책마다 /workspace/_keep/go2_{SLUG}_pc2_<key>/ 와 GO2_{UP}_PC2_<KEY>_RESULT.zip + .sha256,
+   그리고 /workspace/_keep/{STATUS_DIR}/ → 저장소 workspace/_keep/ (100MB 초과는 95MB parts).
+"""
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser()
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--check", action="store_true")
+    g.add_argument("--publish", action="store_true")
+    a = ap.parse_args(argv)
+    data, info = build()
+    zsha = sha(data)
+    print(f"work id {WORK_ID} policies {len(POLICIES)} files {len(info['files'])} zip {len(data)} bytes sha256 {zsha}")
+    if a.publish:
+        out = GO2 / "upload" / WORK_ID / "current"
+        out.mkdir(parents=True, exist_ok=True)
+        z = out / f"{RELEASE}.zip"
+        if z.exists():
+            print(f"refuse to overwrite {z}")
+            return 65
+        z.write_bytes(data)
+        (out / f"{RELEASE}.zip.sha256").write_text(f"{zsha}  {z.name}\n", encoding="utf-8", newline="\n")
+        (out / f"{RELEASE}_RUN_GUIDE.txt").write_text(guide(zsha), encoding="utf-8", newline="\n")
+        print(f"published {z}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

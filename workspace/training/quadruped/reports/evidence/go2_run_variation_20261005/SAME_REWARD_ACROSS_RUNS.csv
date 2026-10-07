@@ -1,0 +1,9 @@
+reward,machine,train_seed,proxy_70,stairs15_ge2_of96,rough_lateral_falls_of96,push_falls_of384,source
+A048 (lin_vel_z -1.25),server,42,50.16,24,16,1,reports/GO2_REWARD_TRIAL_REFERENCE.md §2; GO2_G_A058_ROW1_A057_P1P2_READOUT_20261001.md §2
+A048 (lin_vel_z -1.25),PC1,42,43.40,6,68,10,GO2_G_A058_ROW1_A057_P1P2_READOUT_20261001.md §2
+A048 (lin_vel_z -1.25),PC2 (P0),42,46.77,3,41,0,GO2_G_A063_S01_S03_LIN_VEL_Z_READOUT_20261005.md §1
+A043 (lin_vel_z -1.5),server,42,44.63,77,24,10,GO2_REWARD_TRIAL_REFERENCE.md §2
+A043 (lin_vel_z -1.5),PC1,43,41.89,0,,,GO2_G_A058_ROW2_A043_SEED43_READOUT_20261002.md (train seed differs)
+A043 (lin_vel_z -1.5),PC2 (Q0),42,36.52,0,76,,GO2_G_A062_Q_SERIES_ANALYSIS_20261004.md §1
+A033 (lin_vel_z -2.0),server,42,42.53,0,59,22,GO2_REWARD_TRIAL_REFERENCE.md §2
+A033 (lin_vel_z -2.0),PC2 (s03),42,39.40,4,67,0,GO2_G_A063_S01_S03_LIN_VEL_Z_READOUT_20261005.md §1

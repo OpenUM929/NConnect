@@ -1,0 +1,56 @@
+{
+ "schema": "go2_pc2_batch_point_v1",
+ "work_id": "G-A064",
+ "device": "PC2",
+ "run_key": "c5_s07_lin_vel_z_l2_m0p875",
+ "design": "workspace/training/quadruped/upload/plan/GO2_G_A063_SWEEP_CODEX_CONSULT_20261006.md",
+ "promotion": "forbidden_pc_exploration",
+ "parent": {
+  "label": "S07",
+  "rewards": {
+   "track_lin_vel_xy_exp": 1.5,
+   "feet_air_time": 0.35,
+   "lin_vel_z_l2": -1.25,
+   "ang_vel_xy_l2": -0.05,
+   "action_rate_l2": -0.01,
+   "flat_orientation_l2": 0.0,
+   "dof_torques_l2": -0.0002,
+   "dof_acc_l2": -2.5e-07,
+   "track_ang_vel_z_exp": 0.75
+  },
+  "harvest_for_readout": "workspace/_keep/go2_g_a063_pc2_s07_feet_air_time_p0p35"
+ },
+ "single_change": {
+  "name": "lin_vel_z_l2",
+  "from": -1.25,
+  "to": -0.875
+ },
+ "rewards": {
+  "track_lin_vel_xy_exp": 1.5,
+  "feet_air_time": 0.35,
+  "lin_vel_z_l2": -0.875,
+  "ang_vel_xy_l2": -0.05,
+  "action_rate_l2": -0.01,
+  "flat_orientation_l2": 0.0,
+  "dof_torques_l2": -0.0002,
+  "dof_acc_l2": -2.5e-07,
+  "track_ang_vel_z_exp": 0.75
+ },
+ "history_check": "같은 항·같은 값 시험 이력 없음",
+ "note": "P0 −1.25와 −0.5의 가운데. 양 끝에서 계단 이득(3→23)과 험지 손실(G3 5.94→2.93)이 함께 나왔고 강좌 설명도 둘로 갈린다(완화→들어올리기 / 너무 약하면 험지 붕괴). 그 사이의 모양을 본다(사용자 지시 2026-10-06).",
+ "training": {
+  "seed": 42,
+  "num_envs": 4096,
+  "max_iterations": 1000,
+  "from_scratch": true
+ },
+ "evaluation": {
+  "checkpoint_iter": 900,
+  "seeds": [
+   101,
+   202,
+   303
+  ],
+  "case_count": 69
+ }
+}

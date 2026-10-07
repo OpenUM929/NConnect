@@ -44,6 +44,9 @@ FIXED_TIME = (2026, 10, 4, 0, 0, 0)
 EXTRA_DEFAULTS = {"dof_torques_l2": -2e-4, "dof_acc_l2": -2.5e-7, "track_ang_vel_z_exp": 0.75}
 TERMS = tuple(REWARD_NAMES) + tuple(EXTRA_DEFAULTS)
 Q0 = {"lin_vel_z_l2": -1.5}
+# 부모 변경이 있는 점의 이름표와 판독용 부모 회수본. 기본은 G-A062 의 Q0. 다른 회차 빌더가 바꿔 쓴다(G-A064: s07).
+PARENT_LABEL = "Q0"
+PARENT_HARVEST = None  # None 이면 같은 일괄 실행의 Q0 회수본
 P0_HARVEST = tb.P0_HARVEST
 # (key, 부모 변경, 바꿀 항, 값, 이력 예외 사유, 메모) — 실행 순서
 POINTS: tuple[tuple[str, dict, str, float, str | None, str], ...] = (
@@ -92,12 +95,15 @@ def render(template: str, w: dict[str, float]) -> str:
     return src
 
 
+TRAIN_SEED = "42"  # 학습 seed. 재현 시험(G-A069)만 바꾼다.
+
+
 def run_config(template: str, n: dict, key: str, var: str, frm: float, to: float) -> str:
     keep = f"go2_{n['slug']}_pc2_{key}"
     repl = {
         "WORK_ID": n["work_id"], "RUN_ID": f"train_{n['work_id']}-Go2_pc2_{key}_1000", "EXPERIMENT_SLUG": keep,
         "KEEP_DIR_NAME": keep, "RESULT_ZIP_NAME": f"GO2_{n['up']}_PC2_{key.upper()}_RESULT.zip",
-        "DONE_MARKER": f"'[DONE] GO2_{n['up']}_PC2_{key.upper()}_RESULT_READY'", "TMUX_NAME": keep, "TRAIN_SEED": "42",
+        "DONE_MARKER": f"'[DONE] GO2_{n['up']}_PC2_{key.upper()}_RESULT_READY'", "TMUX_NAME": keep, "TRAIN_SEED": TRAIN_SEED,
         "SINGLE_CHANGE_NAME": var, "SINGLE_CHANGE_FROM": f"{frm:g}", "SINGLE_CHANGE_TO": f"{to:g}",
     }
     lines = []
@@ -126,6 +132,8 @@ echo "[BATCH START] $(date -Is)" | tee -a "$LOG"
 worst=0
 while read -r key _keep _zip; do
   [[ -z "${key:-}" ]] && continue
+  # 작성 PC가 남은 점을 멈추라고 하면(인계 STATUS CANCELLED) PC2가 이 파일을 만든다. 진행 중인 점은 끊지 않는다.
+  if [[ -e "$LOG_DIR/STOP" ]]; then echo "[BATCH STOP] STOP file present — $key and later points not started" | tee -a "$LOG"; exit 0; fi
   echo "[BATCH POINT] $key $(date -Is)" | tee -a "$LOG"
   bash "$ROOT_DIR/run_point.sh" --inner "$key"
   rc=$?
@@ -156,13 +164,13 @@ def point_files(n: dict, src: dict, key: str, parent_changes: dict, var: str, va
         raise ValueError(f"{key}: must change exactly {var}, changed {diff}")
     template = src["candidate/quadruped_rewards.py"].decode("utf-8")
     cand_src, parent_src = render(template, cand_w), render(template, parent_w)
-    parent_label = "P0" if not parent_changes else "Q0"
+    parent_label = "P0" if not parent_changes else PARENT_LABEL
     experiment = {
         "schema": "go2_pc2_batch_point_v1", "work_id": n["work_id"], "device": "PC2", "run_key": key,
         "design": DESIGN, "promotion": "forbidden_pc_exploration",
         "parent": {"label": parent_label, "rewards": parent_w,
                    "harvest_for_readout": P0_HARVEST if parent_label == "P0"
-                   else f"workspace/_keep/go2_{n['slug']}_pc2_q0_lin_vel_z_l2_m1p5 (같은 일괄 실행의 Q0)"},
+                   else (PARENT_HARVEST or f"workspace/_keep/go2_{n['slug']}_pc2_q0_lin_vel_z_l2_m1p5 (같은 일괄 실행의 Q0)")},
         "single_change": {"name": var, "from": parent_w[var], "to": value}, "rewards": cand_w,
         "history_check": (f"이력 예외: {exemption}; 이력 {hits}" if exemption else "같은 항·같은 값 시험 이력 없음"),
         "note": note,

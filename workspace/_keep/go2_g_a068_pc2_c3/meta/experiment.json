@@ -1,0 +1,91 @@
+{
+ "work_id": "G-A068",
+ "kind": "diagnostic_replay_no_training",
+ "device": "PC2",
+ "policy_key": "c3",
+ "policy": {
+  "label": "s07 + action_rate_l2 -0.01->-0.0075 (G-A064 c3)",
+  "harvest": "workspace/_keep/go2_g_a064_pc2_c3_s07_action_rate_l2_m0p0075",
+  "checkpoint": "iter 900",
+  "model_sha256": "a851cc43b0ff1f3b26d43d253333e8104a1249130a9a2ac5041c61e2c0fa8cf5",
+  "env_sha256": "78fb10d9c1bc5d15dab8dc2a3a3816afb1f2ef19ffca6186b9d976d0d228f9a9"
+ },
+ "evaluator": {
+  "schema": 6,
+  "sha256": "353614487a903e0347e7142396ce2e13c5133169950b1839b6dc26287a930d84",
+  "source": "G-A063 shared/candidate",
+  "diag_module_sha256": "f3a966cc51853d1e855d25c0a1127ec625b07ddaeceabc1800ce3bb59adb4eb4",
+  "diag_wrapper_sha256": "8e48b506b4475508d756747cee0878d6f73d2bc4c0d9c8a30643b4b6688675ed"
+ },
+ "runs": [
+  {
+   "label": "plain",
+   "case": "stairs_15_down",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "stairs_15_down",
+   "seed": 202
+  },
+  {
+   "label": "plain",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "diag",
+   "case": "rough_lateral",
+   "seed": 202
+  },
+  {
+   "label": "plain",
+   "case": "stairs_15_down",
+   "seed": 101
+  },
+  {
+   "label": "diag",
+   "case": "stairs_15_down",
+   "seed": 101
+  },
+  {
+   "label": "plain",
+   "case": "rough_lateral",
+   "seed": 101
+  },
+  {
+   "label": "diag",
+   "case": "rough_lateral",
+   "seed": 101
+  },
+  {
+   "label": "plain",
+   "case": "stairs_15_down",
+   "seed": 303
+  },
+  {
+   "label": "diag",
+   "case": "stairs_15_down",
+   "seed": 303
+  },
+  {
+   "label": "plain",
+   "case": "rough_lateral",
+   "seed": 303
+  },
+  {
+   "label": "diag",
+   "case": "rough_lateral",
+   "seed": 303
+  }
+ ],
+ "videos": [],
+ "design": "workspace/training/quadruped/upload/plan/GO2_STAIRS_ROUGH_SITUATION_DEBATE_20261006.md",
+ "interpretation_limits": [
+  "first episode only; reset after a fall may change RNG consumption between policies",
+  "torque rows are the last physics substep of each step",
+  "contact_time > 0 marks contact, not load support",
+  "events within one 0.02 s row are order-unknown",
+  "a replay compares behaviour paths of stored policies; it does not prove a reward's causal effect"
+ ]
+}

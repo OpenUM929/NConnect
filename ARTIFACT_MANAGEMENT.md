@@ -563,6 +563,17 @@ GitHub는 파일당 100MB 하드 제한이 있어 100MB를 넘는 archive는 통
   측정하지 않았다. `VIDEO_OBSERVED`·`OFFICIAL_RESULT`는 여전히 미확정이다. 결과 판독은
   `GO2_REWARD_EVIDENCE_MASTER.md` §19 절차와 사용자 승인 뒤에 수행한다.
 
+### 6-a-3. 작업 폴더에서 parts 숨김 — sparse-checkout (2026-10-05 사용자 승인)
+
+C: 여유 1~6GB 상태에서, 커밋된 parts는 `.git` pack과 작업 폴더에 같은 데이터가 두 벌 있었다(작업 폴더 3.7GB).
+- `git sparse-checkout set --no-cone` 패턴 `/*` + `!/workspace/_keep/*.zip.[0-9][0-9][0-9]`로 작업 폴더에서만 parts를 숨겼다.
+  git 이력·원격에는 그대로 있다. 되돌리기: `git sparse-checkout disable`.
+- `reconstruct_zips.sh`는 작업 폴더에 part가 없으면 `git cat-file blob HEAD:./<part>`로 읽는다.
+  `GO2_G_A028_RESULT.zip`으로 재조립·sha256 일치를 확인했다(시험 산출물은 삭제).
+- parts가 원격에 있고 zip·매니페스트·parts sha256 세 값이 일치한 원본 `GO2_G_A061_PC2_N3_DOF_TORQUES_L2_M1E_4_RESULT.zip`(297MB)을 삭제했다.
+- 중단된 `git fetch`가 남긴 `.git/objects/pack/tmp_pack_*` 2.3GB를 삭제했다. fetch가 끊기면 이 임시 파일이 남는다.
+- 새로 만든 parts는 자동으로 숨겨지지 않는다. 커밋한 뒤 `git sparse-checkout reapply`를 실행해야 작업 폴더에서 빠진다. 도구는 parts를 읽지 않는다(tools/ 검색 0건).
+
 ## 6-b. archive 무결성 결함 — `GO2_LIN_VEL_Z_M2_RESULT.zip` 잘림 (2026-10-03 발견·복구)
 
 - **관측.** git에 커밋된 `workspace/_keep/GO2_LIN_VEL_Z_M2_RESULT.zip`의 크기는 37,227,124 B이고
@@ -1223,3 +1234,12 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 - 영상 판정: 필수 — 실행마다 러너가 후보 영상 10편을 찍어 결과 ZIP에 넣는다. report.html 은 러너가 결과 ZIP·SHA 에 포함한다.
 - 상태 단어: 완료 DONE/SKIP_DONE · 실행 안전 중단 SAFETY_STOP_NONFINITE/SKIP_SAFETY_STOPPED/ABORT_* · 실행 실패 RUN_ERROR/COLLECTION_FAILED. 평가 결과로 멈추지 않는다.
 - 검증: tools/test_go2_g_a057_sweep_contract.py 16 · test_go2_g_a057_prereg_contract.py 9 · test_go2_g_a057_sweep_compare_contract.py 8 통과. 서버 실행 승인은 별개(미승인).
+
+## G-A063-S12-RECOVERY-CODEX-20261006
+- State: PLANNED -> RUNNING. Remote master 84901201ddc5a7f592e1b283142e80766db37929 contains the s12 archive (4 parts) and SHA. No s13/s14 result archives; s13 progress log exists.
+- Direct retrieval with tools/keep_fetch_result.sh; archive SHA matched and extraction completed. Compression and existing readout are running. Free space before: 4.5 GB.
+- Safety repair: helper temporary-pack cleanup now excludes the sibling repository outside this workspace. bash -n succeeded. Existing artifacts and thresholds unchanged.
+- G-A064 publication remains dependent on s12-s14 readout under consultation section 12. Required videos retained; no behavior or server-shutdown claim.
+
+- 2026-10-06 Codex s12 follow-up: archive SHA matched; existing identity check returned no gaps; 10 MP4 files present (VIDEO_UNKNOWN). Existing tree readout completed: TRADEOFF. Rough-lateral falls P0 13/16/12 -> 32/31/30 (41 -> 93/96); push falls 0 -> 9/384; stairs15 >=2: 3 -> 0/96, >=1: 52 -> 33/96. Consultation section 12-D eligibility is NOT MET for action_rate_l2=-0.02 (neither fall measure improved). s13/s14 result archives absent from inspected remote commit 84901201ddc5a7f592e1b283142e80766db37929; G-A064 not issued. Readout: workspace/training/quadruped/reports/evidence/go2_pc2_tree_readout/s12_action_rate_l2_m0p02.{json,md}.
+- Retrieval/cleanup completed, exit 0; disk free 4.5 -> 4.2 GB (extracted data retained with LZX). REPORT_READ_STATUS=READ_MATCHED for source training run; HTML best iter800 is distinct from evaluated pinned iter900. Model SHA 3a1765cc355fc1579c977e29751048c27980d5005600f6a45d9aa07bb3db5224. No physical-cause claim; videos not viewed; full internal-manifest verification not performed in this follow-up.

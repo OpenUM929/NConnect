@@ -1,0 +1,13 @@
+WORK_ID	EVENT	AT	NOTE
+G-A063	STARTED	2026-10-05T04:06+09:00	manual start before PC2_HANDOFF header contract (s01 training start per report.html)
+G-A065	STARTED	2026-10-06T16:32+09:00	package sha verified, no other train.py/play.py running
+G-A065	FAILED	rc5	p0 plain seed=202 stairs_15_down: ModuleNotFoundError quadruped_rewards (missing from package, go2_task/env_cfg.py imports it). run_all.sh self-stopped after 1st policy per its own [BATCH STOP] logic; no process left running. Checked: file absent anywhere under go2_g_a065_pc2/ tree, not a PYTHONPATH issue. Needs repackage with quadruped_rewards.py included; not patched locally (risk of using wrong per-point reward weights).
+G-A066	STARTED	2026-10-06T17:38+09:00	v1 of the fixed replacement for G-A065 (quadruped_rewards.py now bundled per policy). package sha verified, no other train.py/play.py running
+G-A066	DONE	2026-10-06T18:31+09:00	all 5 policies (p0,s04,s11,s13,s07) rc=0, 6/6 IDENTICAL each (30/30 total), wall_s ~529-543s each. BATCH END worst_rc=0 2026-10-06T18:26:04+09:00. Recovered as 95MB parts, combined commit.
+G-A064	STARTED	2026-10-06T21:39+09:00	v4 (order c2,c1,c3,c6,c5; user approved). package sha verified, no other train.py/play.py running
+G-A067	STARTED	2026-10-06T21:39+09:00	CPU-only behavior analysis, no GPU, explicitly permitted to run alongside G-A064 training. package sha verified
+G-A067	DONE	2026-10-06T21:42+09:00	G_A067_ANALYSIS=COMPLETE, all 5 policies (p0,s04,s07,s11,s13) processed, ~1min wall time, output ~107KB (SUMMARY.json, PER_ENV.csv, STATUS.txt, RUN.log)
+G-A064	DONE	2026-10-07T09:59+09:00	all 5 points (c2,c1,c3,c6,c5) rc=0, FULL_69_COMPLETE, report.html+10 videos each. BATCH END worst_rc=0 2026-10-07T08:55:54+09:00. Each point recovered+committed+pushed individually as 95MB parts.
+G-A068	STARTED	2026-10-07T14:25+09:00	diag replay 3 policies (c6,c3,c2) + behavior analysis vs G-A066 p0/s07 baseline, no training. package sha verified, no other train.py/play.py running
+G-A068	DONE	2026-10-07T15:01+09:00	all 3 policies (c6,c3,c2) rc=0, 6/6 IDENTICAL each (18/18 total). BATCH END worst_rc=0 2026-10-07T14:53:48+09:00. Behavior analysis G_A067_ANALYSIS=COMPLETE vs p0/s07 baseline. Recovered as 95MB parts, combined commit.
+G-A069	STARTED	2026-10-07T15:05+09:00	c6 seed-43 reproduction (point key c6s43_s07_ang_vel_xy_l2_m0p035). package sha verified, no other train.py/play.py running

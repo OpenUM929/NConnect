@@ -1,0 +1,16 @@
+GO2 G-A068 PC2 진단 재생 — 학습 없음 · 보상 변경 없음 · 정책 3개 × 12회 (설계 workspace/training/quadruped/upload/plan/GO2_STAIRS_ROUGH_SITUATION_DEBATE_20261006.md §25·§26)
+==================================================
+정책(실행 순서, 모두 PC2 학습 iter 900):
+   1. c6   s07 + ang_vel_xy_l2 -0.05->-0.035 (G-A064 c6)
+   2. c3   s07 + action_rate_l2 -0.01->-0.0075 (G-A064 c3)
+   3. c2   s07 + lin_vel_z_l2 -1.25->-0.5 (G-A064 c2)
+정책마다 stairs_15_down·rough_lateral × 평가 seed 202·101·303 × plain·diag(읽기 전용 진단 채널). 영상 없음.
+시간 [추정]: 서버 실측 회당 21~33초 → 60회 약 30~40분 + 초기화. PC2 실측 없음.
+
+1. 올리기: GO2_G_A068_PC2_DIAG_REPLAY_v1.zip  SHA256 51ba29f00f30317fc253d4a7d00b1a0e4a4c8499d4c39db519b035dc6e5dc40a  → /workspace/GO2_G_A068_PC2_DIAG_REPLAY_v1.zip
+2. 환경 변수: G-A063 인계 §2 의 mount·export 줄을 먼저 실행한다.
+3. 실행(한 줄): unzip -oq /workspace/GO2_G_A068_PC2_DIAG_REPLAY_v1.zip -d /workspace && bash /workspace/go2_g_a068_pc2/run_all.sh
+   진행: /workspace/_keep/go2_g_a068_pc2_points/BATCH_RUN.log
+4. 실패: 러너가 멈추면 run_all 도 멈춘다. 고친 뒤 같은 한 줄(끝난 정책은 SKIP_DONE).
+5. 회수: 정책마다 /workspace/_keep/go2_g_a068_pc2_<key>/ 와 GO2_G_A068_PC2_<KEY>_RESULT.zip + .sha256,
+   그리고 /workspace/_keep/go2_g_a068_pc2_points/ → 저장소 workspace/_keep/ (100MB 초과는 95MB parts).

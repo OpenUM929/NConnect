@@ -1,0 +1,20 @@
+WORK_ID	EVENT	AT	NOTE
+G-A064	PUBLISHED	2026-10-06T15:58+09:00	v3 HOLD, START_AFTER G-A065; v1/v2 superseded never run
+G-A065	READY	2026-10-06T15:15+09:00	diag replay 5 policies x 12 runs, no training (pushed 281d914f)
+G-A063	READOUT_DONE	2026-10-06T15:20+09:00	14/14 read; summary reports/GO2_G_A063_SWEEP_SUMMARY_20261006.md
+G-A064	WAITING	2026-10-06T15:58+09:00	first point and READY decided after G-A065 readout (consult doc sections 25/28/29)
+G-A065	CANCELLED	2026-10-06T17:05+09:00	PC2 rc5: package lacked quadruped_rewards.py; superseded by G-A066
+G-A066	READY	2026-10-06T17:05+09:00	diag replay v1 with per-policy rewards file; sha 610a5b9b; START_AFTER NONE
+G-A064	WAITING	2026-10-06T17:05+09:00	START_AFTER now G-A066; first point decided after G-A066 readout
+G-A064	WAITING	2026-10-06T18:10+09:00	G-A066 readout protocol fixed (population first, representative by median fall time); D1 default order (c2 first?) awaiting Codex
+G-A066	RECEIVED	2026-10-06T19:10+09:00	5 policies fetched via keep_fetch_result.sh, REPRO 30/30 IDENTICAL
+G-A066	READOUT_DONE	2026-10-06T21:10+09:00	behaviour readout from steps.csv (first episode, terminal row excluded); foot/joint readout delegated to G-A067 (author PC out of memory)
+G-A064	READY	2026-10-06T21:10+09:00	v4 sha 8c0e7115, order c2 -> c1 -> c3 -> c6 -> c5, START_AFTER NONE (user: "수행해줘")
+G-A067	PUBLISHED	2026-10-06T21:10+09:00	analysis handoff, no GPU, may run alongside G-A064
+G-A067	READY	2026-10-06T21:10+09:00	sha 9feae0fb
+G-A064	RECEIVED	2026-10-07T12:30+09:00	all 5 points fetched (c2,c1,c3,c6,c5)
+G-A064	READOUT_DONE	2026-10-07T13:00+09:00	c6 only R1 met (stairs hold 3->45) with rough/push loss; non-monotonic in ang and lin -> training-seed variance suspected
+G-A068	PUBLISHED	2026-10-07T14:00+09:00	diag replay c6,c3,c2 + behaviour analysis (Codex 1/3 agreed)
+G-A068	READY	2026-10-07T14:00+09:00	sha 51ba29f0
+G-A069	PUBLISHED	2026-10-07T14:00+09:00	c6 retrain with train seed 43 (reproducibility of stairs hold 3->45)
+G-A069	READY	2026-10-07T14:00+09:00	sha 84744be6, START_AFTER G-A068
