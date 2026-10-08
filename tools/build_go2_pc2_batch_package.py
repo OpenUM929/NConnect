@@ -174,7 +174,7 @@ def point_files(n: dict, src: dict, key: str, parent_changes: dict, var: str, va
         "single_change": {"name": var, "from": parent_w[var], "to": value}, "rewards": cand_w,
         "history_check": (f"이력 예외: {exemption}; 이력 {hits}" if exemption else "같은 항·같은 값 시험 이력 없음"),
         "note": note,
-        "training": {"seed": 42, "num_envs": 4096, "max_iterations": 1000, "from_scratch": True},
+        "training": {"seed": int(TRAIN_SEED), "num_envs": 4096, "max_iterations": 1000, "from_scratch": True},
         "evaluation": {"checkpoint_iter": 900, "seeds": [101, 202, 303], "case_count": 69},
     }
     expected_cand = {k: cand_w[k] for k in REWARD_NAMES}

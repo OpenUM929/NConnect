@@ -18,3 +18,11 @@ G-A068	PUBLISHED	2026-10-07T14:00+09:00	diag replay c6,c3,c2 + behaviour analysi
 G-A068	READY	2026-10-07T14:00+09:00	sha 51ba29f0
 G-A069	PUBLISHED	2026-10-07T14:00+09:00	c6 retrain with train seed 43 (reproducibility of stairs hold 3->45)
 G-A069	READY	2026-10-07T14:00+09:00	sha 84744be6, START_AFTER G-A068
+G-A068	RECEIVED	2026-10-07T15:53+09:00	SUMMARY.json/PER_ENV.csv read via git show (commit ff2a885c)
+G-A068	READOUT_DONE	2026-10-07T15:58+09:00	debate doc §29: E1/C68-1 right, E2/C68-2 wrong, E3 right/C68-3 wrong, E4/C68-4 wrong
+G-A069	WAITING	2026-10-07T15:58+09:00	c6 seed43 retrain running on PC2 (started 15:05)
+G-A069	RECEIVED	2026-10-07T21:55+09:00	keep_fetch_result OK, FULL_69_COMPLETE
+G-A069	READOUT_DONE	2026-10-07T22:10+09:00	debate doc §62: c6 stairs gain not reproduced (s43 no-lift 95/96), rough flips 38, push 77; G-A071 held
+G-A057	RECEIVED	2026-10-08T09:11+09:00	feet_air_time_p0p1 (PC1 sweep) fetched, sha ok, FULL_69_COMPLETE; debate doc §63
+G-A072	PUBLISHED	2026-10-08T09:20+09:00	GO2_G_A072_PC2_SEED43_REPRO_v1.zip sha 59d3e2f6…; s04/P0/s13/s11 train seed 43 (debate §62-66, user approved)
+G-A072	READY	2026-10-08T09:20+09:00	START_AFTER G-A069 (already DONE)
