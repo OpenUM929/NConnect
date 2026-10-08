@@ -1,5 +1,12 @@
 # NConnect 파일·artifact 운영 정본
 
+## H-A001 — H1 P0 속도 격자 측정 패키지 (2026-10-08, 학습 없음, PC2 인계)
+- 상태: READY(PC2, START_AFTER G-A072). 계획 `workspace/training/humanoid/upload/plan/H1_STABLE_SPEED_TUNING_DEBATE_20261008.md` §12·§14·§15(Astra APPROVE §13). 인계 `HANDOFF_H_A001_PC2.md`.
+- 패키지: `workspace/training/humanoid/upload/H-A001/current/H_A001_P0_SPEED_GRID_v2.zip`, SHA `ad66bb8104cf976a114b682d1fa97f01fb181c4243b0819cfede8b46bf7ce898`. 빌더 `tools/build_h1_ha001_p0_package.py`, 계약 테스트 `tools/test_h1_ha001_p0_package.py`(5/5). v1(서버 전용)은 배포하지 않았다.
+- 정책: Run06 model_9900 `8eb06e2b…b636`, Run05 model_2700 `2775a61e…9abc`. 9 case × seed 101/202/303 × 32 env × 1000 step.
+- R-6: `h1_ha001/`만 추가하고 play.py는 업로드하지 않는다. 러너는 play.py가 배포 원본 SHA `bba3c5ac…8dbdb`일 때만 시작한다. 이전 Run06 평가 패키지는 5줄 훅을 넣은 play.py를 올렸다. 그것과 다르다.
+- 영상: NOT_REQUIRED. report.html: NOT_APPLICABLE(학습 없음). 회수: `H_A001_P0_SPEED_GRID_FULL.tar.gz` + `.sha256`. 판독: `python -I tools/h1_ha001_p0_readout.py <압축해제>/H_A001_P0_SPEED_GRID`.
+
 ## G-A060-PC2-RECOVERY-20261003 — Windows 평가 연결·체인 복구
 - 15:28 정정/복구: B1 69-case·sentinel 뒤 첫 영상에서 Vulkan RTX 초기화 access violation 발생. 단일 GPU만 끄는 smoke 성공은 Intel compatibility fallback이라 해결 근거가 아니었고 NVIDIA 선택 시 재현됐다. PC2 영상 자식에만 Direct3D12(`app.vulkan=false`) + multiGpu 비활성 + Kit GPU1(RTX5070)을 적용하자 실제 MP4 생성/exit0 확인. 드라이버 자체 결함이나 다운그레이드 필요성은 확정하지 않는다.
 - 로컬 런처 `tools/pc2_video_python_launcher.py`, `tools/go2_pc2_python.bat` 사용. 외부 `C:/workspace/IsaacLab/_isaac_sim/python.bat` 연결, 원본 `.before_single_gpu` 보존. 배포 학습 코드·고정 runner·ZIP 변경 없음. GPU1은 PC2 Kit 순서이며 CUDA 번호와 다름; 하드웨어 변경 시 재검증 필요.

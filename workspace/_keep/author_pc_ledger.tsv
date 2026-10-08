@@ -26,3 +26,5 @@ G-A069	READOUT_DONE	2026-10-07T22:10+09:00	debate doc §62: c6 stairs gain not r
 G-A057	RECEIVED	2026-10-08T09:11+09:00	feet_air_time_p0p1 (PC1 sweep) fetched, sha ok, FULL_69_COMPLETE; debate doc §63
 G-A072	PUBLISHED	2026-10-08T09:20+09:00	GO2_G_A072_PC2_SEED43_REPRO_v1.zip sha 59d3e2f6…; s04/P0/s13/s11 train seed 43 (debate §62-66, user approved)
 G-A072	READY	2026-10-08T09:20+09:00	START_AFTER G-A069 (already DONE)
+H-A001	PUBLISHED	2026-10-08T10:59+09:00	H_A001_P0_SPEED_GRID_v2.zip sha ad66bb81…; H1 Run06/Run05 speed grid, no training (H1 plan §12-§15)
+H-A001	READY	2026-10-08T10:59+09:00	START_AFTER G-A072 (user: run after Go2 tuning work)
