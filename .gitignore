@@ -168,3 +168,6 @@ workspace/_keep/go2_g_a072_pc2_s04s43_lin_vel_z_l2_m0p5/
 workspace/_keep/go2_g_a072_pc2_p0s43_lin_vel_z_l2_m1p25/
 workspace/_keep/go2_g_a072_pc2_s13s43_action_rate_l2_m0p005/
 workspace/_keep/go2_g_a072_pc2_s11s43_ang_vel_xy_l2_m0p02/
+
+# Reconstructed locally from tracked H-A001 archive; readout files are explicitly tracked.
+workspace/_keep/H_A001_P0_SPEED_GRID/
