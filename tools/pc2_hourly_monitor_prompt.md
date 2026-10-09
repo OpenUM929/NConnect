@@ -1,4 +1,4 @@
-# NConnect PC2 hourly HANDOFF monitor
+﻿# NConnect PC2 hourly HANDOFF monitor
 
 Run one PC2 monitoring cycle. Do not ask questions or wait for approval.
 
@@ -24,6 +24,4 @@ Run one PC2 monitoring cycle. Do not ask questions or wait for approval.
    builder, and runner.
 8. End after this cycle; Windows Task Scheduler invokes the next cycle hourly.
 
-Current priority: G-A072. Its Windows `C:\workspace` and Git Bash
-`/workspace` paths are the same junction. Do not claim a status without
-observed evidence.
+Current priority: inspect the current ledger and every active batch; H-A001 may be active. Its Windows `C:\workspace` and Git Bash `/workspace` paths are the same junction. Do not claim a status without observed evidence.
