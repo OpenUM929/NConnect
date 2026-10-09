@@ -1276,3 +1276,6 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 
 ## PC2-MONITOR-20261010-G-A077
 PLANNED -> RUNNING monitor; G-A074-EVAL terminal FULL_69_COMPLETE,69/69+sentinel5/5+videos10/10/report acquired. No active Python/Bash or GPU compute processes observed by elevated CIM/GPU query. Existing G-A077 package validated:7 tests, deterministic SHA,3x95MiB parts (last shorter). Required new recovery: original report/checkpoint/env/source/log/tfevents,69 cases,10 videos,ZIP/SHA/manifest. No shutdown permission before local verification.
+
+## G-A077-PC2-EXECUTION-20261010
+- PLANNED -> RUNNING: supplied G-A077 package SHA and 7 tests verified; existing PC2 only; required report, candidate69 telemetry and 10 videos, identity/manifest/result ZIP SHA; recovery per HANDOFF_G_A077_PC2.md section 4. No new reward selection.
