@@ -9,6 +9,10 @@ PACKAGE_SHA256: cfee0ebfc432ce0dcfd2cfeb4ac7ee65a1464236928f777160b3886068f1e457
 
 # G-A074 completed-checkpoint evaluation recovery
 
+## 지속 후속 작업 — 2026-10-09 사용자 지시
+
+평가·필수 영상·회수·검증과 결과 commit/push를 마치면 작업을 끝내지 않는다. 작성 담당은 새 사용자 지시를 기다리지 않고 결과 판독, 다음 단일변수 후보 선정, 실행 패키지 검증·발행, PC2 인계 commit/push까지 수행한다. PC2 실행 담당은 보상값을 임의 선택하지 않는다. 예약 실행의 작성 담당 전환은 `tools/pc2_hourly_monitor_prompt.md` §9에 명시한다. 기존 G-A074 학습 재실행 금지. 검증 실패 시 로그와 checkpoint를 보존하고 해당 실패를 복구하며, 완료된 튜닝을 반복하는 우회는 하지 않는다.
+
 Dispatch identity: `G-A074-EVAL` is recovery of the existing checkpoint, not a new training experiment. Use this exact ID for STARTED, progress, and terminal ledger rows; historical `G-A074` rows belong to training. G-A076 has a terminal FAILED ledger row; confirm its marker and absence of active processes before dispatch. This identity overrides the older G-A074 EVAL_STARTED wording below.
 
 ## 0. 한눈에
