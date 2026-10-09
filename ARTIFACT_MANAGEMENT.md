@@ -1,6 +1,7 @@
 # NConnect 파일·artifact 운영 정본
 
 ## G-A074-EVAL-RECOVERY-20261009 — 완료 학습 재사용·평가 재개
+- 2026-10-10 회수: RUNNER_RC=0, FULL_69_COMPLETE, candidate69/69, sentinel5/5, 영상10/10, REPORT_ACQUIRED. 최종 ZIP SHA c893e7864c8203efd310955c496b35fbda460d853a92417849d1defb5e6a9c80 일치. 과거 partial ZIP은 보존하고 최종본은 GO2_G_A074_EVAL_FULL_RESULT.zip.001~004로 별도 등재한다. 95MiB 분할 후 연결 스트림 SHA도 원본과 일치. 행동 영상 판독·내부 성능 판정은 아직 미완료. 로컬 예약 Codex 사용량 한도로 자동 후속 실행이 종료돼 현재 세션에서 직접 회수·판독을 이어간다.
 - 인계 감지 오류 정정: PC2는 ledger에 존재하는 WORK_ID를 재선택하지 않는다. 기존 G-A074 ID 재사용을 G-A074-EVAL로 분리하고 START_AFTER를 G-A076으로 정상화했다. 새 학습 번호·보상 변경 없음. G-A076 terminal FAILED는 원격 원장에서 확인했으며 실제 평가 시작은 G-A074-EVAL STARTED 및 로그 회수 전까지 미확인이다.
 - 상태: PLANNED → RUNNING(로컬 실행 준비). 사용자 지시: 이미 완료한 튜닝을 재학습하지 않고 원래 평가 단계부터 진행한다.
 - 보존: G-A074 TRAIN_RC=0, 3000 iter, 평가 iter2400 SHA d39b88e9a6b06fd08498c90bbba334a3aaaca1cc8e540102c7d0e284bac72211, 원 report·env·학습 로그. 기존 결과 ZIP·배포 ZIP은 변경하지 않는다.
