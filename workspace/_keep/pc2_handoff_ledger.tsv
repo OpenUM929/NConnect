@@ -13,3 +13,4 @@ G-A068	DONE	2026-10-07T15:01+09:00	all 3 policies (c6,c3,c2) rc=0, 6/6 IDENTICAL
 G-A069	STARTED	2026-10-07T15:05+09:00	c6 seed-43 reproduction (point key c6s43_s07_ang_vel_xy_l2_m0p035). package sha verified, no other train.py/play.py running
 G-A069	DONE	2026-10-07T21:37+09:00	c6s43_s07_ang_vel_xy_l2_m0p035 rc=0, FULL_69_COMPLETE, report.html+10 videos verified. BATCH END worst_rc=0 2026-10-07T17:20:42+09:00. Recovered as 95MB parts.
 G-A072	STARTED	2026-10-09T00:09:32+09:00	package SHA verified; G-A069 BATCH END confirmed; GPU idle (0%/0MiB); process enumeration denied by OS, runner will enforce its own no-concurrent-run safeguard
+G-A072	DONE	2026-10-09T09:34:59+09:00	all 4 points rc=0; FULL_69_COMPLETE; report.html and 10 videos per point verified; result archives recovered as 95MB parts
