@@ -1,13 +1,15 @@
 <!-- PC2_HANDOFF
-WORK_ID: G-A074
+WORK_ID: G-A074-EVAL
 STATUS: READY
-START_AFTER: G-A076 terminal DONE or FAILED; do not stop it
+START_AFTER: G-A076
 START_MARKER: /workspace/_keep/go2_g_a076_report_policy/RUNNER_STATUS.txt
 PACKAGE: workspace/training/quadruped/upload/G-A074/recovery/current/GO2_G_A074_EVAL_RECOVERY_v1.zip
 PACKAGE_SHA256: cfee0ebfc432ce0dcfd2cfeb4ac7ee65a1464236928f777160b3886068f1e457
 -->
 
 # G-A074 completed-checkpoint evaluation recovery
+
+Dispatch identity: `G-A074-EVAL` is recovery of the existing checkpoint, not a new training experiment. Use this exact ID for STARTED, progress, and terminal ledger rows; historical `G-A074` rows belong to training. G-A076 has a terminal FAILED ledger row; confirm its marker and absence of active processes before dispatch. This identity overrides the older G-A074 EVAL_STARTED wording below.
 
 ## 0. 한눈에
 - 목적: 이미 완료된 G-A074 학습의 iter-2400 checkpoint로 69-case telemetry와 영상을 이어서 수집한다.

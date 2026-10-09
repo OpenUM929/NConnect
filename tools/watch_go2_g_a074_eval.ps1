@@ -9,7 +9,7 @@ try {
     $remoteCommit = git -C $RepoRoot rev-parse origin/master
     $ledger = git -C $RepoRoot show 'origin/master:workspace/_keep/pc2_handoff_ledger.tsv'
     if ($LASTEXITCODE -ne 0) { throw 'remote ledger unavailable' }
-    $rows = @($ledger | Where-Object { $_ -match '^G-A07[46]\s' })
+    $rows = @($ledger | Where-Object { $_ -match '^(G-A074-EVAL|G-A074|G-A076)\s' })
     $progressPath = 'workspace/_keep/go2_g_a074_eval_progress.tsv'
     $progressAvailable = [bool](git -C $RepoRoot ls-tree --name-only origin/master -- $progressPath)
     $progress = @()
