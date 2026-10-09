@@ -1264,3 +1264,7 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 - Purpose: retry G-A073's same single reward change (flat_orientation_l2 -0.20 -> -0.25) after its pre-training Windows cp1252 stdout failure.
 - Package: workspace/training/quadruped/upload/G-A074/current/GO2_G_A074_REPORT_POLICY_v1.zip; SHA256 cd6bb2d039de823a4efb79281b24ccde400b569e0d0f63d2c171a0ef9f84c19d.
 - Lifecycle: PLANNED -> READY. Required recovery: report.html, model/env/checkpoint identity, 69-case telemetry, configured videos, result ZIP/SHA. The runner sets only PYTHONIOENCODING=utf-8; no deployed training/evaluation/reward source is edited by this repair.
+
+## PC2-MONITOR-20261009-G-A076
+- PLANNED -> RUNNING -> RECEIVED -> VERIFIED -> MERGED -> REPORTED (partial failure evidence only). G-A076 point rc30, runner rc4, TRAIN_RC=1. Result ZIP 23135 bytes SHA 1961850fdaaede627a0609179aeb12d3339235e98c2c33e7edbbf5baab5deaad copied to workspace/_keep; no successful recovery claim: FULL_69_COMPLETE/report/videos missing. No active Python/Bash observed by elevated CIM process inspection. Existing source and author ledger unchanged.
+
