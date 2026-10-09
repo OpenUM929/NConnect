@@ -1,0 +1,2 @@
+key	status	rc	collection	resume	started	ended	note
+report_policy_flat_orientation_l2_m0p25	RUN_ERROR	30	INCOMPLETE_CRASH	1	2026-10-09T20:50:03+09:00	2026-10-09T20:51:15+09:00	runner rc=4; see /workspace/_keep/go2_g_a075_report_policy/logs and /workspace/_keep/go2_g_a075_report_policy/RUNNER_STATUS.txt
