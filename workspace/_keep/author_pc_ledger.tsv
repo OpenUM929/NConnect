@@ -38,3 +38,6 @@ H-A001	RECEIVED	2026-10-09T13:34:41+09:00	54/54 replay archive SHA e8146b9a9ba2e
 H-A001	READOUT_DONE	2026-10-09T13:34:41+09:00	tools/h1_ha001_p0_readout.py: Run06 branch ii_B_action_rate; plane and rough verified 1.0 m/s, turn verified 0.5 m/s under this internal readout
 G-A076	PUBLISHED	2026-10-09T21:55:02+09:00	conditional interpreter-selection retry; ZIP SHA 0aec4d943e51bffab313673abec0980cbcd03507d45da287968d664c1c29f2c0
 G-A076	READY	2026-10-09T21:55:02+09:00	START_AFTER G-A075; skip if G-A075 RUNNER_RC=0 and FULL_69_COMPLETE
+G-A074-EVAL	READOUT_DONE	2026-10-10T06:20:31+09:00	Existing matched readout retained: internal proxy 60.829746/70; VIDEO_UNKNOWN; A033 arm is not a matched flat-effect comparison.
+G-A077	PUBLISHED	2026-10-10T06:20:31+09:00	Existing reserved package verified: 7 tests OK; deterministic SHA c8e8d4f5ab3a5362a5d0a91179009f0be3230dcdb4b460a3a92ef44dc681f87f; 3 parts; no duplicate selection.
+G-A077	READY	2026-10-10T06:20:31+09:00	HANDOFF_G_A077_PC2.md validated; single flat -0.25 to -0.225; existing PC2 only.

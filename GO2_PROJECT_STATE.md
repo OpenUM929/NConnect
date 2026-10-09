@@ -2508,3 +2508,5 @@ PM 1안(`ang_vel_xy_l2` `-0.05 → -0.04`)을 원장·산출물로 감사했다.
 - 계획 §4를 fact_rules_v1과 통합 판정하고 필수15cm/보호 case의 존재·지문·정합을 검증한다. 유효 정지 정책도 필수 수집 후 종료하며 비유한/실행불능은 안전 회수한다. 개체별 정체/도달/검열·유효분모와 provenance 보존. 서버 미실행·성능 미측정, 기준선 A033 유지.
 - 과거 A042 원 ZIP SHA `7952cd02…ea15` 및 current 전체는 `history/20260921_pre_repair_snapshot`에 바이트 그대로 보존. 다른 회차 release 변경 없음.
 - 최소 정보 경로 새 학습1회, seed42/1000iter/평가900, track1.5→1.6만 변경. 1단계 약100분/확장55분은 추정, 잔여 GPU·TTL 미측정. 로컬 회수 검사 전 서버 종료 승인하지 않는다.
+
+- 2026-10-10T06:20:31+09:00 G-A077 ARTIFACT_VERIFIED execution package READY; G-A074-EVAL 69/69 and videos10/10 recovered; VIDEO_UNKNOWN / OFFICIAL_RESULT unmeasured. Existing readout and plan retained; no completed training repeated.

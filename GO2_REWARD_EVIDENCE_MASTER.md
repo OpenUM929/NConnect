@@ -694,3 +694,6 @@ Default-01의 시나리오별 실점(가중치×(1-proxy))을 다시 계산하�
 
 ## 2026-09-19 PM 전략 검토 정정
 G-A040 과거 HOLD_CONTRADICTED는 INFORMATION_RUN으로 정정(미실행·성능 미측정). 반대 증거 여섯 행은 보존한다. flat_orientation −0.5는 관측 최적값이 아닌 기존 탐침 격자의 최소 크기이며, G3 생존 목표의 정보 실험 후보이다. 원문 수식·반대 증거·다른 후보와 비용 비교·report 대응은 `workspace/training/quadruped/upload/plan/GO2_PM_REPAIR_STRATEGY_20260919.md` 참조. 기존 15cm guard가 검출 불가하므로 실행 준비 완료로 표시하지 않는다.
+
+## G-A077 publication 2026-10-10T06:20:31+09:00
+G-A074 starting/effect/adoption comparison; flat_orientation_l2 -0.25 to -0.225 only. Existing plan GO2_G_A077_PLAN_20261010.md retains competing stability-loss hypothesis, matched-series OUT_OF_RANGE and per-seed protections. 7 package tests OK; deployment code unchanged, LF/bash syntax/CRC/manifests verified; deterministic ZIP SHA c8e8d4f5ab3a5362a5d0a91179009f0be3230dcdb4b460a3a92ef44dc681f87f. Exploratory; no performance guarantee.

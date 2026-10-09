@@ -1,5 +1,8 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A077-PACKAGE-20261010 — 다음 단일변수 탐색
+- PLANNED: 기존 원장·upload 조회에서 G-A077 미사용 확인 후 예약. G-A074 검증설정 flat -.25→-.225만 변경. 완료된 -.20/-.25 학습 반복 없음. 계획 upload/plan/GO2_G_A077_PLAN_20261010.md. 기존 builder/runner 재사용해 PC2 실행 ZIP을 검증·발행한다. 아직 학습 시작 없음.
+
 ## G-A074-EVAL-RECOVERY-20261009 — 완료 학습 재사용·평가 재개
 - 2026-10-10 회수: RUNNER_RC=0, FULL_69_COMPLETE, candidate69/69, sentinel5/5, 영상10/10, REPORT_ACQUIRED. 최종 ZIP SHA c893e7864c8203efd310955c496b35fbda460d853a92417849d1defb5e6a9c80 일치. 과거 partial ZIP은 보존하고 최종본은 GO2_G_A074_EVAL_FULL_RESULT.zip.001~004로 별도 등재한다. 95MiB 분할 후 연결 스트림 SHA도 원본과 일치. 행동 영상 판독·내부 성능 판정은 아직 미완료. 로컬 예약 Codex 사용량 한도로 자동 후속 실행이 종료돼 현재 세션에서 직접 회수·판독을 이어간다.
 - 인계 감지 오류 정정: PC2는 ledger에 존재하는 WORK_ID를 재선택하지 않는다. 기존 G-A074 ID 재사용을 G-A074-EVAL로 분리하고 START_AFTER를 G-A076으로 정상화했다. 새 학습 번호·보상 변경 없음. G-A076 terminal FAILED는 원격 원장에서 확인했으며 실제 평가 시작은 G-A074-EVAL STARTED 및 로그 회수 전까지 미확인이다.
@@ -1270,3 +1273,6 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 ## PC2-MONITOR-20261009-G-A076
 - PLANNED -> RUNNING -> RECEIVED -> VERIFIED -> MERGED -> REPORTED (partial failure evidence only). G-A076 point rc30, runner rc4, TRAIN_RC=1. Result ZIP 23135 bytes SHA 1961850fdaaede627a0609179aeb12d3339235e98c2c33e7edbbf5baab5deaad copied to workspace/_keep; no successful recovery claim: FULL_69_COMPLETE/report/videos missing. No active Python/Bash observed by elevated CIM process inspection. Existing source and author ledger unchanged.
 
+
+## PC2-MONITOR-20261010-G-A077
+PLANNED -> RUNNING monitor; G-A074-EVAL terminal FULL_69_COMPLETE,69/69+sentinel5/5+videos10/10/report acquired. No active Python/Bash or GPU compute processes observed by elevated CIM/GPU query. Existing G-A077 package validated:7 tests, deterministic SHA,3x95MiB parts (last shorter). Required new recovery: original report/checkpoint/env/source/log/tfevents,69 cases,10 videos,ZIP/SHA/manifest. No shutdown permission before local verification.
