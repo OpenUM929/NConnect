@@ -1,0 +1,2 @@
+[POINT START] report_policy_flat_orientation_l2_m0p25 2026-10-09T13:26:50+09:00
+[POINT] report_policy_flat_orientation_l2_m0p25 RUN_ERROR rc=30 collection=INCOMPLETE_CRASH resume=1 runner rc=3; see /workspace/_keep/go2_g_a074_report_policy/logs and /workspace/_keep/go2_g_a074_report_policy/RUNNER_STATUS.txt

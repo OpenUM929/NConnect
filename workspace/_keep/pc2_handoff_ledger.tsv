@@ -19,3 +19,4 @@ H-A001	DONE	2026-10-09T10:49:23+09:00	RC=0; 54/54 evaluation rows; FULL archive 
 G-A073	STARTED	2026-10-09T13:13:57+09:00	report policy flat_orientation -0.25; seed42; 3000 iter; package SHA verified; G-A072 BATCH END confirmed
 G-A073	FAILED	2026-10-09T13:15:24+09:00	rc30; UnicodeEncodeError cp1252 while train.py printed Korean launcher text before child training; partial result ZIP SHA c70b23570f30d46c12e56fbc411d71ed168ed74ed5f9c9a90cb7f04b070de6e3 verified; no restart
 G-A074	STARTED	2026-10-09T13:26:33+09:00	G-A073 execution-only retry; flat_orientation -0.25; UTF-8 launcher environment; seed42; 3000 iter; package SHA verified
+G-A074	FAILED	2026-10-09T18:03:07+09:00	rc30; training rc0 but collection=INCOMPLETE_CRASH (runner rc3); recovered partial result ZIP SHA 40f1285befe5cc86a37417134debd7268cb2a28c65994fda35b221a20d2a5fdc verified; report.html present; FULL_69_COMPLETE absent; videos 0; no restart

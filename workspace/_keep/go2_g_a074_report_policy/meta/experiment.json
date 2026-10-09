@@ -1,0 +1,45 @@
+{
+  "schema": "go2_report_policy_single_change_retry_v1",
+  "work_id": "G-A074",
+  "device": "PC2",
+  "run_key": "report_policy_flat_orientation_l2_m0p25",
+  "purpose": "Retrain the exact report policy and test one stability-only posture change.",
+  "promotion": "exploratory_only_until_video_and_internal_gate",
+  "report_read_status": "READ_UNMATCHED",
+  "report_source": "report.html",
+  "report_values": {
+    "track_lin_vel_xy_exp": 2.0,
+    "feet_air_time": 0.01,
+    "lin_vel_z_l2": -3.0,
+    "ang_vel_xy_l2": -0.05,
+    "action_rate_l2": -0.005,
+    "flat_orientation_l2": -0.2,
+    "track_ang_vel_z_exp": 0.3
+  },
+  "single_change": {
+    "name": "flat_orientation_l2",
+    "from": -0.2,
+    "to": -0.25
+  },
+  "training": {
+    "seed": 42,
+    "num_envs": 4096,
+    "max_iterations": 3000,
+    "from_scratch": true
+  },
+  "evaluation": {
+    "checkpoint_iter": 2400,
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "case_count": 69
+  },
+  "decision": {
+    "improve": "INTERNAL_GATE_PASS candidate only if G3/G5 stability improves and walking is retained",
+    "worse": "INTERNAL_GATE_FAIL and retain the report policy",
+    "unclear": "INTERNAL_GATE_INCONCLUSIVE; do not try -0.30/-0.50 automatically"
+  },
+  "design": "workspace/training/quadruped/upload/plan/GO2_G_A074_EXECUTION_RETRY_20261009.md"
+}
