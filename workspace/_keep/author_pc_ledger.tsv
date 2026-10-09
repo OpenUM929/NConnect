@@ -36,3 +36,5 @@ G-A074	PUBLISHED	2026-10-09T13:25:10+09:00	execution-only retry of G-A073; rewar
 G-A074	READY	2026-10-09T13:25:10+09:00	PC2 handoff HANDOFF_G_A074_PC2.md; START_AFTER G-A072
 H-A001	RECEIVED	2026-10-09T13:34:41+09:00	54/54 replay archive SHA e8146b9a9ba2edfcfba74fe13272691466afa7267d60e8ad4da93b8bbfa6bdc1 verified; extracted readout only
 H-A001	READOUT_DONE	2026-10-09T13:34:41+09:00	tools/h1_ha001_p0_readout.py: Run06 branch ii_B_action_rate; plane and rough verified 1.0 m/s, turn verified 0.5 m/s under this internal readout
+G-A076	PUBLISHED	2026-10-09T21:55:02+09:00	conditional interpreter-selection retry; ZIP SHA 0aec4d943e51bffab313673abec0980cbcd03507d45da287968d664c1c29f2c0
+G-A076	READY	2026-10-09T21:55:02+09:00	START_AFTER G-A075; skip if G-A075 RUNNER_RC=0 and FULL_69_COMPLETE

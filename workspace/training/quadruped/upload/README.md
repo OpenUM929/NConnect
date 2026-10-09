@@ -13,6 +13,7 @@ This directory is the only user-facing source for files uploaded to a volatile s
 
 ## Current experiment
 
+- 2026-10-09: G-A075 is running on PC2. G-A076 is a conditional interpreter-selection retry and must be skipped when G-A075 completes with `RUNNER_RC=0` and `FULL_69_COMPLETE`. Package `G-A076/current/GO2_G_A076_REPORT_POLICY_v1.zip`, SHA `0aec4d943e51bffab313673abec0980cbcd03507d45da287968d664c1c29f2c0`; handoff `HANDOFF_G_A076_PC2.md`.
 - 2026-09-28 latest: G-A053 is a reward run on G-A048's rewards plus one unlisted term, `dof_acc_l2 -2.5e-07 -> -3e-07` (user approval G-D-U1-APPROVED-20260928). `G-A053/current/GO2_G_A053_a048_dof_acc_m3e7_full69_v1.zip` SHA `52d99463217cb001a156d3658b24a7b99ae1ee03f6c9e4fb2d2f1eda414f89ea`, full 69 cases, one command; plan `upload/plan/GO2_G_A053_PLAN_20260928.md`.
 - 2026-09-28: G-A052 is a diagnostic replay of G-A048 iter 900 (no training, no reward change): 4 play.py runs with read-only foot/contact/body-rate/action/reward channels. `G-A052/current/GO2_G_A052_a048_diag_replay_v2.zip` SHA `828c18cd21bed8b4ce9683480cdf88fb5aa8dc2e1d72871fb549580718cbde62` (v1 superseded before any run). Plan `plan/GO2_G_A052_DIAG_REPLAY_PLAN_20260928.md`. Server execution is a user decision.
 
