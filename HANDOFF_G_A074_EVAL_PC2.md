@@ -52,3 +52,6 @@ nohup bash /workspace/go2_g_a074_eval_recovery/run_eval_only.sh > /workspace/_ke
 
 ## 5. 보고
 PC2는 시작·종료 시각, rc, checkpoint SHA, telemetry 수, 영상 수, 결과 ZIP SHA만 ledger에 기록하고 commit/push한다. 성능 판독과 다음 보상 선택은 작성 PC가 한다.
+
+### 사용자 요청: 평가 진행률 30분 간격 공유
+평가 시작 전 원장에 G-A074 EVAL_STARTED를 추가하고 commit/push한다. 이후 30분마다 `workspace/_keep/go2_g_a074_eval_progress.tsv`에 확인 시각, 현재 단계, 성공한 case 수/69, 영상 수/필수 영상 수, 최신 로그 경로를 기록하고 commit/push한다. case 성공은 STATUS.txt와 summary의 완료 상태를 확인한 항목만 센다. 평가 진행률은 `성공 case 수 / 69 × 100`이며 영상·회수 완료는 별도 열이다. 중간 정보를 확인하지 못했으면 UNKNOWN으로 기록한다. G-A074 학습은 3000/3000(100%)이며 재실행하지 않는다.
