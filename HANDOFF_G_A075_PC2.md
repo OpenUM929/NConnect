@@ -1,6 +1,6 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A075
-STATUS: READY
+STATUS: CANCELLED
 START_AFTER: G-A074
 START_MARKER: /workspace/_keep/go2_g_a074_report_policy/RUNNER_STATUS.txt contains RUNNER_RC=3
 PACKAGE: workspace/training/quadruped/upload/G-A075/current/GO2_G_A075_REPORT_POLICY_v1.zip

@@ -1,6 +1,6 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A073
-STATUS: READY
+STATUS: CANCELLED
 START_AFTER: G-A072
 START_MARKER: /workspace/_keep/go2_g_a072_pc2_points/BATCH_RUN.log 에 [BATCH END]
 PACKAGE: workspace/training/quadruped/upload/G-A073/current/GO2_G_A073_REPORT_POLICY_v1.zip

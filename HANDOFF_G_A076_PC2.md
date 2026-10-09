@@ -1,6 +1,6 @@
 <!-- PC2_HANDOFF
 WORK_ID: G-A076
-STATUS: READY
+STATUS: CANCELLED
 START_AFTER: G-A075
 START_MARKER: /workspace/_keep/go2_g_a075_report_policy/RUNNER_STATUS.txt exists and G-A075 has a terminal DONE or FAILED ledger row
 PACKAGE: workspace/training/quadruped/upload/G-A076/current/GO2_G_A076_REPORT_POLICY_v1.zip
@@ -8,6 +8,9 @@ PACKAGE_SHA256: 0aec4d943e51bffab313673abec0980cbcd03507d45da287968d664c1c29f2c0
 -->
 
 # G-A076 PC2 execution retry
+
+## 2026-10-09 사용자 정정 — 재학습 발행 취소
+G-A074의 3,000 iteration 학습은 TRAIN_RC=0으로 완료됐으므로 이 문서의 재학습 명령을 새로 실행하거나 재시작하지 않는다. 이미 실행 중인 G-A076은 상태·로그·artifact를 보존하고 현재 종료 상태를 보고한다. 원격 시작 기록만으로 현재 학습 진행을 확정하지 않는다. 다음 작업은 HANDOFF_G_A074_EVAL_PC2.md에 따른 기존 G-A074 checkpoint 평가 재개다. 실행 중 프로세스 강제 종료는 이 문서에서 지시하지 않는다.
 
 ## 0. 한눈에
 - 목적: G-A075와 같은 report-policy 단일변수 실험을 Isaac Lab 인터프리터 우선 선택으로 재실행한다.
