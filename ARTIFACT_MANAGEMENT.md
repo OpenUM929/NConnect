@@ -4,8 +4,10 @@
 - 상태: PLANNED → RUNNING(로컬 실행 준비). 사용자 지시: 이미 완료한 튜닝을 재학습하지 않고 원래 평가 단계부터 진행한다.
 - 보존: G-A074 TRAIN_RC=0, 3000 iter, 평가 iter2400 SHA d39b88e9a6b06fd08498c90bbba334a3aaaca1cc8e540102c7d0e284bac72211, 원 report·env·학습 로그. 기존 결과 ZIP·배포 ZIP은 변경하지 않는다.
 - 다음: 보상 적용 검증 → 기존 checkpoint 69-case telemetry → 필수 영상 → 결과 ZIP/SHA 회수 → 내부 판독. 새 학습·보상값 변경 없음.
+- 로컬 검증: candidate_suite_checks.py env-rewards가 ENV_REWARDS_OK 반환(7개 보상 모두 일치); model_iter2400.pt SHA가 CHECKPOINT_PIN.txt와 일치. 이전 runner의 일반 실패 문구는 실제 보상 불일치 증거가 아니었다. 원 학습 정책은 재학습 없이 평가 재사용 가능하다.
 - G-A073~076 재학습 인계는 CANCELLED. G-A076 원격 기록은 STARTED까지만 있어 현재 프로세스 단계 미확인; 기존 실행은 강제 종료하지 않고 PC2가 종료 상태와 보존 artifact를 보고한다.
 - 영상 필수: 기존 G-A074 iter2400의 runner 지정 영상 전부. 69-case·영상·report·identity·manifest 로컬 회수 전 종료 가능 판정 없음.
+- 실행 준비 완료(READY, PC2 미실행): HANDOFF_G_A074_EVAL_PC2.md; upload/G-A074/recovery/current/GO2_G_A074_EVAL_RECOVERY_v1.zip SHA cfee0ebfc432ce0dcfd2cfeb4ac7ee65a1464236928f777160b3886068f1e457. 새 과학 실험 번호 없음. 학습 명령 제거, artifact 누락 rc40, 내부 SHA·bash -n·반복 빌드 검증 완료. PC2 기존 G-A076 terminal·프로세스 종료 확인 뒤 평가 재개.
 
 ## H-A001 — H1 P0 속도 격자 측정 패키지 (2026-10-08, 학습 없음, PC2 인계)
 - 상태: READY(PC2, START_AFTER G-A072). 계획 `workspace/training/humanoid/upload/plan/H1_STABLE_SPEED_TUNING_DEBATE_20261008.md` §12·§14·§15(Astra APPROVE §13). 인계 `HANDOFF_H_A001_PC2.md`.
