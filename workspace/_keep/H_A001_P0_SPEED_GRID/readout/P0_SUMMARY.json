@@ -1,0 +1,384 @@
+{
+  "run06": {
+    "branch": "ii_B_action_rate",
+    "families": {
+      "plane": {
+        "reference_ok": true,
+        "verified_highest_vx": 1.0,
+        "first_failure_branch": "ii_B_action_rate",
+        "cases": [
+          {
+            "case": "plane_vx1p00",
+            "pass": true,
+            "ratio_ok": true,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9984165377490972,
+                "xy_rel": 1.0020601805328861,
+                "yaw_rel": 1.0344424674570953
+              },
+              {
+                "seed": 202,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9999274658378126,
+                "xy_rel": 0.998957367335471,
+                "yaw_rel": 1.0368539801403034
+              },
+              {
+                "seed": 303,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9985962070969097,
+                "xy_rel": 1.0022186415758128,
+                "yaw_rel": 1.0450161367704838
+              }
+            ]
+          },
+          {
+            "case": "plane_vx1p25",
+            "pass": false,
+            "ratio_ok": true,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": false,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.998124537983889,
+                "xy_rel": 1.0108927512165444,
+                "yaw_rel": 1.0615309728391809
+              },
+              {
+                "seed": 202,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.9988632859358335,
+                "xy_rel": 1.0026642958810972,
+                "yaw_rel": 1.0674729974481774
+              },
+              {
+                "seed": 303,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.9977601389888889,
+                "xy_rel": 1.0057012494127058,
+                "yaw_rel": 1.080003604538187
+              }
+            ]
+          }
+        ]
+      },
+      "rough": {
+        "reference_ok": true,
+        "verified_highest_vx": 1.0,
+        "first_failure_branch": null,
+        "cases": [
+          {
+            "case": "rough_vx1p00",
+            "pass": true,
+            "ratio_ok": true,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9903812070123611,
+                "xy_rel": 0.9483221566376924,
+                "yaw_rel": 0.9915866958718507
+              },
+              {
+                "seed": 202,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.985926226704479,
+                "xy_rel": 1.038130971898565,
+                "yaw_rel": 0.9862842759594214
+              },
+              {
+                "seed": 303,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9867215332306598,
+                "xy_rel": 0.9818060324693335,
+                "yaw_rel": 0.982318876321163
+              }
+            ]
+          }
+        ]
+      },
+      "turn": {
+        "reference_ok": true,
+        "verified_highest_vx": 0.5,
+        "first_failure_branch": "ii_B_action_rate",
+        "cases": [
+          {
+            "case": "turn_vx1p00",
+            "pass": false,
+            "ratio_ok": true,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": false,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 1.0003111895318055,
+                "xy_rel": 0.9685372283715865,
+                "yaw_rel": 1.08435794606947
+              },
+              {
+                "seed": 101,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9951170598776735,
+                "xy_rel": 1.0314567022568615,
+                "yaw_rel": 0.9970903000298683
+              },
+              {
+                "seed": 202,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 1.0012564376684374,
+                "xy_rel": 0.9724123976319106,
+                "yaw_rel": 1.0831143713466576
+              },
+              {
+                "seed": 202,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9959876551742013,
+                "xy_rel": 1.0314145250745055,
+                "yaw_rel": 1.0050854870199275
+              },
+              {
+                "seed": 303,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 0.999604087135,
+                "xy_rel": 0.9735654288188218,
+                "yaw_rel": 1.0812238654644362
+              },
+              {
+                "seed": 303,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9948904714479166,
+                "xy_rel": 1.0354766234909012,
+                "yaw_rel": 1.0058502442441077
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run05": {
+    "branch": "i_A_lin_vel",
+    "families": {
+      "plane": {
+        "reference_ok": false,
+        "verified_highest_vx": null,
+        "first_failure_branch": "i_A_lin_vel",
+        "cases": [
+          {
+            "case": "plane_vx1p00",
+            "pass": false,
+            "ratio_ok": false,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9404697998043403,
+                "xy_rel": 0.9960264659473836,
+                "yaw_rel": 0.9711770233490915
+              },
+              {
+                "seed": 202,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.94132920230375,
+                "xy_rel": 0.9944699700707146,
+                "yaw_rel": 0.9719659507910158
+              },
+              {
+                "seed": 303,
+                "case": "plane_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9401924806289236,
+                "xy_rel": 0.9959398123601595,
+                "yaw_rel": 0.9789344373882786
+              }
+            ]
+          },
+          {
+            "case": "plane_vx1p25",
+            "pass": true,
+            "ratio_ok": true,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.9582634017011109,
+                "xy_rel": 0.9532733942674178,
+                "yaw_rel": 0.9605711914583033
+              },
+              {
+                "seed": 202,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.9594835113447223,
+                "xy_rel": 0.9540188094615054,
+                "yaw_rel": 0.9626313054162173
+              },
+              {
+                "seed": 303,
+                "case": "plane_vx1p25",
+                "falls": 0,
+                "vx_ratio": 0.9586928910074999,
+                "xy_rel": 0.9463664662885886,
+                "yaw_rel": 0.9687794132599006
+              }
+            ]
+          }
+        ]
+      },
+      "rough": {
+        "reference_ok": false,
+        "verified_highest_vx": null,
+        "first_failure_branch": "i_A_lin_vel",
+        "cases": [
+          {
+            "case": "rough_vx1p00",
+            "pass": false,
+            "ratio_ok": false,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9292787960876737,
+                "xy_rel": 0.9652450673073869,
+                "yaw_rel": 0.9644442240969685
+              },
+              {
+                "seed": 202,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.9284668405525696,
+                "xy_rel": 0.9888634285933648,
+                "yaw_rel": 0.9829243970281577
+              },
+              {
+                "seed": 303,
+                "case": "rough_vx1p00",
+                "falls": 0,
+                "vx_ratio": 0.928719772317639,
+                "xy_rel": 0.9707619624401383,
+                "yaw_rel": 0.9792278620827575
+              }
+            ]
+          }
+        ]
+      },
+      "turn": {
+        "reference_ok": false,
+        "verified_highest_vx": null,
+        "first_failure_branch": "i_A_lin_vel",
+        "cases": [
+          {
+            "case": "turn_vx1p00",
+            "pass": false,
+            "ratio_ok": false,
+            "falls0": true,
+            "xy_ok": true,
+            "yaw_ok": true,
+            "strong_worsening": false,
+            "per_seed": [
+              {
+                "seed": 101,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 0.9464078443696528,
+                "xy_rel": 1.0478551109850691,
+                "yaw_rel": 0.9757871988836175
+              },
+              {
+                "seed": 101,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9340924898930208,
+                "xy_rel": 1.01292737215666,
+                "yaw_rel": 0.9735479374863172
+              },
+              {
+                "seed": 202,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 0.9475409110077431,
+                "xy_rel": 1.0422652764595468,
+                "yaw_rel": 0.968482276365294
+              },
+              {
+                "seed": 202,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9352575153267361,
+                "xy_rel": 1.0144024471876985,
+                "yaw_rel": 0.9723965460672822
+              },
+              {
+                "seed": 303,
+                "case": "turn_vx1p00_L",
+                "falls": 0,
+                "vx_ratio": 0.9466638557733333,
+                "xy_rel": 1.04508332432459,
+                "yaw_rel": 0.9668202655544428
+              },
+              {
+                "seed": 303,
+                "case": "turn_vx1p00_R",
+                "falls": 0,
+                "vx_ratio": 0.9345730948880556,
+                "xy_rel": 1.010398475627348,
+                "yaw_rel": 0.9743468627057893
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "branch_decision_policy": "run06",
+  "branch": "ii_B_action_rate"
+}
