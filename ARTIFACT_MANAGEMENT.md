@@ -1250,3 +1250,8 @@ User requested local judgment-validator fixes and evidence-based tuning strategy
 
 - 2026-10-06 Codex s12 follow-up: archive SHA matched; existing identity check returned no gaps; 10 MP4 files present (VIDEO_UNKNOWN). Existing tree readout completed: TRADEOFF. Rough-lateral falls P0 13/16/12 -> 32/31/30 (41 -> 93/96); push falls 0 -> 9/384; stairs15 >=2: 3 -> 0/96, >=1: 52 -> 33/96. Consultation section 12-D eligibility is NOT MET for action_rate_l2=-0.02 (neither fall measure improved). s13/s14 result archives absent from inspected remote commit 84901201ddc5a7f592e1b283142e80766db37929; G-A064 not issued. Readout: workspace/training/quadruped/reports/evidence/go2_pc2_tree_readout/s12_action_rate_l2_m0p02.{json,md}.
 - Retrieval/cleanup completed, exit 0; disk free 4.5 -> 4.2 GB (extracted data retained with LZX). REPORT_READ_STATUS=READ_MATCHED for source training run; HTML best iter800 is distinct from evaluated pinned iter900. Model SHA 3a1765cc355fc1579c977e29751048c27980d5005600f6a45d9aa07bb3db5224. No physical-cause claim; videos not viewed; full internal-manifest verification not performed in this follow-up.
+
+### G-A074 — PLANNED / READY (2026-10-09)
+- Purpose: retry G-A073's same single reward change (flat_orientation_l2 -0.20 -> -0.25) after its pre-training Windows cp1252 stdout failure.
+- Package: workspace/training/quadruped/upload/G-A074/current/GO2_G_A074_REPORT_POLICY_v1.zip; SHA256 cd6bb2d039de823a4efb79281b24ccde400b569e0d0f63d2c171a0ef9f84c19d.
+- Lifecycle: PLANNED -> READY. Required recovery: report.html, model/env/checkpoint identity, 69-case telemetry, configured videos, result ZIP/SHA. The runner sets only PYTHONIOENCODING=utf-8; no deployed training/evaluation/reward source is edited by this repair.

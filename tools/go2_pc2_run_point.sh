@@ -207,7 +207,7 @@ started=$(date -Is)
 runner="$work/$RUNNER_NAME"
 [[ -z "$RUNNER_OVERRIDE" ]] || runner="$RUNNER_OVERRIDE"
 set +e
-PACKAGE_ROOT="$work" GO2_RESUME="$resume" GO2_STAGE=full GO2_REMEASURE_BASELINE=0 ISAACLAB_SH="$ISAACLAB_SH" \
+PYTHONIOENCODING="${PYTHONIOENCODING:-utf-8}" PACKAGE_ROOT="$work" GO2_RESUME="$resume" GO2_STAGE=full GO2_REMEASURE_BASELINE=0 ISAACLAB_SH="$ISAACLAB_SH" \
   bash "$runner" --inner </dev/null >"$STATUS_DIR/logs/${KEY}_$(date +%Y%m%d-%H%M%S).log" 2>&1
 rc=$?
 set -e
