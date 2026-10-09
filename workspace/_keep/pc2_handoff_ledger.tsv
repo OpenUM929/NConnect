@@ -15,3 +15,4 @@ G-A069	DONE	2026-10-07T21:37+09:00	c6s43_s07_ang_vel_xy_l2_m0p035 rc=0, FULL_69_
 G-A072	STARTED	2026-10-09T00:09:32+09:00	package SHA verified; G-A069 BATCH END confirmed; GPU idle (0%/0MiB); process enumeration denied by OS, runner will enforce its own no-concurrent-run safeguard
 G-A072	DONE	2026-10-09T09:34:59+09:00	all 4 points rc=0; FULL_69_COMPLETE; report.html and 10 videos per point verified; result archives recovered as 95MB parts
 H-A001	STARTED	2026-10-09T09:43:45+09:00	G-A072 BATCH END confirmed; package SHA verified; H1 distributed play.py will be restored from e288246
+H-A001	DONE	2026-10-09T10:49:23+09:00	RC=0; 54/54 evaluation rows; FULL archive SHA e8146b9a9ba2edfcfba74fe13272691466afa7267d60e8ad4da93b8bbfa6bdc1 verified; VIDEO_NOT_REQUIRED and report.html NOT_APPLICABLE per HANDOFF §4; recovered as unsplit 89,399,487-byte archive.
