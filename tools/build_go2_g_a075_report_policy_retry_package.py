@@ -52,7 +52,16 @@ def sums(files: dict[str, bytes]) -> bytes:
 
 
 def source_payload() -> dict[str, bytes]:
-    return a057.source_payload()
+    payload = a057.source_payload()
+    runner = "server_run_go2_candidate_iter_pinned.sh"
+    payload[runner] = payload[runner].replace(
+        b'if command -v python3 >/dev/null 2>&1; then\n  PY=(python3)\nelif command -v python >/dev/null 2>&1; then\n  PY=(python)\nelif [[ -x "$ISAACLAB_SH" ]]; then\n  PY=("$ISAACLAB_SH" -p)\nfi',
+        b'if [[ -x "$ISAACLAB_SH" ]]; then\n  PY=("$ISAACLAB_SH" -p)\nelif command -v python3 >/dev/null 2>&1; then\n  PY=(python3)\nelif command -v python >/dev/null 2>&1; then\n  PY=(python)\nfi',
+    )
+    for name, data in payload.items():
+        if Path(name).suffix in {".env", ".json", ".md", ".py", ".sh", ".toml", ".txt", ".yaml", ".yml"}:
+            payload[name] = data.replace(b"\r\n", b"\n")
+    return payload
 
 
 def render(template: str, values: dict[str, float]) -> str:
