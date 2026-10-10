@@ -1,6 +1,7 @@
 # NConnect 파일·artifact 운영 정본
 
 ## H-A002-RECOVERY-20261010 — 종료 결과 회수·판독
+- 17:49 추가 관찰: 원본20영상의2/8/14/19초80프레임 표본을 관찰·비교 이미지2개 보존. 직립/위치·방향 변화만 관측, 가림·화면밖·중간구간 미판독. 전체 VIDEO_UNKNOWN 및 INTERNAL_GATE_FAIL 유지, 영상 표본으로 속도/0낙상/회복시간/경사 조건을 보장하지 않음. 원본ZIP 불변·재학습/재평가 없음.
 - RECEIVED → VERIFIED → ANALYZED(16:54): ZIP CRC909·내부SHA908/908·114case 실제32000행·model/env/reward/report/evaluator identity 일치. 영상20/20 전체decode999frames·19.98s, VIDEO_UNKNOWN. 95MiBparts4개 연결SHA 일치. 새 run 원본만 별도 보존하며 기존training 정본에 선택병합/덮어쓰기 없음. 판독 INTERNAL_GATE_FAIL,48/57보존위반·검증 최고명령 개선 없음; 후보기각·Run06 유지, 성공 전제 독립seed학습 없음. 전체 영상 내용 관찰/공식결과는 미확보.
 - RUNNING(16:47 KST): 원 runner16:41:15 종료rc0,양팔1000iter·telemetry114/114·영상20/20·report2/2. 원ZIP374230734bytes, 사전 sidecar SHA d18ff1baafcf0f6f1888090158924ea93de736a88ef75f7bc1dd29511dad5eac. 원본 불변·별도 회수 및95MiBparts 검증, 내부manifest/model/env/source/report/영상decode 검증 뒤 대응 비교를 판독한다. 완료 학습/P0 반복·추가Go2 없음. 영상 관찰/성능 판정은 수집 숫자와 분리한다.
 
