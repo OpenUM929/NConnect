@@ -14,6 +14,7 @@
 ## 관측과 판정
 
 정량 정본 `comparison.json`, 재현은 `python -m tools.read_h1_ha002_result --root <KEEP> --out <새 JSON>`.
+원본 결과 ZIP SHA는 `d18ff1baafcf0f6f1888090158924ea93de736a88ef75f7bc1dd29511dad5eac`다. 대조 model SHA `10aa24d942b703717c72af55311e138252fe67916b3a7ac50ba2ed5ee20ac6fd`, 후보 `d2b6602f96581c963eef2b26a160b34df34cc6ab68a8c2cd99be84def6446da8`, evaluator SHA `8a16ff35b9f5bbe6733913e7d7fa70b50a9fb68d7e6a3861676d9dbf597fbaa3`. 양팔 선택 checkpoint999, 학습seed42로 고정한다.
 기존 P0 판독의 첫 episode·2초 이후 구간·낙상·RMSE 정의를 그대로 재사용했다. 57개의 같은 case/seed 쌍을 비교하며 완료한 P0나 학습을 다시 실행하지 않았다.
 
 | 검증 최고 시험 명령(m/s) | 대조 -.0005 | 후보 -.002 |

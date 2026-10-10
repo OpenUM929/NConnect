@@ -10,6 +10,7 @@ updated: 260829
 # 프로젝트 상태 — 로보틱스 예선
 
 ## 최신 전환 — 2026-10-10
+- 16:54 회수 ARTIFACT_VERIFIED: 원ZIP d18ff1ba…eac·CRC909·SHA908/908·114case 실제행·20영상 전체decode·4parts연결SHA 검증 완료. 정량 판독은 INTERNAL_GATE_FAIL이며 후보기각·Run06 보존. VIDEO_UNKNOWN/공식미측정은 그대로다. 새 학습을 자동 시작하지 않는다.
 - 16:47 최신: H-A002 양팔1000iter·평가114/114·영상20/20·report2/2 수집 종료(rc0,16:41:15). 회수 검증 중. 대응 판독은 INTERNAL_GATE_FAIL: 후보 최고 검증 명령 없음,보존48/57쌍 위반. -.002 기각·Run06 유지, 독립seed/장기 재학습 자동 시작 없음. 상세 humanoid/reports/H_A002_READOUT_20261010/. 아래 READY/학습중 행은 당시 이력이다.
 - 14:12 실제 실행: H-A002 v2(원격 a4b4a5a), asset preflight2/2 EVAL_RC0, 대조군 seed42·4096env 학습 초기화 로그 확인. v1 학습 전 shell 오류는 부분결과 c0f614e로 보존하고 v2 수정9a44d54·16tests 검증. 완료 학습/P0 반복 없음. 실측진행 tools/watch_h1_pc2_progress.ps1 및30분 대화 예약(다음14:17)을 사용한다.
 - A077 회수·판독 commit/push 1efa971 원격 확인 완료. 방향 가설 지지와 보존 실패를 분리해 G-A074 유지, 추가 Go2 없음.
