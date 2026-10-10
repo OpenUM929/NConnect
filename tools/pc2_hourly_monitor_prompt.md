@@ -55,4 +55,24 @@ Run one PC2 monitoring cycle. Do not ask questions or wait for approval.
    selection/publication on later cycles. If a validated next package already
    exists, continue its existing handoff instead of creating another one.
 
-Current priority: inspect the current ledger and every active batch; H-A001 may be active. Its Windows `C:\workspace` and Git Bash `/workspace` paths are the same junction. Do not claim a status without observed evidence.
+10. Latest user priority (2026-10-10): after G-A077 evaluation/videos, recovery,
+    verification, readout, canonical state updates and commit/push, switch to
+    the H1 author lane immediately. This overrides step 9's generic next-Go2
+    selection for this transition: do not insert G-A078 or another Go2 run.
+    Read H1_STABLE_SPEED_TUNING_DEBATE_20261008.md sections 12, 14 and 17 under
+    workspace/training/humanoid/upload/plan/. H-A001 is already DONE (54/54);
+    reuse the recovered result and existing tools/h1_ha001_p0_readout.py,
+    never repeat P0. Apply its observed-result branch. If training is justified,
+    publish and validate the next unused H-ID package for candidate and matched
+    control, each 1000 iterations, per section 14, then commit/push and dispatch
+    through the existing PC2 handoff contract. Do not guess a B weight or treat
+    the old 3000/10000-iteration plan as current. If the tested goal is already
+    met, preserve Run06 and continue submission preparation without training.
+    No routine reapproval; no overlapping GPU jobs or new server session.
+    Record the transition in the author ledger to prevent duplicate dispatch.
+
+Current priority: inspect G-A077 and the current ledger; H-A001 already has a
+DONE row and is not awaiting execution. Windows C:\workspace and Git Bash
+/workspace are the same junction. Report only observed state. If the Codex
+scheduled author invocation fails due to quota/access, record that concrete
+blocker; the non-LLM progress task does not select or publish H1 candidates.
