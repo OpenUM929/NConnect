@@ -153,6 +153,39 @@ class H1HA002PackageTest(unittest.TestCase):
                                   f"validate_fresh_training_outputs {args} -0.0005\n")
             self.assertNotEqual(0, wrong.returncode)
 
+    def test_runtime_mocked_train_arm_entry(self):
+        import os
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td) / "root"; keep = Path(td) / "keep"; pkg = Path(td) / "pkg"
+            (root / "logs/rsl_rl/humanoid").mkdir(parents=True); (root / "exported").mkdir()
+            (pkg / "rewards/candidate").mkdir(parents=True)
+            reward = 'REWARD_WEIGHTS = {\n    "action_rate_l2":      -0.002,\n}\n'
+            (pkg / "rewards/candidate/humanoid_rewards.py").write_bytes(reward.encode())
+            (pkg / "eval_telemetry.py").write_text("# evaluator\n")
+            fake = Path(td) / "fake_isaac.sh"
+            fake.write_bytes((
+                "#!/usr/bin/env bash\nset -e\nsleep 0.1\n"
+                f"root='{root.as_posix()}'\n"
+                "run=\"$root/logs/rsl_rl/humanoid/fresh_run\"\nmkdir -p \"$run\" \"$root/exported\"\n"
+                "printf model >\"$run/model_900.pt\"\ncp \"$run/model_900.pt\" \"$root/exported/model_best.pt\"\n"
+                "printf 'rewards:\\n  action_rate_l2:\\n    weight: -0.002\\n' >\"$root/exported/env.yaml\"\n"
+                "printf report >\"$root/exported/report.html\"\n"
+            ).encode())
+            os.chmod(fake, 0o755)
+            body = (
+                f"ROOT='{root.as_posix()}'\nKEEP='{keep.as_posix()}'\nPKG='{pkg.as_posix()}'\nISAACLAB='{fake.as_posix()}'\n"
+                "train_arm candidate -0.002\n"
+                "grep -qx 'SELECTED_ITER=900' \"$KEEP/candidate/TRAIN_STATUS.txt\"\n"
+                "grep -qx 'REPORT_STATUS=REPORT_ACQUIRED' \"$KEEP/candidate/TRAIN_STATUS.txt\"\n"
+            )
+            result = self.run_bash(("py_cmd", "validate_fresh_training_outputs", "train_arm"), body)
+            self.assertEqual(0, result.returncode, f"stdout={result.stdout}\nstderr={result.stderr}")
+
+    def test_dependent_local_assignments_are_split(self):
+        runner = self.read("server_run_h1_ha002.sh").decode()
+        self.assertNotIn('local arm=$1 reward=$2 marker=', runner)
+        self.assertNotIn('local out="$KEEP/$arm/evaluation/seed_$seed/$name" marker=', runner)
+
     def test_runtime_incomplete_eval_rejected_then_complete_accepted(self):
         import os
         with tempfile.TemporaryDirectory() as td:

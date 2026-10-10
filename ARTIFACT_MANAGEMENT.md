@@ -1,6 +1,7 @@
 # NConnect 파일·artifact 운영 정본
 
 ## H-A002-PACKAGE-20261010 — H1 대응1000iter 탐색
+- v2 VERIFIED: SHA 0f108825a57cf239d16ce224eba1c538a41bf1c4856850737540ea4248bd5f0a,16/16 tests(실제 mocked train_arm 진입 포함)·CRC/manifest/LF/bash-n. v1 파일 불변, 변수 의존 선언만 수정. 하위 검토 사용량 제한으로 메인이 직접 수정 결과를 검증한다.
 - ATTEMPT1(14:06:18): v1 실제 preflight2step EVAL_RC0·ROWS2 후 Bash local의 arm/marker 동시 선언이 set-u에 걸려 학습 전 rc1. 학습0iter·train.log 없음. EXPORTED_RESTORE_RC0/CLEANUP_RC0. 부분ZIP SHA ab296c907521160e42d92bd535b35cd31bb88da47e46926ee86cba678ae20cba를 H_A002_PREFLIGHT_ONLY_FAILED_RESULT.zip으로 보존하고 원KEEP는 ATTEMPT1_PREFLIGHT_ONLY_FAILED로 이동(삭제 없음). 발행 v1 불변, v2에서 변수 초기화 수정·함수 진입 회귀검증 뒤 실행한다. 완료 학습/P0 반복 아님.
 - VERIFIED(2026-10-10 14:05 KST): ZIP SHA d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba. 14/14 tests(실제 Bash freshness·incomplete eval·Run06 복구 포함), CRC16members·내부manifest·LF·bash-n·단일값diff·R-6 원본SHA 검증. 독립 재검토 HIGH/MEDIUM 차단0. READY 인계 발행; 아직 실행 전.
 - PLANNED: H-A001 기존54/54 판독 B 분기에 따라 action_rate_l2 대조-.0005/후보-.002, 각 from-scratch1000iter·seed42·4096env. runtime source 불변. 최종 패키지 검증 및 READY/commit/push 전 실행 금지.

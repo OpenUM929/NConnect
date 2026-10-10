@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 H1 = ROOT / "workspace/training/humanoid"
 OUT = H1 / "upload/H-A002/current"
-NAME = "H_A002_ACTION_RATE_M0P002_v1.zip"
+NAME = "H_A002_ACTION_RATE_M0P002_v2.zip"
 PREFIX = "h1_ha002/"
 FIXED_TIME = (2026, 10, 10, 0, 0, 0)
 BASE = -0.0005
@@ -200,7 +200,8 @@ PY
 }
 
 train_arm() {
-  local arm=$1 reward=$2 marker="$KEEP/$arm/session_start.marker"
+  local arm=$1 reward=$2
+  local marker="$KEEP/$arm/session_start.marker"
   mkdir -p "$KEEP/$arm/training" "$KEEP/$arm/exported" "$KEEP/$arm/logs"
   cp -f "$PKG/rewards/$arm/humanoid_rewards.py" "$ROOT/humanoid_rewards.py"
   grep -Fq '"action_rate_l2":      '"$reward"',' "$ROOT/humanoid_rewards.py" || { echo "[FAIL] $arm reward staging"; exit 4; }
@@ -251,7 +252,9 @@ terrain_args() {
 
 run_eval() {
   local arm=$1 seed=$2 name=$3 vx=$4 vy=$5 wz=$6 terrain=$7 push=$8
-  local out="$KEEP/$arm/evaluation/seed_$seed/$name" marker="$KEEP/$arm/evaluation/seed_${seed}/${name}.marker"; mkdir -p "$out"; touch "$marker"
+  local out="$KEEP/$arm/evaluation/seed_$seed/$name"
+  local marker="$KEEP/$arm/evaluation/seed_${seed}/${name}.marker"
+  mkdir -p "$out"; touch "$marker"
   mapfile -t targs < <(terrain_args "$terrain")
   local -a cmd=("$ISAACLAB" -p "$PKG/h1_eval_entry.py" --task Humanoid-v0 --num_envs 32 --headless --checkpoint "$KEEP/$arm/training/model_best.pt" "agent.seed=$seed" env.commands.base_velocity.heading_command=false env.commands.base_velocity.rel_standing_envs=0.0 env.commands.base_velocity.resampling_time_range='[1000.0,1000.0]' "env.commands.base_velocity.ranges.lin_vel_x=[$vx,$vx]" "env.commands.base_velocity.ranges.lin_vel_y=[$vy,$vy]" "env.commands.base_velocity.ranges.ang_vel_z=[$wz,$wz]" "${targs[@]}")
   [[ "$push" == 0 ]] || cmd+=(--push "$push")
@@ -375,8 +378,8 @@ def entries() -> dict[str, bytes]:
         "ORIGINAL_SHA256SUMS.txt": sums,
         "experiment.json": (json.dumps(experiment(), ensure_ascii=False, indent=2) + "\n").encode(),
         "README.txt": (
-            "H-A002 runs matched from-scratch 1000-iteration control (-0.0005) and candidate (-0.002) arms.\n"
-            "Run: cd /workspace/training/humanoid && unzip -o H_A002_ACTION_RATE_M0P002_v1.zip && "
+            "H-A002 v2 runs matched from-scratch 1000-iteration control (-0.0005) and candidate (-0.002) arms.\n"
+            "Run: cd /workspace/training/humanoid && unzip -o H_A002_ACTION_RATE_M0P002_v2.zip && "
             "NO_TMUX=1 H1_ROOT=/workspace/training/humanoid ISAACLAB_SH=/workspace/IsaacLab/isaaclab.sh "
             "bash h1_ha002/server_run_h1_ha002.sh\nResult: /workspace/_keep/H_A002_ACTION_RATE_M0P002_RESULT.zip (+ .sha256).\n"
         ).encode(),

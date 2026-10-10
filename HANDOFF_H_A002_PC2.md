@@ -3,8 +3,8 @@ WORK_ID: H-A002
 STATUS: READY
 START_AFTER: G-A077
 START_MARKER: /workspace/_keep/go2_g_a077_flat_orientation_m0p225/RUNNER_STATUS.txt
-PACKAGE: workspace/training/humanoid/upload/H-A002/current/H_A002_ACTION_RATE_M0P002_v1.zip
-PACKAGE_SHA256: d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba
+PACKAGE: workspace/training/humanoid/upload/H-A002/current/H_A002_ACTION_RATE_M0P002_v2.zip
+PACKAGE_SHA256: 0f108825a57cf239d16ce224eba1c538a41bf1c4856850737540ea4248bd5f0a
 -->
 
 # H-A002 — H1 기존 P0 판독 후 대응 1000iter 탐색
@@ -19,6 +19,8 @@ PACKAGE_SHA256: d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba
 
 ## 1. 준비 확인
 
+v2 정정: v1은 사전검사2step 완료 후 Bash local arm 초기화 오류로 학습 전 종료했다. 원본 v1/부분ZIP/실패KEEP 보존. v2는 의존 변수 선언을 분리하고 실제 함수 진입 mock을 포함16tests 검증했다. 완료 P0·학습 반복 없음.
+
 1. ZIP와 sidecar SHA 및 내부 PACKAGE_SHA256SUMS.txt를 대조한다. READY가 아니면 실행 금지.
 2. G-A077 원장 terminal·회수 감사·판독의 원격 commit을 확인한다. 프로세스 목록과 nvidia-smi에서 train/play 없음, 여유20GB 이상, 기존 IsaacLab/venv를 확인한다. 새 서버 세션을 열지 않는다.
 3. 기존 H1 배포 train/play/task는 e288246 정본 SHA를 사용한다. runtime logic 수정 금지. 기존 Run06 exported 파일은 사전 snapshot 후 성공/실패 모두 복구하며, 기존 H-A002 KEEP가 있으면 자동 재실행하지 않는다.
@@ -29,7 +31,7 @@ PACKAGE_SHA256: d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba
 Git Bash에서 ZIP를 /workspace/training/humanoid/로 복사하고 SHA 검증 후:
 
 ```bash
-cd /workspace/training/humanoid && unzip -o H_A002_ACTION_RATE_M0P002_v1.zip && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PATH=/workspace/isaaclab_venv/Scripts:$PATH NO_TMUX=1 H1_ROOT=/workspace/training/humanoid ISAACLAB_SH=/workspace/IsaacLab/isaaclab.sh bash h1_ha002/server_run_h1_ha002.sh
+cd /workspace/training/humanoid && unzip -o H_A002_ACTION_RATE_M0P002_v2.zip && PYTHONUTF8=1 PYTHONIOENCODING=utf-8 PATH=/workspace/isaaclab_venv/Scripts:$PATH NO_TMUX=1 H1_ROOT=/workspace/training/humanoid ISAACLAB_SH=/workspace/IsaacLab/isaaclab.sh bash h1_ha002/server_run_h1_ha002.sh
 ```
 
 기존 launcher/배포 train/play/evaluator를 사용한다. 각 팔 train.log의 실제 iter와 nvidia-smi를 확인한다. 단일 GPU에서 중복 실행하지 않는다. tools/watch_h1_pc2_progress.ps1은 파일 기반 진행률만 기록하고, tools/pc2_hourly_monitor_prompt.md의 예약 Codex가 이 대화에 한국어로 보고·후속 판독한다.
