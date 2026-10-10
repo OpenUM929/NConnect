@@ -1,5 +1,10 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-A077-RECOVERY-20261010 / H-A001-READOUT-20261010 — 자동 후속
+- RECEIVED → VERIFIED → ANALYZED(2026-10-10): G-A077 원본 SHA 02071231a7a561ba824cdcf57c6e493b277e4945c1c77e997a4b768d45f7507a, CRC888개·내부 SHA887/887, candidate/baseline69case씩·영상10개씩 검증. 신규 영상10개 전체 decode 성공, 행동 판독 VIDEO_UNKNOWN. parts6개 재결합 SHA 일치. 원본 상태는 불변이며 회수 감사에서 기대영상 집계 오류를 분리한다. 신규 run을 기존 폴더에 덮어쓰지 않아 선택 병합 없음. 판독: 방향 지지/보존 실패, G-A074 유지. H-A001 기존54/54 결과 판독 재사용(ii_B_action_rate), 추가 학습/P0 실행 없음.
+- RUNNING(2026-10-10 13:50 KST): 완료 G-A077 결과의 원본 SHA/CRC/manifest·69case·10영상·원report를 검증·회수한다. 원본 INCOMPLETE_COLLECTION 표식은 보존하고 기대 baseline 영상 수와 실제 재사용 수의 불일치를 별도 감사한다. 재학습·재평가 없음.
+- H-A001은 원장 DONE(54/54)과 회수 SHA e8146b9a…bdc1을 재사용한다. 기존 P0 판독기로 결과를 판독하고 최신 H1 계획 §12·§14·§17 분기에 연결한다. P0 재실행·추가 Go2 발행 없음. 새 학습의 값·실행은 이 등록만으로 완료 처리하지 않는다.
+
 ## G-A077-PACKAGE-20261010 — 다음 단일변수 탐색
 - PLANNED: 기존 원장·upload 조회에서 G-A077 미사용 확인 후 예약. G-A074 검증설정 flat -.25→-.225만 변경. 완료된 -.20/-.25 학습 반복 없음. 계획 upload/plan/GO2_G_A077_PLAN_20261010.md. 기존 builder/runner 재사용해 PC2 실행 ZIP을 검증·발행한다. 아직 학습 시작 없음.
 

@@ -41,3 +41,5 @@ G-A076	READY	2026-10-09T21:55:02+09:00	START_AFTER G-A075; skip if G-A075 RUNNER
 G-A074-EVAL	READOUT_DONE	2026-10-10T06:20:31+09:00	Existing matched readout retained: internal proxy 60.829746/70; VIDEO_UNKNOWN; A033 arm is not a matched flat-effect comparison.
 G-A077	PUBLISHED	2026-10-10T06:20:31+09:00	Existing reserved package verified: 7 tests OK; deterministic SHA c8e8d4f5ab3a5362a5d0a91179009f0be3230dcdb4b460a3a92ef44dc681f87f; 3 parts; no duplicate selection.
 G-A077	READY	2026-10-10T06:20:31+09:00	HANDOFF_G_A077_PC2.md validated; single flat -0.25 to -0.225; existing PC2 only.
+G-A077	READOUT_DONE	2026-10-10T13:58:32+09:00	ARTIFACT_VERIFIED; raw collection mismatch baseline videos expected0 actual10 preserved; direction supported but preservation failed34 metrics; retain G-A074; transition H1 no extra Go2
+H-A001	READOUT_REUSED	2026-10-10T13:58:32+09:00	Existing54/54 only; ii_B_action_rate confirmed; no P0 rerun; H-A002 matched1000iter package undergoing stale-output and failure-restoration corrections before launch

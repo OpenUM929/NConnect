@@ -171,3 +171,6 @@ workspace/_keep/go2_g_a072_pc2_s11s43_ang_vel_xy_l2_m0p02/
 
 # Reconstructed locally from tracked H-A001 archive; readout files are explicitly tracked.
 workspace/_keep/H_A001_P0_SPEED_GRID/
+
+# Reconstructed/local original; Git tracks the 95 MiB G-A077 parts and sidecar.
+workspace/_keep/GO2_G_A077_FLAT_ORIENTATION_M0P225_RESULT.zip

@@ -1,5 +1,10 @@
 # Go2 예선 프로젝트 상태 원장
 
+## G-A077-READOUT-20261010 — 완료·H1 전환
+- ARTIFACT_VERIFIED: 학습3000/3000·평가69/69·신규 영상10/10, 재사용 대조69/69·영상10/10; 원본 collection INCOMPLETE는 기대 baseline 영상0/실제10 집계 오류로 별도 감사. 원본 불변.
+- INTERNAL_GATE_FAIL: 방향 가설 지지(15cm full proxy18/15/18)와 채택을 구분한다. 보존34항목 위반 및15cm progress 악화로 G-A074 유지. 내부 proxy63.005493/70, OFFICIAL_RESULT 미측정, VIDEO_UNKNOWN.
+- 다음은 H-A001 기존 판독→조건부 H-A002 matched1000iter. 추가 Go2 및 완료 학습/P0 반복 금지. 상세 reports/GO2_G_A077_READOUT_20261010.md와 GO2_G_A077_RECOVERY_20261010.md.
+
 ## G-D-C1-CORRECTION-20260930 — C1 선정 철회
 - 최신 판단: A048 + feet_air_time .15의 우선 선정과 별도 학습 권고를 철회한다. 아래 C1 선정 기록은 역사이며 현재 권고가 아니다.
 - 변경 근거는 새 실험이 아니라 선정 논리 오류 정정이다. 재착지 비용 감소를 몸통 상승 실패 개선으로 연결할 근거가 없고, 강좌의 하향 등반약 경고·A017 하향 실패·9월 29일 반대 관측을 해소하지 않았다.

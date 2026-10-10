@@ -1,0 +1,755 @@
+{
+  "official_result": false,
+  "candidate_status": "INTERNAL_GATE_FAIL",
+  "candidate_proxy_70": 63.00549325223036,
+  "baseline_proxy_70": 60.82974642426652,
+  "candidate_scenarios": {
+    "G1": {
+      "name": "전진 속도 추종",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9379211051828685,
+      "scenario_proxy": 0.9379211051828685,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9379211051828685,
+      "survival_floor_case": {
+        "case_id": "forward_slow",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "forward_fast",
+        "seed": 202
+      },
+      "weighted_fraction": 0.14068816577743026,
+      "worst_case": {
+        "case_id": "forward_fast",
+        "seed": 202
+      },
+      "per_seed": {
+        "101": 0.9382629272572367,
+        "202": 0.9379211051828685,
+        "303": 0.9380376561160917
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G2": {
+      "name": "전방위 속도 추종",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9086436655070771,
+      "scenario_proxy": 0.9086436655070771,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9086436655070771,
+      "survival_floor_case": {
+        "case_id": "backward",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "combined_yaw_right",
+        "seed": 202
+      },
+      "weighted_fraction": 0.13629654982606157,
+      "worst_case": {
+        "case_id": "combined_yaw_right",
+        "seed": 202
+      },
+      "per_seed": {
+        "101": 0.9112243013709406,
+        "202": 0.9086436655070771,
+        "303": 0.9140291555513351
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G3": {
+      "name": "거친 지형",
+      "weight": 0.2,
+      "survival_proxy": 0.96875,
+      "tracking_proxy": 0.9205034270523376,
+      "scenario_proxy": 0.891737694956952,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.9375,
+      "tracking_proxy_min_any_case": 0.9205034270523376,
+      "survival_floor_case": {
+        "case_id": "rough_lateral",
+        "seed": 202
+      },
+      "tracking_floor_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      },
+      "weighted_fraction": 0.17834753899139041,
+      "worst_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      },
+      "per_seed": {
+        "101": 0.891737694956952,
+        "202": 0.9035479196701515,
+        "303": 0.9451315996794192
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    },
+    "G4": {
+      "name": "경사 ±20°",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9612400814838201,
+      "scenario_proxy": 0.9612400814838201,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9612400814838201,
+      "survival_floor_case": {
+        "case_id": "slope_plus_20",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "slope_plus_20",
+        "seed": 202
+      },
+      "weighted_fraction": 0.14418601222257302,
+      "worst_case": {
+        "case_id": "slope_plus_20",
+        "seed": 202
+      },
+      "per_seed": {
+        "101": 0.9624387098333921,
+        "202": 0.9612400814838201,
+        "303": 0.9621810730934149
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G5": {
+      "name": "계단 10~15cm",
+      "weight": 0.15,
+      "survival_proxy": 0.9375,
+      "tracking_proxy": 0.8608833968148109,
+      "scenario_proxy": 0.8070781845138851,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.9375,
+      "tracking_proxy_min_any_case": 0.8608833968148109,
+      "survival_floor_case": {
+        "case_id": "stairs_10_up",
+        "seed": 303
+      },
+      "tracking_floor_case": {
+        "case_id": "stairs_15_up",
+        "seed": 303
+      },
+      "weighted_fraction": 0.12106172767708276,
+      "worst_case": {
+        "case_id": "stairs_15_up",
+        "seed": 303
+      },
+      "per_seed": {
+        "101": 0.8511926939080734,
+        "202": 0.8077771650528305,
+        "303": 0.8070781845138851
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    },
+    "G6": {
+      "name": "밀침 회복",
+      "weight": 0.1,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9674660523809216,
+      "scenario_proxy": 0.9674660523809216,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9674660523809216,
+      "survival_floor_case": {
+        "case_id": "push_pos_x",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "push_neg_x",
+        "seed": 202
+      },
+      "weighted_fraction": 0.09674660523809217,
+      "worst_case": {
+        "case_id": "push_neg_x",
+        "seed": 202
+      },
+      "per_seed": {
+        "101": 0.9693966745472942,
+        "202": 0.9674660523809216,
+        "303": 0.970940393667886
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G7": {
+      "name": "도메인 랜덤화",
+      "weight": 0.1,
+      "survival_proxy": 0.9375,
+      "tracking_proxy": 0.8826866698584744,
+      "scenario_proxy": 0.8275187529923198,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.9375,
+      "tracking_proxy_min_any_case": 0.8826866698584744,
+      "survival_floor_case": {
+        "case_id": "dr_seed_101",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "dr_seed_101",
+        "seed": 101
+      },
+      "weighted_fraction": 0.08275187529923199,
+      "worst_case": {
+        "case_id": "dr_seed_101",
+        "seed": 101
+      },
+      "per_seed": {
+        "101": 0.8275187529923198,
+        "202": 0.8969449970100803,
+        "303": 0.87879777606656
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    }
+  },
+  "baseline_scenarios": {
+    "G1": {
+      "name": "전진 속도 추종",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.93486561831254,
+      "scenario_proxy": 0.93486561831254,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.93486561831254,
+      "survival_floor_case": {
+        "case_id": "forward_slow",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "forward_fast",
+        "seed": 303
+      },
+      "weighted_fraction": 0.140229842746881,
+      "worst_case": {
+        "case_id": "forward_fast",
+        "seed": 303
+      },
+      "per_seed": {
+        "101": 0.9349082791637938,
+        "202": 0.9354501350551423,
+        "303": 0.93486561831254
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G2": {
+      "name": "전방위 속도 추종",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9196174244806413,
+      "scenario_proxy": 0.9196174244806413,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9196174244806413,
+      "survival_floor_case": {
+        "case_id": "backward",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "combined_yaw_left",
+        "seed": 303
+      },
+      "weighted_fraction": 0.1379426136720962,
+      "worst_case": {
+        "case_id": "combined_yaw_left",
+        "seed": 303
+      },
+      "per_seed": {
+        "101": 0.9205868870627235,
+        "202": 0.9197504986316026,
+        "303": 0.9196174244806413
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G3": {
+      "name": "거친 지형",
+      "weight": 0.2,
+      "survival_proxy": 0.875,
+      "tracking_proxy": 0.8740919305338299,
+      "scenario_proxy": 0.7648304392171013,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.875,
+      "tracking_proxy_min_any_case": 0.8740919305338299,
+      "survival_floor_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      },
+      "weighted_fraction": 0.15296608784342025,
+      "worst_case": {
+        "case_id": "rough_forward",
+        "seed": 101
+      },
+      "per_seed": {
+        "101": 0.7648304392171013,
+        "202": 0.8588147663375034,
+        "303": 0.9278284302345049
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    },
+    "G4": {
+      "name": "경사 ±20°",
+      "weight": 0.15,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9568035400284972,
+      "scenario_proxy": 0.9568035400284972,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9568035400284972,
+      "survival_floor_case": {
+        "case_id": "slope_plus_20",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "slope_plus_20",
+        "seed": 303
+      },
+      "weighted_fraction": 0.1435205310042746,
+      "worst_case": {
+        "case_id": "slope_plus_20",
+        "seed": 303
+      },
+      "per_seed": {
+        "101": 0.9577447288670966,
+        "202": 0.9585745329672047,
+        "303": 0.9568035400284972
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G5": {
+      "name": "계단 10~15cm",
+      "weight": 0.15,
+      "survival_proxy": 0.84375,
+      "tracking_proxy": 0.8767100934170806,
+      "scenario_proxy": 0.7397241413206618,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.84375,
+      "tracking_proxy_min_any_case": 0.8767100934170806,
+      "survival_floor_case": {
+        "case_id": "stairs_15_down",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "stairs_15_down",
+        "seed": 101
+      },
+      "weighted_fraction": 0.11095862119809927,
+      "worst_case": {
+        "case_id": "stairs_15_down",
+        "seed": 101
+      },
+      "per_seed": {
+        "101": 0.7397241413206618,
+        "202": 0.845231852362883,
+        "303": 0.8873900241773901
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    },
+    "G6": {
+      "name": "밀침 회복",
+      "weight": 0.1,
+      "survival_proxy": 1.0,
+      "tracking_proxy": 0.9542847363120497,
+      "scenario_proxy": 0.9542847363120497,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 1.0,
+      "tracking_proxy_min_any_case": 0.9542847363120497,
+      "survival_floor_case": {
+        "case_id": "push_pos_x",
+        "seed": 101
+      },
+      "tracking_floor_case": {
+        "case_id": "push_pos_x",
+        "seed": 202
+      },
+      "weighted_fraction": 0.09542847363120498,
+      "worst_case": {
+        "case_id": "push_pos_x",
+        "seed": 202
+      },
+      "per_seed": {
+        "101": 0.9544578672424211,
+        "202": 0.9542847363120497,
+        "303": 0.9565849842269982
+      },
+      "gate": "INTERNAL_SCENARIO_PASS"
+    },
+    "G7": {
+      "name": "도메인 랜덤화",
+      "weight": 0.1,
+      "survival_proxy": 0.9375,
+      "tracking_proxy": 0.93813554553115,
+      "scenario_proxy": 0.8795020739354531,
+      "aggregation": "min_over_cases_of(survival_proxy*tracking_proxy); factors are that case's own",
+      "survival_proxy_min_any_case": 0.9375,
+      "tracking_proxy_min_any_case": 0.9291996669587922,
+      "survival_floor_case": {
+        "case_id": "dr_seed_303",
+        "seed": 303
+      },
+      "tracking_floor_case": {
+        "case_id": "dr_seed_202",
+        "seed": 202
+      },
+      "weighted_fraction": 0.08795020739354531,
+      "worst_case": {
+        "case_id": "dr_seed_303",
+        "seed": 303
+      },
+      "per_seed": {
+        "101": 0.9225356327713563,
+        "202": 0.9291996669587922,
+        "303": 0.8795020739354531
+      },
+      "gate": "INTERNAL_SCENARIO_FAIL"
+    }
+  },
+  "stairs": {
+    "stairs_10_down": {
+      "101": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.6980623500869874,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 14
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.698062300044585,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 27
+        }
+      },
+      "202": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.6984800740996784,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 30,
+          "full": 15
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.6984801066113029,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 29
+        }
+      },
+      "303": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.6985135145365873,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 31,
+          "ge2": 28,
+          "full": 17
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -0.6985135151740701,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 31
+        }
+      }
+    },
+    "stairs_15_down": {
+      "101": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.0470915242312426,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 28,
+          "ge2": 17,
+          "full": 0
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.0470916064665279,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 18
+        }
+      },
+      "202": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.0477182724896599,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 27,
+          "ge2": 19,
+          "full": 0
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.047718178142201,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 31,
+          "full": 15
+        }
+      },
+      "303": {
+        "baseline": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.0477683620656875,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 23,
+          "ge2": 14,
+          "full": 0
+        },
+        "candidate": {
+          "height_key": "terrain_z",
+          "terrain_start_m": -1.0477683234979762,
+          "direction": "climb",
+          "robots": 32,
+          "ge1": 32,
+          "ge2": 32,
+          "full": 18
+        }
+      }
+    }
+  },
+  "directional_hypothesis_supported": true,
+  "all_69_case_protection": false,
+  "protection_violations": [
+    {
+      "case": "G1/forward_slow/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9801844923063622,
+      "candidate": 0.9797637616862305
+    },
+    {
+      "case": "G1/forward_slow/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9807055624539225,
+      "candidate": 0.9797995291624344
+    },
+    {
+      "case": "G1/forward_nominal/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.96648094239646,
+      "candidate": 0.9658900705241387
+    },
+    {
+      "case": "G1/forward_nominal/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9668413658454603,
+      "candidate": 0.9660230350713729
+    },
+    {
+      "case": "G1/forward_nominal/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9665078539122458,
+      "candidate": 0.9657991281653446
+    },
+    {
+      "case": "G2/right/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9827270510404644,
+      "candidate": 0.9819254955695125
+    },
+    {
+      "case": "G2/diagonal_right/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9677157689531262,
+      "candidate": 0.964288126442386
+    },
+    {
+      "case": "G2/diagonal_right/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9680878553471333,
+      "candidate": 0.9647127897752177
+    },
+    {
+      "case": "G2/diagonal_right/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9679891677041405,
+      "candidate": 0.9645633542930706
+    },
+    {
+      "case": "G2/combined_yaw_right/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9220409421732428,
+      "candidate": 0.9112243013709406
+    },
+    {
+      "case": "G2/combined_yaw_right/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9249592309524606,
+      "candidate": 0.9086436655070771
+    },
+    {
+      "case": "G2/combined_yaw_right/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9218680764318443,
+      "candidate": 0.9140291555513351
+    },
+    {
+      "case": "G3/rough_forward/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9618599148273819,
+      "candidate": 0.9566967080692527
+    },
+    {
+      "case": "G4/slope_minus_20/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9748976615802021,
+      "candidate": 0.9684072173698404
+    },
+    {
+      "case": "G4/slope_minus_20/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9748229563709754,
+      "candidate": 0.9692004130407934
+    },
+    {
+      "case": "G4/slope_minus_20/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9732300991078373,
+      "candidate": 0.9681004038114
+    },
+    {
+      "case": "G5/stairs_10_up/seed_101",
+      "metric": "survival_proxy",
+      "baseline": 1.0,
+      "candidate": 0.96875
+    },
+    {
+      "case": "G5/stairs_10_up/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9243347776196902,
+      "candidate": 0.8786505227438177
+    },
+    {
+      "case": "G5/stairs_10_up/seed_202",
+      "metric": "survival_proxy",
+      "baseline": 1.0,
+      "candidate": 0.96875
+    },
+    {
+      "case": "G5/stairs_10_up/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9279733558632428,
+      "candidate": 0.8824967882898637
+    },
+    {
+      "case": "G5/stairs_10_up/seed_303",
+      "metric": "survival_proxy",
+      "baseline": 1.0,
+      "candidate": 0.9375
+    },
+    {
+      "case": "G5/stairs_10_up/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.9195318154245624,
+      "candidate": 0.8792152821701025
+    },
+    {
+      "case": "G5/stairs_10_down/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9302050837911672,
+      "candidate": 0.9221312111252921
+    },
+    {
+      "case": "G5/stairs_10_down/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9309905246607963,
+      "candidate": 0.9213064495287835
+    },
+    {
+      "case": "G5/stairs_15_up/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.892450671307744,
+      "candidate": 0.8611429353756833
+    },
+    {
+      "case": "G5/stairs_15_up/seed_202",
+      "metric": "survival_proxy",
+      "baseline": 0.96875,
+      "candidate": 0.9375
+    },
+    {
+      "case": "G5/stairs_15_up/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.899869730591773,
+      "candidate": 0.8616289760563525
+    },
+    {
+      "case": "G5/stairs_15_up/seed_303",
+      "metric": "survival_proxy",
+      "baseline": 1.0,
+      "candidate": 0.9375
+    },
+    {
+      "case": "G5/stairs_15_up/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.8926850106567145,
+      "candidate": 0.8608833968148109
+    },
+    {
+      "case": "G7/dr_seed_101/seed_101",
+      "metric": "survival_proxy",
+      "baseline": 0.96875,
+      "candidate": 0.9375
+    },
+    {
+      "case": "G7/dr_seed_101/seed_101",
+      "metric": "tracking_proxy",
+      "baseline": 0.9522948467317226,
+      "candidate": 0.8826866698584744
+    },
+    {
+      "case": "G7/dr_seed_202/seed_202",
+      "metric": "survival_proxy",
+      "baseline": 1.0,
+      "candidate": 0.96875
+    },
+    {
+      "case": "G7/dr_seed_202/seed_202",
+      "metric": "tracking_proxy",
+      "baseline": 0.9291996669587922,
+      "candidate": 0.9258787065910506
+    },
+    {
+      "case": "G7/dr_seed_303/seed_303",
+      "metric": "tracking_proxy",
+      "baseline": 0.93813554553115,
+      "candidate": 0.9071460914235457
+    }
+  ],
+  "ten_cm_protection": true,
+  "fifteen_cm_progress_protection": false,
+  "preregistered_candidate_preservation": false,
+  "next": "H1 transition; retain G-A074; no automatic extra Go2 trial",
+  "limitations": "Full is six-step body-height/travel proxy, not video-verified completion. Protection failure alone does not refute the directional mechanism."
+}
