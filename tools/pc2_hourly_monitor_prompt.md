@@ -2,6 +2,14 @@
 
 Run one PC2 monitoring cycle. Do not ask questions or wait for approval.
 
+Reporting contract (2026-10-10 user correction): the scheduled cycle resumes
+the explicitly configured user conversation through tools/run_pc2_monitor_cycle.ps1.
+Every cycle must give a Korean final progress report in that conversation, even
+when state is unchanged, and perform ready recovery/author/H1 work in the same
+cycle. A TSV/git commit alone is NOT a delivered user report. Always distinguish
+training, evaluation, videos, recovery and next-step status; no time-based guesses.
+Never claim report delivery solely because the wrapper started or a file exists.
+
 1. Run `git pull --ff-only` in `C:\dev\NConnect`.
 2. Read the root `AGENTS.md` PC2 handoff contract, every `HANDOFF_*_PC2.md`
    header, `workspace/_keep/pc2_handoff_ledger.tsv`, and
