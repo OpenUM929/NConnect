@@ -3,12 +3,28 @@
 Run one PC2 monitoring cycle. Do not ask questions or wait for approval.
 
 Reporting contract (2026-10-10 user correction): the scheduled cycle resumes
-the explicitly configured user conversation through tools/run_pc2_monitor_cycle.ps1.
+the explicitly configured user conversation through tools/run_pc2_monitor_cycle.ps1
+and the running app-server message queue. Never use a second `codex exec resume`
+writer for an app-owned thread. QUEUED/STARTED is not REPORT_DELIVERED: verify the
+actual final response separately. The failed CLI writer-lock implementation was
+replaced on 2026-10-10; never delete writer locks to force access.
 Every cycle must give a Korean final progress report in that conversation, even
 when state is unchanged, and perform ready recovery/author/H1 work in the same
 cycle. A TSV/git commit alone is NOT a delivered user report. Always distinguish
 training, evaluation, videos, recovery and next-step status; no time-based guesses.
 Never claim report delivery solely because the wrapper started or a file exists.
+
+Verified recovery (2026-10-10): old CLI resume failed with `already has an
+active writer`; this was an implementation conflict, not demonstrated quota
+exhaustion. The replacement uses the existing authenticated local app-server's
+WebSocket control socket and thread/queue API. It preserves writer locks and
+host permission checks, deduplicates pending monitor turns, and resumes an
+unloaded thread only through that same server. Claude's installed persistent-mode
+hook likewise tracks scheduled wakeups and owned async work; its exact historic
+30-minute Cron configuration was not recovered and must not be invented.
+Local evidence: tools/test_pc2_monitor_dispatch.py (7 tests); scheduled wrapper
+exit0; separate diagnostic thread produced MONITOR_QUEUE_OK and a completed turn.
+This is not evidence that the current conversation has already received a report.
 
 1. Run `git pull --ff-only` in `C:\dev\NConnect`.
 2. Read the root `AGENTS.md` PC2 handoff contract, every `HANDOFF_*_PC2.md`

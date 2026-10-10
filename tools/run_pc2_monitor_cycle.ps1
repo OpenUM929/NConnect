@@ -7,19 +7,11 @@ $ErrorActionPreference = 'Stop'
 if ($ThreadId -notmatch '^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$') { throw 'Explicit conversation UUID required' }
 $promptPath = Join-Path $RepoRoot 'tools\pc2_hourly_monitor_prompt.md'
 if (!(Test-Path -LiteralPath $promptPath)) { throw 'Monitor instructions missing' }
-$codexCommand = (Get-Command codex.cmd -ErrorAction Stop).Source
-$prompt = @"
-30-minute scheduled monitoring turn requested by the user in THIS conversation.
-Inspect live A077/H1 state now, report observed percentages and blockers in Korean
-in your final response to this conversation, and execute any now-ready next step.
-Read tools/pc2_hourly_monitor_prompt.md and follow its latest H1 priority (step 10).
-Do not stop at a progress-file commit when recovery/readout/H1 continuation is ready.
-Do not repeat completed training or P0. Do not create an extra monitoring session.
-This turn is a bounded monitoring/continuation cycle, not permission to alter limits.
-"@
-$arguments = @('--sandbox','danger-full-access','--ask-for-approval','never','exec','resume',$ThreadId,'-')
+$pythonCommand = (Get-Command python.exe -ErrorAction Stop).Source
+$dispatcher = Join-Path $RepoRoot 'tools\pc2_monitor_dispatch.py'
+$arguments = @('-X','utf8',$dispatcher,'--thread-id',$ThreadId)
 if ($DryRun) {
-    [ordered]@{ executable=$codexCommand; arguments=$arguments; repo=$RepoRoot; prompt=$prompt; delivery='Explicit existing conversation resume; verify actual delivery after first scheduled run' } | ConvertTo-Json -Depth 4
+    [ordered]@{ executable=$pythonCommand; arguments=$arguments; repo=$RepoRoot; delivery='Running app-server queue, not CLI resume; queued is not delivered' } | ConvertTo-Json -Depth 4
     exit 0
 }
 $logRoot = Join-Path $RepoRoot '.omx\monitoring\pc2_cycles'
@@ -42,11 +34,13 @@ try {
     try {
         # Native stderr warnings must be logged, not terminate PowerShell before rc capture.
         $ErrorActionPreference = 'Continue'
-        $prompt | & $codexCommand @arguments 2>&1 | Out-File -Encoding utf8 -LiteralPath $log
+        & $pythonCommand @arguments 2>&1 | Out-File -Encoding utf8 -LiteralPath $log
         $rc = $LASTEXITCODE
         $ErrorActionPreference = 'Stop'
     } finally { Pop-Location }
-    [ordered]@{started_at=$started; checked_at=(Get-Date -Format o); thread_id=$ThreadId; state=$(if($rc -eq 0){'COMPLETED'}else{'FAILED'}); exit_code=$rc; log=$log} | ConvertTo-Json | Set-Content -Encoding UTF8 -LiteralPath $statusPath
+    $dispatchResult = $null
+    if ($rc -eq 0) { $dispatchResult = Get-Content -Raw -LiteralPath $log | ConvertFrom-Json }
+    [ordered]@{started_at=$started; checked_at=(Get-Date -Format o); thread_id=$ThreadId; state=$(if($rc -eq 0){$dispatchResult.state}else{'FAILED'}); exit_code=$rc; log=$log; dispatch=$dispatchResult} | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 -LiteralPath $statusPath
 } catch {
     $_ | Out-String | Add-Content -Encoding UTF8 -LiteralPath $log
     [ordered]@{checked_at=(Get-Date -Format o); thread_id=$ThreadId; state='FAILED'; exit_code=1; error=$_.Exception.Message; log=$log} | ConvertTo-Json | Set-Content -Encoding UTF8 -LiteralPath $statusPath
