@@ -1,5 +1,8 @@
 # NConnect 파일·artifact 운영 정본
 
+## H-A002-RECOVERY-20261010 — 종료 결과 회수·판독
+- RUNNING(16:47 KST): 원 runner16:41:15 종료rc0,양팔1000iter·telemetry114/114·영상20/20·report2/2. 원ZIP374230734bytes, 사전 sidecar SHA d18ff1baafcf0f6f1888090158924ea93de736a88ef75f7bc1dd29511dad5eac. 원본 불변·별도 회수 및95MiBparts 검증, 내부manifest/model/env/source/report/영상decode 검증 뒤 대응 비교를 판독한다. 완료 학습/P0 반복·추가Go2 없음. 영상 관찰/성능 판정은 수집 숫자와 분리한다.
+
 ## H-A002-PACKAGE-20261010 — H1 대응1000iter 탐색
 - RUNNING(14:12): v2 원격 발행·dispatch a4b4a5a 확인. preflight EVAL_RC0·STEPS2·ROWS2. 대조군 학습 프로세스의 seed42·4096env·scene 초기화와 fresh run_dir 2026-10-10_14-12-40 확인. 후보·평가·영상·회수는 아직 대기이며 결과를 미리 완료 처리하지 않는다.
 - v2 VERIFIED: SHA 0f108825a57cf239d16ce224eba1c538a41bf1c4856850737540ea4248bd5f0a,16/16 tests(실제 mocked train_arm 진입 포함)·CRC/manifest/LF/bash-n. v1 파일 불변, 변수 의존 선언만 수정. 하위 검토 사용량 제한으로 메인이 직접 수정 결과를 검증한다.

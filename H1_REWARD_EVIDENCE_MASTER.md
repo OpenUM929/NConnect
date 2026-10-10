@@ -1,5 +1,11 @@
 # H1 보상·실험 근거 마스터
 
+## H-A002 결과 — 2026-10-10
+- 양팔1000iter 정상 종료, 고정telemetry114/114·영상20/20·report2/2 수집. 회수 무결성 검증은 별도 기록한다. 영상 행동 VIDEO_UNKNOWN, OFFICIAL_RESULT 미측정.
+- 대응 정량 INTERNAL_GATE_FAIL. 대조 최고 검증 명령 평지/요철/회전=.75/.75/.5m/s, 후보는 세 기준 모두 미충족. 57case/seed쌍 중48쌍에서 낙상·xy·yaw 보존 중 하나 이상 위반. 물리적 원인 증명이나48회 낙상으로 해석하지 않는다.
+- 예측했던 굼뜸 위험과 양립하지만 action/joint 미측정으로 기전 미확정. 단일 학습seed의1000iter 효과 범위로 한정한다. -.002 방향을 채택하지 않고 Run06을 보존한다. 성공 전제 독립seed1000iter·장기 학습을 자동 실행하지 않는다. 완료 학습/P0 반복·추가Go2 없음.
+- 정본 comparison.json 및 README: workspace/training/humanoid/reports/H_A002_READOUT_20261010/. 판독기는 기존 P0 구간/낙상/RMSE 정의를 재사용하며 새 학습/평가를 실행하지 않는다.
+
 ## 2026-10-10 최신 사전등록 — H-A002 (과거 동결·장기 계획보다 우선)
 - H-A001 완료54/54 원본을 판독 재사용: Run06 ii_B_action_rate. 높은 명령에서 평균vx비율은 약1·낙상0이나 일부yaw 조건 미충족. action/joint 채널 부재로 jitter 원인 확정 불가.
 - 기준 policy Run06 SHA 8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636은 보존·preflight용이다. 효과 비교는 Run05/06 보상 설정의 새 대응1000iter 대조군 -.0005와 후보 -.002, 단일 action_rate_l2 변경이다. 나머지 보상·환경·seed42·4096env 불변, from-scratch, 동일 best-reward 선택 규칙.
