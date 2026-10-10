@@ -1,6 +1,7 @@
 # NConnect 파일·artifact 운영 정본
 
 ## H-A002-PACKAGE-20261010 — H1 대응1000iter 탐색
+- ATTEMPT1(14:06:18): v1 실제 preflight2step EVAL_RC0·ROWS2 후 Bash local의 arm/marker 동시 선언이 set-u에 걸려 학습 전 rc1. 학습0iter·train.log 없음. EXPORTED_RESTORE_RC0/CLEANUP_RC0. 부분ZIP SHA ab296c907521160e42d92bd535b35cd31bb88da47e46926ee86cba678ae20cba를 H_A002_PREFLIGHT_ONLY_FAILED_RESULT.zip으로 보존하고 원KEEP는 ATTEMPT1_PREFLIGHT_ONLY_FAILED로 이동(삭제 없음). 발행 v1 불변, v2에서 변수 초기화 수정·함수 진입 회귀검증 뒤 실행한다. 완료 학습/P0 반복 아님.
 - VERIFIED(2026-10-10 14:05 KST): ZIP SHA d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba. 14/14 tests(실제 Bash freshness·incomplete eval·Run06 복구 포함), CRC16members·내부manifest·LF·bash-n·단일값diff·R-6 원본SHA 검증. 독립 재검토 HIGH/MEDIUM 차단0. READY 인계 발행; 아직 실행 전.
 - PLANNED: H-A001 기존54/54 판독 B 분기에 따라 action_rate_l2 대조-.0005/후보-.002, 각 from-scratch1000iter·seed42·4096env. runtime source 불변. 최종 패키지 검증 및 READY/commit/push 전 실행 금지.
 - 영상 필수: 새 양팔 best checkpoint, H1~H7 기존10case씩·각1000step·4env·seed101. /workspace/_keep/H_A002_ACTION_RATE_M0P002/<arm>/videos/ 및 RESULT.zip/SHA로 회수한다. telemetry각57case, report2개·선택iter·model/env/source/evaluator SHA와 manifest가 필수다. asset preflight2step은 새 checkpoint 없는 설치검사이므로 VIDEO_NOT_REQUIRED; 완료 P0 재실행이 아니다.
