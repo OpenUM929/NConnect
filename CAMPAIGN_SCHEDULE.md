@@ -282,3 +282,8 @@ Go2 착수(D11)는 **폐기**한다. 합산 상한 100점을 수용하고 H1 100
 ## 2026-09-11 사용자 결정 — 계획 저장·결과 회수
 - H1 계획 정본: workspace/training/humanoid/upload/plan/; Go2 계획 정본: workspace/training/quadruped/upload/plan/. 기존 계획도 해당 위치로 이동한다.
 - H1 report.html은 _keep/<튜닝명칭>/exported/에 함께 회수한다. 작업 ID DOC-20260911-PLAN-REPORT, 상세 검증은 ARTIFACT_MANAGEMENT.md 참조.
+# 2026-10-10 최신 실행 순서 (과거 일정보다 우선)
+
+- G-A077 회수·판독·commit/push 완료(1efa971) → H-A001 완료54/54 판독 재사용 → H-A002 후보/대조 각1000iter 패키지 검증 → 기존 PC2 순차 실행·평가·영상·회수·판독.
+- H-A002 실행 전 패키지14tests 및 독립 재검토 완료, READY. 완료 P0/학습 반복·추가 Go2·10000iter 자동 승급 없음. 독립seed 대응1000iter는 방향/보호 기준을 충족한 경우에만 후속 판단한다.
+- 30분 예약 보고는 tools/run_pc2_monitor_cycle.ps1의 현재 대화 queue 경로를 사용하며 실제 응답 수신까지 검증한다. 단순 파일 기록을 대화 보고로 대체하지 않는다.

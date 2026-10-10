@@ -1,5 +1,11 @@
 # NConnect 파일·artifact 운영 정본
 
+## H-A002-PACKAGE-20261010 — H1 대응1000iter 탐색
+- VERIFIED(2026-10-10 14:05 KST): ZIP SHA d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba. 14/14 tests(실제 Bash freshness·incomplete eval·Run06 복구 포함), CRC16members·내부manifest·LF·bash-n·단일값diff·R-6 원본SHA 검증. 독립 재검토 HIGH/MEDIUM 차단0. READY 인계 발행; 아직 실행 전.
+- PLANNED: H-A001 기존54/54 판독 B 분기에 따라 action_rate_l2 대조-.0005/후보-.002, 각 from-scratch1000iter·seed42·4096env. runtime source 불변. 최종 패키지 검증 및 READY/commit/push 전 실행 금지.
+- 영상 필수: 새 양팔 best checkpoint, H1~H7 기존10case씩·각1000step·4env·seed101. /workspace/_keep/H_A002_ACTION_RATE_M0P002/<arm>/videos/ 및 RESULT.zip/SHA로 회수한다. telemetry각57case, report2개·선택iter·model/env/source/evaluator SHA와 manifest가 필수다. asset preflight2step은 새 checkpoint 없는 설치검사이므로 VIDEO_NOT_REQUIRED; 완료 P0 재실행이 아니다.
+- Run06 canonical exported 사전 snapshot·성공/실패 복구, 기존KEEP 재실행 금지. 과거 run과 원장을 덮어쓰는 병합 없음. 회수 뒤 CRC/SHA/manifest·video/telemetry 검증 전 서버 종료 가능 판정 금지.
+
 ## G-A077-RECOVERY-20261010 / H-A001-READOUT-20261010 — 자동 후속
 - RECEIVED → VERIFIED → ANALYZED(2026-10-10): G-A077 원본 SHA 02071231a7a561ba824cdcf57c6e493b277e4945c1c77e997a4b768d45f7507a, CRC888개·내부 SHA887/887, candidate/baseline69case씩·영상10개씩 검증. 신규 영상10개 전체 decode 성공, 행동 판독 VIDEO_UNKNOWN. parts6개 재결합 SHA 일치. 원본 상태는 불변이며 회수 감사에서 기대영상 집계 오류를 분리한다. 신규 run을 기존 폴더에 덮어쓰지 않아 선택 병합 없음. 판독: 방향 지지/보존 실패, G-A074 유지. H-A001 기존54/54 결과 판독 재사용(ii_B_action_rate), 추가 학습/P0 실행 없음.
 - RUNNING(2026-10-10 13:50 KST): 완료 G-A077 결과의 원본 SHA/CRC/manifest·69case·10영상·원report를 검증·회수한다. 원본 INCOMPLETE_COLLECTION 표식은 보존하고 기대 baseline 영상 수와 실제 재사용 수의 불일치를 별도 감사한다. 재학습·재평가 없음.

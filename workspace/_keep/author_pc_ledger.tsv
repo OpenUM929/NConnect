@@ -43,3 +43,4 @@ G-A077	PUBLISHED	2026-10-10T06:20:31+09:00	Existing reserved package verified: 7
 G-A077	READY	2026-10-10T06:20:31+09:00	HANDOFF_G_A077_PC2.md validated; single flat -0.25 to -0.225; existing PC2 only.
 G-A077	READOUT_DONE	2026-10-10T13:58:32+09:00	ARTIFACT_VERIFIED; raw collection mismatch baseline videos expected0 actual10 preserved; direction supported but preservation failed34 metrics; retain G-A074; transition H1 no extra Go2
 H-A001	READOUT_REUSED	2026-10-10T13:58:32+09:00	Existing54/54 only; ii_B_action_rate confirmed; no P0 rerun; H-A002 matched1000iter package undergoing stale-output and failure-restoration corrections before launch
+H-A002	READY	2026-10-10T14:05:00+09:00	Matched control/candidate1000iter; action-.0005 to-.002 only; ZIP SHA d6cbdf8a6705dc28fe250297098140d507bf4d70a08603f6abfcaf6c54cd00ba;14tests verified including Bash fixtures; independent review zero launch blockers; no Go2/P0 repeat

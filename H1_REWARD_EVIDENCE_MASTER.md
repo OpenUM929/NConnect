@@ -1,5 +1,13 @@
 # H1 보상·실험 근거 마스터
 
+## 2026-10-10 최신 사전등록 — H-A002 (과거 동결·장기 계획보다 우선)
+- H-A001 완료54/54 원본을 판독 재사용: Run06 ii_B_action_rate. 높은 명령에서 평균vx비율은 약1·낙상0이나 일부yaw 조건 미충족. action/joint 채널 부재로 jitter 원인 확정 불가.
+- 기준 policy Run06 SHA 8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636은 보존·preflight용이다. 효과 비교는 Run05/06 보상 설정의 새 대응1000iter 대조군 -.0005와 후보 -.002, 단일 action_rate_l2 변경이다. 나머지 보상·환경·seed42·4096env 불변, from-scratch, 동일 best-reward 선택 규칙.
+- 근거·경쟁 설명·값/폭·대안·반증 기준 정본: workspace/training/humanoid/upload/plan/H1_H_A002_ACTION_RATE_PLAN_20261010.md 및 H1_STABLE_SPEED_TUNING_DEBATE_20261008.md §12·§14·§17. H1 배포의 급격한 관절 명령 억제 설명으로 조건부 예측하며 굼뜸/접지충격 경쟁 설명을 남긴다. -.002는 최적값·안전값이 아니다.
+- 각 팔 P0격자9case×3seed 및 H1~H7 기존10case×3seed,32env·20s·2s 이후 판정. 후보의 검증 최고 명령 상승, 각case 낙상 비증가, xy/yawRMSE 각각 대응 대조+5% 이내를 함께 요구한다. 데이터/identity 결손·상반 결과는 INCONCLUSIVE. 한 학습seed 결과는 exploratory.
+- 필수 회수: 양팔 best model/env/reward/source/report/log/tfevents·실제 선택iter/SHA·114telemetry·20영상(seed101)·manifest/bundle/SHA. loss비유한·source/identity·asset 오류 시 해당 팔 중단, 완료 팔 재학습·자동 반복 금지. 영상/평가 미완료 시 성능 승급 금지.
+- 결과별 다음: 방향+보존 충족이면 독립seed의 대응1000iter 재확인; 보호 손실이면 기각·Run06 유지; 불완전이면 평가 복구만 판단. 본선3000iter 시작 방식 별도 결정,10000iter 자동 승급 없음. 추가 Go2/P0 반복 없음.
+
 > **역할:** H1 튜닝값, 실험 상태, 과학적 근거, 다음 판정 기준의 단일 진입점이다.  
 > **정본 우선순위:** 실제 run artifact·로그·YAML → 이 문서 → `experiment_history.csv` → 개별 보고서 → 과거 계획.  
 > **artifact 운영 정본:** 파일 목록·서버 회수·검증·선택 병합·작업 내역은 `ARTIFACT_MANAGEMENT.md`를 따른다.  
