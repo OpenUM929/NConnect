@@ -200,3 +200,7 @@ A033 대비 시나리오 점수 변화(0~1 척도, 가중합 ×70이 총점 차�
 ## 2026-10-06 PC2 G-A063 s12 update
 - P0 action_rate_l2 -0.01 -> -0.02, seed42, iter900 evaluation: existing tree classification TRADEOFF; rough lateral falls 41 -> 93/96, push falls 0 -> 9/384, stairs15 >=1 52 -> 33/96, >=2 3 -> 0/96, stairs10 >=2 85 -> 34/96. Section 12-D action eligibility NOT MET. This is an observed outcome, not a physical-cause explanation or independent training replication. VIDEO_UNKNOWN.
 - Evidence: reports/evidence/go2_pc2_tree_readout/s12_action_rate_l2_m0p02.{json,md}. s13/s14 not yet available in inspected remote snapshot.
+
+## 2026-10-14 §3-7 보정 — `track_ang_vel_z_exp` 현재값
+- §3-7의 "현재 0.75"는 A033~A048 계열 기준이다. G-A073 이후 계열(G-A074·G-A077·G-A079)의 값은 **0.3**이다(env.yaml과 `quadruped_rewards.py` 97행). 0.75에서 0.3으로 바뀐 시점과 근거는 아직 찾지 못했다.
+- G-A082(PC2, G-A077 위 0.3→0.75)를 발행했다. 결과는 미측정이다. 이 계열에서 0.3→0.75는 첫 시험이다.

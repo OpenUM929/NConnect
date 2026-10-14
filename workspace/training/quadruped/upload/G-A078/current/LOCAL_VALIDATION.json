@@ -1,0 +1,15 @@
+{
+  "status": "ARTIFACT_VERIFIED",
+  "files": 428,
+  "sha256": "a344f34cd6b4d44fa04057331c10f95a5bd320fad0e61ee9228f565f39661a47",
+  "single_reward_diff": [
+    "track_lin_vel_xy_exp: 2.0 -> 2.1"
+  ],
+  "deployment_code_unchanged": true,
+  "LF": true,
+  "bash_n": true,
+  "zip_CRC": true,
+  "all_member_SHA": true,
+  "max_iterations": 1000,
+  "eval_checkpoint": 900
+}
