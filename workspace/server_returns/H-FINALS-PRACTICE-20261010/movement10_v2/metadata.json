@@ -1,0 +1,20 @@
+{
+  "official_result": false,
+  "llm_execution": "DETERMINISTIC_SURROGATE_NOT_GEMINI",
+  "strategy": "nearest",
+  "duration_requested": 10.0,
+  "map_seed": 42,
+  "speed": 0.6,
+  "policy_sha256": "7c3ae6845b6b3d45c8b050309b9504ee697a0a028814fa273b5bd30a4183d24a",
+  "checkpoint_sha256": "8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636",
+  "h1_asset_sha256": "843c50ab68ebc380e522dfad0429e8e969cdf45d7dfdd8a75d8d9f7dc2ba6903",
+  "assumptions_extra": [
+    "collection radius .6m with vertical surface tolerance .35m",
+    "fall uses original torso termination",
+    "fall resets to team start; 3s stationary recovery",
+    "car event uses footprint overlap; knockback velocity 1.5m/s",
+    "red is same H1 policy with nearest selector; blue uses chosen selector",
+    "both robots share one physical map"
+  ],
+  "source": "https://robotics.connect.or.kr/rules/finals_regulations.html"
+}

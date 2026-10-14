@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "C:\dev\NConnect\tools\run_h1_finals_practice.py", line 46, in main
+    run(args, out, app)
+  File "C:\dev\NConnect\tools\run_h1_finals_practice.py", line 132, in run
+    env = ManagerBasedRLEnv(cfg=cfg, render_mode='rgb_array' if args.record else None)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/envs/manager_based_rl_env.py", line 80, in __init__
+    super().__init__(cfg=cfg)
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/envs/manager_based_env.py", line 142, in __init__
+    self.scene = InteractiveScene(self.cfg.scene)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/scene/interactive_scene.py", line 185, in __init__
+    self._add_entities_from_cfg()
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/scene/interactive_scene.py", line 744, in _add_entities_from_cfg
+    self._articulations[asset_name] = asset_cfg.class_type(asset_cfg)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/assets/articulation/articulation.py", line 106, in __init__
+    super().__init__(cfg)
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/assets/asset_base.py", line 84, in __init__
+    self.cfg.spawn.func(
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/sim/utils/prims.py", line 738, in wrapper
+    _schemas.activate_contact_sensors(prim_paths[0])
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/sim/schemas/schemas.py", line 571, in activate_contact_sensors
+    raise ValueError(
+ValueError: No contact sensors added to the prim: '/World/envs/env_0/Robot'. This means that no rigid bodies are present under this prim. Please check the prim path.

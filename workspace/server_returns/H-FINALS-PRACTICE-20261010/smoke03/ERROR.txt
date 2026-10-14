@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\dev\NConnect\tools\run_h1_finals_practice.py", line 42, in main
+    run(args, out, app)
+  File "C:\dev\NConnect\tools\run_h1_finals_practice.py", line 99, in run
+    cfg = HumanoidRoughEnvCfg()
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 26, in __init__
+  File "c:/workspace/isaaclab/source/isaaclab/isaaclab/utils/configclass.py", line 418, in _combined
+    f1(*args, **kwargs)
+  File "C:\workspace/training/humanoid\h1_task\env_cfg.py", line 143, in __post_init__
+    _apply_common_overrides(self, "student", REWARD_WEIGHTS)
+  File "C:\workspace/training/humanoid\h1_task\env_cfg.py", line 27, in _apply_common_overrides
+    print(f"[Humanoid:{source_label}] {len(reward_weights)} reward 항목 로드")
+  File "C:\Users\Park\AppData\Roaming\uv\python\cpython-3.11.9-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 28-29: character maps to <undefined>

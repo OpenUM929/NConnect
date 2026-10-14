@@ -1,0 +1,405 @@
+{
+  "schema": "nconnect-finals-practice-map-v1",
+  "seed": 42,
+  "assumptions": {
+    "status": "unofficial practice geometry; official regulations define zones but not these dimensions",
+    "world_m": [
+      24.0,
+      20.0
+    ],
+    "grid_m": 0.5,
+    "robot_clearance_radius_m": 0.35,
+    "boundary_wall_m": [
+      0.2,
+      1.0
+    ],
+    "box_hill_m": [
+      3.0,
+      3.0,
+      0.6
+    ],
+    "stairs_platform_m": [
+      4.0,
+      2.0,
+      0.8
+    ],
+    "stairs_tread_m": [
+      1.2,
+      0.3,
+      0.2
+    ],
+    "ramp_platform_m": [
+      3.0,
+      2.5,
+      0.7
+    ],
+    "ramp_wedge_m": [
+      1.5,
+      2.5,
+      0.7
+    ],
+    "maze_wall_m": [
+      0.25,
+      1.0
+    ],
+    "car_track_width_m": 0.8
+  },
+  "rules": {
+    "duration_s": 180,
+    "ordinary_cube_points": 100,
+    "box_hill_cube_points": 150,
+    "fall_points": -50,
+    "car_collision_points": -30,
+    "tie_break_order": [
+      "cube_count",
+      "fewer_falls",
+      "fewer_collisions",
+      "earlier_first_cube",
+      "earlier_last_cube"
+    ]
+  },
+  "bounds": {
+    "xmin": -12.0,
+    "xmax": 12.0,
+    "ymin": -10.0,
+    "ymax": 10.0
+  },
+  "grid_size": 0.5,
+  "starts": {
+    "blue": [
+      -10.0,
+      -8.0,
+      0.0
+    ],
+    "red": [
+      10.0,
+      -8.0,
+      0.0
+    ]
+  },
+  "obstacles": [
+    {
+      "cx": 0,
+      "cy": -9.9,
+      "cz": 0.5,
+      "sx": 24,
+      "sy": 0.2,
+      "sz": 1.0,
+      "kind": "wall"
+    },
+    {
+      "cx": 0,
+      "cy": 9.9,
+      "cz": 0.5,
+      "sx": 24,
+      "sy": 0.2,
+      "sz": 1.0,
+      "kind": "wall"
+    },
+    {
+      "cx": -11.9,
+      "cy": 0,
+      "cz": 0.5,
+      "sx": 0.2,
+      "sy": 20,
+      "sz": 1.0,
+      "kind": "wall"
+    },
+    {
+      "cx": 11.9,
+      "cy": 0,
+      "cz": 0.5,
+      "sx": 0.2,
+      "sy": 20,
+      "sz": 1.0,
+      "kind": "wall"
+    },
+    {
+      "cx": -7.0,
+      "cy": 5.5,
+      "cz": 0.3,
+      "sx": 3.0,
+      "sy": 3.0,
+      "sz": 0.6,
+      "kind": "box_hill"
+    },
+    {
+      "cx": -1.0,
+      "cy": 7.0,
+      "cz": 0.4,
+      "sx": 4.0,
+      "sy": 2.0,
+      "sz": 0.8,
+      "kind": "stairs_platform"
+    },
+    {
+      "cx": -1.0,
+      "cy": 4.95,
+      "cz": 0.1,
+      "sx": 1.2,
+      "sy": 0.3,
+      "sz": 0.2,
+      "kind": "stairs"
+    },
+    {
+      "cx": -1.0,
+      "cy": 5.25,
+      "cz": 0.2,
+      "sx": 1.2,
+      "sy": 0.3,
+      "sz": 0.4,
+      "kind": "stairs"
+    },
+    {
+      "cx": -1.0,
+      "cy": 5.55,
+      "cz": 0.3,
+      "sx": 1.2,
+      "sy": 0.3,
+      "sz": 0.6,
+      "kind": "stairs"
+    },
+    {
+      "cx": -1.0,
+      "cy": 5.85,
+      "cz": 0.4,
+      "sx": 1.2,
+      "sy": 0.3,
+      "sz": 0.8,
+      "kind": "stairs"
+    },
+    {
+      "cx": 5.5,
+      "cy": 6.5,
+      "cz": 0.35,
+      "sx": 3.0,
+      "sy": 2.5,
+      "sz": 0.7,
+      "kind": "ramp_platform"
+    },
+    {
+      "cx": 5.5,
+      "cy": 4.0,
+      "cz": 0.35,
+      "sx": 1.5,
+      "sy": 2.5,
+      "sz": 0.7,
+      "kind": "ramp"
+    },
+    {
+      "cx": -10.15,
+      "cy": -3.8,
+      "cz": 0.5,
+      "sx": 0.7,
+      "sy": 0.25,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -5.9,
+      "cy": -3.8,
+      "cz": 0.5,
+      "sx": 4.8,
+      "sy": 0.25,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -7.0,
+      "cy": 1.8,
+      "cz": 0.5,
+      "sx": 7.0,
+      "sy": 0.25,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -10.4,
+      "cy": -1.0,
+      "cz": 0.5,
+      "sx": 0.25,
+      "sy": 5.8,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -3.6,
+      "cy": -1.0,
+      "cz": 0.5,
+      "sx": 0.25,
+      "sy": 5.8,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -8.1,
+      "cy": -2.0,
+      "cz": 0.5,
+      "sx": 0.25,
+      "sy": 3.6,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": -5.9,
+      "cy": 0.0,
+      "cz": 0.5,
+      "sx": 0.25,
+      "sy": 3.6,
+      "sz": 1.0,
+      "kind": "maze_wall"
+    },
+    {
+      "cx": 8.1,
+      "cy": -5.8,
+      "cz": 0.01,
+      "sx": 6.0,
+      "sy": 0.8,
+      "sz": 0.02,
+      "kind": "car_track"
+    },
+    {
+      "cx": 8.1,
+      "cy": 0.2,
+      "cz": 0.01,
+      "sx": 6.0,
+      "sy": 0.8,
+      "sz": 0.02,
+      "kind": "car_track"
+    },
+    {
+      "cx": 5.1,
+      "cy": -2.8,
+      "cz": 0.01,
+      "sx": 0.8,
+      "sy": 6.0,
+      "sz": 0.02,
+      "kind": "car_track"
+    },
+    {
+      "cx": 11.1,
+      "cy": -2.8,
+      "cz": 0.01,
+      "sx": 0.8,
+      "sy": 6.0,
+      "sz": 0.02,
+      "kind": "car_track"
+    }
+  ],
+  "cubes": [
+    {
+      "id": "F01",
+      "x": -8.675,
+      "y": -7.725,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    {
+      "id": "F02",
+      "x": -2.125,
+      "y": -6.875,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    {
+      "id": "F03",
+      "x": 2.0,
+      "y": -3.125,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    {
+      "id": "F04",
+      "x": 0.875,
+      "y": 1.875,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    {
+      "id": "F05",
+      "x": 8.325,
+      "y": 2.375,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    {
+      "id": "M01",
+      "x": -6.9,
+      "y": -2.8,
+      "z": 0.15,
+      "zone": "maze",
+      "value": 100
+    },
+    {
+      "id": "M02",
+      "x": -4.8,
+      "y": 0.8,
+      "z": 0.15,
+      "zone": "maze",
+      "value": 100
+    },
+    {
+      "id": "H01",
+      "x": -7.0,
+      "y": 5.5,
+      "z": 0.75,
+      "zone": "box_hill",
+      "value": 150
+    },
+    {
+      "id": "S01",
+      "x": -1.0,
+      "y": 7.0,
+      "z": 0.95,
+      "zone": "stairs",
+      "value": 100
+    },
+    {
+      "id": "R01",
+      "x": 5.5,
+      "y": 6.5,
+      "z": 0.85,
+      "zone": "ramp",
+      "value": 100
+    },
+    {
+      "id": "C01",
+      "x": 8.1,
+      "y": -2.8,
+      "z": 0.15,
+      "zone": "car_track",
+      "value": 100
+    }
+  ],
+  "car": {
+    "kind": "closed_track",
+    "assumed_speed_mps": 1.2,
+    "route": [
+      [
+        5.1,
+        -5.8
+      ],
+      [
+        11.1,
+        -5.8
+      ],
+      [
+        11.1,
+        0.2
+      ],
+      [
+        5.1,
+        0.2
+      ],
+      [
+        5.1,
+        -5.8
+      ]
+    ]
+  }
+}

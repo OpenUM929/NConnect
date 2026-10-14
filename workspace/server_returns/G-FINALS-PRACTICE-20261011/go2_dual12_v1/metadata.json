@@ -1,0 +1,60 @@
+{
+  "official_result": false,
+  "llm_execution": "REAL_GEMINI_LECTURE_API_NOT_OFFICIAL_MATCH_RUNTIME",
+  "strategy": "score_rate",
+  "duration_requested": 12.0,
+  "map_seed": 42,
+  "speed": 0.6,
+  "policy_sha256": "7b552b3675dd789c1b7f5f20524732213917a24d8f1f8de827dfec74084ac1e9",
+  "checkpoint_sha256": "23c08ab15617b0001ee90d20c2682cf78041d80058bd83c1d090fdf94d756ca1",
+  "robot_type": "go2",
+  "policy_path": "C:\\workspace\\_keep\\go2_g_a077_flat_orientation_m0p225\\evaluation\\candidate\\policy.pt",
+  "checkpoint_path": "C:\\workspace\\_keep\\go2_g_a077_flat_orientation_m0p225\\training\\model_iter2400.pt",
+  "actor_tensor_match_count": 8,
+  "h1_asset_uri": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/IsaacLab/Robots/Unitree/Go2/go2.usd",
+  "assumptions_extra": [
+    "collection radius .6m with vertical surface tolerance .35m",
+    "fall uses original body-contact termination, not posture-confirmed fall",
+    "fall resets to team start; 3s stationary recovery",
+    "car event uses footprint overlap; knockback velocity 1.5m/s",
+    "both teams use independent Gemini selectors with identical strategy and observation rules",
+    "both robots share one physical map",
+    "raised cubes excluded: climbing capability not verified",
+    "termination rows are post-auto-reset positions, not impact positions"
+  ],
+  "source": "https://robotics.connect.or.kr/rules/finals_regulations.html",
+  "source_sha256": {
+    "run_h1_finals_practice.py": "8a34703ecf3310df9e4357bde8f0cde9a04be07ded08efd3f43675a781051de5",
+    "finals_practice_core.py": "4f80acb5ed32d13042b6ad4d781ec2c304753e3e6a9c5da11d2353901fd346c4",
+    "finals_practice_gemini.py": "3e13def4b4503c54050750ca036985957703ab111d72f91dc469228649d360f6"
+  },
+  "robot_source_sha256": {
+    "go2_eval_telemetry.py": "e1a988bd770cf915f5d7b88f50b34e2d42cceb7d827e1363bebe9218b5e975ae",
+    "go2_policy_lineage.py": "a24173b3ffea0ed257ba51d17f98b31b5b96fc50dbab4aee2868f62e464d42a5",
+    "play.py": "548315b82d4b40dbf7c121eb4a97574b9986957e4632e5f21756acf65217ceb5",
+    "quadruped_rewards.py": "75a3bdc67c430f8c61f91a58d286bf652f6ca85044e47c339a2e4bd00c24feb7",
+    "train.py": "3fdd5e4d09f44283aeb073877b4cb7d3ec65bea8085798c43c852857db092499",
+    "go2_task\\agent_cfg.py": "a46dbb1c5812745744b63744d96a8557b5831b228562ba3317ef57b21eb94a23",
+    "go2_task\\env_cfg.py": "a736ddc553bfd4de48cca7c89fd1d4897d78099878d28e67cd323aadb60106cd",
+    "go2_task\\_finalize.py": "fca94e8dbd4bbab72cd981919a0fb4b154c02ef17371d11f2698c571538ceb1d",
+    "go2_task\\__init__.py": "08d4f4ea4a2a3838a34474d19ccb1e4f9a2ed01960e737b5e8583fd93d80ff84"
+  },
+  "training_env_sha256": "825fdc698328e1d886c8c7ae9f9d0cfdcc24e818851ed2b1b6484b2b836fd88d",
+  "strategy_text": "180초 총점을 최대화하라. 공개된 지도·위치만 활용하고 미제공 정보는 추측하지 마라. A* 경로 정보가 제공되면 장애물 우회거리·차량 위험을 반영하라. 상대 위치 이력·방향·속도로 목표 후보를 예측하고 도착시간을 비교해 선점 가능한 큐브를 택하라. 현재 위치에서 다음 2개 연속 수집 이득을 비교하고 상대 뒤를 쫓지 마라. 초반 가까운 평지, 중후반 미로·150점 박스언덕을 비교하되 검증된 능력과 남은 시간 내 이동·등반·획득 여유를 기준으로 전환하라. 차량 구역은 우회·후순위화하고, 상황 변화 시 재판단하라.",
+  "strategy_length": 288,
+  "llm_latency_model": "initial/consumed-target delay 2.5 simulated seconds; tactical refresh every 10 simulated seconds; network pauses physics for both teams",
+  "dual_llm": true,
+  "team_strategies": {
+    "blue": "180초 총점을 최대화하라. 공개된 지도·위치만 활용하고 미제공 정보는 추측하지 마라. A* 경로 정보가 제공되면 장애물 우회거리·차량 위험을 반영하라. 상대 위치 이력·방향·속도로 목표 후보를 예측하고 도착시간을 비교해 선점 가능한 큐브를 택하라. 현재 위치에서 다음 2개 연속 수집 이득을 비교하고 상대 뒤를 쫓지 마라. 초반 가까운 평지, 중후반 미로·150점 박스언덕을 비교하되 검증된 능력과 남은 시간 내 이동·등반·획득 여유를 기준으로 전환하라. 차량 구역은 우회·후순위화하고, 상황 변화 시 재판단하라.",
+    "red": "180초 총점을 최대화하라. 공개된 지도·위치만 활용하고 미제공 정보는 추측하지 마라. A* 경로 정보가 제공되면 장애물 우회거리·차량 위험을 반영하라. 상대 위치 이력·방향·속도로 목표 후보를 예측하고 도착시간을 비교해 선점 가능한 큐브를 택하라. 현재 위치에서 다음 2개 연속 수집 이득을 비교하고 상대 뒤를 쫓지 마라. 초반 가까운 평지, 중후반 미로·150점 박스언덕을 비교하되 검증된 능력과 남은 시간 내 이동·등반·획득 여유를 기준으로 전환하라. 차량 구역은 우회·후순위화하고, 상황 변화 시 재판단하라."
+  },
+  "tactical_observations": "full-map public positions sampled every .5s, latest 3s; no opponent private target; A* constant-speed ETA excludes turns; refresh every 10s",
+  "observed_policy_input_shape": [
+    2,
+    235
+  ],
+  "observed_policy_output_shape": [
+    2,
+    12
+  ]
+}

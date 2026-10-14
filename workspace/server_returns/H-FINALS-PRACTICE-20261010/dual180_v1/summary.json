@@ -1,0 +1,128 @@
+{
+  "completed": true,
+  "simulated_seconds": 180.0,
+  "wall_seconds": 485.0981476306915,
+  "teams": {
+    "blue": {
+      "team": "blue",
+      "score": 220,
+      "cube_points": 300,
+      "cube_count": 3,
+      "cube_ids": [
+        "F01",
+        "F02",
+        "M01"
+      ],
+      "falls": 1,
+      "collisions": 1,
+      "first_cube_time": 8.52,
+      "last_cube_time": 173.48
+    },
+    "red": {
+      "team": "red",
+      "score": 290,
+      "cube_points": 400,
+      "cube_count": 4,
+      "cube_ids": [
+        "F03",
+        "F04",
+        "F05",
+        "C01"
+      ],
+      "falls": 1,
+      "collisions": 2,
+      "first_cube_time": 44.84,
+      "last_cube_time": 101.08
+    },
+    "winner": "red",
+    "replay_required": false
+  },
+  "events": [
+    {
+      "time_s": 8.52,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "F01",
+      "value": 100
+    },
+    {
+      "time_s": 27.84,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "F02",
+      "value": 100
+    },
+    {
+      "time_s": 44.84,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F03",
+      "value": 100
+    },
+    {
+      "time_s": 63.7,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F04",
+      "value": 100
+    },
+    {
+      "time_s": 84.12,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F05",
+      "value": 100
+    },
+    {
+      "time_s": 91.8,
+      "team": "red",
+      "event": "car_collision",
+      "value": -30
+    },
+    {
+      "time_s": 92.76,
+      "team": "red",
+      "event": "car_collision",
+      "value": -30
+    },
+    {
+      "time_s": 97.12,
+      "team": "blue",
+      "event": "car_collision",
+      "value": -30
+    },
+    {
+      "time_s": 101.08,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "C01",
+      "value": 100
+    },
+    {
+      "time_s": 133.42000000000002,
+      "team": "blue",
+      "event": "fall",
+      "value": -50
+    },
+    {
+      "time_s": 133.42000000000002,
+      "team": "red",
+      "event": "fall",
+      "value": -50
+    },
+    {
+      "time_s": 173.48,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "M01",
+      "value": 100
+    }
+  ],
+  "official_result": false,
+  "llm_tested": true,
+  "llm_errors": 0,
+  "llm_calls_by_team": {
+    "blue": 19,
+    "red": 19
+  }
+}

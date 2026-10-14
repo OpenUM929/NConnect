@@ -1,0 +1,36 @@
+{
+  "official_result": false,
+  "llm_execution": "REAL_GEMINI_LECTURE_API_NOT_OFFICIAL_MATCH_RUNTIME",
+  "strategy": "score_rate",
+  "duration_requested": 180.0,
+  "map_seed": 42,
+  "speed": 0.6,
+  "policy_sha256": "7c3ae6845b6b3d45c8b050309b9504ee697a0a028814fa273b5bd30a4183d24a",
+  "checkpoint_sha256": "8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636",
+  "h1_asset_uri": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/IsaacLab/Robots/Unitree/H1/h1_minimal.usd",
+  "assumptions_extra": [
+    "collection radius .6m with vertical surface tolerance .35m",
+    "fall uses original torso termination",
+    "fall resets to team start; 3s stationary recovery",
+    "car event uses footprint overlap; knockback velocity 1.5m/s",
+    "both teams use independent Gemini selectors with identical strategy and observation rules",
+    "both robots share one physical map",
+    "raised cubes excluded: climbing capability not verified",
+    "termination rows are post-auto-reset positions, not impact positions"
+  ],
+  "source": "https://robotics.connect.or.kr/rules/finals_regulations.html",
+  "source_sha256": {
+    "run_h1_finals_practice.py": "60b14e5cbe592ce4cbf519094301876b4b6eb8d04988a7a3b8dc9480a422d82f",
+    "finals_practice_core.py": "4f80acb5ed32d13042b6ad4d781ec2c304753e3e6a9c5da11d2353901fd346c4",
+    "finals_practice_gemini.py": "53b03fdce9c070f454ff5be2e3cac1a59eed929ef82c4a6efd41a4804ec5204f"
+  },
+  "strategy_text": "180초 총점을 최대화하라. 경로 도구가 있으면 A*로 장애물을 우회하고 차량 위험 비용을 반영하라. 상대의 최근 위치·방향·속도로 다음 목표 후보를 예측하되 불확실성을 고려하라. 양측의 경로 기반 도착시간을 비교해 먼저 확보할 큐브를 우선하고, 상대가 선점할 목표를 연속 추격하지 마라. 다음 2개 큐브의 연속 수집 이득도 비교하라. 상대 방향 변화·큐브 소멸 시 재판단하라. 차량 노출과 미검증 등반을 피하고 남은 시간 내 획득 가능한 목표를 택하라. 제공되지 않은 정보는 추측하지 마라.",
+  "strategy_length": 275,
+  "llm_latency_model": "initial/consumed-target delay 2.5 simulated seconds; tactical refresh every 10 simulated seconds; network pauses physics for both teams",
+  "dual_llm": true,
+  "team_strategies": {
+    "blue": "180초 총점을 최대화하라. 경로 도구가 있으면 A*로 장애물을 우회하고 차량 위험 비용을 반영하라. 상대의 최근 위치·방향·속도로 다음 목표 후보를 예측하되 불확실성을 고려하라. 양측의 경로 기반 도착시간을 비교해 먼저 확보할 큐브를 우선하고, 상대가 선점할 목표를 연속 추격하지 마라. 다음 2개 큐브의 연속 수집 이득도 비교하라. 상대 방향 변화·큐브 소멸 시 재판단하라. 차량 노출과 미검증 등반을 피하고 남은 시간 내 획득 가능한 목표를 택하라. 제공되지 않은 정보는 추측하지 마라.",
+    "red": "180초 총점을 최대화하라. 경로 도구가 있으면 A*로 장애물을 우회하고 차량 위험 비용을 반영하라. 상대의 최근 위치·방향·속도로 다음 목표 후보를 예측하되 불확실성을 고려하라. 양측의 경로 기반 도착시간을 비교해 먼저 확보할 큐브를 우선하고, 상대가 선점할 목표를 연속 추격하지 마라. 다음 2개 큐브의 연속 수집 이득도 비교하라. 상대 방향 변화·큐브 소멸 시 재판단하라. 차량 노출과 미검증 등반을 피하고 남은 시간 내 획득 가능한 목표를 택하라. 제공되지 않은 정보는 추측하지 마라."
+  },
+  "tactical_observations": "full-map public positions sampled every .5s, latest 3s; no opponent private target; A* constant-speed ETA excludes turns; refresh every 10s"
+}

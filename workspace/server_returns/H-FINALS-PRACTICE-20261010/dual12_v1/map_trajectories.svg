@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="740" viewBox="0 0 820 740">
+<rect width="820" height="740" fill="#faf9f5"/>
+<text x="50" y="26" font-family="sans-serif" font-size="17">H1 practice: assumed map / measured trajectories</text>
+<rect x="50.0" y="644.0" width="720" height="6.0" fill="#555" opacity=".8"/>
+<rect x="50.0" y="50.0" width="720" height="6.0" fill="#555" opacity=".8"/>
+<rect x="50.0" y="50.0" width="6.0" height="600" fill="#555" opacity=".8"/>
+<rect x="764.0" y="50.0" width="6.0" height="600" fill="#555" opacity=".8"/>
+<rect x="155.0" y="140.0" width="90.0" height="90.0" fill="#b99472" opacity=".8"/>
+<rect x="320.0" y="110.0" width="120.0" height="60.0" fill="#87a8c5" opacity=".8"/>
+<rect x="362.0" y="196.99999999999997" width="36.0" height="9.0" fill="#87a8c5" opacity=".8"/>
+<rect x="362.0" y="188.0" width="36.0" height="9.0" fill="#87a8c5" opacity=".8"/>
+<rect x="362.0" y="179.0" width="36.0" height="9.0" fill="#87a8c5" opacity=".8"/>
+<rect x="362.0" y="170.0" width="36.0" height="9.0" fill="#87a8c5" opacity=".8"/>
+<rect x="530.0" y="117.5" width="90.0" height="75.0" fill="#82b997" opacity=".8"/>
+<rect x="552.5" y="192.5" width="45.0" height="75.0" fill="#82b997" opacity=".8"/>
+<rect x="95.0" y="460.25" width="21.0" height="7.5" fill="#555" opacity=".8"/>
+<rect x="160.99999999999997" y="460.25" width="144.0" height="7.5" fill="#555" opacity=".8"/>
+<rect x="95.0" y="292.25" width="210.0" height="7.5" fill="#555" opacity=".8"/>
+<rect x="94.24999999999999" y="293.0" width="7.5" height="174.0" fill="#555" opacity=".8"/>
+<rect x="298.25" y="293.0" width="7.5" height="174.0" fill="#555" opacity=".8"/>
+<rect x="163.25" y="356.0" width="7.5" height="108.0" fill="#555" opacity=".8"/>
+<rect x="229.25" y="296.0" width="7.5" height="108.0" fill="#555" opacity=".8"/>
+<rect x="563.0" y="511.99999999999994" width="180.0" height="24.0" fill="#f6d2cc" opacity=".8"/>
+<rect x="563.0" y="332.0" width="180.0" height="24.0" fill="#f6d2cc" opacity=".8"/>
+<rect x="551.0" y="344.0" width="24.0" height="180.0" fill="#f6d2cc" opacity=".8"/>
+<rect x="731.0" y="344.0" width="24.0" height="180.0" fill="#f6d2cc" opacity=".8"/>
+<polyline points="110.0,590.0 110.1,590.2 110.4,589.9 110.6,589.8 110.7,589.9 110.8,589.8 110.9,589.8 111.0,590.0 111.1,589.8 111.2,589.9 111.3,590.0 111.4,589.8 111.5,590.1 111.6,590.0 111.6,589.8 111.7,589.8 111.5,589.6 111.6,589.5 111.6,589.5 111.4,589.3 111.5,589.3 111.4,589.2 111.2,589.0 111.3,589.0 111.1,588.7 111.1,587.0 111.3,584.8 111.6,582.7 112.0,581.3 111.8,580.9 112.2,580.8 112.2,580.7 112.5,580.7 113.0,580.4 114.4,579.2 116.3,577.9 118.0,576.7 119.6,576.2 121.9,574.9 125.1,574.2 128.2,573.2 130.9,573.2 133.0,572.8 135.2,573.2 136.7,573.3 136.9,573.3 137.0,573.4 137.1,573.4 137.3,573.7 137.4,573.6 137.5,573.7 137.7,573.9 137.8,573.7 137.9,574.0 138.0,574.0 138.2,573.9 138.3,574.0 138.3,573.8 138.4,573.8 138.4,573.8" fill="none" stroke="#236ce0" stroke-width="2" opacity=".75"/>
+<circle cx="110.0" cy="590.0" r="7" fill="#236ce0"/>
+<polyline points="710.0,590.0 709.9,589.8 709.6,590.1 709.4,590.2 709.3,590.1 709.2,590.2 709.1,590.2 709.0,590.0 708.9,590.2 708.8,590.1 708.7,590.0 708.6,590.1 708.5,589.9 708.0,590.0 706.3,590.2 704.1,590.1 702.0,590.0 699.3,589.8 695.9,590.2 692.6,589.8 689.9,589.9 687.7,589.5 685.3,589.6 682.1,589.8 678.7,589.8 675.7,589.8 673.3,589.5 671.3,589.6 668.3,589.5 665.0,589.9 661.7,589.7 659.1,589.7 657.0,589.5 654.4,589.5 651.0,589.8 647.7,589.7 644.9,589.8 642.6,589.5 640.2,589.9 637.0,589.8 633.6,590.0 630.6,589.7 628.3,589.8 626.0,589.7 623.0,590.1 619.5,589.9 616.4,590.0 613.9,589.8 611.9,589.7 609.0,589.9 605.7,589.8 602.5,590.0 599.7,589.7 597.6,589.8 595.0,589.5 591.7,589.8 588.3,589.5 585.4,589.6 583.1,589.4 580.9,589.4" fill="none" stroke="#d33040" stroke-width="2" opacity=".75"/>
+<circle cx="710.0" cy="590.0" r="7" fill="#d33040"/>
+<rect x="145.74999999999997" y="577.75" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="156.74999999999997" y="576.75" font-size="12" font-family="sans-serif">F01:100</text>
+<rect x="342.25" y="552.25" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="353.25" y="551.25" font-size="12" font-family="sans-serif">F02:100</text>
+<rect x="466.0" y="439.75" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="477.0" y="438.75" font-size="12" font-family="sans-serif">F03:100</text>
+<rect x="432.25" y="289.75" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="443.25" y="288.75" font-size="12" font-family="sans-serif">F04:100</text>
+<rect x="655.75" y="274.75" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="666.75" y="273.75" font-size="12" font-family="sans-serif">F05:100</text>
+<rect x="199.0" y="430.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="210.0" y="429.0" font-size="12" font-family="sans-serif">M01:100</text>
+<rect x="262.0" y="322.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="273.0" y="321.0" font-size="12" font-family="sans-serif">M02:100</text>
+<rect x="196.0" y="181.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="207.0" y="180.0" font-size="12" font-family="sans-serif">H01:150</text>
+<rect x="376.0" y="136.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="387.0" y="135.0" font-size="12" font-family="sans-serif">S01:100</text>
+<rect x="571.0" y="151.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="582.0" y="150.0" font-size="12" font-family="sans-serif">R01:100</text>
+<rect x="649.0" y="430.0" width="8" height="8" fill="#e4ac00" stroke="#5c4800"/><text x="660.0" y="429.0" font-size="12" font-family="sans-serif">C01:100</text>
+<text x="50" y="690" font-family="sans-serif" font-size="13">Blue / Red: independent Gemini, same strategy. Raised targets excluded.</text>
+<text x="50" y="713" font-family="sans-serif" font-size="13">Dimensions, collection, recovery and car physics are unofficial assumptions.</text></svg>

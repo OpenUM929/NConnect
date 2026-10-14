@@ -1,0 +1,49 @@
+{
+  "completed": true,
+  "simulated_seconds": 12.0,
+  "wall_seconds": 42.01200342178345,
+  "teams": {
+    "blue": {
+      "team": "blue",
+      "score": 100,
+      "cube_points": 100,
+      "cube_count": 1,
+      "cube_ids": [
+        "F01"
+      ],
+      "falls": 0,
+      "collisions": 0,
+      "first_cube_time": 8.52,
+      "last_cube_time": 8.52
+    },
+    "red": {
+      "team": "red",
+      "score": 0,
+      "cube_points": 0,
+      "cube_count": 0,
+      "cube_ids": [],
+      "falls": 0,
+      "collisions": 0,
+      "first_cube_time": null,
+      "last_cube_time": null
+    },
+    "winner": "blue",
+    "replay_required": false
+  },
+  "events": [
+    {
+      "time_s": 8.52,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "F01",
+      "value": 100
+    }
+  ],
+  "official_result": false,
+  "llm_tested": true,
+  "llm_errors": 0,
+  "llm_calls_by_team": {
+    "blue": 2,
+    "red": 1
+  }
+}

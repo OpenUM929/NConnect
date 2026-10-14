@@ -1,5 +1,24 @@
 # NConnect 파일·artifact 운영 정본
 
+## G-FINALS-DUAL-20261011 — Go2 최고 내부점수 정책 양측 적용
+- RUNNING: 실제 학습source로Go2환경 구성, 원USD URI 유지, actor8/8 tensor일치·235입력/12출력 확인. 12초smoke `go2_dual12_v1` 파랑1큐브·양측접촉종료0/차량충돌0, 실제Gemini양측성공·1200행·영상decode ARTIFACT_VERIFIED. 단위20/20·문법/diff검사 정상. `go2_dual180_v1` 전체180초 실행 시작.
+- PLANNED: 사용자 요청으로 G-A077(내부proxy63.005493/70, 미채택)을 양측에 적용한다. 채택 기준선G-A074와 최고 내부점수 정책을 구분하며 채택 승격·재학습은 하지 않는다. checkpoint `C:/workspace/_keep/go2_g_a077_flat_orientation_m0p225/training/model_iter2400.pt` SHA23c08ab15617b0001ee90d20c2682cf78041d80058bd83c1d090fdf94d756ca1. 원report 직접 확인:iter2400/3000·12관절, REPORT_READ_STATUS=READ_MATCHED.
+- 최종288자 전략을 양측 독립Gemini에 동일 적용, 상대공개이력·A*·2목표 경로 문맥·10초 재판단. 기존H1 실험·배포학습코드 불변. 로컬Go2 짧은smoke 후180초 평가. 필수영상:180초MP4·양측호출·model/env/sourceSHA·stepCSV·events·decode·manifest. 출력 `workspace/server_returns/G-FINALS-PRACTICE-20261011/`. Go2 G1~G7 재평가·공식점수 아님.
+
+## H-FINALS-DUAL-20261011 — 동일 개선 프롬프트 양측 Gemini
+- RECEIVED → VERIFIED → ANALYZED → REPORTED: `dual180_v1` 180초 완주(wall485.10초), blue220/3큐브/몸통접촉 낙상판정1/차량충돌1, red290/4큐브/몸통접촉 낙상판정1/차량충돌2. 양측 Gemini19회씩·오류0·동일275자 전략, 상대 관측 이력과 실제 telemetry 일치 확인. ARTIFACT_VERIFIED:18000행·12event·전체영상decode180초·SHA. VIDEO_UNKNOWN(표본만 관찰); 133.42초 양측 몸통 접촉 종료를 낙상으로 채점했으나 직전 표본에서는 서로 근접한 직립 모습으로 실제 넘어짐은 미확정. 보고 `workspace/server_returns/H-FINALS-PRACTICE-20261010/dual180_v1/README.md`. 기존 점수 대비 개선 실증 아님; 공식 결과 없음. 정본 병합 없음.
+- RUNNING: 단위검사20/20, Python 문법·diff 검사 정상. `dual12_v1` 12초 smoke에서 양측 실제 Gemini 호출(blue2/red1)·동일275자 전략·전술문맥·영상decode·1200행 확인, ARTIFACT_VERIFIED. `dual180_v1` 180초 본 실행 시작. 실행 중 결과는 미확정.
+- PLANNED: 사용자 요청으로 양측 Run06 H1에 동일한 수정 전략(300자 이하)을 연결해 180초 로컬 물리 경기를 실행한다. 양측 별도 Gemini 선택, 동일 관측/호출 규칙, 상대 공개 위치 이력·A* 경로/도착시간 근사·2개 연속 수집 정보를 제공한다. 상대 내부 목표는 전달하지 않는다. 전체 맵 공개 관측과 일정 속도 ETA는 연습 가정이며 운영진 엔진과 동일하지 않다.
+- 필수 영상: 최종180초 전체MP4, 양측 호출 기록·실제 전략·source/policy SHA·step CSV·점수events·영상decode·manifest. 결과는 `workspace/server_returns/H-FINALS-PRACTICE-20261010/dual180_v1/`에 신규 보존. 초기12초 smoke는 통합검증용이며 최종 성능으로 사용하지 않는다. 기존 결과 불변, 신규 학습/서버 실행/정본 병합 없음.
+- 판정: 양측 실제 API 요청 성공·동일 전략·상대 관측 입력·180초 완주·점수/영상 검증이 완료 조건. 상대 목표 예측 정확도와 기존 프롬프트 대비 향상은 이번 동일전략 단일경기로 확정하지 않는다.
+
+## H-FINALS-PRACTICE-20261010 — 규정 기반 H1 예상 연습 환경
+- RUNNING → RECEIVED → VERIFIED → ANALYZED → REPORTED(2026-10-11): 로컬 `llm180_v6` 180초 완주, wall434.78초. 실제 Gemini 선택·오류0. blue400/4큐브/낙상0/차량충돌0, red400/4/0/0; 내부 동점 규칙은 최초 획득8.52초 대17.68초로 blue 우선. ARTIFACT_VERIFIED: 18000 telemetry행·8event 점수 재계산·checkpoint identity·영상180초/H264/10fps 전체decode·SHA manifest. 별도 로컬 결과이며 정본 병합 없음. blue 차량구역 노출0초·차량중심 최소거리2.5089m: 구역 우회 결과이며 근접 회피 실증 아님. 초기 강좌asset 실행은 adapter 불일치로 제외하고 원 학습asset URI 사용. 원본 영상 `workspace/server_returns/H-FINALS-PRACTICE-20261010/llm180_v6/practice.mp4`, 판독 보고 `workspace/training/humanoid/reports/H1_FINALS_PRACTICE_20261011.md`. 영상6시점 표본의 직립·위치변화만 관찰했고 전체 행동 판정 VIDEO_UNKNOWN. 공식 결과 없음.
+- PLANNED: 사용자 요청으로 본선 규정 v1.1(2026-09-18 개정) 원문을 2026-10-10 조회. 180초·일반100/박스언덕150·낙상-50/차량충돌-30·양팀 공동 수집을 재현하는 별도 로컬 평가 환경을 만든다. 공식 맵/Planner/Gemini/획득·낙상·복구 판정 세부는 미공개이므로 대체 구현과 가정은 명시한다.
+- 정책: 보존 H1 Run06 iter9900, checkpoint SHA 8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636. 원 report `workspace/_keep/train_260831-06_run05cfg_10000/final/report.html` 직접 읽음(9900/10000,2026-08-31 10:26~12:28). 최고 공식점수 정책과의 identity는 미확정. 재학습·배포 코드 수정 없음.
+- 출력: `workspace/server_returns/H-FINALS-PRACTICE-20261010/`. 신규 결과만 기록하며 기존 artifact 병합/덮어쓰기 없음. 필수: 가정 포함 맵JSON·정책/원report SHA·전략문/대체기 식별·실행로그·step telemetry·점수event·완료 여부·영상. 스모크는 VIDEO_NOT_REQUIRED; 완주 비교 영상 필수. 서버 사용/종료 판단 없음.
+- 판정: 실제 H1 물리 테스트와 코드 규칙 검증을 구분. Gemini 접속 없이 프롬프트 검증 완료로 표현하지 않는다. 최고점은 시험한 조합 내의 측정치이며 전역 최적·공식 결과가 아니다.
+
 ## H-A002-RECOVERY-20261010 — 종료 결과 회수·판독
 - 17:49 추가 관찰: 원본20영상의2/8/14/19초80프레임 표본을 관찰·비교 이미지2개 보존. 직립/위치·방향 변화만 관측, 가림·화면밖·중간구간 미판독. 전체 VIDEO_UNKNOWN 및 INTERNAL_GATE_FAIL 유지, 영상 표본으로 속도/0낙상/회복시간/경사 조건을 보장하지 않음. 원본ZIP 불변·재학습/재평가 없음.
 - RECEIVED → VERIFIED → ANALYZED(16:54): ZIP CRC909·내부SHA908/908·114case 실제32000행·model/env/reward/report/evaluator identity 일치. 영상20/20 전체decode999frames·19.98s, VIDEO_UNKNOWN. 95MiBparts4개 연결SHA 일치. 새 run 원본만 별도 보존하며 기존training 정본에 선택병합/덮어쓰기 없음. 판독 INTERNAL_GATE_FAIL,48/57보존위반·검증 최고명령 개선 없음; 후보기각·Run06 유지, 성공 전제 독립seed학습 없음. 전체 영상 내용 관찰/공식결과는 미확보.

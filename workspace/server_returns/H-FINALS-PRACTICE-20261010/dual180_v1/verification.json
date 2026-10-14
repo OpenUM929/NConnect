@@ -1,0 +1,39 @@
+{
+  "artifact_status": "ARTIFACT_VERIFIED",
+  "errors": [],
+  "row_count": 18000,
+  "event_count": 12,
+  "video": {
+    "required": true,
+    "decoded": true,
+    "error": ""
+  },
+  "vehicle_metrics": {
+    "blue": {
+      "minimum_center_distance_m": 0.5426,
+      "minimum_expanded_box_clearance_m": -0.496,
+      "track_exposure_seconds": 3.5,
+      "overlap_seconds": 1.22,
+      "overlap_entries": 1,
+      "method": "assumed axis-aligned footprint, excluding post-reset termination samples"
+    },
+    "red": {
+      "minimum_center_distance_m": 0.7195,
+      "minimum_expanded_box_clearance_m": -0.0472,
+      "track_exposure_seconds": 3.42,
+      "overlap_seconds": 0.26,
+      "overlap_entries": 2,
+      "method": "assumed axis-aligned footprint, excluding post-reset termination samples"
+    }
+  },
+  "dual_llm": {
+    "same_strategy": true,
+    "successful_calls": {
+      "blue": 19,
+      "red": 19
+    }
+  },
+  "video_behavior": "VIDEO_UNKNOWN",
+  "official_result": false,
+  "llm_tested": true
+}

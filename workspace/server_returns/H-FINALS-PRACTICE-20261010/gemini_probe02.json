@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "request_sent": true,
+  "result": {
+    "target": {
+      "id": "F01",
+      "x": -8.675,
+      "y": -7.725,
+      "z": 0.15,
+      "zone": "flat",
+      "value": 100
+    },
+    "path": [
+      [
+        -10.0,
+        -8.0
+      ],
+      [
+        -10.0,
+        -7.5
+      ],
+      [
+        -9.5,
+        -7.5
+      ],
+      [
+        -9.0,
+        -7.5
+      ],
+      [
+        -8.5,
+        -7.5
+      ]
+    ],
+    "path_cost": 2.0,
+    "strategy": "gemini_prompt",
+    "latency_s": 1.096859,
+    "model": "gemini-3.1-flash-lite",
+    "request": {
+      "prompt": "너는 2족보행 로봇의 다음 큐브 목표만 선택한다. 사용자의 300자 전략을 따르되 목록에 있는 도달 가능 ID 하나만 고른다. 거리, 점수, 차량 경로 위험, 남은 시간을 고려한다. 반드시 {\"target_id\":\"ID\"} 형식의 JSON 객체만 답하라.\n전략: 가까운 평지 큐브를 우선하고 차량 경로 위험이 낮은 목표를 선택해.\n시간: {\"elapsed_s\":0.0,\"remaining_s\":180.0}\n도달 가능 선택지: [{\"id\":\"F01\",\"zone\":\"flat\",\"value\":100,\"distance_m\":2.0,\"route_risk_m\":0.0},{\"id\":\"F02\",\"zone\":\"flat\",\"value\":100,\"distance_m\":9.0,\"route_risk_m\":0.0},{\"id\":\"F03\",\"zone\":\"flat\",\"value\":100,\"distance_m\":17.0,\"route_risk_m\":0.0},{\"id\":\"F04\",\"zone\":\"flat\",\"value\":100,\"distance_m\":21.0,\"route_risk_m\":0.0},{\"id\":\"F05\",\"zone\":\"flat\",\"value\":100,\"distance_m\":29.0,\"route_risk_m\":0.0},{\"id\":\"M01\",\"zone\":\"maze\",\"value\":100,\"distance_m\":15.0,\"route_risk_m\":0.0},{\"id\":\"M02\",\"zone\":\"maze\",\"value\":100,\"distance_m\":20.0,\"route_risk_m\":0.0},{\"id\":\"C01\",\"zone\":\"car_track\",\"value\":100,\"distance_m\":23.0,\"route_risk_m\":0.5}]",
+      "reachable_ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "M01",
+        "M02",
+        "C01"
+      ]
+    },
+    "response": {
+      "target_id": "F01",
+      "text": "{   \"target_id\": \"F01\" }"
+    },
+    "http_status": 200
+  }
+}

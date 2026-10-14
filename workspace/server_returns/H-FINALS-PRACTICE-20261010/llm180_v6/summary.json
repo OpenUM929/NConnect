@@ -1,0 +1,102 @@
+{
+  "completed": true,
+  "simulated_seconds": 180.0,
+  "wall_seconds": 434.77677059173584,
+  "teams": {
+    "blue": {
+      "team": "blue",
+      "score": 400,
+      "cube_points": 400,
+      "cube_count": 4,
+      "cube_ids": [
+        "F01",
+        "F02",
+        "M01",
+        "M02"
+      ],
+      "falls": 0,
+      "collisions": 0,
+      "first_cube_time": 8.52,
+      "last_cube_time": 167.08
+    },
+    "red": {
+      "team": "red",
+      "score": 400,
+      "cube_points": 400,
+      "cube_count": 4,
+      "cube_ids": [
+        "C01",
+        "F03",
+        "F04",
+        "F05"
+      ],
+      "falls": 0,
+      "collisions": 0,
+      "first_cube_time": 17.68,
+      "last_cube_time": 72.04
+    },
+    "winner": "blue",
+    "replay_required": false
+  },
+  "events": [
+    {
+      "time_s": 8.52,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "F01",
+      "value": 100
+    },
+    {
+      "time_s": 17.68,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "C01",
+      "value": 100
+    },
+    {
+      "time_s": 27.84,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "F02",
+      "value": 100
+    },
+    {
+      "time_s": 34.980000000000004,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F03",
+      "value": 100
+    },
+    {
+      "time_s": 51.74,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F04",
+      "value": 100
+    },
+    {
+      "time_s": 72.04,
+      "team": "red",
+      "event": "cube",
+      "cube_id": "F05",
+      "value": 100
+    },
+    {
+      "time_s": 149.24,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "M01",
+      "value": 100
+    },
+    {
+      "time_s": 167.08,
+      "team": "blue",
+      "event": "cube",
+      "cube_id": "M02",
+      "value": 100
+    }
+  ],
+  "official_result": false,
+  "llm_tested": true,
+  "llm_errors": 0
+}

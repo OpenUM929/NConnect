@@ -1,0 +1,30 @@
+{
+  "official_result": false,
+  "llm_execution": "REAL_GEMINI_LECTURE_API_NOT_OFFICIAL_MATCH_RUNTIME",
+  "strategy": "score_rate",
+  "duration_requested": 180.0,
+  "map_seed": 42,
+  "speed": 0.6,
+  "policy_sha256": "7c3ae6845b6b3d45c8b050309b9504ee697a0a028814fa273b5bd30a4183d24a",
+  "checkpoint_sha256": "8eb06e2b0f590077fe3d20557da3f77d5c7dc34a0507edfa3e4af8df8ff4b636",
+  "h1_asset_uri": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/IsaacLab/Robots/Unitree/H1/h1_minimal.usd",
+  "assumptions_extra": [
+    "collection radius .6m with vertical surface tolerance .35m",
+    "fall uses original torso termination",
+    "fall resets to team start; 3s stationary recovery",
+    "car event uses footprint overlap; knockback velocity 1.5m/s",
+    "red is same H1 policy with nearest selector; blue uses chosen selector",
+    "both robots share one physical map",
+    "raised cubes excluded: climbing capability not verified",
+    "termination rows are post-auto-reset positions, not impact positions"
+  ],
+  "source": "https://robotics.connect.or.kr/rules/finals_regulations.html",
+  "source_sha256": {
+    "run_h1_finals_practice.py": "8f2ae3320e20d1155933843c328ae30988b709fa22a25c2677fe6da13578f8db",
+    "finals_practice_core.py": "4f80acb5ed32d13042b6ad4d781ec2c304753e3e6a9c5da11d2353901fd346c4",
+    "finals_practice_gemini.py": "7412853f881da5b9c34714bbb4974dcd7a4cec0ddfb1215fb70a37476fecf28e"
+  },
+  "strategy_text": "180초 총점을 최대화하라. 이동거리와 차량 구역 노출을 고려해 시간당 획득점수가 높은 도달 가능한 큐브를 선택하라. 가까운 평지와 통행 가능한 미로를 우선하되 우회가 긴 목표는 미뤄라. 등반 능력이 확인되지 않은 박스언덕·계단·경사 구역은 제외하라. 이미 획득된 큐브는 선택하지 말고, 남은 목표가 없으면 대기하라.",
+  "strategy_length": 177,
+  "llm_latency_model": "fixed 2.5 simulated seconds before each selection; network wait pauses physics"
+}
