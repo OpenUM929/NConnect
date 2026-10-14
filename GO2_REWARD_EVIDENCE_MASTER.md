@@ -697,3 +697,6 @@ G-A040 과거 HOLD_CONTRADICTED는 INFORMATION_RUN으로 정정(미실행·성�
 
 ## G-A077 publication 2026-10-10T06:20:31+09:00
 G-A074 starting/effect/adoption comparison; flat_orientation_l2 -0.25 to -0.225 only. Existing plan GO2_G_A077_PLAN_20261010.md retains competing stability-loss hypothesis, matched-series OUT_OF_RANGE and per-seed protections. 7 package tests OK; deployment code unchanged, LF/bash syntax/CRC/manifests verified; deterministic ZIP SHA c8e8d4f5ab3a5362a5d0a91179009f0be3230dcdb4b460a3a92ef44dc681f87f. Exploratory; no performance guarantee.
+
+## G-A082 publication 2026-10-14T22:13:07+09:00
+PC2 G-A077 starting/effect/adoption comparison at iter 2400 (model 23c08ab1, env 825fdc69); track_ang_vel_z_exp 0.3 to 0.75 only. Dial history (§1-a / TRIAL_REFERENCE §3-7): only 0.75→1.0 on A043 tested (posture collapse); 0.3→0.75 untested in this line. Basis: under-correction of zero-command yaw on slope-up and stair-down (GO2_G_A077_WEAKNESS_20261014.md §4-5). Plan upload/plan/GO2_G_A082_PLAN_20261014.md; predictions and protections in package experiment.json. 8 package tests OK; deterministic ZIP SHA eb65c70c92528cee7d8c83443adfd0b4d9cd9215b39b43954a280b44cac93724. Exploratory; no performance guarantee.

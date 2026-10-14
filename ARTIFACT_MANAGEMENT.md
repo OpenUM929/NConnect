@@ -1298,3 +1298,10 @@ PLANNED -> RUNNING monitor; G-A074-EVAL terminal FULL_69_COMPLETE,69/69+sentinel
 
 ## G-A077-PC2-EXECUTION-20261010
 - PLANNED -> RUNNING: supplied G-A077 package SHA and 7 tests verified; existing PC2 only; required report, candidate69 telemetry and 10 videos, identity/manifest/result ZIP SHA; recovery per HANDOFF_G_A077_PC2.md section 4. No new reward selection.
+
+## G-A082-PACKAGE-20261014 (READY, PC2)
+- PLANNED → READY(2026-10-14 22:13 KST). PC2 G-A077 iter 2400(`23c08ab1…`/`825fdc69…`) 기준으로 `track_ang_vel_z_exp` 0.3→0.75만 바꾼다. 3000회, seed 42, 평가 2400, 69 case.
+- 패키지 `workspace/training/quadruped/upload/G-A082/current/GO2_G_A082_TRACK_ANG_VEL_Z_P0P75_v1.zip.001~003`, SHA `eb65c70c92528cee7d8c83443adfd0b4d9cd9215b39b43954a280b44cac93724`. 빌더 `tools/build_go2_g_a082_package.py`, 시험 8건 통과. 인계 `HANDOFF_G_A082_PC2.md`. 계획 `upload/plan/GO2_G_A082_PLAN_20261014.md`.
+- 영상 사전 판정 **필수**(reward 변경, 채택 판단용). 후보 10편(seed 101: G2 회전 ±, G3 ×2, G5 10cm·15cm 내리기, G6 4방향). 대조는 저장 영상 10편을 재사용한다.
+- 회수 기대: `_keep/go2_g_a082_track_ang_vel_z_p0p75/`, `GO2_G_A082_TRACK_ANG_VEL_Z_P0P75_RESULT.zip`+`.sha256`(parts), `exported/report.html` 포함.
+- 대조군 원본: `GO2_G_A077_FLAT_ORIENTATION_M0P225_RESULT.zip`(parts 6개)를 `tools/keep_fetch_result.sh`로 받아 `_keep/go2_g_a077_flat_orientation_m0p225/`에 풀었다(SHA 일치, LZX 압축).
