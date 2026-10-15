@@ -1,0 +1,133 @@
+{
+ "primary": {
+  "std": {
+   "candidate": {
+    "mean_std_2380_2420": 0.7982314752369393,
+    "n": 41,
+    "mean_std_last": 0.8217023015022278,
+    "last_iter": 2999,
+    "mean_std_iter1000": 0.683968722820282,
+    "base_contact_2380_2420": 0.19807968016077832
+   },
+   "g_a082_pc2": {
+    "mean_std_2380_2420": 1.033349854190175,
+    "n": 41,
+    "mean_std_last": 1.0671709775924683,
+    "last_iter": 2999,
+    "mean_std_iter1000": 0.7936703562736511,
+    "base_contact_2380_2420": 0.2449201937855744
+   }
+  },
+  "verdict": "SUPPORTED"
+ },
+ "secondary": {
+  "candidate": {
+   "g6_exy_mean": 0.07194893478262986,
+   "g6_rows": 12,
+   "stairs15_survival_mean": 0.9739583333333334,
+   "stairs15_rows": 6,
+   "stairs15_survival_by_case": {
+    "stairs_15_down": 0.96875,
+    "stairs_15_up": 0.9791666666666666
+   }
+  },
+  "g_a082_pc2": {
+   "g6_exy_mean": 0.08079504219971577,
+   "g6_rows": 12,
+   "stairs15_survival_mean": 0.875,
+   "stairs15_rows": 6,
+   "stairs15_survival_by_case": {
+    "stairs_15_down": 0.90625,
+    "stairs_15_up": 0.84375
+   }
+  },
+  "verdict": {
+   "g6": "NOT_SUPPORTED",
+   "stairs15": "SUPPORTED"
+  }
+ },
+ "protection": {
+  "candidate": {
+   "heading_median": {
+    "slope_plus_20": 13.469900788611064,
+    "stairs_10_down": 11.175255550639664,
+    "stairs_15_down": 20.092309823857693
+   },
+   "stairs_15_down_full": 95,
+   "G3_survival_sum": 5.8125,
+   "terrain_along_speed_mean": 0.47031627525172787,
+   "G2_combined_yaw_survival": {
+    "combined_yaw_left|101": 1.0,
+    "combined_yaw_left|202": 1.0,
+    "combined_yaw_left|303": 1.0,
+    "combined_yaw_right|101": 1.0,
+    "combined_yaw_right|202": 1.0,
+    "combined_yaw_right|303": 1.0
+   },
+   "checks": {
+    "heading_each_le_40": true,
+    "stairs_15_down_full_ge_51": true,
+    "G3_survival_sum_ge_5.75": true,
+    "terrain_speed_ge_0.425": true,
+    "G2_combined_yaw_all_1": true
+   },
+   "all_held": true
+  },
+  "g_a082_pc2": {
+   "heading_median": {
+    "slope_plus_20": 25.574644515856566,
+    "stairs_10_down": 17.958542003287448,
+    "stairs_15_down": 16.24826699029567
+   },
+   "stairs_15_down_full": 92,
+   "G3_survival_sum": 5.875,
+   "terrain_along_speed_mean": 0.4547907251681648,
+   "G2_combined_yaw_survival": {
+    "combined_yaw_left|101": 1.0,
+    "combined_yaw_left|202": 1.0,
+    "combined_yaw_left|303": 1.0,
+    "combined_yaw_right|101": 1.0,
+    "combined_yaw_right|202": 1.0,
+    "combined_yaw_right|303": 1.0
+   },
+   "checks": {
+    "heading_each_le_40": true,
+    "stairs_15_down_full_ge_51": true,
+    "G3_survival_sum_ge_5.75": true,
+    "terrain_speed_ge_0.425": true,
+    "G2_combined_yaw_all_1": true
+   },
+   "all_held": true
+  }
+ },
+ "score": {
+  "candidate": {
+   "total_70": 57.58624093382031,
+   "scenario_score": {
+    "G1": 0.8565042772272016,
+    "G2": 0.8574469138720299,
+    "G3": 0.7904988654877875,
+    "G4": 0.8343215378263834,
+    "G5": 0.7889794915215772,
+    "G6": 0.8342204192096053,
+    "G7": 0.8055093668326473
+   },
+   "loss_survival": 0.8203125,
+   "loss_tracking": 11.593446566179693
+  },
+  "g_a082_pc2": {
+   "total_70": 56.85219620734317,
+   "scenario_score": {
+    "G1": 0.8387364767883972,
+    "G2": 0.8376933439434056,
+    "G3": 0.7969626287262596,
+    "G4": 0.8267765592553152,
+    "G5": 0.7440097025713045,
+    "G6": 0.8353683677473125,
+    "G7": 0.8216245662972731
+   },
+   "loss_survival": 0.9479166666666667,
+   "loss_tracking": 12.199887125990164
+  }
+ }
+}
