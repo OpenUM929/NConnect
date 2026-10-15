@@ -1,6 +1,6 @@
 # Go2 튜닝 패키지 작성 절차 — 정책 결정 → ZIP → PC2 인계 (2026-10-15)
 
-이 문서는 작성 PC에서 Go2 튜닝 회차를 만드는 작성자가 따르는 절차다. 작성자는 Claude 메인 루프와 Codex 테라 둘이다(2026-10-15 사용자 지시). 실행은 PC2가 `HANDOFF_<WORK_ID>_PC2.md`를 감지해서 한다. 판독은 결과를 받은 작성자가 한다.
+이 문서는 작성 PC에서 Go2 튜닝 회차를 만드는 작성자가 따르는 절차다. 작성자는 Claude 메인 루프와 Codex(테라, 루나)다(2026-10-15 사용자 지시). 원장 비고의 author 값은 `claude`, `codex-terra`, `codex-luna`다. 실행은 PC2가 `HANDOFF_<WORK_ID>_PC2.md`를 감지해서 한다. 판독은 결과를 받은 작성자가 한다.
 
 이 문서는 새 규칙을 만들지 않는다. 루트 `AGENTS.md`, `ARTIFACT_MANAGEMENT.md`, `workspace/training/quadruped/AGENTS.md`에 흩어진 규칙을 작업 순서대로 묶은 것이다. 충돌하면 원 문서가 이긴다. 공식 규정 R-1~R-7은 언제나 최우선이다.
 
@@ -15,13 +15,27 @@
 
 ## 0. 두 작성자가 함께 일할 때의 규칙
 
-1. **작업 전에 반드시 `git pull --rebase`를 하고 `git status --short`를 본다.** 다른 작성자의 미커밋 수정이 작업 트리에 있으면 건드리지 않는다. 내 커밋에는 내가 만든 파일과 내가 추가한 줄만 넣는다(`git add <파일>`로 이름을 지정한다. `git add -A`, `git add .` 금지).
+1. **주 저장소(`C:/dev/Nconnect`)에서는 `git pull`, `git stash`, `git checkout`, `git reset`, `git sparse-checkout`을 하지 않는다(2026-10-15 사고).**
+   - 이 저장소는 partial clone이고, sparse-checkout으로 1만 5천여 파일을 숨긴다. 작업 트리에는 다른 세션의 미커밋 수정이 늘 있다.
+   - 2026-10-15에 `git pull --autostash`가 지워 둔 `_keep` 파일을 되살려 디스크를 0으로 만들었다.
+   - 주 저장소는 빌드와 분석에만 쓴다. `git fetch`와 `git show origin/master:<경로>`로 최신 문서를 읽는 것은 된다.
+   - **커밋과 push는 스크래치 폴더의 작은 클론에서 한다.**
+     ```bash
+     git clone --depth 1 --filter=blob:none --no-checkout <origin URL> <스크래치>/pushclone
+     cd <스크래치>/pushclone
+     MSYS_NO_PATHCONV=1 git sparse-checkout set --no-cone /<올릴 파일> /<올릴 폴더>/
+     git checkout master
+     # 주 저장소에서 만든 파일을 복사하고, 원장·문서는 원격판 끝에 줄만 덧붙인다
+     git add <파일> && git commit && git push origin master
+     ```
+   - 작은 클론에서도 `git show --stat`, `git ls-tree -l`은 blob 전체를 받는다. 대신 `GIT_NO_LAZY_FETCH=1`과 `--name-only`를 쓴다.
+   - 내 커밋에는 내가 만든 파일과 내가 추가한 줄만 넣는다.
 2. **한 번에 열린 튜닝 방향은 하나다.** 결과를 기다리는 회차(원장에 `READY`는 있지만 `READOUT_DONE`이 없는 회차)와 같은 보상 항을 다시 바꾸는 회차를 내지 않는다. 그 회차의 사전등록이 "연달아 올리지 않는다"고 정해 두었기 때문이다. 다른 항을 다루는 회차는 낼 수 있다. 이 경우 3항의 대기열을 쓴다.
 3. **PC2는 학습을 한 번에 하나만 한다.** 다른 회차가 실행 중이거나 READY로 대기 중이면, 새 인계의 `START_AFTER`를 그 회차로 둔다. `START_MARKER`는 아래 형식을 쓴다.
    `START_MARKER: /workspace/_keep/<선행 회차 결과 폴더>/RUNNER_STATUS.txt exists and <선행 WORK_ID> has a terminal DONE or FAILED ledger row`
    (G-A076 인계와 같은 형식이다.)
 4. **번호는 발행 커밋이 push된 쪽이 가진다.** 같은 번호로 push가 거부되면, rebase한 뒤 다음 미사용 번호로 상수를 바꾸고 다시 빌드한다. ZIP 이름과 인계 문서 이름도 함께 바꾼다. 이미 push된 다른 작성자의 파일은 고치지 않는다.
-5. **원장 `workspace/_keep/author_pc_ledger.tsv`는 두 작성자가 같이 쓴다.** 끝에 줄만 추가한다. 비고 칸 맨 앞에 `author=claude` 또는 `author=codex-terra`를 적는다. 이미 있는 줄은 고치지 않는다. PC2 원장 `pc2_handoff_ledger.tsv`는 쓰지 않는다.
+5. **원장 `workspace/_keep/author_pc_ledger.tsv`는 작성자들이 같이 쓴다.** 끝에 줄만 추가한다. 비고 칸 맨 앞에 `author=claude`, `author=codex-terra`, `author=codex-luna` 중 하나를 적는다. 이미 있는 줄은 고치지 않는다. PC2 원장 `pc2_handoff_ledger.tsv`는 쓰지 않는다.
 6. **판독 문서는 결과를 받은 작성자가 쓴다.** 정본 경로에 다른 작성자의 판독이 이미 있으면 덮지 말고 끝에 새 절로 보충한다.
 7. **한국어 파일은 UTF-8로 쓴다.** Codex는 PowerShell 파이프나 `Set-Content`로 한국어를 쓰지 않는다. 내용을 `.py`(UTF-8) 스크립트에 담아 python으로 쓴다. 파이프를 거치면 한글이 `?`로 영구히 손실된다(2026-10-08 확인).
 
@@ -88,8 +102,8 @@
 
 ## 3. 번호 정하기
 
-1. `git pull --rebase`
-2. 아래 세 곳에서 가장 큰 G-A 번호를 찾고, 그다음 번호를 쓴다.
+1. 주 저장소에서 `git fetch origin`만 한다.
+2. 아래 세 곳을 원격판(`git show origin/master:<경로>`, 목록은 `GIT_NO_LAZY_FETCH=1 git ls-tree --name-only origin/master <폴더>/`)으로 보고, 그 세 곳에서 가장 큰 G-A 번호를 찾고, 그다음 번호를 쓴다.
    - `ls workspace/training/quadruped/upload/`
    - `grep -o 'G-A[0-9]*' workspace/_keep/author_pc_ledger.tsv | sort -u | tail`
    - `grep -o '^## G-A[0-9]*' ARTIFACT_MANAGEMENT.md | sort -u | tail`
@@ -181,7 +195,7 @@ parts 경로는 `github.com`으로 받는다. Git LFS는 쓰지 않는다(이 �
    - `GO2_REWARD_TRIAL_REFERENCE.md`: 해당 항 아래에 "발행, 결과 미측정" 한 줄
    - `workspace/_keep/author_pc_ledger.tsv`: `PUBLISHED` 줄과 `READY` 줄(0-5항 형식)
 2. **패키지 parts, `.sha256`, 인계 문서, 빌더, 시험, 원장을 한 커밋으로 올린다.** 패키지 없이 인계만 올리지 않는다. 계획서와 등록 문서는 같은 커밋이나 바로 다음 커밋으로 올린다.
-3. `git push` 후 `git fetch`를 하고, `git ls-tree origin/master`로 parts, 인계, `.sha256`이 원격에 있는지 확인한다.
+3. 작은 클론에서 push한 뒤 주 저장소에서 `git fetch`를 한다. 그다음 `GIT_NO_LAZY_FETCH=1 git ls-tree -r --name-only origin/master <경로>`로 parts, 인계, `.sha256`이 원격에 있는지 확인한다.
 4. 사용자에게 보고할 때는 `## 0. 예선 기준 현재 위치`를 먼저 쓴다. 이어서 WORK_ID, 바꾼 한 항(전→후), SHA, 커밋, 대기열 위치(START_AFTER)를 쓴다.
 
 ---
