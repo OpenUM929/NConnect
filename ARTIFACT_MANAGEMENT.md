@@ -1324,3 +1324,16 @@ PLANNED -> RUNNING monitor; G-A074-EVAL terminal FULL_69_COMPLETE,69/69+sentinel
 - 영상 사전 판정 **필수**(reward 변경, 채택 판단용). 후보 10편(seed 101: G2 회전 ±, G3 ×2, G5 10cm·15cm 내리기, G6 4방향). 대조는 저장 영상 10편을 재사용한다.
 - 회수 기대: `_keep/go2_g_a082_track_ang_vel_z_p0p75/`, `GO2_G_A082_TRACK_ANG_VEL_Z_P0P75_RESULT.zip`+`.sha256`(parts), `exported/report.html` 포함.
 - 대조군 원본: `GO2_G_A077_FLAT_ORIENTATION_M0P225_RESULT.zip`(parts 6개)를 `tools/keep_fetch_result.sh`로 받아 `_keep/go2_g_a077_flat_orientation_m0p225/`에 풀었다(SHA 일치, LZX 압축).
+
+## G-A083-PACKAGE-20261015 (READY, PC2)
+
+- 패키지: `workspace/training/quadruped/upload/G-A083/current/GO2_G_A083_ACTION_RATE_M0P01_v1.zip.001~003`, SHA `50ff9dc9058b866e5dbed9aea9c0204d8295a3b4dc69b89be9bdc701774d9110`.
+- 빌더 `tools/build_go2_g_a083_package.py`, 시험 `tools/test_go2_g_a083_package.py`(9건 통과). 인계 `HANDOFF_G_A083_PC2.md`, 계획 `upload/plan/GO2_G_A083_PLAN_20261015.md`.
+- 작성: Codex 루나. 검증과 수정: Claude.
+  - 루나 판(`12b1eaf2…`)은 결과 패키저·검사기 3개와 Isaac Lab 우선 Python 선택이 빠져 있어 발행하지 않았다.
+  - 원인은 upload ZIP sparse 숨김이다. 그 때문에 `upload/G-A055/current/GO2_G_A055_a043_ang_vel_xy_m008_full69_v2.zip`(a057 소스 체인 입력)이 빠졌다. 이 파일은 sparse 예외로 되살렸다.
+- 설계: PC2 G-A082 iter 2400 위에서 `action_rate_l2` −0.005→−0.01 단일변경. 3000 iter, seed 42, 4096 env, 평가 iter 2400.
+- 대조군: G-A082 저장 69 case와 영상 10편을 재사용한다(`REUSED_G_A082_PC2_FULL_NO_RERUN`).
+- 영상 판정 `필수`: G-A082와 같은 10편, seed 101.
+- 회수: `/workspace/_keep/go2_g_a083_action_rate_m0p01/`, `GO2_G_A083_ACTION_RATE_M0P01_RESULT.zip`(report.html 포함).
+- sparse 주의: 빌더 체인은 G-A055 ZIP을 읽는다. upload ZIP을 숨길 때 이 파일은 예외로 둔다(`.git/info/sparse-checkout` 끝의 include 줄).
