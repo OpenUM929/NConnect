@@ -20,7 +20,8 @@ echo "[free before] $(free_gb) GB"
 
 TOK=$(printf 'protocol=https\nhost=github.com\n\n' | git credential fill 2>/dev/null | sed -n 's/^password=//p')
 [ -n "$TOK" ] || { echo "no github credential" >&2; exit 2; }
-REF=$(git -C "$ROOT" ls-remote origin refs/heads/master | cut -f1)
+# 2026-10-16: the local .git was removed (git is used for sharing only); ask the remote directly.
+REF=$(git ls-remote "https://github.com/$REPO.git" refs/heads/master | cut -f1)
 get() {  # get <repo path> <out file> -> http code
   curl -sS --retry 3 --max-time 1800 -o "$2" -w '%{http_code}' -H "Authorization: token $TOK" \
     "https://raw.githubusercontent.com/$REPO/$REF/$1"
