@@ -1,0 +1,317 @@
+{
+ "stairs_15_climb": {
+  "g_a083": {
+   "robots": 96,
+   "fell": 15,
+   "reached_edge": 96,
+   "fell_before_edge": 0,
+   "survived": {
+    "n": 81,
+    "dz_body_m": 0.2219013273715973,
+    "max_rise_mps": 0.547768175601962,
+    "max_tilt": 0.11683410406112671,
+    "max_tilt_rate": 0.570380687713623,
+    "min_height_rel": 0.2454979700200698,
+    "vx_before_edge": 0.48330897331237793
+   },
+   "fell_after_edge": {
+    "n": 15,
+    "dz_body_m": 0.1165204644203186,
+    "max_rise_mps": 0.43894946575164795,
+    "max_tilt": 0.06632721424102783,
+    "max_tilt_rate": 0.4409283399581798,
+    "min_height_rel": 0.2093879660183095,
+    "vx_before_edge": 0.48787067174911497
+   }
+  },
+  "g_a086": {
+   "robots": 96,
+   "fell": 34,
+   "reached_edge": 96,
+   "fell_before_edge": 0,
+   "survived": {
+    "n": 62,
+    "dz_body_m": 0.11630815267562866,
+    "max_rise_mps": 0.4998743534088135,
+    "max_tilt": 0.11292356252670288,
+    "max_tilt_rate": 0.6745651364326505,
+    "min_height_rel": 0.22165973651855392,
+    "vx_before_edge": 0.40879131078720093
+   },
+   "fell_after_edge": {
+    "n": 34,
+    "dz_body_m": 0.024057626724243164,
+    "max_rise_mps": 0.4044771194458008,
+    "max_tilt": 0.060484617948531993,
+    "max_tilt_rate": 0.4943609237670926,
+    "min_height_rel": 0.1978112059162262,
+    "vx_before_edge": 0.4550098145008087
+   }
+  }
+ },
+ "stairs_10_climb": {
+  "g_a083": {
+   "robots": 96,
+   "fell": 3,
+   "reached_edge": 96,
+   "fell_before_edge": 0,
+   "survived": {
+    "n": 93,
+    "dz_body_m": 0.1570169627666473,
+    "max_rise_mps": 0.4530511796474457,
+    "max_tilt": 0.0502002239227296,
+    "max_tilt_rate": 0.3105461597442627,
+    "min_height_rel": 0.2775247930524184,
+    "vx_before_edge": 0.5047716510295868
+   },
+   "fell_after_edge": {
+    "n": 3,
+    "dz_body_m": -0.11063617467880249,
+    "max_rise_mps": 0.24292469024658203,
+    "max_tilt": 0.040257155895233154,
+    "max_tilt_rate": 0.5107253789901733,
+    "min_height_rel": 0.1795988482906219,
+    "vx_before_edge": 0.5002779877185821
+   }
+  },
+  "g_a086": {
+   "robots": 96,
+   "fell": 5,
+   "reached_edge": 96,
+   "fell_before_edge": 0,
+   "survived": {
+    "n": 91,
+    "dz_body_m": 0.07549388706684118,
+    "max_rise_mps": 0.44020712375641147,
+    "max_tilt": 0.06717252731323242,
+    "max_tilt_rate": 0.4063218832015991,
+    "min_height_rel": 0.2545465050852872,
+    "vx_before_edge": 0.44488250970840454
+   },
+   "fell_after_edge": {
+    "n": 5,
+    "dz_body_m": -0.11494812369346619,
+    "max_rise_mps": 0.21506994962692538,
+    "max_tilt": 0.09471285343170155,
+    "max_tilt_rate": 0.7853060960769653,
+    "min_height_rel": 0.1781137783259632,
+    "vx_before_edge": 0.4072715389728546
+   }
+  }
+ },
+ "posture": {
+  "g_a083": {
+   "rough_forward": {
+    "height_med": 0.3703254645627238,
+    "tilt_med": 0.0035468240578969135,
+    "robots_ever_below_0.18": 3,
+    "robots": 96
+   },
+   "rough_lateral": {
+    "height_med": 0.36870334290778145,
+    "tilt_med": 0.002746582031249963,
+    "robots_ever_below_0.18": 3,
+    "robots": 96
+   },
+   "stairs_10_down": {
+    "height_med": 0.3721882900822436,
+    "tilt_med": 0.003237406412760435,
+    "robots_ever_below_0.18": 3,
+    "robots": 96
+   },
+   "stairs_15_down": {
+    "height_med": 0.36971238272765955,
+    "tilt_med": 0.004433900117874108,
+    "robots_ever_below_0.18": 15,
+    "robots": 96
+   },
+   "stairs_15_up": {
+    "height_med": 0.3748314166026532,
+    "tilt_med": 0.008377254009246807,
+    "robots_ever_below_0.18": 5,
+    "robots": 96
+   },
+   "slope_plus_20": {
+    "height_med": 0.373574907068037,
+    "tilt_med": 0.0035549501578013656,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "forward_nominal": {
+    "height_med": 0.37671276741061827,
+    "tilt_med": 0.0004501938819885254,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "forward_slow": {
+    "height_med": 0.377347662248076,
+    "tilt_med": 0.0027393400669097345,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_neg_x": {
+    "height_med": 0.37153698480065495,
+    "tilt_med": 0.0035237769285837253,
+    "robots_ever_below_0.18": 2,
+    "robots": 96
+   },
+   "push_pos_x": {
+    "height_med": 0.3715682904669308,
+    "tilt_med": 0.003432720899581946,
+    "robots_ever_below_0.18": 1,
+    "robots": 96
+   },
+   "push_neg_y": {
+    "height_med": 0.37183820672744944,
+    "tilt_med": 0.003475149472554525,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_pos_y": {
+    "height_med": 0.3720516201487199,
+    "tilt_med": 0.0035532116889953245,
+    "robots_ever_below_0.18": 1,
+    "robots": 96
+   },
+   "dr_seed_101": {
+    "height_med": 0.3704013116856947,
+    "tilt_med": 0.0036785900592803955,
+    "robots_ever_below_0.18": 2,
+    "robots": 32
+   },
+   "dr_seed_202": {
+    "height_med": 0.3678286833399757,
+    "tilt_med": 0.004315376281738392,
+    "robots_ever_below_0.18": 1,
+    "robots": 32
+   },
+   "dr_seed_303": {
+    "height_med": 0.37328430635725107,
+    "tilt_med": 0.0031913518905640204,
+    "robots_ever_below_0.18": 0,
+    "robots": 32
+   }
+  },
+  "g_a086": {
+   "rough_forward": {
+    "height_med": 0.3834262670892657,
+    "tilt_med": 0.0060596068700154064,
+    "robots_ever_below_0.18": 2,
+    "robots": 96
+   },
+   "rough_lateral": {
+    "height_med": 0.3748974554944591,
+    "tilt_med": 0.0037067731221517484,
+    "robots_ever_below_0.18": 11,
+    "robots": 96
+   },
+   "stairs_10_down": {
+    "height_med": 0.37729183724565085,
+    "tilt_med": 0.007323563098907471,
+    "robots_ever_below_0.18": 5,
+    "robots": 96
+   },
+   "stairs_15_down": {
+    "height_med": 0.37413434256216815,
+    "tilt_med": 0.009406894445419256,
+    "robots_ever_below_0.18": 34,
+    "robots": 96
+   },
+   "stairs_15_up": {
+    "height_med": 0.38697374079529184,
+    "tilt_med": 0.014604359865188618,
+    "robots_ever_below_0.18": 11,
+    "robots": 96
+   },
+   "slope_plus_20": {
+    "height_med": 0.3868475394612327,
+    "tilt_med": 0.006338795026143373,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "forward_nominal": {
+    "height_med": 0.3895244433971224,
+    "tilt_med": 0.002449502547581972,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "forward_slow": {
+    "height_med": 0.3918212304778277,
+    "tilt_med": 0.006313810745875041,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_neg_x": {
+    "height_med": 0.39666538006906626,
+    "tilt_med": 0.0032063424587249942,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_pos_x": {
+    "height_med": 0.3970147352964483,
+    "tilt_med": 0.003377636273701967,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_neg_y": {
+    "height_med": 0.3972704518925059,
+    "tilt_med": 0.003479073445002201,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "push_pos_y": {
+    "height_med": 0.39686922864480456,
+    "tilt_med": 0.0031854410966237388,
+    "robots_ever_below_0.18": 0,
+    "robots": 96
+   },
+   "dr_seed_101": {
+    "height_med": 0.381426369841086,
+    "tilt_med": 0.006029754877090399,
+    "robots_ever_below_0.18": 2,
+    "robots": 32
+   },
+   "dr_seed_202": {
+    "height_med": 0.3807615723839418,
+    "tilt_med": 0.006336152553558294,
+    "robots_ever_below_0.18": 1,
+    "robots": 32
+   },
+   "dr_seed_303": {
+    "height_med": 0.3845247371311493,
+    "tilt_med": 0.006330132484436091,
+    "robots_ever_below_0.18": 1,
+    "robots": 32
+   }
+  }
+ },
+ "falls_by_kind": {
+  "g_a083": {
+   "dr_seed_101|low": 2,
+   "dr_seed_202|tilt": 1,
+   "push_neg_x|tilt": 2,
+   "push_pos_x|tilt": 1,
+   "push_pos_y|tilt": 1,
+   "rough_forward|low": 1,
+   "rough_forward|tilt": 1,
+   "rough_forward|tilt+low": 1,
+   "rough_lateral|tilt": 3,
+   "stairs_10_down|low": 3,
+   "stairs_15_down|low": 15,
+   "stairs_15_up|low": 5
+  },
+  "g_a086": {
+   "dr_seed_101|low": 2,
+   "dr_seed_202|low": 1,
+   "dr_seed_303|low": 1,
+   "dr_seed_303|tilt": 1,
+   "rough_forward|low": 1,
+   "rough_forward|tilt": 1,
+   "rough_lateral|low": 8,
+   "rough_lateral|tilt": 3,
+   "stairs_10_down|low": 5,
+   "stairs_15_down|low": 34,
+   "stairs_15_up|low": 11
+  }
+ }
+}
