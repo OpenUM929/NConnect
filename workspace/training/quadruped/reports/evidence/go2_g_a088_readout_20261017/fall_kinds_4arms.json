@@ -1,0 +1,80 @@
+{
+ "A083": {
+  "kinds": {
+   "low": 26,
+   "tilt": 9,
+   "tilt+low": 1
+  },
+  "tilt_fs": 0.0027393400669097345,
+  "tilt_fn": 0.0004501938819885254,
+  "by_case": {
+   "dr_seed_101": 2,
+   "dr_seed_202": 1,
+   "push_neg_x": 2,
+   "push_pos_x": 1,
+   "push_pos_y": 1,
+   "rough_forward": 3,
+   "rough_lateral": 3,
+   "stairs_10_down": 3,
+   "stairs_15_down": 15,
+   "stairs_15_up": 5
+  }
+ },
+ "A087": {
+  "kinds": {
+   "tilt": 57,
+   "low": 16
+  },
+  "tilt_fs": 0.017320205767949366,
+  "tilt_fn": 0.00847371419270837,
+  "by_case": {
+   "dr_seed_101": 3,
+   "dr_seed_202": 2,
+   "dr_seed_303": 3,
+   "forward_slow": 32,
+   "push_neg_x": 2,
+   "push_neg_y": 3,
+   "push_pos_x": 3,
+   "push_pos_y": 5,
+   "rough_forward": 6,
+   "rough_lateral": 10,
+   "stairs_15_down": 2,
+   "stairs_15_up": 2
+  }
+ },
+ "A088": {
+  "kinds": {
+   "low": 20,
+   "tilt": 4
+  },
+  "tilt_fs": 0.009061396121978796,
+  "tilt_fn": 0.005666971206665039,
+  "by_case": {
+   "dr_seed_101": 2,
+   "dr_seed_202": 3,
+   "dr_seed_303": 1,
+   "rough_forward": 3,
+   "rough_lateral": 5,
+   "stairs_10_down": 1,
+   "stairs_15_down": 9
+  }
+ },
+ "A086": {
+  "kinds": {
+   "low": 63,
+   "tilt": 5
+  },
+  "tilt_fs": 0.006313810745875041,
+  "tilt_fn": 0.002449502547581972,
+  "by_case": {
+   "dr_seed_101": 2,
+   "dr_seed_202": 1,
+   "dr_seed_303": 2,
+   "rough_forward": 2,
+   "rough_lateral": 11,
+   "stairs_10_down": 5,
+   "stairs_15_down": 34,
+   "stairs_15_up": 11
+  }
+ }
+}
