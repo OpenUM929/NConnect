@@ -1,0 +1,386 @@
+{
+ "candidate": {
+  "heading": {
+   "forward_nominal": {
+    "med": 48.940405226073764,
+    "p90": 57.290532451171536,
+    "slow_share": 0.18104653112741392,
+    "gt45": 69,
+    "n": 96
+   },
+   "rough_forward": {
+    "med": 35.22023278043115,
+    "p90": 50.91561264542072,
+    "slow_share": 0.11399572712400094,
+    "gt45": 25,
+    "n": 96
+   },
+   "rough_lateral": {
+    "med": 35.64162799712832,
+    "p90": 76.16159130368368,
+    "slow_share": 0.140582722092291,
+    "gt45": 39,
+    "n": 96
+   },
+   "slope_plus_20": {
+    "med": 35.14867355007145,
+    "p90": 62.590117689300335,
+    "slow_share": 0.20581392049022362,
+    "gt45": 27,
+    "n": 96
+   },
+   "slope_minus_20": {
+    "med": 42.541463859455945,
+    "p90": 59.045542230894,
+    "slow_share": 0.2154739823491393,
+    "gt45": 40,
+    "n": 96
+   },
+   "stairs_10_up": {
+    "med": 36.24762866638159,
+    "p90": 64.448777646872,
+    "slow_share": 0.1992289353124395,
+    "gt45": 36,
+    "n": 96
+   },
+   "stairs_10_down": {
+    "med": 32.93062376847039,
+    "p90": 69.35260089269678,
+    "slow_share": 0.1682496535143602,
+    "gt45": 31,
+    "n": 96
+   },
+   "stairs_15_up": {
+    "med": 42.68002503221531,
+    "p90": 76.00606864753658,
+    "slow_share": 0.19259420207337835,
+    "gt45": 47,
+    "n": 96
+   },
+   "stairs_15_down": {
+    "med": 25.229957080316847,
+    "p90": 85.87892932651141,
+    "slow_share": 0.18186320113083812,
+    "gt45": 33,
+    "n": 96
+   },
+   "push_pos_x": {
+    "med": 43.928516731651484,
+    "p90": 62.608789894801205,
+    "slow_share": 0.2100801489557283,
+    "gt45": 43,
+    "n": 96
+   }
+  },
+  "stairs": {
+   "stairs_10_up|101": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_up|202": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_up|303": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_down|101": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 31,
+    "ge2": 30,
+    "full": 29
+   },
+   "stairs_10_down|202": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 29,
+    "full": 29
+   },
+   "stairs_10_down|303": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 31,
+    "full": 29
+   },
+   "stairs_15_up|101": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_up|202": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_up|303": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_down|101": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 29,
+    "ge2": 27,
+    "full": 26
+   },
+   "stairs_15_down|202": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 30,
+    "ge2": 29,
+    "full": 23
+   },
+   "stairs_15_down|303": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 27,
+    "ge2": 23,
+    "full": 20
+   }
+  },
+  "scenario_score": {
+   "G1": 0.8225189345125948,
+   "G2": 0.8181264315200467,
+   "G3": 0.7585938344782678,
+   "G4": 0.8213860367398089,
+   "G5": 0.7172492967684465,
+   "G6": 0.8584666907698227,
+   "G7": 0.7677728004877716
+  },
+  "total_70": 55.38643746667833,
+  "loss_survival": 0.9479166666666666,
+  "loss_tracking": 13.665645866655005,
+  "loss_tracking_yaw_part": 4.66976928723201,
+  "G3_survival_sum": 5.84375,
+  "G3_cases": 6,
+  "terrain_along_speed_mean": 0.3993919894442895,
+  "G2_combined_yaw_survival": {
+   "combined_yaw_left|101": 1.0,
+   "combined_yaw_left|202": 1.0,
+   "combined_yaw_left|303": 1.0,
+   "combined_yaw_right|101": 1.0,
+   "combined_yaw_right|202": 1.0,
+   "combined_yaw_right|303": 1.0
+  },
+  "G2_combined_yaw_rmse": {
+   "combined_yaw_left|101": 0.1212672965321209,
+   "combined_yaw_left|202": 0.12419791959399841,
+   "combined_yaw_left|303": 0.11994609957696796,
+   "combined_yaw_right|101": 0.11540149582864676,
+   "combined_yaw_right|202": 0.1171418638724541,
+   "combined_yaw_right|303": 0.11513237828459798
+  }
+ },
+ "g_a083_pc2": {
+  "heading": {
+   "forward_nominal": {
+    "med": 17.339910999280654,
+    "p90": 25.197706924561203,
+    "slow_share": 0.04403200579356609,
+    "gt45": 0,
+    "n": 96
+   },
+   "rough_forward": {
+    "med": 15.589775239681773,
+    "p90": 27.785675577340715,
+    "slow_share": 0.08354529132063837,
+    "gt45": 3,
+    "n": 96
+   },
+   "rough_lateral": {
+    "med": 14.734595951938225,
+    "p90": 48.90564442448884,
+    "slow_share": 0.14076798628760118,
+    "gt45": 12,
+    "n": 96
+   },
+   "slope_plus_20": {
+    "med": 13.469900788611064,
+    "p90": 46.653759739345475,
+    "slow_share": 0.09187278829080357,
+    "gt45": 10,
+    "n": 96
+   },
+   "slope_minus_20": {
+    "med": 16.721917961556063,
+    "p90": 46.64801114097952,
+    "slow_share": 0.1086827263023035,
+    "gt45": 13,
+    "n": 96
+   },
+   "stairs_10_up": {
+    "med": 19.22135840782396,
+    "p90": 40.14235802318076,
+    "slow_share": 0.12249249737204126,
+    "gt45": 9,
+    "n": 96
+   },
+   "stairs_10_down": {
+    "med": 11.175255550639664,
+    "p90": 45.48770409080704,
+    "slow_share": 0.11347930268142939,
+    "gt45": 10,
+    "n": 96
+   },
+   "stairs_15_up": {
+    "med": 26.330666196517942,
+    "p90": 59.08764443014227,
+    "slow_share": 0.13359769510491418,
+    "gt45": 19,
+    "n": 96
+   },
+   "stairs_15_down": {
+    "med": 20.092309823857693,
+    "p90": 66.23460211835294,
+    "slow_share": 0.18738246292610344,
+    "gt45": 21,
+    "n": 96
+   },
+   "push_pos_x": {
+    "med": 14.646969316873406,
+    "p90": 32.0003714675194,
+    "slow_share": 0.08096027178036756,
+    "gt45": 0,
+    "n": 96
+   }
+  },
+  "stairs": {
+   "stairs_10_up|101": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_up|202": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_up|303": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_down|101": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_down|202": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_10_down|303": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_up|101": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_up|202": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_up|303": {
+    "direction": "descend",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_down|101": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 31
+   },
+   "stairs_15_down|202": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   },
+   "stairs_15_down|303": {
+    "direction": "climb",
+    "robots": 32,
+    "ge1": 32,
+    "ge2": 32,
+    "full": 32
+   }
+  },
+  "scenario_score": {
+   "G1": 0.8565042772272016,
+   "G2": 0.8574469138720299,
+   "G3": 0.7904988654877875,
+   "G4": 0.8343215378263834,
+   "G5": 0.7889794915215772,
+   "G6": 0.8342204192096053,
+   "G7": 0.8055093668326473
+  },
+  "total_70": 57.58624093382031,
+  "loss_survival": 0.8203125,
+  "loss_tracking": 11.593446566179693,
+  "loss_tracking_yaw_part": 4.668538501750104,
+  "G3_survival_sum": 5.8125,
+  "G3_cases": 6,
+  "terrain_along_speed_mean": 0.47031627525172787,
+  "G2_combined_yaw_survival": {
+   "combined_yaw_left|101": 1.0,
+   "combined_yaw_left|202": 1.0,
+   "combined_yaw_left|303": 1.0,
+   "combined_yaw_right|101": 1.0,
+   "combined_yaw_right|202": 1.0,
+   "combined_yaw_right|303": 1.0
+  },
+  "G2_combined_yaw_rmse": {
+   "combined_yaw_left|101": 0.1146535867987546,
+   "combined_yaw_left|202": 0.11785169960774508,
+   "combined_yaw_left|303": 0.11533686239184288,
+   "combined_yaw_right|101": 0.09877415923886074,
+   "combined_yaw_right|202": 0.09940623152464154,
+   "combined_yaw_right|303": 0.09945614736284815
+  }
+ }
+}
