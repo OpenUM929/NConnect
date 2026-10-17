@@ -1,0 +1,38 @@
+{
+ "kinds": {
+  "tilt": 40,
+  "low": 27
+ },
+ "by_case": {
+  "rough_forward": 7,
+  "rough_lateral": 7,
+  "stairs_15_down": 21,
+  "stairs_15_up": 27,
+  "push_neg_y": 1,
+  "dr_seed_101": 2,
+  "dr_seed_202": 1,
+  "dr_seed_303": 1
+ },
+ "by_case_kind": {
+  "dr_seed_101|low": 2,
+  "dr_seed_202|low": 1,
+  "dr_seed_303|low": 1,
+  "push_neg_y|tilt": 1,
+  "rough_forward|low": 2,
+  "rough_forward|tilt": 5,
+  "rough_lateral|low": 1,
+  "rough_lateral|tilt": 6,
+  "stairs_15_down|low": 19,
+  "stairs_15_down|tilt": 2,
+  "stairs_15_up|low": 1,
+  "stairs_15_up|tilt": 26
+ },
+ "tilt_fs": 0.00281679630279541,
+ "tilt_fn": 0.0017393430074055805,
+ "stairs_15_up_posture": {
+  "height_med": 0.38457716263020525,
+  "tilt_med": 0.020809213320414188,
+  "robots_ever_below_0.18": 19,
+  "robots": 96
+ }
+}
