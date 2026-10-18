@@ -84,3 +84,6 @@ G-A090	RECEIVED	2026-10-17T22:31:26+09:00	author=claude; result ZIP SHA ee2963ee
 G-A090	READOUT_DONE	2026-10-17T22:31:26+09:00	author=claude; WORSE formula 56.72 < 57.59 (legacy 60.29); protection fails 3 (15cm stairs survival 0.870, G3 survival 5.656, terrain speed 0.424); reports/GO2_G_A090_READOUT_20261017.md
 G-A091	PUBLISHED	2026-10-17T22:31:26+09:00	author=claude; user decision 2026-10-17: G-A090 worse -> next 0.1-step point track_ang_vel_z_exp 0.75->0.65 alone on G-A083; 3000iter seed42; ZIP SHA d73dfb93d218cd76bb67c9741218e87c89b8dbdb91974122b5f9be49ee6d5e33; 3 parts; 9 tests OK; check==publish
 G-A091	READY	2026-10-17T22:31:26+09:00	author=claude; HANDOFF_G_A091_PC2.md; START_AFTER NONE (G-A090 DONE)
+G-A091	WAITING	2026-10-18T09:57:21+09:00	author=claude; PC2 FAILED rc9 (diverged iter2594 after pin, no evaluation); iter2400 eval-only result not received; no readout
+G-A092	PUBLISHED	2026-10-18T09:57:21+09:00	author=claude; user decision 2026-10-18: G-A091 not good (no score) -> feet_air_time 0.01->0.05 alone on G-A083 rewards; 3000iter seed42; ZIP SHA 8b76126455887c530b4c43c3ba85fb077524cd729ce86290dc97c6d65b9f3632; 3 parts; 9 tests OK; check==publish
+G-A092	READY	2026-10-18T09:57:21+09:00	author=claude; HANDOFF_G_A092_PC2.md; START_AFTER NONE (G-A091 FAILED; waits if PC2 eval-only run is active)
