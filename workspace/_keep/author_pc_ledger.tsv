@@ -92,3 +92,5 @@ G-A093	WAITING	2026-10-18T14:08:45+09:00	author=claude; edition choice waits for
 G-A092	RECEIVED	2026-10-18T15:53:51+09:00	author=claude; result ZIP SHA dec1dfd5 verified, 6 parts, 69/69 + videos 10/10, baseline 380/380 hash-equal to local G-A083
 G-A092	READOUT_DONE	2026-10-18T15:53:51+09:00	author=claude; WORSE formula 54.66 < 57.59 (legacy 59.70); xy tracking 6.92->10.03 (slow vs command, terrain speed 0.386 fail); push falls 4->0, 15cm stairs survival 0.990; reports/GO2_G_A092_READOUT_20261018.md
 G-A093	READY	2026-10-18T15:53:51+09:00	author=claude; edition chosen = GO2_G_A093_FINAL_A083_5000_v1 (G-A092 worse); user runs it on the official server
+G-A093	RECEIVED	2026-10-18T21:30:01+09:00	author=claude; official-server result ZIP SHA 775773b4 verified (user download), 909 files, FULL_69_COMPLETE, videos 10/10, no eval retries; TRAIN_RC0 5000/5000 no non-finite
+G-A093	READOUT_DONE	2026-10-18T21:30:01+09:00	author=claude; iter4900 formula 57.18 (legacy 63.35) vs G-A083 PC2 57.59 (within 0.65 machine noise) and G-A077 server 55.94; falls 12->4; submission staged submission/G-A093_SERVER_FINAL (policy 87cf21e9, env 8c2215ce, report 500 chars)
