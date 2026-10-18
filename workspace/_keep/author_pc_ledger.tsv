@@ -94,3 +94,5 @@ G-A092	READOUT_DONE	2026-10-18T15:53:51+09:00	author=claude; WORSE formula 54.66
 G-A093	READY	2026-10-18T15:53:51+09:00	author=claude; edition chosen = GO2_G_A093_FINAL_A083_5000_v1 (G-A092 worse); user runs it on the official server
 G-A093	RECEIVED	2026-10-18T21:30:01+09:00	author=claude; official-server result ZIP SHA 775773b4 verified (user download), 909 files, FULL_69_COMPLETE, videos 10/10, no eval retries; TRAIN_RC0 5000/5000 no non-finite
 G-A093	READOUT_DONE	2026-10-18T21:30:01+09:00	author=claude; iter4900 formula 57.18 (legacy 63.35) vs G-A083 PC2 57.59 (within 0.65 machine noise) and G-A077 server 55.94; falls 12->4; submission staged submission/G-A093_SERVER_FINAL (policy 87cf21e9, env 8c2215ce, report 500 chars)
+G-A094	PUBLISHED	2026-10-18T21:45:07+09:00	author=claude; eval-only G-A093 server checkpoint 4999 (reward-best 4466db85), user decision 2026-10-18 "제일 좋은걸로"; ZIP SHA 643f5af39849e28f56aa71ce7559e228698f567f9339f74006652fd1fcc61e97; 3 parts; check==publish; no training (runner exit 40)
+G-A094	READY	2026-10-18T21:45:07+09:00	author=claude; HANDOFF_G_A094_PC2.md; START_AFTER NONE (G-A092 DONE)
