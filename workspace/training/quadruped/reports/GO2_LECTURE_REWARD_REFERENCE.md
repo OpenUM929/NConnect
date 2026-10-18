@@ -192,3 +192,12 @@
 - 모서리·발 궤적·접촉력: `reports/GO2_A052_STAIRS_EDGE_READOUT_20260928.md` (§11 발 궤적)
 - A015 반례: `reports/GO2_A015_FEET_AIR_TIME_COUNTER_CHECK_20260928.md`
 - 강좌 기반 역제안: `upload/plan/GO2_STAIRS_LECTURE_COUNTERPROPOSAL_20260928.md`
+
+## 9. 강좌·배포의 학습 횟수 설명 (2026-10-18 조사, 사용자 요청)
+- 13강 명령 옵션 설명: "--max_iterations 얼마나 … 예: 1000(빠른 확인), 5000(본격 학습)."
+- 14강 Go2 심화: "보상 값은 도전 단계 그대로, --max_iterations 만 5000 으로" → "걸음이 한결 안정되고 자연스러워져요. 하지만 걸음 너비가 작고, 계단 등을 올라가는 데 많이 어색해요."
+- 14강 H1: "iteration을 1000 → 5000 으로 늘려봤어요 … 보상 방향이 잡히면 iteration을 늘려 완성도를 높여요. 짧게 실험해 방향을 잡은 뒤, 학습이 잘 진행되면 긴 학습을 돌리는 게 효율적이에요." / "걸음 '성격'은 보통 3000~5000 iter에서 더 뚜렷해져요."
+- 15강 추가 학습(resume) 예시: Go2 `--max_iterations 10000 --headless --resume`(이어 학습, 보상·환경 그대로이고 나아지는 중일 때). 새 서버에서 model_best로 이어 학습하는 예시는 2000.
+- 15강 발산: "Loss·탐색 강도가 폭발하거나 NaN → 학습을 중단하고 보상 설정을 점검한 뒤 재학습".
+- 배포 파일: `go2_task/agent_cfg.py` 기본 `max_iterations = 5000`, `train.py` 사용 예시 15000, `quadruped_rewards.py` 머리 예시 5000, `training/quadruped/README.md` 예시 10000("RTX 5080 기준 10000 iter ≈ 8h", "길수록 좋지만 수렴하면 정체").
+- 강좌가 "본격 학습" 값으로 명시한 수는 **5000**뿐이다. 10000·15000은 명령 예시에만 나오고 권장 문구는 없다.
